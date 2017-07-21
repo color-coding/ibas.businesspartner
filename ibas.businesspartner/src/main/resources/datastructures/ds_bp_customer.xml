@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE Domain>
+<Domain Name="BusinessPartner" ShortName="BP">
+  <Model Name="Customer" Description="业务伙伴-客户" ModelType="MasterData" Mapped="${Company}_BP_OCUS">
+    <Property Name="Code" Description="编码" DataType="Alphanumeric" DataSubType="Default" EditSize="20" Mapped="Code" PrimaryKey="Yes" UniqueKey="Yes"/>
+    <Property Name="Name" Description="名称" DataType="Alphanumeric" DataSubType="Default" EditSize="100" Mapped="Name"/>
+    <Property Name="Group" Description="组代码" DataType="Alphanumeric" DataSubType="Default" EditSize="8" Mapped="Group"/>
+    <Property Name="ContactPerson" Description="联系人" DataType="Alphanumeric" DataSubType="Default" EditSize="8" Mapped="CntctPrsn"/>
+    <Property Name="CompanyPrivate" Description="公司/个人" DataType="Alphanumeric" DataSubType="Default" EditSize="1" DeclaredType="emBusinessPartnerNature" Mapped="CmpPrivate"/>
+    <Property Name="BillToStreet" Description="付款方街道" DataType="Alphanumeric" DataSubType="Default" EditSize="200" Mapped="BillAddress"/>
+    <Property Name="BillToZipCode" Description="付款方邮政编码" DataType="Alphanumeric" DataSubType="Default" EditSize="20" Mapped="BillZipCode"/>
+    <Property Name="ShipToStreet" Description="送达方街道" DataType="Alphanumeric" DataSubType="Default" EditSize="200" Mapped="ShipAddress"/>
+    <Property Name="ShipToZipCode" Description="送达方邮政编码" DataType="Alphanumeric" DataSubType="Default" EditSize="20" Mapped="ShipZipCode"/>
+    <Property Name="Telephone1" Description="电话 1" DataType="Alphanumeric" DataSubType="Default" EditSize="20" Mapped="Phone1"/>
+    <Property Name="Telephone2" Description="电话 2" DataType="Alphanumeric" DataSubType="Default" EditSize="20" Mapped="Phone2"/>
+    <Property Name="MobilePhone" Description="移动电话" DataType="Alphanumeric" DataSubType="Default" EditSize="50" Mapped="Cellular"/>
+    <Property Name="FaxNumber" Description="传真号" DataType="Alphanumeric" DataSubType="Default" EditSize="20" Mapped="Fax"/>
+    <Property Name="TaxId" Description="国税编号" DataType="Alphanumeric" DataSubType="Default" EditSize="30" Mapped="TaxId"/>
+    <Property Name="PriceList" Description="价格清单" DataType="Numeric" DataSubType="Default" EditSize="8" Mapped="PriceList"/>
+    <Property Name="Balance" Description="余额" DataType="Decimal" DataSubType="Price" EditSize="8" Mapped="Balance"/>
+    <Property Name="Currency" Description="货币" DataType="Alphanumeric" DataSubType="Default" EditSize="5" Mapped="Currency"/>
+    <Property Name="ValidDate" Description="生效日期" DataType="Date" DataSubType="Default" EditSize="8" Mapped="ValidDate"/>
+    <Property Name="InvalidDate" Description="失效日期" DataType="Date" DataSubType="Default" EditSize="8" Mapped="InvalidDate"/>
+    <Property Name="Remarks" Description="备注" DataType="Memo" DataSubType="Default" EditSize="8" Mapped="Remarks"/>
+    <Property Name="Referenced" Description="已引用" DataType="Alphanumeric" DataSubType="Default" EditSize="1" DeclaredType="emYesNo" Mapped="Refed"/>
+    <Property Name="Deleted" Description="已删除" DataType="Alphanumeric" DataSubType="Default" EditSize="1" DeclaredType="emYesNo" Mapped="Deleted"/>
+    <Property Name="DocEntry" Description="对象编号" DataType="Numeric" DataSubType="Default" EditSize="8" Mapped="DocEntry" PrimaryKey="Yes"/>
+    <Property Name="ObjectCode" Description="对象类型" DataType="Alphanumeric" DataSubType="Default" EditSize="30" Mapped="ObjectCode"/>
+    <Property Name="CreateDate" Description="创建日期" DataType="Date" DataSubType="Default" EditSize="8" Mapped="CreateDate"/>
+    <Property Name="CreateTime" Description="创建时间" DataType="Date" DataSubType="Time" EditSize="8" Mapped="CreateTime"/>
+    <Property Name="UpdateDate" Description="修改日期" DataType="Date" DataSubType="Default" EditSize="8" Mapped="UpdateDate"/>
+    <Property Name="UpdateTime" Description="修改时间" DataType="Date" DataSubType="Time" EditSize="8" Mapped="UpdateTime"/>
+    <Property Name="LogInst" Description="版本" DataType="Numeric" DataSubType="Default" EditSize="8" Mapped="LogInst"/>
+    <Property Name="Series" Description="服务系列" DataType="Numeric" DataSubType="Default" EditSize="8" Mapped="Series"/>
+    <Property Name="DataSource" Description="数据源" DataType="Alphanumeric" DataSubType="Default" EditSize="8" Mapped="DataSource"/>
+    <Property Name="CreateUserSign" Description="创建用户" DataType="Numeric" DataSubType="Default" EditSize="8" Mapped="Creator"/>
+    <Property Name="UpdateUserSign" Description="修改用户" DataType="Numeric" DataSubType="Default" EditSize="8" Mapped="Updator"/>
+    <Property Name="CreateActionId" Description="创建动作标识" DataType="Alphanumeric" DataSubType="Default" EditSize="36" Mapped="CreateActId"/>
+    <Property Name="UpdateActionId" Description="更新动作标识" DataType="Alphanumeric" DataSubType="Default" EditSize="36" Mapped="UpdateActId"/>
+    <Property Name="ApprovalStatus" Description="审批状态" DataType="Alphanumeric" DataSubType="Default" EditSize="1" DeclaredType="emApprovalStatus" Mapped="ApvlStatus"/>
+    <Property Name="DataOwner" Description="数据所有者" DataType="Numeric" DataSubType="Default" EditSize="8" Mapped="DataOwner"/>
+    <Property Name="Organization" Description="数据所属组织" DataType="Alphanumeric" DataSubType="Default" EditSize="8" Mapped="OrgCode"/>
+  </Model>
+  <BusinessObject MappedModel="Customer" ShortName="${Company}_BP_CUSTOMER"/>
+</Domain>

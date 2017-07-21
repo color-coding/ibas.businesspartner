@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE Domain>
+<Domain Name="BusinessPartner" ShortName="BP">
+  <Model Name="ContactPerson" Description="业务伙伴联系人" ModelType="Simple" Mapped="${Company}_BP_OCPR">
+    <Property Name="BusinessPartner" Description="业务伙伴" DataType="Alphanumeric" DataSubType="Default" EditSize="20" Mapped="CardCode"/>
+    <Property Name="OwnerType" Description="归属类型" DataType="Alphanumeric" DataSubType="Default" EditSize="1" DeclaredType="emBusinessPartnerType" Mapped="OwnerType"/>
+    <Property Name="Activated" Description="有效的" DataType="Alphanumeric" DataSubType="Default" EditSize="1" DeclaredType="emYesNo" Mapped="Activated"/>
+    <Property Name="Name" Description="名称" DataType="Alphanumeric" DataSubType="Default" EditSize="50" Mapped="Name"/>
+    <Property Name="Gender" Description="性别" DataType="Alphanumeric" DataSubType="Default" EditSize="20" DeclaredType="emGender" Mapped="Gender"/>
+    <Property Name="Position" Description="职位" DataType="Alphanumeric" DataSubType="Default" EditSize="10" Mapped="Position"/>
+    <Property Name="Address" Description="地址" DataType="Alphanumeric" DataSubType="Default" EditSize="100" Mapped="Address"/>
+    <Property Name="Telephone1" Description="电话 1" DataType="Alphanumeric" DataSubType="Default" EditSize="20" Mapped="Tel1"/>
+    <Property Name="Telephone2" Description="电话 2" DataType="Alphanumeric" DataSubType="Default" EditSize="20" Mapped="Tel2"/>
+    <Property Name="MobilePhone" Description="移动电话" DataType="Alphanumeric" DataSubType="Default" EditSize="50" Mapped="Cellolar"/>
+    <Property Name="Fax" Description="传真" DataType="Alphanumeric" DataSubType="Default" EditSize="20" Mapped="Fax"/>
+    <Property Name="Mail" Description="电子邮件" DataType="Alphanumeric" DataSubType="Default" EditSize="100" Mapped="Mail"/>
+    <Property Name="Remark1" Description="备注 1" DataType="Alphanumeric" DataSubType="Default" EditSize="200" Mapped="Notes1"/>
+    <Property Name="Remark2" Description="备注 2" DataType="Alphanumeric" DataSubType="Default" EditSize="200" Mapped="Notes2"/>
+    <Property Name="ObjectKey" Description="对象编号" DataType="Numeric" DataSubType="Default" EditSize="8" Mapped="ObjectKey" PrimaryKey="Yes"/>
+    <Property Name="ObjectCode" Description="对象类型" DataType="Alphanumeric" DataSubType="Default" EditSize="30" Mapped="ObjectCode"/>
+    <Property Name="CreateDate" Description="创建日期" DataType="Date" DataSubType="Default" EditSize="8" Mapped="CreateDate"/>
+    <Property Name="CreateTime" Description="创建时间" DataType="Date" DataSubType="Time" EditSize="8" Mapped="CreateTime"/>
+    <Property Name="UpdateDate" Description="修改日期" DataType="Date" DataSubType="Default" EditSize="8" Mapped="UpdateDate"/>
+    <Property Name="UpdateTime" Description="修改时间" DataType="Date" DataSubType="Time" EditSize="8" Mapped="UpdateTime"/>
+    <Property Name="LogInst" Description="实例号（版本）" DataType="Numeric" DataSubType="Default" EditSize="8" Mapped="LogInst"/>
+    <Property Name="Series" Description="服务系列" DataType="Numeric" DataSubType="Default" EditSize="8" Mapped="Series"/>
+    <Property Name="DataSource" Description="数据源" DataType="Alphanumeric" DataSubType="Default" EditSize="8" Mapped="DataSource"/>
+    <Property Name="CreateUserSign" Description="创建用户" DataType="Numeric" DataSubType="Default" EditSize="8" Mapped="Creator"/>
+    <Property Name="UpdateUserSign" Description="修改用户" DataType="Numeric" DataSubType="Default" EditSize="8" Mapped="Updator"/>
+    <Property Name="CreateActionId" Description="创建动作标识" DataType="Alphanumeric" DataSubType="Default" EditSize="36" Mapped="CreateActId"/>
+    <Property Name="UpdateActionId" Description="更新动作标识" DataType="Alphanumeric" DataSubType="Default" EditSize="36" Mapped="UpdateActId"/>
+  </Model>
+  <BusinessObject MappedModel="ContactPerson" ShortName="${Company}_BP_CONTACTPERSON"/>
+</Domain>
