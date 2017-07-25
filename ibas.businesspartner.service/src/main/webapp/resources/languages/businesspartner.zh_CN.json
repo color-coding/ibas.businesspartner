@@ -1,6 +1,6 @@
 {
-  "businesspartner": "${Domain.getDescription()}",
-  "businesspartner_icon": "",
+  "businesspartner": "业务伙伴",
+  "businesspartner_icon": "sap-icon://customer-and-supplier",
   "businesspartner_func_businesspartnergroup": "业务伙伴组",
   "businesspartner_app_businesspartnergroup_list": "业务伙伴组列表",
   "businesspartner_app_businesspartnergroup_choose": "业务伙伴组选择",
