@@ -1,4 +1,4 @@
-﻿/**
+/**
  * @license
  * Copyright color-coding studio. All Rights Reserved.
  *
@@ -7,8 +7,7 @@
  */
 
 // 模块索引文件，此文件集中导出类
-export * from "./BusinessPartnerBalanceJournal.d";
-export * from "./BusinessPartnerGroup.d";
-export * from "./ContactPerson.d";
-export * from "./Customer.d";
-export * from "./Supplier.d";
+export * from "./BusinessPartnerBalanceJournalListView";
+export * from "./BusinessPartnerBalanceJournalChooseView";
+export * from "./BusinessPartnerBalanceJournalViewView";
+export * from "./BusinessPartnerBalanceJournalEditView";

@@ -7,7 +7,16 @@
  */
 
 import * as ibas from "ibas/index";
-import { BusinessPartnerGroupFunc, BusinessPartnerGroupChooseServiceMapping, BusinessPartnerGroupLinkServiceMapping } from "./businesspartnergroup/index";
+import {
+    BusinessPartnerBalanceJournalFunc,
+    BusinessPartnerBalanceJournalChooseServiceMapping,
+    BusinessPartnerBalanceJournalLinkServiceMapping
+} from "./businesspartnerbalancejournal/index";
+import {
+    BusinessPartnerGroupFunc,
+    BusinessPartnerGroupChooseServiceMapping,
+    BusinessPartnerGroupLinkServiceMapping
+} from "./businesspartnergroup/index";
 import { ContactPersonFunc, ContactPersonChooseServiceMapping, ContactPersonLinkServiceMapping } from "./contactperson/index";
 import { CustomerFunc, CustomerChooseServiceMapping, CustomerLinkServiceMapping } from "./customer/index";
 import { SupplierFunc, SupplierChooseServiceMapping, SupplierLinkServiceMapping } from "./supplier/index";
@@ -52,6 +61,7 @@ export class Console extends ibas.ModuleConsole {
     run(): void {
         // 加载语言-框架默认
         ibas.i18n.load(this.rootUrl + "resources/languages/businesspartner.json");
+        ibas.i18n.load(this.rootUrl + "resources/languages/bo/businesspartnerbalancejournal.json");
         ibas.i18n.load(this.rootUrl + "resources/languages/bo/businesspartnergroup.json");
         ibas.i18n.load(this.rootUrl + "resources/languages/bo/contactperson.json");
         ibas.i18n.load(this.rootUrl + "resources/languages/bo/customer.json");

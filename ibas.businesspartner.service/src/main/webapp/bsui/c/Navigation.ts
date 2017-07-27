@@ -7,6 +7,8 @@
  */
 
 import * as ibas from "ibas/index";
+import * as businesspartnerbalancejournalApps from "../../bsapp/businesspartnerbalancejournal/index";
+import * as businesspartnerbalancejournalViews from "./businesspartnerbalancejournal/index";
 import * as businesspartnergroupApps from "../../bsapp/businesspartnergroup/index";
 import * as contactpersonApps from "../../bsapp/contactperson/index";
 import * as customerApps from "../../bsapp/customer/index";
@@ -28,6 +30,18 @@ export default class Navigation extends ibas.ViewNavigation {
     protected newView(id: string): ibas.IView {
         let view: ibas.IView = null;
         switch (id) {
+            case businesspartnerbalancejournalApps.BusinessPartnerBalanceJournalListApp.APPLICATION_ID:
+                view = new businesspartnerbalancejournalViews.BusinessPartnerBalanceJournalListView();
+                break;
+            case businesspartnerbalancejournalApps.BusinessPartnerBalanceJournalChooseApp.APPLICATION_ID:
+                view = new businesspartnerbalancejournalViews.BusinessPartnerBalanceJournalChooseView();
+                break;
+            case businesspartnerbalancejournalApps.BusinessPartnerBalanceJournalViewApp.APPLICATION_ID:
+                view = new businesspartnerbalancejournalViews.BusinessPartnerBalanceJournalViewView();
+                break;
+            case businesspartnerbalancejournalApps.BusinessPartnerBalanceJournalEditApp.APPLICATION_ID:
+                view = new businesspartnerbalancejournalViews.BusinessPartnerBalanceJournalEditView();
+                break;
             case businesspartnergroupApps.BusinessPartnerGroupListApp.APPLICATION_ID:
                 view = new businesspartnergroupViews.BusinessPartnerGroupListView();
                 break;

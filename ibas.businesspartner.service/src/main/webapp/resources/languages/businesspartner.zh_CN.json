@@ -1,6 +1,11 @@
 {
   "businesspartner": "业务伙伴",
   "businesspartner_icon": "sap-icon://customer-and-supplier",
+  "businesspartner_func_businesspartnerbalancejournal": "业务伙伴余额记录",
+  "businesspartner_app_businesspartnerbalancejournal_list": "业务伙伴余额记录列表",
+  "businesspartner_app_businesspartnerbalancejournal_choose": "业务伙伴余额记录选择",
+  "businesspartner_app_businesspartnerbalancejournal_view": "业务伙伴余额记录查看",
+  "businesspartner_app_businesspartnerbalancejournal_edit": "业务伙伴余额记录编辑",
   "businesspartner_func_businesspartnergroup": "业务伙伴组",
   "businesspartner_app_businesspartnergroup_list": "业务伙伴组列表",
   "businesspartner_app_businesspartnergroup_choose": "业务伙伴组选择",

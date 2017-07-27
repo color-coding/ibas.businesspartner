@@ -18,6 +18,20 @@ export class BORepositoryBusinessPartner extends ibas.BORepositoryApplication im
     protected createConverter(): ibas.IDataConverter {
         return new DataConverter4bp;
     }
+    /**
+     * 查询 业务伙伴余额记录
+     * @param fetcher 查询者
+     */
+    fetchBusinessPartnerBalanceJournal(fetcher: ibas.FetchCaller<bo.BusinessPartnerBalanceJournal>): void {
+        super.fetch(bo.BusinessPartnerBalanceJournal.name, fetcher);
+    }
+    /**
+     * 保存 业务伙伴余额记录
+     * @param saver 保存者
+     */
+    saveBusinessPartnerBalanceJournal(saver: ibas.SaveCaller<bo.BusinessPartnerBalanceJournal>): void {
+        super.save(bo.BusinessPartnerBalanceJournal.name, saver);
+    }
 
     /**
      * 查询 业务伙伴组

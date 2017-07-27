@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE Domain>
+<Domain Name="BusinessPartner" ShortName="BP">
+  <Model Name="BusinessPartnerBalanceJournal" Description="业务伙伴余额记录" ModelType="Simple" Mapped="${Company}_BP_OBJN">
+    <Property Name="BusinessPartnerType" Description="业务伙伴类型" DataType="Alphanumeric" DataSubType="Default" EditSize="1" DeclaredType="emBusinessPartnerType" Mapped="CardType"/>
+    <Property Name="BusinessPartner" Description="业务伙伴编码" DataType="Alphanumeric" DataSubType="Default" EditSize="20" Mapped="CardCode"/>
+    <Property Name="Direction" Description="方向" DataType="Alphanumeric" DataSubType="Default" EditSize="1" DeclaredType="emDirection" Mapped="Direction"/>
+    <Property Name="Mode" Description="方式" DataType="Alphanumeric" DataSubType="Default" EditSize="8" Mapped="Mode"/>
+    <Property Name="Amount" Description="金额" DataType="Decimal" DataSubType="Sum" EditSize="8" Mapped="Amount"/>
+    <Property Name="Currency" Description="币种" DataType="Alphanumeric" DataSubType="Default" EditSize="8" Mapped="Currency"/>
+    <Property Name="Rate" Description="汇率" DataType="Decimal" DataSubType="Rate" EditSize="8" Mapped="Rate"/>
+    <Property Name="BankCode" Description="银行编码" DataType="Alphanumeric" DataSubType="Default" EditSize="20" Mapped="BankCode"/>
+    <Property Name="CardNumber" Description="卡号" DataType="Alphanumeric" DataSubType="Default" EditSize="100" Mapped="CardNumber"/>
+    <Property Name="BaseDocumentType" Description="基于类型" DataType="Alphanumeric" DataSubType="Default" EditSize="30" Mapped="BaseType"/>
+    <Property Name="BaseDocumentEntry" Description="基于标识" DataType="Numeric" DataSubType="Default" EditSize="8" Mapped="BaseEntry"/>
+    <Property Name="BaseDocumentLineId" Description="基于行号" DataType="Numeric" DataSubType="Default" EditSize="8" Mapped="BaseLine"/>
+    <Property Name="OriginalDocumentType" Description="原始类型" DataType="Alphanumeric" DataSubType="Default" EditSize="30" Mapped="OrgnlType"/>
+    <Property Name="OriginalDocumentEntry" Description="原始标识" DataType="Numeric" DataSubType="Default" EditSize="8" Mapped="OrgnlEntry"/>
+    <Property Name="OriginalDocumentLineId" Description="原始行号" DataType="Numeric" DataSubType="Default" EditSize="8" Mapped="OrgnlLine"/>
+    <Property Name="ObjectKey" Description="对象编号" DataType="Numeric" DataSubType="Default" EditSize="8" Mapped="ObjectKey" PrimaryKey="Yes"/>
+    <Property Name="ObjectCode" Description="对象类型" DataType="Alphanumeric" DataSubType="Default" EditSize="30" Mapped="ObjectCode"/>
+    <Property Name="CreateDate" Description="创建日期" DataType="Date" DataSubType="Default" EditSize="8" Mapped="CreateDate"/>
+    <Property Name="CreateTime" Description="创建时间" DataType="Date" DataSubType="Time" EditSize="8" Mapped="CreateTime"/>
+    <Property Name="UpdateDate" Description="修改日期" DataType="Date" DataSubType="Default" EditSize="8" Mapped="UpdateDate"/>
+    <Property Name="UpdateTime" Description="修改时间" DataType="Date" DataSubType="Time" EditSize="8" Mapped="UpdateTime"/>
+    <Property Name="LogInst" Description="实例号（版本）" DataType="Numeric" DataSubType="Default" EditSize="8" Mapped="LogInst"/>
+    <Property Name="Series" Description="服务系列" DataType="Numeric" DataSubType="Default" EditSize="8" Mapped="Series"/>
+    <Property Name="DataSource" Description="数据源" DataType="Alphanumeric" DataSubType="Default" EditSize="8" Mapped="DataSource"/>
+    <Property Name="CreateUserSign" Description="创建用户" DataType="Numeric" DataSubType="Default" EditSize="8" Mapped="Creator"/>
+    <Property Name="UpdateUserSign" Description="修改用户" DataType="Numeric" DataSubType="Default" EditSize="8" Mapped="Updator"/>
+    <Property Name="CreateActionId" Description="创建动作标识" DataType="Alphanumeric" DataSubType="Default" EditSize="36" Mapped="CreateActId"/>
+    <Property Name="UpdateActionId" Description="更新动作标识" DataType="Alphanumeric" DataSubType="Default" EditSize="36" Mapped="UpdateActId"/>
+  </Model>
+  <BusinessObject MappedModel="BusinessPartnerBalanceJournal" ShortName="${Company}_BP_BALANCEJOURNAL"/>
+</Domain>
