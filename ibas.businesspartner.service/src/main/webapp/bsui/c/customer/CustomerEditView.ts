@@ -30,8 +30,10 @@ export class CustomerEditView extends ibas.BOEditView implements ICustomerEditVi
     deleteDataEvent: Function;
     /** 新建数据事件，参数1：是否克隆 */
     createDataEvent: Function;
-    /*** 选择供应商组事件*/
+    /*** 选择客户组事件*/
     chooseBusinessPartnerGroupEvent: Function;
+    /** 选择客户联系人事件 */
+    chooseBusinessPartnerContactPersonEvent: Function;
 
     /** 绘制视图 */
     darw(): any {
@@ -83,32 +85,37 @@ export class CustomerEditView extends ibas.BOEditView implements ICustomerEditVi
                 new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_contact_information") }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_contactperson") }),
                 new sap.m.Input("", {
-                    type: sap.m.InputType.Text,
+                    placeholder: ibas.i18n.prop("bo_customer_contactperson"),
+                    tooltip: ibas.i18n.prop("bo_customer_contactperson"),
+                    showValueHelp: true,
+                    valueHelpRequest: function (): void {
+                        that.fireViewEvents(that.chooseBusinessPartnerContactPersonEvent);
+                    }
                 }).bindProperty("value", {
-                    path: "contactPerson",
+                    path: "contactPerson"
                 }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_telephone1") }),
-                new sap.m.Input("", {
+                new sap.m.Text("", {
                     type: sap.m.InputType.Text,
-                }).bindProperty("value", {
+                }).bindProperty("text", {
                     path: "telephone1"
                 }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_telephone2") }),
-                new sap.m.Input("", {
+                new sap.m.Text("", {
                     type: sap.m.InputType.Text,
-                }).bindProperty("value", {
+                }).bindProperty("text", {
                     path: "telephone2"
                 }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_mobilephone") }),
-                new sap.m.Input("", {
+                new sap.m.Text("", {
                     type: sap.m.InputType.Text,
-                }).bindProperty("value", {
+                }).bindProperty("text", {
                     path: "mobilePhone"
                 }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_faxnumber") }),
-                new sap.m.Input("", {
+                new sap.m.Text("", {
                     type: sap.m.InputType.Text,
-                }).bindProperty("value", {
+                }).bindProperty("text", {
                     path: "faxNumber"
                 }),
                 new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_business_information") }),
@@ -167,22 +174,7 @@ export class CustomerEditView extends ibas.BOEditView implements ICustomerEditVi
                     valueFormat: "yyyy-MM-dd",
                 }).bindProperty("dateValue", {
                     path: "invalidDate",
-                }),
-                new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_current_status") }),
-                new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_referenced") }),
-                new sap.m.SegmentedButton("", {
-                    items: utils.createSegmentedButtonItems(ibas.emYesNo)
-                }).bindProperty("selectedKey", {
-                    path: "referenced",
-                    type: "sap.ui.model.type.Integer"
-                }),
-                new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_deleted") }),
-                new sap.m.SegmentedButton("", {
-                    items: utils.createSegmentedButtonItems(ibas.emYesNo)
-                }).bindProperty("selectedKey", {
-                    path: "deleted",
-                    type: "sap.ui.model.type.Integer"
-                }),
+                })
             ],
         });
         this.page = new sap.m.Page("", {

@@ -34,6 +34,7 @@ export class SupplierEditApp extends ibas.BOEditApplication<ISupplierEditView, b
         this.view.deleteDataEvent = this.deleteData;
         this.view.createDataEvent = this.createData;
         this.view.chooseBusinessPartnerGroupEvent = this.chooseBusinessPartnerGroup;
+        this.view.chooseBusinessPartnerContactPersonEvent = this.chooseBusinessPartnerContactPerson;
     }
     /** 视图显示后 */
     protected viewShowed(): void {
@@ -181,6 +182,25 @@ export class SupplierEditApp extends ibas.BOEditApplication<ISupplierEditView, b
             }
         });
     }
+    private chooseBusinessPartnerContactPerson(): void {
+        let that: this = this;
+        ibas.servicesManager.runChooseService<bo.ContactPerson>({
+            boCode: bo.ContactPerson.BUSINESS_OBJECT_CODE,
+            criteria: [
+                new ibas.Condition(bo.ContactPerson.PROPERTY_ACTIVATED_NAME,
+                    ibas.emConditionOperation.EQUAL, "Y"),
+                new ibas.Condition(bo.ContactPerson.PROPERTY_NAME_NAME,
+                    ibas.emConditionOperation.NOT_EQUAL, ibas.strings.valueOf(this.editData.contactPerson)),
+            ],
+            onCompleted(selecteds: ibas.List<bo.ContactPerson>): void {
+                that.editData.contactPerson = selecteds.firstOrDefault().name;
+                that.editData.telephone1 = selecteds.firstOrDefault().telephone1;
+                that.editData.telephone2 = selecteds.firstOrDefault().telephone2;
+                that.editData.mobilePhone = selecteds.firstOrDefault().mobilePhone;
+                that.editData.faxNumber = selecteds.firstOrDefault().fax;
+            }
+        });
+    }
 }
 /** 视图-业务伙伴-供应商 */
 export interface ISupplierEditView extends ibas.IBOEditView {
@@ -192,4 +212,6 @@ export interface ISupplierEditView extends ibas.IBOEditView {
     createDataEvent: Function;
     /** 选择供应商组事件 */
     chooseBusinessPartnerGroupEvent: Function;
+    /** 选择供应商联系人事件 */
+    chooseBusinessPartnerContactPersonEvent: Function;
 }

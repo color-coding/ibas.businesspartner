@@ -43,17 +43,17 @@ export class ContactPersonViewView extends ibas.BOViewView implements IContactPe
             columnsS: 1,
             content: [
                 new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_basis_information") }),
-                new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_ownertype") }),
-                new sap.m.Text("", {
-                    type: sap.m.InputType.Text
-                }).bindProperty("text", {
-                    path: "ownerType"
-                }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_name") }),
                 new sap.m.Text("", {
                     type: sap.m.InputType.Text
                 }).bindProperty("text", {
                     path: "name"
+                }),
+                new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_position") }),
+                new sap.m.Text("", {
+                    type: sap.m.InputType.Text
+                }).bindProperty("text", {
+                    path: "position"
                 }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_gender") }),
                 new sap.m.Text("", {
@@ -64,11 +64,14 @@ export class ContactPersonViewView extends ibas.BOViewView implements IContactPe
                         return ibas.enums.describe(emGender, data);
                     }
                 }),
-                new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_position") }),
+                new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_ownertype") }),
                 new sap.m.Text("", {
                     type: sap.m.InputType.Text
                 }).bindProperty("text", {
-                    path: "position"
+                    path: "ownerType",
+                    formatter(data: any): any {
+                        return ibas.enums.describe(emBusinessPartnerType, data);
+                    }
                 }),
                 new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_contact_information") }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_address") }),

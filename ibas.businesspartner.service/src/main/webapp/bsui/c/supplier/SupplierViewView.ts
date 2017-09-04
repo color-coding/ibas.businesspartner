@@ -181,25 +181,6 @@ export class SupplierViewView extends ibas.BOViewView implements ISupplierViewVi
                         pattern: "yyyy-MM-dd",
                         strictParsing: true,
                     }),
-                }),
-                new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_current_status") }),
-                new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_referenced") }),
-                new sap.m.Text("", {
-                    type: sap.m.InputType.Text,
-                }).bindProperty("text", {
-                    path: "referenced",
-                    formatter(data: any): any {
-                        return ibas.enums.describe(ibas.emYesNo, data);
-                    }
-                }),
-                new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_deleted") }),
-                new sap.m.Text("", {
-                    type: sap.m.InputType.Text,
-                }).bindProperty("text", {
-                    path: "deleted",
-                    formatter(data: any): any {
-                        return ibas.enums.describe(ibas.emYesNo, data);
-                    }
                 })
             ]
         });

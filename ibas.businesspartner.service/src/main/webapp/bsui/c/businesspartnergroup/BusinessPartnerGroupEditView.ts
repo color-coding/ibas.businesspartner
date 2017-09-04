@@ -58,22 +58,7 @@ export class BusinessPartnerGroupEditView extends ibas.BOEditView implements IBu
                     type: sap.m.InputType.Text
                 }).bindProperty("value", {
                     path: "docEntry"
-                }),
-                new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_current_status") }),
-                new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnergroup_referenced") }),
-                new sap.m.SegmentedButton("", {
-                    items: utils.createSegmentedButtonItems(ibas.emYesNo)
-                }).bindProperty("selectedKey", {
-                    path: "referenced",
-                    type: "sap.ui.model.type.Integer"
-                }),
-                new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnergroup_deleted") }),
-                new sap.m.SegmentedButton("", {
-                    items: utils.createSegmentedButtonItems(ibas.emYesNo)
-                }).bindProperty("selectedKey", {
-                    path: "deleted",
-                    type: "sap.ui.model.type.Integer"
-                }),
+                })
             ],
         });
         this.page = new sap.m.Page("", {

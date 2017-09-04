@@ -32,5 +32,11 @@
   "businesspartner_app_supplier_choose": "业务伙伴-供应商选择",
   "businesspartner_app_supplier_view": "业务伙伴-供应商查看",
   "businesspartner_app_supplier_edit": "业务伙伴-供应商编辑",
+  "em_male": "男",
+  "em_female": "女",
+  "em_supplier": "供应商",
+  "em_customer": "客户",
+  "em_company": "公司",
+  "em_private": "个人",
   "businesspartner_closing_delimiter": "----结束----"
 }

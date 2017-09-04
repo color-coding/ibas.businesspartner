@@ -83,14 +83,6 @@ export class BusinessPartnerBalanceJournalListView extends ibas.BOListView imple
             subHeader: new sap.m.Bar("", {
                 contentLeft: [
                     new sap.m.Button("", {
-                        text: ibas.i18n.prop("sys_shell_data_new"),
-                        type: sap.m.ButtonType.Transparent,
-                        icon: "sap-icon://create",
-                        press: function (): void {
-                            that.fireViewEvents(that.newDataEvent);
-                        }
-                    }),
-                    new sap.m.Button("", {
                         text: ibas.i18n.prop("sys_shell_data_view"),
                         type: sap.m.ButtonType.Transparent,
                         icon: "sap-icon://display",
@@ -100,30 +92,7 @@ export class BusinessPartnerBalanceJournalListView extends ibas.BOListView imple
                                 utils.getTableSelecteds<bo.BusinessPartnerBalanceJournal>(that.table).firstOrDefault()
                             );
                         }
-                    }),
-                    new sap.m.Button("", {
-                        text: ibas.i18n.prop("sys_shell_data_edit"),
-                        type: sap.m.ButtonType.Transparent,
-                        icon: "sap-icon://edit",
-                        press: function (): void {
-                            that.fireViewEvents(that.editDataEvent,
-                                // 获取表格选中的对象
-                                utils.getTableSelecteds<bo.BusinessPartnerBalanceJournal>(that.table).firstOrDefault()
-                            );
-                        }
-                    }),
-                    // new sap.m.ToolbarSeparator(""),// 加了后面不显示？
-                    new sap.m.Button("", {
-                        text: ibas.i18n.prop("sys_shell_data_delete"),
-                        type: sap.m.ButtonType.Transparent,
-                        icon: "sap-icon://delete",
-                        press: function (): void {
-                            that.fireViewEvents(that.deleteDataEvent,
-                                // 获取表格选中的对象
-                                utils.getTableSelecteds<bo.BusinessPartnerBalanceJournal>(that.table)
-                            );
-                        }
-                    }),
+                    })
                 ],
                 contentRight: [
                     new sap.m.Button("", {

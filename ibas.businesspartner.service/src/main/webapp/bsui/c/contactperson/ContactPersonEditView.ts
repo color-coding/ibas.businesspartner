@@ -48,17 +48,17 @@ export class ContactPersonEditView extends ibas.BOEditView implements IContactPe
             columnsS: 1,
             content: [
                 new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_basis_information") }),
-                new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_ownertype") }),
-                new sap.m.Input("", {
-                    type: sap.m.InputType.Text
-                }).bindProperty("value", {
-                    path: "ownerType"
-                }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_name") }),
                 new sap.m.Input("", {
                     type: sap.m.InputType.Text
                 }).bindProperty("value", {
                     path: "name"
+                }),
+                new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_position") }),
+                new sap.m.Input("", {
+                    type: sap.m.InputType.Text
+                }).bindProperty("value", {
+                    path: "position"
                 }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_gender") }),
                 new sap.m.SegmentedButton("", {
@@ -67,11 +67,12 @@ export class ContactPersonEditView extends ibas.BOEditView implements IContactPe
                     path: "gender",
                     type: "sap.ui.model.type.Integer"
                 }),
-                new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_position") }),
-                new sap.m.Input("", {
-                    type: sap.m.InputType.Text
-                }).bindProperty("value", {
-                    path: "position"
+                new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_ownertype") }),
+                new sap.m.SegmentedButton("", {
+                    items: utils.createSegmentedButtonItems(emBusinessPartnerType)
+                }).bindProperty("selectedKey", {
+                    path: "ownerType",
+                    type: "sap.ui.model.type.Integer"
                 }),
                 new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_contact_information") }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_address") }),
