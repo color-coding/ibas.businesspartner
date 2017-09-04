@@ -37,6 +37,12 @@ export class BusinessPartnerBalanceJournalViewApp extends ibas.BOViewService<IBu
     /** 视图显示后 */
     protected viewShowed(): void {
         // 视图加载完成
+        if (ibas.objects.isNull(this.viewData)) {
+            // 创建编辑对象实例
+            this.viewData = new bo.BusinessPartnerBalanceJournal();
+            this.proceeding(ibas.emMessageType.WARNING, ibas.i18n.prop("sys_shell_data_created_new"));
+        }
+        this.view.showBusinessPartnerBalanceJournal(this.viewData);
     }
     /** 编辑数据，参数：目标数据 */
     protected editData(): void {
@@ -62,7 +68,6 @@ export class BusinessPartnerBalanceJournalViewApp extends ibas.BOViewService<IBu
         if (typeof criteria === "string") {
             criteria = new ibas.Criteria();
             // 添加查询条件
-
         }
         let boRepository: BORepositoryBusinessPartner = new BORepositoryBusinessPartner();
         boRepository.fetchBusinessPartnerBalanceJournal({
@@ -88,7 +93,7 @@ export class BusinessPartnerBalanceJournalViewApp extends ibas.BOViewService<IBu
 }
 /** 视图-业务伙伴余额记录 */
 export interface IBusinessPartnerBalanceJournalViewView extends ibas.IBOViewView {
-
+    showBusinessPartnerBalanceJournal(viewData: bo.BusinessPartnerBalanceJournal): void;
 }
 /** 业务伙伴余额记录连接服务映射 */
 export class BusinessPartnerBalanceJournalLinkServiceMapping extends ibas.BOLinkServiceMapping {

@@ -10,17 +10,132 @@ import * as ibas from "ibas/index";
 import { utils } from "openui5/typings/ibas.utils";
 import * as bo from "../../../borep/bo/index";
 import { IContactPersonViewView } from "../../../bsapp/contactperson/index";
+import {
+    IContactPerson,
+    BO_CODE_CONTACTPERSON,
+    emBusinessPartnerType,
+    emBusinessPartnerNature,
+    emGender,
+} from "../../../api/index";
 
 /**
  * 查看视图-业务伙伴联系人
  */
 export class ContactPersonViewView extends ibas.BOViewView implements IContactPersonViewView {
 
+    private page: sap.m.Page;
+    private viewTopForm: sap.ui.layout.form.SimpleForm;
+
     /** 绘制视图 */
     darw(): any {
         let that: this = this;
-        this.form = new sap.ui.layout.form.SimpleForm("", {
+        this.viewTopForm = new sap.ui.layout.form.SimpleForm("", {
+            editable: true,
+            layout: sap.ui.layout.form.SimpleFormLayout.ResponsiveGridLayout,
+            singleContainerFullSize: false,
+            adjustLabelSpan: false,
+            labelSpanL: 2,
+            labelSpanM: 2,
+            labelSpanS: 12,
+            columnsXL: 2,
+            columnsL: 2,
+            columnsM: 1,
+            columnsS: 1,
             content: [
+                new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_basis_information") }),
+                new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_ownertype") }),
+                new sap.m.Text("", {
+                    type: sap.m.InputType.Text
+                }).bindProperty("text", {
+                    path: "ownerType"
+                }),
+                new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_name") }),
+                new sap.m.Text("", {
+                    type: sap.m.InputType.Text
+                }).bindProperty("text", {
+                    path: "name"
+                }),
+                new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_gender") }),
+                new sap.m.Text("", {
+                    type: sap.m.InputType.Text
+                }).bindProperty("text", {
+                    path: "gender",
+                    formatter(data: any): any {
+                        return ibas.enums.describe(emGender, data);
+                    }
+                }),
+                new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_position") }),
+                new sap.m.Text("", {
+                    type: sap.m.InputType.Text
+                }).bindProperty("text", {
+                    path: "position"
+                }),
+                new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_contact_information") }),
+                new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_address") }),
+                new sap.m.Text("", {
+                    type: sap.m.InputType.Text
+                }).bindProperty("text", {
+                    path: "address"
+                }),
+                new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_telephone1") }),
+                new sap.m.Text("", {
+                    type: sap.m.InputType.Text
+                }).bindProperty("text", {
+                    path: "telephone1"
+                }),
+                new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_telephone2") }),
+                new sap.m.Text("", {
+                    type: sap.m.InputType.Text
+                }).bindProperty("text", {
+                    path: "telephone2"
+                }),
+                new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_mobilephone") }),
+                new sap.m.Text("", {
+                    type: sap.m.InputType.Text
+                }).bindProperty("text", {
+                    path: "mobilePhone"
+                }),
+                new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_fax") }),
+                new sap.m.Text("", {
+                    type: sap.m.InputType.Text
+                }).bindProperty("text", {
+                    path: "fax"
+                }),
+                new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_mail") }),
+                new sap.m.Text("", {
+                    type: sap.m.InputType.Text
+                }).bindProperty("text", {
+                    path: "mail"
+                }),
+                new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_current_status") }),
+                new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_activated") }),
+                new sap.m.Text("", {
+                    type: sap.m.InputType.Text,
+                }).bindProperty("text", {
+                    path: "activated",
+                    formatter(data: any): any {
+                        return ibas.enums.describe(ibas.emYesNo, data);
+                    }
+                }),
+                new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_other_information") }),
+                new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_createdate") }),
+                new sap.m.Text("", {
+                }).bindProperty("text", {
+                    path: "createDate",
+                    type: new sap.ui.model.type.Date({
+                        pattern: "yyyy-MM-dd",
+                        strictParsing: true,
+                    }),
+                }),
+                new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_updatedate") }),
+                new sap.m.Text("", {
+                }).bindProperty("text", {
+                    path: "updateDate",
+                    type: new sap.ui.model.type.Date({
+                        pattern: "yyyy-MM-dd",
+                        strictParsing: true,
+                    }),
+                }),
             ]
         });
         this.page = new sap.m.Page("", {
@@ -69,16 +184,15 @@ export class ContactPersonViewView extends ibas.BOViewView implements IContactPe
                     })
                 ]
             }),
-            content: [this.form]
+            content: [this.viewTopForm]
         });
         this.id = this.page.getId();
         return this.page;
     }
-    private page: sap.m.Page;
-    private form: sap.ui.layout.form.SimpleForm;
 
     /** 显示数据 */
     showContactPerson(data: bo.ContactPerson): void {
-        this.form.setModel(new sap.ui.model.json.JSONModel(data));
+        this.viewTopForm.setModel(new sap.ui.model.json.JSONModel(data));
+        this.viewTopForm.bindObject("/");
     }
 }

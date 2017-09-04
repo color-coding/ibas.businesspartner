@@ -1,6 +1,12 @@
 {
   "businesspartner": "业务伙伴",
   "businesspartner_icon": "sap-icon://customer-and-supplier",
+  "businesspartner_basis_information": "基本信息",
+  "businesspartner_contact_information": "联系信息",
+  "businesspartner_business_information": "业务信息",
+  "businesspartner_account_information": "账户信息",
+  "businesspartner_other_information": "其他信息",
+  "businesspartner_current_status": "当前状态",
   "businesspartner_func_businesspartnerbalancejournal": "业务伙伴余额记录",
   "businesspartner_app_businesspartnerbalancejournal_list": "业务伙伴余额记录列表",
   "businesspartner_app_businesspartnerbalancejournal_choose": "业务伙伴余额记录选择",
