@@ -25,6 +25,7 @@ export class CustomerViewView extends ibas.BOViewView implements ICustomerViewVi
 
     private page: sap.m.Page;
     private viewTopForm: sap.ui.layout.form.SimpleForm;
+    private objPagelayout: sap.uxap.ObjectPageLayout;
 
     /** 绘制视图 */
     darw(): any {
@@ -42,7 +43,7 @@ export class CustomerViewView extends ibas.BOViewView implements ICustomerViewVi
             columnsM: 1,
             columnsS: 1,
             content: [
-                new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_basis_information") }),
+                new sap.ui.core.Title("", {}),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_code") }),
                 new sap.m.Text("", {
                     type: sap.m.InputType.Text
@@ -55,6 +56,7 @@ export class CustomerViewView extends ibas.BOViewView implements ICustomerViewVi
                 }).bindProperty("text", {
                     path: "name"
                 }),
+                new sap.ui.core.Title("", {}),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_group") }),
                 new sap.m.Text("", {
                     type: sap.m.InputType.Text,
@@ -69,118 +71,300 @@ export class CustomerViewView extends ibas.BOViewView implements ICustomerViewVi
                     formatter(data: any): any {
                         return ibas.enums.describe(emBusinessPartnerNature, data);
                     }
-                }),
-                new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_contact_information") }),
-                new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_contactperson") }),
-                new sap.m.Text("", {
-                    type: sap.m.InputType.Text,
-                }).bindProperty("text", {
-                    path: "contactPerson",
-                }),
-                new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_telephone1") }),
-                new sap.m.Text("", {
-                    type: sap.m.InputType.Text,
-                }).bindProperty("text", {
-                    path: "telephone1"
-                }),
-                new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_telephone2") }),
-                new sap.m.Text("", {
-                    type: sap.m.InputType.Text,
-                }).bindProperty("text", {
-                    path: "telephone2"
-                }),
-                new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_mobilephone") }),
-                new sap.m.Text("", {
-                    type: sap.m.InputType.Text,
-                }).bindProperty("text", {
-                    path: "mobilePhone"
-                }),
-                new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_faxnumber") }),
-                new sap.m.Text("", {
-                    type: sap.m.InputType.Text,
-                }).bindProperty("text", {
-                    path: "faxNumber"
-                }),
-                new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_business_information") }),
-                new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_billtostreet") }),
-                new sap.m.Text("", {
-                    type: sap.m.InputType.Text,
-                }).bindProperty("text", {
-                    path: "billToStreet"
-                }),
-                new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_billtozipcode") }),
-                new sap.m.Text("", {
-                    type: sap.m.InputType.Text,
-                }).bindProperty("text", {
-                    path: "billToZipCode"
-                }),
-                new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_shiptostreet") }),
-                new sap.m.Text("", {
-                    type: sap.m.InputType.Text,
-                }).bindProperty("text", {
-                    path: "shipToStreet"
-                }),
-                new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_shiptozipcode") }),
-                new sap.m.Text("", {
-                    type: sap.m.InputType.Text,
-                }).bindProperty("text", {
-                    path: "shipToZipCode"
-                }),
-                new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_account_information") }),
-                new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_balance") }),
-                new sap.m.Text("", {
-                    type: sap.m.InputType.Text,
-                }).bindProperty("text", {
-                    path: "balance",
-                }),
-                new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_currency") }),
-                new sap.m.Text("", {
-                    type: sap.m.InputType.Text,
-                }).bindProperty("text", {
-                    path: "currency"
-                }),
-                new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_taxid") }),
-                new sap.m.Text("", {
-                    type: sap.m.InputType.Text,
-                }).bindProperty("text", {
-                    path: "taxId",
-                }),
-                new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_other_information") }),
-                new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_createdate") }),
-                new sap.m.Text("", {
-                }).bindProperty("text", {
-                    path: "createDate",
-                    type: new sap.ui.model.type.Date({
-                        pattern: "yyyy-MM-dd",
-                        strictParsing: true,
+                })
+            ]
+        });
+        this.objPagelayout = new sap.uxap.ObjectPageLayout("", {
+            headerTitle: new sap.uxap.ObjectPageHeader("", {
+                // isObjectIconAlwaysVisible: true,
+                // isObjectTitleAlwaysVisible: true,
+                // isObjectSubtitleAlwaysVisible: true,
+                // isActionAreaAlwaysVisible: true,
+                objectTitle: "{/code}  {/code}",
+                objectSubtitle: "{/name}  {/name}",
+                content: [
+                    new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_code") }),
+                    new sap.m.Text("", {
+                        type: sap.m.InputType.Text
+                    }).bindProperty("text", {
+                        path: "/code"
+                    })
+                ],
+                /* actions: [
+                    new sap.uxap.ObjectPageHeaderActionButton("", {
+                        text: ibas.i18n.prop("sys_shell_data_save"),
+                        type: sap.m.ButtonType.Transparent,
+                        icon: "sap-icon://save",
+                        press: function (): void {
+                            that.fireViewEvents(that.saveDataEvent);
+                        }
                     }),
-                }),
-                new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_updatedate") }),
-                new sap.m.Text("", {
-                }).bindProperty("text", {
-                    path: "updateDate",
-                    type: new sap.ui.model.type.Date({
-                        pattern: "yyyy-MM-dd",
-                        strictParsing: true,
+                    new sap.uxap.ObjectPageHeaderActionButton("", {
+                        text: ibas.i18n.prop("sys_shell_data_delete"),
+                        type: sap.m.ButtonType.Transparent,
+                        icon: "sap-icon://delete",
+                        press: function (): void {
+                            that.fireViewEvents(that.deleteDataEvent);
+                        }
                     }),
+                ] */
+            }),
+            headerContent: [
+                new sap.uxap.ObjectPageSubSection("", {
+                    blocks: [
+                        new sap.ui.layout.HorizontalLayout("", {
+                            /* editable: true,
+                            layout: sap.ui.layout.form.SimpleFormLayout.ResponsiveGridLayout,
+                            singleContainerFullSize: false,
+                            adjustLabelSpan: false,
+                            labelSpanL: 2,
+                            labelSpanM: 2,
+                            labelSpanS: 12,
+                            columnsXL: 2,
+                            columnsL: 2,
+                            columnsM: 1,
+                            columnsS: 1, */
+                            content: [
+                                new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_code") }),
+                                new sap.m.Text("", {
+                                    type: sap.m.InputType.Text
+                                }).bindProperty("text", {
+                                    path: "/code"
+                                }),
+                                new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_name") }),
+                                new sap.m.Text("", {
+                                    type: sap.m.InputType.Text
+                                }).bindProperty("text", {
+                                    path: "/name"
+                                }),
+                                new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_activated") }),
+                                /* new sap.m.Switch("", {
+                                    customTextOn: "是",
+                                    customTextOff: "否",
+                                }).bindProperty("state", {
+                                    path: "/Activated",
+                                    formatter(data: any): any {
+                                        if (data === 1) {
+                                            return true;
+                                        } else {
+                                            return false;
+                                        }
+                                    }
+                                }) */
+                                new sap.m.Text("", {
+                                    type: sap.m.InputType.Text
+                                }).bindProperty("text", {
+                                    path: "activated",
+                                    formatter(data: any): any {
+                                        return ibas.enums.describe(ibas.emYesNo, data);
+                                    }
+                                }),
+                            ]
+                        })
+                    ],
+                })
+            ],
+            sections: [
+                new sap.uxap.ObjectPageSection("", {
+                    title: "基本信息",
+                    subSections: [
+                        new sap.uxap.ObjectPageSubSection("", {
+                            blocks: [
+                                this.viewTopForm
+                            ]
+                        })
+                    ]
                 }),
-                new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_validdate") }),
-                new sap.m.Text("", {
-                }).bindProperty("text", {
-                    path: "validDate",
-                    type: new sap.ui.model.type.Date({
-                        pattern: "yyyy-MM-dd",
-                        strictParsing: true,
-                    }),
+                new sap.uxap.ObjectPageSection("", {
+                    title: "联系信息",
+                    subSections: [
+                        new sap.uxap.ObjectPageSubSection("", {
+                            blocks: [
+                                new sap.ui.layout.form.SimpleForm("", {
+                                    editable: true,
+                                    layout: sap.ui.layout.form.SimpleFormLayout.ResponsiveGridLayout,
+                                    singleContainerFullSize: false,
+                                    adjustLabelSpan: false,
+                                    labelSpanL: 2,
+                                    labelSpanM: 2,
+                                    labelSpanS: 12,
+                                    columnsXL: 2,
+                                    columnsL: 2,
+                                    columnsM: 1,
+                                    columnsS: 1,
+                                    content: [
+                                        new sap.ui.core.Title("", {}),
+                                        new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_contactperson") }),
+                                        new sap.m.Text("", {
+                                            type: sap.m.InputType.Text
+                                        }).bindProperty("text", {
+                                            path: "contactPerson",
+                                            formatter(data: any): any {
+                                                return ibas.enums.describe(emBusinessPartnerType, data);
+                                            }
+                                        }),
+                                        new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_telephone1") }),
+                                        new sap.m.Text("", {
+                                            type: sap.m.InputType.Text,
+                                        }).bindProperty("text", {
+                                            path: "telephone1"
+                                        }),
+                                        new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_telephone2") }),
+                                        new sap.m.Text("", {
+                                            type: sap.m.InputType.Text,
+                                        }).bindProperty("text", {
+                                            path: "telephone2"
+                                        }),
+                                        new sap.ui.core.Title("", {}),
+                                        new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_mobilephone") }),
+                                        new sap.m.Text("", {
+                                            type: sap.m.InputType.Text,
+                                        }).bindProperty("text", {
+                                            path: "mobilePhone"
+                                        }),
+                                        new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_faxnumber") }),
+                                        new sap.m.Text("", {
+                                            type: sap.m.InputType.Text,
+                                        }).bindProperty("text", {
+                                            path: "faxNumber"
+                                        })
+                                    ]
+                                })
+                            ]
+                        })
+                    ]
                 }),
-                new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_invaliddate") }),
-                new sap.m.Text("", {
-                }).bindProperty("text", {
-                    path: "invalidDate",
-                    type: new sap.ui.model.type.Date({
-                        pattern: "yyyy-MM-dd",
-                        strictParsing: true,
-                    }),
+                new sap.uxap.ObjectPageSection("", {
+                    title: "业务信息",
+                    subSections: [
+                        new sap.uxap.ObjectPageSubSection("", {
+                            blocks: [
+                                new sap.ui.layout.form.SimpleForm("", {
+                                    editable: true,
+                                    layout: sap.ui.layout.form.SimpleFormLayout.ResponsiveGridLayout,
+                                    singleContainerFullSize: false,
+                                    adjustLabelSpan: false,
+                                    labelSpanL: 2,
+                                    labelSpanM: 2,
+                                    labelSpanS: 12,
+                                    columnsXL: 2,
+                                    columnsL: 2,
+                                    columnsM: 1,
+                                    columnsS: 1,
+                                    content: [
+                                        new sap.ui.core.Title("", {}),
+                                        new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_billtostreet") }),
+                                        new sap.m.Text("", {
+                                            type: sap.m.InputType.Text,
+                                        }).bindProperty("text", {
+                                            path: "billToStreet"
+                                        }),
+                                        new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_billtozipcode") }),
+                                        new sap.m.Text("", {
+                                            type: sap.m.InputType.Text,
+                                        }).bindProperty("text", {
+                                            path: "billToZipCode"
+                                        }),
+                                        new sap.ui.core.Title("", {}),
+                                        new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_shiptostreet") }),
+                                        new sap.m.Text("", {
+                                            type: sap.m.InputType.Text,
+                                        }).bindProperty("text", {
+                                            path: "shipToStreet"
+                                        }),
+                                        new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_shiptozipcode") }),
+                                        new sap.m.Text("", {
+                                            type: sap.m.InputType.Text,
+                                        }).bindProperty("text", {
+                                            path: "shipToZipCode"
+                                        })
+                                    ]
+                                })
+                            ]
+                        })
+                    ]
+                }),
+                new sap.uxap.ObjectPageSection("", {
+                    title: "账户信息",
+                    subSections: [
+                        new sap.uxap.ObjectPageSubSection("", {
+                            blocks: [
+                                new sap.ui.layout.form.SimpleForm("", {
+                                    editable: true,
+                                    layout: sap.ui.layout.form.SimpleFormLayout.ResponsiveGridLayout,
+                                    singleContainerFullSize: false,
+                                    adjustLabelSpan: false,
+                                    labelSpanL: 2,
+                                    labelSpanM: 2,
+                                    labelSpanS: 12,
+                                    columnsXL: 2,
+                                    columnsL: 2,
+                                    columnsM: 1,
+                                    columnsS: 1,
+                                    content: [
+                                        new sap.ui.core.Title("", {}),
+                                        new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_balance") }),
+                                        new sap.m.Text("", {
+                                            type: sap.m.InputType.Text,
+                                        }).bindProperty("text", {
+                                            path: "balance",
+                                        }),
+                                        new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_currency") }),
+                                        new sap.m.Text("", {
+                                            type: sap.m.InputType.Text,
+                                        }).bindProperty("text", {
+                                            path: "currency"
+                                        }),
+                                        new sap.ui.core.Title("", {}),
+                                        new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_taxid") }),
+                                        new sap.m.Text("", {
+                                            type: sap.m.InputType.Text,
+                                        }).bindProperty("text", {
+                                            path: "taxId",
+                                        }),
+                                    ]
+                                })
+                            ]
+                        })
+                    ]
+                }),
+                new sap.uxap.ObjectPageSection("", {
+                    title: "其他信息",
+                    subSections: [
+                        new sap.uxap.ObjectPageSubSection("", {
+                            blocks: [
+                                new sap.ui.layout.form.SimpleForm("", {
+                                    editable: true,
+                                    layout: sap.ui.layout.form.SimpleFormLayout.ResponsiveGridLayout,
+                                    singleContainerFullSize: false,
+                                    adjustLabelSpan: false,
+                                    labelSpanL: 2,
+                                    labelSpanM: 2,
+                                    labelSpanS: 12,
+                                    columnsXL: 2,
+                                    columnsL: 2,
+                                    columnsM: 1,
+                                    columnsS: 1,
+                                    content: [
+                                        new sap.ui.core.Title("", {}),
+                                        new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_validdate") }),
+                                        new sap.m.DatePicker("", {
+                                            valueFormat: "yyyy-MM-dd",
+                                        }).bindProperty("dateValue", {
+                                            path: "validDate",
+                                        }),
+                                        new sap.ui.core.Title("", {}),
+                                        new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_invaliddate") }),
+                                        new sap.m.DatePicker("", {
+                                            valueFormat: "yyyy-MM-dd",
+                                        }).bindProperty("dateValue", {
+                                            path: "invalidDate",
+                                        })
+                                    ]
+                                })
+                            ]
+                        })
+                    ]
                 })
             ]
         });
@@ -230,7 +414,7 @@ export class CustomerViewView extends ibas.BOViewView implements ICustomerViewVi
                     })
                 ]
             }),
-            content: [this.viewTopForm]
+            content: [this.objPagelayout]
         });
         this.id = this.page.getId();
         return this.page;
@@ -238,7 +422,7 @@ export class CustomerViewView extends ibas.BOViewView implements ICustomerViewVi
 
     /** 显示数据 */
     showCustomer(data: bo.Customer): void {
-        this.viewTopForm.setModel(new sap.ui.model.json.JSONModel(data));
-        this.viewTopForm.bindObject("/");
+        this.objPagelayout.setModel(new sap.ui.model.json.JSONModel(data));
+        this.objPagelayout.bindObject("/");
     }
 }
