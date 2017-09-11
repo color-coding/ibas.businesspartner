@@ -53,19 +53,6 @@ export class CustomerEditView extends ibas.BOEditView implements ICustomerEditVi
             columnsS: 1,
             content: [
                 new sap.ui.core.Title("", {}),
-                new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_code") }),
-                new sap.m.Input("", {
-                    type: sap.m.InputType.Text
-                }).bindProperty("value", {
-                    path: "code"
-                }),
-                new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_name") }),
-                new sap.m.Input("", {
-                    type: sap.m.InputType.Text
-                }).bindProperty("value", {
-                    path: "name"
-                }),
-                new sap.ui.core.Title("", {}),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_group") }),
                 new sap.m.Input("", {
                     placeholder: ibas.i18n.prop("bo_customer_group"),
@@ -77,6 +64,7 @@ export class CustomerEditView extends ibas.BOEditView implements ICustomerEditVi
                 }).bindProperty("value", {
                     path: "group"
                 }),
+                new sap.ui.core.Title("", {}),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_companyprivate") }),
                 new sap.m.SegmentedButton("", {
                     items: utils.createSegmentedButtonItems(emBusinessPartnerNature)
@@ -88,12 +76,13 @@ export class CustomerEditView extends ibas.BOEditView implements ICustomerEditVi
         });
         this.objPagelayout = new sap.uxap.ObjectPageLayout("", {
             headerTitle: new sap.uxap.ObjectPageHeader("", {
-                // isObjectIconAlwaysVisible: true,
-                // isObjectTitleAlwaysVisible: true,
-                // isObjectSubtitleAlwaysVisible: true,
-                // isActionAreaAlwaysVisible: true,
-                objectTitle: "{/code}  {/code}",
-                objectSubtitle: "{/name}  {/name}",
+                isObjectIconAlwaysVisible: true,
+                isObjectTitleAlwaysVisible: true,
+                isObjectSubtitleAlwaysVisible: true,
+                isActionAreaAlwaysVisible: true,
+                showMarkers: true,
+                objectTitle: "{/code} {/contactPerson}",
+                objectSubtitle: "{/name}  {/contactPerson}  {telephone1}",
                 content: [
                     new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_code") }),
                     new sap.m.Input("", {
@@ -101,41 +90,12 @@ export class CustomerEditView extends ibas.BOEditView implements ICustomerEditVi
                     }).bindProperty("value", {
                         path: "/code"
                     })
-                ],
-                /* actions: [
-                    new sap.uxap.ObjectPageHeaderActionButton("", {
-                        text: ibas.i18n.prop("sys_shell_data_save"),
-                        type: sap.m.ButtonType.Transparent,
-                        icon: "sap-icon://save",
-                        press: function (): void {
-                            that.fireViewEvents(that.saveDataEvent);
-                        }
-                    }),
-                    new sap.uxap.ObjectPageHeaderActionButton("", {
-                        text: ibas.i18n.prop("sys_shell_data_delete"),
-                        type: sap.m.ButtonType.Transparent,
-                        icon: "sap-icon://delete",
-                        press: function (): void {
-                            that.fireViewEvents(that.deleteDataEvent);
-                        }
-                    }),
-                ] */
+                ]
             }),
             headerContent: [
                 new sap.uxap.ObjectPageSubSection("", {
                     blocks: [
                         new sap.ui.layout.HorizontalLayout("", {
-                            /* editable: true,
-                            layout: sap.ui.layout.form.SimpleFormLayout.ResponsiveGridLayout,
-                            singleContainerFullSize: false,
-                            adjustLabelSpan: false,
-                            labelSpanL: 2,
-                            labelSpanM: 2,
-                            labelSpanS: 12,
-                            columnsXL: 2,
-                            columnsL: 2,
-                            columnsM: 1,
-                            columnsS: 1, */
                             content: [
                                 new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_code") }),
                                 new sap.m.Input("", {
@@ -165,12 +125,12 @@ export class CustomerEditView extends ibas.BOEditView implements ICustomerEditVi
                                 })
                             ]
                         })
-                    ],
+                    ]
                 })
             ],
             sections: [
                 new sap.uxap.ObjectPageSection("", {
-                    title: "基本信息",
+                    title: ibas.i18n.prop("businesspartner_basis_information"),
                     subSections: [
                         new sap.uxap.ObjectPageSubSection("", {
                             blocks: [
@@ -180,7 +140,7 @@ export class CustomerEditView extends ibas.BOEditView implements ICustomerEditVi
                     ]
                 }),
                 new sap.uxap.ObjectPageSection("", {
-                    title: "联系信息",
+                    title: ibas.i18n.prop("businesspartner_contact_information"),
                     subSections: [
                         new sap.uxap.ObjectPageSubSection("", {
                             blocks: [
@@ -241,7 +201,7 @@ export class CustomerEditView extends ibas.BOEditView implements ICustomerEditVi
                     ]
                 }),
                 new sap.uxap.ObjectPageSection("", {
-                    title: "业务信息",
+                    title: ibas.i18n.prop("businesspartner_business_information"),
                     subSections: [
                         new sap.uxap.ObjectPageSubSection("", {
                             blocks: [
@@ -291,7 +251,7 @@ export class CustomerEditView extends ibas.BOEditView implements ICustomerEditVi
                     ]
                 }),
                 new sap.uxap.ObjectPageSection("", {
-                    title: "账户信息",
+                    title: ibas.i18n.prop("businesspartner_account_information"),
                     subSections: [
                         new sap.uxap.ObjectPageSubSection("", {
                             blocks: [
@@ -335,7 +295,7 @@ export class CustomerEditView extends ibas.BOEditView implements ICustomerEditVi
                     ]
                 }),
                 new sap.uxap.ObjectPageSection("", {
-                    title: "其他信息",
+                    title: ibas.i18n.prop("businesspartner_other_information"),
                     subSections: [
                         new sap.uxap.ObjectPageSubSection("", {
                             blocks: [

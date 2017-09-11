@@ -31,7 +31,7 @@ export class CustomerViewView extends ibas.BOViewView implements ICustomerViewVi
     darw(): any {
         let that: this = this;
         this.viewTopForm = new sap.ui.layout.form.SimpleForm("", {
-            editable: true,
+            editable: false,
             layout: sap.ui.layout.form.SimpleFormLayout.ResponsiveGridLayout,
             singleContainerFullSize: false,
             adjustLabelSpan: false,
@@ -51,8 +51,7 @@ export class CustomerViewView extends ibas.BOViewView implements ICustomerViewVi
                     path: "code"
                 }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_name") }),
-                new sap.m.Text("", {
-                    type: sap.m.InputType.Text
+                new sap.m.Label("", {
                 }).bindProperty("text", {
                     path: "name"
                 }),
@@ -80,8 +79,8 @@ export class CustomerViewView extends ibas.BOViewView implements ICustomerViewVi
                 // isObjectTitleAlwaysVisible: true,
                 // isObjectSubtitleAlwaysVisible: true,
                 // isActionAreaAlwaysVisible: true,
-                objectTitle: "{/code}  {/code}",
-                objectSubtitle: "{/name}  {/name}",
+                objectTitle: "{/code}",
+                objectSubtitle: "{/name}  {/contactPerson}",
                 content: [
                     new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_code") }),
                     new sap.m.Text("", {
@@ -89,41 +88,12 @@ export class CustomerViewView extends ibas.BOViewView implements ICustomerViewVi
                     }).bindProperty("text", {
                         path: "/code"
                     })
-                ],
-                /* actions: [
-                    new sap.uxap.ObjectPageHeaderActionButton("", {
-                        text: ibas.i18n.prop("sys_shell_data_save"),
-                        type: sap.m.ButtonType.Transparent,
-                        icon: "sap-icon://save",
-                        press: function (): void {
-                            that.fireViewEvents(that.saveDataEvent);
-                        }
-                    }),
-                    new sap.uxap.ObjectPageHeaderActionButton("", {
-                        text: ibas.i18n.prop("sys_shell_data_delete"),
-                        type: sap.m.ButtonType.Transparent,
-                        icon: "sap-icon://delete",
-                        press: function (): void {
-                            that.fireViewEvents(that.deleteDataEvent);
-                        }
-                    }),
-                ] */
+                ]
             }),
             headerContent: [
                 new sap.uxap.ObjectPageSubSection("", {
                     blocks: [
                         new sap.ui.layout.HorizontalLayout("", {
-                            /* editable: true,
-                            layout: sap.ui.layout.form.SimpleFormLayout.ResponsiveGridLayout,
-                            singleContainerFullSize: false,
-                            adjustLabelSpan: false,
-                            labelSpanL: 2,
-                            labelSpanM: 2,
-                            labelSpanS: 12,
-                            columnsXL: 2,
-                            columnsL: 2,
-                            columnsM: 1,
-                            columnsS: 1, */
                             content: [
                                 new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_code") }),
                                 new sap.m.Text("", {
@@ -138,19 +108,6 @@ export class CustomerViewView extends ibas.BOViewView implements ICustomerViewVi
                                     path: "/name"
                                 }),
                                 new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_activated") }),
-                                /* new sap.m.Switch("", {
-                                    customTextOn: "是",
-                                    customTextOff: "否",
-                                }).bindProperty("state", {
-                                    path: "/Activated",
-                                    formatter(data: any): any {
-                                        if (data === 1) {
-                                            return true;
-                                        } else {
-                                            return false;
-                                        }
-                                    }
-                                }) */
                                 new sap.m.Text("", {
                                     type: sap.m.InputType.Text
                                 }).bindProperty("text", {
@@ -158,7 +115,7 @@ export class CustomerViewView extends ibas.BOViewView implements ICustomerViewVi
                                     formatter(data: any): any {
                                         return ibas.enums.describe(ibas.emYesNo, data);
                                     }
-                                }),
+                                })
                             ]
                         })
                     ],
@@ -166,17 +123,60 @@ export class CustomerViewView extends ibas.BOViewView implements ICustomerViewVi
             ],
             sections: [
                 new sap.uxap.ObjectPageSection("", {
-                    title: "基本信息",
+                    title: ibas.i18n.prop("businesspartner_basis_information"),
                     subSections: [
                         new sap.uxap.ObjectPageSubSection("", {
                             blocks: [
-                                this.viewTopForm
+                                new sap.ui.layout.form.SimpleForm("", {
+                                    editable: true,
+                                    layout: sap.ui.layout.form.SimpleFormLayout.ResponsiveGridLayout,
+                                    singleContainerFullSize: false,
+                                    adjustLabelSpan: false,
+                                    labelSpanL: 2,
+                                    labelSpanM: 2,
+                                    labelSpanS: 12,
+                                    columnsXL: 2,
+                                    columnsL: 2,
+                                    columnsM: 1,
+                                    columnsS: 1,
+                                    content: [
+                                        new sap.ui.core.Title("", {}),
+                                        new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_code") }),
+                                        new sap.m.Text("", {
+                                            type: sap.m.InputType.Text
+                                        }).bindProperty("text", {
+                                            path: "code"
+                                        }),
+                                        new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_name") }),
+                                        new sap.m.Text("", {
+                                            type: sap.m.InputType.Text
+                                        }).bindProperty("text", {
+                                            path: "name"
+                                        }),
+                                        new sap.ui.core.Title("", {}),
+                                        new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_group") }),
+                                        new sap.m.Text("", {
+                                            type: sap.m.InputType.Text,
+                                        }).bindProperty("text", {
+                                            path: "group"
+                                        }),
+                                        new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_companyprivate") }),
+                                        new sap.m.Text("", {
+                                            type: sap.m.InputType.Text
+                                        }).bindProperty("text", {
+                                            path: "companyPrivate",
+                                            formatter(data: any): any {
+                                                return ibas.enums.describe(emBusinessPartnerNature, data);
+                                            }
+                                        })
+                                    ]
+                                })
                             ]
                         })
                     ]
                 }),
                 new sap.uxap.ObjectPageSection("", {
-                    title: "联系信息",
+                    title: ibas.i18n.prop("businesspartner_contact_information"),
                     subSections: [
                         new sap.uxap.ObjectPageSubSection("", {
                             blocks: [
@@ -235,7 +235,7 @@ export class CustomerViewView extends ibas.BOViewView implements ICustomerViewVi
                     ]
                 }),
                 new sap.uxap.ObjectPageSection("", {
-                    title: "业务信息",
+                    title: ibas.i18n.prop("businesspartner_business_information"),
                     subSections: [
                         new sap.uxap.ObjectPageSubSection("", {
                             blocks: [
@@ -285,7 +285,7 @@ export class CustomerViewView extends ibas.BOViewView implements ICustomerViewVi
                     ]
                 }),
                 new sap.uxap.ObjectPageSection("", {
-                    title: "账户信息",
+                    title: ibas.i18n.prop("businesspartner_account_information"),
                     subSections: [
                         new sap.uxap.ObjectPageSubSection("", {
                             blocks: [
@@ -329,7 +329,7 @@ export class CustomerViewView extends ibas.BOViewView implements ICustomerViewVi
                     ]
                 }),
                 new sap.uxap.ObjectPageSection("", {
-                    title: "其他信息",
+                    title: ibas.i18n.prop("businesspartner_other_information"),
                     subSections: [
                         new sap.uxap.ObjectPageSubSection("", {
                             blocks: [
