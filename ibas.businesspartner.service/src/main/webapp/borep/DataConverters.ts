@@ -55,6 +55,9 @@ class BOConverter4bp extends ibas.BOConverter {
             if (property === bo.ContactPerson.PROPERTY_GENDER_NAME) {
                 return ibas.enums.toString(emGender, value);
             }
+            if (property === bo.ContactPerson.PROPERTY_OWNERTYPE_NAME) {
+                return ibas.enums.toString(emBusinessPartnerType, value);
+            }
         } else if (boName === bo.Customer.name) {
             if (property === bo.Customer.PROPERTY_COMPANYPRIVATE_NAME) {
                 return ibas.enums.toString(emBusinessPartnerNature, value);
@@ -82,6 +85,9 @@ class BOConverter4bp extends ibas.BOConverter {
         } else if (boName === bo.ContactPerson.name) {
             if (property === bo.ContactPerson.PROPERTY_GENDER_NAME) {
                 return ibas.enums.valueOf(emGender, value);
+            }
+            if (property === bo.ContactPerson.PROPERTY_OWNERTYPE_NAME) {
+                return ibas.enums.valueOf(emBusinessPartnerType, value);
             }
         } else if (boName === bo.Customer.name) {
             if (property === bo.Customer.PROPERTY_COMPANYPRIVATE_NAME) {
