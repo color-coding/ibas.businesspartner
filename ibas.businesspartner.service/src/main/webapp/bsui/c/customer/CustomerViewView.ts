@@ -348,17 +348,23 @@ export class CustomerViewView extends ibas.BOViewView implements ICustomerViewVi
                                     content: [
                                         new sap.ui.core.Title("", {}),
                                         new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_validdate") }),
-                                        new sap.m.DatePicker("", {
-                                            valueFormat: "yyyy-MM-dd",
-                                        }).bindProperty("dateValue", {
+                                        new sap.m.Text("", {
+                                        }).bindProperty("text", {
                                             path: "validDate",
+                                            type: new sap.ui.model.type.Date({
+                                                pattern: "yyyy-MM-dd",
+                                                strictParsing: true,
+                                            })
                                         }),
                                         new sap.ui.core.Title("", {}),
                                         new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_invaliddate") }),
-                                        new sap.m.DatePicker("", {
-                                            valueFormat: "yyyy-MM-dd",
-                                        }).bindProperty("dateValue", {
+                                        new sap.m.Text("", {
+                                        }).bindProperty("text", {
                                             path: "invalidDate",
+                                            type: new sap.ui.model.type.Date({
+                                                pattern: "yyyy-MM-dd",
+                                                strictParsing: true,
+                                            })
                                         })
                                     ]
                                 })
