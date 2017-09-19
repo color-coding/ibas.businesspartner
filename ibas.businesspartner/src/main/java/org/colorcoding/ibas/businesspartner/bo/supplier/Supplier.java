@@ -16,7 +16,6 @@ import org.colorcoding.ibas.bobas.mapping.BOCode;
 import org.colorcoding.ibas.bobas.mapping.DbField;
 import org.colorcoding.ibas.bobas.mapping.DbFieldType;
 import org.colorcoding.ibas.businesspartner.MyConfiguration;
-import org.colorcoding.ibas.businesspartner.MyConsts;
 import org.colorcoding.ibas.businesspartner.data.emBusinessPartnerNature;
 
 /**
@@ -24,8 +23,8 @@ import org.colorcoding.ibas.businesspartner.data.emBusinessPartnerNature;
  * 
  */
 @XmlAccessorType(XmlAccessType.NONE)
-@XmlType(name = Supplier.BUSINESS_OBJECT_NAME, namespace = MyConsts.NAMESPACE_BO)
-@XmlRootElement(name = Supplier.BUSINESS_OBJECT_NAME, namespace = MyConsts.NAMESPACE_BO)
+@XmlType(name = Supplier.BUSINESS_OBJECT_NAME, namespace = MyConfiguration.NAMESPACE_BO)
+@XmlRootElement(name = Supplier.BUSINESS_OBJECT_NAME, namespace = MyConfiguration.NAMESPACE_BO)
 @BOCode(Supplier.BUSINESS_OBJECT_CODE)
 public class Supplier extends BusinessObject<Supplier> implements ISupplier {
 
