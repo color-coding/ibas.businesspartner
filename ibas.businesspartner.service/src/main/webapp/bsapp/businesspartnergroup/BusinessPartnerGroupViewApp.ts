@@ -37,6 +37,12 @@ export class BusinessPartnerGroupViewApp extends ibas.BOViewService<IBusinessPar
     /** 视图显示后 */
     protected viewShowed(): void {
         // 视图加载完成
+        if (ibas.objects.isNull(this.viewData)) {
+            // 创建编辑对象实例
+            this.viewData = new bo.BusinessPartnerGroup();
+            this.proceeding(ibas.emMessageType.WARNING, ibas.i18n.prop("sys_shell_data_created_new"));
+        }
+        this.view.showBusinessPartnerGroup(this.viewData);
     }
     /** 编辑数据，参数：目标数据 */
     protected editData(): void {
@@ -88,7 +94,7 @@ export class BusinessPartnerGroupViewApp extends ibas.BOViewService<IBusinessPar
 }
 /** 视图-业务伙伴组 */
 export interface IBusinessPartnerGroupViewView extends ibas.IBOViewView {
-
+    showBusinessPartnerGroup(viewData: bo.BusinessPartnerGroup): void;
 }
 /** 业务伙伴组连接服务映射 */
 export class BusinessPartnerGroupLinkServiceMapping extends ibas.BOLinkServiceMapping {

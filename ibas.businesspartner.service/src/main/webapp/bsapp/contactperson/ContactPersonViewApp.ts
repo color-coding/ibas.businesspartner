@@ -37,6 +37,12 @@ export class ContactPersonViewApp extends ibas.BOViewService<IContactPersonViewV
     /** 视图显示后 */
     protected viewShowed(): void {
         // 视图加载完成
+        if (ibas.objects.isNull(this.viewData)) {
+            // 创建编辑对象实例
+            this.viewData = new bo.ContactPerson();
+            this.proceeding(ibas.emMessageType.WARNING, ibas.i18n.prop("sys_shell_data_created_new"));
+        }
+        this.view.showContactPerson(this.viewData);
     }
     /** 编辑数据，参数：目标数据 */
     protected editData(): void {
@@ -62,7 +68,6 @@ export class ContactPersonViewApp extends ibas.BOViewService<IContactPersonViewV
         if (typeof criteria === "string") {
             criteria = new ibas.Criteria();
             // 添加查询条件
-
         }
         let boRepository: BORepositoryBusinessPartner = new BORepositoryBusinessPartner();
         boRepository.fetchContactPerson({
@@ -88,7 +93,7 @@ export class ContactPersonViewApp extends ibas.BOViewService<IContactPersonViewV
 }
 /** 视图-业务伙伴联系人 */
 export interface IContactPersonViewView extends ibas.IBOViewView {
-
+    showContactPerson(viewData: bo.ContactPerson): void;
 }
 /** 业务伙伴联系人连接服务映射 */
 export class ContactPersonLinkServiceMapping extends ibas.BOLinkServiceMapping {
