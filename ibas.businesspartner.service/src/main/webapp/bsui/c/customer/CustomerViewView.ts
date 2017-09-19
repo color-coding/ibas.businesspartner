@@ -90,37 +90,37 @@ export class CustomerViewView extends ibas.BOViewView implements ICustomerViewVi
                     })
                 ]
             }),
-            headerContent: [
-                new sap.uxap.ObjectPageSubSection("", {
-                    blocks: [
-                        new sap.ui.layout.HorizontalLayout("", {
-                            content: [
-                                new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_code") }),
-                                new sap.m.Text("", {
-                                    type: sap.m.InputType.Text
-                                }).bindProperty("text", {
-                                    path: "/code"
-                                }),
-                                new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_name") }),
-                                new sap.m.Text("", {
-                                    type: sap.m.InputType.Text
-                                }).bindProperty("text", {
-                                    path: "/name"
-                                }),
-                                new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_activated") }),
-                                new sap.m.Text("", {
-                                    type: sap.m.InputType.Text
-                                }).bindProperty("text", {
-                                    path: "activated",
-                                    formatter(data: any): any {
-                                        return ibas.enums.describe(ibas.emYesNo, data);
-                                    }
-                                })
-                            ]
-                        })
-                    ],
-                })
-            ],
+            /*  headerContent: [
+                 new sap.uxap.ObjectPageSubSection("", {
+                     blocks: [
+                         new sap.ui.layout.HorizontalLayout("", {
+                             content: [
+                                 new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_code") }),
+                                 new sap.m.Text("", {
+                                     type: sap.m.InputType.Text
+                                 }).bindProperty("text", {
+                                     path: "/code"
+                                 }),
+                                 new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_name") }),
+                                 new sap.m.Text("", {
+                                     type: sap.m.InputType.Text
+                                 }).bindProperty("text", {
+                                     path: "/name"
+                                 }),
+                                 new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_referenced") }),
+                                 new sap.m.Text("", {
+                                     type: sap.m.InputType.Text
+                                 }).bindProperty("text", {
+                                     path: "referenced",
+                                     formatter(data: any): any {
+                                         return ibas.enums.describe(ibas.emYesNo, data);
+                                     }
+                                 })
+                             ]
+                         })
+                     ],
+                 })
+             ], */
             sections: [
                 new sap.uxap.ObjectPageSection("", {
                     title: ibas.i18n.prop("businesspartner_basis_information"),
@@ -128,7 +128,7 @@ export class CustomerViewView extends ibas.BOViewView implements ICustomerViewVi
                         new sap.uxap.ObjectPageSubSection("", {
                             blocks: [
                                 new sap.ui.layout.form.SimpleForm("", {
-                                    editable: true,
+                                    editable: false,
                                     layout: sap.ui.layout.form.SimpleFormLayout.ResponsiveGridLayout,
                                     singleContainerFullSize: false,
                                     adjustLabelSpan: false,
@@ -153,6 +153,27 @@ export class CustomerViewView extends ibas.BOViewView implements ICustomerViewVi
                                         }).bindProperty("text", {
                                             path: "name"
                                         }),
+                                        new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_contactperson") }),
+                                        new sap.m.Text("", {
+                                            type: sap.m.InputType.Text
+                                        }).bindProperty("text", {
+                                            path: "contactPerson",
+                                            formatter(data: any): any {
+                                                return ibas.enums.describe(emBusinessPartnerType, data);
+                                            }
+                                        }),
+                                        new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_telephone1") }),
+                                        new sap.m.Text("", {
+                                            type: sap.m.InputType.Text,
+                                        }).bindProperty("text", {
+                                            path: "telephone1"
+                                        }),
+                                        new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_telephone2") }),
+                                        new sap.m.Text("", {
+                                            type: sap.m.InputType.Text,
+                                        }).bindProperty("text", {
+                                            path: "telephone2"
+                                        }),
                                         new sap.ui.core.Title("", {}),
                                         new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_group") }),
                                         new sap.m.Text("", {
@@ -168,6 +189,18 @@ export class CustomerViewView extends ibas.BOViewView implements ICustomerViewVi
                                             formatter(data: any): any {
                                                 return ibas.enums.describe(emBusinessPartnerNature, data);
                                             }
+                                        }),
+                                        new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_mobilephone") }),
+                                        new sap.m.Text("", {
+                                            type: sap.m.InputType.Text,
+                                        }).bindProperty("text", {
+                                            path: "mobilePhone"
+                                        }),
+                                        new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_faxnumber") }),
+                                        new sap.m.Text("", {
+                                            type: sap.m.InputType.Text,
+                                        }).bindProperty("text", {
+                                            path: "faxNumber"
                                         })
                                     ]
                                 })
@@ -175,13 +208,13 @@ export class CustomerViewView extends ibas.BOViewView implements ICustomerViewVi
                         })
                     ]
                 }),
-                new sap.uxap.ObjectPageSection("", {
+                /* new sap.uxap.ObjectPageSection("", {
                     title: ibas.i18n.prop("businesspartner_contact_information"),
                     subSections: [
                         new sap.uxap.ObjectPageSubSection("", {
                             blocks: [
                                 new sap.ui.layout.form.SimpleForm("", {
-                                    editable: true,
+                                    editable: false,
                                     layout: sap.ui.layout.form.SimpleFormLayout.ResponsiveGridLayout,
                                     singleContainerFullSize: false,
                                     adjustLabelSpan: false,
@@ -233,14 +266,14 @@ export class CustomerViewView extends ibas.BOViewView implements ICustomerViewVi
                             ]
                         })
                     ]
-                }),
+                }), */
                 new sap.uxap.ObjectPageSection("", {
                     title: ibas.i18n.prop("businesspartner_business_information"),
                     subSections: [
                         new sap.uxap.ObjectPageSubSection("", {
                             blocks: [
                                 new sap.ui.layout.form.SimpleForm("", {
-                                    editable: true,
+                                    editable: false,
                                     layout: sap.ui.layout.form.SimpleFormLayout.ResponsiveGridLayout,
                                     singleContainerFullSize: false,
                                     adjustLabelSpan: false,
@@ -265,6 +298,18 @@ export class CustomerViewView extends ibas.BOViewView implements ICustomerViewVi
                                         }).bindProperty("text", {
                                             path: "billToZipCode"
                                         }),
+                                        new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_balance") }),
+                                        new sap.m.Text("", {
+                                            type: sap.m.InputType.Text,
+                                        }).bindProperty("text", {
+                                            path: "balance",
+                                        }),
+                                        new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_currency") }),
+                                        new sap.m.Text("", {
+                                            type: sap.m.InputType.Text,
+                                        }).bindProperty("text", {
+                                            path: "currency"
+                                        }),
                                         new sap.ui.core.Title("", {}),
                                         new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_shiptostreet") }),
                                         new sap.m.Text("", {
@@ -277,6 +322,12 @@ export class CustomerViewView extends ibas.BOViewView implements ICustomerViewVi
                                             type: sap.m.InputType.Text,
                                         }).bindProperty("text", {
                                             path: "shipToZipCode"
+                                        }),
+                                        new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_taxid") }),
+                                        new sap.m.Text("", {
+                                            type: sap.m.InputType.Text,
+                                        }).bindProperty("text", {
+                                            path: "taxId",
                                         })
                                     ]
                                 })
@@ -284,13 +335,13 @@ export class CustomerViewView extends ibas.BOViewView implements ICustomerViewVi
                         })
                     ]
                 }),
-                new sap.uxap.ObjectPageSection("", {
+                /* new sap.uxap.ObjectPageSection("", {
                     title: ibas.i18n.prop("businesspartner_account_information"),
                     subSections: [
                         new sap.uxap.ObjectPageSubSection("", {
                             blocks: [
                                 new sap.ui.layout.form.SimpleForm("", {
-                                    editable: true,
+                                    editable: false,
                                     layout: sap.ui.layout.form.SimpleFormLayout.ResponsiveGridLayout,
                                     singleContainerFullSize: false,
                                     adjustLabelSpan: false,
@@ -327,14 +378,14 @@ export class CustomerViewView extends ibas.BOViewView implements ICustomerViewVi
                             ]
                         })
                     ]
-                }),
+                }), */
                 new sap.uxap.ObjectPageSection("", {
                     title: ibas.i18n.prop("businesspartner_other_information"),
                     subSections: [
                         new sap.uxap.ObjectPageSubSection("", {
                             blocks: [
                                 new sap.ui.layout.form.SimpleForm("", {
-                                    editable: true,
+                                    editable: false,
                                     layout: sap.ui.layout.form.SimpleFormLayout.ResponsiveGridLayout,
                                     singleContainerFullSize: false,
                                     adjustLabelSpan: false,
@@ -356,6 +407,21 @@ export class CustomerViewView extends ibas.BOViewView implements ICustomerViewVi
                                                 strictParsing: true,
                                             })
                                         }),
+                                        new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_createdate") }),
+                                        new sap.m.Text("", {
+                                        }).bindProperty("text", {
+                                            path: "createDate",
+                                            type: new sap.ui.model.type.Date({
+                                                pattern: "yyyy-MM-dd",
+                                                strictParsing: true,
+                                            })
+                                        }),
+                                        new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_createusersign") }),
+                                        new sap.m.Text("", {
+                                            type: sap.m.InputType.Text,
+                                        }).bindProperty("text", {
+                                            path: "createUserSign",
+                                        }),
                                         new sap.ui.core.Title("", {}),
                                         new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_invaliddate") }),
                                         new sap.m.Text("", {
@@ -365,7 +431,22 @@ export class CustomerViewView extends ibas.BOViewView implements ICustomerViewVi
                                                 pattern: "yyyy-MM-dd",
                                                 strictParsing: true,
                                             })
-                                        })
+                                        }),
+                                        new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_updatedate") }),
+                                        new sap.m.Text("", {
+                                        }).bindProperty("text", {
+                                            path: "updateDate",
+                                            type: new sap.ui.model.type.Date({
+                                                pattern: "yyyy-MM-dd",
+                                                strictParsing: true,
+                                            })
+                                        }),
+                                        new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_updateusersign") }),
+                                        new sap.m.Text("", {
+                                            type: sap.m.InputType.Text,
+                                        }).bindProperty("text", {
+                                            path: "updateUserSign",
+                                        }),
                                     ]
                                 })
                             ]

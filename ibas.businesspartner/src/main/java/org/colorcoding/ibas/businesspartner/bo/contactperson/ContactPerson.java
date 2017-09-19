@@ -14,6 +14,7 @@ import org.colorcoding.ibas.bobas.mapping.BOCode;
 import org.colorcoding.ibas.bobas.mapping.DbField;
 import org.colorcoding.ibas.bobas.mapping.DbFieldType;
 import org.colorcoding.ibas.businesspartner.MyConfiguration;
+import org.colorcoding.ibas.businesspartner.MyConsts;
 import org.colorcoding.ibas.businesspartner.data.emBusinessPartnerType;
 import org.colorcoding.ibas.businesspartner.data.emGender;
 
@@ -22,8 +23,8 @@ import org.colorcoding.ibas.businesspartner.data.emGender;
  * 
  */
 @XmlAccessorType(XmlAccessType.NONE)
-@XmlType(name = ContactPerson.BUSINESS_OBJECT_NAME, namespace = MyConfiguration.NAMESPACE_BO)
-@XmlRootElement(name = ContactPerson.BUSINESS_OBJECT_NAME, namespace = MyConfiguration.NAMESPACE_BO)
+@XmlType(name = ContactPerson.BUSINESS_OBJECT_NAME, namespace = MyConsts.NAMESPACE_BO)
+@XmlRootElement(name = ContactPerson.BUSINESS_OBJECT_NAME, namespace = MyConsts.NAMESPACE_BO)
 @BOCode(ContactPerson.BUSINESS_OBJECT_CODE)
 public class ContactPerson extends BusinessObject<ContactPerson> implements IContactPerson {
 

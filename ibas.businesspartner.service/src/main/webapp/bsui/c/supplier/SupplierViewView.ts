@@ -30,7 +30,7 @@ export class SupplierViewView extends ibas.BOViewView implements ISupplierViewVi
     darw(): any {
         let that: this = this;
         this.viewTopForm = new sap.ui.layout.form.SimpleForm("", {
-            editable: true,
+            editable: false,
             layout: sap.ui.layout.form.SimpleFormLayout.ResponsiveGridLayout,
             singleContainerFullSize: false,
             adjustLabelSpan: false,

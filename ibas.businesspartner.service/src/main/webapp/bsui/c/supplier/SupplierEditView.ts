@@ -95,27 +95,31 @@ export class SupplierEditView extends ibas.BOEditView implements ISupplierEditVi
                     path: "contactPerson"
                 }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_telephone1") }),
-                new sap.m.Text("", {
+                new sap.m.Input("", {
                     type: sap.m.InputType.Text,
-                }).bindProperty("text", {
+                    editable: false
+                }).bindProperty("value", {
                     path: "telephone1"
                 }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_telephone2") }),
-                new sap.m.Text("", {
+                new sap.m.Input("", {
                     type: sap.m.InputType.Text,
-                }).bindProperty("text", {
+                    editable: false
+                }).bindProperty("value", {
                     path: "telephone2"
                 }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_mobilephone") }),
-                new sap.m.Text("", {
+                new sap.m.Input("", {
                     type: sap.m.InputType.Text,
-                }).bindProperty("text", {
+                    editable: false
+                }).bindProperty("value", {
                     path: "mobilePhone"
                 }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_faxnumber") }),
-                new sap.m.Text("", {
+                new sap.m.Input("", {
                     type: sap.m.InputType.Text,
-                }).bindProperty("text", {
+                    editable: false
+                }).bindProperty("value", {
                     path: "faxNumber"
                 }),
                 new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_business_information") }),
@@ -165,16 +169,18 @@ export class SupplierEditView extends ibas.BOEditView implements ISupplierEditVi
                 new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_other_information") }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_validdate") }),
                 new sap.m.DatePicker("", {
-                    valueFormat: "yyyy-MM-dd",
+                    valueFormat: ibas.config.get(ibas.CONFIG_ITEM_FORMAT_DATE),
+                    displayFormat: ibas.config.get(ibas.CONFIG_ITEM_FORMAT_DATE),
                 }).bindProperty("dateValue", {
-                    path: "validDate",
+                    path: "validdate"
                 }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_invaliddate") }),
                 new sap.m.DatePicker("", {
-                    valueFormat: "yyyy-MM-dd",
+                    valueFormat: ibas.config.get(ibas.CONFIG_ITEM_FORMAT_DATE),
+                    displayFormat: ibas.config.get(ibas.CONFIG_ITEM_FORMAT_DATE),
                 }).bindProperty("dateValue", {
-                    path: "invalidDate",
-                })
+                    path: "invaliddate"
+                }),
             ],
         });
         this.page = new sap.m.Page("", {

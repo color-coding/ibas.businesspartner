@@ -53,6 +53,12 @@ export class CustomerEditView extends ibas.BOEditView implements ICustomerEditVi
             columnsS: 1,
             content: [
                 new sap.ui.core.Title("", {}),
+                new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_code") }),
+                new sap.m.Input("", {
+                    type: sap.m.InputType.Text
+                }).bindProperty("value", {
+                    path: "/code"
+                }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_group") }),
                 new sap.m.Input("", {
                     placeholder: ibas.i18n.prop("bo_customer_group"),
@@ -64,7 +70,27 @@ export class CustomerEditView extends ibas.BOEditView implements ICustomerEditVi
                 }).bindProperty("value", {
                     path: "group"
                 }),
+                new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_referenced") }),
+                new sap.m.Switch("", {
+                    customTextOn: "是",
+                    customTextOff: "否",
+                }).bindProperty("state", {
+                    path: "/referenced",
+                    formatter(data: any): any {
+                        if (data === 1) {
+                            return true;
+                        } else {
+                            return false;
+                        }
+                    }
+                }),
                 new sap.ui.core.Title("", {}),
+                new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_name") }),
+                new sap.m.Input("", {
+                    type: sap.m.InputType.Text
+                }).bindProperty("value", {
+                    path: "/name"
+                }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_companyprivate") }),
                 new sap.m.SegmentedButton("", {
                     items: utils.createSegmentedButtonItems(emBusinessPartnerNature)
@@ -79,7 +105,7 @@ export class CustomerEditView extends ibas.BOEditView implements ICustomerEditVi
                 isObjectIconAlwaysVisible: true,
                 isObjectTitleAlwaysVisible: true,
                 isObjectSubtitleAlwaysVisible: true,
-                isActionAreaAlwaysVisible: true,
+                isActionAreaAlwaysVisible: false,
                 showMarkers: true,
                 objectTitle: "{/code} {/contactPerson}",
                 objectSubtitle: "{/name}  {/contactPerson}  {telephone1}",
@@ -92,42 +118,42 @@ export class CustomerEditView extends ibas.BOEditView implements ICustomerEditVi
                     })
                 ]
             }),
-            headerContent: [
-                new sap.uxap.ObjectPageSubSection("", {
-                    blocks: [
-                        new sap.ui.layout.HorizontalLayout("", {
-                            content: [
-                                new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_code") }),
-                                new sap.m.Input("", {
-                                    type: sap.m.InputType.Text
-                                }).bindProperty("value", {
-                                    path: "/code"
-                                }),
-                                new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_name") }),
-                                new sap.m.Input("", {
-                                    type: sap.m.InputType.Text
-                                }).bindProperty("value", {
-                                    path: "/name"
-                                }),
-                                new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_activated") }),
-                                new sap.m.Switch("", {
-                                    customTextOn: "是",
-                                    customTextOff: "否",
-                                }).bindProperty("state", {
-                                    path: "/Activated",
-                                    formatter(data: any): any {
-                                        if (data === 1) {
-                                            return true;
-                                        } else {
-                                            return false;
-                                        }
-                                    }
-                                })
-                            ]
-                        })
-                    ]
-                })
-            ],
+            /*  headerContent: [
+                 new sap.uxap.ObjectPageSubSection("", {
+                     blocks: [
+                         new sap.ui.layout.HorizontalLayout("", {
+                             content: [
+                                 new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_code") }),
+                                 new sap.m.Input("", {
+                                     type: sap.m.InputType.Text
+                                 }).bindProperty("value", {
+                                     path: "/code"
+                                 }),
+                                 new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_name") }),
+                                 new sap.m.Input("", {
+                                     type: sap.m.InputType.Text
+                                 }).bindProperty("value", {
+                                     path: "/name"
+                                 }),
+                                 new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_referenced") }),
+                                 new sap.m.Switch("", {
+                                     customTextOn: "是",
+                                     customTextOff: "否",
+                                 }).bindProperty("state", {
+                                     path: "/referenced",
+                                     formatter(data: any): any {
+                                         if (data === 1) {
+                                             return true;
+                                         } else {
+                                             return false;
+                                         }
+                                     }
+                                 })
+                             ]
+                         })
+                     ]
+                 })
+             ], */
             sections: [
                 new sap.uxap.ObjectPageSection("", {
                     title: ibas.i18n.prop("businesspartner_basis_information"),
@@ -170,28 +196,32 @@ export class CustomerEditView extends ibas.BOEditView implements ICustomerEditVi
                                             path: "contactPerson"
                                         }),
                                         new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_telephone1") }),
-                                        new sap.m.Text("", {
+                                        new sap.m.Input("", {
                                             type: sap.m.InputType.Text,
-                                        }).bindProperty("text", {
+                                            editable: false
+                                        }).bindProperty("value", {
                                             path: "telephone1"
                                         }),
                                         new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_telephone2") }),
-                                        new sap.m.Text("", {
+                                        new sap.m.Input("", {
                                             type: sap.m.InputType.Text,
-                                        }).bindProperty("text", {
+                                            editable: false
+                                        }).bindProperty("value", {
                                             path: "telephone2"
                                         }),
                                         new sap.ui.core.Title("", {}),
                                         new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_mobilephone") }),
-                                        new sap.m.Text("", {
+                                        new sap.m.Input("", {
                                             type: sap.m.InputType.Text,
-                                        }).bindProperty("text", {
+                                            editable: false
+                                        }).bindProperty("value", {
                                             path: "mobilePhone"
                                         }),
                                         new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_faxnumber") }),
-                                        new sap.m.Text("", {
+                                        new sap.m.Input("", {
                                             type: sap.m.InputType.Text,
-                                        }).bindProperty("text", {
+                                            editable: false
+                                        }).bindProperty("value", {
                                             path: "faxNumber"
                                         })
                                     ]
@@ -315,17 +345,19 @@ export class CustomerEditView extends ibas.BOEditView implements ICustomerEditVi
                                         new sap.ui.core.Title("", {}),
                                         new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_validdate") }),
                                         new sap.m.DatePicker("", {
-                                            valueFormat: "yyyy-MM-dd",
+                                            valueFormat: ibas.config.get(ibas.CONFIG_ITEM_FORMAT_DATE),
+                                            displayFormat: ibas.config.get(ibas.CONFIG_ITEM_FORMAT_DATE),
                                         }).bindProperty("dateValue", {
-                                            path: "validDate",
+                                            path: "/validdate"
                                         }),
                                         new sap.ui.core.Title("", {}),
                                         new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_invaliddate") }),
                                         new sap.m.DatePicker("", {
-                                            valueFormat: "yyyy-MM-dd",
+                                            valueFormat: ibas.config.get(ibas.CONFIG_ITEM_FORMAT_DATE),
+                                            displayFormat: ibas.config.get(ibas.CONFIG_ITEM_FORMAT_DATE),
                                         }).bindProperty("dateValue", {
-                                            path: "invalidDate",
-                                        })
+                                            path: "/invaliddate"
+                                        }),
                                     ]
                                 })
                             ]
