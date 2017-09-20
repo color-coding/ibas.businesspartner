@@ -9,6 +9,7 @@
   "bo_businesspartnerbalancejournal_rate": "汇率",
   "bo_businesspartnerbalancejournal_bankcode": "银行编码",
   "bo_businesspartnerbalancejournal_cardnumber": "卡号",
+  "bo_businesspartnerbalancejournal_origin_information": "来源信息",
   "bo_businesspartnerbalancejournal_basedocumenttype": "基于类型",
   "bo_businesspartnerbalancejournal_basedocumententry": "基于标识",
   "bo_businesspartnerbalancejournal_basedocumentlineid": "基于行号",

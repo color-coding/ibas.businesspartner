@@ -16,11 +16,63 @@ import { IBusinessPartnerGroupViewView } from "../../../bsapp/businesspartnergro
  */
 export class BusinessPartnerGroupViewView extends ibas.BOViewView implements IBusinessPartnerGroupViewView {
 
+    private page: sap.m.Page;
+    private viewTopForm: sap.ui.layout.form.SimpleForm;
+
     /** 绘制视图 */
     darw(): any {
         let that: this = this;
-        this.form = new sap.ui.layout.form.SimpleForm("", {
+        this.viewTopForm = new sap.ui.layout.form.SimpleForm("", {
+            editable: false,
+            layout: sap.ui.layout.form.SimpleFormLayout.ResponsiveGridLayout,
+            singleContainerFullSize: false,
+            adjustLabelSpan: false,
+            labelSpanL: 2,
+            labelSpanM: 2,
+            labelSpanS: 12,
+            columnsXL: 2,
+            columnsL: 2,
+            columnsM: 1,
+            columnsS: 1,
             content: [
+                new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_basis_information") }),
+                new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnergroup_code") }),
+                new sap.m.Text("", {
+                    type: sap.m.InputType.Text
+                }).bindProperty("text", {
+                    path: "code"
+                }),
+                new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnergroup_name") }),
+                new sap.m.Text("", {
+                    type: sap.m.InputType.Text
+                }).bindProperty("text", {
+                    path: "name"
+                }),
+                new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnergroup_docentry") }),
+                new sap.m.Text("", {
+                    type: sap.m.InputType.Text,
+                }).bindProperty("text", {
+                    path: "docEntry"
+                }),
+                new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_other_information") }),
+                new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnergroup_createdate") }),
+                new sap.m.Text("", {
+                }).bindProperty("text", {
+                    path: "createDate",
+                    type: new sap.ui.model.type.Date({
+                        pattern: "yyyy-MM-dd",
+                        strictParsing: true,
+                    }),
+                }),
+                new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnergroup_updatedate") }),
+                new sap.m.Text("", {
+                }).bindProperty("text", {
+                    path: "updateDate",
+                    type: new sap.ui.model.type.Date({
+                        pattern: "yyyy-MM-dd",
+                        strictParsing: true,
+                    }),
+                }),
             ]
         });
         this.page = new sap.m.Page("", {
@@ -69,16 +121,15 @@ export class BusinessPartnerGroupViewView extends ibas.BOViewView implements IBu
                     })
                 ]
             }),
-            content: [this.form]
+            content: [this.viewTopForm]
         });
         this.id = this.page.getId();
         return this.page;
     }
-    private page: sap.m.Page;
-    private form: sap.ui.layout.form.SimpleForm;
 
     /** 显示数据 */
     showBusinessPartnerGroup(data: bo.BusinessPartnerGroup): void {
-        this.form.setModel(new sap.ui.model.json.JSONModel(data));
+        this.viewTopForm.setModel(new sap.ui.model.json.JSONModel(data));
+        this.viewTopForm.bindObject("/");
     }
 }

@@ -20,6 +20,7 @@ import {
     BODocumentLine,
     BOSimple,
     BOSimpleLine,
+    config
 } from "ibas/index";
 import {
     emBusinessPartnerType,
@@ -348,7 +349,7 @@ export class BusinessPartnerBalanceJournal extends BOSimple<BusinessPartnerBalan
 
     /** 初始化数据 */
     protected init(): void {
-        this.objectCode = BusinessPartnerBalanceJournal.BUSINESS_OBJECT_CODE;
+        this.objectCode = config.applyVariables(BusinessPartnerBalanceJournal.BUSINESS_OBJECT_CODE);
     }
 }
 

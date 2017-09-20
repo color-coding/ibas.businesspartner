@@ -15,14 +15,15 @@ import org.colorcoding.ibas.bobas.mapping.BOCode;
 import org.colorcoding.ibas.bobas.mapping.DbField;
 import org.colorcoding.ibas.bobas.mapping.DbFieldType;
 import org.colorcoding.ibas.businesspartner.MyConfiguration;
+import org.colorcoding.ibas.businesspartner.MyConsts;
 
 /**
  * 获取-业务伙伴组
  * 
  */
 @XmlAccessorType(XmlAccessType.NONE)
-@XmlType(name = BusinessPartnerGroup.BUSINESS_OBJECT_NAME, namespace = MyConfiguration.NAMESPACE_BO)
-@XmlRootElement(name = BusinessPartnerGroup.BUSINESS_OBJECT_NAME, namespace = MyConfiguration.NAMESPACE_BO)
+@XmlType(name = BusinessPartnerGroup.BUSINESS_OBJECT_NAME, namespace = MyConsts.NAMESPACE_BO)
+@XmlRootElement(name = BusinessPartnerGroup.BUSINESS_OBJECT_NAME, namespace = MyConsts.NAMESPACE_BO)
 @BOCode(BusinessPartnerGroup.BUSINESS_OBJECT_CODE)
 public class BusinessPartnerGroup extends BusinessObject<BusinessPartnerGroup> implements IBusinessPartnerGroup {
 

@@ -10,6 +10,13 @@ import * as ibas from "ibas/index";
 import { utils } from "openui5/typings/ibas.utils";
 import * as bo from "../../../borep/bo/index";
 import { IBusinessPartnerBalanceJournalListView } from "../../../bsapp/businesspartnerbalancejournal/index";
+import {
+    IContactPerson,
+    BO_CODE_CONTACTPERSON,
+    emBusinessPartnerType,
+    emBusinessPartnerNature,
+    emGender,
+} from "../../../api/index";
 
 /**
  * 列表视图-业务伙伴余额记录
@@ -33,6 +40,41 @@ export class BusinessPartnerBalanceJournalListView extends ibas.BOListView imple
             visibleRowCountMode: sap.ui.table.VisibleRowCountMode.Interactive,
             rows: "{/rows}",
             columns: [
+                new sap.ui.table.Column("", {
+                    label: ibas.i18n.prop("bo_businesspartnerbalancejournal_businesspartner"),
+                    template: new sap.m.Text("", {
+                        wrapping: false
+                    }).bindProperty("text", {
+                        path: "businessPartner"
+                    })
+                }),
+                new sap.ui.table.Column("", {
+                    label: ibas.i18n.prop("bo_businesspartnerbalancejournal_businesspartnertype"),
+                    template: new sap.m.Text("", {
+                        wrapping: false
+                    }).bindProperty("text", {
+                        path: "businessPartnerType",
+                        formatter(data: any): any {
+                            return ibas.enums.describe(emBusinessPartnerType, data);
+                        }
+                    })
+                }),
+                new sap.ui.table.Column("", {
+                    label: ibas.i18n.prop("bo_businesspartnerbalancejournal_amount"),
+                    template: new sap.m.Text("", {
+                        wrapping: false
+                    }).bindProperty("text", {
+                        path: "amount"
+                    })
+                }),
+                new sap.ui.table.Column("", {
+                    label: ibas.i18n.prop("bo_businesspartnerbalancejournal_currency"),
+                    template: new sap.m.Text("", {
+                        wrapping: false
+                    }).bindProperty("text", {
+                        path: "currency"
+                    })
+                })
             ]
         });
         this.form.addContent(this.table);
@@ -40,14 +82,6 @@ export class BusinessPartnerBalanceJournalListView extends ibas.BOListView imple
             showHeader: false,
             subHeader: new sap.m.Bar("", {
                 contentLeft: [
-                    new sap.m.Button("", {
-                        text: ibas.i18n.prop("sys_shell_data_new"),
-                        type: sap.m.ButtonType.Transparent,
-                        icon: "sap-icon://create",
-                        press: function (): void {
-                            that.fireViewEvents(that.newDataEvent);
-                        }
-                    }),
                     new sap.m.Button("", {
                         text: ibas.i18n.prop("sys_shell_data_view"),
                         type: sap.m.ButtonType.Transparent,
@@ -58,30 +92,7 @@ export class BusinessPartnerBalanceJournalListView extends ibas.BOListView imple
                                 utils.getTableSelecteds<bo.BusinessPartnerBalanceJournal>(that.table).firstOrDefault()
                             );
                         }
-                    }),
-                    new sap.m.Button("", {
-                        text: ibas.i18n.prop("sys_shell_data_edit"),
-                        type: sap.m.ButtonType.Transparent,
-                        icon: "sap-icon://edit",
-                        press: function (): void {
-                            that.fireViewEvents(that.editDataEvent,
-                                // 获取表格选中的对象
-                                utils.getTableSelecteds<bo.BusinessPartnerBalanceJournal>(that.table).firstOrDefault()
-                            );
-                        }
-                    }),
-                    // new sap.m.ToolbarSeparator(""),// 加了后面不显示？
-                    new sap.m.Button("", {
-                        text: ibas.i18n.prop("sys_shell_data_delete"),
-                        type: sap.m.ButtonType.Transparent,
-                        icon: "sap-icon://delete",
-                        press: function (): void {
-                            that.fireViewEvents(that.deleteDataEvent,
-                                // 获取表格选中的对象
-                                utils.getTableSelecteds<bo.BusinessPartnerBalanceJournal>(that.table)
-                            );
-                        }
-                    }),
+                    })
                 ],
                 contentRight: [
                     new sap.m.Button("", {
@@ -161,7 +172,7 @@ export class BusinessPartnerBalanceJournalListView extends ibas.BOListView imple
         }
         if (!done) {
             // 没有显示数据
-            this.table.setModel(new sap.ui.model.json.JSONModel({rows: datas}));
+            this.table.setModel(new sap.ui.model.json.JSONModel({ rows: datas }));
         }
         this.table.setBusy(false);
     }
