@@ -3,7 +3,6 @@ package org.colorcoding.ibas.businesspartner.repository;
 import org.colorcoding.ibas.bobas.common.ICriteria;
 import org.colorcoding.ibas.bobas.common.IOperationResult;
 import org.colorcoding.ibas.bobas.common.OperationResult;
-import org.colorcoding.ibas.bobas.ownership.PermissionGroup;
 import org.colorcoding.ibas.bobas.repository.BORepositoryServiceApplication;
 import org.colorcoding.ibas.businesspartner.bo.businesspartnerbalancejournal.BusinessPartnerBalanceJournal;
 import org.colorcoding.ibas.businesspartner.bo.businesspartnerbalancejournal.IBusinessPartnerBalanceJournal;
@@ -19,7 +18,6 @@ import org.colorcoding.ibas.businesspartner.bo.supplier.Supplier;
 /**
  * BusinessPartner仓库
  */
-@PermissionGroup("BusinessPartner")
 public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 		implements IBORepositoryBusinessPartnerSvc, IBORepositoryBusinessPartnerApp {
 

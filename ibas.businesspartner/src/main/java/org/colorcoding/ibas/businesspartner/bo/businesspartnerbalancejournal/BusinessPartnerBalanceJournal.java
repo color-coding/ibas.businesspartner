@@ -15,7 +15,6 @@ import org.colorcoding.ibas.bobas.mapping.BOCode;
 import org.colorcoding.ibas.bobas.mapping.DbField;
 import org.colorcoding.ibas.bobas.mapping.DbFieldType;
 import org.colorcoding.ibas.businesspartner.MyConfiguration;
-import org.colorcoding.ibas.businesspartner.MyConsts;
 import org.colorcoding.ibas.businesspartner.data.emBusinessPartnerType;
 import org.colorcoding.ibas.businesspartner.logics.IBusinessPartnerBalanceJournalContract;
 import org.colorcoding.ibas.businesspartner.logics.IBusinessPartnerBalancePaymentContract;
@@ -26,8 +25,8 @@ import org.colorcoding.ibas.businesspartner.logics.IBusinessPartnerBalanceReceip
  * 
  */
 @XmlAccessorType(XmlAccessType.NONE)
-@XmlType(name = BusinessPartnerBalanceJournal.BUSINESS_OBJECT_NAME, namespace = MyConsts.NAMESPACE_BO)
-@XmlRootElement(name = BusinessPartnerBalanceJournal.BUSINESS_OBJECT_NAME, namespace = MyConsts.NAMESPACE_BO)
+@XmlType(name = BusinessPartnerBalanceJournal.BUSINESS_OBJECT_NAME, namespace = MyConfiguration.NAMESPACE_BO)
+@XmlRootElement(name = BusinessPartnerBalanceJournal.BUSINESS_OBJECT_NAME, namespace = MyConfiguration.NAMESPACE_BO)
 @BOCode(BusinessPartnerBalanceJournal.BUSINESS_OBJECT_CODE)
 public class BusinessPartnerBalanceJournal extends BusinessObject<BusinessPartnerBalanceJournal>
 		implements IBusinessPartnerBalanceJournal,IBusinessPartnerBalanceJournalContract {
