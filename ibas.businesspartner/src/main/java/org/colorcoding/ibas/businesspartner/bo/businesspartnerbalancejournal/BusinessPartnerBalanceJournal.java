@@ -17,6 +17,9 @@ import org.colorcoding.ibas.bobas.mapping.DbFieldType;
 import org.colorcoding.ibas.businesspartner.MyConfiguration;
 import org.colorcoding.ibas.businesspartner.MyConsts;
 import org.colorcoding.ibas.businesspartner.data.emBusinessPartnerType;
+import org.colorcoding.ibas.businesspartner.logics.IBusinessPartnerBalanceJournalContract;
+import org.colorcoding.ibas.businesspartner.logics.IBusinessPartnerBalancePaymentContract;
+import org.colorcoding.ibas.businesspartner.logics.IBusinessPartnerBalanceReceiptContract;
 
 /**
  * 获取-业务伙伴余额记录
@@ -27,7 +30,7 @@ import org.colorcoding.ibas.businesspartner.data.emBusinessPartnerType;
 @XmlRootElement(name = BusinessPartnerBalanceJournal.BUSINESS_OBJECT_NAME, namespace = MyConsts.NAMESPACE_BO)
 @BOCode(BusinessPartnerBalanceJournal.BUSINESS_OBJECT_CODE)
 public class BusinessPartnerBalanceJournal extends BusinessObject<BusinessPartnerBalanceJournal>
-		implements IBusinessPartnerBalanceJournal {
+		implements IBusinessPartnerBalanceJournal,IBusinessPartnerBalanceJournalContract {
 
 	/**
 	 * 序列化版本标记
@@ -1019,5 +1022,51 @@ public class BusinessPartnerBalanceJournal extends BusinessObject<BusinessPartne
 		this.setObjectCode(MyConfiguration.applyVariables(BUSINESS_OBJECT_CODE));
 
 	}
+     //region 基于其他BO创建实
+	public static IBusinessPartnerBalanceJournal Create(IBusinessPartnerBalanceReceiptContract ReceiptContract) {
+		BusinessPartnerBalanceJournal bo = new BusinessPartnerBalanceJournal();
+		bo.setProperty(PROPERTY_BUSINESSPARTNER,ReceiptContract.getReceiptBusinessPartnerCode());
+		bo.setProperty(PROPERTY_AMOUNT,ReceiptContract.getReceiptAmount());
+		bo.setProperty(PROPERTY_BANKCODE,ReceiptContract.getReceiptBankCode());
+		bo.setProperty(PROPERTY_CURRENCY,ReceiptContract.getReceiptCurrency());
+		bo.setProperty(PROPERTY_CARDNUMBER,ReceiptContract.getReceiptCardNumber());
+		bo.setProperty(PROPERTY_BASEDOCUMENTTYPE,ReceiptContract.getReceiptBaseDocumentType());
+		bo.setProperty(PROPERTY_BASEDOCUMENTENTRY,ReceiptContract.getReceiptBaseDocumentEntry());
+		bo.setProperty(PROPERTY_BASEDOCUMENTLINEID,ReceiptContract.getReceiptBaseDocumentLineId());
+		bo.setProperty(PROPERTY_DIRECTION,emDirection.IN);
+		return bo;
+	}
+
+	public static IBusinessPartnerBalanceJournal Create(IBusinessPartnerBalancePaymentContract PaymentContract) {
+		BusinessPartnerBalanceJournal bo = new BusinessPartnerBalanceJournal();
+		bo.setProperty(PROPERTY_BUSINESSPARTNER,PaymentContract.getPaymentBusinessPartnerCode());
+		bo.setProperty(PROPERTY_AMOUNT,PaymentContract.getPaymentAmount());
+		bo.setProperty(PROPERTY_BANKCODE,PaymentContract.getPaymentBankCode());
+		bo.setProperty(PROPERTY_CURRENCY,PaymentContract.getPaymentCurrency());
+		bo.setProperty(PROPERTY_CARDNUMBER,PaymentContract.getPaymentCardNumber());
+		bo.setProperty(PROPERTY_BASEDOCUMENTTYPE,PaymentContract.getPaymentBaseDocumentType());
+		bo.setProperty(PROPERTY_BASEDOCUMENTENTRY,PaymentContract.getPaymentBaseDocumentEntry());
+		bo.setProperty(PROPERTY_BASEDOCUMENTLINEID,PaymentContract.getPaymentBaseDocumentLineId());
+		bo.setProperty(PROPERTY_DIRECTION,emDirection.OUT);
+		return bo;
+	}
+	//endregion
+
+	//region 服务契约接口的实现
+	@Override
+	public String getBusinessPartnerCode() {
+		return this.getProperty(PROPERTY_BUSINESSPARTNER);
+	}
+
+	@Override
+	public Decimal getReciptAndPaymentAmount() {
+		return this.getProperty(PROPERTY_AMOUNT);
+	}
+
+	@Override
+	public emDirection getReciptAndPaymentDirection() {
+		return this.getProperty(PROPERTY_DIRECTION);
+	}
+	//endregion
 
 }
