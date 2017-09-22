@@ -11,7 +11,8 @@ import * as bo from "../../borep/bo/index";
 import { BORepositoryBusinessPartner } from "../../borep/BORepositories";
 
 /** 编辑应用-业务伙伴余额记录 */
-export class BusinessPartnerBalanceJournalEditApp extends ibas.BOEditApplication<IBusinessPartnerBalanceJournalEditView, bo.BusinessPartnerBalanceJournal> {
+export class BusinessPartnerBalanceJournalEditApp extends
+    ibas.BOEditApplication<IBusinessPartnerBalanceJournalEditView, bo.BusinessPartnerBalanceJournal> {
 
     /** 应用标识 */
     static APPLICATION_ID: string = "3aacbb23-b138-4a82-b80d-3715f997b36e";

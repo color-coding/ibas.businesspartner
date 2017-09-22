@@ -37,6 +37,12 @@ export class BusinessPartnerGroupViewApp extends ibas.BOViewService<IBusinessPar
     /** 视图显示后 */
     protected viewShowed(): void {
         // 视图加载完成
+        if (ibas.objects.isNull(this.viewData)) {
+            // 创建编辑对象实例
+            this.viewData = new bo.BusinessPartnerGroup();
+            this.proceeding(ibas.emMessageType.WARNING, ibas.i18n.prop("sys_shell_data_created_new"));
+        }
+        this.view.showBusinessPartnerGroup(this.viewData);
     }
     /** 编辑数据，参数：目标数据 */
     protected editData(): void {
@@ -47,12 +53,41 @@ export class BusinessPartnerGroupViewApp extends ibas.BOViewService<IBusinessPar
     }
     /** 运行,覆盖原方法 */
     run(...args: any[]): void {
-        if (arguments[0] instanceof bo.BusinessPartnerGroup) {
-            this.viewData = arguments[0];
-            this.show();
-        } else {
-            super.run();
+        let that: this = this;
+        if (ibas.objects.instanceOf(arguments[0], bo.BusinessPartnerGroup)) {
+            // 尝试重新查询编辑对象
+            let criteria: ibas.ICriteria = arguments[0].criteria();
+            if (!ibas.objects.isNull(criteria) && criteria.conditions.length > 0) {
+                // 有效的查询对象查询
+                let boRepository: BORepositoryBusinessPartner = new BORepositoryBusinessPartner();
+                boRepository.fetchBusinessPartnerGroup({
+                    criteria: criteria,
+                    onCompleted(opRslt: ibas.IOperationResult<bo.BusinessPartnerGroup>): void {
+                        let data: bo.BusinessPartnerGroup;
+                        if (opRslt.resultCode === 0) {
+                            data = opRslt.resultObjects.firstOrDefault();
+                        }
+                        if (ibas.objects.instanceOf(data, bo.BusinessPartnerGroup)) {
+                            // 查询到了有效数据
+                            that.viewData = data;
+                            that.show();
+                        } else {
+                            // 数据重新检索无效
+                            that.messages({
+                                type: ibas.emMessageType.WARNING,
+                                message: ibas.i18n.prop("sys_shell_data_deleted_and_created"),
+                                onCompleted(): void {
+                                    that.show();
+                                }
+                            });
+                        }
+                    }
+                });
+                // 开始查询数据
+                return;
+            }
         }
+        super.run();
     }
     private viewData: bo.BusinessPartnerGroup;
     /** 查询数据 */
@@ -88,7 +123,7 @@ export class BusinessPartnerGroupViewApp extends ibas.BOViewService<IBusinessPar
 }
 /** 视图-业务伙伴组 */
 export interface IBusinessPartnerGroupViewView extends ibas.IBOViewView {
-
+    showBusinessPartnerGroup(viewData: bo.BusinessPartnerGroup): void;
 }
 /** 业务伙伴组连接服务映射 */
 export class BusinessPartnerGroupLinkServiceMapping extends ibas.BOLinkServiceMapping {
