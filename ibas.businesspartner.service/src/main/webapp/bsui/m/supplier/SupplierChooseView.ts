@@ -34,7 +34,7 @@ export class SupplierChooseView extends ibas.BOChooseView implements ISupplierCh
                 press: function (): void {
                     that.fireViewEvents(that.chooseDataEvent,
                         // 获取表格选中的对象
-                        utils.getListSelecteds<bo.Supplier>(that.list)
+                        utils.getSelecteds<bo.Supplier>(that.list)
                     );
                 }
             }),
