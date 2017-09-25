@@ -33,6 +33,8 @@ export class CustomerEditApp extends ibas.BOEditApplication<ICustomerEditView, b
         // 其他事件
         this.view.deleteDataEvent = this.deleteData;
         this.view.createDataEvent = this.createData;
+        this.view.chooseBusinessPartnerGroupEvent = this.chooseBusinessPartnerGroup;
+        this.view.chooseBusinessPartnerContactPersonEvent = this.chooseBusinessPartnerContactPerson;
     }
     /** 视图显示后 */
     protected viewShowed(): void {
@@ -165,6 +167,40 @@ export class CustomerEditApp extends ibas.BOEditApplication<ICustomerEditView, b
             createData();
         }
     }
+    private chooseBusinessPartnerGroup(): void {
+        let that: this = this;
+        ibas.servicesManager.runChooseService<bo.BusinessPartnerGroup>({
+            boCode: bo.BusinessPartnerGroup.BUSINESS_OBJECT_CODE,
+            criteria: [
+                new ibas.Condition(bo.BusinessPartnerGroup.PROPERTY_DELETED_NAME,
+                    ibas.emConditionOperation.EQUAL, "N"),
+                new ibas.Condition(bo.BusinessPartnerGroup.PROPERTY_CODE_NAME,
+                    ibas.emConditionOperation.NOT_EQUAL, ibas.strings.valueOf(this.editData.group)),
+            ],
+            onCompleted(selecteds: ibas.List<bo.BusinessPartnerGroup>): void {
+                that.editData.group = selecteds.firstOrDefault().code;
+            }
+        });
+    }
+    private chooseBusinessPartnerContactPerson(): void {
+        let that: this = this;
+        ibas.servicesManager.runChooseService<bo.ContactPerson>({
+            boCode: bo.ContactPerson.BUSINESS_OBJECT_CODE,
+            criteria: [
+                new ibas.Condition(bo.ContactPerson.PROPERTY_ACTIVATED_NAME,
+                    ibas.emConditionOperation.EQUAL, "Y"),
+                 new ibas.Condition(bo.ContactPerson.PROPERTY_NAME_NAME,
+                     ibas.emConditionOperation.NOT_EQUAL, ibas.strings.valueOf(this.editData.contactPerson)),
+            ],
+            onCompleted(selecteds: ibas.List<bo.ContactPerson>): void {
+                that.editData.contactPerson = selecteds.firstOrDefault().name;
+                that.editData.telephone1 = selecteds.firstOrDefault().telephone1;
+                that.editData.telephone2 = selecteds.firstOrDefault().telephone2;
+                that.editData.mobilePhone = selecteds.firstOrDefault().mobilePhone;
+                that.editData.faxNumber = selecteds.firstOrDefault().fax;
+            }
+        });
+    }
 }
 /** 视图-业务伙伴-客户 */
 export interface ICustomerEditView extends ibas.IBOEditView {
@@ -174,4 +210,8 @@ export interface ICustomerEditView extends ibas.IBOEditView {
     deleteDataEvent: Function;
     /** 新建数据事件，参数1：是否克隆 */
     createDataEvent: Function;
+    /** 选择客户组事件 */
+    chooseBusinessPartnerGroupEvent: Function;
+    /** 选择客户联系人事件 */
+    chooseBusinessPartnerContactPersonEvent: Function;
 }

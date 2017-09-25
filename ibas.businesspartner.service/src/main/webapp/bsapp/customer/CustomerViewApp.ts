@@ -37,6 +37,12 @@ export class CustomerViewApp extends ibas.BOViewService<ICustomerViewView> {
     /** 视图显示后 */
     protected viewShowed(): void {
         // 视图加载完成
+        if (ibas.objects.isNull(this.viewData)) {
+            // 创建编辑对象实例
+            this.viewData = new bo.Customer();
+            this.proceeding(ibas.emMessageType.WARNING, ibas.i18n.prop("sys_shell_data_created_new"));
+        }
+        this.view.showCustomer(this.viewData);
     }
     /** 编辑数据，参数：目标数据 */
     protected editData(): void {
@@ -47,12 +53,41 @@ export class CustomerViewApp extends ibas.BOViewService<ICustomerViewView> {
     }
     /** 运行,覆盖原方法 */
     run(...args: any[]): void {
-        if (arguments[0] instanceof bo.Customer) {
-            this.viewData = arguments[0];
-            this.show();
-        } else {
-            super.run();
+        let that: this = this;
+        if (ibas.objects.instanceOf(arguments[0], bo.Customer)) {
+            // 尝试重新查询编辑对象
+            let criteria: ibas.ICriteria = arguments[0].criteria();
+            if (!ibas.objects.isNull(criteria) && criteria.conditions.length > 0) {
+                // 有效的查询对象查询
+                let boRepository: BORepositoryBusinessPartner = new BORepositoryBusinessPartner();
+                boRepository.fetchCustomer({
+                    criteria: criteria,
+                    onCompleted(opRslt: ibas.IOperationResult<bo.Customer>): void {
+                        let data: bo.Customer;
+                        if (opRslt.resultCode === 0) {
+                            data = opRslt.resultObjects.firstOrDefault();
+                        }
+                        if (ibas.objects.instanceOf(data, bo.Customer)) {
+                            // 查询到了有效数据
+                            that.viewData = data;
+                            that.show();
+                        } else {
+                            // 数据重新检索无效
+                            that.messages({
+                                type: ibas.emMessageType.WARNING,
+                                message: ibas.i18n.prop("sys_shell_data_deleted_and_created"),
+                                onCompleted(): void {
+                                    that.show();
+                                }
+                            });
+                        }
+                    }
+                });
+                // 开始查询数据
+                return;
+            }
         }
+        super.run();
     }
     private viewData: bo.Customer;
     /** 查询数据 */
@@ -62,7 +97,6 @@ export class CustomerViewApp extends ibas.BOViewService<ICustomerViewView> {
         if (typeof criteria === "string") {
             criteria = new ibas.Criteria();
             // 添加查询条件
-
         }
         let boRepository: BORepositoryBusinessPartner = new BORepositoryBusinessPartner();
         boRepository.fetchCustomer({
@@ -88,7 +122,7 @@ export class CustomerViewApp extends ibas.BOViewService<ICustomerViewView> {
 }
 /** 视图-业务伙伴-客户 */
 export interface ICustomerViewView extends ibas.IBOViewView {
-
+    showCustomer(viewData: bo.Customer): void;
 }
 /** 业务伙伴-客户连接服务映射 */
 export class CustomerLinkServiceMapping extends ibas.BOLinkServiceMapping {

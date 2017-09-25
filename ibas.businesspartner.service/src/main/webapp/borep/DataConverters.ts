@@ -10,6 +10,13 @@ import * as ibas from "ibas/index";
 import * as bo from "./bo/index";
 import {
 } from "../api/index";
+import {
+    IContactPerson,
+    BO_CODE_CONTACTPERSON,
+    emBusinessPartnerType,
+    emBusinessPartnerNature,
+    emGender,
+} from "../api/index";
 
 /** 数据转换者 */
 export class DataConverter4bp extends ibas.DataConverter4j {
@@ -40,6 +47,26 @@ class BOConverter4bp extends ibas.BOConverter {
      * @returns 转换的值
      */
     protected convertData(boName: string, property: string, value: any): any {
+        if (boName === bo.BusinessPartnerBalanceJournal.name) {
+            if (property === bo.BusinessPartnerBalanceJournal.PROPERTY_BUSINESSPARTNERTYPE_NAME) {
+                return ibas.enums.toString(emBusinessPartnerType, value);
+            }
+        } else if (boName === bo.ContactPerson.name) {
+            if (property === bo.ContactPerson.PROPERTY_GENDER_NAME) {
+                return ibas.enums.toString(emGender, value);
+            }
+            if (property === bo.ContactPerson.PROPERTY_OWNERTYPE_NAME) {
+                return ibas.enums.toString(emBusinessPartnerType, value);
+            }
+        } else if (boName === bo.Customer.name) {
+            if (property === bo.Customer.PROPERTY_COMPANYPRIVATE_NAME) {
+                return ibas.enums.toString(emBusinessPartnerNature, value);
+            }
+        } else if (boName === bo.Supplier.name) {
+            if (property === bo.Supplier.PROPERTY_COMPANYPRIVATE_NAME) {
+                return ibas.enums.toString(emBusinessPartnerNature, value);
+            }
+        }
         return super.convertData(boName, property, value);
     }
 
@@ -51,6 +78,26 @@ class BOConverter4bp extends ibas.BOConverter {
      * @returns 解析的值
      */
     protected parsingData(boName: string, property: string, value: any): any {
+        if (boName === bo.BusinessPartnerBalanceJournal.name) {
+            if (property === bo.BusinessPartnerBalanceJournal.PROPERTY_BUSINESSPARTNERTYPE_NAME) {
+                return ibas.enums.valueOf(emBusinessPartnerType, value);
+            }
+        } else if (boName === bo.ContactPerson.name) {
+            if (property === bo.ContactPerson.PROPERTY_GENDER_NAME) {
+                return ibas.enums.valueOf(emGender, value);
+            }
+            if (property === bo.ContactPerson.PROPERTY_OWNERTYPE_NAME) {
+                return ibas.enums.valueOf(emBusinessPartnerType, value);
+            }
+        } else if (boName === bo.Customer.name) {
+            if (property === bo.Customer.PROPERTY_COMPANYPRIVATE_NAME) {
+                return ibas.enums.valueOf(emBusinessPartnerNature, value);
+            }
+        } else if (boName === bo.Supplier.name) {
+            if (property === bo.Supplier.PROPERTY_COMPANYPRIVATE_NAME) {
+                return ibas.enums.valueOf(emBusinessPartnerNature, value);
+            }
+        }
         return super.parsingData(boName, property, value);
     }
 }

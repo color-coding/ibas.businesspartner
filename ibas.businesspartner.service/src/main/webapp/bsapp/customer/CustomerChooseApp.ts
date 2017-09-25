@@ -32,6 +32,7 @@ export class CustomerChooseApp extends ibas.BOChooseService<ICustomerChooseView,
     protected registerView(): void {
         super.registerView();
         // 其他事件
+         this.view.chooseDataEvent = this.chooseData;
     }
     /** 视图显示后 */
     protected viewShowed(): void {
@@ -83,6 +84,8 @@ export class CustomerChooseApp extends ibas.BOChooseService<ICustomerChooseView,
 export interface ICustomerChooseView extends ibas.IBOChooseView {
     /** 显示数据 */
     showData(datas: bo.Customer[]): void;
+    /** 选择事件 */
+    chooseDataEvent: Function;
 }
 /** 业务伙伴-客户选择服务映射 */
 export class CustomerChooseServiceMapping extends ibas.BOChooseServiceMapping {
