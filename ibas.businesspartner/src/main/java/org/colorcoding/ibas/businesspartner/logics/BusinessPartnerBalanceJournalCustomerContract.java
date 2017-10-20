@@ -8,7 +8,7 @@ import org.colorcoding.ibas.bobas.common.IOperationResult;
 import org.colorcoding.ibas.bobas.data.Decimal;
 import org.colorcoding.ibas.bobas.data.emDirection;
 import org.colorcoding.ibas.bobas.logics.BusinessLogic;
-import org.colorcoding.ibas.bobas.logics.BusinessLogicsException;
+import org.colorcoding.ibas.bobas.logics.BusinessLogicException;
 import org.colorcoding.ibas.bobas.mapping.LogicContract;
 import org.colorcoding.ibas.businesspartner.bo.customer.ICustomer;
 import org.colorcoding.ibas.businesspartner.bo.customer.Customer;
@@ -19,19 +19,19 @@ import org.colorcoding.ibas.businesspartner.repository.IBORepositoryBusinessPart
  * @author Allen.Zhang
  *
  */
-@LogicContract(IBusinessPartnerBalanceJournalContract.class)
-public class BusinessPartnerBalanceJournalCustomerContract extends BusinessLogic<IBusinessPartnerBalanceJournalContract, ICustomer> {
+@LogicContract(IBusinessPartnerBalanceJournalCustomerContract.class)
+public class BusinessPartnerBalanceJournalCustomerContract extends BusinessLogic<IBusinessPartnerBalanceJournalCustomerContract, ICustomer> {
 
 	/**
 	 * 查找被影响的客户
 	 */
 	@Override
-	protected ICustomer fetchBeAffected(IBusinessPartnerBalanceJournalContract Contract) {
+	protected ICustomer fetchBeAffected(IBusinessPartnerBalanceJournalCustomerContract Contract) {
 		ICriteria criteria = Criteria.create();
 		ICondition condition = criteria.getConditions().create();
 		// 条件业务伙伴编码
 		condition.setAlias(Customer.PROPERTY_CODE.getName());
-		condition.setValue(Contract.getBusinessPartnerCode());
+		condition.setValue(Contract.getCustomerCode());
 		condition.setOperation(ConditionOperation.EQUAL);
 		// 先在事物缓存里查
 		ICustomer customer = super.fetchBeAffected(criteria, ICustomer.class);
@@ -41,10 +41,10 @@ public class BusinessPartnerBalanceJournalCustomerContract extends BusinessLogic
 			boRepository.setRepository(this.getRepository());
 			IOperationResult<ICustomer> operationResult = boRepository.fetchCustomer(criteria);
 			if (operationResult.getError() != null) {
-				throw new BusinessLogicsException(operationResult.getError());
+				throw new BusinessLogicException(operationResult.getError());
 			}
 			if (operationResult.getResultCode() != 0) {
-				throw new BusinessLogicsException(operationResult.getMessage());
+				throw new BusinessLogicException(operationResult.getMessage());
 			}
 			customer = operationResult.getResultObjects().firstOrDefault();
 		}
@@ -55,16 +55,19 @@ public class BusinessPartnerBalanceJournalCustomerContract extends BusinessLogic
 	 * 正向逻辑
 	 */	
 	@Override
-	protected void impact(IBusinessPartnerBalanceJournalContract Contract) {
+	protected void impact(IBusinessPartnerBalanceJournalCustomerContract Contract) {
 		ICustomer customer = this.getBeAffected();
+		if(customer==null) return;
 		Decimal Balance=customer.getBalance();
-		Decimal Amount=Contract.getReciptAndPaymentAmount();
-		emDirection Direction= Contract.getReciptAndPaymentDirection();
-		if(Amount.abs().compareTo(new Decimal(0))==1 &&Direction==emDirection.IN ){
+		Decimal Amount=Contract.getAmount();
+		emDirection Direction= Contract.getDirection();
+		if(Direction==emDirection.IN ){
 			Balance=Balance.add(Amount);
+			customer.setBalance(Balance);
 		}
-		if(Amount.abs().compareTo(new Decimal(0))==1 &&Direction==emDirection.OUT ){
+		if(Direction==emDirection.OUT ){
 			Balance=Balance.subtract(Amount);
+			customer.setBalance(Balance);
 		}
 	}
 
@@ -72,17 +75,20 @@ public class BusinessPartnerBalanceJournalCustomerContract extends BusinessLogic
 	 *反向逻辑
 	 */
 	@Override
-	protected void revoke(IBusinessPartnerBalanceJournalContract Contract) {
+	protected void revoke(IBusinessPartnerBalanceJournalCustomerContract Contract) {
 		ICustomer customer = this.getBeAffected();
+		if(customer==null) return;
 		Decimal Balance=customer.getBalance();
-		Decimal Amount=Contract.getReciptAndPaymentAmount();
-		emDirection Direction= Contract.getReciptAndPaymentDirection();
-		if(Amount.abs().compareTo(new Decimal(0))==1 &&Direction==emDirection.IN ){
+		Decimal Amount=Contract.getAmount();
+		emDirection Direction= Contract.getDirection();
+		if(Direction==emDirection.IN ){
 			Balance=Balance.subtract(Amount);
+			customer.setBalance(Balance);
 		}
-		if(Amount.abs().compareTo(new Decimal(0))==1 &&Direction==emDirection.OUT ){
+		if(Direction==emDirection.OUT ){
 			Balance=Balance.add(Amount);
-		}		
+			customer.setBalance(Balance);
+		}
 	}
 
 }

@@ -2,69 +2,77 @@ package org.colorcoding.ibas.businesspartner.logics;
 
 import org.colorcoding.ibas.bobas.data.Decimal;
 import org.colorcoding.ibas.bobas.logics.IBusinessLogicContract;
+import org.colorcoding.ibas.businesspartner.data.emBusinessPartnerType;
+
 /**
- * 获取业务伙伴余额受付款影响的契约
+ * 获取付款影响业务伙伴余额记录的契约
  * @author Allen.Zhang
  *
  */
-public interface IBusinessPartnerBalancePaymentContract extends IBusinessLogicContract{
-	 /**
+public interface IPaymentBusinessPartnerBalanceJournalContract extends IBusinessLogicContract{
+	/***
+	 * 获取付款业务伙伴类型
+	 * @return
+	 */
+	emBusinessPartnerType getBusinessPartnerType();
+
+	/**
      * 获取付款业务伙伴编号
      * @return
      */
-	String getPaymentBusinessPartnerCode();
+	String getBusinessPartnerCode();
 	
 	/**
 	 * 获取付款业务伙伴名称
 	 * @return
 	 */
-	String getPaymentBusinessPartnerName();
+	String getBusinessPartnerName();
 	
 	/**
 	 * 获取付款金额
 	 * @return
 	 */
-	Decimal getPaymentAmount();
+	Decimal getAmount();
 	
 	/**
 	 * 获取汇率
 	 * @return
 	 */
-	Decimal getPaymentRate();
+	Decimal getRate();
 	
 	/**
 	 * 获取币种
 	 * @return
 	 */
-	String getPaymentCurrency();
+	String getCurrency();
 	
 	/**
 	 * 获取银行编码
 	 * @return
 	 */
-	String getPaymentBankCode();
+	String getBankCode();
 	
 	/**
 	 * 获取卡号
 	 * @return
 	 */
-	String getPaymentCardNumber();
+	String getCardNumber();
 		
 	/**
 	 * 获取基础单据类型
 	 * @return
 	 */
-	String getPaymentBaseDocumentType();
+	String getBaseDocumentType();
 	
 	/**
 	 * 获取基础单据编号
 	 * @return
 	 */
-	Integer getPaymentBaseDocumentEntry();
+	Integer getBaseDocumentEntry();
 	
 	/**
 	 * 获取基础单据行号
 	 * @return
 	 */
-	Integer getPaymentBaseDocumentLineId();
+	Integer getBaseDocumentLineId();
 }

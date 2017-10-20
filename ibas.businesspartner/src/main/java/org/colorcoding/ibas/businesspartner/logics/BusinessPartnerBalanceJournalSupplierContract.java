@@ -8,7 +8,7 @@ import org.colorcoding.ibas.bobas.common.IOperationResult;
 import org.colorcoding.ibas.bobas.data.Decimal;
 import org.colorcoding.ibas.bobas.data.emDirection;
 import org.colorcoding.ibas.bobas.logics.BusinessLogic;
-import org.colorcoding.ibas.bobas.logics.BusinessLogicsException;
+import org.colorcoding.ibas.bobas.logics.BusinessLogicException;
 import org.colorcoding.ibas.bobas.mapping.LogicContract;
 import org.colorcoding.ibas.businesspartner.bo.supplier.ISupplier;
 import org.colorcoding.ibas.businesspartner.bo.supplier.Supplier;
@@ -19,14 +19,14 @@ import org.colorcoding.ibas.businesspartner.repository.IBORepositoryBusinessPart
  * @author Allen.Zhang
  *
  */
-@LogicContract(IBusinessPartnerBalanceJournalContract.class)
-public class BusinessPartnerBalanceJournalSupplierContract extends BusinessLogic<IBusinessPartnerBalanceJournalContract, ISupplier> {
+@LogicContract(IBusinessPartnerBalanceJournalSupplierContract.class)
+public class BusinessPartnerBalanceJournalSupplierContract extends BusinessLogic<IBusinessPartnerBalanceJournalSupplierContract, ISupplier> {
 
 	/**
 	 * 查找被影响的供应商
 	 */
 	@Override
-	protected ISupplier fetchBeAffected(IBusinessPartnerBalanceJournalContract Contract) {
+	protected ISupplier fetchBeAffected(IBusinessPartnerBalanceJournalSupplierContract Contract) {
 		ICriteria criteria = Criteria.create();
 		ICondition condition = criteria.getConditions().create();
 		// 条件业务伙伴编码
@@ -41,10 +41,10 @@ public class BusinessPartnerBalanceJournalSupplierContract extends BusinessLogic
 			boRepository.setRepository(this.getRepository());
 			IOperationResult<ISupplier> operationResult = boRepository.fetchSupplier(criteria);
 			if (operationResult.getError() != null) {
-				throw new BusinessLogicsException(operationResult.getError());
+				throw new BusinessLogicException(operationResult.getError());
 			}
 			if (operationResult.getResultCode() != 0) {
-				throw new BusinessLogicsException(operationResult.getMessage());
+				throw new BusinessLogicException(operationResult.getMessage());
 			}
 			supplier = operationResult.getResultObjects().firstOrDefault();
 		}
@@ -55,16 +55,19 @@ public class BusinessPartnerBalanceJournalSupplierContract extends BusinessLogic
 	 * 正向逻辑
 	 */	
 	@Override
-	protected void impact(IBusinessPartnerBalanceJournalContract Contract) {
+	protected void impact(IBusinessPartnerBalanceJournalSupplierContract Contract) {
 		ISupplier supplier = this.getBeAffected();
+		if (supplier==null) return;
 		Decimal Balance=supplier.getBalance();
-		Decimal Amount=Contract.getReciptAndPaymentAmount();
-		emDirection Direction= Contract.getReciptAndPaymentDirection();
-		if(Amount.abs().compareTo(new Decimal(0))==1 &&Direction==emDirection.IN ){
+		Decimal Amount=Contract.getAmount();
+		emDirection Direction= Contract.getDirection();
+		if(Direction==emDirection.IN ){
 			Balance=Balance.add(Amount);
+			supplier.setBalance(Balance);
 		}
-		if(Amount.abs().compareTo(new Decimal(0))==1 &&Direction==emDirection.OUT ){
+		if(Direction==emDirection.OUT ){
 			Balance=Balance.subtract(Amount);
+			supplier.setBalance(Balance);
 		}
 	}
 
@@ -72,17 +75,20 @@ public class BusinessPartnerBalanceJournalSupplierContract extends BusinessLogic
 	 *反向逻辑
 	 */
 	@Override
-	protected void revoke(IBusinessPartnerBalanceJournalContract Contract) {
+	protected void revoke(IBusinessPartnerBalanceJournalSupplierContract Contract) {
 		ISupplier supplier = this.getBeAffected();
+		if (supplier==null) return;
 		Decimal Balance=supplier.getBalance();
-		Decimal Amount=Contract.getReciptAndPaymentAmount();
-		emDirection Direction= Contract.getReciptAndPaymentDirection();
-		if(Amount.abs().compareTo(new Decimal(0))==1 &&Direction==emDirection.IN ){
+		Decimal Amount=Contract.getAmount();
+		emDirection Direction= Contract.getDirection();
+		if(Direction==emDirection.IN ){
 			Balance=Balance.subtract(Amount);
+			supplier.setBalance(Balance);
 		}
-		if(Amount.abs().compareTo(new Decimal(0))==1 &&Direction==emDirection.OUT ){
+		if(Direction==emDirection.OUT ){
 			Balance=Balance.add(Amount);
-		}		
+			supplier.setBalance(Balance);
+		}
 	}
 
 }
