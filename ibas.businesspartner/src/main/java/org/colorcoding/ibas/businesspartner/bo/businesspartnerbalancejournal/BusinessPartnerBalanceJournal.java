@@ -11,11 +11,18 @@ import org.colorcoding.ibas.bobas.core.IPropertyInfo;
 import org.colorcoding.ibas.bobas.data.DateTime;
 import org.colorcoding.ibas.bobas.data.Decimal;
 import org.colorcoding.ibas.bobas.data.emDirection;
+import org.colorcoding.ibas.bobas.logics.IBusinessLogicContract;
 import org.colorcoding.ibas.bobas.mapping.BOCode;
 import org.colorcoding.ibas.bobas.mapping.DbField;
 import org.colorcoding.ibas.bobas.mapping.DbFieldType;
 import org.colorcoding.ibas.businesspartner.MyConfiguration;
 import org.colorcoding.ibas.businesspartner.data.emBusinessPartnerType;
+import org.colorcoding.ibas.businesspartner.logics.IBusinessPartnerBalanceJournalSupplierContract;
+import org.colorcoding.ibas.businesspartner.logics.IBusinessPartnerBalanceJournalCustomerContract;
+import org.colorcoding.ibas.businesspartner.logics.IPaymentBusinessPartnerBalanceJournalContract;
+import org.colorcoding.ibas.businesspartner.logics.IReceiptBusinessPartnerBalanceJournalContract;
+import org.colorcoding.ibas.bobas.logics.IBusinessLogicsHost;
+
 
 /**
  * 获取-业务伙伴余额记录
@@ -26,7 +33,7 @@ import org.colorcoding.ibas.businesspartner.data.emBusinessPartnerType;
 @XmlRootElement(name = BusinessPartnerBalanceJournal.BUSINESS_OBJECT_NAME, namespace = MyConfiguration.NAMESPACE_BO)
 @BOCode(BusinessPartnerBalanceJournal.BUSINESS_OBJECT_CODE)
 public class BusinessPartnerBalanceJournal extends BusinessObject<BusinessPartnerBalanceJournal>
-		implements IBusinessPartnerBalanceJournal {
+		implements IBusinessPartnerBalanceJournal,IBusinessLogicsHost  {
 
 	/**
 	 * 序列化版本标记
@@ -1018,5 +1025,94 @@ public class BusinessPartnerBalanceJournal extends BusinessObject<BusinessPartne
 		this.setObjectCode(MyConfiguration.applyVariables(BUSINESS_OBJECT_CODE));
 
 	}
+     //region 基于其他BO创建实例
+	public static IBusinessPartnerBalanceJournal Create(IReceiptBusinessPartnerBalanceJournalContract ReceiptContract) {
+		BusinessPartnerBalanceJournal bo = new BusinessPartnerBalanceJournal();
+		bo.setProperty(PROPERTY_BUSINESSPARTNER,ReceiptContract.getBusinessPartnerCode());
+		bo.setProperty(PROPERTY_BUSINESSPARTNERTYPE,emBusinessPartnerType.SUPPLIER);
+		bo.setProperty(PROPERTY_BANKCODE,ReceiptContract.getBankCode());
+		bo.setProperty(PROPERTY_CURRENCY,ReceiptContract.getCurrency());
+		bo.setProperty(PROPERTY_CARDNUMBER,ReceiptContract.getCardNumber());
+		bo.setProperty(PROPERTY_BASEDOCUMENTTYPE,ReceiptContract.getBaseDocumentType());
+		bo.setProperty(PROPERTY_BASEDOCUMENTENTRY,ReceiptContract.getBaseDocumentEntry());
+		bo.setProperty(PROPERTY_BASEDOCUMENTLINEID,ReceiptContract.getBaseDocumentLineId());
+		bo.setProperty(PROPERTY_DIRECTION,emDirection.IN);
+		return bo;
+	}
+
+	public static IBusinessPartnerBalanceJournal Create(IPaymentBusinessPartnerBalanceJournalContract PaymentContract) {
+		BusinessPartnerBalanceJournal bo = new BusinessPartnerBalanceJournal();
+		bo.setProperty(PROPERTY_BUSINESSPARTNER,PaymentContract.getBusinessPartnerCode());
+		bo.setProperty(PROPERTY_BUSINESSPARTNERTYPE,emBusinessPartnerType.CUSTOMER);
+		bo.setProperty(PROPERTY_BANKCODE,PaymentContract.getBankCode());
+		bo.setProperty(PROPERTY_CURRENCY,PaymentContract.getCurrency());
+		bo.setProperty(PROPERTY_CARDNUMBER,PaymentContract.getCardNumber());
+		bo.setProperty(PROPERTY_BASEDOCUMENTTYPE,PaymentContract.getBaseDocumentType());
+		bo.setProperty(PROPERTY_BASEDOCUMENTENTRY,PaymentContract.getBaseDocumentEntry());
+		bo.setProperty(PROPERTY_BASEDOCUMENTLINEID,PaymentContract.getBaseDocumentLineId());
+		bo.setProperty(PROPERTY_DIRECTION,emDirection.OUT);
+		return bo;
+	}
+	//endregion
+
+	//region 服务契约接口的实现
+	@Override
+	public IBusinessLogicContract[] getContracts() {
+		return new IBusinessLogicContract[]{
+				new IBusinessPartnerBalanceJournalSupplierContract(){
+					@Override
+					public String getIdentifiers() {
+						return BusinessPartnerBalanceJournal.this.getIdentifiers();
+					}
+
+					@Override
+					public String getBusinessPartnerCode() {
+						return BusinessPartnerBalanceJournal.this.getBusinessPartner();
+					}
+
+					@Override
+					public emBusinessPartnerType getBusinessPartnerType() {
+						return BusinessPartnerBalanceJournal.this.getBusinessPartnerType();
+					}
+
+					@Override
+					public Decimal getAmount() {
+						return BusinessPartnerBalanceJournal.this.getAmount();
+					}
+
+					@Override
+					public emDirection getDirection() {
+						return BusinessPartnerBalanceJournal.this.getDirection();
+					}
+				},
+				new IBusinessPartnerBalanceJournalCustomerContract(){
+					@Override
+					public String getIdentifiers() {
+						return BusinessPartnerBalanceJournal.this.getIdentifiers();
+					}
+
+					@Override
+					public String getCustomerCode() {
+						return BusinessPartnerBalanceJournal.this.getBusinessPartner();
+					}
+
+					@Override
+					public emBusinessPartnerType getBusinessPartnerType() {
+						return BusinessPartnerBalanceJournal.this.getBusinessPartnerType();
+					}
+
+					@Override
+					public Decimal getAmount() {
+						return BusinessPartnerBalanceJournal.this.getAmount();
+					}
+
+					@Override
+					public emDirection getDirection() {
+						return BusinessPartnerBalanceJournal.this.getDirection();
+					}
+				}
+		};
+	}
+	//endregion
 
 }
