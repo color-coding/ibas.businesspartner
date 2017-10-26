@@ -21,13 +21,7 @@ public interface IPaymentBusinessPartnerBalanceJournalContract extends IBusiness
      * @return
      */
 	String getBusinessPartnerCode();
-	
-	/**
-	 * 获取付款业务伙伴名称
-	 * @return
-	 */
-	String getBusinessPartnerName();
-	
+
 	/**
 	 * 获取付款金额
 	 * @return
