@@ -20,7 +20,7 @@ public interface IReceiptBusinessPartnerBalanceJournalContract extends IBusiness
 	     * @return
 	     */
 		String getBusinessPartnerCode();
-		
+				
 		/**
 		 * 获取收款金额
 		 * @return
