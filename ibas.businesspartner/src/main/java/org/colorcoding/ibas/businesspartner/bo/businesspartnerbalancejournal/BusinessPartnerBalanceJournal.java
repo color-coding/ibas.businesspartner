@@ -11,7 +11,7 @@ import org.colorcoding.ibas.bobas.core.IPropertyInfo;
 import org.colorcoding.ibas.bobas.data.DateTime;
 import org.colorcoding.ibas.bobas.data.Decimal;
 import org.colorcoding.ibas.bobas.data.emDirection;
-import org.colorcoding.ibas.bobas.logics.IBusinessLogicContract;
+import org.colorcoding.ibas.bobas.logic.IBusinessLogicContract;
 import org.colorcoding.ibas.bobas.mapping.BOCode;
 import org.colorcoding.ibas.bobas.mapping.DbField;
 import org.colorcoding.ibas.bobas.mapping.DbFieldType;
@@ -21,7 +21,7 @@ import org.colorcoding.ibas.businesspartner.logics.IBusinessPartnerBalanceJourna
 import org.colorcoding.ibas.businesspartner.logics.IBusinessPartnerBalanceJournalCustomerContract;
 import org.colorcoding.ibas.businesspartner.logics.IPaymentBusinessPartnerBalanceJournalContract;
 import org.colorcoding.ibas.businesspartner.logics.IReceiptBusinessPartnerBalanceJournalContract;
-import org.colorcoding.ibas.bobas.logics.IBusinessLogicsHost;
+import org.colorcoding.ibas.bobas.logic.IBusinessLogicsHost;
 
 
 /**

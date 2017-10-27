@@ -1,7 +1,7 @@
 package org.colorcoding.ibas.businesspartner.logics;
 
 import org.colorcoding.ibas.bobas.data.Decimal;
-import org.colorcoding.ibas.bobas.logics.IBusinessLogicContract;
+import org.colorcoding.ibas.bobas.logic.IBusinessLogicContract;
 import org.colorcoding.ibas.businesspartner.data.emBusinessPartnerType;
 
 /**
