@@ -103,7 +103,16 @@ export class BusinessPartnerGroupChooseView extends ibas.BOChooseView implements
                 that.fireViewEvents(that.fetchDataEvent, criteria);
             }
         });
-        return new sap.m.Dialog("", {            title: this.title,            type: sap.m.DialogType.Standard,            state: sap.ui.core.ValueState.None,            stretchOnPhone: true,            horizontalScrolling: true,            verticalScrolling: true,            content: [this.table],            buttons: [this.darwBars()]        });
+        return new sap.m.Dialog("", {
+            title: this.title,
+            type: sap.m.DialogType.Standard,
+            state: sap.ui.core.ValueState.None,
+            stretchOnPhone: true,
+            horizontalScrolling: true,
+            verticalScrolling: true,
+            content: [this.table],
+            buttons: [this.darwBars()]
+        });
     }
     private table: sap.ui.table.Table;
     /** 显示数据 */
@@ -118,7 +127,7 @@ export class BusinessPartnerGroupChooseView extends ibas.BOChooseView implements
                     hDatas.rows.push(item);
                 }
                 model.refresh(false);
-                done = true;
+
             }
         }
         if (!done) {
@@ -127,11 +136,11 @@ export class BusinessPartnerGroupChooseView extends ibas.BOChooseView implements
         }
         this.table.setBusy(false);
     }
-    private lastCriteria: ibas.ICriteria;
+
     /** 记录上次查询条件，表格滚动时自动触发 */
     query(criteria: ibas.ICriteria): void {
         super.query(criteria);
-        this.lastCriteria = criteria;
+
         // 清除历史数据
         if (this.isDisplayed) {
             this.table.setBusy(true);
