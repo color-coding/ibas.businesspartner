@@ -7,7 +7,7 @@
  */
 
 import * as ibas from "ibas/index";
-import { utils } from "openui5/typings/ibas.utils";
+import * as openui5 from "openui5/index";
 import * as bo from "../../../borep/bo/index";
 import { IBusinessPartnerBalanceJournalEditView } from "../../../bsapp/businesspartnerbalancejournal/index";
 import {
@@ -56,7 +56,7 @@ export class BusinessPartnerBalanceJournalEditView extends ibas.BOEditView imple
                 }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnerbalancejournal_businesspartnertype") }),
                 new sap.m.SegmentedButton("", {
-                    items: utils.createSegmentedButtonItems(emBusinessPartnerType)
+                    items: openui5.utils.createSegmentedButtonItems(emBusinessPartnerType)
                 }).bindProperty("selectedKey", {
                     path: "businessPartnerType",
                     type: "sap.ui.model.type.Integer"
@@ -192,7 +192,7 @@ export class BusinessPartnerBalanceJournalEditView extends ibas.BOEditView imple
         // 新建时：禁用删除，
         if (data.isNew) {
             if (this.page.getSubHeader() instanceof sap.m.Toolbar) {
-                utils.changeToolbarDeletable(<sap.m.Toolbar>this.page.getSubHeader(), false);
+                openui5.utils.changeToolbarDeletable(<sap.m.Toolbar>this.page.getSubHeader(), false);
             }
         }
         // 不可编辑：已批准，
@@ -203,7 +203,7 @@ export class BusinessPartnerBalanceJournalEditView extends ibas.BOEditView imple
         this.viewTopForm.setModel(new sap.ui.model.json.JSONModel(data));
         this.viewTopForm.bindObject("/");
         // 监听属性改变，并更新控件
-        utils.refreshModelChanged(this.viewTopForm, data);
+        openui5.utils.refreshModelChanged(this.viewTopForm, data);
         // 改变视图状态
         this.changeViewStatus(data);
     }

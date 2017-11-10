@@ -7,7 +7,7 @@
  */
 
 import * as ibas from "ibas/index";
-import { utils } from "openui5/typings/ibas.utils";
+import * as openui5 from "openui5/index";
 import * as bo from "../../../borep/bo/index";
 import { ISupplierListView } from "../../../bsapp/supplier/index";
 
@@ -29,7 +29,7 @@ export class SupplierListView extends ibas.BOListView implements ISupplierListVi
         this.form = new sap.ui.layout.form.SimpleForm("");
         this.table = new sap.ui.table.Table("", {
             enableSelectAll: false,
-            visibleRowCount: ibas.config.get(utils.CONFIG_ITEM_LIST_TABLE_VISIBLE_ROW_COUNT, 15),
+            visibleRowCount: ibas.config.get(openui5.utils.CONFIG_ITEM_LIST_TABLE_VISIBLE_ROW_COUNT, 15),
             visibleRowCountMode: sap.ui.table.VisibleRowCountMode.Interactive,
             rows: "{/rows}",
             columns: [
@@ -98,7 +98,7 @@ export class SupplierListView extends ibas.BOListView implements ISupplierListVi
                         press: function (): void {
                             that.fireViewEvents(that.viewDataEvent,
                                 // 获取表格选中的对象
-                                utils.getTableSelecteds<bo.Supplier>(that.table).firstOrDefault()
+                                openui5.utils.getTableSelecteds<bo.Supplier>(that.table).firstOrDefault()
                             );
                         }
                     }),
@@ -109,7 +109,7 @@ export class SupplierListView extends ibas.BOListView implements ISupplierListVi
                         press: function (): void {
                             that.fireViewEvents(that.editDataEvent,
                                 // 获取表格选中的对象
-                                utils.getTableSelecteds<bo.Supplier>(that.table).firstOrDefault()
+                                openui5.utils.getTableSelecteds<bo.Supplier>(that.table).firstOrDefault()
                             );
                         }
                     }),
@@ -121,7 +121,7 @@ export class SupplierListView extends ibas.BOListView implements ISupplierListVi
                         press: function (): void {
                             that.fireViewEvents(that.deleteDataEvent,
                                 // 获取表格选中的对象
-                                utils.getTableSelecteds<bo.Supplier>(that.table)
+                                openui5.utils.getTableSelecteds<bo.Supplier>(that.table)
                             );
                         }
                     }),
@@ -163,7 +163,7 @@ export class SupplierListView extends ibas.BOListView implements ISupplierListVi
         });
         this.id = this.page.getId();
         // 添加列表自动查询事件
-        utils.triggerNextResults({
+        openui5.utils.triggerNextResults({
             listener: this.table,
             next(data: any): void {
                 if (ibas.objects.isNull(that.lastCriteria)) {
@@ -222,6 +222,6 @@ export class SupplierListView extends ibas.BOListView implements ISupplierListVi
     }
     /** 获取选择的数据 */
     getSelecteds(): bo.Supplier[] {
-        return utils.getTableSelecteds<bo.Supplier>(this.table);
+        return openui5.utils.getTableSelecteds<bo.Supplier>(this.table);
     }
 }

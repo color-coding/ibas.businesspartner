@@ -7,7 +7,7 @@
  */
 
 import * as ibas from "ibas/index";
-import { utils } from "openui5/typings/ibas.utils";
+import * as openui5 from "openui5/index";
 import * as bo from "../../../borep/bo/index";
 import { ISupplierListView } from "../../../bsapp/supplier/index";
 export class SupplierListView extends ibas.BOListView implements ISupplierListView {
@@ -25,7 +25,7 @@ export class SupplierListView extends ibas.BOListView implements ISupplierListVi
         this.list = new sap.m.List("", {
             inset: false,
             growing: true,
-            growingThreshold: ibas.config.get(utils.CONFIG_ITEM_LIST_TABLE_VISIBLE_ROW_COUNT, 15),
+            growingThreshold: ibas.config.get(openui5.utils.CONFIG_ITEM_LIST_TABLE_VISIBLE_ROW_COUNT, 15),
             growingScrollToLoad: true,
             visibleRowCountMode: sap.ui.table.VisibleRowCountMode.Auto,
             mode: sap.m.ListMode.None,
@@ -152,7 +152,7 @@ export class SupplierListView extends ibas.BOListView implements ISupplierListVi
             content: [this.list]
         });
         this.id = this.page.getId();
-        utils.triggerNextResults({
+        openui5.utils.triggerNextResults({
             listener: this.list,
             next(data: any): void {
                 if (ibas.objects.isNull(that.lastCriteria)) {

@@ -7,7 +7,7 @@
  */
 
 import * as ibas from "ibas/index";
-import { utils } from "openui5/typings/ibas.utils";
+import * as openui5 from "openui5/index";
 import * as bo from "../../../borep/bo/index";
 import { IContactPersonListView } from "../../../bsapp/contactperson/index";
 export class ContactPersonListView extends ibas.BOListView implements IContactPersonListView {
@@ -25,7 +25,7 @@ export class ContactPersonListView extends ibas.BOListView implements IContactPe
         this.list = new sap.m.List("", {
             inset: false,
             growing: true,
-            growingThreshold: ibas.config.get(utils.CONFIG_ITEM_LIST_TABLE_VISIBLE_ROW_COUNT, 15),
+            growingThreshold: ibas.config.get(openui5.utils.CONFIG_ITEM_LIST_TABLE_VISIBLE_ROW_COUNT, 15),
             growingScrollToLoad: true,
             visibleRowCountMode: sap.ui.table.VisibleRowCountMode.Auto,
             mode: sap.m.ListMode.None,
@@ -153,7 +153,7 @@ export class ContactPersonListView extends ibas.BOListView implements IContactPe
         });
         this.id = this.page.getId();
         // 添加列表自动查询事件
-        // utils.triggerNextResults({
+        // openui5.utils.triggerNextResults({
         //     listener: this.list,
         //     next(data: any): void {
         //         if (ibas.objects.isNull(that.lastCriteria)) {

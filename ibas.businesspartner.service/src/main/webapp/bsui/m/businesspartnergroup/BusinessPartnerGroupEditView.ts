@@ -7,7 +7,7 @@
  */
 
 import * as ibas from "ibas/index";
-import { utils } from "openui5/typings/ibas.utils";
+import * as openui5 from "openui5/index";
 import * as bo from "../../../borep/bo/index";
 import { IBusinessPartnerGroupEditView } from "../../../bsapp/businesspartnergroup/index";
 export class BusinessPartnerGroupEditView extends ibas.BOEditView implements IBusinessPartnerGroupEditView {
@@ -137,7 +137,7 @@ export class BusinessPartnerGroupEditView extends ibas.BOEditView implements IBu
         // 新建时：禁用删除，
         if (data.isNew) {
             if (this.page.getSubHeader() instanceof sap.m.Toolbar) {
-                utils.changeToolbarDeletable(<sap.m.Toolbar>this.page.getSubHeader(), false);
+                openui5.utils.changeToolbarDeletable(<sap.m.Toolbar>this.page.getSubHeader(), false);
             }
         }
     }
@@ -146,7 +146,7 @@ export class BusinessPartnerGroupEditView extends ibas.BOEditView implements IBu
         this.mainLayout.setModel(new sap.ui.model.json.JSONModel(data));
         this.mainLayout.bindObject("/");
         // 监听属性改变，并更新控件
-        utils.refreshModelChanged(this.mainLayout, data);
+        openui5.utils.refreshModelChanged(this.mainLayout, data);
         // 改变视图状态
         this.changeViewStatus(data);
     }

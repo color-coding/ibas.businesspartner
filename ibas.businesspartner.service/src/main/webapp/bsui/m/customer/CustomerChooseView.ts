@@ -7,7 +7,7 @@
  */
 
 import * as ibas from "ibas/index";
-import { utils } from "openui5/typings/ibas.utils";
+import * as openui5 from "openui5/index";
 import * as bo from "../../../borep/bo/index";
 import { ICustomerChooseView } from "../../../bsapp/customer/index";
 export class CustomerChooseView extends ibas.BOChooseView implements ICustomerChooseView {
@@ -34,7 +34,7 @@ export class CustomerChooseView extends ibas.BOChooseView implements ICustomerCh
                 press: function (): void {
                     that.fireViewEvents(that.chooseDataEvent,
                         // 获取表格选中的对象
-                        utils.getSelecteds<bo.Customer>(that.list)
+                        openui5.utils.getSelecteds<bo.Customer>(that.list)
                     );
                 }
             }),
@@ -54,7 +54,7 @@ export class CustomerChooseView extends ibas.BOChooseView implements ICustomerCh
         this.list = new sap.m.List("", {
             inset: false,
             growing: true,
-            growingThreshold: ibas.config.get(utils.CONFIG_ITEM_LIST_TABLE_VISIBLE_ROW_COUNT, 15),
+            growingThreshold: ibas.config.get(openui5.utils.CONFIG_ITEM_LIST_TABLE_VISIBLE_ROW_COUNT, 15),
             growingScrollToLoad: true,
             visibleRowCountMode: sap.ui.table.VisibleRowCountMode.Auto,
             mode: sap.m.ListMode.SingleSelectLeft
@@ -90,7 +90,7 @@ export class CustomerChooseView extends ibas.BOChooseView implements ICustomerCh
         });
         this.page.setShowSubHeader(false);
         this.id = this.page.getId();
-        utils.triggerNextResults({
+        openui5.utils.triggerNextResults({
             listener: this.list,
             next(data: any): void {
                 if (ibas.objects.isNull(that.lastCriteria)) {

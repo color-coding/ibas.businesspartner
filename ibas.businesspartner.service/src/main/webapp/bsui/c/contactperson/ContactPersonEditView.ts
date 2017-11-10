@@ -7,7 +7,7 @@
  */
 
 import * as ibas from "ibas/index";
-import { utils } from "openui5/typings/ibas.utils";
+import * as openui5 from "openui5/index";
 import * as bo from "../../../borep/bo/index";
 import { IContactPersonEditView } from "../../../bsapp/contactperson/index";
 import {
@@ -62,14 +62,14 @@ export class ContactPersonEditView extends ibas.BOEditView implements IContactPe
                 }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_gender") }),
                 new sap.m.SegmentedButton("", {
-                    items: utils.createSegmentedButtonItems(emGender)
+                    items: openui5.utils.createSegmentedButtonItems(emGender)
                 }).bindProperty("selectedKey", {
                     path: "gender",
                     type: "sap.ui.model.type.Integer"
                 }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_ownertype") }),
                 new sap.m.SegmentedButton("", {
-                    items: utils.createSegmentedButtonItems(emBusinessPartnerType)
+                    items: openui5.utils.createSegmentedButtonItems(emBusinessPartnerType)
                 }).bindProperty("selectedKey", {
                     path: "ownerType",
                     type: "sap.ui.model.type.Integer"
@@ -114,7 +114,7 @@ export class ContactPersonEditView extends ibas.BOEditView implements IContactPe
                 new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_current_status") }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_activated") }),
                 new sap.m.SegmentedButton("", {
-                    items: utils.createSegmentedButtonItems(ibas.emYesNo)
+                    items: openui5.utils.createSegmentedButtonItems(ibas.emYesNo)
                 }).bindProperty("selectedKey", {
                     path: "activated",
                     type: "sap.ui.model.type.Integer"
@@ -192,7 +192,7 @@ export class ContactPersonEditView extends ibas.BOEditView implements IContactPe
         // 新建时：禁用删除，
         if (data.isNew) {
             if (this.page.getSubHeader() instanceof sap.m.Toolbar) {
-                utils.changeToolbarDeletable(<sap.m.Toolbar>this.page.getSubHeader(), false);
+                openui5.utils.changeToolbarDeletable(<sap.m.Toolbar>this.page.getSubHeader(), false);
             }
         }
         // 不可编辑：已批准，
@@ -203,7 +203,7 @@ export class ContactPersonEditView extends ibas.BOEditView implements IContactPe
         this.viewTopForm.setModel(new sap.ui.model.json.JSONModel(data));
         this.viewTopForm.bindObject("/");
         // 监听属性改变，并更新控件
-        utils.refreshModelChanged(this.viewTopForm, data);
+        openui5.utils.refreshModelChanged(this.viewTopForm, data);
         // 改变视图状态
         this.changeViewStatus(data);
     }

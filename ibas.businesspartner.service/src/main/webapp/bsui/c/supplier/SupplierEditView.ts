@@ -7,7 +7,7 @@
  */
 
 import * as ibas from "ibas/index";
-import { utils } from "openui5/typings/ibas.utils";
+import * as openui5 from "openui5/index";
 import * as bo from "../../../borep/bo/index";
 import { ISupplierEditView } from "../../../bsapp/supplier/index";
 import {
@@ -77,7 +77,7 @@ export class SupplierEditView extends ibas.BOEditView implements ISupplierEditVi
                 }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_companyprivate") }),
                 new sap.m.SegmentedButton("", {
-                    items: utils.createSegmentedButtonItems(emBusinessPartnerNature)
+                    items: openui5.utils.createSegmentedButtonItems(emBusinessPartnerNature)
                 }).bindProperty("selectedKey", {
                     path: "companyPrivate",
                     type: "sap.ui.model.type.Integer"
@@ -253,16 +253,16 @@ export class SupplierEditView extends ibas.BOEditView implements ISupplierEditVi
         // 新建时：禁用删除，
         if (data.isNew) {
             if (this.page.getSubHeader() instanceof sap.m.Toolbar) {
-                utils.changeToolbarDeletable(<sap.m.Toolbar>this.page.getSubHeader(), false);
+                openui5.utils.changeToolbarDeletable(<sap.m.Toolbar>this.page.getSubHeader(), false);
             }
         }
         // 不可编辑：已批准，
         if (data.approvalStatus === ibas.emApprovalStatus.APPROVED) {
             if (this.page.getSubHeader() instanceof sap.m.Toolbar) {
-                utils.changeToolbarSavable(<sap.m.Toolbar>this.page.getSubHeader(), false);
-                utils.changeToolbarDeletable(<sap.m.Toolbar>this.page.getSubHeader(), false);
+                openui5.utils.changeToolbarSavable(<sap.m.Toolbar>this.page.getSubHeader(), false);
+                openui5.utils.changeToolbarDeletable(<sap.m.Toolbar>this.page.getSubHeader(), false);
             }
-            utils.changeFormEditable(this.viewTopForm, false);
+            openui5.utils.changeFormEditable(this.viewTopForm, false);
         }
     }
 
@@ -271,7 +271,7 @@ export class SupplierEditView extends ibas.BOEditView implements ISupplierEditVi
         this.viewTopForm.setModel(new sap.ui.model.json.JSONModel(data));
         this.viewTopForm.bindObject("/");
         // 监听属性改变，并更新控件
-        utils.refreshModelChanged(this.viewTopForm, data);
+        openui5.utils.refreshModelChanged(this.viewTopForm, data);
         // 改变视图状态
         this.changeViewStatus(data);
     }
