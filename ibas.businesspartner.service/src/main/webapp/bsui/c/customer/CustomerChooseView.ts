@@ -142,8 +142,8 @@ export class CustomerChooseView extends ibas.BOChooseView implements ICustomerCh
                 for (let item of datas) {
                     hDatas.rows.push(item);
                 }
-                model.refresh(false);                done = true;
-
+                model.refresh(false);
+                done = true;
             }
         }
         if (!done) {
