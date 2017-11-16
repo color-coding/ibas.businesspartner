@@ -142,7 +142,7 @@ export class SupplierChooseView extends ibas.BOChooseView implements ISupplierCh
                 for (let item of datas) {
                     hDatas.rows.push(item);
                 }
-                model.refresh(false);
+                model.refresh(false);                done = true;
 
             }
         }
