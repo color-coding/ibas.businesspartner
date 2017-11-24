@@ -40,7 +40,7 @@ export class BusinessPartnerBalanceJournalViewApp extends ibas.BOViewService<IBu
         if (ibas.objects.isNull(this.viewData)) {
             // 创建编辑对象实例
             this.viewData = new bo.BusinessPartnerBalanceJournal();
-            this.proceeding(ibas.emMessageType.WARNING, ibas.i18n.prop("sys_shell_data_created_new"));
+            this.proceeding(ibas.emMessageType.WARNING, ibas.i18n.prop("shell_data_created_new"));
         }
         this.view.showBusinessPartnerBalanceJournal(this.viewData);
     }
@@ -75,7 +75,7 @@ export class BusinessPartnerBalanceJournalViewApp extends ibas.BOViewService<IBu
                             // 数据重新检索无效
                             that.messages({
                                 type: ibas.emMessageType.WARNING,
-                                message: ibas.i18n.prop("sys_shell_data_deleted_and_created"),
+                                message: ibas.i18n.prop("shell_data_deleted_and_created"),
                                 onCompleted(): void {
                                     that.show();
                                 }
@@ -113,7 +113,7 @@ export class BusinessPartnerBalanceJournalViewApp extends ibas.BOViewService<IBu
                 }
             }
         });
-        this.proceeding(ibas.emMessageType.INFORMATION, ibas.i18n.prop("sys_shell_fetching_data"));
+        this.proceeding(ibas.emMessageType.INFORMATION, ibas.i18n.prop("shell_fetching_data"));
     }
     /** 获取服务的契约 */
     protected getServiceProxies(): ibas.IServiceProxy<ibas.IServiceContract>[] {

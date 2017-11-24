@@ -83,7 +83,7 @@ export class BusinessPartnerBalanceJournalListView extends ibas.BOListView imple
             subHeader: new sap.m.Bar("", {
                 contentLeft: [
                     new sap.m.Button("", {
-                        text: ibas.i18n.prop("sys_shell_data_view"),
+                        text: ibas.i18n.prop("shell_data_view"),
                         type: sap.m.ButtonType.Transparent,
                         icon: "sap-icon://display",
                         press: function (): void {
