@@ -87,7 +87,7 @@ export class SupplierViewApp extends ibas.BOViewService<ISupplierViewView> {
                 return;
             }
         }
-        super.run();
+        super.run.apply(this, args);
     }
     private viewData: bo.Supplier;
     /** 查询数据 */

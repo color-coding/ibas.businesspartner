@@ -87,7 +87,7 @@ export class CustomerViewApp extends ibas.BOViewService<ICustomerViewView> {
                 return;
             }
         }
-        super.run();
+        super.run.apply(this, args);
     }
     private viewData: bo.Customer;
     /** 查询数据 */

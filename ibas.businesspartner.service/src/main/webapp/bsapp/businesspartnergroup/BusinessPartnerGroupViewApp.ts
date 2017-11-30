@@ -87,7 +87,7 @@ export class BusinessPartnerGroupViewApp extends ibas.BOViewService<IBusinessPar
                 return;
             }
         }
-        super.run();
+        super.run.apply(this, args);
     }
     private viewData: bo.BusinessPartnerGroup;
     /** 查询数据 */

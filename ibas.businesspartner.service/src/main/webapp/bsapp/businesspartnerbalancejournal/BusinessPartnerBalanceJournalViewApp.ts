@@ -87,7 +87,7 @@ export class BusinessPartnerBalanceJournalViewApp extends ibas.BOViewService<IBu
                 return;
             }
         }
-        super.run();
+        super.run.apply(this, args);
     }
     private viewData: bo.BusinessPartnerBalanceJournal;
     /** 查询数据 */

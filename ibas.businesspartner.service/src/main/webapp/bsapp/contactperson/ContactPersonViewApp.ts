@@ -87,7 +87,7 @@ export class ContactPersonViewApp extends ibas.BOViewService<IContactPersonViewV
                 return;
             }
         }
-        super.run();
+        super.run.apply(this, args);
     }
     private viewData: bo.ContactPerson;
     /** 查询数据 */
