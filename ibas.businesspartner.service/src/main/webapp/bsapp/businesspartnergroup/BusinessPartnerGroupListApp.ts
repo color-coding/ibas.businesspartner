@@ -99,7 +99,7 @@ export class BusinessPartnerGroupListApp extends ibas.BOListApplication<IBusines
         app.run(data);
     }
     /** 删除数据，参数：目标数据集合 */
-    protected deleteData(data: bo.BusinessPartnerGroup): void {
+    protected deleteData(data: bo.BusinessPartnerGroup | bo.BusinessPartnerGroup[]): void {
         // 检查目标数据
         if (ibas.objects.isNull(data)) {
             this.messages(ibas.emMessageType.WARNING, ibas.i18n.prop("shell_please_chooose_data",
@@ -107,14 +107,15 @@ export class BusinessPartnerGroupListApp extends ibas.BOListApplication<IBusines
             ));
             return;
         }
-        let beDeleteds:ibas.ArrayList<bo.BusinessPartnerGroup> = new ibas.ArrayList<bo.BusinessPartnerGroup>();
-        if (data instanceof Array ) {
+        let beDeleteds: ibas.ArrayList<bo.BusinessPartnerGroup> = new ibas.ArrayList<bo.BusinessPartnerGroup>();
+        if (data instanceof Array) {
             for (let item of data) {
-                if (ibas.objects.instanceOf(item, bo.BusinessPartnerGroup)) {
-                    item.delete();
-                    beDeleteds.add(item);
-                }
+                item.delete();
+                beDeleteds.add(item);
             }
+        } else {
+            data.delete();
+            beDeleteds.add(data);
         }
         // 没有选择删除的对象
         if (beDeleteds.length === 0) {
@@ -130,7 +131,7 @@ export class BusinessPartnerGroupListApp extends ibas.BOListApplication<IBusines
                 if (action === ibas.emMessageAction.YES) {
                     try {
                         let boRepository: BORepositoryBusinessPartner = new BORepositoryBusinessPartner();
-                        let saveMethod: Function = function(beSaved: bo.BusinessPartnerGroup):void {
+                        let saveMethod: Function = function (beSaved: bo.BusinessPartnerGroup): void {
                             boRepository.saveBusinessPartnerGroup({
                                 beSaved: beSaved,
                                 onCompleted(opRslt: ibas.IOperationResult<bo.BusinessPartnerGroup>): void {
@@ -146,7 +147,7 @@ export class BusinessPartnerGroupListApp extends ibas.BOListApplication<IBusines
                                             // 处理完成
                                             that.busy(false);
                                             that.messages(ibas.emMessageType.SUCCESS,
-                                            ibas.i18n.prop("shell_data_delete") + ibas.i18n.prop("shell_sucessful"));
+                                                ibas.i18n.prop("shell_data_delete") + ibas.i18n.prop("shell_sucessful"));
                                         }
                                     } catch (error) {
                                         that.messages(ibas.emMessageType.ERROR,

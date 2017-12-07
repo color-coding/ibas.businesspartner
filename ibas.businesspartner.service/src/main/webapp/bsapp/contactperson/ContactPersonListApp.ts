@@ -99,7 +99,7 @@ export class ContactPersonListApp extends ibas.BOListApplication<IContactPersonL
         app.run(data);
     }
     /** 删除数据，参数：目标数据集合 */
-    protected deleteData(data: bo.ContactPerson): void {
+    protected deleteData(data: bo.ContactPerson | bo.ContactPerson[]): void {
         // 检查目标数据
         if (ibas.objects.isNull(data)) {
             this.messages(ibas.emMessageType.WARNING, ibas.i18n.prop("shell_please_chooose_data",
@@ -107,14 +107,15 @@ export class ContactPersonListApp extends ibas.BOListApplication<IContactPersonL
             ));
             return;
         }
-        let beDeleteds:ibas.ArrayList<bo.ContactPerson> = new ibas.ArrayList<bo.ContactPerson>();
-        if (data instanceof Array ) {
+        let beDeleteds: ibas.ArrayList<bo.ContactPerson> = new ibas.ArrayList<bo.ContactPerson>();
+        if (data instanceof Array) {
             for (let item of data) {
-                if (ibas.objects.instanceOf(item, bo.ContactPerson)) {
-                    item.delete();
-                    beDeleteds.add(item);
-                }
+                item.delete();
+                beDeleteds.add(item);
             }
+        } else {
+            data.delete();
+            beDeleteds.add(data);
         }
         // 没有选择删除的对象
         if (beDeleteds.length === 0) {
@@ -130,7 +131,7 @@ export class ContactPersonListApp extends ibas.BOListApplication<IContactPersonL
                 if (action === ibas.emMessageAction.YES) {
                     try {
                         let boRepository: BORepositoryBusinessPartner = new BORepositoryBusinessPartner();
-                        let saveMethod: Function = function(beSaved: bo.ContactPerson):void {
+                        let saveMethod: Function = function (beSaved: bo.ContactPerson): void {
                             boRepository.saveContactPerson({
                                 beSaved: beSaved,
                                 onCompleted(opRslt: ibas.IOperationResult<bo.ContactPerson>): void {
@@ -146,7 +147,7 @@ export class ContactPersonListApp extends ibas.BOListApplication<IContactPersonL
                                             // 处理完成
                                             that.busy(false);
                                             that.messages(ibas.emMessageType.SUCCESS,
-                                            ibas.i18n.prop("shell_data_delete") + ibas.i18n.prop("shell_sucessful"));
+                                                ibas.i18n.prop("shell_data_delete") + ibas.i18n.prop("shell_sucessful"));
                                         }
                                     } catch (error) {
                                         that.messages(ibas.emMessageType.ERROR,
