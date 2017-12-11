@@ -80,8 +80,8 @@ export class BusinessPartnerBalanceJournalListView extends ibas.BOListView imple
         this.form.addContent(this.table);
         this.page = new sap.m.Page("", {
             showHeader: false,
-            subHeader: new sap.m.Bar("", {
-                contentLeft: [
+            subHeader: new sap.m.Toolbar("", {
+                content: [
                     new sap.m.Button("", {
                         text: ibas.i18n.prop("shell_data_view"),
                         type: sap.m.ButtonType.Transparent,
@@ -92,9 +92,8 @@ export class BusinessPartnerBalanceJournalListView extends ibas.BOListView imple
                                 openui5.utils.getTableSelecteds<bo.BusinessPartnerBalanceJournal>(that.table).firstOrDefault()
                             );
                         }
-                    })
-                ],
-                contentRight: [
+                    }),
+                    new sap.m.ToolbarSpacer(""),
                     new sap.m.Button("", {
                         type: sap.m.ButtonType.Transparent,
                         icon: "sap-icon://action",
