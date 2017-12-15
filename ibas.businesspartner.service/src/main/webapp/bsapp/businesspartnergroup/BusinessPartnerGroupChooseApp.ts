@@ -97,8 +97,8 @@ export class BusinessPartnerGroupChooseServiceMapping extends ibas.BOChooseServi
         this.boCode = BusinessPartnerGroupChooseApp.BUSINESS_OBJECT_CODE;
         this.description = ibas.i18n.prop(this.name);
     }
-    /** 创建服务并运行 */
-    create(): ibas.IService<ibas.IServiceCaller> {
+    /** 创建服务实例 */
+    create(): ibas.IService<ibas.IBOChooseServiceCaller<bo.BusinessPartnerGroup>> {
         return new BusinessPartnerGroupChooseApp();
     }
 }
