@@ -14,7 +14,8 @@ import { BusinessPartnerBalanceJournalViewApp } from "./BusinessPartnerBalanceJo
 import { BusinessPartnerBalanceJournalEditApp } from "./BusinessPartnerBalanceJournalEditApp";
 
 /** 列表应用-业务伙伴余额记录 */
-export class BusinessPartnerBalanceJournalListApp extends ibas.BOListApplication<IBusinessPartnerBalanceJournalListView, bo.BusinessPartnerBalanceJournal> {
+export class BusinessPartnerBalanceJournalListApp extends
+    ibas.BOListApplication<IBusinessPartnerBalanceJournalListView, bo.BusinessPartnerBalanceJournal> {
 
     /** 应用标识 */
     static APPLICATION_ID: string = "7f84d2f2-3b94-4de4-a672-1156790aab4e";

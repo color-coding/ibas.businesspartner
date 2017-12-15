@@ -52,7 +52,9 @@ export class CustomerViewApp extends ibas.BOViewService<ICustomerViewView> {
         app.run(this.viewData);
     }
     /** 运行,覆盖原方法 */
-    run(...args: any[]): void {
+    run(): void;
+    run(data: bo.Customer): void;
+    run(): void {
         let that: this = this;
         if (ibas.objects.instanceOf(arguments[0], bo.Customer)) {
             // 尝试重新查询编辑对象
@@ -87,7 +89,7 @@ export class CustomerViewApp extends ibas.BOViewService<ICustomerViewView> {
                 return;
             }
         }
-        super.run.apply(this, args);
+        super.run.apply(this, arguments);
     }
     private viewData: bo.Customer;
     /** 查询数据 */
@@ -135,7 +137,7 @@ export class CustomerLinkServiceMapping extends ibas.BOLinkServiceMapping {
         this.description = ibas.i18n.prop(this.name);
     }
     /** 创建服务并运行 */
-    create(): ibas.IService<ibas.IServiceContract> {
+    create(): ibas.IService<ibas.IBOLinkServiceCaller> {
         return new CustomerViewApp();
     }
 }
