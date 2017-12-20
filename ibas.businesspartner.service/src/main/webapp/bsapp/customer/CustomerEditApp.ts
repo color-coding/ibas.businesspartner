@@ -194,14 +194,15 @@ export class CustomerEditApp extends ibas.BOEditApplication<ICustomerEditView, b
                 new ibas.Condition(bo.ContactPerson.PROPERTY_NAME_NAME,
                     ibas.emConditionOperation.NOT_EQUAL, ibas.strings.valueOf(this.editData.contactPerson)),
                 new ibas.Condition(bo.ContactPerson.PROPERTY_OWNERTYPE_NAME,
-                    ibas.emConditionOperation.NOT_EQUAL, bo.emBusinessPartnerType.CUSTOMER),
+                    ibas.emConditionOperation.EQUAL, bo.emBusinessPartnerType.CUSTOMER),
             ],
             onCompleted(selecteds: ibas.List<bo.ContactPerson>): void {
-                that.editData.contactPerson = selecteds.firstOrDefault().name;
-                that.editData.telephone1 = selecteds.firstOrDefault().telephone1;
-                that.editData.telephone2 = selecteds.firstOrDefault().telephone2;
-                that.editData.mobilePhone = selecteds.firstOrDefault().mobilePhone;
-                that.editData.faxNumber = selecteds.firstOrDefault().fax;
+                let selected: bo.ContactPerson = selecteds.firstOrDefault();
+                that.editData.contactPerson = selected.objectKey;
+                that.editData.telephone1 = selected.telephone1;
+                that.editData.telephone2 = selected.telephone2;
+                that.editData.mobilePhone = selected.mobilePhone;
+                that.editData.faxNumber = selected.fax;
             }
         });
     }

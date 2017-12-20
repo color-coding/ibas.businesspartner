@@ -72,11 +72,11 @@ export class Customer extends BOMasterData<Customer> implements ICustomer {
     /** 映射的属性名称-联系人 */
     static PROPERTY_CONTACTPERSON_NAME: string = "ContactPerson";
     /** 获取-联系人 */
-    get contactPerson(): string {
-        return this.getProperty<string>(Customer.PROPERTY_CONTACTPERSON_NAME);
+    get contactPerson(): number {
+        return this.getProperty<number>(Customer.PROPERTY_CONTACTPERSON_NAME);
     }
     /** 设置-联系人 */
-    set contactPerson(value: string) {
+    set contactPerson(value: number) {
         this.setProperty(Customer.PROPERTY_CONTACTPERSON_NAME, value);
     }
 

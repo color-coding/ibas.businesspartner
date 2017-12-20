@@ -158,8 +158,8 @@ public class Supplier extends BusinessObject<Supplier> implements ISupplier {
 	 * 联系人 属性
 	 */
 	@DbField(name = "CntctPrsn", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME, primaryKey = false)
-	public static final IPropertyInfo<String> PROPERTY_CONTACTPERSON = registerProperty(PROPERTY_CONTACTPERSON_NAME,
-			String.class, MY_CLASS);
+	public static final IPropertyInfo<Integer> PROPERTY_CONTACTPERSON = registerProperty(PROPERTY_CONTACTPERSON_NAME,
+			Integer.class, MY_CLASS);
 
 	/**
 	 * 获取-联系人
@@ -167,7 +167,7 @@ public class Supplier extends BusinessObject<Supplier> implements ISupplier {
 	 * @return 值
 	 */
 	@XmlElement(name = PROPERTY_CONTACTPERSON_NAME)
-	public final String getContactPerson() {
+	public final Integer getContactPerson() {
 		return this.getProperty(PROPERTY_CONTACTPERSON);
 	}
 
@@ -177,7 +177,7 @@ public class Supplier extends BusinessObject<Supplier> implements ISupplier {
 	 * @param value
 	 *            值
 	 */
-	public final void setContactPerson(String value) {
+	public final void setContactPerson(Integer value) {
 		this.setProperty(PROPERTY_CONTACTPERSON, value);
 	}
 

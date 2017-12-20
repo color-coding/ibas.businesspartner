@@ -60,14 +60,14 @@ public interface ICustomer extends IBOMasterData {
     * 
     * @return 值
     */
-    String getContactPerson();
+    Integer getContactPerson();
 
     /**
     * 设置-联系人
     * 
     * @param value 值
     */
-    void setContactPerson(String value);
+    void setContactPerson(Integer value);
 
 
     /**

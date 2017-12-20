@@ -37,7 +37,7 @@ export interface ISupplier extends IBOMasterData {
     group: string;
 
     /** 联系人 */
-    contactPerson: string;
+    contactPerson: number;
 
     /** 公司/个人 */
     companyPrivate: emBusinessPartnerNature;

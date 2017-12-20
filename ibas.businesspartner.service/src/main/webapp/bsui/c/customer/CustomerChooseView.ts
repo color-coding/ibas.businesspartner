@@ -63,6 +63,14 @@ export class CustomerChooseView extends ibas.BOChooseView implements ICustomerCh
             rows: "{/rows}",
             columns: [
                 new sap.ui.table.Column("", {
+                    label: ibas.i18n.prop("bo_customer_docentry"),
+                    template: new sap.m.Text("", {
+                        wrapping: false
+                    }).bindProperty("text", {
+                        path: "docEntry"
+                    })
+                }),
+                new sap.ui.table.Column("", {
                     label: ibas.i18n.prop("bo_customer_code"),
                     template: new sap.m.Text("", {
                         wrapping: false

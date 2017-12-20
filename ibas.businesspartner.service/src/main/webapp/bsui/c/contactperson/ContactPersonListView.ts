@@ -35,6 +35,14 @@ export class ContactPersonListView extends ibas.BOListView implements IContactPe
             rows: "{/rows}",
             columns: [
                 new sap.ui.table.Column("", {
+                    label: ibas.i18n.prop("bo_contactperson_objectkey"),
+                    template: new sap.m.Text("", {
+                        wrapping: false
+                    }).bindProperty("text", {
+                        path: "objectKey"
+                    })
+                }),
+                new sap.ui.table.Column("", {
                     label: ibas.i18n.prop("bo_contactperson_ownertype"),
                     template: new sap.m.Text("", {
                         wrapping: false
