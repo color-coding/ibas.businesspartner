@@ -45,8 +45,6 @@ export class SupplierEditView extends ibas.BOEditView implements ISupplierEditVi
                 }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_group") }),
                 new sap.m.Input("", {
-                    placeholder: ibas.i18n.prop("bo_supplier_group"),
-                    tooltip: ibas.i18n.prop("bo_supplier_group"),
                     showValueHelp: true,
                     valueHelpRequest: function (): void {
                         that.fireViewEvents(that.chooseBusinessPartnerGroupEvent);
@@ -64,8 +62,6 @@ export class SupplierEditView extends ibas.BOEditView implements ISupplierEditVi
                 new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_contact_information") }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_contactperson") }),
                 new sap.m.Input("", {
-                    placeholder: ibas.i18n.prop("bo_customer_contactperson"),
-                    tooltip: ibas.i18n.prop("bo_customer_contactperson"),
                     showValueHelp: true,
                     valueHelpRequest: function (): void {
                         that.fireViewEvents(that.chooseBusinessPartnerContactPersonEvent);
