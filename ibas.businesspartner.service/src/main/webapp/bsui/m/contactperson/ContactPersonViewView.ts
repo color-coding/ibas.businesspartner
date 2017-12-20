@@ -10,13 +10,7 @@ import * as ibas from "ibas/index";
 import * as openui5 from "openui5/index";
 import * as bo from "../../../borep/bo/index";
 import { IContactPersonViewView } from "../../../bsapp/contactperson/index";
-import {
-    IContactPerson,
-    BO_CODE_CONTACTPERSON,
-    emBusinessPartnerType,
-    emBusinessPartnerNature,
-    emGender,
-} from "../../../api/index";
+
 export class ContactPersonViewView extends ibas.BOViewView implements IContactPersonViewView {
     private page: sap.m.Page;
     private mainLayout: sap.ui.layout.VerticalLayout;
@@ -29,16 +23,6 @@ export class ContactPersonViewView extends ibas.BOViewView implements IContactPe
         let that: this = this;
         this.viewTopForm = new sap.ui.layout.form.SimpleForm("", {
             editable: true,
-            layout: sap.ui.layout.form.SimpleFormLayout.ResponsiveGridLayout,
-            singleContainerFullSize: false,
-            adjustLabelSpan: false,
-            labelSpanL: 2,
-            labelSpanM: 2,
-            labelSpanS: 12,
-            columnsXL: 2,
-            columnsL: 2,
-            columnsM: 1,
-            columnsS: 1,
             content: [
                 new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_basis_information") }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_name") }),
@@ -59,7 +43,7 @@ export class ContactPersonViewView extends ibas.BOViewView implements IContactPe
                 }).bindProperty("text", {
                     path: "gender",
                     formatter(data: any): any {
-                        return ibas.enums.describe(emGender, data);
+                        return ibas.enums.describe(bo.emGender, data);
                     }
                 }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_ownertype") }),
@@ -68,7 +52,7 @@ export class ContactPersonViewView extends ibas.BOViewView implements IContactPe
                 }).bindProperty("text", {
                     path: "ownerType",
                     formatter(data: any): any {
-                        return ibas.enums.describe(emBusinessPartnerType, data);
+                        return ibas.enums.describe(bo.emBusinessPartnerType, data);
                     }
                 }),
                 new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_contact_information") }),

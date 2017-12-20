@@ -24,7 +24,7 @@ import {
     emBusinessPartnerNature,
 } from "../Datas";
 
-/** 业务伙伴-供应商 */
+/** 供应商 */
 export interface ISupplier extends IBOMasterData {
 
     /** 编码 */

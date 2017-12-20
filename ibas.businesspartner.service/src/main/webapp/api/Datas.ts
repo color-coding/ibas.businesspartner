@@ -26,9 +26,9 @@ export const BO_CODE_BUSINESSPARTNERBALANCEJOURNAL: string = "${Company}_BP_BALA
 export const BO_CODE_BUSINESSPARTNERGROUP: string = "${Company}_BP_BPGROUP";
 /** 业务对象编码-业务伙伴联系人 */
 export const BO_CODE_CONTACTPERSON: string = "${Company}_BP_CONTACTPERSON";
-/** 业务对象编码-业务伙伴-客户 */
+/** 业务对象编码-客户 */
 export const BO_CODE_CUSTOMER: string = "${Company}_BP_CUSTOMER";
-/** 业务对象编码-业务伙伴-供应商 */
+/** 业务对象编码-供应商 */
 export const BO_CODE_SUPPLIER: string = "${Company}_BP_SUPPLIER";
 
 

@@ -35,6 +35,17 @@ export class ContactPersonListView extends ibas.BOListView implements IContactPe
             rows: "{/rows}",
             columns: [
                 new sap.ui.table.Column("", {
+                    label: ibas.i18n.prop("bo_contactperson_ownertype"),
+                    template: new sap.m.Text("", {
+                        wrapping: false
+                    }).bindProperty("text", {
+                        path: "ownerType",
+                        formatter(data: any): any {
+                            return ibas.enums.describe(bo.emBusinessPartnerType, data);
+                        }
+                    })
+                }),
+                new sap.ui.table.Column("", {
                     label: ibas.i18n.prop("bo_contactperson_name"),
                     template: new sap.m.Text("", {
                         wrapping: false
@@ -92,6 +103,7 @@ export class ContactPersonListView extends ibas.BOListView implements IContactPe
                             that.fireViewEvents(that.newDataEvent);
                         }
                     }),
+                    /*
                     new sap.m.Button("", {
                         text: ibas.i18n.prop("shell_data_view"),
                         type: sap.m.ButtonType.Transparent,
@@ -103,6 +115,7 @@ export class ContactPersonListView extends ibas.BOListView implements IContactPe
                             );
                         }
                     }),
+                    */
                     new sap.m.Button("", {
                         text: ibas.i18n.prop("shell_data_edit"),
                         type: sap.m.ButtonType.Transparent,

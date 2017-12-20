@@ -10,7 +10,7 @@ import * as ibas from "ibas/index";
 import * as bo from "../../borep/bo/index";
 import { BORepositoryBusinessPartner } from "../../borep/BORepositories";
 
-/** 编辑应用-业务伙伴-供应商 */
+/** 编辑应用-供应商 */
 export class SupplierEditApp extends ibas.BOEditApplication<ISupplierEditView, bo.Supplier> {
 
     /** 应用标识 */
@@ -190,9 +190,11 @@ export class SupplierEditApp extends ibas.BOEditApplication<ISupplierEditView, b
             boCode: bo.ContactPerson.BUSINESS_OBJECT_CODE,
             criteria: [
                 new ibas.Condition(bo.ContactPerson.PROPERTY_ACTIVATED_NAME,
-                    ibas.emConditionOperation.EQUAL, "Y"),
+                    ibas.emConditionOperation.EQUAL, ibas.emYesNo.YES),
                 new ibas.Condition(bo.ContactPerson.PROPERTY_NAME_NAME,
                     ibas.emConditionOperation.NOT_EQUAL, ibas.strings.valueOf(this.editData.contactPerson)),
+                new ibas.Condition(bo.ContactPerson.PROPERTY_OWNERTYPE_NAME,
+                    ibas.emConditionOperation.NOT_EQUAL, bo.emBusinessPartnerType.SUPPLIER),
             ],
             onCompleted(selecteds: ibas.List<bo.ContactPerson>): void {
                 that.editData.contactPerson = selecteds.firstOrDefault().name;
@@ -204,7 +206,7 @@ export class SupplierEditApp extends ibas.BOEditApplication<ISupplierEditView, b
         });
     }
 }
-/** 视图-业务伙伴-供应商 */
+/** 视图-供应商 */
 export interface ISupplierEditView extends ibas.IBOEditView {
     /** 显示数据 */
     showSupplier(data: bo.Supplier): void;

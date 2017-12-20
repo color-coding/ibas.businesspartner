@@ -88,14 +88,14 @@ export class BORepositoryBusinessPartner extends ibas.BORepositoryApplication im
     }
 
     /**
-     * 查询 业务伙伴-客户
+     * 查询 客户
      * @param fetcher 查询者
      */
     fetchCustomer(fetcher: ibas.FetchCaller<bo.Customer>): void {
         super.fetch(bo.Customer.name, fetcher);
     }
     /**
-     * 保存 业务伙伴-客户
+     * 保存 客户
      * @param saver 保存者
      */
     saveCustomer(saver: ibas.SaveCaller<bo.Customer>): void {
@@ -103,14 +103,14 @@ export class BORepositoryBusinessPartner extends ibas.BORepositoryApplication im
     }
 
     /**
-     * 查询 业务伙伴-供应商
+     * 查询 供应商
      * @param fetcher 查询者
      */
     fetchSupplier(fetcher: ibas.FetchCaller<bo.Supplier>): void {
         super.fetch(bo.Supplier.name, fetcher);
     }
     /**
-     * 保存 业务伙伴-供应商
+     * 保存 供应商
      * @param saver 保存者
      */
     saveSupplier(saver: ibas.SaveCaller<bo.Supplier>): void {

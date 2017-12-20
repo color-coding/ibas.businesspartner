@@ -29,16 +29,6 @@ export class BusinessPartnerGroupEditView extends ibas.BOEditView implements IBu
         let that: this = this;
         this.viewTopForm = new sap.ui.layout.form.SimpleForm("", {
             editable: true,
-            layout: sap.ui.layout.form.SimpleFormLayout.ResponsiveGridLayout,
-            singleContainerFullSize: false,
-            adjustLabelSpan: false,
-            labelSpanL: 2,
-            labelSpanM: 2,
-            labelSpanS: 12,
-            columnsXL: 2,
-            columnsL: 2,
-            columnsM: 1,
-            columnsS: 1,
             content: [
                 new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_basis_information") }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnergroup_code") }),
@@ -53,12 +43,20 @@ export class BusinessPartnerGroupEditView extends ibas.BOEditView implements IBu
                 }).bindProperty("value", {
                     path: "name"
                 }),
+                new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_other_information") }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnergroup_docentry") }),
                 new sap.m.Input("", {
                     type: sap.m.InputType.Text
                 }).bindProperty("value", {
                     path: "docEntry"
-                })
+                }),
+                new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnergroup_objectcode") }),
+                new sap.m.Input("", {
+                    enabled: false,
+                    type: sap.m.InputType.Text
+                }).bindProperty("value", {
+                    path: "objectCode"
+                }),
             ],
         });
         this.page = new sap.m.Page("", {

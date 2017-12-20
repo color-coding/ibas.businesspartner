@@ -115,7 +115,7 @@ public class DataService extends BORepositoryBusinessPartner {
 
 	// --------------------------------------------------------------------------------------------//
 	/**
-	 * 查询-业务伙伴-客户
+	 * 查询-客户
 	 * 
 	 * @param criteria
 	 *            查询
@@ -130,7 +130,7 @@ public class DataService extends BORepositoryBusinessPartner {
 	}
 
 	/**
-	 * 保存-业务伙伴-客户
+	 * 保存-客户
 	 * 
 	 * @param bo
 	 *            对象实例
@@ -146,7 +146,7 @@ public class DataService extends BORepositoryBusinessPartner {
 
 	// --------------------------------------------------------------------------------------------//
 	/**
-	 * 查询-业务伙伴-供应商
+	 * 查询-供应商
 	 * 
 	 * @param criteria
 	 *            查询
@@ -161,7 +161,7 @@ public class DataService extends BORepositoryBusinessPartner {
 	}
 
 	/**
-	 * 保存-业务伙伴-供应商
+	 * 保存-供应商
 	 * 
 	 * @param bo
 	 *            对象实例

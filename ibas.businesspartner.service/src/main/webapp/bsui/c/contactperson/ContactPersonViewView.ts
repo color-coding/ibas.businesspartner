@@ -10,13 +10,6 @@ import * as ibas from "ibas/index";
 import * as openui5 from "openui5/index";
 import * as bo from "../../../borep/bo/index";
 import { IContactPersonViewView } from "../../../bsapp/contactperson/index";
-import {
-    IContactPerson,
-    BO_CODE_CONTACTPERSON,
-    emBusinessPartnerType,
-    emBusinessPartnerNature,
-    emGender,
-} from "../../../api/index";
 
 /**
  * 查看视图-业务伙伴联系人
@@ -31,29 +24,22 @@ export class ContactPersonViewView extends ibas.BOViewView implements IContactPe
         let that: this = this;
         this.viewTopForm = new sap.ui.layout.form.SimpleForm("", {
             editable: false,
-            layout: sap.ui.layout.form.SimpleFormLayout.ResponsiveGridLayout,
-            singleContainerFullSize: false,
-            adjustLabelSpan: false,
-            labelSpanL: 2,
-            labelSpanM: 2,
-            labelSpanS: 12,
-            columnsXL: 2,
-            columnsL: 2,
-            columnsM: 1,
-            columnsS: 1,
             content: [
                 new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_basis_information") }),
+                new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_ownertype") }),
+                new sap.m.Text("", {
+                    type: sap.m.InputType.Text
+                }).bindProperty("text", {
+                    path: "ownerType",
+                    formatter(data: any): any {
+                        return ibas.enums.describe(bo.emBusinessPartnerType, data);
+                    }
+                }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_name") }),
                 new sap.m.Text("", {
                     type: sap.m.InputType.Text
                 }).bindProperty("text", {
                     path: "name"
-                }),
-                new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_position") }),
-                new sap.m.Text("", {
-                    type: sap.m.InputType.Text
-                }).bindProperty("text", {
-                    path: "position"
                 }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_gender") }),
                 new sap.m.Text("", {
@@ -61,16 +47,22 @@ export class ContactPersonViewView extends ibas.BOViewView implements IContactPe
                 }).bindProperty("text", {
                     path: "gender",
                     formatter(data: any): any {
-                        return ibas.enums.describe(emGender, data);
+                        return ibas.enums.describe(bo.emGender, data);
                     }
                 }),
-                new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_ownertype") }),
+                new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_position") }),
                 new sap.m.Text("", {
                     type: sap.m.InputType.Text
                 }).bindProperty("text", {
-                    path: "ownerType",
+                    path: "position"
+                }),
+                new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_activated") }),
+                new sap.m.Text("", {
+                    type: sap.m.InputType.Text,
+                }).bindProperty("text", {
+                    path: "activated",
                     formatter(data: any): any {
-                        return ibas.enums.describe(emBusinessPartnerType, data);
+                        return ibas.enums.describe(ibas.emYesNo, data);
                     }
                 }),
                 new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_contact_information") }),
@@ -109,35 +101,6 @@ export class ContactPersonViewView extends ibas.BOViewView implements IContactPe
                     type: sap.m.InputType.Text
                 }).bindProperty("text", {
                     path: "mail"
-                }),
-                new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_current_status") }),
-                new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_activated") }),
-                new sap.m.Text("", {
-                    type: sap.m.InputType.Text,
-                }).bindProperty("text", {
-                    path: "activated",
-                    formatter(data: any): any {
-                        return ibas.enums.describe(ibas.emYesNo, data);
-                    }
-                }),
-                new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_other_information") }),
-                new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_createdate") }),
-                new sap.m.Text("", {
-                }).bindProperty("text", {
-                    path: "createDate",
-                    type: new sap.ui.model.type.Date({
-                        pattern: "yyyy-MM-dd",
-                        strictParsing: true,
-                    }),
-                }),
-                new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_updatedate") }),
-                new sap.m.Text("", {
-                }).bindProperty("text", {
-                    path: "updateDate",
-                    type: new sap.ui.model.type.Date({
-                        pattern: "yyyy-MM-dd",
-                        strictParsing: true,
-                    }),
                 }),
             ]
         });

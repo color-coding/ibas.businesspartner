@@ -35,6 +35,14 @@ export class BusinessPartnerGroupListView extends ibas.BOListView implements IBu
             rows: "{/rows}",
             columns: [
                 new sap.ui.table.Column("", {
+                    label: ibas.i18n.prop("bo_businesspartnergroup_docentry"),
+                    template: new sap.m.Text("", {
+                        wrapping: false
+                    }).bindProperty("text", {
+                        path: "docEntry"
+                    })
+                }),
+                new sap.ui.table.Column("", {
                     label: ibas.i18n.prop("bo_businesspartnergroup_code"),
                     template: new sap.m.Text("", {
                         wrapping: false
@@ -50,28 +58,6 @@ export class BusinessPartnerGroupListView extends ibas.BOListView implements IBu
                         path: "name"
                     })
                 }),
-                new sap.ui.table.Column("", {
-                    label: ibas.i18n.prop("bo_businesspartnergroup_referenced"),
-                    template: new sap.m.Text("", {
-                        wrapping: false
-                    }).bindProperty("text", {
-                        path: "referenced",
-                        formatter(data: any): any {
-                            return ibas.enums.describe(ibas.emYesNo, data);
-                        }
-                    })
-                }),
-                new sap.ui.table.Column("", {
-                    label: ibas.i18n.prop("bo_businesspartnergroup_deleted"),
-                    template: new sap.m.Text("", {
-                        wrapping: false
-                    }).bindProperty("text", {
-                        path: "deleted",
-                        formatter(data: any): any {
-                            return ibas.enums.describe(ibas.emYesNo, data);
-                        }
-                    })
-                })
             ]
         });
         this.form.addContent(this.table);
@@ -87,6 +73,7 @@ export class BusinessPartnerGroupListView extends ibas.BOListView implements IBu
                             that.fireViewEvents(that.newDataEvent);
                         }
                     }),
+                    /*
                     new sap.m.Button("", {
                         text: ibas.i18n.prop("shell_data_view"),
                         type: sap.m.ButtonType.Transparent,
@@ -98,6 +85,7 @@ export class BusinessPartnerGroupListView extends ibas.BOListView implements IBu
                             );
                         }
                     }),
+                    */
                     new sap.m.Button("", {
                         text: ibas.i18n.prop("shell_data_edit"),
                         type: sap.m.ButtonType.Transparent,

@@ -5,7 +5,7 @@ import org.colorcoding.ibas.bobas.data.*;
 import org.colorcoding.ibas.businesspartner.data.*;
 
 /**
-* 业务伙伴-客户 接口
+* 客户 接口
 * 
 */
 public interface ICustomer extends IBOMasterData {

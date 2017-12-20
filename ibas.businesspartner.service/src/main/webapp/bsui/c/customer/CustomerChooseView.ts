@@ -12,7 +12,7 @@ import * as bo from "../../../borep/bo/index";
 import { ICustomerChooseView } from "../../../bsapp/customer/index";
 
 /**
- * 选择视图-业务伙伴-客户
+ * 选择视图-客户
  */
 export class CustomerChooseView extends ibas.BOChooseView implements ICustomerChooseView {
     /** 返回查询的对象 */
@@ -94,14 +94,6 @@ export class CustomerChooseView extends ibas.BOChooseView implements ICustomerCh
                         path: "contactPerson"
                     })
                 }),
-                new sap.ui.table.Column("", {
-                    label: ibas.i18n.prop("bo_customer_balance"),
-                    template: new sap.m.Text("", {
-                        wrapping: false
-                    }).bindProperty("text", {
-                        path: "balance"
-                    })
-                })
             ]
         });
         this.id = this.table.getId();

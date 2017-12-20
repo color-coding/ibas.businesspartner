@@ -13,7 +13,7 @@ import { DataConverter4bp } from "../../borep/DataConverters";
 import { SupplierViewApp } from "./SupplierViewApp";
 import { SupplierEditApp } from "./SupplierEditApp";
 
-/** 列表应用-业务伙伴-供应商 */
+/** 列表应用-供应商 */
 export class SupplierListApp extends ibas.BOListApplication<ISupplierListView, bo.Supplier> {
 
     /** 应用标识 */
@@ -181,7 +181,7 @@ export class SupplierListApp extends ibas.BOListApplication<ISupplierListView, b
         ];
     }
 }
-/** 视图-业务伙伴-供应商 */
+/** 视图-供应商 */
 export interface ISupplierListView extends ibas.IBOListView {
     /** 编辑数据事件，参数：编辑对象 */
     editDataEvent: Function;

@@ -19,7 +19,7 @@ import org.colorcoding.ibas.businesspartner.MyConfiguration;
 import org.colorcoding.ibas.businesspartner.data.emBusinessPartnerNature;
 
 /**
- * 获取-业务伙伴-供应商
+ * 获取-供应商
  * 
  */
 @XmlAccessorType(XmlAccessType.NONE)

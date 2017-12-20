@@ -10,13 +10,6 @@ import * as ibas from "ibas/index";
 import * as openui5 from "openui5/index";
 import * as bo from "../../../borep/bo/index";
 import { IContactPersonEditView } from "../../../bsapp/contactperson/index";
-import {
-    IContactPerson,
-    BO_CODE_CONTACTPERSON,
-    emBusinessPartnerType,
-    emBusinessPartnerNature,
-    emGender,
-} from "../../../api/index";
 
 /**
  * 编辑视图-业务伙伴联系人
@@ -36,23 +29,27 @@ export class ContactPersonEditView extends ibas.BOEditView implements IContactPe
         let that: this = this;
         this.viewTopForm = new sap.ui.layout.form.SimpleForm("", {
             editable: true,
-            layout: sap.ui.layout.form.SimpleFormLayout.ResponsiveGridLayout,
-            singleContainerFullSize: false,
-            adjustLabelSpan: false,
-            labelSpanL: 2,
-            labelSpanM: 2,
-            labelSpanS: 12,
-            columnsXL: 2,
-            columnsL: 2,
-            columnsM: 1,
-            columnsS: 1,
             content: [
                 new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_basis_information") }),
+                new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_ownertype") }),
+                new sap.m.Select("", {
+                    items: openui5.utils.createComboBoxItems(bo.emBusinessPartnerType)
+                }).bindProperty("selectedKey", {
+                    path: "ownerType",
+                    type: "sap.ui.model.type.Integer"
+                }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_name") }),
                 new sap.m.Input("", {
                     type: sap.m.InputType.Text
                 }).bindProperty("value", {
                     path: "name"
+                }),
+                new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_gender") }),
+                new sap.m.Select("", {
+                    items: openui5.utils.createComboBoxItems(bo.emGender)
+                }).bindProperty("selectedKey", {
+                    path: "gender",
+                    type: "sap.ui.model.type.Integer"
                 }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_position") }),
                 new sap.m.Input("", {
@@ -60,18 +57,11 @@ export class ContactPersonEditView extends ibas.BOEditView implements IContactPe
                 }).bindProperty("value", {
                     path: "position"
                 }),
-                new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_gender") }),
-                new sap.m.SegmentedButton("", {
-                    items: openui5.utils.createSegmentedButtonItems(emGender)
+                new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_activated") }),
+                new sap.m.Select("", {
+                    items: openui5.utils.createComboBoxItems(ibas.emYesNo)
                 }).bindProperty("selectedKey", {
-                    path: "gender",
-                    type: "sap.ui.model.type.Integer"
-                }),
-                new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_ownertype") }),
-                new sap.m.SegmentedButton("", {
-                    items: openui5.utils.createSegmentedButtonItems(emBusinessPartnerType)
-                }).bindProperty("selectedKey", {
-                    path: "ownerType",
+                    path: "activated",
                     type: "sap.ui.model.type.Integer"
                 }),
                 new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_contact_information") }),
@@ -110,14 +100,6 @@ export class ContactPersonEditView extends ibas.BOEditView implements IContactPe
                     type: sap.m.InputType.Text
                 }).bindProperty("value", {
                     path: "mail"
-                }),
-                new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_current_status") }),
-                new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_activated") }),
-                new sap.m.SegmentedButton("", {
-                    items: openui5.utils.createSegmentedButtonItems(ibas.emYesNo)
-                }).bindProperty("selectedKey", {
-                    path: "activated",
-                    type: "sap.ui.model.type.Integer"
                 }),
             ],
         });

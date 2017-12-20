@@ -11,8 +11,6 @@ import * as bo from "./bo/index";
 import {
 } from "../api/index";
 import {
-    IContactPerson,
-    BO_CODE_CONTACTPERSON,
     emBusinessPartnerType,
     emBusinessPartnerNature,
     emGender,

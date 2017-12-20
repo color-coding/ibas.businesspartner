@@ -27,7 +27,7 @@ import {
     emBusinessPartnerNature,
 } from "../../api/index";
 
-/** 业务伙伴-供应商 */
+/** 供应商 */
 export class Supplier extends BOMasterData<Supplier> implements ISupplier {
 
     /** 业务对象编码 */
@@ -454,11 +454,10 @@ export class Supplier extends BOMasterData<Supplier> implements ISupplier {
         this.setProperty(Supplier.PROPERTY_ORGANIZATION_NAME, value);
     }
 
-
-
     /** 初始化数据 */
     protected init(): void {
         this.objectCode = config.applyVariables(Supplier.BUSINESS_OBJECT_CODE);
+        this.companyPrivate = emBusinessPartnerNature.COMPANY;
     }
 }
 

@@ -334,11 +334,11 @@ export class ContactPerson extends BOSimple<ContactPerson> implements IContactPe
         this.setProperty(ContactPerson.PROPERTY_UPDATEACTIONID_NAME, value);
     }
 
-
-
     /** 初始化数据 */
     protected init(): void {
         this.objectCode = config.applyVariables(ContactPerson.BUSINESS_OBJECT_CODE);
+        this.ownerType = emBusinessPartnerType.CUSTOMER;
+        this.activated = emYesNo.YES;
     }
 }
 

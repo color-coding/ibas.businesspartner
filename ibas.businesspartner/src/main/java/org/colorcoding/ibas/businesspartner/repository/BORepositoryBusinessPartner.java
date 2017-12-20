@@ -177,7 +177,7 @@ public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 
 	// --------------------------------------------------------------------------------------------//
 	/**
-	 * 查询-业务伙伴-客户
+	 * 查询-客户
 	 * 
 	 * @param criteria
 	 *            查询
@@ -190,7 +190,7 @@ public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 	}
 
 	/**
-	 * 查询-业务伙伴-客户（提前设置用户口令）
+	 * 查询-客户（提前设置用户口令）
 	 * 
 	 * @param criteria
 	 *            查询
@@ -201,7 +201,7 @@ public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 	}
 
 	/**
-	 * 保存-业务伙伴-客户
+	 * 保存-客户
 	 * 
 	 * @param bo
 	 *            对象实例
@@ -214,7 +214,7 @@ public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 	}
 
 	/**
-	 * 保存-业务伙伴-客户（提前设置用户口令）
+	 * 保存-客户（提前设置用户口令）
 	 * 
 	 * @param bo
 	 *            对象实例
@@ -226,7 +226,7 @@ public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 
 	// --------------------------------------------------------------------------------------------//
 	/**
-	 * 查询-业务伙伴-供应商
+	 * 查询-供应商
 	 * 
 	 * @param criteria
 	 *            查询
@@ -239,7 +239,7 @@ public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 	}
 
 	/**
-	 * 查询-业务伙伴-供应商（提前设置用户口令）
+	 * 查询-供应商（提前设置用户口令）
 	 * 
 	 * @param criteria
 	 *            查询
@@ -250,7 +250,7 @@ public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 	}
 
 	/**
-	 * 保存-业务伙伴-供应商
+	 * 保存-供应商
 	 * 
 	 * @param bo
 	 *            对象实例
@@ -263,7 +263,7 @@ public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 	}
 
 	/**
-	 * 保存-业务伙伴-供应商（提前设置用户口令）
+	 * 保存-供应商（提前设置用户口令）
 	 * 
 	 * @param bo
 	 *            对象实例

@@ -12,7 +12,7 @@ import * as bo from "../../../borep/bo/index";
 import { ICustomerListView } from "../../../bsapp/customer/index";
 
 /**
- * 列表视图-业务伙伴-客户
+ * 列表视图-客户
  */
 export class CustomerListView extends ibas.BOListView implements ICustomerListView {
     /** 返回查询的对象 */
@@ -59,11 +59,11 @@ export class CustomerListView extends ibas.BOListView implements ICustomerListVi
                     })
                 }),
                 new sap.ui.table.Column("", {
-                    label: ibas.i18n.prop("bo_customer_balance"),
+                    label: ibas.i18n.prop("bo_customer_contactperson"),
                     template: new sap.m.Text("", {
                         wrapping: false
                     }).bindProperty("text", {
-                        path: "balance"
+                        path: "contactPerson"
                     })
                 }),
                 new sap.ui.table.Column("", {
@@ -92,6 +92,7 @@ export class CustomerListView extends ibas.BOListView implements ICustomerListVi
                             that.fireViewEvents(that.newDataEvent);
                         }
                     }),
+                    /*
                     new sap.m.Button("", {
                         text: ibas.i18n.prop("shell_data_view"),
                         type: sap.m.ButtonType.Transparent,
@@ -103,6 +104,7 @@ export class CustomerListView extends ibas.BOListView implements ICustomerListVi
                             );
                         }
                     }),
+                    */
                     new sap.m.Button("", {
                         text: ibas.i18n.prop("shell_data_edit"),
                         type: sap.m.ButtonType.Transparent,

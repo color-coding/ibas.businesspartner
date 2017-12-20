@@ -10,13 +10,6 @@ import * as ibas from "ibas/index";
 import * as openui5 from "openui5/index";
 import * as bo from "../../../borep/bo/index";
 import { IBusinessPartnerBalanceJournalListView } from "../../../bsapp/businesspartnerbalancejournal/index";
-import {
-    IContactPerson,
-    BO_CODE_CONTACTPERSON,
-    emBusinessPartnerType,
-    emBusinessPartnerNature,
-    emGender,
-} from "../../../api/index";
 
 /**
  * 列表视图-业务伙伴余额记录
@@ -42,11 +35,11 @@ export class BusinessPartnerBalanceJournalListView extends ibas.BOListView imple
             rows: "{/rows}",
             columns: [
                 new sap.ui.table.Column("", {
-                    label: ibas.i18n.prop("bo_businesspartnerbalancejournal_businesspartner"),
+                    label: ibas.i18n.prop("bo_businesspartnerbalancejournal_objectkey"),
                     template: new sap.m.Text("", {
                         wrapping: false
                     }).bindProperty("text", {
-                        path: "businessPartner"
+                        path: "objectKey"
                     })
                 }),
                 new sap.ui.table.Column("", {
@@ -56,8 +49,16 @@ export class BusinessPartnerBalanceJournalListView extends ibas.BOListView imple
                     }).bindProperty("text", {
                         path: "businessPartnerType",
                         formatter(data: any): any {
-                            return ibas.enums.describe(emBusinessPartnerType, data);
+                            return ibas.enums.describe(bo.emBusinessPartnerType, data);
                         }
+                    })
+                }),
+                new sap.ui.table.Column("", {
+                    label: ibas.i18n.prop("bo_businesspartnerbalancejournal_businesspartner"),
+                    template: new sap.m.Text("", {
+                        wrapping: false
+                    }).bindProperty("text", {
+                        path: "businessPartner"
                     })
                 }),
                 new sap.ui.table.Column("", {

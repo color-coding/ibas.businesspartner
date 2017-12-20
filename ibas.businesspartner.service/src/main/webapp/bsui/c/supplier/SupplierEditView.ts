@@ -10,16 +10,9 @@ import * as ibas from "ibas/index";
 import * as openui5 from "openui5/index";
 import * as bo from "../../../borep/bo/index";
 import { ISupplierEditView } from "../../../bsapp/supplier/index";
-import {
-    IContactPerson,
-    BO_CODE_CONTACTPERSON,
-    emBusinessPartnerType,
-    emBusinessPartnerNature,
-    emGender,
-} from "../../../api/index";
 
 /**
- * 编辑视图-业务伙伴-供应商
+ * 编辑视图-供应商
  */
 export class SupplierEditView extends ibas.BOEditView implements ISupplierEditView {
 
@@ -40,16 +33,6 @@ export class SupplierEditView extends ibas.BOEditView implements ISupplierEditVi
         let that: this = this;
         this.viewTopForm = new sap.ui.layout.form.SimpleForm("", {
             editable: true,
-            layout: sap.ui.layout.form.SimpleFormLayout.ResponsiveGridLayout,
-            singleContainerFullSize: false,
-            adjustLabelSpan: false,
-            labelSpanL: 2,
-            labelSpanM: 2,
-            labelSpanS: 12,
-            columnsXL: 2,
-            columnsL: 2,
-            columnsM: 1,
-            columnsS: 1,
             content: [
                 new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_basis_information") }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_code") }),
@@ -66,8 +49,6 @@ export class SupplierEditView extends ibas.BOEditView implements ISupplierEditVi
                 }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_group") }),
                 new sap.m.Input("", {
-                    placeholder: ibas.i18n.prop("bo_supplier_group"),
-                    tooltip: ibas.i18n.prop("bo_supplier_group"),
                     showValueHelp: true,
                     valueHelpRequest: function (): void {
                         that.fireViewEvents(that.chooseBusinessPartnerGroupEvent);
@@ -76,8 +57,8 @@ export class SupplierEditView extends ibas.BOEditView implements ISupplierEditVi
                     path: "group"
                 }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_companyprivate") }),
-                new sap.m.SegmentedButton("", {
-                    items: openui5.utils.createSegmentedButtonItems(emBusinessPartnerNature)
+                new sap.m.Select("", {
+                    items: openui5.utils.createComboBoxItems(bo.emBusinessPartnerNature)
                 }).bindProperty("selectedKey", {
                     path: "companyPrivate",
                     type: "sap.ui.model.type.Integer"
@@ -85,8 +66,6 @@ export class SupplierEditView extends ibas.BOEditView implements ISupplierEditVi
                 new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_contact_information") }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_contactperson") }),
                 new sap.m.Input("", {
-                    placeholder: ibas.i18n.prop("bo_customer_contactperson"),
-                    tooltip: ibas.i18n.prop("bo_customer_contactperson"),
                     showValueHelp: true,
                     valueHelpRequest: function (): void {
                         that.fireViewEvents(that.chooseBusinessPartnerContactPersonEvent);
@@ -97,28 +76,24 @@ export class SupplierEditView extends ibas.BOEditView implements ISupplierEditVi
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_telephone1") }),
                 new sap.m.Input("", {
                     type: sap.m.InputType.Text,
-                    editable: false
                 }).bindProperty("value", {
                     path: "telephone1"
                 }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_telephone2") }),
                 new sap.m.Input("", {
                     type: sap.m.InputType.Text,
-                    editable: false
                 }).bindProperty("value", {
                     path: "telephone2"
                 }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_mobilephone") }),
                 new sap.m.Input("", {
                     type: sap.m.InputType.Text,
-                    editable: false
                 }).bindProperty("value", {
                     path: "mobilePhone"
                 }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_faxnumber") }),
                 new sap.m.Input("", {
                     type: sap.m.InputType.Text,
-                    editable: false
                 }).bindProperty("value", {
                     path: "faxNumber"
                 }),
@@ -181,6 +156,7 @@ export class SupplierEditView extends ibas.BOEditView implements ISupplierEditVi
                 }).bindProperty("dateValue", {
                     path: "invaliddate"
                 }),
+                new sap.ui.core.Title("", {}),
             ],
         });
         this.page = new sap.m.Page("", {

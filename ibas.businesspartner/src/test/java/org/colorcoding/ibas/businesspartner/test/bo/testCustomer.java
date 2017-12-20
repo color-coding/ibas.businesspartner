@@ -9,7 +9,7 @@ import org.colorcoding.ibas.businesspartner.repository.IBORepositoryBusinessPart
 import junit.framework.TestCase;
 
 /**
- * 业务伙伴-客户 测试
+ * 客户 测试
  * 
  */
 public class testCustomer extends TestCase {

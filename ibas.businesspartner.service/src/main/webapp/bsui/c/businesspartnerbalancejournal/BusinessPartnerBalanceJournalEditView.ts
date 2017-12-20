@@ -10,13 +10,6 @@ import * as ibas from "ibas/index";
 import * as openui5 from "openui5/index";
 import * as bo from "../../../borep/bo/index";
 import { IBusinessPartnerBalanceJournalEditView } from "../../../bsapp/businesspartnerbalancejournal/index";
-import {
-    IContactPerson,
-    BO_CODE_CONTACTPERSON,
-    emBusinessPartnerType,
-    emBusinessPartnerNature,
-    emGender,
-} from "../../../api/index";
 
 /**
  * 编辑视图-业务伙伴余额记录
@@ -36,16 +29,6 @@ export class BusinessPartnerBalanceJournalEditView extends ibas.BOEditView imple
         let that: this = this;
         this.viewTopForm = new sap.ui.layout.form.SimpleForm("", {
             editable: true,
-            layout: sap.ui.layout.form.SimpleFormLayout.ResponsiveGridLayout,
-            singleContainerFullSize: false,
-            adjustLabelSpan: false,
-            labelSpanL: 2,
-            labelSpanM: 2,
-            labelSpanS: 12,
-            columnsXL: 2,
-            columnsL: 2,
-            columnsM: 1,
-            columnsS: 1,
             content: [
                 new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_basis_information") }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnerbalancejournal_businesspartner") }),
@@ -55,8 +38,8 @@ export class BusinessPartnerBalanceJournalEditView extends ibas.BOEditView imple
                     path: "businessPartner"
                 }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnerbalancejournal_businesspartnertype") }),
-                new sap.m.SegmentedButton("", {
-                    items: openui5.utils.createSegmentedButtonItems(emBusinessPartnerType)
+                new sap.m.Select("", {
+                    items: openui5.utils.createComboBoxItems(bo.emBusinessPartnerType)
                 }).bindProperty("selectedKey", {
                     path: "businessPartnerType",
                     type: "sap.ui.model.type.Integer"

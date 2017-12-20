@@ -12,7 +12,7 @@ import * as bo from "../../../borep/bo/index";
 import { ISupplierListView } from "../../../bsapp/supplier/index";
 
 /**
- * 列表视图-业务伙伴-供应商
+ * 列表视图-供应商
  */
 export class SupplierListView extends ibas.BOListView implements ISupplierListView {
     /** 返回查询的对象 */
@@ -59,14 +59,6 @@ export class SupplierListView extends ibas.BOListView implements ISupplierListVi
                     })
                 }),
                 new sap.ui.table.Column("", {
-                    label: ibas.i18n.prop("bo_supplier_balance"),
-                    template: new sap.m.Text("", {
-                        wrapping: false
-                    }).bindProperty("text", {
-                        path: "balance"
-                    })
-                }),
-                new sap.ui.table.Column("", {
                     label: ibas.i18n.prop("bo_supplier_deleted"),
                     template: new sap.m.Text("", {
                         wrapping: false
@@ -92,6 +84,7 @@ export class SupplierListView extends ibas.BOListView implements ISupplierListVi
                             that.fireViewEvents(that.newDataEvent);
                         }
                     }),
+                    /*
                     new sap.m.Button("", {
                         text: ibas.i18n.prop("shell_data_view"),
                         type: sap.m.ButtonType.Transparent,
@@ -103,6 +96,7 @@ export class SupplierListView extends ibas.BOListView implements ISupplierListVi
                             );
                         }
                     }),
+                    */
                     new sap.m.Button("", {
                         text: ibas.i18n.prop("shell_data_edit"),
                         type: sap.m.ButtonType.Transparent,

@@ -86,7 +86,7 @@ public interface IBORepositoryBusinessPartnerSvc extends IBORepositorySmartServi
 
 	// --------------------------------------------------------------------------------------------//
 	/**
-	 * 查询-业务伙伴-客户
+	 * 查询-客户
 	 * 
 	 * @param criteria
 	 *            查询
@@ -97,7 +97,7 @@ public interface IBORepositoryBusinessPartnerSvc extends IBORepositorySmartServi
 	OperationResult<Customer> fetchCustomer(ICriteria criteria, String token);
 
 	/**
-	 * 保存-业务伙伴-客户
+	 * 保存-客户
 	 * 
 	 * @param bo
 	 *            对象实例
@@ -109,7 +109,7 @@ public interface IBORepositoryBusinessPartnerSvc extends IBORepositorySmartServi
 
 	// --------------------------------------------------------------------------------------------//
 	/**
-	 * 查询-业务伙伴-供应商
+	 * 查询-供应商
 	 * 
 	 * @param criteria
 	 *            查询
@@ -120,7 +120,7 @@ public interface IBORepositoryBusinessPartnerSvc extends IBORepositorySmartServi
 	OperationResult<Supplier> fetchSupplier(ICriteria criteria, String token);
 
 	/**
-	 * 保存-业务伙伴-供应商
+	 * 保存-供应商
 	 * 
 	 * @param bo
 	 *            对象实例

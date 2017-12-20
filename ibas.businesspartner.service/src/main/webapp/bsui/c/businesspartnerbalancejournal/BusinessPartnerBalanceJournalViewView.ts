@@ -10,13 +10,6 @@ import * as ibas from "ibas/index";
 import * as openui5 from "openui5/index";
 import * as bo from "../../../borep/bo/index";
 import { IBusinessPartnerBalanceJournalViewView } from "../../../bsapp/businesspartnerbalancejournal/index";
-import {
-    IContactPerson,
-    BO_CODE_CONTACTPERSON,
-    emBusinessPartnerType,
-    emBusinessPartnerNature,
-    emGender,
-} from "../../../api/index";
 
 /**
  * 查看视图-业务伙伴余额记录
@@ -31,16 +24,6 @@ export class BusinessPartnerBalanceJournalViewView extends ibas.BOViewView imple
         let that: this = this;
         this.viewTopForm = new sap.ui.layout.form.SimpleForm("", {
             editable: false,
-            layout: sap.ui.layout.form.SimpleFormLayout.ResponsiveGridLayout,
-            singleContainerFullSize: false,
-            adjustLabelSpan: false,
-            labelSpanL: 2,
-            labelSpanM: 2,
-            labelSpanS: 12,
-            columnsXL: 2,
-            columnsL: 2,
-            columnsM: 1,
-            columnsS: 1,
             content: [
                 new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_basis_information") }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnerbalancejournal_businesspartner") }),
@@ -55,7 +38,7 @@ export class BusinessPartnerBalanceJournalViewView extends ibas.BOViewView imple
                 }).bindProperty("text", {
                     path: "businessPartnerType",
                     formatter(data: any): any {
-                        return ibas.enums.describe(emBusinessPartnerType, data);
+                        return ibas.enums.describe(bo.emBusinessPartnerType, data);
                     }
                 }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnerbalancejournal_objectkey") }),

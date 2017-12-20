@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE Domain>
 <Domain Name="BusinessPartner" ShortName="BP">
-  <Model Name="Supplier" Description="业务伙伴-供应商" ModelType="MasterData" Mapped="${Company}_BP_OSUP">
+  <Model Name="Supplier" Description="供应商" ModelType="MasterData" Mapped="${Company}_BP_OSUP">
     <Property Name="Code" Description="编码" DataType="Alphanumeric" DataSubType="Default" EditSize="20" Mapped="Code" PrimaryKey="Yes" UniqueKey="Yes"/>
     <Property Name="Name" Description="名称" DataType="Alphanumeric" DataSubType="Default" EditSize="100" Mapped="Name"/>
     <Property Name="Group" Description="组代码" DataType="Alphanumeric" DataSubType="Default" EditSize="8" Mapped="Group"/>

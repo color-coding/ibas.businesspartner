@@ -24,16 +24,6 @@ export class BusinessPartnerGroupViewView extends ibas.BOViewView implements IBu
         let that: this = this;
         this.viewTopForm = new sap.ui.layout.form.SimpleForm("", {
             editable: false,
-            layout: sap.ui.layout.form.SimpleFormLayout.ResponsiveGridLayout,
-            singleContainerFullSize: false,
-            adjustLabelSpan: false,
-            labelSpanL: 2,
-            labelSpanM: 2,
-            labelSpanS: 12,
-            columnsXL: 2,
-            columnsL: 2,
-            columnsM: 1,
-            columnsS: 1,
             content: [
                 new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_basis_information") }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnergroup_code") }),
@@ -48,30 +38,18 @@ export class BusinessPartnerGroupViewView extends ibas.BOViewView implements IBu
                 }).bindProperty("text", {
                     path: "name"
                 }),
+                new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_other_information") }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnergroup_docentry") }),
                 new sap.m.Text("", {
                     type: sap.m.InputType.Text,
                 }).bindProperty("text", {
                     path: "docEntry"
                 }),
-                new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_other_information") }),
-                new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnergroup_createdate") }),
+                new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnergroup_objectcode") }),
                 new sap.m.Text("", {
+                    type: sap.m.InputType.Text,
                 }).bindProperty("text", {
-                    path: "createDate",
-                    type: new sap.ui.model.type.Date({
-                        pattern: "yyyy-MM-dd",
-                        strictParsing: true,
-                    }),
-                }),
-                new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnergroup_updatedate") }),
-                new sap.m.Text("", {
-                }).bindProperty("text", {
-                    path: "updateDate",
-                    type: new sap.ui.model.type.Date({
-                        pattern: "yyyy-MM-dd",
-                        strictParsing: true,
-                    }),
+                    path: "objectCode"
                 }),
             ]
         });

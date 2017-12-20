@@ -11,7 +11,7 @@ import * as bo from "../../borep/bo/index";
 import { BORepositoryBusinessPartner } from "../../borep/BORepositories";
 import { SupplierEditApp } from "./SupplierEditApp";
 
-/** 选择应用-业务伙伴-供应商 */
+/** 选择应用-供应商 */
 export class SupplierChooseApp extends ibas.BOChooseService<ISupplierChooseView, bo.Supplier> {
 
     /** 应用标识 */
@@ -82,12 +82,12 @@ export class SupplierChooseApp extends ibas.BOChooseService<ISupplierChooseView,
         app.run();
     }
 }
-/** 视图-业务伙伴-供应商 */
+/** 视图-供应商 */
 export interface ISupplierChooseView extends ibas.IBOChooseView {
     /** 显示数据 */
     showData(datas: bo.Supplier[]): void;
 }
-/** 业务伙伴-供应商选择服务映射 */
+/** 供应商选择服务映射 */
 export class SupplierChooseServiceMapping extends ibas.BOChooseServiceMapping {
     /** 构造函数 */
     constructor() {

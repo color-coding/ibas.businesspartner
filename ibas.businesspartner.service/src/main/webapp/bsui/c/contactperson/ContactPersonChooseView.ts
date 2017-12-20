@@ -67,7 +67,10 @@ export class ContactPersonChooseView extends ibas.BOChooseView implements IConta
                     template: new sap.m.Text("", {
                         wrapping: false
                     }).bindProperty("text", {
-                        path: "ownerType"
+                        path: "ownerType",
+                        formatter(data: any): any {
+                            return ibas.enums.describe(bo.emBusinessPartnerType, data);
+                        }
                     })
                 }),
                 new sap.ui.table.Column("", {
@@ -87,19 +90,19 @@ export class ContactPersonChooseView extends ibas.BOChooseView implements IConta
                     })
                 }),
                 new sap.ui.table.Column("", {
+                    label: ibas.i18n.prop("bo_contactperson_address"),
+                    template: new sap.m.Text("", {
+                        wrapping: false
+                    }).bindProperty("text", {
+                        path: "address"
+                    })
+                }),
+                new sap.ui.table.Column("", {
                     label: ibas.i18n.prop("bo_contactperson_mobilephone"),
                     template: new sap.m.Text("", {
                         wrapping: false
                     }).bindProperty("text", {
                         path: "mobilePhone"
-                    })
-                }),
-                new sap.ui.table.Column("", {
-                    label: ibas.i18n.prop("bo_contactperson_mail"),
-                    template: new sap.m.Text("", {
-                        wrapping: false
-                    }).bindProperty("text", {
-                        path: "mail"
                     })
                 }),
                 new sap.ui.table.Column("", {

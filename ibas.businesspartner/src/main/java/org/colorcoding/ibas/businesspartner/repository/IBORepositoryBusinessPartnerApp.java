@@ -74,7 +74,7 @@ public interface IBORepositoryBusinessPartnerApp extends IBORepositoryApplicatio
 
 	// --------------------------------------------------------------------------------------------//
 	/**
-	 * 查询-业务伙伴-客户
+	 * 查询-客户
 	 * 
 	 * @param criteria
 	 *            查询
@@ -83,7 +83,7 @@ public interface IBORepositoryBusinessPartnerApp extends IBORepositoryApplicatio
 	IOperationResult<ICustomer> fetchCustomer(ICriteria criteria);
 
 	/**
-	 * 保存-业务伙伴-客户
+	 * 保存-客户
 	 * 
 	 * @param bo
 	 *            对象实例
@@ -93,7 +93,7 @@ public interface IBORepositoryBusinessPartnerApp extends IBORepositoryApplicatio
 
 	// --------------------------------------------------------------------------------------------//
 	/**
-	 * 查询-业务伙伴-供应商
+	 * 查询-供应商
 	 * 
 	 * @param criteria
 	 *            查询
@@ -102,7 +102,7 @@ public interface IBORepositoryBusinessPartnerApp extends IBORepositoryApplicatio
 	IOperationResult<ISupplier> fetchSupplier(ICriteria criteria);
 
 	/**
-	 * 保存-业务伙伴-供应商
+	 * 保存-供应商
 	 * 
 	 * @param bo
 	 *            对象实例

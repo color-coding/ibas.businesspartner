@@ -13,7 +13,7 @@ import { DataConverter4bp } from "../../borep/DataConverters";
 import { CustomerViewApp } from "./CustomerViewApp";
 import { CustomerEditApp } from "./CustomerEditApp";
 
-/** 列表应用-业务伙伴-客户 */
+/** 列表应用-客户 */
 export class CustomerListApp extends ibas.BOListApplication<ICustomerListView, bo.Customer> {
 
     /** 应用标识 */
@@ -181,7 +181,7 @@ export class CustomerListApp extends ibas.BOListApplication<ICustomerListView, b
         ];
     }
 }
-/** 视图-业务伙伴-客户 */
+/** 视图-客户 */
 export interface ICustomerListView extends ibas.IBOListView {
     /** 编辑数据事件，参数：编辑对象 */
     editDataEvent: Function;

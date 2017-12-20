@@ -10,13 +10,7 @@ import * as ibas from "ibas/index";
 import * as openui5 from "openui5/index";
 import * as bo from "../../../borep/bo/index";
 import { ISupplierViewView } from "../../../bsapp/supplier/index";
-import {
-    IContactPerson,
-    BO_CODE_CONTACTPERSON,
-    emBusinessPartnerType,
-    emBusinessPartnerNature,
-    emGender,
-} from "../../../api/index";
+
 /**
  * 视图-Supplier
  */
@@ -24,26 +18,14 @@ export class SupplierViewView extends ibas.BOViewView implements ISupplierViewVi
     private page: sap.m.Page;
     private mainLayout: sap.ui.layout.VerticalLayout;
     private viewTopForm: sap.ui.layout.form.SimpleForm;
-    private viewBottomForm: sap.ui.layout.form.SimpleForm;
-    private tableSupplierItem: sap.m.List;
-    private childEditForm: sap.ui.layout.form.SimpleForm;
+
     /** 绘制视图 */
     darw(): any {
         let that: this = this;
         this.viewTopForm = new sap.ui.layout.form.SimpleForm("", {
             editable: true,
-            layout: sap.ui.layout.form.SimpleFormLayout.ResponsiveGridLayout,
-            singleContainerFullSize: false,
-            adjustLabelSpan: false,
-            labelSpanL: 2,
-            labelSpanM: 2,
-            labelSpanS: 12,
-            columnsXL: 2,
-            columnsL: 2,
-            columnsM: 1,
-            columnsS: 1,
             content: [
-                  new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_basis_information") }),
+                new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_basis_information") }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_code") }),
                 new sap.m.Text("", {
                     type: sap.m.InputType.Text
@@ -68,7 +50,7 @@ export class SupplierViewView extends ibas.BOViewView implements ISupplierViewVi
                 }).bindProperty("text", {
                     path: "companyPrivate",
                     formatter(data: any): any {
-                        return ibas.enums.describe(emBusinessPartnerNature, data);
+                        return ibas.enums.describe(bo.emBusinessPartnerNature, data);
                     }
                 }),
                 new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_contact_information") }),

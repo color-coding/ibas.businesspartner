@@ -40,11 +40,13 @@ export class Console extends ibas.ModuleConsole {
     /** 初始化 */
     protected registers(): void {
         // 注册功能
-        this.register(new BusinessPartnerGroupFunc());
-        this.register(new ContactPersonFunc());
         this.register(new CustomerFunc());
         this.register(new SupplierFunc());
-        this.register(new BusinessPartnerBalanceJournalFunc());
+        this.register(new ContactPersonFunc());
+        this.register(new BusinessPartnerGroupFunc());
+
+        // this.register(new BusinessPartnerBalanceJournalFunc());
+
         // 注册服务应用
         this.register(new BusinessPartnerGroupChooseServiceMapping());
         this.register(new BusinessPartnerGroupLinkServiceMapping());
@@ -54,8 +56,6 @@ export class Console extends ibas.ModuleConsole {
         this.register(new CustomerLinkServiceMapping());
         this.register(new SupplierChooseServiceMapping());
         this.register(new SupplierLinkServiceMapping());
-        this.register(new BusinessPartnerBalanceJournalChooseServiceMapping());
-        this.register(new BusinessPartnerBalanceJournalLinkServiceMapping());
         // 注册常驻应用
 
     }

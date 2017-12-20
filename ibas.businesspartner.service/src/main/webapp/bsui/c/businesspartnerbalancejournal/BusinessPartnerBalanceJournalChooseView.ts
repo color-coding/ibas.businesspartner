@@ -62,13 +62,23 @@ export class BusinessPartnerBalanceJournalChooseView extends ibas.BOChooseView i
             visibleRowCount: ibas.config.get(openui5.utils.CONFIG_ITEM_LIST_TABLE_VISIBLE_ROW_COUNT, 15),
             rows: "{/rows}",
             columns: [
-
                 new sap.ui.table.Column("", {
                     label: ibas.i18n.prop("bo_businesspartnerbalancejournal_objectkey"),
                     template: new sap.m.Text("", {
                         wrapping: false
                     }).bindProperty("text", {
                         path: "objectKey"
+                    })
+                }),
+                new sap.ui.table.Column("", {
+                    label: ibas.i18n.prop("bo_businesspartnerbalancejournal_businesspartnertype"),
+                    template: new sap.m.Text("", {
+                        wrapping: false
+                    }).bindProperty("text", {
+                        path: "businessPartnerType",
+                        formatter(data: any): any {
+                            return ibas.enums.describe(bo.emBusinessPartnerType, data);
+                        }
                     })
                 }),
                 new sap.ui.table.Column("", {

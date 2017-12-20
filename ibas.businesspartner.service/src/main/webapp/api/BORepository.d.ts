@@ -62,23 +62,23 @@ export interface IBORepositoryBusinessPartner extends IBORepositoryApplication {
     saveContactPerson(saver: SaveCaller<bo.IContactPerson>);
 
     /**
-     * 查询 业务伙伴-客户
+     * 查询 客户
      * @param fetcher 查询者
      */
     fetchCustomer(fetcher: FetchCaller<bo.ICustomer>);
     /**
-     * 保存 业务伙伴-客户
+     * 保存 客户
      * @param saver 保存者
      */
     saveCustomer(saver: SaveCaller<bo.ICustomer>);
 
     /**
-     * 查询 业务伙伴-供应商
+     * 查询 供应商
      * @param fetcher 查询者
      */
     fetchSupplier(fetcher: FetchCaller<bo.ISupplier>);
     /**
-     * 保存 业务伙伴-供应商
+     * 保存 供应商
      * @param saver 保存者
      */
     saveSupplier(saver: SaveCaller<bo.ISupplier>);

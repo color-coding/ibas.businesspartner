@@ -27,7 +27,7 @@ import {
     emBusinessPartnerNature,
 } from "../../api/index";
 
-/** 业务伙伴-客户 */
+/** 客户 */
 export class Customer extends BOMasterData<Customer> implements ICustomer {
 
     /** 业务对象编码 */
@@ -454,11 +454,10 @@ export class Customer extends BOMasterData<Customer> implements ICustomer {
         this.setProperty(Customer.PROPERTY_ORGANIZATION_NAME, value);
     }
 
-
-
     /** 初始化数据 */
     protected init(): void {
         this.objectCode = config.applyVariables(Customer.BUSINESS_OBJECT_CODE);
+        this.companyPrivate = emBusinessPartnerNature.COMPANY;
     }
 }
 

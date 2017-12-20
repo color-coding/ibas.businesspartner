@@ -10,16 +10,9 @@ import * as ibas from "ibas/index";
 import * as openui5 from "openui5/index";
 import * as bo from "../../../borep/bo/index";
 import { ISupplierViewView } from "../../../bsapp/supplier/index";
-import {
-    IContactPerson,
-    BO_CODE_CONTACTPERSON,
-    emBusinessPartnerType,
-    emBusinessPartnerNature,
-    emGender,
-} from "../../../api/index";
 
 /**
- * 查看视图-业务伙伴-供应商
+ * 查看视图-供应商
  */
 export class SupplierViewView extends ibas.BOViewView implements ISupplierViewView {
 
@@ -31,16 +24,6 @@ export class SupplierViewView extends ibas.BOViewView implements ISupplierViewVi
         let that: this = this;
         this.viewTopForm = new sap.ui.layout.form.SimpleForm("", {
             editable: false,
-            layout: sap.ui.layout.form.SimpleFormLayout.ResponsiveGridLayout,
-            singleContainerFullSize: false,
-            adjustLabelSpan: false,
-            labelSpanL: 2,
-            labelSpanM: 2,
-            labelSpanS: 12,
-            columnsXL: 2,
-            columnsL: 2,
-            columnsM: 1,
-            columnsS: 1,
             content: [
                 new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_basis_information") }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_code") }),
@@ -67,7 +50,7 @@ export class SupplierViewView extends ibas.BOViewView implements ISupplierViewVi
                 }).bindProperty("text", {
                     path: "companyPrivate",
                     formatter(data: any): any {
-                        return ibas.enums.describe(emBusinessPartnerNature, data);
+                        return ibas.enums.describe(bo.emBusinessPartnerNature, data);
                     }
                 }),
                 new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_contact_information") }),
@@ -146,24 +129,6 @@ export class SupplierViewView extends ibas.BOViewView implements ISupplierViewVi
                     path: "taxId",
                 }),
                 new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_other_information") }),
-                new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_createdate") }),
-                new sap.m.Text("", {
-                }).bindProperty("text", {
-                    path: "createDate",
-                    type: new sap.ui.model.type.Date({
-                        pattern: "yyyy-MM-dd",
-                        strictParsing: true,
-                    }),
-                }),
-                new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_updatedate") }),
-                new sap.m.Text("", {
-                }).bindProperty("text", {
-                    path: "updateDate",
-                    type: new sap.ui.model.type.Date({
-                        pattern: "yyyy-MM-dd",
-                        strictParsing: true,
-                    }),
-                }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_validdate") }),
                 new sap.m.Text("", {
                 }).bindProperty("text", {
@@ -181,7 +146,8 @@ export class SupplierViewView extends ibas.BOViewView implements ISupplierViewVi
                         pattern: "yyyy-MM-dd",
                         strictParsing: true,
                     }),
-                })
+                }),
+                new sap.ui.core.Title("", {}),
             ]
         });
         this.page = new sap.m.Page("", {

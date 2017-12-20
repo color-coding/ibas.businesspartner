@@ -7,6 +7,7 @@
  */
 
 // 模块索引文件，此文件集中导出类
+export * from "../../api/Datas";
 export * from "./BusinessPartnerBalanceJournal";
 export * from "./BusinessPartnerGroup";
 export * from "./ContactPerson";
