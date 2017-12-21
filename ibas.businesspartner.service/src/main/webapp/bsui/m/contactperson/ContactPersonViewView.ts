@@ -13,7 +13,7 @@ import { IContactPersonViewView } from "../../../bsapp/contactperson/index";
 
 export class ContactPersonViewView extends ibas.BOViewView implements IContactPersonViewView {
     private page: sap.m.Page;
-    private mainLayout: sap.ui.layout.VerticalLayout;
+    private layoutMain: sap.ui.layout.VerticalLayout;
     private viewTopForm: sap.ui.layout.form.SimpleForm;
     private viewBottomForm: sap.ui.layout.form.SimpleForm;
     private tableContactPersonItem: sap.m.List;
@@ -24,7 +24,7 @@ export class ContactPersonViewView extends ibas.BOViewView implements IContactPe
         this.viewTopForm = new sap.ui.layout.form.SimpleForm("", {
             editable: true,
             content: [
-                new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_basis_information") }),
+                new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_general_information") }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_name") }),
                 new sap.m.Text("", {
                     type: sap.m.InputType.Text
@@ -123,7 +123,7 @@ export class ContactPersonViewView extends ibas.BOViewView implements IContactPe
                 }),
             ]
         });
-        this.mainLayout = new sap.ui.layout.VerticalLayout("", {
+        this.layoutMain = new sap.ui.layout.VerticalLayout("", {
             content: [
                 this.viewTopForm
             ]
@@ -174,7 +174,7 @@ export class ContactPersonViewView extends ibas.BOViewView implements IContactPe
                     })
                 ]
             }),
-            content: [this.mainLayout]
+            content: [this.layoutMain]
         });
         this.id = this.page.getId();
         return this.page;
@@ -190,7 +190,7 @@ export class ContactPersonViewView extends ibas.BOViewView implements IContactPe
 
     /** 显示数据 */
     showContactPerson(data: bo.ContactPerson): void {
-        this.mainLayout.setModel(new sap.ui.model.json.JSONModel(data));
-        this.mainLayout.bindObject("/");
+        this.layoutMain.setModel(new sap.ui.model.json.JSONModel(data));
+        this.layoutMain.bindObject("/");
     }
 }

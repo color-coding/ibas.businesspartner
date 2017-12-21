@@ -13,7 +13,7 @@ import { IBusinessPartnerGroupEditView } from "../../../bsapp/businesspartnergro
 export class BusinessPartnerGroupEditView extends ibas.BOEditView implements IBusinessPartnerGroupEditView {
 
     private page: sap.m.Page;
-    private mainLayout: sap.ui.layout.VerticalLayout;
+    private layoutMain: sap.ui.layout.VerticalLayout;
     private viewTopForm: sap.ui.layout.form.SimpleForm;
     /** 删除数据事件 */
     deleteDataEvent: Function;
@@ -29,7 +29,7 @@ export class BusinessPartnerGroupEditView extends ibas.BOEditView implements IBu
         this.viewTopForm = new sap.ui.layout.form.SimpleForm("", {
             editable: true,
             content: [
-                new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_basis_information") }),
+                new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_general_information") }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnergroup_code") }),
                 new sap.m.Input("", {
                     type: sap.m.InputType.Text
@@ -50,7 +50,7 @@ export class BusinessPartnerGroupEditView extends ibas.BOEditView implements IBu
                 })
             ]
         });
-        this.mainLayout = new sap.ui.layout.VerticalLayout("", {
+        this.layoutMain = new sap.ui.layout.VerticalLayout("", {
             height: "100%",
             content: [
                 this.viewTopForm,
@@ -113,7 +113,7 @@ export class BusinessPartnerGroupEditView extends ibas.BOEditView implements IBu
                     }),
                 ]
             }),
-            content: [this.mainLayout]
+            content: [this.layoutMain]
         });
         this.id = this.page.getId();
         return this.page;
@@ -133,10 +133,10 @@ export class BusinessPartnerGroupEditView extends ibas.BOEditView implements IBu
     }
     /** 显示数据 */
     showBusinessPartnerGroup(data: bo.BusinessPartnerGroup): void {
-        this.mainLayout.setModel(new sap.ui.model.json.JSONModel(data));
-        this.mainLayout.bindObject("/");
+        this.layoutMain.setModel(new sap.ui.model.json.JSONModel(data));
+        this.layoutMain.bindObject("/");
         // 监听属性改变，并更新控件
-        openui5.utils.refreshModelChanged(this.mainLayout, data);
+        openui5.utils.refreshModelChanged(this.layoutMain, data);
         // 改变视图状态
         this.changeViewStatus(data);
     }

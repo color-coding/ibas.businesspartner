@@ -25,7 +25,7 @@ export class BusinessPartnerBalanceJournalViewView extends ibas.BOViewView imple
         this.viewTopForm = new sap.ui.layout.form.SimpleForm("", {
             editable: false,
             content: [
-                new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_basis_information") }),
+                new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_general_information") }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnerbalancejournal_businesspartner") }),
                 new sap.m.Text("", {
                     type: sap.m.InputType.Text

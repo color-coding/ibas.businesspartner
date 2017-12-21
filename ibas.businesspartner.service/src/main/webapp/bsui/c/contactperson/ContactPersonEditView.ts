@@ -30,7 +30,7 @@ export class ContactPersonEditView extends ibas.BOEditView implements IContactPe
         this.viewTopForm = new sap.ui.layout.form.SimpleForm("", {
             editable: true,
             content: [
-                new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_basis_information") }),
+                new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_general_information") }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_ownertype") }),
                 new sap.m.Select("", {
                     items: openui5.utils.createComboBoxItems(bo.emBusinessPartnerType)

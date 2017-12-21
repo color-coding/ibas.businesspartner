@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!DOCTYPE ApplicationModule>
+<ns:ApplicationModule xmlns:ns="http://colorcoding.org/ibas/initialfantasy/bo">
+    <Activated>YES</Activated>
+    <ModuleId>2bd803fd-975c-4f7c-aa41-1ca2991cc126</ModuleId>
+    <ModuleName>BusinessPartner</ModuleName>
+    <PlatformId>PHONE</PlatformId>
+</ns:ApplicationModule>

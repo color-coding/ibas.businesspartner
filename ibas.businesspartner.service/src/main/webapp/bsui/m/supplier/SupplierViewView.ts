@@ -16,7 +16,7 @@ import { ISupplierViewView } from "../../../bsapp/supplier/index";
  */
 export class SupplierViewView extends ibas.BOViewView implements ISupplierViewView {
     private page: sap.m.Page;
-    private mainLayout: sap.ui.layout.VerticalLayout;
+    private layoutMain: sap.ui.layout.VerticalLayout;
     private viewTopForm: sap.ui.layout.form.SimpleForm;
 
     /** 绘制视图 */
@@ -25,7 +25,7 @@ export class SupplierViewView extends ibas.BOViewView implements ISupplierViewVi
         this.viewTopForm = new sap.ui.layout.form.SimpleForm("", {
             editable: true,
             content: [
-                new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_basis_information") }),
+                new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_general_information") }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_code") }),
                 new sap.m.Text("", {
                     type: sap.m.InputType.Text
@@ -167,7 +167,7 @@ export class SupplierViewView extends ibas.BOViewView implements ISupplierViewVi
                 })
             ]
         });
-        this.mainLayout = new sap.ui.layout.VerticalLayout("", {
+        this.layoutMain = new sap.ui.layout.VerticalLayout("", {
             content: [
                 this.viewTopForm
             ]
@@ -218,7 +218,7 @@ export class SupplierViewView extends ibas.BOViewView implements ISupplierViewVi
                     })
                 ]
             }),
-            content: [this.mainLayout]
+            content: [this.layoutMain]
         });
         this.id = this.page.getId();
         return this.page;
@@ -234,7 +234,7 @@ export class SupplierViewView extends ibas.BOViewView implements ISupplierViewVi
 
     /** 显示数据 */
     showSupplier(data: bo.Supplier): void {
-        this.mainLayout.setModel(new sap.ui.model.json.JSONModel(data));
-        this.mainLayout.bindObject("/");
+        this.layoutMain.setModel(new sap.ui.model.json.JSONModel(data));
+        this.layoutMain.bindObject("/");
     }
 }
