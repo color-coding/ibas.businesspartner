@@ -100,7 +100,7 @@ export class SupplierListView extends ibas.BOListView implements ISupplierListVi
                         press: function (): void {
                             that.fireViewEvents(that.viewDataEvent,
                                 // 获取表格选中的对象
-                                openui5.utils.getTableSelecteds<bo.Supplier>(that.table).firstOrDefault()
+                                openui5.utils.getSelecteds<bo.Supplier>(that.table).firstOrDefault()
                             );
                         }
                     }),
@@ -112,7 +112,7 @@ export class SupplierListView extends ibas.BOListView implements ISupplierListVi
                         press: function (): void {
                             that.fireViewEvents(that.editDataEvent,
                                 // 获取表格选中的对象
-                                openui5.utils.getTableSelecteds<bo.Supplier>(that.table).firstOrDefault()
+                                openui5.utils.getSelecteds<bo.Supplier>(that.table).firstOrDefault()
                             );
                         }
                     }),
@@ -124,7 +124,7 @@ export class SupplierListView extends ibas.BOListView implements ISupplierListVi
                         press: function (): void {
                             that.fireViewEvents(that.deleteDataEvent,
                                 // 获取表格选中的对象
-                                openui5.utils.getTableSelecteds<bo.Supplier>(that.table)
+                                openui5.utils.getSelecteds<bo.Supplier>(that.table)
                             );
                         }
                     }),
@@ -223,6 +223,6 @@ export class SupplierListView extends ibas.BOListView implements ISupplierListVi
     }
     /** 获取选择的数据 */
     getSelecteds(): bo.Supplier[] {
-        return openui5.utils.getTableSelecteds<bo.Supplier>(this.table);
+        return openui5.utils.getSelecteds<bo.Supplier>(this.table);
     }
 }

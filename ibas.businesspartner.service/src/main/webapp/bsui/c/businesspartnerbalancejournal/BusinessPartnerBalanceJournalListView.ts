@@ -91,7 +91,7 @@ export class BusinessPartnerBalanceJournalListView extends ibas.BOListView imple
                         press: function (): void {
                             that.fireViewEvents(that.viewDataEvent,
                                 // 获取表格选中的对象
-                                openui5.utils.getTableSelecteds<bo.BusinessPartnerBalanceJournal>(that.table).firstOrDefault()
+                                openui5.utils.getSelecteds<bo.BusinessPartnerBalanceJournal>(that.table).firstOrDefault()
                             );
                         }
                     }),
@@ -190,6 +190,6 @@ export class BusinessPartnerBalanceJournalListView extends ibas.BOListView imple
     }
     /** 获取选择的数据 */
     getSelecteds(): bo.BusinessPartnerBalanceJournal[] {
-        return openui5.utils.getTableSelecteds<bo.BusinessPartnerBalanceJournal>(this.table);
+        return openui5.utils.getSelecteds<bo.BusinessPartnerBalanceJournal>(this.table);
     }
 }

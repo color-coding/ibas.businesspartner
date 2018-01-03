@@ -81,7 +81,7 @@ export class BusinessPartnerGroupListView extends ibas.BOListView implements IBu
                         press: function (): void {
                             that.fireViewEvents(that.viewDataEvent,
                                 // 获取表格选中的对象
-                                openui5.utils.getTableSelecteds<bo.BusinessPartnerGroup>(that.table).firstOrDefault()
+                                openui5.utils.getSelecteds<bo.BusinessPartnerGroup>(that.table).firstOrDefault()
                             );
                         }
                     }),
@@ -93,7 +93,7 @@ export class BusinessPartnerGroupListView extends ibas.BOListView implements IBu
                         press: function (): void {
                             that.fireViewEvents(that.editDataEvent,
                                 // 获取表格选中的对象
-                                openui5.utils.getTableSelecteds<bo.BusinessPartnerGroup>(that.table).firstOrDefault()
+                                openui5.utils.getSelecteds<bo.BusinessPartnerGroup>(that.table).firstOrDefault()
                             );
                         }
                     }),
@@ -105,7 +105,7 @@ export class BusinessPartnerGroupListView extends ibas.BOListView implements IBu
                         press: function (): void {
                             that.fireViewEvents(that.deleteDataEvent,
                                 // 获取表格选中的对象
-                                openui5.utils.getTableSelecteds<bo.BusinessPartnerGroup>(that.table)
+                                openui5.utils.getSelecteds<bo.BusinessPartnerGroup>(that.table)
                             );
                         }
                     }),
@@ -204,6 +204,6 @@ export class BusinessPartnerGroupListView extends ibas.BOListView implements IBu
     }
     /** 获取选择的数据 */
     getSelecteds(): bo.BusinessPartnerGroup[] {
-        return openui5.utils.getTableSelecteds<bo.BusinessPartnerGroup>(this.table);
+        return openui5.utils.getSelecteds<bo.BusinessPartnerGroup>(this.table);
     }
 }

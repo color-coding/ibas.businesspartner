@@ -119,7 +119,7 @@ export class ContactPersonListView extends ibas.BOListView implements IContactPe
                         press: function (): void {
                             that.fireViewEvents(that.viewDataEvent,
                                 // 获取表格选中的对象
-                                openui5.utils.getTableSelecteds<bo.ContactPerson>(that.table).firstOrDefault()
+                                openui5.utils.getSelecteds<bo.ContactPerson>(that.table).firstOrDefault()
                             );
                         }
                     }),
@@ -131,7 +131,7 @@ export class ContactPersonListView extends ibas.BOListView implements IContactPe
                         press: function (): void {
                             that.fireViewEvents(that.editDataEvent,
                                 // 获取表格选中的对象
-                                openui5.utils.getTableSelecteds<bo.ContactPerson>(that.table).firstOrDefault()
+                                openui5.utils.getSelecteds<bo.ContactPerson>(that.table).firstOrDefault()
                             );
                         }
                     }),
@@ -143,7 +143,7 @@ export class ContactPersonListView extends ibas.BOListView implements IContactPe
                         press: function (): void {
                             that.fireViewEvents(that.deleteDataEvent,
                                 // 获取表格选中的对象
-                                openui5.utils.getTableSelecteds<bo.ContactPerson>(that.table)
+                                openui5.utils.getSelecteds<bo.ContactPerson>(that.table)
                             );
                         }
                     }),
@@ -242,6 +242,6 @@ export class ContactPersonListView extends ibas.BOListView implements IContactPe
     }
     /** 获取选择的数据 */
     getSelecteds(): bo.ContactPerson[] {
-        return openui5.utils.getTableSelecteds<bo.ContactPerson>(this.table);
+        return openui5.utils.getSelecteds<bo.ContactPerson>(this.table);
     }
 }
