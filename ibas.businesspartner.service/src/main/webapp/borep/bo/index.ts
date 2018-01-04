@@ -8,7 +8,7 @@
 
 // 模块索引文件，此文件集中导出类
 export * from "../../api/Datas";
-export * from "./BusinessPartnerBalanceJournal";
+export * from "./Address";
 export * from "./BusinessPartnerGroup";
 export * from "./ContactPerson";
 export * from "./Customer";
@@ -16,8 +16,8 @@ export * from "./Supplier";
 
 // 注册业务对象到工厂
 import * as ibas from "ibas/index";
-import { BusinessPartnerBalanceJournal } from "./BusinessPartnerBalanceJournal";
-ibas.boFactory.register(BusinessPartnerBalanceJournal.BUSINESS_OBJECT_CODE, BusinessPartnerBalanceJournal);
+import { Address } from "./Address";
+ibas.boFactory.register(Address.BUSINESS_OBJECT_CODE, Address);
 import { BusinessPartnerGroup } from "./BusinessPartnerGroup";
 ibas.boFactory.register(BusinessPartnerGroup.BUSINESS_OBJECT_CODE, BusinessPartnerGroup);
 import { ContactPerson } from "./ContactPerson";

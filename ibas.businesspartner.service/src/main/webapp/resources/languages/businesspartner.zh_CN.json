@@ -26,10 +26,10 @@
   "businesspartner_app_supplier_choose": "供应商选择",
   "businesspartner_app_supplier_view": "供应商查看",
   "businesspartner_app_supplier_edit": "供应商编辑",
-  "businesspartner_func_businesspartnerbalancejournal": "业务伙伴余额记录",
-  "businesspartner_app_businesspartnerbalancejournal_list": "业务伙伴余额记录列表",
-  "businesspartner_app_businesspartnerbalancejournal_choose": "业务伙伴余额记录选择",
-  "businesspartner_app_businesspartnerbalancejournal_view": "业务伙伴余额记录查看",
-  "businesspartner_app_businesspartnerbalancejournal_edit": "业务伙伴余额记录编辑",
+  "businesspartner_func_address": "业务伙伴地址",
+  "businesspartner_app_address_list": "业务伙伴地址列表",
+  "businesspartner_app_address_choose": "业务伙伴地址选择",
+  "businesspartner_app_address_view": "业务伙伴地址查看",
+  "businesspartner_app_address_edit": "业务伙伴地址编辑",
   "businesspartner_closing_delimiter": "----结束----"
 }

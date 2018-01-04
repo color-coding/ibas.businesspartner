@@ -45,8 +45,8 @@ class BOConverter4bp extends ibas.BOConverter {
      * @returns 转换的值
      */
     protected convertData(boName: string, property: string, value: any): any {
-        if (boName === bo.BusinessPartnerBalanceJournal.name) {
-            if (property === bo.BusinessPartnerBalanceJournal.PROPERTY_BUSINESSPARTNERTYPE_NAME) {
+        if (boName === bo.Address.name) {
+            if (property === bo.Address.PROPERTY_OWNERTYPE_NAME) {
                 return ibas.enums.toString(emBusinessPartnerType, value);
             }
         } else if (boName === bo.ContactPerson.name) {
@@ -76,8 +76,8 @@ class BOConverter4bp extends ibas.BOConverter {
      * @returns 解析的值
      */
     protected parsingData(boName: string, property: string, value: any): any {
-        if (boName === bo.BusinessPartnerBalanceJournal.name) {
-            if (property === bo.BusinessPartnerBalanceJournal.PROPERTY_BUSINESSPARTNERTYPE_NAME) {
+        if (boName === bo.Address.name) {
+            if (property === bo.Address.PROPERTY_OWNERTYPE_NAME) {
                 return ibas.enums.valueOf(emBusinessPartnerType, value);
             }
         } else if (boName === bo.ContactPerson.name) {

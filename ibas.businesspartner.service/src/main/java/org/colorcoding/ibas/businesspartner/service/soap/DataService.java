@@ -7,7 +7,7 @@ import javax.jws.WebService;
 import org.colorcoding.ibas.bobas.common.Criteria;
 import org.colorcoding.ibas.bobas.common.OperationResult;
 import org.colorcoding.ibas.bobas.cxf.WebServicePath;
-import org.colorcoding.ibas.businesspartner.bo.businesspartnerbalancejournal.BusinessPartnerBalanceJournal;
+import org.colorcoding.ibas.businesspartner.bo.address.Address;
 import org.colorcoding.ibas.businesspartner.bo.businesspartnergroup.BusinessPartnerGroup;
 import org.colorcoding.ibas.businesspartner.bo.contactperson.ContactPerson;
 import org.colorcoding.ibas.businesspartner.bo.customer.Customer;
@@ -22,7 +22,7 @@ import org.colorcoding.ibas.businesspartner.repository.BORepositoryBusinessPartn
 public class DataService extends BORepositoryBusinessPartner {
 	// --------------------------------------------------------------------------------------------//
 	/**
-	 * 查询-业务伙伴余额记录
+	 * 查询-业务伙伴地址
 	 * 
 	 * @param criteria
 	 *            查询
@@ -31,13 +31,13 @@ public class DataService extends BORepositoryBusinessPartner {
 	 * @return 操作结果
 	 */
 	@WebMethod
-	public OperationResult<BusinessPartnerBalanceJournal> fetchBusinessPartnerBalanceJournal(
-			@WebParam(name = "criteria") Criteria criteria, @WebParam(name = "token") String token) {
-		return super.fetchBusinessPartnerBalanceJournal(criteria, token);
+	public OperationResult<Address> fetchAddress(@WebParam(name = "criteria") Criteria criteria,
+			@WebParam(name = "token") String token) {
+		return super.fetchAddress(criteria, token);
 	}
 
 	/**
-	 * 保存-业务伙伴余额记录
+	 * 保存-业务伙伴地址
 	 * 
 	 * @param bo
 	 *            对象实例
@@ -46,9 +46,9 @@ public class DataService extends BORepositoryBusinessPartner {
 	 * @return 操作结果
 	 */
 	@WebMethod
-	public OperationResult<BusinessPartnerBalanceJournal> saveBusinessPartnerBalanceJournal(
-			@WebParam(name = "bo") BusinessPartnerBalanceJournal bo, @WebParam(name = "token") String token) {
-		return super.saveBusinessPartnerBalanceJournal(bo, token);
+	public OperationResult<Address> saveAddress(@WebParam(name = "bo") Address bo,
+			@WebParam(name = "token") String token) {
+		return super.saveAddress(bo, token);
 	}
 
 	// --------------------------------------------------------------------------------------------//

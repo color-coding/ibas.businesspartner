@@ -9,10 +9,10 @@
 import * as ibas from "ibas/index";
 import { CONSOLE_ID, CONSOLE_NAME, CONSOLE_VERSION } from "../api/index";
 import {
-    BusinessPartnerBalanceJournalFunc,
-    BusinessPartnerBalanceJournalChooseServiceMapping,
-    BusinessPartnerBalanceJournalLinkServiceMapping
-} from "./businesspartnerbalancejournal/index";
+    AddressFunc,
+    AddressChooseServiceMapping,
+    AddressLinkServiceMapping
+} from "./address/index";
 import {
     BusinessPartnerGroupFunc,
     BusinessPartnerGroupChooseServiceMapping,
@@ -43,11 +43,12 @@ export class Console extends ibas.ModuleConsole {
         this.register(new CustomerFunc());
         this.register(new SupplierFunc());
         this.register(new ContactPersonFunc());
+        this.register(new AddressFunc());
         this.register(new BusinessPartnerGroupFunc());
 
-        // this.register(new BusinessPartnerBalanceJournalFunc());
-
         // 注册服务应用
+        this.register(new AddressChooseServiceMapping());
+        this.register(new AddressLinkServiceMapping());
         this.register(new BusinessPartnerGroupChooseServiceMapping());
         this.register(new BusinessPartnerGroupLinkServiceMapping());
         this.register(new ContactPersonChooseServiceMapping());
@@ -64,7 +65,7 @@ export class Console extends ibas.ModuleConsole {
         // 加载语言-框架默认
         ibas.i18n.load(this.rootUrl + "resources/languages/businesspartner.json");
         ibas.i18n.load(this.rootUrl + "resources/languages/enums.json");
-        ibas.i18n.load(this.rootUrl + "resources/languages/bo/businesspartnerbalancejournal.json");
+        ibas.i18n.load(this.rootUrl + "resources/languages/bo/address.json");
         ibas.i18n.load(this.rootUrl + "resources/languages/bo/businesspartnergroup.json");
         ibas.i18n.load(this.rootUrl + "resources/languages/bo/contactperson.json");
         ibas.i18n.load(this.rootUrl + "resources/languages/bo/customer.json");

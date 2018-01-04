@@ -7,8 +7,8 @@
  */
 
 import * as ibas from "ibas/index";
-import * as businesspartnerbalancejournalApps from "../../bsapp/businesspartnerbalancejournal/index";
-import * as businesspartnerbalancejournalViews from "./businesspartnerbalancejournal/index";
+import * as addressApps from "../../bsapp/address/index";
+import * as addressViews from "./address/index";
 import * as businesspartnergroupApps from "../../bsapp/businesspartnergroup/index";
 import * as contactpersonApps from "../../bsapp/contactperson/index";
 import * as customerApps from "../../bsapp/customer/index";
@@ -57,7 +57,7 @@ export default class Navigation extends ibas.ViewNavigation {
                 view = new customerViews.CustomerListView();
                 break;
             case customerApps.CustomerChooseApp.APPLICATION_ID:
-                 view = new customerViews.CustomerChooseView();
+                view = new customerViews.CustomerChooseView();
                 break;
             case customerApps.CustomerViewApp.APPLICATION_ID:
                 view = new customerViews.CustomerViewView();

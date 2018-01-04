@@ -20,8 +20,8 @@ export const CONSOLE_NAME: string = "BusinessPartner";
 export const CONSOLE_VERSION: string = "0.1.0";
 /** 业务仓库名称 */
 export const BO_REPOSITORY_BUSINESSPARTNER: string = strings.format(MODULE_REPOSITORY_NAME_TEMPLATE, CONSOLE_NAME);
-/** 业务对象编码-业务伙伴余额记录 */
-export const BO_CODE_BUSINESSPARTNERBALANCEJOURNAL: string = "${Company}_BP_BALANCEJOURNAL";
+/** 业务对象编码-业务伙伴地址 */
+export const BO_CODE_ADDRESS: string = "${Company}_BP_ADDRESS";
 /** 业务对象编码-业务伙伴组 */
 export const BO_CODE_BUSINESSPARTNERGROUP: string = "${Company}_BP_BPGROUP";
 /** 业务对象编码-业务伙伴联系人 */

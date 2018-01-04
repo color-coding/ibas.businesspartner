@@ -7,8 +7,8 @@
  */
 
 import * as ibas from "ibas/index";
-import * as businesspartnerbalancejournalApps from "../../bsapp/businesspartnerbalancejournal/index";
-import * as businesspartnerbalancejournalViews from "./businesspartnerbalancejournal/index";
+import * as addressApps from "../../bsapp/address/index";
+import * as addressViews from "./address/index";
 import * as businesspartnergroupApps from "../../bsapp/businesspartnergroup/index";
 import * as contactpersonApps from "../../bsapp/contactperson/index";
 import * as customerApps from "../../bsapp/customer/index";
@@ -30,17 +30,17 @@ export default class Navigation extends ibas.ViewNavigation {
     protected newView(id: string): ibas.IView {
         let view: ibas.IView = null;
         switch (id) {
-            case businesspartnerbalancejournalApps.BusinessPartnerBalanceJournalListApp.APPLICATION_ID:
-                view = new businesspartnerbalancejournalViews.BusinessPartnerBalanceJournalListView();
+            case addressApps.AddressListApp.APPLICATION_ID:
+                view = new addressViews.AddressListView();
                 break;
-            case businesspartnerbalancejournalApps.BusinessPartnerBalanceJournalChooseApp.APPLICATION_ID:
-                view = new businesspartnerbalancejournalViews.BusinessPartnerBalanceJournalChooseView();
+            case addressApps.AddressChooseApp.APPLICATION_ID:
+                view = new addressViews.AddressChooseView();
                 break;
-            case businesspartnerbalancejournalApps.BusinessPartnerBalanceJournalViewApp.APPLICATION_ID:
-                view = new businesspartnerbalancejournalViews.BusinessPartnerBalanceJournalViewView();
+            case addressApps.AddressViewApp.APPLICATION_ID:
+                view = new addressViews.AddressViewView();
                 break;
-            case businesspartnerbalancejournalApps.BusinessPartnerBalanceJournalEditApp.APPLICATION_ID:
-                view = new businesspartnerbalancejournalViews.BusinessPartnerBalanceJournalEditView();
+            case addressApps.AddressEditApp.APPLICATION_ID:
+                view = new addressViews.AddressEditView();
                 break;
             case businesspartnergroupApps.BusinessPartnerGroupListApp.APPLICATION_ID:
                 view = new businesspartnergroupViews.BusinessPartnerGroupListView();

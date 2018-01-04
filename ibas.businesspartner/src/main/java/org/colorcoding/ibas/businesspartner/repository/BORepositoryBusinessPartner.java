@@ -4,8 +4,8 @@ import org.colorcoding.ibas.bobas.common.ICriteria;
 import org.colorcoding.ibas.bobas.common.IOperationResult;
 import org.colorcoding.ibas.bobas.common.OperationResult;
 import org.colorcoding.ibas.bobas.repository.BORepositoryServiceApplication;
-import org.colorcoding.ibas.businesspartner.bo.businesspartnerbalancejournal.BusinessPartnerBalanceJournal;
-import org.colorcoding.ibas.businesspartner.bo.businesspartnerbalancejournal.IBusinessPartnerBalanceJournal;
+import org.colorcoding.ibas.businesspartner.bo.address.Address;
+import org.colorcoding.ibas.businesspartner.bo.address.IAddress;
 import org.colorcoding.ibas.businesspartner.bo.businesspartnergroup.BusinessPartnerGroup;
 import org.colorcoding.ibas.businesspartner.bo.businesspartnergroup.IBusinessPartnerGroup;
 import org.colorcoding.ibas.businesspartner.bo.contactperson.ContactPerson;
@@ -20,10 +20,9 @@ import org.colorcoding.ibas.businesspartner.bo.supplier.Supplier;
  */
 public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 		implements IBORepositoryBusinessPartnerSvc, IBORepositoryBusinessPartnerApp {
-
 	// --------------------------------------------------------------------------------------------//
 	/**
-	 * 查询-业务伙伴余额记录
+	 * 查询-业务伙伴地址
 	 * 
 	 * @param criteria
 	 *            查询
@@ -31,25 +30,23 @@ public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 	 *            口令
 	 * @return 操作结果
 	 */
-	public OperationResult<BusinessPartnerBalanceJournal> fetchBusinessPartnerBalanceJournal(ICriteria criteria,
-			String token) {
-		return super.fetch(criteria, token, BusinessPartnerBalanceJournal.class);
+	public OperationResult<Address> fetchAddress(ICriteria criteria, String token) {
+		return super.fetch(criteria, token, Address.class);
 	}
 
 	/**
-	 * 查询-业务伙伴余额记录（提前设置用户口令）
+	 * 查询-业务伙伴地址（提前设置用户口令）
 	 * 
 	 * @param criteria
 	 *            查询
 	 * @return 操作结果
 	 */
-	public IOperationResult<IBusinessPartnerBalanceJournal> fetchBusinessPartnerBalanceJournal(ICriteria criteria) {
-		return new OperationResult<IBusinessPartnerBalanceJournal>(
-				this.fetchBusinessPartnerBalanceJournal(criteria, this.getUserToken()));
+	public IOperationResult<IAddress> fetchAddress(ICriteria criteria) {
+		return new OperationResult<IAddress>(this.fetchAddress(criteria, this.getUserToken()));
 	}
 
 	/**
-	 * 保存-业务伙伴余额记录
+	 * 保存-业务伙伴地址
 	 * 
 	 * @param bo
 	 *            对象实例
@@ -57,22 +54,19 @@ public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 	 *            口令
 	 * @return 操作结果
 	 */
-	public OperationResult<BusinessPartnerBalanceJournal> saveBusinessPartnerBalanceJournal(
-			BusinessPartnerBalanceJournal bo, String token) {
+	public OperationResult<Address> saveAddress(Address bo, String token) {
 		return super.save(bo, token);
 	}
 
 	/**
-	 * 保存-业务伙伴余额记录（提前设置用户口令）
+	 * 保存-业务伙伴地址（提前设置用户口令）
 	 * 
 	 * @param bo
 	 *            对象实例
 	 * @return 操作结果
 	 */
-	public IOperationResult<IBusinessPartnerBalanceJournal> saveBusinessPartnerBalanceJournal(
-			IBusinessPartnerBalanceJournal bo) {
-		return new OperationResult<IBusinessPartnerBalanceJournal>(
-				this.saveBusinessPartnerBalanceJournal((BusinessPartnerBalanceJournal) bo, this.getUserToken()));
+	public IOperationResult<IAddress> saveAddress(IAddress bo) {
+		return new OperationResult<IAddress>(this.saveAddress((Address) bo, this.getUserToken()));
 	}
 
 	// --------------------------------------------------------------------------------------------//

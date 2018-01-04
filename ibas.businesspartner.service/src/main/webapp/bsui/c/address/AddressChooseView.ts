@@ -9,48 +9,15 @@
 import * as ibas from "ibas/index";
 import * as openui5 from "openui5/index";
 import * as bo from "../../../borep/bo/index";
-import { IBusinessPartnerBalanceJournalChooseView } from "../../../bsapp/businesspartnerbalancejournal/index";
+import { IAddressChooseView } from "../../../bsapp/address/index";
 
 /**
- * 选择视图-业务伙伴余额记录
+ * 选择视图-业务伙伴地址
  */
-export class BusinessPartnerBalanceJournalChooseView extends ibas.BOChooseView implements IBusinessPartnerBalanceJournalChooseView {
+export class AddressChooseView extends ibas.BOChooseView implements IAddressChooseView {
     /** 返回查询的对象 */
     get queryTarget(): any {
-        return bo.BusinessPartnerBalanceJournal;
-    }
-    /** 绘制工具条 */
-    darwBars(): any {
-        let that: this = this;
-        return [
-            new sap.m.Button("", {
-                text: ibas.i18n.prop("shell_data_new"),
-                type: sap.m.ButtonType.Transparent,
-                // icon: "sap-icon://create",
-                press: function (): void {
-                    that.fireViewEvents(that.newDataEvent);
-                }
-            }),
-            new sap.m.Button("", {
-                text: ibas.i18n.prop("shell_data_choose"),
-                type: sap.m.ButtonType.Transparent,
-                // icon: "sap-icon://accept",
-                press: function (): void {
-                    that.fireViewEvents(that.chooseDataEvent,
-                        // 获取表格选中的对象
-                        openui5.utils.getSelecteds<bo.BusinessPartnerBalanceJournal>(that.table)
-                    );
-                }
-            }),
-            new sap.m.Button("", {
-                text: ibas.i18n.prop("shell_exit"),
-                type: sap.m.ButtonType.Transparent,
-                // icon: "sap-icon://inspect-down",
-                press: function (): void {
-                    that.fireViewEvents(that.closeEvent);
-                }
-            }),
-        ];
+        return bo.Address;
     }
     /** 绘制视图 */
     darw(): any {
@@ -63,7 +30,7 @@ export class BusinessPartnerBalanceJournalChooseView extends ibas.BOChooseView i
             rows: "{/rows}",
             columns: [
                 new sap.ui.table.Column("", {
-                    label: ibas.i18n.prop("bo_businesspartnerbalancejournal_objectkey"),
+                    label: ibas.i18n.prop("bo_address_objectkey"),
                     template: new sap.m.Text("", {
                         wrapping: false
                     }).bindProperty("text", {
@@ -71,48 +38,51 @@ export class BusinessPartnerBalanceJournalChooseView extends ibas.BOChooseView i
                     })
                 }),
                 new sap.ui.table.Column("", {
-                    label: ibas.i18n.prop("bo_businesspartnerbalancejournal_businesspartnertype"),
+                    label: ibas.i18n.prop("bo_address_ownertype"),
                     template: new sap.m.Text("", {
                         wrapping: false
                     }).bindProperty("text", {
-                        path: "businessPartnerType",
+                        path: "ownerType",
                         formatter(data: any): any {
                             return ibas.enums.describe(bo.emBusinessPartnerType, data);
                         }
                     })
                 }),
                 new sap.ui.table.Column("", {
-                    label: ibas.i18n.prop("bo_businesspartnerbalancejournal_businesspartner"),
+                    label: ibas.i18n.prop("bo_address_name"),
                     template: new sap.m.Text("", {
                         wrapping: false
                     }).bindProperty("text", {
-                        path: "businessPartner"
+                        path: "name"
                     })
                 }),
                 new sap.ui.table.Column("", {
-                    label: ibas.i18n.prop("bo_businesspartnerbalancejournal_amount"),
+                    label: ibas.i18n.prop("bo_address_activated"),
                     template: new sap.m.Text("", {
                         wrapping: false
                     }).bindProperty("text", {
-                        path: "amount"
+                        path: "activated",
+                        formatter(data: any): any {
+                            return ibas.enums.describe(ibas.emYesNo, data);
+                        }
                     })
                 }),
                 new sap.ui.table.Column("", {
-                    label: ibas.i18n.prop("bo_businesspartnerbalancejournal_currency"),
+                    label: ibas.i18n.prop("bo_address_street"),
                     template: new sap.m.Text("", {
                         wrapping: false
                     }).bindProperty("text", {
-                        path: "currency"
+                        path: "position"
                     })
                 }),
                 new sap.ui.table.Column("", {
-                    label: ibas.i18n.prop("bo_businesspartnerbalancejournal_bankcode"),
+                    label: ibas.i18n.prop("bo_address_mobilephone"),
                     template: new sap.m.Text("", {
                         wrapping: false
                     }).bindProperty("text", {
-                        path: "bankCode"
+                        path: "mobilePhone"
                     })
-                })
+                }),
             ]
         });
         this.id = this.table.getId();
@@ -139,12 +109,37 @@ export class BusinessPartnerBalanceJournalChooseView extends ibas.BOChooseView i
             horizontalScrolling: true,
             verticalScrolling: true,
             content: [this.table],
-            buttons: [this.darwBars()]
+            buttons: [
+                new sap.m.Button("", {
+                    text: ibas.i18n.prop("shell_data_new"),
+                    type: sap.m.ButtonType.Transparent,
+                    press: function (): void {
+                        that.fireViewEvents(that.newDataEvent);
+                    }
+                }),
+                new sap.m.Button("", {
+                    text: ibas.i18n.prop("shell_data_choose"),
+                    type: sap.m.ButtonType.Transparent,
+                    press: function (): void {
+                        that.fireViewEvents(that.chooseDataEvent,
+                            // 获取表格选中的对象
+                            openui5.utils.getSelecteds<bo.Address>(that.table)
+                        );
+                    }
+                }),
+                new sap.m.Button("", {
+                    text: ibas.i18n.prop("shell_exit"),
+                    type: sap.m.ButtonType.Transparent,
+                    press: function (): void {
+                        that.fireViewEvents(that.closeEvent);
+                    }
+                }),
+            ],
         });
     }
     private table: sap.ui.table.Table;
     /** 显示数据 */
-    showData(datas: bo.BusinessPartnerBalanceJournal[]): void {
+    showData(datas: bo.Address[]): void {
         let done: boolean = false;
         let model: sap.ui.model.Model = this.table.getModel(undefined);
         if (!ibas.objects.isNull(model)) {
@@ -164,7 +159,6 @@ export class BusinessPartnerBalanceJournalChooseView extends ibas.BOChooseView i
         }
         this.table.setBusy(false);
     }
-
     /** 记录上次查询条件，表格滚动时自动触发 */
     query(criteria: ibas.ICriteria): void {
         super.query(criteria);

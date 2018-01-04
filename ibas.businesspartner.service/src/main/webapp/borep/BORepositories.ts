@@ -42,21 +42,21 @@ export class BORepositoryBusinessPartner extends ibas.BORepositoryApplication im
         fileRepository.converter = this.createConverter();
         fileRepository.download("download", caller);
     }
+
     /**
-     * 查询 业务伙伴余额记录
+     * 查询 业务伙伴地址
      * @param fetcher 查询者
      */
-    fetchBusinessPartnerBalanceJournal(fetcher: ibas.FetchCaller<bo.BusinessPartnerBalanceJournal>): void {
-        super.fetch(bo.BusinessPartnerBalanceJournal.name, fetcher);
+    fetchAddress(fetcher: ibas.FetchCaller<bo.Address>): void {
+        super.fetch(bo.Address.name, fetcher);
     }
     /**
-     * 保存 业务伙伴余额记录
+     * 保存 业务伙伴地址
      * @param saver 保存者
      */
-    saveBusinessPartnerBalanceJournal(saver: ibas.SaveCaller<bo.BusinessPartnerBalanceJournal>): void {
-        super.save(bo.BusinessPartnerBalanceJournal.name, saver);
+    saveAddress(saver: ibas.SaveCaller<bo.Address>): void {
+        super.save(bo.Address.name, saver);
     }
-
     /**
      * 查询 业务伙伴组
      * @param fetcher 查询者

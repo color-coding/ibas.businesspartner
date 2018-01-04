@@ -3,7 +3,7 @@ package org.colorcoding.ibas.businesspartner.repository;
 import org.colorcoding.ibas.bobas.common.ICriteria;
 import org.colorcoding.ibas.bobas.common.OperationResult;
 import org.colorcoding.ibas.bobas.repository.IBORepositorySmartService;
-import org.colorcoding.ibas.businesspartner.bo.businesspartnerbalancejournal.BusinessPartnerBalanceJournal;
+import org.colorcoding.ibas.businesspartner.bo.address.Address;
 import org.colorcoding.ibas.businesspartner.bo.businesspartnergroup.BusinessPartnerGroup;
 import org.colorcoding.ibas.businesspartner.bo.contactperson.ContactPerson;
 import org.colorcoding.ibas.businesspartner.bo.customer.Customer;
@@ -16,7 +16,7 @@ public interface IBORepositoryBusinessPartnerSvc extends IBORepositorySmartServi
 
 	// --------------------------------------------------------------------------------------------//
 	/**
-	 * 查询-业务伙伴余额记录
+	 * 查询-业务伙伴地址
 	 * 
 	 * @param criteria
 	 *            查询
@@ -24,10 +24,10 @@ public interface IBORepositoryBusinessPartnerSvc extends IBORepositorySmartServi
 	 *            口令
 	 * @return 操作结果
 	 */
-	OperationResult<BusinessPartnerBalanceJournal> fetchBusinessPartnerBalanceJournal(ICriteria criteria, String token);
+	OperationResult<Address> fetchAddress(ICriteria criteria, String token);
 
 	/**
-	 * 保存-业务伙伴余额记录
+	 * 保存-业务伙伴地址
 	 * 
 	 * @param bo
 	 *            对象实例
@@ -35,8 +35,7 @@ public interface IBORepositoryBusinessPartnerSvc extends IBORepositorySmartServi
 	 *            口令
 	 * @return 操作结果
 	 */
-	OperationResult<BusinessPartnerBalanceJournal> saveBusinessPartnerBalanceJournal(BusinessPartnerBalanceJournal bo,
-			String token);
+	OperationResult<Address> saveAddress(Address bo, String token);
 
 	// --------------------------------------------------------------------------------------------//
 	/**
