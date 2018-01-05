@@ -54,11 +54,11 @@ export class AddressListView extends ibas.BOListView implements IAddressListView
                     })
                 }),
                 new sap.ui.table.Column("", {
-                    label: ibas.i18n.prop("bo_address_name"),
+                    label: ibas.i18n.prop("bo_address_businesspartner"),
                     template: new sap.m.Text("", {
                         wrapping: false
                     }).bindProperty("text", {
-                        path: "name"
+                        path: "businessPartner"
                     })
                 }),
                 new sap.ui.table.Column("", {
@@ -70,6 +70,14 @@ export class AddressListView extends ibas.BOListView implements IAddressListView
                         formatter(data: any): any {
                             return ibas.enums.describe(ibas.emYesNo, data);
                         }
+                    })
+                }),
+                new sap.ui.table.Column("", {
+                    label: ibas.i18n.prop("bo_address_name"),
+                    template: new sap.m.Text("", {
+                        wrapping: false
+                    }).bindProperty("text", {
+                        path: "name"
                     })
                 }),
                 new sap.ui.table.Column("", {

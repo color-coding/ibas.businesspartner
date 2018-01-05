@@ -16,9 +16,6 @@ import { ICustomerEditView } from "../../../bsapp/customer/index";
  * 编辑视图-客户
  */
 export class CustomerEditView extends ibas.BOEditView implements ICustomerEditView {
-
-    private page: sap.m.Page;
-    private viewTopForm: sap.ui.layout.form.SimpleForm;
     /** 删除数据事件 */
     deleteDataEvent: Function;
     /** 新建数据事件，参数1：是否克隆 */
@@ -27,6 +24,10 @@ export class CustomerEditView extends ibas.BOEditView implements ICustomerEditVi
     chooseBusinessPartnerGroupEvent: Function;
     /** 选择客户联系人事件 */
     chooseBusinessPartnerContactPersonEvent: Function;
+    /** 创建联系人 */
+    createContactPersonEvent: Function;
+    /** 创建地址 */
+    createAddressEvent: Function;
 
     /** 绘制视图 */
     darw(): any {
@@ -213,7 +214,32 @@ export class CustomerEditView extends ibas.BOEditView implements ICustomerEditVi
                                 }
                             }
                         })
-                    })
+                    }),
+                    new sap.m.ToolbarSeparator(""),
+                    new sap.m.MenuButton("", {
+                        text: ibas.i18n.prop("shell_data_new") + ibas.i18n.prop("businesspartner_contact_information"),
+                        type: sap.m.ButtonType.Transparent,
+                        icon: "sap-icon://add-coursebook",
+                        buttonMode: sap.m.MenuButtonMode.Regular,
+                        menu: new sap.m.Menu("", {
+                            items: [
+                                new sap.m.MenuItem("", {
+                                    text: ibas.i18n.prop("bo_address"),
+                                    icon: "sap-icon://contacts",
+                                    press: function (event: any): void {
+                                        that.fireViewEvents(that.createAddressEvent, true);
+                                    }
+                                }),
+                                new sap.m.MenuItem("", {
+                                    text: ibas.i18n.prop("bo_contactperson"),
+                                    icon: "sap-icon://customer-briefing",
+                                    press: function (event: any): void {
+                                        that.fireViewEvents(that.createContactPersonEvent, true);
+                                    }
+                                }),
+                            ],
+                        })
+                    }),
                 ]
             }),
             content: [this.viewTopForm],
@@ -221,6 +247,8 @@ export class CustomerEditView extends ibas.BOEditView implements ICustomerEditVi
         this.id = this.page.getId();
         return this.page;
     }
+    private page: sap.m.Page;
+    private viewTopForm: sap.ui.layout.form.SimpleForm;
     /** 改变视图状态 */
     private changeViewStatus(data: bo.Customer): void {
         if (ibas.objects.isNull(data)) {

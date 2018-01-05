@@ -23,6 +23,8 @@ export class ContactPersonEditView extends ibas.BOEditView implements IContactPe
     deleteDataEvent: Function;
     /** 新建数据事件，参数1：是否克隆 */
     createDataEvent: Function;
+    /*** 选择业务伙伴事件 */
+    chooseBusinessPartnerEvent: Function;
 
     /** 绘制视图 */
     darw(): any {
@@ -36,6 +38,22 @@ export class ContactPersonEditView extends ibas.BOEditView implements IContactPe
                     items: openui5.utils.createComboBoxItems(bo.emBusinessPartnerType)
                 }).bindProperty("selectedKey", {
                     path: "ownerType",
+                    type: "sap.ui.model.type.Integer"
+                }),
+                new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_businesspartner") }),
+                new sap.m.Input("", {
+                    showValueHelp: true,
+                    valueHelpRequest: function (): void {
+                        that.fireViewEvents(that.chooseBusinessPartnerEvent);
+                    }
+                }).bindProperty("value", {
+                    path: "businessPartner"
+                }),
+                new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_activated") }),
+                new sap.m.Select("", {
+                    items: openui5.utils.createComboBoxItems(ibas.emYesNo)
+                }).bindProperty("selectedKey", {
+                    path: "activated",
                     type: "sap.ui.model.type.Integer"
                 }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_name") }),
@@ -57,19 +75,30 @@ export class ContactPersonEditView extends ibas.BOEditView implements IContactPe
                 }).bindProperty("value", {
                     path: "position"
                 }),
-                new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_activated") }),
-                new sap.m.Select("", {
-                    items: openui5.utils.createComboBoxItems(ibas.emYesNo)
-                }).bindProperty("selectedKey", {
-                    path: "activated",
-                    type: "sap.ui.model.type.Integer"
-                }),
                 new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_contact_information") }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_address") }),
                 new sap.m.Input("", {
                     type: sap.m.InputType.Text
                 }).bindProperty("value", {
                     path: "address"
+                }),
+                new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_mobilephone") }),
+                new sap.m.Input("", {
+                    type: sap.m.InputType.Text
+                }).bindProperty("value", {
+                    path: "mobilePhone"
+                }),
+                new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_mail") }),
+                new sap.m.Input("", {
+                    type: sap.m.InputType.Text
+                }).bindProperty("value", {
+                    path: "mail"
+                }),
+                new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_fax") }),
+                new sap.m.Input("", {
+                    type: sap.m.InputType.Text
+                }).bindProperty("value", {
+                    path: "fax"
                 }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_telephone1") }),
                 new sap.m.Input("", {
@@ -82,24 +111,6 @@ export class ContactPersonEditView extends ibas.BOEditView implements IContactPe
                     type: sap.m.InputType.Text
                 }).bindProperty("value", {
                     path: "telephone2"
-                }),
-                new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_mobilephone") }),
-                new sap.m.Input("", {
-                    type: sap.m.InputType.Text
-                }).bindProperty("value", {
-                    path: "mobilePhone"
-                }),
-                new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_fax") }),
-                new sap.m.Input("", {
-                    type: sap.m.InputType.Text
-                }).bindProperty("value", {
-                    path: "fax"
-                }),
-                new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_mail") }),
-                new sap.m.Input("", {
-                    type: sap.m.InputType.Text
-                }).bindProperty("value", {
-                    path: "mail"
                 }),
             ],
         });

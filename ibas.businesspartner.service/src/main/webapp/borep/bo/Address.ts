@@ -135,6 +135,17 @@ export class Address extends BOSimple<Address> implements IAddress {
         this.setProperty(Address.PROPERTY_COUNTRY_NAME, value);
     }
 
+    /** 映射的属性名称-邮编 */
+    static PROPERTY_ZIPCODE_NAME: string = "ZipCode";
+    /** 获取-邮编 */
+    get zipCode(): string {
+        return this.getProperty<string>(Address.PROPERTY_ZIPCODE_NAME);
+    }
+    /** 设置-邮编 */
+    set zipCode(value: string) {
+        this.setProperty(Address.PROPERTY_ZIPCODE_NAME, value);
+    }
+
     /** 映射的属性名称-联系电话 */
     static PROPERTY_MOBILEPHONE_NAME: string = "MobilePhone";
     /** 获取-联系电话 */
@@ -336,6 +347,8 @@ export class Address extends BOSimple<Address> implements IAddress {
     /** 初始化数据 */
     protected init(): void {
         this.objectCode = config.applyVariables(Address.BUSINESS_OBJECT_CODE);
+        this.ownerType = emBusinessPartnerType.CUSTOMER;
+        this.activated = emYesNo.YES;
     }
 }
 

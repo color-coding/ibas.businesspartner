@@ -33,6 +33,7 @@ export class AddressEditApp extends ibas.BOEditApplication<IAddressEditView, bo.
         // 其他事件
         this.view.deleteDataEvent = this.deleteData;
         this.view.createDataEvent = this.createData;
+        this.view.chooseBusinessPartnerEvent = this.chooseBusinessPartner;
     }
     /** 视图显示后 */
     protected viewShowed(): void {
@@ -49,8 +50,15 @@ export class AddressEditApp extends ibas.BOEditApplication<IAddressEditView, bo.
     run(): void {
         let that: this = this;
         if (ibas.objects.instanceOf(arguments[0], bo.Address)) {
+            let data: bo.Address = arguments[0];
+            // 新对象直接编辑
+            if (data.isNew) {
+                that.editData = data;
+                that.show();
+                return;
+            }
             // 尝试重新查询编辑对象
-            let criteria: ibas.ICriteria = arguments[0].criteria();
+            let criteria: ibas.ICriteria = data.criteria();
             if (!ibas.objects.isNull(criteria) && criteria.conditions.length > 0) {
                 // 有效的查询对象查询
                 let boRepository: BORepositoryBusinessPartner = new BORepositoryBusinessPartner();
@@ -165,6 +173,33 @@ export class AddressEditApp extends ibas.BOEditApplication<IAddressEditView, bo.
             createData();
         }
     }
+    private chooseBusinessPartner(): void {
+        let that: this = this;
+        if (this.editData.ownerType === bo.emBusinessPartnerType.CUSTOMER) {
+            ibas.servicesManager.runChooseService<bo.Customer>({
+                boCode: bo.Customer.BUSINESS_OBJECT_CODE,
+                chooseType: ibas.emChooseType.SINGLE,
+                criteria: [
+                ],
+                onCompleted(selecteds: ibas.List<bo.Customer>): void {
+                    let selected: bo.Customer = selecteds.firstOrDefault();
+                    that.editData.businessPartner = selected.code;
+                }
+            });
+        } else if (this.editData.ownerType === bo.emBusinessPartnerType.SUPPLIER) {
+            ibas.servicesManager.runChooseService<bo.Supplier>({
+                boCode: bo.Supplier.BUSINESS_OBJECT_CODE,
+                chooseType: ibas.emChooseType.SINGLE,
+                criteria: [
+                ],
+                onCompleted(selecteds: ibas.List<bo.Supplier>): void {
+                    let selected: bo.Supplier = selecteds.firstOrDefault();
+                    that.editData.businessPartner = selected.code;
+                }
+            });
+
+        }
+    }
 }
 /** 视图-业务伙伴地址 */
 export interface IAddressEditView extends ibas.IBOEditView {
@@ -174,4 +209,6 @@ export interface IAddressEditView extends ibas.IBOEditView {
     deleteDataEvent: Function;
     /** 新建数据事件，参数1：是否克隆 */
     createDataEvent: Function;
+    /*** 选择业务伙伴事件 */
+    chooseBusinessPartnerEvent: Function;
 }

@@ -9,6 +9,7 @@
   "bo_address_city": "市",
   "bo_address_province": "省",
   "bo_address_country": "国",
+  "bo_address_zipcode": "邮编",
   "bo_address_mobilephone": "联系电话",
   "bo_address_telephone1": "电话 1",
   "bo_address_telephone2": "电话 2",

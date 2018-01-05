@@ -340,6 +340,38 @@ public class Address extends BusinessObject<Address> implements IAddress {
 	}
 
 	/**
+	 * 属性名称-邮编
+	 */
+	private static final String PROPERTY_ZIPCODE_NAME = "ZipCode";
+
+	/**
+	 * 邮编 属性
+	 */
+	@DbField(name = "ZipCode", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME, primaryKey = false)
+	public static final IPropertyInfo<String> PROPERTY_ZIPCODE = registerProperty(PROPERTY_ZIPCODE_NAME, String.class,
+			MY_CLASS);
+
+	/**
+	 * 获取-邮编
+	 * 
+	 * @return 值
+	 */
+	@XmlElement(name = PROPERTY_ZIPCODE_NAME)
+	public final String getZipCode() {
+		return this.getProperty(PROPERTY_ZIPCODE);
+	}
+
+	/**
+	 * 设置-邮编
+	 * 
+	 * @param value
+	 *            值
+	 */
+	public final void setZipCode(String value) {
+		this.setProperty(PROPERTY_ZIPCODE, value);
+	}
+
+	/**
 	 * 属性名称-联系电话
 	 */
 	private static final String PROPERTY_MOBILEPHONE_NAME = "MobilePhone";

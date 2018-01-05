@@ -19,6 +19,8 @@ export class AddressEditView extends ibas.BOEditView implements IAddressEditView
     deleteDataEvent: Function;
     /** 新建数据事件，参数1：是否克隆 */
     createDataEvent: Function;
+    /*** 选择业务伙伴事件 */
+    chooseBusinessPartnerEvent: Function;
 
     /** 绘制视图 */
     darw(): any {
@@ -34,11 +36,14 @@ export class AddressEditView extends ibas.BOEditView implements IAddressEditView
                     path: "ownerType",
                     type: "sap.ui.model.type.Integer"
                 }),
-                new sap.m.Label("", { text: ibas.i18n.prop("bo_address_name") }),
+                new sap.m.Label("", { text: ibas.i18n.prop("bo_address_businesspartner") }),
                 new sap.m.Input("", {
-                    type: sap.m.InputType.Text
+                    showValueHelp: true,
+                    valueHelpRequest: function (): void {
+                        that.fireViewEvents(that.chooseBusinessPartnerEvent);
+                    }
                 }).bindProperty("value", {
-                    path: "name"
+                    path: "businessPartner"
                 }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_address_activated") }),
                 new sap.m.Select("", {
@@ -46,6 +51,12 @@ export class AddressEditView extends ibas.BOEditView implements IAddressEditView
                 }).bindProperty("selectedKey", {
                     path: "activated",
                     type: "sap.ui.model.type.Integer"
+                }),
+                new sap.m.Label("", { text: ibas.i18n.prop("bo_address_name") }),
+                new sap.m.Input("", {
+                    type: sap.m.InputType.Text
+                }).bindProperty("value", {
+                    path: "name"
                 }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_address_street") }),
                 new sap.m.Input("", {
@@ -76,6 +87,12 @@ export class AddressEditView extends ibas.BOEditView implements IAddressEditView
                     type: sap.m.InputType.Text
                 }).bindProperty("value", {
                     path: "country"
+                }),
+                new sap.m.Label("", { text: ibas.i18n.prop("bo_address_zipcode") }),
+                new sap.m.Input("", {
+                    type: sap.m.InputType.Text
+                }).bindProperty("value", {
+                    path: "zipCode"
                 }),
                 new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_contact_information") }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_address_mobilephone") }),
@@ -111,6 +128,8 @@ export class AddressEditView extends ibas.BOEditView implements IAddressEditView
             ]
         });
         this.layoutMain = new sap.ui.layout.VerticalLayout("", {
+            width: "100%",
+            height: "100%",
             content: [
                 formTop,
             ]

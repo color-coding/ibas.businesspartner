@@ -11,6 +11,7 @@
     <Property Name="City" Description="市" DataType="Alphanumeric" DataSubType="Default" EditSize="100" Mapped="City"/>
     <Property Name="Province" Description="省" DataType="Alphanumeric" DataSubType="Default" EditSize="100" Mapped="Province"/>
     <Property Name="Country" Description="国" DataType="Alphanumeric" DataSubType="Default" EditSize="100" Mapped="Country"/>
+    <Property Name="ZipCode" Description="邮编" DataType="Alphanumeric" DataSubType="Default" EditSize="10" Mapped="ZipCode"/>
     <Property Name="MobilePhone" Description="联系电话" DataType="Alphanumeric" DataSubType="Default" EditSize="20" Mapped="Phone"/>
     <Property Name="Telephone1" Description="电话 1" DataType="Alphanumeric" DataSubType="Default" EditSize="20" Mapped="Tel1"/>
     <Property Name="Telephone2" Description="电话 2" DataType="Alphanumeric" DataSubType="Default" EditSize="20" Mapped="Tel2"/>

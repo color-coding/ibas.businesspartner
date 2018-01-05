@@ -82,6 +82,25 @@ export class ContactPersonChooseView extends ibas.BOChooseView implements IConta
                     })
                 }),
                 new sap.ui.table.Column("", {
+                    label: ibas.i18n.prop("bo_contactperson_businesspartner"),
+                    template: new sap.m.Text("", {
+                        wrapping: false
+                    }).bindProperty("text", {
+                        path: "businessPartner"
+                    })
+                }),
+                new sap.ui.table.Column("", {
+                    label: ibas.i18n.prop("bo_contactperson_activated"),
+                    template: new sap.m.Text("", {
+                        wrapping: false
+                    }).bindProperty("text", {
+                        path: "activated",
+                        formatter(data: any): any {
+                            return ibas.enums.describe(ibas.emYesNo, data);
+                        }
+                    })
+                }),
+                new sap.ui.table.Column("", {
                     label: ibas.i18n.prop("bo_contactperson_name"),
                     template: new sap.m.Text("", {
                         wrapping: false
@@ -98,14 +117,6 @@ export class ContactPersonChooseView extends ibas.BOChooseView implements IConta
                     })
                 }),
                 new sap.ui.table.Column("", {
-                    label: ibas.i18n.prop("bo_contactperson_address"),
-                    template: new sap.m.Text("", {
-                        wrapping: false
-                    }).bindProperty("text", {
-                        path: "address"
-                    })
-                }),
-                new sap.ui.table.Column("", {
                     label: ibas.i18n.prop("bo_contactperson_mobilephone"),
                     template: new sap.m.Text("", {
                         wrapping: false
@@ -113,17 +124,6 @@ export class ContactPersonChooseView extends ibas.BOChooseView implements IConta
                         path: "mobilePhone"
                     })
                 }),
-                new sap.ui.table.Column("", {
-                    label: ibas.i18n.prop("bo_contactperson_activated"),
-                    template: new sap.m.Text("", {
-                        wrapping: false
-                    }).bindProperty("text", {
-                        path: "activated",
-                        formatter(data: any): any {
-                            return ibas.enums.describe(ibas.emYesNo, data);
-                        }
-                    })
-                })
             ]
         });
         this.id = this.table.getId();

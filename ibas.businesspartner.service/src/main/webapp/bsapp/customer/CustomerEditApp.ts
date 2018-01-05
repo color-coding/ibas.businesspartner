@@ -9,6 +9,8 @@
 import * as ibas from "ibas/index";
 import * as bo from "../../borep/bo/index";
 import { BORepositoryBusinessPartner } from "../../borep/BORepositories";
+import { AddressEditApp } from "../address/index";
+import { ContactPersonEditApp } from "../contactperson/index";
 
 /** 编辑应用-客户 */
 export class CustomerEditApp extends ibas.BOEditApplication<ICustomerEditView, bo.Customer> {
@@ -35,6 +37,8 @@ export class CustomerEditApp extends ibas.BOEditApplication<ICustomerEditView, b
         this.view.createDataEvent = this.createData;
         this.view.chooseBusinessPartnerGroupEvent = this.chooseBusinessPartnerGroup;
         this.view.chooseBusinessPartnerContactPersonEvent = this.chooseBusinessPartnerContactPerson;
+        this.view.createAddressEvent = this.createAddress;
+        this.view.createContactPersonEvent = this.createContactPerson;
     }
     /** 视图显示后 */
     protected viewShowed(): void {
@@ -52,8 +56,15 @@ export class CustomerEditApp extends ibas.BOEditApplication<ICustomerEditView, b
     run(): void {
         let that: this = this;
         if (ibas.objects.instanceOf(arguments[0], bo.Customer)) {
+            let data: bo.Customer = arguments[0];
+            // 新对象直接编辑
+            if (data.isNew) {
+                that.editData = data;
+                that.show();
+                return;
+            }
             // 尝试重新查询编辑对象
-            let criteria: ibas.ICriteria = arguments[0].criteria();
+            let criteria: ibas.ICriteria = data.criteria();
             if (!ibas.objects.isNull(criteria) && criteria.conditions.length > 0) {
                 // 有效的查询对象查询
                 let boRepository: BORepositoryBusinessPartner = new BORepositoryBusinessPartner();
@@ -206,6 +217,40 @@ export class CustomerEditApp extends ibas.BOEditApplication<ICustomerEditView, b
             }
         });
     }
+    private createContactPerson(): void {
+        if (this.editData.isNew) {
+            this.messages({
+                title: this.description,
+                type: ibas.emMessageType.WARNING,
+                message: ibas.i18n.prop("shell_data_save_first"),
+            });
+            return;
+        }
+        let person: bo.ContactPerson = new bo.ContactPerson();
+        person.ownerType = bo.emBusinessPartnerType.SUPPLIER;
+        person.businessPartner = this.editData.code;
+        let app: ContactPersonEditApp = new ContactPersonEditApp();
+        app.navigation = this.navigation;
+        app.viewShower = this.viewShower;
+        app.run(person);
+    }
+    private createAddress(): void {
+        if (this.editData.isNew) {
+            this.messages({
+                title: this.description,
+                type: ibas.emMessageType.WARNING,
+                message: ibas.i18n.prop("shell_data_save_first"),
+            });
+            return;
+        }
+        let address: bo.Address = new bo.Address();
+        address.ownerType = bo.emBusinessPartnerType.SUPPLIER;
+        address.businessPartner = this.editData.code;
+        let app: AddressEditApp = new AddressEditApp();
+        app.navigation = this.navigation;
+        app.viewShower = this.viewShower;
+        app.run(address);
+    }
 }
 /** 视图-客户 */
 export interface ICustomerEditView extends ibas.IBOEditView {
@@ -219,4 +264,8 @@ export interface ICustomerEditView extends ibas.IBOEditView {
     chooseBusinessPartnerGroupEvent: Function;
     /** 选择客户联系人事件 */
     chooseBusinessPartnerContactPersonEvent: Function;
+    /** 创建联系人 */
+    createContactPersonEvent: Function;
+    /** 创建地址 */
+    createAddressEvent: Function;
 }

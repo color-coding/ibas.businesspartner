@@ -147,6 +147,21 @@ public interface IAddress extends IBOSimple {
 	void setCountry(String value);
 
 	/**
+	 * 获取-邮编
+	 * 
+	 * @return 值
+	 */
+	String getZipCode();
+
+	/**
+	 * 设置-邮编
+	 * 
+	 * @param value
+	 *            值
+	 */
+	void setZipCode(String value);
+
+	/**
 	 * 获取-联系电话
 	 * 
 	 * @return 值
