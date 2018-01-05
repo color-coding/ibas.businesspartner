@@ -21,10 +21,8 @@ export class ContactPersonEditView extends ibas.BOEditView implements IContactPe
     deleteDataEvent: Function;
     /** 新建数据事件，参数1：是否克隆 */
     createDataEvent: Function;
-    /*** 选择供应商组事件*/
-    chooseBusinessPartnerGroupEvent: Function;
-    /** 选择供应商联系人事件 */
-    chooseBusinessPartnerContactPersonEvent: Function;
+    /*** 选择业务伙伴事件 */
+    chooseBusinessPartnerEvent: Function;
     /** 绘制视图 */
     darw(): any {
         let that: this = this;

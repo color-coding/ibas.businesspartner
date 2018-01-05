@@ -24,6 +24,10 @@ export class SupplierEditView extends ibas.BOEditView implements ISupplierEditVi
     chooseBusinessPartnerGroupEvent: Function;
     /** 选择供应商联系人事件 */
     chooseBusinessPartnerContactPersonEvent: Function;
+    /** 创建联系人 */
+    createContactPersonEvent: Function;
+    /** 创建地址 */
+    createAddressEvent: Function;
     /** 绘制视图 */
     darw(): any {
         let that: this = this;
