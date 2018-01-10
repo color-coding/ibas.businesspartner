@@ -124,12 +124,6 @@ export class CustomerEditView extends ibas.BOEditView implements ICustomerEditVi
                     path: "shipToZipCode"
                 }),
                 new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_account_information") }),
-                new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_balance") }),
-                new sap.m.Input("", {
-                    type: sap.m.InputType.Text,
-                }).bindProperty("value", {
-                    path: "balance",
-                }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_currency") }),
                 new sap.m.Input("", {
                     type: sap.m.InputType.Text,

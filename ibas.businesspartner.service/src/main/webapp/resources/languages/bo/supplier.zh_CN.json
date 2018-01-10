@@ -15,7 +15,6 @@
   "bo_supplier_faxnumber": "传真号",
   "bo_supplier_taxid": "国税编号",
   "bo_supplier_pricelist": "价格清单",
-  "bo_supplier_balance": "余额",
   "bo_supplier_currency": "货币",
   "bo_supplier_validdate": "生效日期",
   "bo_supplier_invaliddate": "失效日期",

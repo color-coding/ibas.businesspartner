@@ -17,7 +17,6 @@
     <Property Name="FaxNumber" Description="传真号" DataType="Alphanumeric" DataSubType="Default" EditSize="20" Mapped="Fax"/>
     <Property Name="TaxId" Description="国税编号" DataType="Alphanumeric" DataSubType="Default" EditSize="30" Mapped="TaxId"/>
     <Property Name="PriceList" Description="价格清单" DataType="Numeric" DataSubType="Default" EditSize="8" Mapped="PriceList"/>
-    <Property Name="Balance" Description="余额" DataType="Decimal" DataSubType="Sum" EditSize="8" Mapped="Balance"/>
     <Property Name="Currency" Description="货币" DataType="Alphanumeric" DataSubType="Default" EditSize="5" Mapped="Currency"/>
     <Property Name="ValidDate" Description="生效日期" DataType="Date" DataSubType="Default" EditSize="8" Mapped="ValidDate"/>
     <Property Name="InvalidDate" Description="失效日期" DataType="Date" DataSubType="Default" EditSize="8" Mapped="InvalidDate"/>

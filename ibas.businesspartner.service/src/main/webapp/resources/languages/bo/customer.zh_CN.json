@@ -15,7 +15,6 @@
   "bo_customer_faxnumber": "传真号",
   "bo_customer_taxid": "国税编号",
   "bo_customer_pricelist": "价格清单",
-  "bo_customer_balance": "余额",
   "bo_customer_currency": "货币",
   "bo_customer_validdate": "生效日期",
   "bo_customer_invaliddate": "失效日期",

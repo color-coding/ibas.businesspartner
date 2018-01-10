@@ -110,12 +110,6 @@ export class CustomerViewView extends ibas.BOViewView implements ICustomerViewVi
                     path: "shipToZipCode"
                 }),
                 new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_account_information") }),
-                new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_balance") }),
-                new sap.m.Text("", {
-                    type: sap.m.InputType.Text,
-                }).bindProperty("text", {
-                    path: "balance",
-                }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_currency") }),
                 new sap.m.Text("", {
                     type: sap.m.InputType.Text,

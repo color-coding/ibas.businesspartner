@@ -201,17 +201,6 @@ export class Customer extends BOMasterData<Customer> implements ICustomer {
         this.setProperty(Customer.PROPERTY_PRICELIST_NAME, value);
     }
 
-    /** 映射的属性名称-余额 */
-    static PROPERTY_BALANCE_NAME: string = "Balance";
-    /** 获取-余额 */
-    get balance(): number {
-        return this.getProperty<number>(Customer.PROPERTY_BALANCE_NAME);
-    }
-    /** 设置-余额 */
-    set balance(value: number) {
-        this.setProperty(Customer.PROPERTY_BALANCE_NAME, value);
-    }
-
     /** 映射的属性名称-货币 */
     static PROPERTY_CURRENCY_NAME: string = "Currency";
     /** 获取-货币 */

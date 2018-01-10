@@ -10,7 +10,6 @@ import org.colorcoding.ibas.bobas.approval.IApprovalData;
 import org.colorcoding.ibas.bobas.bo.BusinessObject;
 import org.colorcoding.ibas.bobas.core.IPropertyInfo;
 import org.colorcoding.ibas.bobas.data.DateTime;
-import org.colorcoding.ibas.bobas.data.Decimal;
 import org.colorcoding.ibas.bobas.data.emApprovalStatus;
 import org.colorcoding.ibas.bobas.data.emYesNo;
 import org.colorcoding.ibas.bobas.mapping.BOCode;
@@ -533,68 +532,6 @@ public class Supplier extends BusinessObject<Supplier> implements ISupplier, IDa
 	 */
 	public final void setPriceList(Integer value) {
 		this.setProperty(PROPERTY_PRICELIST, value);
-	}
-
-	/**
-	 * 属性名称-余额
-	 */
-	private static final String PROPERTY_BALANCE_NAME = "Balance";
-
-	/**
-	 * 余额 属性
-	 */
-	@DbField(name = "Balance", type = DbFieldType.DECIMAL, table = DB_TABLE_NAME, primaryKey = false)
-	public static final IPropertyInfo<Decimal> PROPERTY_BALANCE = registerProperty(PROPERTY_BALANCE_NAME, Decimal.class,
-			MY_CLASS);
-
-	/**
-	 * 获取-余额
-	 * 
-	 * @return 值
-	 */
-	@XmlElement(name = PROPERTY_BALANCE_NAME)
-	public final Decimal getBalance() {
-		return this.getProperty(PROPERTY_BALANCE);
-	}
-
-	/**
-	 * 设置-余额
-	 * 
-	 * @param value
-	 *            值
-	 */
-	public final void setBalance(Decimal value) {
-		this.setProperty(PROPERTY_BALANCE, value);
-	}
-
-	/**
-	 * 设置-余额
-	 * 
-	 * @param value
-	 *            值
-	 */
-	public final void setBalance(String value) {
-		this.setBalance(new Decimal(value));
-	}
-
-	/**
-	 * 设置-余额
-	 * 
-	 * @param value
-	 *            值
-	 */
-	public final void setBalance(int value) {
-		this.setBalance(new Decimal(value));
-	}
-
-	/**
-	 * 设置-余额
-	 * 
-	 * @param value
-	 *            值
-	 */
-	public final void setBalance(double value) {
-		this.setBalance(new Decimal(value));
 	}
 
 	/**
