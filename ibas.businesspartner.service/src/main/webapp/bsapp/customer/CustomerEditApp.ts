@@ -186,7 +186,7 @@ export class CustomerEditApp extends ibas.BOEditApplication<ICustomerEditView, b
             boCode: bo.BusinessPartnerGroup.BUSINESS_OBJECT_CODE,
             criteria: [
                 new ibas.Condition(bo.BusinessPartnerGroup.PROPERTY_DELETED_NAME,
-                    ibas.emConditionOperation.EQUAL, "N"),
+                    ibas.emConditionOperation.EQUAL, ibas.emYesNo.NO),
                 new ibas.Condition(bo.BusinessPartnerGroup.PROPERTY_CODE_NAME,
                     ibas.emConditionOperation.NOT_EQUAL, ibas.strings.valueOf(this.editData.group)),
             ],
