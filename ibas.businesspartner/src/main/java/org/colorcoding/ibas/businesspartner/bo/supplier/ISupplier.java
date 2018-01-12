@@ -58,6 +58,21 @@ public interface ISupplier extends IBOMasterData {
 	void setGroup(String value);
 
 	/**
+	 * 获取-有效的
+	 * 
+	 * @return 值
+	 */
+	emYesNo getActivated();
+
+	/**
+	 * 设置-有效的
+	 * 
+	 * @param value
+	 *            值
+	 */
+	void setActivated(emYesNo value);
+
+	/**
 	 * 获取-联系人
 	 * 
 	 * @return 值

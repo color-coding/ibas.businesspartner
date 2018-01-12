@@ -87,19 +87,22 @@ export class SupplierChooseView extends ibas.BOChooseView implements ISupplierCh
                     })
                 }),
                 new sap.ui.table.Column("", {
+                    label: ibas.i18n.prop("bo_supplier_activated"),
+                    template: new sap.m.Text("", {
+                        wrapping: false
+                    }).bindProperty("text", {
+                        path: "activated",
+                        formatter(data: any): any {
+                            return ibas.enums.describe(ibas.emYesNo, data);
+                        }
+                    })
+                }),
+                new sap.ui.table.Column("", {
                     label: ibas.i18n.prop("bo_supplier_group"),
                     template: new sap.m.Text("", {
                         wrapping: false
                     }).bindProperty("text", {
                         path: "group"
-                    })
-                }),
-                new sap.ui.table.Column("", {
-                    label: ibas.i18n.prop("bo_supplier_contactperson"),
-                    template: new sap.m.Text("", {
-                        wrapping: false
-                    }).bindProperty("text", {
-                        path: "contactPerson"
                     })
                 }),
             ]

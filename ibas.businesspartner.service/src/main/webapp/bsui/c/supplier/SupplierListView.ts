@@ -59,6 +59,17 @@ export class SupplierListView extends ibas.BOListView implements ISupplierListVi
                     })
                 }),
                 new sap.ui.table.Column("", {
+                    label: ibas.i18n.prop("bo_supplier_activated"),
+                    template: new sap.m.Text("", {
+                        wrapping: false
+                    }).bindProperty("text", {
+                        path: "activated",
+                        formatter(data: any): any {
+                            return ibas.enums.describe(ibas.emYesNo, data);
+                        }
+                    })
+                }),
+                new sap.ui.table.Column("", {
                     label: ibas.i18n.prop("bo_supplier_group"),
                     template: new sap.m.Text("", {
                         wrapping: false
@@ -66,17 +77,6 @@ export class SupplierListView extends ibas.BOListView implements ISupplierListVi
                         path: "group"
                     })
                 }),
-                new sap.ui.table.Column("", {
-                    label: ibas.i18n.prop("bo_supplier_deleted"),
-                    template: new sap.m.Text("", {
-                        wrapping: false
-                    }).bindProperty("text", {
-                        path: "deleted",
-                        formatter(data: any): any {
-                            return ibas.enums.describe(ibas.emYesNo, data);
-                        }
-                    })
-                })
             ]
         });
         this.form.addContent(this.table);

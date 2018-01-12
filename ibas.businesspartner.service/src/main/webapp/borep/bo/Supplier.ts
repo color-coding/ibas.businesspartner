@@ -69,6 +69,17 @@ export class Supplier extends BOMasterData<Supplier> implements ISupplier {
         this.setProperty(Supplier.PROPERTY_GROUP_NAME, value);
     }
 
+    /** 映射的属性名称-有效的 */
+    static PROPERTY_ACTIVATED_NAME: string = "Activated";
+    /** 获取-有效的 */
+    get activated(): emYesNo {
+        return this.getProperty<emYesNo>(Supplier.PROPERTY_ACTIVATED_NAME);
+    }
+    /** 设置-有效的 */
+    set activated(value: emYesNo) {
+        this.setProperty(Supplier.PROPERTY_ACTIVATED_NAME, value);
+    }
+
     /** 映射的属性名称-联系人 */
     static PROPERTY_CONTACTPERSON_NAME: string = "ContactPerson";
     /** 获取-联系人 */

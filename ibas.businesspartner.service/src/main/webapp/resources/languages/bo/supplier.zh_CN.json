@@ -3,6 +3,7 @@
   "bo_supplier_code": "编码",
   "bo_supplier_name": "名称",
   "bo_supplier_group": "组代码",
+  "bo_supplier_activated": "有效的",
   "bo_supplier_contactperson": "联系人",
   "bo_supplier_companyprivate": "公司/个人",
   "bo_supplier_billtostreet": "付款方街道",
