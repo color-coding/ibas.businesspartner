@@ -69,26 +69,15 @@ export class Supplier extends BOMasterData<Supplier> implements ISupplier {
         this.setProperty(Supplier.PROPERTY_GROUP_NAME, value);
     }
 
-    /** 映射的属性名称-有效的 */
+    /** 映射的属性名称-激活 */
     static PROPERTY_ACTIVATED_NAME: string = "Activated";
-    /** 获取-有效的 */
+    /** 获取-激活 */
     get activated(): emYesNo {
         return this.getProperty<emYesNo>(Supplier.PROPERTY_ACTIVATED_NAME);
     }
-    /** 设置-有效的 */
+    /** 设置-激活 */
     set activated(value: emYesNo) {
         this.setProperty(Supplier.PROPERTY_ACTIVATED_NAME, value);
-    }
-
-    /** 映射的属性名称-联系人 */
-    static PROPERTY_CONTACTPERSON_NAME: string = "ContactPerson";
-    /** 获取-联系人 */
-    get contactPerson(): number {
-        return this.getProperty<number>(Supplier.PROPERTY_CONTACTPERSON_NAME);
-    }
-    /** 设置-联系人 */
-    set contactPerson(value: number) {
-        this.setProperty(Supplier.PROPERTY_CONTACTPERSON_NAME, value);
     }
 
     /** 映射的属性名称-公司/个人 */
@@ -102,48 +91,37 @@ export class Supplier extends BOMasterData<Supplier> implements ISupplier {
         this.setProperty(Supplier.PROPERTY_COMPANYPRIVATE_NAME, value);
     }
 
-    /** 映射的属性名称-付款方街道 */
-    static PROPERTY_BILLTOSTREET_NAME: string = "BillToStreet";
-    /** 获取-付款方街道 */
-    get billToStreet(): string {
-        return this.getProperty<string>(Supplier.PROPERTY_BILLTOSTREET_NAME);
+    /** 映射的属性名称-联系人 */
+    static PROPERTY_CONTACTPERSON_NAME: string = "ContactPerson";
+    /** 获取-联系人 */
+    get contactPerson(): number {
+        return this.getProperty<number>(Supplier.PROPERTY_CONTACTPERSON_NAME);
     }
-    /** 设置-付款方街道 */
-    set billToStreet(value: string) {
-        this.setProperty(Supplier.PROPERTY_BILLTOSTREET_NAME, value);
-    }
-
-    /** 映射的属性名称-付款方邮政编码 */
-    static PROPERTY_BILLTOZIPCODE_NAME: string = "BillToZipCode";
-    /** 获取-付款方邮政编码 */
-    get billToZipCode(): string {
-        return this.getProperty<string>(Supplier.PROPERTY_BILLTOZIPCODE_NAME);
-    }
-    /** 设置-付款方邮政编码 */
-    set billToZipCode(value: string) {
-        this.setProperty(Supplier.PROPERTY_BILLTOZIPCODE_NAME, value);
+    /** 设置-联系人 */
+    set contactPerson(value: number) {
+        this.setProperty(Supplier.PROPERTY_CONTACTPERSON_NAME, value);
     }
 
-    /** 映射的属性名称-送达方街道 */
-    static PROPERTY_SHIPTOSTREET_NAME: string = "ShipToStreet";
-    /** 获取-送达方街道 */
-    get shipToStreet(): string {
-        return this.getProperty<string>(Supplier.PROPERTY_SHIPTOSTREET_NAME);
+    /** 映射的属性名称-账单地址 */
+    static PROPERTY_BILLADDRESS_NAME: string = "BillAddress";
+    /** 获取-账单地址 */
+    get billAddress(): number {
+        return this.getProperty<number>(Supplier.PROPERTY_BILLADDRESS_NAME);
     }
-    /** 设置-送达方街道 */
-    set shipToStreet(value: string) {
-        this.setProperty(Supplier.PROPERTY_SHIPTOSTREET_NAME, value);
+    /** 设置-账单地址 */
+    set billAddress(value: number) {
+        this.setProperty(Supplier.PROPERTY_BILLADDRESS_NAME, value);
     }
 
-    /** 映射的属性名称-送达方邮政编码 */
-    static PROPERTY_SHIPTOZIPCODE_NAME: string = "ShipToZipCode";
-    /** 获取-送达方邮政编码 */
-    get shipToZipCode(): string {
-        return this.getProperty<string>(Supplier.PROPERTY_SHIPTOZIPCODE_NAME);
+    /** 映射的属性名称-送货地址 */
+    static PROPERTY_SHIPADDRESS_NAME: string = "ShipAddress";
+    /** 获取-送货地址 */
+    get shipAddress(): number {
+        return this.getProperty<number>(Supplier.PROPERTY_SHIPADDRESS_NAME);
     }
-    /** 设置-送达方邮政编码 */
-    set shipToZipCode(value: string) {
-        this.setProperty(Supplier.PROPERTY_SHIPTOZIPCODE_NAME, value);
+    /** 设置-送货地址 */
+    set shipAddress(value: number) {
+        this.setProperty(Supplier.PROPERTY_SHIPADDRESS_NAME, value);
     }
 
     /** 映射的属性名称-电话 1 */
@@ -457,6 +435,7 @@ export class Supplier extends BOMasterData<Supplier> implements ISupplier {
     /** 初始化数据 */
     protected init(): void {
         this.objectCode = config.applyVariables(Supplier.BUSINESS_OBJECT_CODE);
+        this.activated = emYesNo.YES;
         this.companyPrivate = emBusinessPartnerNature.COMPANY;
     }
 }

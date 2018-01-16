@@ -58,34 +58,19 @@ public interface ISupplier extends IBOMasterData {
 	void setGroup(String value);
 
 	/**
-	 * 获取-有效的
+	 * 获取-激活
 	 * 
 	 * @return 值
 	 */
 	emYesNo getActivated();
 
 	/**
-	 * 设置-有效的
+	 * 设置-激活
 	 * 
 	 * @param value
 	 *            值
 	 */
 	void setActivated(emYesNo value);
-
-	/**
-	 * 获取-联系人
-	 * 
-	 * @return 值
-	 */
-	Integer getContactPerson();
-
-	/**
-	 * 设置-联系人
-	 * 
-	 * @param value
-	 *            值
-	 */
-	void setContactPerson(Integer value);
 
 	/**
 	 * 获取-公司/个人
@@ -103,64 +88,49 @@ public interface ISupplier extends IBOMasterData {
 	void setCompanyPrivate(emBusinessPartnerNature value);
 
 	/**
-	 * 获取-付款方街道
+	 * 获取-联系人
 	 * 
 	 * @return 值
 	 */
-	String getBillToStreet();
+	Integer getContactPerson();
 
 	/**
-	 * 设置-付款方街道
+	 * 设置-联系人
 	 * 
 	 * @param value
 	 *            值
 	 */
-	void setBillToStreet(String value);
+	void setContactPerson(Integer value);
 
 	/**
-	 * 获取-付款方邮政编码
+	 * 获取-账单地址
 	 * 
 	 * @return 值
 	 */
-	String getBillToZipCode();
+	Integer getBillAddress();
 
 	/**
-	 * 设置-付款方邮政编码
+	 * 设置-账单地址
 	 * 
 	 * @param value
 	 *            值
 	 */
-	void setBillToZipCode(String value);
+	void setBillAddress(Integer value);
 
 	/**
-	 * 获取-送达方街道
+	 * 获取-送货地址
 	 * 
 	 * @return 值
 	 */
-	String getShipToStreet();
+	Integer getShipAddress();
 
 	/**
-	 * 设置-送达方街道
+	 * 设置-送货地址
 	 * 
 	 * @param value
 	 *            值
 	 */
-	void setShipToStreet(String value);
-
-	/**
-	 * 获取-送达方邮政编码
-	 * 
-	 * @return 值
-	 */
-	String getShipToZipCode();
-
-	/**
-	 * 设置-送达方邮政编码
-	 * 
-	 * @param value
-	 *            值
-	 */
-	void setShipToZipCode(String value);
+	void setShipAddress(Integer value);
 
 	/**
 	 * 获取-电话 1

@@ -95,6 +95,12 @@ export class AddressEditView extends ibas.BOEditView implements IAddressEditView
                     path: "zipCode"
                 }),
                 new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_contact_information") }),
+                new sap.m.Label("", { text: ibas.i18n.prop("bo_address_contacts") }),
+                new sap.m.Input("", {
+                    type: sap.m.InputType.Text
+                }).bindProperty("value", {
+                    path: "contacts"
+                }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_address_mobilephone") }),
                 new sap.m.Input("", {
                     type: sap.m.InputType.Text

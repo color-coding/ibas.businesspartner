@@ -11,7 +11,10 @@
             ],
             "openui5/index": [
                 "./3rdparty/openui5/index"
-            ]
+            ],
+            "3rdparty/materials/index": [
+                "./3rdparty/materials/index"
+            ],
         }
     }
 }

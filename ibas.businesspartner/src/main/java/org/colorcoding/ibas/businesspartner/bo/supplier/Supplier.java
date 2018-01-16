@@ -16,6 +16,8 @@ import org.colorcoding.ibas.bobas.mapping.BOCode;
 import org.colorcoding.ibas.bobas.mapping.DbField;
 import org.colorcoding.ibas.bobas.mapping.DbFieldType;
 import org.colorcoding.ibas.bobas.ownership.IDataOwnership;
+import org.colorcoding.ibas.bobas.rule.IBusinessRule;
+import org.colorcoding.ibas.bobas.rule.common.BusinessRuleRequired;
 import org.colorcoding.ibas.businesspartner.MyConfiguration;
 import org.colorcoding.ibas.businesspartner.data.emBusinessPartnerNature;
 
@@ -151,19 +153,19 @@ public class Supplier extends BusinessObject<Supplier> implements ISupplier, IDa
 	}
 
 	/**
-	 * 属性名称-有效的
+	 * 属性名称-激活
 	 */
 	private static final String PROPERTY_ACTIVATED_NAME = "Activated";
 
 	/**
-	 * 有效的 属性
+	 * 激活 属性
 	 */
 	@DbField(name = "Activated", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME, primaryKey = false)
 	public static final IPropertyInfo<emYesNo> PROPERTY_ACTIVATED = registerProperty(PROPERTY_ACTIVATED_NAME,
 			emYesNo.class, MY_CLASS);
 
 	/**
-	 * 获取-有效的
+	 * 获取-激活
 	 * 
 	 * @return 值
 	 */
@@ -173,45 +175,13 @@ public class Supplier extends BusinessObject<Supplier> implements ISupplier, IDa
 	}
 
 	/**
-	 * 设置-有效的
+	 * 设置-激活
 	 * 
 	 * @param value
 	 *            值
 	 */
 	public final void setActivated(emYesNo value) {
 		this.setProperty(PROPERTY_ACTIVATED, value);
-	}
-
-	/**
-	 * 属性名称-联系人
-	 */
-	private static final String PROPERTY_CONTACTPERSON_NAME = "ContactPerson";
-
-	/**
-	 * 联系人 属性
-	 */
-	@DbField(name = "CntctPrsn", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME, primaryKey = false)
-	public static final IPropertyInfo<Integer> PROPERTY_CONTACTPERSON = registerProperty(PROPERTY_CONTACTPERSON_NAME,
-			Integer.class, MY_CLASS);
-
-	/**
-	 * 获取-联系人
-	 * 
-	 * @return 值
-	 */
-	@XmlElement(name = PROPERTY_CONTACTPERSON_NAME)
-	public final Integer getContactPerson() {
-		return this.getProperty(PROPERTY_CONTACTPERSON);
-	}
-
-	/**
-	 * 设置-联系人
-	 * 
-	 * @param value
-	 *            值
-	 */
-	public final void setContactPerson(Integer value) {
-		this.setProperty(PROPERTY_CONTACTPERSON, value);
 	}
 
 	/**
@@ -247,131 +217,99 @@ public class Supplier extends BusinessObject<Supplier> implements ISupplier, IDa
 	}
 
 	/**
-	 * 属性名称-付款方街道
+	 * 属性名称-联系人
 	 */
-	private static final String PROPERTY_BILLTOSTREET_NAME = "BillToStreet";
+	private static final String PROPERTY_CONTACTPERSON_NAME = "ContactPerson";
 
 	/**
-	 * 付款方街道 属性
+	 * 联系人 属性
 	 */
-	@DbField(name = "BillAddress", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME, primaryKey = false)
-	public static final IPropertyInfo<String> PROPERTY_BILLTOSTREET = registerProperty(PROPERTY_BILLTOSTREET_NAME,
-			String.class, MY_CLASS);
+	@DbField(name = "CntctPrsn", type = DbFieldType.NUMERIC, table = DB_TABLE_NAME, primaryKey = false)
+	public static final IPropertyInfo<Integer> PROPERTY_CONTACTPERSON = registerProperty(PROPERTY_CONTACTPERSON_NAME,
+			Integer.class, MY_CLASS);
 
 	/**
-	 * 获取-付款方街道
+	 * 获取-联系人
 	 * 
 	 * @return 值
 	 */
-	@XmlElement(name = PROPERTY_BILLTOSTREET_NAME)
-	public final String getBillToStreet() {
-		return this.getProperty(PROPERTY_BILLTOSTREET);
+	@XmlElement(name = PROPERTY_CONTACTPERSON_NAME)
+	public final Integer getContactPerson() {
+		return this.getProperty(PROPERTY_CONTACTPERSON);
 	}
 
 	/**
-	 * 设置-付款方街道
+	 * 设置-联系人
 	 * 
 	 * @param value
 	 *            值
 	 */
-	public final void setBillToStreet(String value) {
-		this.setProperty(PROPERTY_BILLTOSTREET, value);
+	public final void setContactPerson(Integer value) {
+		this.setProperty(PROPERTY_CONTACTPERSON, value);
 	}
 
 	/**
-	 * 属性名称-付款方邮政编码
+	 * 属性名称-账单地址
 	 */
-	private static final String PROPERTY_BILLTOZIPCODE_NAME = "BillToZipCode";
+	private static final String PROPERTY_BILLADDRESS_NAME = "BillAddress";
 
 	/**
-	 * 付款方邮政编码 属性
+	 * 账单地址 属性
 	 */
-	@DbField(name = "BillZipCode", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME, primaryKey = false)
-	public static final IPropertyInfo<String> PROPERTY_BILLTOZIPCODE = registerProperty(PROPERTY_BILLTOZIPCODE_NAME,
-			String.class, MY_CLASS);
+	@DbField(name = "BillAddress", type = DbFieldType.NUMERIC, table = DB_TABLE_NAME, primaryKey = false)
+	public static final IPropertyInfo<Integer> PROPERTY_BILLADDRESS = registerProperty(PROPERTY_BILLADDRESS_NAME,
+			Integer.class, MY_CLASS);
 
 	/**
-	 * 获取-付款方邮政编码
+	 * 获取-账单地址
 	 * 
 	 * @return 值
 	 */
-	@XmlElement(name = PROPERTY_BILLTOZIPCODE_NAME)
-	public final String getBillToZipCode() {
-		return this.getProperty(PROPERTY_BILLTOZIPCODE);
+	@XmlElement(name = PROPERTY_BILLADDRESS_NAME)
+	public final Integer getBillAddress() {
+		return this.getProperty(PROPERTY_BILLADDRESS);
 	}
 
 	/**
-	 * 设置-付款方邮政编码
+	 * 设置-账单地址
 	 * 
 	 * @param value
 	 *            值
 	 */
-	public final void setBillToZipCode(String value) {
-		this.setProperty(PROPERTY_BILLTOZIPCODE, value);
+	public final void setBillAddress(Integer value) {
+		this.setProperty(PROPERTY_BILLADDRESS, value);
 	}
 
 	/**
-	 * 属性名称-送达方街道
+	 * 属性名称-送货地址
 	 */
-	private static final String PROPERTY_SHIPTOSTREET_NAME = "ShipToStreet";
+	private static final String PROPERTY_SHIPADDRESS_NAME = "ShipAddress";
 
 	/**
-	 * 送达方街道 属性
+	 * 送货地址 属性
 	 */
-	@DbField(name = "ShipAddress", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME, primaryKey = false)
-	public static final IPropertyInfo<String> PROPERTY_SHIPTOSTREET = registerProperty(PROPERTY_SHIPTOSTREET_NAME,
-			String.class, MY_CLASS);
+	@DbField(name = "ShipAddress", type = DbFieldType.NUMERIC, table = DB_TABLE_NAME, primaryKey = false)
+	public static final IPropertyInfo<Integer> PROPERTY_SHIPADDRESS = registerProperty(PROPERTY_SHIPADDRESS_NAME,
+			Integer.class, MY_CLASS);
 
 	/**
-	 * 获取-送达方街道
+	 * 获取-送货地址
 	 * 
 	 * @return 值
 	 */
-	@XmlElement(name = PROPERTY_SHIPTOSTREET_NAME)
-	public final String getShipToStreet() {
-		return this.getProperty(PROPERTY_SHIPTOSTREET);
+	@XmlElement(name = PROPERTY_SHIPADDRESS_NAME)
+	public final Integer getShipAddress() {
+		return this.getProperty(PROPERTY_SHIPADDRESS);
 	}
 
 	/**
-	 * 设置-送达方街道
+	 * 设置-送货地址
 	 * 
 	 * @param value
 	 *            值
 	 */
-	public final void setShipToStreet(String value) {
-		this.setProperty(PROPERTY_SHIPTOSTREET, value);
-	}
-
-	/**
-	 * 属性名称-送达方邮政编码
-	 */
-	private static final String PROPERTY_SHIPTOZIPCODE_NAME = "ShipToZipCode";
-
-	/**
-	 * 送达方邮政编码 属性
-	 */
-	@DbField(name = "ShipZipCode", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME, primaryKey = false)
-	public static final IPropertyInfo<String> PROPERTY_SHIPTOZIPCODE = registerProperty(PROPERTY_SHIPTOZIPCODE_NAME,
-			String.class, MY_CLASS);
-
-	/**
-	 * 获取-送达方邮政编码
-	 * 
-	 * @return 值
-	 */
-	@XmlElement(name = PROPERTY_SHIPTOZIPCODE_NAME)
-	public final String getShipToZipCode() {
-		return this.getProperty(PROPERTY_SHIPTOZIPCODE);
-	}
-
-	/**
-	 * 设置-送达方邮政编码
-	 * 
-	 * @param value
-	 *            值
-	 */
-	public final void setShipToZipCode(String value) {
-		this.setProperty(PROPERTY_SHIPTOZIPCODE, value);
+	public final void setShipAddress(Integer value) {
+		this.setProperty(PROPERTY_SHIPADDRESS, value);
 	}
 
 	/**
@@ -1277,7 +1215,15 @@ public class Supplier extends BusinessObject<Supplier> implements ISupplier, IDa
 	protected void initialize() {
 		super.initialize();// 基类初始化，不可去除
 		this.setObjectCode(MyConfiguration.applyVariables(BUSINESS_OBJECT_CODE));
+		this.setActivated(emYesNo.YES);
+		this.setCompanyPrivate(emBusinessPartnerNature.COMPANY);
 
 	}
 
+	@Override
+	protected IBusinessRule[] registerRules() {
+		return new IBusinessRule[] { // 注册的业务规则
+				new BusinessRuleRequired(PROPERTY_CODE), // 要求有值
+		};
+	}
 }

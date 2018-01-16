@@ -6,12 +6,10 @@
     <Property Name="Name" Description="名称" DataType="Alphanumeric" DataSubType="Default" EditSize="100" Mapped="Name"/>
     <Property Name="Group" Description="组代码" DataType="Alphanumeric" DataSubType="Default" EditSize="8" Mapped="Group"/>
     <Property Name="Activated" Description="激活" DataType="Alphanumeric" DataSubType="Default" EditSize="1" DeclaredType="emYesNo" Mapped="Activated"/>
-    <Property Name="ContactPerson" Description="联系人" DataType="Numeric" DataSubType="Default" EditSize="8" Mapped="CntctPrsn"/>
     <Property Name="CompanyPrivate" Description="公司/个人" DataType="Alphanumeric" DataSubType="Default" EditSize="1" DeclaredType="emBusinessPartnerNature" Mapped="CmpPrivate"/>
-    <Property Name="BillToStreet" Description="付款方街道" DataType="Alphanumeric" DataSubType="Default" EditSize="200" Mapped="BillAddress"/>
-    <Property Name="BillToZipCode" Description="付款方邮政编码" DataType="Alphanumeric" DataSubType="Default" EditSize="20" Mapped="BillZipCode"/>
-    <Property Name="ShipToStreet" Description="送达方街道" DataType="Alphanumeric" DataSubType="Default" EditSize="200" Mapped="ShipAddress"/>
-    <Property Name="ShipToZipCode" Description="送达方邮政编码" DataType="Alphanumeric" DataSubType="Default" EditSize="20" Mapped="ShipZipCode"/>
+    <Property Name="ContactPerson" Description="联系人" DataType="Numeric" DataSubType="Default" EditSize="8" Mapped="CntctPrsn"/>
+    <Property Name="BillAddress" Description="账单地址" DataType="Numeric" DataSubType="Default" EditSize="8" Mapped="BillAddress"/>
+    <Property Name="ShipAddress" Description="送货地址" DataType="Numeric" DataSubType="Default" EditSize="8" Mapped="ShipAddress"/>
     <Property Name="Telephone1" Description="电话 1" DataType="Alphanumeric" DataSubType="Default" EditSize="20" Mapped="Phone1"/>
     <Property Name="Telephone2" Description="电话 2" DataType="Alphanumeric" DataSubType="Default" EditSize="20" Mapped="Phone2"/>
     <Property Name="MobilePhone" Description="移动电话" DataType="Alphanumeric" DataSubType="Default" EditSize="50" Mapped="Cellular"/>

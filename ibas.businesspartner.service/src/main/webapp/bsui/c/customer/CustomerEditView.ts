@@ -21,9 +21,15 @@ export class CustomerEditView extends ibas.BOEditView implements ICustomerEditVi
     /** 新建数据事件，参数1：是否克隆 */
     createDataEvent: Function;
     /*** 选择客户组事件*/
-    chooseBusinessPartnerGroupEvent: Function;
+    chooseCustomerGroupEvent: Function;
     /** 选择客户联系人事件 */
-    chooseBusinessPartnerContactPersonEvent: Function;
+    chooseCustomerContactPersonEvent: Function;
+    /** 选择客户送货地址事件 */
+    chooseCustomerShipAddressEvent: Function;
+    /** 选择客户账单地址事件 */
+    chooseCustomerBillAddressEvent: Function;
+    /** 选择客户价格清单事件 */
+    chooseCustomerPriceListEvent: Function;
     /** 创建联系人 */
     createContactPersonEvent: Function;
     /** 创建地址 */
@@ -48,11 +54,18 @@ export class CustomerEditView extends ibas.BOEditView implements ICustomerEditVi
                 }).bindProperty("value", {
                     path: "name"
                 }),
+                new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_activated") }),
+                new sap.m.Select("", {
+                    items: openui5.utils.createComboBoxItems(ibas.emYesNo)
+                }).bindProperty("selectedKey", {
+                    path: "activated",
+                    type: "sap.ui.model.type.Integer"
+                }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_group") }),
                 new sap.m.Input("", {
                     showValueHelp: true,
                     valueHelpRequest: function (): void {
-                        that.fireViewEvents(that.chooseBusinessPartnerGroupEvent);
+                        that.fireViewEvents(that.chooseCustomerGroupEvent);
                     }
                 }).bindProperty("value", {
                     path: "group"
@@ -64,15 +77,62 @@ export class CustomerEditView extends ibas.BOEditView implements ICustomerEditVi
                     path: "companyPrivate",
                     type: "sap.ui.model.type.Integer"
                 }),
+                new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_pricelist") }),
+                new sap.m.Input("", {
+                    showValueHelp: true,
+                    valueHelpRequest: function (): void {
+                        that.fireViewEvents(that.chooseCustomerPriceListEvent);
+                    }
+                }).bindProperty("value", {
+                    path: "priceList"
+                }),
+                new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_currency") }),
+                new sap.m.Input("", {
+                    type: sap.m.InputType.Text,
+                }).bindProperty("value", {
+                    path: "currency"
+                }),
+                new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_validdate") }),
+                new sap.m.DatePicker("", {
+                    valueFormat: ibas.config.get(ibas.CONFIG_ITEM_FORMAT_DATE),
+                    displayFormat: ibas.config.get(ibas.CONFIG_ITEM_FORMAT_DATE),
+                }).bindProperty("dateValue", {
+                    path: "validdate"
+                }),
+                new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_invaliddate") }),
+                new sap.m.DatePicker("", {
+                    valueFormat: ibas.config.get(ibas.CONFIG_ITEM_FORMAT_DATE),
+                    displayFormat: ibas.config.get(ibas.CONFIG_ITEM_FORMAT_DATE),
+                }).bindProperty("dateValue", {
+                    path: "invaliddate"
+                }),
                 new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_contact_information") }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_contactperson") }),
                 new sap.m.Input("", {
                     showValueHelp: true,
                     valueHelpRequest: function (): void {
-                        that.fireViewEvents(that.chooseBusinessPartnerContactPersonEvent);
+                        that.fireViewEvents(that.chooseCustomerContactPersonEvent);
                     }
                 }).bindProperty("value", {
                     path: "contactPerson"
+                }),
+                new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_billaddress") }),
+                new sap.m.Input("", {
+                    showValueHelp: true,
+                    valueHelpRequest: function (): void {
+                        that.fireViewEvents(that.chooseCustomerBillAddressEvent);
+                    }
+                }).bindProperty("value", {
+                    path: "billAddress"
+                }),
+                new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_shipaddress") }),
+                new sap.m.Input("", {
+                    showValueHelp: true,
+                    valueHelpRequest: function (): void {
+                        that.fireViewEvents(that.chooseCustomerShipAddressEvent);
+                    }
+                }).bindProperty("value", {
+                    path: "shipAddress"
                 }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_telephone1") }),
                 new sap.m.Input("", {
@@ -98,60 +158,12 @@ export class CustomerEditView extends ibas.BOEditView implements ICustomerEditVi
                 }).bindProperty("value", {
                     path: "faxNumber"
                 }),
-                new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_business_information") }),
-                new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_billtostreet") }),
-                new sap.m.Input("", {
-                    type: sap.m.InputType.Text,
-                }).bindProperty("value", {
-                    path: "billToStreet"
-                }),
-                new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_billtozipcode") }),
-                new sap.m.Input("", {
-                    type: sap.m.InputType.Text,
-                }).bindProperty("value", {
-                    path: "billToZipCode"
-                }),
-                new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_shiptostreet") }),
-                new sap.m.Input("", {
-                    type: sap.m.InputType.Text,
-                }).bindProperty("value", {
-                    path: "shipToStreet"
-                }),
-                new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_shiptozipcode") }),
-                new sap.m.Input("", {
-                    type: sap.m.InputType.Text,
-                }).bindProperty("value", {
-                    path: "shipToZipCode"
-                }),
-                new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_account_information") }),
-                new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_currency") }),
-                new sap.m.Input("", {
-                    type: sap.m.InputType.Text,
-                }).bindProperty("value", {
-                    path: "currency"
-                }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_taxid") }),
                 new sap.m.Input("", {
                     type: sap.m.InputType.Text,
                 }).bindProperty("value", {
                     path: "taxId",
                 }),
-                new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_other_information") }),
-                new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_validdate") }),
-                new sap.m.DatePicker("", {
-                    valueFormat: ibas.config.get(ibas.CONFIG_ITEM_FORMAT_DATE),
-                    displayFormat: ibas.config.get(ibas.CONFIG_ITEM_FORMAT_DATE),
-                }).bindProperty("dateValue", {
-                    path: "validdate"
-                }),
-                new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_invaliddate") }),
-                new sap.m.DatePicker("", {
-                    valueFormat: ibas.config.get(ibas.CONFIG_ITEM_FORMAT_DATE),
-                    displayFormat: ibas.config.get(ibas.CONFIG_ITEM_FORMAT_DATE),
-                }).bindProperty("dateValue", {
-                    path: "invaliddate"
-                }),
-                new sap.ui.core.Title("", {}),
             ],
         });
         this.page = new sap.m.Page("", {

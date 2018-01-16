@@ -237,6 +237,21 @@ public interface IAddress extends IBOSimple {
 	void setRemark2(String value);
 
 	/**
+	 * 获取-联系人
+	 * 
+	 * @return 值
+	 */
+	String getContacts();
+
+	/**
+	 * 设置-联系人
+	 * 
+	 * @param value
+	 *            值
+	 */
+	void setContacts(String value);
+
+	/**
 	 * 获取-对象编号
 	 * 
 	 * @return 值

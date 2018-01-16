@@ -96,6 +96,14 @@ export class AddressListView extends ibas.BOListView implements IAddressListView
                         path: "mobilePhone"
                     })
                 }),
+                new sap.ui.table.Column("", {
+                    label: ibas.i18n.prop("bo_address_contacts"),
+                    template: new sap.m.Text("", {
+                        wrapping: false
+                    }).bindProperty("text", {
+                        path: "contacts"
+                    })
+                }),
             ]
         });
         this.form.addContent(this.table);

@@ -29,7 +29,7 @@ public class Address extends BusinessObject<Address> implements IAddress {
 	/**
 	 * 序列化版本标记
 	 */
-	private static final long serialVersionUID = 7328089947750480305L;
+	private static final long serialVersionUID = 8865210511250487290L;
 
 	/**
 	 * 当前类型
@@ -529,6 +529,38 @@ public class Address extends BusinessObject<Address> implements IAddress {
 	 */
 	public final void setRemark2(String value) {
 		this.setProperty(PROPERTY_REMARK2, value);
+	}
+
+	/**
+	 * 属性名称-联系人
+	 */
+	private static final String PROPERTY_CONTACTS_NAME = "Contacts";
+
+	/**
+	 * 联系人 属性
+	 */
+	@DbField(name = "Contacts", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME, primaryKey = false)
+	public static final IPropertyInfo<String> PROPERTY_CONTACTS = registerProperty(PROPERTY_CONTACTS_NAME, String.class,
+			MY_CLASS);
+
+	/**
+	 * 获取-联系人
+	 * 
+	 * @return 值
+	 */
+	@XmlElement(name = PROPERTY_CONTACTS_NAME)
+	public final String getContacts() {
+		return this.getProperty(PROPERTY_CONTACTS);
+	}
+
+	/**
+	 * 设置-联系人
+	 * 
+	 * @param value
+	 *            值
+	 */
+	public final void setContacts(String value) {
+		this.setProperty(PROPERTY_CONTACTS, value);
 	}
 
 	/**

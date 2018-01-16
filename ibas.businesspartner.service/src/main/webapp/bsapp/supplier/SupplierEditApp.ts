@@ -8,6 +8,7 @@
 
 import * as ibas from "ibas/index";
 import * as bo from "../../borep/bo/index";
+import * as mm from "3rdparty/materials/index";
 import { BORepositoryBusinessPartner } from "../../borep/BORepositories";
 import { AddressEditApp } from "../address/index";
 import { ContactPersonEditApp } from "../contactperson/index";
@@ -35,8 +36,11 @@ export class SupplierEditApp extends ibas.BOEditApplication<ISupplierEditView, b
         // 其他事件
         this.view.deleteDataEvent = this.deleteData;
         this.view.createDataEvent = this.createData;
-        this.view.chooseBusinessPartnerGroupEvent = this.chooseBusinessPartnerGroup;
-        this.view.chooseBusinessPartnerContactPersonEvent = this.chooseBusinessPartnerContactPerson;
+        this.view.chooseSupplierGroupEvent = this.chooseSupplierGroup;
+        this.view.chooseSupplierContactPersonEvent = this.chooseSupplierContactPerson;
+        this.view.chooseSupplierBillAddressEvent = this.chooseSupplierBillAddress;
+        this.view.chooseSupplierShipAddressEvent = this.chooseSupplierShipAddress;
+        this.view.chooseSupplierPriceListEvent = this.chooseSupplierPriceList;
         this.view.createAddressEvent = this.createAddress;
         this.view.createContactPersonEvent = this.createContactPerson;
     }
@@ -180,30 +184,26 @@ export class SupplierEditApp extends ibas.BOEditApplication<ISupplierEditView, b
             createData();
         }
     }
-    private chooseBusinessPartnerGroup(): void {
+    private chooseSupplierGroup(): void {
         let that: this = this;
         ibas.servicesManager.runChooseService<bo.BusinessPartnerGroup>({
             boCode: bo.BusinessPartnerGroup.BUSINESS_OBJECT_CODE,
             criteria: [
                 new ibas.Condition(bo.BusinessPartnerGroup.PROPERTY_DELETED_NAME,
                     ibas.emConditionOperation.EQUAL, ibas.emYesNo.NO),
-                new ibas.Condition(bo.BusinessPartnerGroup.PROPERTY_CODE_NAME,
-                    ibas.emConditionOperation.NOT_EQUAL, ibas.strings.valueOf(this.editData.group)),
             ],
             onCompleted(selecteds: ibas.List<bo.BusinessPartnerGroup>): void {
                 that.editData.group = selecteds.firstOrDefault().code;
             }
         });
     }
-    private chooseBusinessPartnerContactPerson(): void {
+    private chooseSupplierContactPerson(): void {
         let that: this = this;
         ibas.servicesManager.runChooseService<bo.ContactPerson>({
             boCode: bo.ContactPerson.BUSINESS_OBJECT_CODE,
             criteria: [
                 new ibas.Condition(bo.ContactPerson.PROPERTY_ACTIVATED_NAME,
                     ibas.emConditionOperation.EQUAL, ibas.emYesNo.YES),
-                new ibas.Condition(bo.ContactPerson.PROPERTY_NAME_NAME,
-                    ibas.emConditionOperation.NOT_EQUAL, ibas.strings.valueOf(this.editData.contactPerson)),
                 new ibas.Condition(bo.ContactPerson.PROPERTY_OWNERTYPE_NAME,
                     ibas.emConditionOperation.EQUAL, bo.emBusinessPartnerType.SUPPLIER),
             ],
@@ -214,6 +214,50 @@ export class SupplierEditApp extends ibas.BOEditApplication<ISupplierEditView, b
                 that.editData.telephone2 = selected.telephone2;
                 that.editData.mobilePhone = selected.mobilePhone;
                 that.editData.faxNumber = selected.fax;
+            }
+        });
+    }
+    private chooseSupplierShipAddress(): void {
+        let that: this = this;
+        ibas.servicesManager.runChooseService<bo.Address>({
+            boCode: bo.Address.BUSINESS_OBJECT_CODE,
+            criteria: [
+                new ibas.Condition(bo.Address.PROPERTY_ACTIVATED_NAME,
+                    ibas.emConditionOperation.EQUAL, ibas.emYesNo.YES),
+                new ibas.Condition(bo.Address.PROPERTY_OWNERTYPE_NAME,
+                    ibas.emConditionOperation.EQUAL, bo.emBusinessPartnerType.SUPPLIER),
+            ],
+            onCompleted(selecteds: ibas.List<bo.Address>): void {
+                let selected: bo.Address = selecteds.firstOrDefault();
+                that.editData.shipAddress = selected.objectKey;
+            }
+        });
+    }
+    private chooseSupplierBillAddress(): void {
+        let that: this = this;
+        ibas.servicesManager.runChooseService<bo.Address>({
+            boCode: bo.Address.BUSINESS_OBJECT_CODE,
+            criteria: [
+                new ibas.Condition(bo.Address.PROPERTY_ACTIVATED_NAME,
+                    ibas.emConditionOperation.EQUAL, ibas.emYesNo.YES),
+                new ibas.Condition(bo.Address.PROPERTY_OWNERTYPE_NAME,
+                    ibas.emConditionOperation.EQUAL, bo.emBusinessPartnerType.SUPPLIER),
+            ],
+            onCompleted(selecteds: ibas.List<bo.Address>): void {
+                let selected: bo.Address = selecteds.firstOrDefault();
+                that.editData.billAddress = selected.objectKey;
+            }
+        });
+    }
+    private chooseSupplierPriceList(): void {
+        let that: this = this;
+        ibas.servicesManager.runChooseService<mm.IMaterialPriceList>({
+            boCode: mm.BO_CODE_MATERIALPRICELIST,
+            criteria: [
+            ],
+            onCompleted(selecteds: ibas.List<mm.IMaterialPriceList>): void {
+                let selected: mm.IMaterialPriceList = selecteds.firstOrDefault();
+                that.editData.priceList = selected.objectKey;
             }
         });
     }
@@ -262,9 +306,15 @@ export interface ISupplierEditView extends ibas.IBOEditView {
     /** 新建数据事件，参数1：是否克隆 */
     createDataEvent: Function;
     /** 选择供应商组事件 */
-    chooseBusinessPartnerGroupEvent: Function;
+    chooseSupplierGroupEvent: Function;
     /** 选择供应商联系人事件 */
-    chooseBusinessPartnerContactPersonEvent: Function;
+    chooseSupplierContactPersonEvent: Function;
+    /** 选择供应商送货地址事件 */
+    chooseSupplierShipAddressEvent: Function;
+    /** 选择供应商账单地址事件 */
+    chooseSupplierBillAddressEvent: Function;
+    /** 选择供应商价格清单事件 */
+    chooseSupplierPriceListEvent: Function;
     /** 创建联系人 */
     createContactPersonEvent: Function;
     /** 创建地址 */

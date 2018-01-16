@@ -201,6 +201,17 @@ export class Address extends BOSimple<Address> implements IAddress {
         this.setProperty(Address.PROPERTY_REMARK2_NAME, value);
     }
 
+    /** 映射的属性名称-联系人 */
+    static PROPERTY_CONTACTS_NAME: string = "Contacts";
+    /** 获取-联系人 */
+    get contacts(): string {
+        return this.getProperty<string>(Address.PROPERTY_CONTACTS_NAME);
+    }
+    /** 设置-联系人 */
+    set contacts(value: string) {
+        this.setProperty(Address.PROPERTY_CONTACTS_NAME, value);
+    }
+
     /** 映射的属性名称-对象编号 */
     static PROPERTY_OBJECTKEY_NAME: string = "ObjectKey";
     /** 获取-对象编号 */
@@ -347,8 +358,8 @@ export class Address extends BOSimple<Address> implements IAddress {
     /** 初始化数据 */
     protected init(): void {
         this.objectCode = config.applyVariables(Address.BUSINESS_OBJECT_CODE);
-        this.ownerType = emBusinessPartnerType.CUSTOMER;
         this.activated = emYesNo.YES;
+        this.ownerType = emBusinessPartnerType.CUSTOMER;
     }
 }
 
