@@ -23,7 +23,7 @@ export class BusinessPartnerGroupViewView extends ibas.BOViewView implements IBu
         this.viewTopForm = new sap.ui.layout.form.SimpleForm("", {
             editable: true,
             content: [
-                new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_general_information") }),
+                new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_title_general") }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnergroup_code") }),
                 new sap.m.Text("", {
                     type: sap.m.InputType.Text
@@ -42,7 +42,7 @@ export class BusinessPartnerGroupViewView extends ibas.BOViewView implements IBu
                 }).bindProperty("text", {
                     path: "docEntry"
                 }),
-                new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_other_information") }),
+                new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_title_others") }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnergroup_createdate") }),
                 new sap.m.Text("", {
                 }).bindProperty("text", {

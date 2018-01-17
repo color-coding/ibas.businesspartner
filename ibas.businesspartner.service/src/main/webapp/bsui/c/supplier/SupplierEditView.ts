@@ -41,7 +41,7 @@ export class SupplierEditView extends ibas.BOEditView implements ISupplierEditVi
         this.viewTopForm = new sap.ui.layout.form.SimpleForm("", {
             editable: true,
             content: [
-                new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_general_information") }),
+                new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_title_general") }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_code") }),
                 new sap.m.Input("", {
                     type: sap.m.InputType.Text
@@ -106,7 +106,7 @@ export class SupplierEditView extends ibas.BOEditView implements ISupplierEditVi
                 }).bindProperty("dateValue", {
                     path: "invaliddate"
                 }),
-                new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_contact_information") }),
+                new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_title_contact") }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_contactperson") }),
                 new sap.m.Input("", {
                     showValueHelp: true,
@@ -223,7 +223,7 @@ export class SupplierEditView extends ibas.BOEditView implements ISupplierEditVi
                     }),
                     new sap.m.ToolbarSeparator(""),
                     new sap.m.MenuButton("", {
-                        text: ibas.i18n.prop("shell_data_new") + ibas.i18n.prop("businesspartner_contact_information"),
+                        text: ibas.i18n.prop("shell_data_new") + ibas.i18n.prop("businesspartner_title_contact"),
                         type: sap.m.ButtonType.Transparent,
                         icon: "sap-icon://add-coursebook",
                         buttonMode: sap.m.MenuButtonMode.Regular,

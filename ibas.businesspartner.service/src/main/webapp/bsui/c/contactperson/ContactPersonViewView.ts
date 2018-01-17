@@ -25,7 +25,7 @@ export class ContactPersonViewView extends ibas.BOViewView implements IContactPe
         this.viewTopForm = new sap.ui.layout.form.SimpleForm("", {
             editable: false,
             content: [
-                new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_general_information") }),
+                new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_title_general") }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_ownertype") }),
                 new sap.m.Text("", {
                     type: sap.m.InputType.Text
@@ -65,7 +65,7 @@ export class ContactPersonViewView extends ibas.BOViewView implements IContactPe
                         return ibas.enums.describe(ibas.emYesNo, data);
                     }
                 }),
-                new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_contact_information") }),
+                new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_title_contact") }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_address") }),
                 new sap.m.Text("", {
                     type: sap.m.InputType.Text

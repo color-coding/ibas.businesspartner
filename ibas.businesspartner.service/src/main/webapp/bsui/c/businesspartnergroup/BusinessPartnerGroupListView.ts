@@ -35,14 +35,6 @@ export class BusinessPartnerGroupListView extends ibas.BOListView implements IBu
             rows: "{/rows}",
             columns: [
                 new sap.ui.table.Column("", {
-                    label: ibas.i18n.prop("bo_businesspartnergroup_docentry"),
-                    template: new sap.m.Text("", {
-                        wrapping: false
-                    }).bindProperty("text", {
-                        path: "docEntry"
-                    })
-                }),
-                new sap.ui.table.Column("", {
                     label: ibas.i18n.prop("bo_businesspartnergroup_code"),
                     template: new sap.m.Text("", {
                         wrapping: false

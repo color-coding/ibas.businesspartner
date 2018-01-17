@@ -28,7 +28,7 @@ export class AddressEditView extends ibas.BOEditView implements IAddressEditView
         let formTop: sap.ui.layout.form.SimpleForm = new sap.ui.layout.form.SimpleForm("", {
             editable: true,
             content: [
-                new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_general_information") }),
+                new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_title_general") }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_address_ownertype") }),
                 new sap.m.Select("", {
                     items: openui5.utils.createComboBoxItems(bo.emBusinessPartnerType)
@@ -94,7 +94,7 @@ export class AddressEditView extends ibas.BOEditView implements IAddressEditView
                 }).bindProperty("value", {
                     path: "zipCode"
                 }),
-                new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_contact_information") }),
+                new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_title_contact") }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_address_contacts") }),
                 new sap.m.Input("", {
                     type: sap.m.InputType.Text
