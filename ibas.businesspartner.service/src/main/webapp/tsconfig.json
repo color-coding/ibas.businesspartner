@@ -14,7 +14,7 @@
             ],
             "3rdparty/materials/index": [
                 "./3rdparty/materials/index"
-            ],
+            ]
         }
     }
 }
