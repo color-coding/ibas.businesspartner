@@ -36,10 +36,10 @@ export class ContactPersonListView extends ibas.BOListView implements IContactPe
                         text: ibas.i18n.prop("shell_data_view"),
                         type: sap.m.ButtonType.Accept,
                         icon: "sap-icon://display",
-                        press: function (oEvent:any): void {
-                            let parentControl:any = oEvent.getSource().getParent().getParent();
+                        press: function (oEvent: any): void {
+                            let parentControl: any = oEvent.getSource().getParent().getParent();
                             that.fireViewEvents(that.viewDataEvent,
-                                  parentControl.getSwipedItem().getBindingContext().getObject()
+                                parentControl.getSwipedItem().getBindingContext().getObject()
                             );
                             parentControl.swipeOut();
                         }
@@ -48,10 +48,10 @@ export class ContactPersonListView extends ibas.BOListView implements IContactPe
                         text: ibas.i18n.prop("shell_data_edit"),
                         type: sap.m.ButtonType.Accept,
                         icon: "sap-icon://edit",
-                        press: function (oEvent:any): void {
-                            let parentControl:any = oEvent.getSource().getParent().getParent();
+                        press: function (oEvent: any): void {
+                            let parentControl: any = oEvent.getSource().getParent().getParent();
                             that.fireViewEvents(that.editDataEvent,
-                                  parentControl.getSwipedItem().getBindingContext().getObject()
+                                parentControl.getSwipedItem().getBindingContext().getObject()
                             );
                             parentControl.swipeOut();
                         }
@@ -60,18 +60,18 @@ export class ContactPersonListView extends ibas.BOListView implements IContactPe
                         text: ibas.i18n.prop("shell_data_delete"),
                         type: sap.m.ButtonType.Reject,
                         icon: "sap-icon://delete",
-                        press: function (oEvent:any): void {
-                             let parentControl:any = oEvent.getSource().getParent().getParent();
-                             that.fireViewEvents(that.deleteDataEvent,
-                                  parentControl.getSwipedItem().getBindingContext().getObject()
+                        press: function (oEvent: any): void {
+                            let parentControl: any = oEvent.getSource().getParent().getParent();
+                            that.fireViewEvents(that.deleteDataEvent,
+                                parentControl.getSwipedItem().getBindingContext().getObject()
                             );
                             parentControl.swipeOut();
                         }
                     }),
                 ],
             }),
-            itemPress: function (oEvent:any): void {
-                var oItem:any = oEvent.getParameter("listItem");
+            itemPress: function (oEvent: any): void {
+                var oItem: any = oEvent.getParameter("listItem");
                 that.fireViewEvents(that.viewDataEvent,
                     oItem.getBindingContext().getObject()
                 );
@@ -80,20 +80,20 @@ export class ContactPersonListView extends ibas.BOListView implements IContactPe
         let list_item_object: sap.m.ObjectListItem = new sap.m.ObjectListItem("", {
             title: "{name} ",
             type: sap.m.ListType.Active,
-            numberUnit:"{code}",
+            numberUnit: "{code}",
             attributes: [
-                 new sap.m.ObjectAttribute("", {
+                new sap.m.ObjectAttribute("", {
                 }).bindProperty("text", {
                     path: "Position",
                     formatter(data: any): any {
-                        return ibas.i18n.prop("bo_contactperson_position")+":"+data;
+                        return ibas.i18n.prop("bo_contactperson_position") + ":" + data;
                     }
                 }),
                 new sap.m.ObjectAttribute("", {
                 }).bindProperty("text", {
                     path: "Telephone1",
                     formatter(data: any): any {
-                        return ibas.i18n.prop("bo_contactperson_telephone1")+":"+data;
+                        return ibas.i18n.prop("bo_contactperson_telephone1") + ":" + data;
                     }
                 }),
             ],
@@ -151,29 +151,22 @@ export class ContactPersonListView extends ibas.BOListView implements IContactPe
             }),
             content: [this.list]
         });
-        this.id = this.page.getId();
         // 添加列表自动查询事件
-        // openui5.utils.triggerNextResults({
-        //     listener: this.list,
-        //     next(data: any): void {
-        //         if (ibas.objects.isNull(that.lastCriteria)) {
-        //             return;
-        //         }
-        //         let criteria: ibas.ICriteria = that.lastCriteria.next(data);
-        //         if (ibas.objects.isNull(criteria)) {
-        //             return;
-        //         }
-        //         ibas.logger.log(ibas.emMessageLevel.DEBUG, "result: {0}", criteria.toString());
-        //         that.fireViewEvents(that.fetchDataEvent, criteria);
-        //     }
-        // });
-
+        openui5.utils.triggerNextResults({
+            listener: this.list,
+            next(data: any): void {
+                if (ibas.objects.isNull(that.lastCriteria)) {
+                    return;
+                }
+                let criteria: ibas.ICriteria = that.lastCriteria.next(data);
+                if (ibas.objects.isNull(criteria)) {
+                    return;
+                }
+                ibas.logger.log(ibas.emMessageLevel.DEBUG, "result: {0}", criteria.toString());
+                that.fireViewEvents(that.fetchDataEvent, criteria);
+            }
+        });
         return this.page;
-    }
-    /** 嵌入查询面板 */
-    embedded(view: any): void {
-        this.page.addHeaderContent(view);
-        this.page.setShowHeader(true);
     }
     private page: sap.m.Page;
     private form: sap.ui.layout.VerticalLayout;

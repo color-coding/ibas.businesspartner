@@ -106,11 +106,6 @@ export class SupplierChooseView extends ibas.BOChooseView implements ISupplierCh
         });
         return this.page;
     }
-    /** 嵌入查询面板 */
-    embedded(view: any): void {
-        this.page.addHeaderContent(view);
-        this.page.setShowHeader(true);
-    }
     private page: sap.m.Page;
     private form: sap.ui.layout.VerticalLayout;
     private list: sap.m.List;

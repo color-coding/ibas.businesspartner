@@ -97,14 +97,14 @@ export class CustomerEditView extends ibas.BOEditView implements ICustomerEditVi
                     valueFormat: ibas.config.get(ibas.CONFIG_ITEM_FORMAT_DATE),
                     displayFormat: ibas.config.get(ibas.CONFIG_ITEM_FORMAT_DATE),
                 }).bindProperty("dateValue", {
-                    path: "validdate"
+                    path: "validDate"
                 }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_invaliddate") }),
                 new sap.m.DatePicker("", {
                     valueFormat: ibas.config.get(ibas.CONFIG_ITEM_FORMAT_DATE),
                     displayFormat: ibas.config.get(ibas.CONFIG_ITEM_FORMAT_DATE),
                 }).bindProperty("dateValue", {
-                    path: "invaliddate"
+                    path: "invalidDate"
                 }),
                 new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_title_contact") }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_contactperson") }),
