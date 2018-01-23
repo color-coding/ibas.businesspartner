@@ -8,6 +8,7 @@
 
 import * as ibas from "ibas/index";
 import * as openui5 from "openui5/index";
+import * as mm from "3rdparty/materials/index";
 import * as bo from "../../../borep/bo/index";
 import { ICustomerEditView } from "../../../bsapp/customer/index";
 
@@ -76,6 +77,19 @@ export class CustomerEditView extends ibas.BOEditView implements ICustomerEditVi
                 }).bindProperty("selectedKey", {
                     path: "companyPrivate",
                     type: "sap.ui.model.type.Integer"
+                }),
+                new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_pricelist") }),
+                new sap.m.ex.BOInput("", {
+                    boText: "name",
+                    boKey: "objectKey",
+                    boCode: ibas.config.applyVariables(mm.BO_CODE_MATERIALPRICELIST),
+                    repositoryName: mm.BO_REPOSITORY_MATERIALS,
+                    valueHelpRequest: function (): void {
+                        that.fireViewEvents(that.chooseCustomerPriceListEvent);
+                    },
+                    bindingValue: {
+                        path: "priceList"
+                    }
                 }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_pricelist") }),
                 new sap.m.Input("", {

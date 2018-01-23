@@ -255,8 +255,7 @@ export class CustomerEditApp extends ibas.BOEditApplication<ICustomerEditView, b
         let that: this = this;
         ibas.servicesManager.runChooseService<mm.IMaterialPriceList>({
             boCode: mm.BO_CODE_MATERIALPRICELIST,
-            criteria: [
-            ],
+            criteria: mm.conditions.materialpricelist.create(),
             onCompleted(selecteds: ibas.List<mm.IMaterialPriceList>): void {
                 let selected: mm.IMaterialPriceList = selecteds.firstOrDefault();
                 that.editData.priceList = selected.objectKey;

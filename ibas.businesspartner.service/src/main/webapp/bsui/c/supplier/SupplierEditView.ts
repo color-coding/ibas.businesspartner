@@ -8,6 +8,7 @@
 
 import * as ibas from "ibas/index";
 import * as openui5 from "openui5/index";
+import * as mm from "3rdparty/materials/index";
 import * as bo from "../../../borep/bo/index";
 import { ISupplierEditView } from "../../../bsapp/supplier/index";
 

@@ -8,6 +8,7 @@
 
 import * as ibas from "ibas/index";
 import * as openui5 from "openui5/index";
+import * as mm from "3rdparty/materials/index";
 import * as bo from "../../../borep/bo/index";
 import { ISupplierEditView } from "../../../bsapp/supplier/index";
 
@@ -78,13 +79,17 @@ export class SupplierEditView extends ibas.BOEditView implements ISupplierEditVi
                     type: "sap.ui.model.type.Integer"
                 }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_pricelist") }),
-                new sap.m.Input("", {
-                    showValueHelp: true,
+                new sap.m.ex.BOInput("", {
+                    boText: "name",
+                    boKey: "objectKey",
+                    boCode: ibas.config.applyVariables(mm.BO_CODE_MATERIALPRICELIST),
+                    repositoryName: mm.BO_REPOSITORY_MATERIALS,
                     valueHelpRequest: function (): void {
                         that.fireViewEvents(that.chooseSupplierPriceListEvent);
+                    },
+                    bindingValue: {
+                        path: "priceList"
                     }
-                }).bindProperty("value", {
-                    path: "priceList"
                 }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_currency") }),
                 new sap.m.Input("", {
