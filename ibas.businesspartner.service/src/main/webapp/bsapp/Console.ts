@@ -11,14 +11,12 @@ import { CONSOLE_ID, CONSOLE_NAME, CONSOLE_VERSION } from "../api/index";
 import {
     AddressFunc,
     AddressChooseServiceMapping,
-    AddressLinkServiceMapping
 } from "./address/index";
 import {
     BusinessPartnerGroupFunc,
     BusinessPartnerGroupChooseServiceMapping,
-    BusinessPartnerGroupLinkServiceMapping
 } from "./businesspartnergroup/index";
-import { ContactPersonFunc, ContactPersonChooseServiceMapping, ContactPersonLinkServiceMapping } from "./contactperson/index";
+import { ContactPersonFunc, ContactPersonChooseServiceMapping, } from "./contactperson/index";
 import { CustomerFunc, CustomerChooseServiceMapping, CustomerLinkServiceMapping } from "./customer/index";
 import { SupplierFunc, SupplierChooseServiceMapping, SupplierLinkServiceMapping } from "./supplier/index";
 
@@ -48,11 +46,8 @@ export class Console extends ibas.ModuleConsole {
 
         // 注册服务应用
         this.register(new AddressChooseServiceMapping());
-        this.register(new AddressLinkServiceMapping());
         this.register(new BusinessPartnerGroupChooseServiceMapping());
-        this.register(new BusinessPartnerGroupLinkServiceMapping());
         this.register(new ContactPersonChooseServiceMapping());
-        this.register(new ContactPersonLinkServiceMapping());
         this.register(new CustomerChooseServiceMapping());
         this.register(new CustomerLinkServiceMapping());
         this.register(new SupplierChooseServiceMapping());

@@ -9,5 +9,4 @@
 // 模块索引文件，此文件集中导出类
 export * from "./ContactPersonListView";
 export * from "./ContactPersonChooseView";
-export * from "./ContactPersonViewView";
 export * from "./ContactPersonEditView";

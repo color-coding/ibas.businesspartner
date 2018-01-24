@@ -10,7 +10,6 @@ import * as ibas from "ibas/index";
 import * as bo from "../../borep/bo/index";
 import { BORepositoryBusinessPartner } from "../../borep/BORepositories";
 import { DataConverter4bp } from "../../borep/DataConverters";
-import { BusinessPartnerGroupViewApp } from "./BusinessPartnerGroupViewApp";
 import { BusinessPartnerGroupEditApp } from "./BusinessPartnerGroupEditApp";
 
 /** 列表应用-业务伙伴组 */
@@ -81,11 +80,6 @@ export class BusinessPartnerGroupListApp extends ibas.BOListApplication<IBusines
             ));
             return;
         }
-        let app: BusinessPartnerGroupViewApp = new BusinessPartnerGroupViewApp();
-        app.navigation = this.navigation;
-        app.viewShower = this.viewShower;
-        app.run(data);
-
     }
     /** 编辑数据，参数：目标数据 */
     protected editData(data: bo.BusinessPartnerGroup): void {

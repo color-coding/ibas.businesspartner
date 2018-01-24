@@ -10,5 +10,4 @@
 export * from "./AddressFunc";
 export * from "./AddressListApp";
 export * from "./AddressChooseApp";
-export * from "./AddressViewApp";
 export * from "./AddressEditApp";

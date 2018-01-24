@@ -10,7 +10,6 @@ import * as ibas from "ibas/index";
 import * as bo from "../../borep/bo/index";
 import { BORepositoryBusinessPartner } from "../../borep/BORepositories";
 import { DataConverter4bp } from "../../borep/DataConverters";
-import { ContactPersonViewApp } from "./ContactPersonViewApp";
 import { ContactPersonEditApp } from "./ContactPersonEditApp";
 
 /** 列表应用-业务伙伴联系人 */
@@ -81,11 +80,6 @@ export class ContactPersonListApp extends ibas.BOListApplication<IContactPersonL
             ));
             return;
         }
-        let app: ContactPersonViewApp = new ContactPersonViewApp();
-        app.navigation = this.navigation;
-        app.viewShower = this.viewShower;
-        app.run(data);
-
     }
     /** 编辑数据，参数：目标数据 */
     protected editData(data: bo.ContactPerson): void {

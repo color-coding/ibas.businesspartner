@@ -36,9 +36,6 @@ export default class Navigation extends ibas.ViewNavigation {
             case addressApps.AddressChooseApp.APPLICATION_ID:
                 view = new addressViews.AddressChooseView();
                 break;
-            case addressApps.AddressViewApp.APPLICATION_ID:
-                view = new addressViews.AddressViewView();
-                break;
             case addressApps.AddressEditApp.APPLICATION_ID:
                 view = new addressViews.AddressEditView();
                 break;
@@ -48,9 +45,6 @@ export default class Navigation extends ibas.ViewNavigation {
             case businesspartnergroupApps.BusinessPartnerGroupChooseApp.APPLICATION_ID:
                 view = new businesspartnergroupViews.BusinessPartnerGroupChooseView();
                 break;
-            case businesspartnergroupApps.BusinessPartnerGroupViewApp.APPLICATION_ID:
-                view = new businesspartnergroupViews.BusinessPartnerGroupViewView();
-                break;
             case businesspartnergroupApps.BusinessPartnerGroupEditApp.APPLICATION_ID:
                 view = new businesspartnergroupViews.BusinessPartnerGroupEditView();
                 break;
@@ -59,9 +53,6 @@ export default class Navigation extends ibas.ViewNavigation {
                 break;
             case contactpersonApps.ContactPersonChooseApp.APPLICATION_ID:
                 view = new contactpersonViews.ContactPersonChooseView();
-                break;
-            case contactpersonApps.ContactPersonViewApp.APPLICATION_ID:
-                view = new contactpersonViews.ContactPersonViewView();
                 break;
             case contactpersonApps.ContactPersonEditApp.APPLICATION_ID:
                 view = new contactpersonViews.ContactPersonEditView();

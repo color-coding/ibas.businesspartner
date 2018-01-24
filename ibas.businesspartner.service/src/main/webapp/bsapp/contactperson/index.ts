@@ -10,5 +10,4 @@
 export * from "./ContactPersonFunc";
 export * from "./ContactPersonListApp";
 export * from "./ContactPersonChooseApp";
-export * from "./ContactPersonViewApp";
 export * from "./ContactPersonEditApp";
