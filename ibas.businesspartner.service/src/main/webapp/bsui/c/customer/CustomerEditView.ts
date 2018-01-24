@@ -49,6 +49,13 @@ export class CustomerEditView extends ibas.BOEditView implements ICustomerEditVi
                 }).bindProperty("value", {
                     path: "code"
                 }),
+                new sap.m.ex.SeriesSelect("", {
+                    objectCode: ibas.config.applyVariables(bo.BO_CODE_CUSTOMER),
+                    bindingValue: {
+                        path: "series",
+                        type: "sap.ui.model.type.Integer",
+                    }
+                }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_name") }),
                 new sap.m.Input("", {
                     type: sap.m.InputType.Text

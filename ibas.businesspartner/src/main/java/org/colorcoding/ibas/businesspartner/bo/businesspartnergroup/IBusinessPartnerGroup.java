@@ -2,7 +2,6 @@ package org.colorcoding.ibas.businesspartner.bo.businesspartnergroup;
 
 import org.colorcoding.ibas.bobas.bo.IBOMasterData;
 import org.colorcoding.ibas.bobas.data.DateTime;
-import org.colorcoding.ibas.bobas.data.emApprovalStatus;
 import org.colorcoding.ibas.bobas.data.emYesNo;
 
 /**
@@ -12,14 +11,14 @@ import org.colorcoding.ibas.bobas.data.emYesNo;
 public interface IBusinessPartnerGroup extends IBOMasterData {
 
 	/**
-	 * 获取-编码
+	 * 获取-编号
 	 * 
 	 * @return 值
 	 */
 	String getCode();
 
 	/**
-	 * 设置-编码
+	 * 设置-编号
 	 * 
 	 * @param value
 	 *            值
@@ -42,49 +41,19 @@ public interface IBusinessPartnerGroup extends IBOMasterData {
 	void setName(String value);
 
 	/**
-	 * 获取-备注
+	 * 获取-激活
 	 * 
 	 * @return 值
 	 */
-	String getRemarks();
+	emYesNo getActivated();
 
 	/**
-	 * 设置-备注
+	 * 设置-激活
 	 * 
 	 * @param value
 	 *            值
 	 */
-	void setRemarks(String value);
-
-	/**
-	 * 获取-已引用
-	 * 
-	 * @return 值
-	 */
-	emYesNo getReferenced();
-
-	/**
-	 * 设置-已引用
-	 * 
-	 * @param value
-	 *            值
-	 */
-	void setReferenced(emYesNo value);
-
-	/**
-	 * 获取-已删除
-	 * 
-	 * @return 值
-	 */
-	emYesNo getDeleted();
-
-	/**
-	 * 设置-已删除
-	 * 
-	 * @param value
-	 *            值
-	 */
-	void setDeleted(emYesNo value);
+	void setActivated(emYesNo value);
 
 	/**
 	 * 获取-对象编号
@@ -282,21 +251,6 @@ public interface IBusinessPartnerGroup extends IBOMasterData {
 	void setUpdateActionId(String value);
 
 	/**
-	 * 获取-审批状态
-	 * 
-	 * @return 值
-	 */
-	emApprovalStatus getApprovalStatus();
-
-	/**
-	 * 设置-审批状态
-	 * 
-	 * @param value
-	 *            值
-	 */
-	void setApprovalStatus(emApprovalStatus value);
-
-	/**
 	 * 获取-数据所有者
 	 * 
 	 * @return 值
@@ -325,5 +279,4 @@ public interface IBusinessPartnerGroup extends IBOMasterData {
 	 *            值
 	 */
 	void setOrganization(String value);
-
 }

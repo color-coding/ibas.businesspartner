@@ -189,11 +189,12 @@ export class SupplierEditApp extends ibas.BOEditApplication<ISupplierEditView, b
         ibas.servicesManager.runChooseService<bo.BusinessPartnerGroup>({
             boCode: bo.BusinessPartnerGroup.BUSINESS_OBJECT_CODE,
             criteria: [
-                new ibas.Condition(bo.BusinessPartnerGroup.PROPERTY_DELETED_NAME,
-                    ibas.emConditionOperation.EQUAL, ibas.emYesNo.NO),
+                new ibas.Condition(bo.BusinessPartnerGroup.PROPERTY_ACTIVATED_NAME,
+                    ibas.emConditionOperation.EQUAL, ibas.emYesNo.YES),
             ],
             onCompleted(selecteds: ibas.List<bo.BusinessPartnerGroup>): void {
-                that.editData.group = selecteds.firstOrDefault().code;
+                let selected: bo.BusinessPartnerGroup = selecteds.firstOrDefault();
+                that.editData.group = selected.code;
             }
         });
     }
@@ -206,6 +207,8 @@ export class SupplierEditApp extends ibas.BOEditApplication<ISupplierEditView, b
                     ibas.emConditionOperation.EQUAL, ibas.emYesNo.YES),
                 new ibas.Condition(bo.ContactPerson.PROPERTY_OWNERTYPE_NAME,
                     ibas.emConditionOperation.EQUAL, bo.emBusinessPartnerType.SUPPLIER),
+                new ibas.Condition(bo.ContactPerson.PROPERTY_BUSINESSPARTNER_NAME,
+                    ibas.emConditionOperation.EQUAL, this.editData.code),
             ],
             onCompleted(selecteds: ibas.List<bo.ContactPerson>): void {
                 let selected: bo.ContactPerson = selecteds.firstOrDefault();
@@ -226,6 +229,8 @@ export class SupplierEditApp extends ibas.BOEditApplication<ISupplierEditView, b
                     ibas.emConditionOperation.EQUAL, ibas.emYesNo.YES),
                 new ibas.Condition(bo.Address.PROPERTY_OWNERTYPE_NAME,
                     ibas.emConditionOperation.EQUAL, bo.emBusinessPartnerType.SUPPLIER),
+                new ibas.Condition(bo.Address.PROPERTY_BUSINESSPARTNER_NAME,
+                    ibas.emConditionOperation.EQUAL, this.editData.code),
             ],
             onCompleted(selecteds: ibas.List<bo.Address>): void {
                 let selected: bo.Address = selecteds.firstOrDefault();
@@ -242,6 +247,8 @@ export class SupplierEditApp extends ibas.BOEditApplication<ISupplierEditView, b
                     ibas.emConditionOperation.EQUAL, ibas.emYesNo.YES),
                 new ibas.Condition(bo.Address.PROPERTY_OWNERTYPE_NAME,
                     ibas.emConditionOperation.EQUAL, bo.emBusinessPartnerType.SUPPLIER),
+                new ibas.Condition(bo.Address.PROPERTY_BUSINESSPARTNER_NAME,
+                    ibas.emConditionOperation.EQUAL, this.editData.code),
             ],
             onCompleted(selecteds: ibas.List<bo.Address>): void {
                 let selected: bo.Address = selecteds.firstOrDefault();

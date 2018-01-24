@@ -33,15 +33,27 @@ export class BusinessPartnerGroupEditView extends ibas.BOEditView implements IBu
                 new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_title_general") }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnergroup_code") }),
                 new sap.m.Input("", {
-                    type: sap.m.InputType.Text
                 }).bindProperty("value", {
-                    path: "code"
+                    path: "code",
+                }),
+                new sap.m.ex.SeriesSelect("", {
+                    objectCode: ibas.config.applyVariables(bo.BO_CODE_BUSINESSPARTNERGROUP),
+                    bindingValue: {
+                        path: "series",
+                        type: "sap.ui.model.type.Integer",
+                    }
                 }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnergroup_name") }),
                 new sap.m.Input("", {
-                    type: sap.m.InputType.Text
                 }).bindProperty("value", {
-                    path: "name"
+                    path: "name",
+                }),
+                new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnergroup_activated") }),
+                new sap.m.Select("", {
+                    items: openui5.utils.createComboBoxItems(ibas.emYesNo)
+                }).bindProperty("selectedKey", {
+                    path: "activated",
+                    type: "sap.ui.model.type.Integer"
                 }),
                 new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_title_others") }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnergroup_docentry") }),

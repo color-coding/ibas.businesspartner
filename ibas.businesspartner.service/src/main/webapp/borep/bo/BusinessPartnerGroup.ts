@@ -35,13 +35,13 @@ export class BusinessPartnerGroup extends BOMasterData<BusinessPartnerGroup> imp
     constructor() {
         super();
     }
-    /** 映射的属性名称-编码 */
+    /** 映射的属性名称-编号 */
     static PROPERTY_CODE_NAME: string = "Code";
-    /** 获取-编码 */
+    /** 获取-编号 */
     get code(): string {
         return this.getProperty<string>(BusinessPartnerGroup.PROPERTY_CODE_NAME);
     }
-    /** 设置-编码 */
+    /** 设置-编号 */
     set code(value: string) {
         this.setProperty(BusinessPartnerGroup.PROPERTY_CODE_NAME, value);
     }
@@ -57,37 +57,15 @@ export class BusinessPartnerGroup extends BOMasterData<BusinessPartnerGroup> imp
         this.setProperty(BusinessPartnerGroup.PROPERTY_NAME_NAME, value);
     }
 
-    /** 映射的属性名称-备注 */
-    static PROPERTY_REMARKS_NAME: string = "Remarks";
-    /** 获取-备注 */
-    get remarks(): string {
-        return this.getProperty<string>(BusinessPartnerGroup.PROPERTY_REMARKS_NAME);
+    /** 映射的属性名称-激活 */
+    static PROPERTY_ACTIVATED_NAME: string = "Activated";
+    /** 获取-激活 */
+    get activated(): emYesNo {
+        return this.getProperty<emYesNo>(BusinessPartnerGroup.PROPERTY_ACTIVATED_NAME);
     }
-    /** 设置-备注 */
-    set remarks(value: string) {
-        this.setProperty(BusinessPartnerGroup.PROPERTY_REMARKS_NAME, value);
-    }
-
-    /** 映射的属性名称-已引用 */
-    static PROPERTY_REFERENCED_NAME: string = "Referenced";
-    /** 获取-已引用 */
-    get referenced(): emYesNo {
-        return this.getProperty<emYesNo>(BusinessPartnerGroup.PROPERTY_REFERENCED_NAME);
-    }
-    /** 设置-已引用 */
-    set referenced(value: emYesNo) {
-        this.setProperty(BusinessPartnerGroup.PROPERTY_REFERENCED_NAME, value);
-    }
-
-    /** 映射的属性名称-已删除 */
-    static PROPERTY_DELETED_NAME: string = "Deleted";
-    /** 获取-已删除 */
-    get deleted(): emYesNo {
-        return this.getProperty<emYesNo>(BusinessPartnerGroup.PROPERTY_DELETED_NAME);
-    }
-    /** 设置-已删除 */
-    set deleted(value: emYesNo) {
-        this.setProperty(BusinessPartnerGroup.PROPERTY_DELETED_NAME, value);
+    /** 设置-激活 */
+    set activated(value: emYesNo) {
+        this.setProperty(BusinessPartnerGroup.PROPERTY_ACTIVATED_NAME, value);
     }
 
     /** 映射的属性名称-对象编号 */
@@ -231,17 +209,6 @@ export class BusinessPartnerGroup extends BOMasterData<BusinessPartnerGroup> imp
     /** 设置-更新动作标识 */
     set updateActionId(value: string) {
         this.setProperty(BusinessPartnerGroup.PROPERTY_UPDATEACTIONID_NAME, value);
-    }
-
-    /** 映射的属性名称-审批状态 */
-    static PROPERTY_APPROVALSTATUS_NAME: string = "ApprovalStatus";
-    /** 获取-审批状态 */
-    get approvalStatus(): emApprovalStatus {
-        return this.getProperty<emApprovalStatus>(BusinessPartnerGroup.PROPERTY_APPROVALSTATUS_NAME);
-    }
-    /** 设置-审批状态 */
-    set approvalStatus(value: emApprovalStatus) {
-        this.setProperty(BusinessPartnerGroup.PROPERTY_APPROVALSTATUS_NAME, value);
     }
 
     /** 映射的属性名称-数据所有者 */

@@ -49,6 +49,13 @@ export class SupplierEditView extends ibas.BOEditView implements ISupplierEditVi
                 }).bindProperty("value", {
                     path: "code"
                 }),
+                new sap.m.ex.SeriesSelect("", {
+                    objectCode: ibas.config.applyVariables(bo.BO_CODE_SUPPLIER),
+                    bindingValue: {
+                        path: "series",
+                        type: "sap.ui.model.type.Integer",
+                    }
+                }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_name") }),
                 new sap.m.Input("", {
                     type: sap.m.InputType.Text
