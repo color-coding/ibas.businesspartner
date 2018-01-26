@@ -16,7 +16,7 @@ export class CustomerChooseView extends ibas.BOChooseView implements ICustomerCh
         return bo.Customer;
     }
     /** 绘制工具条 */
-    darwBars(): any {
+    drawBars(): any {
         let that: this = this;
         return [
             new sap.m.Button("", {
@@ -49,7 +49,7 @@ export class CustomerChooseView extends ibas.BOChooseView implements ICustomerCh
         ];
     }
     /** 绘制视图 */
-    darw(): any {
+    draw(): any {
        let that: this = this;
         this.list = new sap.m.List("", {
             inset: false,

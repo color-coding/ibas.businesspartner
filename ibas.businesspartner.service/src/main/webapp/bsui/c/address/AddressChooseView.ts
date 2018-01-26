@@ -20,7 +20,7 @@ export class AddressChooseView extends ibas.BOChooseView implements IAddressChoo
         return bo.Address;
     }
     /** 绘制视图 */
-    darw(): any {
+    draw(): any {
         let that: this = this;
         this.table = new sap.ui.table.Table("", {
             enableSelectAll: false,

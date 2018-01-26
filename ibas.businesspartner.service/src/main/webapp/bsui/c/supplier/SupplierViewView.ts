@@ -20,7 +20,7 @@ export class SupplierViewView extends ibas.BOViewView implements ISupplierViewVi
     private viewTopForm: sap.ui.layout.form.SimpleForm;
 
     /** 绘制视图 */
-    darw(): any {
+    draw(): any {
         let that: this = this;
         this.viewTopForm = new sap.ui.layout.form.SimpleForm("", {
             editable: false,

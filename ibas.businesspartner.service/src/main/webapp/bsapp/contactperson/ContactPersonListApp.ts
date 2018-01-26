@@ -9,7 +9,7 @@
 import * as ibas from "ibas/index";
 import * as bo from "../../borep/bo/index";
 import { BORepositoryBusinessPartner } from "../../borep/BORepositories";
-import { DataConverter4bp } from "../../borep/DataConverters";
+import { DataConverter4BP } from "../../borep/DataConverters";
 import { ContactPersonEditApp } from "./ContactPersonEditApp";
 
 /** 列表应用-业务伙伴联系人 */
@@ -173,7 +173,7 @@ export class ContactPersonListApp extends ibas.BOListApplication<IContactPersonL
         return [
             new ibas.BOListServiceProxy({
                 data: this.view.getSelecteds(),
-                converter: new DataConverter4bp()
+                converter: new DataConverter4BP()
             })
         ];
     }

@@ -24,7 +24,7 @@ export class ContactPersonListView extends ibas.BOListView implements IContactPe
     /** 删除数据事件，参数：删除对象集合 */
     deleteDataEvent: Function;
     /** 绘制视图 */
-    darw(): any {
+    draw(): any {
         let that: this = this;
         this.form = new sap.ui.layout.form.SimpleForm("");
         this.table = new sap.ui.table.Table("", {
