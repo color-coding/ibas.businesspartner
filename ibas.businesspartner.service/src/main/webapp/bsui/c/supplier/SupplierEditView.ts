@@ -8,6 +8,7 @@
 
 import * as ibas from "ibas/index";
 import * as openui5 from "openui5/index";
+import * as mm from "3rdparty/materials/index";
 import * as bo from "../../../borep/bo/index";
 import { ISupplierEditView } from "../../../bsapp/supplier/index";
 
@@ -36,7 +37,7 @@ export class SupplierEditView extends ibas.BOEditView implements ISupplierEditVi
     createAddressEvent: Function;
 
     /** 绘制视图 */
-    darw(): any {
+    draw(): any {
         let that: this = this;
         this.viewTopForm = new sap.ui.layout.form.SimpleForm("", {
             editable: true,
@@ -47,6 +48,13 @@ export class SupplierEditView extends ibas.BOEditView implements ISupplierEditVi
                     type: sap.m.InputType.Text
                 }).bindProperty("value", {
                     path: "code"
+                }),
+                new sap.m.ex.SeriesSelect("", {
+                    objectCode: ibas.config.applyVariables(bo.BO_CODE_SUPPLIER),
+                    bindingValue: {
+                        path: "series",
+                        type: "sap.ui.model.type.Integer",
+                    }
                 }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_name") }),
                 new sap.m.Input("", {
@@ -97,14 +105,14 @@ export class SupplierEditView extends ibas.BOEditView implements ISupplierEditVi
                     valueFormat: ibas.config.get(ibas.CONFIG_ITEM_FORMAT_DATE),
                     displayFormat: ibas.config.get(ibas.CONFIG_ITEM_FORMAT_DATE),
                 }).bindProperty("dateValue", {
-                    path: "validdate"
+                    path: "validDate"
                 }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_invaliddate") }),
                 new sap.m.DatePicker("", {
                     valueFormat: ibas.config.get(ibas.CONFIG_ITEM_FORMAT_DATE),
                     displayFormat: ibas.config.get(ibas.CONFIG_ITEM_FORMAT_DATE),
                 }).bindProperty("dateValue", {
-                    path: "invaliddate"
+                    path: "invalidDate"
                 }),
                 new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_title_contact") }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_contactperson") }),
@@ -188,37 +196,29 @@ export class SupplierEditView extends ibas.BOEditView implements ISupplierEditVi
                     }),
                     new sap.m.ToolbarSeparator(""),
                     new sap.m.MenuButton("", {
-                        text: ibas.i18n.prop("shell_data_new"),
-                        type: sap.m.ButtonType.Transparent,
+                        text: ibas.strings.format("{0}/{1}",
+                            ibas.i18n.prop("shell_data_new"), ibas.i18n.prop("shell_data_clone")),
                         icon: "sap-icon://create",
-                        buttonMode: sap.m.MenuButtonMode.Split,
-                        defaultAction: function (): void {
-                            // 触发新建对象
-                            that.fireViewEvents(that.createDataEvent, false);
-                        },
+                        type: sap.m.ButtonType.Transparent,
                         menu: new sap.m.Menu("", {
                             items: [
                                 new sap.m.MenuItem("", {
                                     text: ibas.i18n.prop("shell_data_new"),
                                     icon: "sap-icon://create",
+                                    press: function (): void {
+                                        // 创建新的对象
+                                        that.fireViewEvents(that.createDataEvent, false);
+                                    }
                                 }),
                                 new sap.m.MenuItem("", {
                                     text: ibas.i18n.prop("shell_data_clone"),
                                     icon: "sap-icon://copy",
+                                    press: function (): void {
+                                        // 复制当前对象
+                                        that.fireViewEvents(that.createDataEvent, true);
+                                    }
                                 }),
                             ],
-                            itemSelected: function (event: any): void {
-                                let item: any = event.getParameter("item");
-                                if (item instanceof sap.m.MenuItem) {
-                                    if (item.getIcon() === "sap-icon://copy") {
-                                        // 触发克隆对象
-                                        that.fireViewEvents(that.createDataEvent, true);
-                                    } else {
-                                        // 触发新建对象
-                                        that.fireViewEvents(that.createDataEvent, false);
-                                    }
-                                }
-                            }
                         })
                     }),
                     new sap.m.ToolbarSeparator(""),

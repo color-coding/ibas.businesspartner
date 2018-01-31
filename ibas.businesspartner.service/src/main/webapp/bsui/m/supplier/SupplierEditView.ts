@@ -8,6 +8,7 @@
 
 import * as ibas from "ibas/index";
 import * as openui5 from "openui5/index";
+import * as mm from "3rdparty/materials/index";
 import * as bo from "../../../borep/bo/index";
 import { ISupplierEditView } from "../../../bsapp/supplier/index";
 
@@ -36,7 +37,7 @@ export class SupplierEditView extends ibas.BOEditView implements ISupplierEditVi
     createAddressEvent: Function;
 
     /** 绘制视图 */
-    darw(): any {
+    draw(): any {
         let that: this = this;
         this.viewTopForm = new sap.ui.layout.form.SimpleForm("", {
             editable: true,
@@ -78,13 +79,17 @@ export class SupplierEditView extends ibas.BOEditView implements ISupplierEditVi
                     type: "sap.ui.model.type.Integer"
                 }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_pricelist") }),
-                new sap.m.Input("", {
-                    showValueHelp: true,
+                new sap.m.ex.BOInput("", {
+                    boText: "name",
+                    boKey: "objectKey",
+                    boCode: ibas.config.applyVariables(mm.BO_CODE_MATERIALPRICELIST),
+                    repositoryName: mm.BO_REPOSITORY_MATERIALS,
                     valueHelpRequest: function (): void {
                         that.fireViewEvents(that.chooseSupplierPriceListEvent);
+                    },
+                    bindingValue: {
+                        path: "priceList"
                     }
-                }).bindProperty("value", {
-                    path: "priceList"
                 }),
                 new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_currency") }),
                 new sap.m.Input("", {
@@ -188,37 +193,29 @@ export class SupplierEditView extends ibas.BOEditView implements ISupplierEditVi
                     }),
                     new sap.m.ToolbarSeparator(""),
                     new sap.m.MenuButton("", {
-                        text: ibas.i18n.prop("shell_data_new"),
-                        type: sap.m.ButtonType.Transparent,
+                        text: ibas.strings.format("{0}/{1}",
+                            ibas.i18n.prop("shell_data_new"), ibas.i18n.prop("shell_data_clone")),
                         icon: "sap-icon://create",
-                        buttonMode: sap.m.MenuButtonMode.Split,
-                        defaultAction: function (): void {
-                            // 触发新建对象
-                            that.fireViewEvents(that.createDataEvent, false);
-                        },
+                        type: sap.m.ButtonType.Transparent,
                         menu: new sap.m.Menu("", {
                             items: [
                                 new sap.m.MenuItem("", {
                                     text: ibas.i18n.prop("shell_data_new"),
                                     icon: "sap-icon://create",
+                                    press: function (): void {
+                                        // 创建新的对象
+                                        that.fireViewEvents(that.createDataEvent, false);
+                                    }
                                 }),
                                 new sap.m.MenuItem("", {
                                     text: ibas.i18n.prop("shell_data_clone"),
                                     icon: "sap-icon://copy",
+                                    press: function (): void {
+                                        // 复制当前对象
+                                        that.fireViewEvents(that.createDataEvent, true);
+                                    }
                                 }),
                             ],
-                            itemSelected: function (event: any): void {
-                                let item: any = event.getParameter("item");
-                                if (item instanceof sap.m.MenuItem) {
-                                    if (item.getIcon() === "sap-icon://copy") {
-                                        // 触发克隆对象
-                                        that.fireViewEvents(that.createDataEvent, true);
-                                    } else {
-                                        // 触发新建对象
-                                        that.fireViewEvents(that.createDataEvent, false);
-                                    }
-                                }
-                            }
                         })
                     }),
                     new sap.m.ToolbarSeparator(""),

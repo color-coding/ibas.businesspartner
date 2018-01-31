@@ -9,8 +9,7 @@
 import * as ibas from "ibas/index";
 import * as bo from "../../borep/bo/index";
 import { BORepositoryBusinessPartner } from "../../borep/BORepositories";
-import { DataConverter4bp } from "../../borep/DataConverters";
-import { ContactPersonViewApp } from "./ContactPersonViewApp";
+import { DataConverter4BP } from "../../borep/DataConverters";
 import { ContactPersonEditApp } from "./ContactPersonEditApp";
 
 /** 列表应用-业务伙伴联系人 */
@@ -81,11 +80,6 @@ export class ContactPersonListApp extends ibas.BOListApplication<IContactPersonL
             ));
             return;
         }
-        let app: ContactPersonViewApp = new ContactPersonViewApp();
-        app.navigation = this.navigation;
-        app.viewShower = this.viewShower;
-        app.run(data);
-
     }
     /** 编辑数据，参数：目标数据 */
     protected editData(data: bo.ContactPerson): void {
@@ -122,6 +116,9 @@ export class ContactPersonListApp extends ibas.BOListApplication<IContactPersonL
         }
         // 没有选择删除的对象
         if (beDeleteds.length === 0) {
+            this.messages(ibas.emMessageType.WARNING, ibas.i18n.prop("shell_please_chooose_data",
+                ibas.i18n.prop("shell_data_delete")
+            ));
             return;
         }
         let that: this = this;
@@ -176,7 +173,7 @@ export class ContactPersonListApp extends ibas.BOListApplication<IContactPersonL
         return [
             new ibas.BOListServiceProxy({
                 data: this.view.getSelecteds(),
-                converter: new DataConverter4bp()
+                converter: new DataConverter4BP()
             })
         ];
     }

@@ -16,7 +16,7 @@ export class SupplierChooseView extends ibas.BOChooseView implements ISupplierCh
         return bo.Supplier;
     }
     /** 绘制工具条 */
-    darwBars(): any {
+    drawBars(): any {
         let that: this = this;
         return [
             new sap.m.Button("", {
@@ -49,7 +49,7 @@ export class SupplierChooseView extends ibas.BOChooseView implements ISupplierCh
         ];
     }
     /** 绘制视图 */
-    darw(): any {
+    draw(): any {
        let that: this = this;
         this.list = new sap.m.List("", {
             inset: false,
@@ -105,11 +105,6 @@ export class SupplierChooseView extends ibas.BOChooseView implements ISupplierCh
             }
         });
         return this.page;
-    }
-    /** 嵌入查询面板 */
-    embedded(view: any): void {
-        this.page.addHeaderContent(view);
-        this.page.setShowHeader(true);
     }
     private page: sap.m.Page;
     private form: sap.ui.layout.VerticalLayout;

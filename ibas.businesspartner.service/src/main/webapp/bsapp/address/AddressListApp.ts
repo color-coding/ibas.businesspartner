@@ -9,8 +9,7 @@
 import * as ibas from "ibas/index";
 import * as bo from "../../borep/bo/index";
 import { BORepositoryBusinessPartner } from "../../borep/BORepositories";
-import { DataConverter4bp } from "../../borep/DataConverters";
-import { AddressViewApp } from "./AddressViewApp";
+import { DataConverter4BP } from "../../borep/DataConverters";
 import { AddressEditApp } from "./AddressEditApp";
 
 /** 列表应用-业务伙伴地址 */
@@ -85,11 +84,6 @@ export class AddressListApp extends ibas.BOListApplication<IAddressListView, bo.
             ));
             return;
         }
-        let app: AddressViewApp = new AddressViewApp();
-        app.navigation = this.navigation;
-        app.viewShower = this.viewShower;
-        app.run(data);
-
     }
     /** 编辑数据，参数：目标数据 */
     protected editData(data: bo.Address): void {
@@ -115,7 +109,7 @@ export class AddressListApp extends ibas.BOListApplication<IAddressListView, bo.
             return;
         }
         let beDeleteds: ibas.ArrayList<bo.Address> = new ibas.ArrayList<bo.Address>();
-        if (data instanceof Array ) {
+        if (data instanceof Array) {
             for (let item of data) {
                 item.delete();
                 beDeleteds.add(item);
@@ -126,6 +120,9 @@ export class AddressListApp extends ibas.BOListApplication<IAddressListView, bo.
         }
         // 没有选择删除的对象
         if (beDeleteds.length === 0) {
+            this.messages(ibas.emMessageType.WARNING, ibas.i18n.prop("shell_please_chooose_data",
+                ibas.i18n.prop("shell_data_delete")
+            ));
             return;
         }
         let that: this = this;
@@ -138,7 +135,7 @@ export class AddressListApp extends ibas.BOListApplication<IAddressListView, bo.
                 if (action === ibas.emMessageAction.YES) {
                     try {
                         let boRepository: BORepositoryBusinessPartner = new BORepositoryBusinessPartner();
-                        let saveMethod: Function = function(beSaved: bo.Address):void {
+                        let saveMethod: Function = function (beSaved: bo.Address): void {
                             boRepository.saveAddress({
                                 beSaved: beSaved,
                                 onCompleted(opRslt: ibas.IOperationResult<bo.Address>): void {
@@ -154,7 +151,7 @@ export class AddressListApp extends ibas.BOListApplication<IAddressListView, bo.
                                             // 处理完成
                                             that.busy(false);
                                             that.messages(ibas.emMessageType.SUCCESS,
-                                            ibas.i18n.prop("shell_data_delete") + ibas.i18n.prop("shell_sucessful"));
+                                                ibas.i18n.prop("shell_data_delete") + ibas.i18n.prop("shell_sucessful"));
                                         }
                                     } catch (error) {
                                         that.messages(ibas.emMessageType.ERROR,
@@ -180,7 +177,7 @@ export class AddressListApp extends ibas.BOListApplication<IAddressListView, bo.
         return [
             new ibas.BOListServiceProxy({
                 data: this.view.getSelecteds(),
-                converter: new DataConverter4bp()
+                converter: new DataConverter4BP()
             })
         ];
     }

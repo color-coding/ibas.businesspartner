@@ -8,6 +8,7 @@ import javax.xml.bind.annotation.XmlType;
 
 import org.colorcoding.ibas.bobas.approval.IApprovalData;
 import org.colorcoding.ibas.bobas.bo.BusinessObject;
+import org.colorcoding.ibas.bobas.bo.IBOSeriesKey;
 import org.colorcoding.ibas.bobas.core.IPropertyInfo;
 import org.colorcoding.ibas.bobas.data.DateTime;
 import org.colorcoding.ibas.bobas.data.emApprovalStatus;
@@ -29,7 +30,8 @@ import org.colorcoding.ibas.businesspartner.data.emBusinessPartnerNature;
 @XmlType(name = Supplier.BUSINESS_OBJECT_NAME, namespace = MyConfiguration.NAMESPACE_BO)
 @XmlRootElement(name = Supplier.BUSINESS_OBJECT_NAME, namespace = MyConfiguration.NAMESPACE_BO)
 @BOCode(Supplier.BUSINESS_OBJECT_CODE)
-public class Supplier extends BusinessObject<Supplier> implements ISupplier, IDataOwnership, IApprovalData {
+public class Supplier extends BusinessObject<Supplier>
+		implements ISupplier, IDataOwnership, IApprovalData, IBOSeriesKey {
 
 	/**
 	 * 序列化版本标记
@@ -1206,6 +1208,11 @@ public class Supplier extends BusinessObject<Supplier> implements ISupplier, IDa
 	 */
 	public final void setOrganization(String value) {
 		this.setProperty(PROPERTY_ORGANIZATION, value);
+	}
+
+	@Override
+	public void setSeriesValue(Object value) {
+		this.setCode((String) value);
 	}
 
 	/**

@@ -14,6 +14,8 @@ import {
     Condition,
     ArrayList,
     List,
+    IServiceContract,
+    ServiceProxy,
     ICondition,
     emConditionOperation,
     emConditionRelationship,
@@ -49,7 +51,6 @@ export enum emBusinessPartnerNature {
 }
 /** 业务伙伴类型 */
 export enum emBusinessPartnerType {
-
     /** 客户 */
     CUSTOMER,
     /** 供应商 */
@@ -57,11 +58,52 @@ export enum emBusinessPartnerType {
 }
 /** 性别 */
 export enum emGender {
-
     /** 男 */
     MALE,
     /** 女 */
     FEMALE,
+}
+/** 单据收款服务契约 */
+export interface IReceiptContract extends IServiceContract {
+    /** 业务伙伴类型 */
+    businessPartnerType: emBusinessPartnerType;
+    /** 业务伙伴代码 */
+    businessPartnerCode: string;
+    /** 总计 */
+    total: number;
+    /** 货币 */
+    currency: string;
+    /** 单据类型 */
+    documentType?: string;
+    /** 单据标识 */
+    documentEntry?: number;
+    /** 单据行号 */
+    documentLineId?: number;
+}
+/** 单据收款服务服务代理 */
+export class ReceiptServiceProxy extends ServiceProxy<IReceiptContract[]> {
+
+}
+/** 单据付款服务契约 */
+export interface IPaymentContract extends IServiceContract {
+    /** 业务伙伴类型 */
+    businessPartnerType: emBusinessPartnerType;
+    /** 业务伙伴代码 */
+    businessPartnerCode: string;
+    /** 总计 */
+    total: number;
+    /** 货币 */
+    currency: string;
+    /** 单据类型 */
+    documentType?: string;
+    /** 单据标识 */
+    documentEntry?: number;
+    /** 单据行号 */
+    documentLineId?: number;
+}
+/** 单据付款服务服务代理 */
+export class PaymentServiceProxy extends ServiceProxy<IPaymentContract[]> {
+
 }
 /** 查询条件 */
 export namespace conditions {
@@ -179,6 +221,60 @@ export namespace conditions {
             condition.alias = "deleted";
             condition.operation = emConditionOperation.EQUAL;
             condition.value = emYesNo.NO.toString();
+            conditions.add(condition);
+            return conditions;
+        }
+    }
+    export namespace contactperson {
+        export function create(type: emBusinessPartnerType, bpCode: string): List<ICondition> {
+            let condition: ICondition;
+            let conditions: List<ICondition> = new ArrayList<ICondition>();
+            // 类型
+            condition = new Condition();
+            condition.bracketOpen = 1;
+            condition.alias = "ownerType";
+            condition.operation = emConditionOperation.EQUAL;
+            condition.value = type.toString();
+            conditions.add(condition);
+            // 激活的
+            condition = new Condition();
+            condition.alias = "activated";
+            condition.operation = emConditionOperation.EQUAL;
+            condition.value = emYesNo.YES.toString();
+            conditions.add(condition);
+            // 业务伙伴编码
+            condition = new Condition();
+            condition.bracketClose = 1;
+            condition.alias = "businessPartner";
+            condition.operation = emConditionOperation.EQUAL;
+            condition.value = bpCode;
+            conditions.add(condition);
+            return conditions;
+        }
+    }
+    export namespace address {
+        export function create(type: emBusinessPartnerType, bpCode: string): List<ICondition> {
+            let condition: ICondition;
+            let conditions: List<ICondition> = new ArrayList<ICondition>();
+            // 类型
+            condition = new Condition();
+            condition.bracketOpen = 1;
+            condition.alias = "ownerType";
+            condition.operation = emConditionOperation.EQUAL;
+            condition.value = type.toString();
+            conditions.add(condition);
+            // 激活的
+            condition = new Condition();
+            condition.alias = "activated";
+            condition.operation = emConditionOperation.EQUAL;
+            condition.value = emYesNo.YES.toString();
+            conditions.add(condition);
+            // 业务伙伴编码
+            condition = new Condition();
+            condition.bracketClose = 1;
+            condition.alias = "businessPartner";
+            condition.operation = emConditionOperation.EQUAL;
+            condition.value = bpCode;
             conditions.add(condition);
             return conditions;
         }

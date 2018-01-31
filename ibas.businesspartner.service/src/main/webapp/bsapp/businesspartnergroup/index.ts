@@ -10,5 +10,4 @@
 export * from "./BusinessPartnerGroupFunc";
 export * from "./BusinessPartnerGroupListApp";
 export * from "./BusinessPartnerGroupChooseApp";
-export * from "./BusinessPartnerGroupViewApp";
 export * from "./BusinessPartnerGroupEditApp";

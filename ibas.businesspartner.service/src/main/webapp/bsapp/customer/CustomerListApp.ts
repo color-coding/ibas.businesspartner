@@ -9,7 +9,7 @@
 import * as ibas from "ibas/index";
 import * as bo from "../../borep/bo/index";
 import { BORepositoryBusinessPartner } from "../../borep/BORepositories";
-import { DataConverter4bp } from "../../borep/DataConverters";
+import { DataConverter4BP } from "../../borep/DataConverters";
 import { CustomerViewApp } from "./CustomerViewApp";
 import { CustomerEditApp } from "./CustomerEditApp";
 
@@ -122,6 +122,9 @@ export class CustomerListApp extends ibas.BOListApplication<ICustomerListView, b
         }
         // 没有选择删除的对象
         if (beDeleteds.length === 0) {
+            this.messages(ibas.emMessageType.WARNING, ibas.i18n.prop("shell_please_chooose_data",
+                ibas.i18n.prop("shell_data_delete")
+            ));
             return;
         }
         let that: this = this;
@@ -176,7 +179,7 @@ export class CustomerListApp extends ibas.BOListApplication<ICustomerListView, b
         return [
             new ibas.BOListServiceProxy({
                 data: this.view.getSelecteds(),
-                converter: new DataConverter4bp()
+                converter: new DataConverter4BP()
             })
         ];
     }

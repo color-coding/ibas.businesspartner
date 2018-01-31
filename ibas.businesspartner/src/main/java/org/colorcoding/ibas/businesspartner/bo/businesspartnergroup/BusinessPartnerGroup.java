@@ -7,9 +7,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 import org.colorcoding.ibas.bobas.bo.BusinessObject;
+import org.colorcoding.ibas.bobas.bo.IBOSeriesKey;
 import org.colorcoding.ibas.bobas.core.IPropertyInfo;
 import org.colorcoding.ibas.bobas.data.DateTime;
-import org.colorcoding.ibas.bobas.data.emApprovalStatus;
 import org.colorcoding.ibas.bobas.data.emYesNo;
 import org.colorcoding.ibas.bobas.mapping.BOCode;
 import org.colorcoding.ibas.bobas.mapping.DbField;
@@ -26,7 +26,8 @@ import org.colorcoding.ibas.businesspartner.MyConfiguration;
 @XmlType(name = BusinessPartnerGroup.BUSINESS_OBJECT_NAME, namespace = MyConfiguration.NAMESPACE_BO)
 @XmlRootElement(name = BusinessPartnerGroup.BUSINESS_OBJECT_NAME, namespace = MyConfiguration.NAMESPACE_BO)
 @BOCode(BusinessPartnerGroup.BUSINESS_OBJECT_CODE)
-public class BusinessPartnerGroup extends BusinessObject<BusinessPartnerGroup> implements IBusinessPartnerGroup {
+public class BusinessPartnerGroup extends BusinessObject<BusinessPartnerGroup>
+		implements IBusinessPartnerGroup, IBOSeriesKey {
 
 	/**
 	 * 序列化版本标记
@@ -54,19 +55,19 @@ public class BusinessPartnerGroup extends BusinessObject<BusinessPartnerGroup> i
 	public static final String BUSINESS_OBJECT_NAME = "BusinessPartnerGroup";
 
 	/**
-	 * 属性名称-编码
+	 * 属性名称-编号
 	 */
 	private static final String PROPERTY_CODE_NAME = "Code";
 
 	/**
-	 * 编码 属性
+	 * 编号 属性
 	 */
 	@DbField(name = "Code", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME, primaryKey = true)
 	public static final IPropertyInfo<String> PROPERTY_CODE = registerProperty(PROPERTY_CODE_NAME, String.class,
 			MY_CLASS);
 
 	/**
-	 * 获取-编码
+	 * 获取-编号
 	 * 
 	 * @return 值
 	 */
@@ -76,7 +77,7 @@ public class BusinessPartnerGroup extends BusinessObject<BusinessPartnerGroup> i
 	}
 
 	/**
-	 * 设置-编码
+	 * 设置-编号
 	 * 
 	 * @param value
 	 *            值
@@ -118,99 +119,35 @@ public class BusinessPartnerGroup extends BusinessObject<BusinessPartnerGroup> i
 	}
 
 	/**
-	 * 属性名称-备注
+	 * 属性名称-激活
 	 */
-	private static final String PROPERTY_REMARKS_NAME = "Remarks";
+	private static final String PROPERTY_ACTIVATED_NAME = "Activated";
 
 	/**
-	 * 备注 属性
+	 * 激活 属性
 	 */
-	@DbField(name = "Remarks", type = DbFieldType.MEMO, table = DB_TABLE_NAME, primaryKey = false)
-	public static final IPropertyInfo<String> PROPERTY_REMARKS = registerProperty(PROPERTY_REMARKS_NAME, String.class,
-			MY_CLASS);
-
-	/**
-	 * 获取-备注
-	 * 
-	 * @return 值
-	 */
-	@XmlElement(name = PROPERTY_REMARKS_NAME)
-	public final String getRemarks() {
-		return this.getProperty(PROPERTY_REMARKS);
-	}
-
-	/**
-	 * 设置-备注
-	 * 
-	 * @param value
-	 *            值
-	 */
-	public final void setRemarks(String value) {
-		this.setProperty(PROPERTY_REMARKS, value);
-	}
-
-	/**
-	 * 属性名称-已引用
-	 */
-	private static final String PROPERTY_REFERENCED_NAME = "Referenced";
-
-	/**
-	 * 已引用 属性
-	 */
-	@DbField(name = "Refed", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME, primaryKey = false)
-	public static final IPropertyInfo<emYesNo> PROPERTY_REFERENCED = registerProperty(PROPERTY_REFERENCED_NAME,
+	@DbField(name = "Activated", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME, primaryKey = false)
+	public static final IPropertyInfo<emYesNo> PROPERTY_ACTIVATED = registerProperty(PROPERTY_ACTIVATED_NAME,
 			emYesNo.class, MY_CLASS);
 
 	/**
-	 * 获取-已引用
+	 * 获取-激活
 	 * 
 	 * @return 值
 	 */
-	@XmlElement(name = PROPERTY_REFERENCED_NAME)
-	public final emYesNo getReferenced() {
-		return this.getProperty(PROPERTY_REFERENCED);
+	@XmlElement(name = PROPERTY_ACTIVATED_NAME)
+	public final emYesNo getActivated() {
+		return this.getProperty(PROPERTY_ACTIVATED);
 	}
 
 	/**
-	 * 设置-已引用
+	 * 设置-激活
 	 * 
 	 * @param value
 	 *            值
 	 */
-	public final void setReferenced(emYesNo value) {
-		this.setProperty(PROPERTY_REFERENCED, value);
-	}
-
-	/**
-	 * 属性名称-已删除
-	 */
-	private static final String PROPERTY_DELETED_NAME = "Deleted";
-
-	/**
-	 * 已删除 属性
-	 */
-	@DbField(name = "Deleted", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME, primaryKey = false)
-	public static final IPropertyInfo<emYesNo> PROPERTY_DELETED = registerProperty(PROPERTY_DELETED_NAME, emYesNo.class,
-			MY_CLASS);
-
-	/**
-	 * 获取-已删除
-	 * 
-	 * @return 值
-	 */
-	@XmlElement(name = PROPERTY_DELETED_NAME)
-	public final emYesNo getDeleted() {
-		return this.getProperty(PROPERTY_DELETED);
-	}
-
-	/**
-	 * 设置-已删除
-	 * 
-	 * @param value
-	 *            值
-	 */
-	public final void setDeleted(emYesNo value) {
-		this.setProperty(PROPERTY_DELETED, value);
+	public final void setActivated(emYesNo value) {
+		this.setProperty(PROPERTY_ACTIVATED, value);
 	}
 
 	/**
@@ -630,38 +567,6 @@ public class BusinessPartnerGroup extends BusinessObject<BusinessPartnerGroup> i
 	}
 
 	/**
-	 * 属性名称-审批状态
-	 */
-	private static final String PROPERTY_APPROVALSTATUS_NAME = "ApprovalStatus";
-
-	/**
-	 * 审批状态 属性
-	 */
-	@DbField(name = "ApvlStatus", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME, primaryKey = false)
-	public static final IPropertyInfo<emApprovalStatus> PROPERTY_APPROVALSTATUS = registerProperty(
-			PROPERTY_APPROVALSTATUS_NAME, emApprovalStatus.class, MY_CLASS);
-
-	/**
-	 * 获取-审批状态
-	 * 
-	 * @return 值
-	 */
-	@XmlElement(name = PROPERTY_APPROVALSTATUS_NAME)
-	public final emApprovalStatus getApprovalStatus() {
-		return this.getProperty(PROPERTY_APPROVALSTATUS);
-	}
-
-	/**
-	 * 设置-审批状态
-	 * 
-	 * @param value
-	 *            值
-	 */
-	public final void setApprovalStatus(emApprovalStatus value) {
-		this.setProperty(PROPERTY_APPROVALSTATUS, value);
-	}
-
-	/**
 	 * 属性名称-数据所有者
 	 */
 	private static final String PROPERTY_DATAOWNER_NAME = "DataOwner";
@@ -725,6 +630,11 @@ public class BusinessPartnerGroup extends BusinessObject<BusinessPartnerGroup> i
 		this.setProperty(PROPERTY_ORGANIZATION, value);
 	}
 
+	@Override
+	public void setSeriesValue(Object value) {
+		this.setCode((String) value);
+	}
+
 	/**
 	 * 初始化数据
 	 */
@@ -732,6 +642,7 @@ public class BusinessPartnerGroup extends BusinessObject<BusinessPartnerGroup> i
 	protected void initialize() {
 		super.initialize();// 基类初始化，不可去除
 		this.setObjectCode(MyConfiguration.applyVariables(BUSINESS_OBJECT_CODE));
+		this.setActivated(emYesNo.YES);
 
 	}
 

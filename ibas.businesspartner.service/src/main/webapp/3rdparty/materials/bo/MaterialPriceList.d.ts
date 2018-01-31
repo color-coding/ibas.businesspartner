@@ -31,11 +31,11 @@ export interface IMaterialPriceList extends IBOSimple {
     /** 分组 */
     group: string;
 
-    /** 币种 */
+    /** 货币 */
     currency: string;
 
     /** 基于的清单 */
-    baseOnList: number;
+    basedOnList: number;
 
     /** 系数 */
     factor: number;
