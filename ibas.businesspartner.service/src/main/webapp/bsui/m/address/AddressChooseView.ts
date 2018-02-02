@@ -16,7 +16,7 @@ export class AddressChooseView extends ibas.BOChooseView implements IAddressChoo
         return bo.Address;
     }
     /** 绘制工具条 */
-    darwBars(): any {
+    drawBars(): any {
         let that: this = this;
         return [
             // new sap.m.ToolbarSpacer(""),
@@ -46,7 +46,7 @@ export class AddressChooseView extends ibas.BOChooseView implements IAddressChoo
         ];
     }
     /** 绘制视图 */
-    darw(): any {
+    draw(): any {
         let that: this = this;
         this.list = new sap.m.List("", {
             inset: false,
@@ -79,7 +79,7 @@ export class AddressChooseView extends ibas.BOChooseView implements IAddressChoo
             floatingFooter: true,
             content: [this.list],
             footer: new sap.m.Toolbar("", {
-                content: this.darwBars()
+                content: this.drawBars()
             })
         });
         this.page.setShowSubHeader(false);
