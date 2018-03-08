@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright color-coding studio. All Rights Reserved.
+ * Copyright Color-Coding Studio. All Rights Reserved.
  *
  * Use of this source code is governed by an Apache License, Version 2.0
  * that can be found in the LICENSE file at http://www.apache.org/licenses/LICENSE-2.0
@@ -77,7 +77,7 @@ export class CustomerListView extends ibas.BOListView implements ICustomerListVi
                 );
             },
         });
-        let list_item_object: sap.m.ObjectListItem = new sap.m.ObjectListItem("", {
+        let ibas.IList_item_object: sap.m.ObjectListItem = new sap.m.ObjectListItem("", {
             title: "{name} ",
             type: sap.m.ListType.Active,
             numberUnit: "{code}",
@@ -100,7 +100,7 @@ export class CustomerListView extends ibas.BOListView implements ICustomerListVi
         });
         this.list.bindItems({
             path: "/rows",
-            template: list_item_object,
+            template: ibas.IList_item_object,
         });
         this.page = new sap.m.Page("", {
             showHeader: false,
@@ -154,7 +154,7 @@ export class CustomerListView extends ibas.BOListView implements ICustomerListVi
         this.id = this.page.getId();
         // 添加列表自动查询事件
         openui5.utils.triggerNextResults({
-            listener: this.list,
+            ibas.IListener: this.list,
             next(data: any): void {
                 if (ibas.objects.isNull(that.lastCriteria)) {
                     return;
@@ -171,7 +171,7 @@ export class CustomerListView extends ibas.BOListView implements ICustomerListVi
     }
     private page: sap.m.Page;
     private form: sap.ui.layout.VerticalLayout;
-    private list: sap.m.List;
+    private ibas.IList: sap.m.List;
     /** 显示数据 */
     showData(datas: bo.Customer[]): void {
         let done: boolean = false;

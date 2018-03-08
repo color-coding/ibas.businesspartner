@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright color-coding studio. All Rights Reserved.
+ * Copyright Color-Coding Studio. All Rights Reserved.
  *
  * Use of this source code is governed by an Apache License, Version 2.0
  * that can be found in the LICENSE file at http://www.apache.org/licenses/LICENSE-2.0
@@ -82,8 +82,8 @@ export class CustomerEditView extends ibas.BOEditView implements ICustomerEditVi
                 new sap.m.ex.BOInput("", {
                     boText: "name",
                     boKey: "objectKey",
-                    boCode: ibas.config.applyVariables(mm.BO_CODE_MATERIALPRICELIST),
-                    repositoryName: mm.BO_REPOSITORY_MATERIALS,
+                    boCode: ibas.config.applyVariables(materials.bo.BO_CODE_MATERIALPRICELIST),
+                    repositoryName: materials.bo.BO_REPOSITORY_MATERIALS,
                     valueHelpRequest: function (): void {
                         that.fireViewEvents(that.chooseCustomerPriceListEvent);
                     },
