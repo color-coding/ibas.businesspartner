@@ -18,12 +18,12 @@
 namespace businesspartner {
     export namespace bo {
         // 注册业务对象仓库到工厂
-        ibas.boFactory.register(BO_REPOSITORY_BUSINESSPARTNER, BORepositoryBusinessPartner);
+        boFactory.register(BO_REPOSITORY_BUSINESSPARTNER, BORepositoryBusinessPartner);
         // 注册业务对象到工厂
-        ibas.boFactory.register(Address.BUSINESS_OBJECT_CODE, Address);
-        ibas.boFactory.register(BusinessPartnerGroup.BUSINESS_OBJECT_CODE, BusinessPartnerGroup);
-        ibas.boFactory.register(ContactPerson.BUSINESS_OBJECT_CODE, ContactPerson);
-        ibas.boFactory.register(Customer.BUSINESS_OBJECT_CODE, Customer);
-        ibas.boFactory.register(Supplier.BUSINESS_OBJECT_CODE, Supplier);
+        boFactory.register(Address.BUSINESS_OBJECT_CODE, Address);
+        boFactory.register(BusinessPartnerGroup.BUSINESS_OBJECT_CODE, BusinessPartnerGroup);
+        boFactory.register(ContactPerson.BUSINESS_OBJECT_CODE, ContactPerson);
+        boFactory.register(Customer.BUSINESS_OBJECT_CODE, Customer);
+        boFactory.register(Supplier.BUSINESS_OBJECT_CODE, Supplier);
     }
 }
