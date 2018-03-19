@@ -12,6 +12,9 @@
 /// <reference path="./bo/ContactPerson.ts" />
 /// <reference path="./bo/Customer.ts" />
 /// <reference path="./bo/Supplier.ts" />
+/// <reference path="./bo/AssetItem.ts" />
+/// <reference path="./bo/BusinessPartnerAsset.ts" />
+/// <reference path="./bo/BusinessPartnerAssetJournal.ts" />
 /// <reference path="./DataConverter.ts" />
 /// <reference path="./BORepository.ts" />
 
@@ -25,5 +28,8 @@ namespace businesspartner {
         boFactory.register(ContactPerson.BUSINESS_OBJECT_CODE, ContactPerson);
         boFactory.register(Customer.BUSINESS_OBJECT_CODE, Customer);
         boFactory.register(Supplier.BUSINESS_OBJECT_CODE, Supplier);
+        boFactory.register(AssetItem.BUSINESS_OBJECT_CODE, AssetItem);
+        boFactory.register(BusinessPartnerAsset.BUSINESS_OBJECT_CODE, BusinessPartnerAsset);
+        boFactory.register(BusinessPartnerAssetJournal.BUSINESS_OBJECT_CODE, BusinessPartnerAssetJournal);
     }
 }

@@ -8,6 +8,9 @@ import org.colorcoding.ibas.bobas.common.Criteria;
 import org.colorcoding.ibas.bobas.common.OperationResult;
 import org.colorcoding.ibas.bobas.cxf.WebServicePath;
 import org.colorcoding.ibas.businesspartner.bo.address.Address;
+import org.colorcoding.ibas.businesspartner.bo.assetitem.AssetItem;
+import org.colorcoding.ibas.businesspartner.bo.businesspartnerasset.BusinessPartnerAsset;
+import org.colorcoding.ibas.businesspartner.bo.businesspartnerasset.BusinessPartnerAssetJournal;
 import org.colorcoding.ibas.businesspartner.bo.businesspartnergroup.BusinessPartnerGroup;
 import org.colorcoding.ibas.businesspartner.bo.contactperson.ContactPerson;
 import org.colorcoding.ibas.businesspartner.bo.customer.Customer;
@@ -175,6 +178,98 @@ public class DataService extends BORepositoryBusinessPartner {
 		return super.saveSupplier(bo, token);
 	}
 
+	// --------------------------------------------------------------------------------------------//
+	/**
+	 * 查询-资产项目
+	 * 
+	 * @param criteria
+	 *            查询
+	 * @param token
+	 *            口令
+	 * @return 操作结果
+	 */
+	@WebMethod
+	public OperationResult<AssetItem> fetchAssetItem(@WebParam(name = "criteria") Criteria criteria,
+			@WebParam(name = "token") String token) {
+		return super.fetchAssetItem(criteria, token);
+	}
+
+	/**
+	 * 保存-资产项目
+	 * 
+	 * @param bo
+	 *            对象实例
+	 * @param token
+	 *            口令
+	 * @return 操作结果
+	 */
+	@WebMethod
+	public OperationResult<AssetItem> saveAssetItem(@WebParam(name = "bo") AssetItem bo,
+			@WebParam(name = "token") String token) {
+		return super.saveAssetItem(bo, token);
+	}
+
+	// --------------------------------------------------------------------------------------------//
+	/**
+	 * 查询-业务伙伴资产
+	 * 
+	 * @param criteria
+	 *            查询
+	 * @param token
+	 *            口令
+	 * @return 操作结果
+	 */
+	@WebMethod
+	public OperationResult<BusinessPartnerAsset> fetchBusinessPartnerAsset(
+			@WebParam(name = "criteria") Criteria criteria, @WebParam(name = "token") String token) {
+		return super.fetchBusinessPartnerAsset(criteria, token);
+	}
+
+	/**
+	 * 保存-业务伙伴资产
+	 * 
+	 * @param bo
+	 *            对象实例
+	 * @param token
+	 *            口令
+	 * @return 操作结果
+	 */
+	@WebMethod
+	public OperationResult<BusinessPartnerAsset> saveBusinessPartnerAsset(
+			@WebParam(name = "bo") BusinessPartnerAsset bo, @WebParam(name = "token") String token) {
+		return super.saveBusinessPartnerAsset(bo, token);
+	}
+
+	// --------------------------------------------------------------------------------------------//
+	/**
+	 * 查询-业务伙伴资产日记账
+	 * 
+	 * @param criteria
+	 *            查询
+	 * @param token
+	 *            口令
+	 * @return 操作结果
+	 */
+	@WebMethod
+	public OperationResult<BusinessPartnerAssetJournal> fetchBusinessPartnerAssetJournal(
+			@WebParam(name = "criteria") Criteria criteria, @WebParam(name = "token") String token) {
+		return super.fetchBusinessPartnerAssetJournal(criteria, token);
+	}
+
+	/**
+	 * 保存-业务伙伴资产日记账
+	 * 
+	 * @param bo
+	 *            对象实例
+	 * @param token
+	 *            口令
+	 * @return 操作结果
+	 */
+	@WebMethod
+	public OperationResult<BusinessPartnerAssetJournal> saveBusinessPartnerAssetJournal(
+			@WebParam(name = "bo") BusinessPartnerAssetJournal bo, @WebParam(name = "token") String token) {
+		return super.saveBusinessPartnerAssetJournal(bo, token);
+	}
 	// --------------------------------------------------------------------------------------------//
 
 }

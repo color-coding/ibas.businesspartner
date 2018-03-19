@@ -6,6 +6,12 @@ import org.colorcoding.ibas.bobas.common.OperationResult;
 import org.colorcoding.ibas.bobas.repository.BORepositoryServiceApplication;
 import org.colorcoding.ibas.businesspartner.bo.address.Address;
 import org.colorcoding.ibas.businesspartner.bo.address.IAddress;
+import org.colorcoding.ibas.businesspartner.bo.assetitem.AssetItem;
+import org.colorcoding.ibas.businesspartner.bo.assetitem.IAssetItem;
+import org.colorcoding.ibas.businesspartner.bo.businesspartnerasset.BusinessPartnerAsset;
+import org.colorcoding.ibas.businesspartner.bo.businesspartnerasset.BusinessPartnerAssetJournal;
+import org.colorcoding.ibas.businesspartner.bo.businesspartnerasset.IBusinessPartnerAsset;
+import org.colorcoding.ibas.businesspartner.bo.businesspartnerasset.IBusinessPartnerAssetJournal;
 import org.colorcoding.ibas.businesspartner.bo.businesspartnergroup.BusinessPartnerGroup;
 import org.colorcoding.ibas.businesspartner.bo.businesspartnergroup.IBusinessPartnerGroup;
 import org.colorcoding.ibas.businesspartner.bo.contactperson.ContactPerson;
@@ -265,6 +271,160 @@ public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 	 */
 	public IOperationResult<ISupplier> saveSupplier(ISupplier bo) {
 		return new OperationResult<ISupplier>(this.saveSupplier((Supplier) bo, this.getUserToken()));
+	}
+
+	// --------------------------------------------------------------------------------------------//
+	/**
+	 * 查询-资产项目
+	 * 
+	 * @param criteria
+	 *            查询
+	 * @param token
+	 *            口令
+	 * @return 操作结果
+	 */
+	public OperationResult<AssetItem> fetchAssetItem(ICriteria criteria, String token) {
+		return super.fetch(criteria, token, AssetItem.class);
+	}
+
+	/**
+	 * 查询-资产项目（提前设置用户口令）
+	 * 
+	 * @param criteria
+	 *            查询
+	 * @return 操作结果
+	 */
+	public IOperationResult<IAssetItem> fetchAssetItem(ICriteria criteria) {
+		return new OperationResult<IAssetItem>(this.fetchAssetItem(criteria, this.getUserToken()));
+	}
+
+	/**
+	 * 保存-资产项目
+	 * 
+	 * @param bo
+	 *            对象实例
+	 * @param token
+	 *            口令
+	 * @return 操作结果
+	 */
+	public OperationResult<AssetItem> saveAssetItem(AssetItem bo, String token) {
+		return super.save(bo, token);
+	}
+
+	/**
+	 * 保存-资产项目（提前设置用户口令）
+	 * 
+	 * @param bo
+	 *            对象实例
+	 * @return 操作结果
+	 */
+	public IOperationResult<IAssetItem> saveAssetItem(IAssetItem bo) {
+		return new OperationResult<IAssetItem>(this.saveAssetItem((AssetItem) bo, this.getUserToken()));
+	}
+
+	// --------------------------------------------------------------------------------------------//
+	/**
+	 * 查询-业务伙伴资产
+	 * 
+	 * @param criteria
+	 *            查询
+	 * @param token
+	 *            口令
+	 * @return 操作结果
+	 */
+	public OperationResult<BusinessPartnerAsset> fetchBusinessPartnerAsset(ICriteria criteria, String token) {
+		return super.fetch(criteria, token, BusinessPartnerAsset.class);
+	}
+
+	/**
+	 * 查询-业务伙伴资产（提前设置用户口令）
+	 * 
+	 * @param criteria
+	 *            查询
+	 * @return 操作结果
+	 */
+	public IOperationResult<IBusinessPartnerAsset> fetchBusinessPartnerAsset(ICriteria criteria) {
+		return new OperationResult<IBusinessPartnerAsset>(
+				this.fetchBusinessPartnerAsset(criteria, this.getUserToken()));
+	}
+
+	/**
+	 * 保存-业务伙伴资产
+	 * 
+	 * @param bo
+	 *            对象实例
+	 * @param token
+	 *            口令
+	 * @return 操作结果
+	 */
+	public OperationResult<BusinessPartnerAsset> saveBusinessPartnerAsset(BusinessPartnerAsset bo, String token) {
+		return super.save(bo, token);
+	}
+
+	/**
+	 * 保存-业务伙伴资产（提前设置用户口令）
+	 * 
+	 * @param bo
+	 *            对象实例
+	 * @return 操作结果
+	 */
+	public IOperationResult<IBusinessPartnerAsset> saveBusinessPartnerAsset(IBusinessPartnerAsset bo) {
+		return new OperationResult<IBusinessPartnerAsset>(
+				this.saveBusinessPartnerAsset((BusinessPartnerAsset) bo, this.getUserToken()));
+	}
+
+	// --------------------------------------------------------------------------------------------//
+	/**
+	 * 查询-业务伙伴资产日记账
+	 * 
+	 * @param criteria
+	 *            查询
+	 * @param token
+	 *            口令
+	 * @return 操作结果
+	 */
+	public OperationResult<BusinessPartnerAssetJournal> fetchBusinessPartnerAssetJournal(ICriteria criteria,
+			String token) {
+		return super.fetch(criteria, token, BusinessPartnerAssetJournal.class);
+	}
+
+	/**
+	 * 查询-业务伙伴资产日记账（提前设置用户口令）
+	 * 
+	 * @param criteria
+	 *            查询
+	 * @return 操作结果
+	 */
+	public IOperationResult<IBusinessPartnerAssetJournal> fetchBusinessPartnerAssetJournal(ICriteria criteria) {
+		return new OperationResult<IBusinessPartnerAssetJournal>(
+				this.fetchBusinessPartnerAssetJournal(criteria, this.getUserToken()));
+	}
+
+	/**
+	 * 保存-业务伙伴资产日记账
+	 * 
+	 * @param bo
+	 *            对象实例
+	 * @param token
+	 *            口令
+	 * @return 操作结果
+	 */
+	public OperationResult<BusinessPartnerAssetJournal> saveBusinessPartnerAssetJournal(BusinessPartnerAssetJournal bo,
+			String token) {
+		return super.save(bo, token);
+	}
+
+	/**
+	 * 保存-业务伙伴资产日记账（提前设置用户口令）
+	 * 
+	 * @param bo
+	 *            对象实例
+	 * @return 操作结果
+	 */
+	public IOperationResult<IBusinessPartnerAssetJournal> saveBusinessPartnerAssetJournal(
+			IBusinessPartnerAssetJournal bo) {
+		return new OperationResult<IBusinessPartnerAssetJournal>(
+				this.saveBusinessPartnerAssetJournal((BusinessPartnerAssetJournal) bo, this.getUserToken()));
 	}
 
 	// --------------------------------------------------------------------------------------------//

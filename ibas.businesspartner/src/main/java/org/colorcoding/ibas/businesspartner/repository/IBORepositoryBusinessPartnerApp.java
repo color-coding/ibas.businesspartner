@@ -4,6 +4,9 @@ import org.colorcoding.ibas.bobas.common.ICriteria;
 import org.colorcoding.ibas.bobas.common.IOperationResult;
 import org.colorcoding.ibas.bobas.repository.IBORepositoryApplication;
 import org.colorcoding.ibas.businesspartner.bo.address.IAddress;
+import org.colorcoding.ibas.businesspartner.bo.assetitem.IAssetItem;
+import org.colorcoding.ibas.businesspartner.bo.businesspartnerasset.IBusinessPartnerAsset;
+import org.colorcoding.ibas.businesspartner.bo.businesspartnerasset.IBusinessPartnerAssetJournal;
 import org.colorcoding.ibas.businesspartner.bo.businesspartnergroup.IBusinessPartnerGroup;
 import org.colorcoding.ibas.businesspartner.bo.contactperson.IContactPerson;
 import org.colorcoding.ibas.businesspartner.bo.customer.ICustomer;
@@ -108,6 +111,63 @@ public interface IBORepositoryBusinessPartnerApp extends IBORepositoryApplicatio
 	 * @return 操作结果
 	 */
 	IOperationResult<ISupplier> saveSupplier(ISupplier bo);
+
+	// --------------------------------------------------------------------------------------------//
+	/**
+	 * 查询-资产项目
+	 * 
+	 * @param criteria
+	 *            查询
+	 * @return 操作结果
+	 */
+	IOperationResult<IAssetItem> fetchAssetItem(ICriteria criteria);
+
+	/**
+	 * 保存-资产项目
+	 * 
+	 * @param bo
+	 *            对象实例
+	 * @return 操作结果
+	 */
+	IOperationResult<IAssetItem> saveAssetItem(IAssetItem bo);
+
+	// --------------------------------------------------------------------------------------------//
+	/**
+	 * 查询-业务伙伴资产
+	 * 
+	 * @param criteria
+	 *            查询
+	 * @return 操作结果
+	 */
+	IOperationResult<IBusinessPartnerAsset> fetchBusinessPartnerAsset(ICriteria criteria);
+
+	/**
+	 * 保存-业务伙伴资产
+	 * 
+	 * @param bo
+	 *            对象实例
+	 * @return 操作结果
+	 */
+	IOperationResult<IBusinessPartnerAsset> saveBusinessPartnerAsset(IBusinessPartnerAsset bo);
+
+	// --------------------------------------------------------------------------------------------//
+	/**
+	 * 查询-业务伙伴资产日记账
+	 * 
+	 * @param criteria
+	 *            查询
+	 * @return 操作结果
+	 */
+	IOperationResult<IBusinessPartnerAssetJournal> fetchBusinessPartnerAssetJournal(ICriteria criteria);
+
+	/**
+	 * 保存-业务伙伴资产日记账
+	 * 
+	 * @param bo
+	 *            对象实例
+	 * @return 操作结果
+	 */
+	IOperationResult<IBusinessPartnerAssetJournal> saveBusinessPartnerAssetJournal(IBusinessPartnerAssetJournal bo);
 
 	// --------------------------------------------------------------------------------------------//
 

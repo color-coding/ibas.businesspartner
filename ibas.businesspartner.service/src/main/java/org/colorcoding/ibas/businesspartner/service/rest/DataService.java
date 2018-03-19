@@ -10,6 +10,9 @@ import javax.ws.rs.core.MediaType;
 import org.colorcoding.ibas.bobas.common.Criteria;
 import org.colorcoding.ibas.bobas.common.OperationResult;
 import org.colorcoding.ibas.businesspartner.bo.address.Address;
+import org.colorcoding.ibas.businesspartner.bo.assetitem.AssetItem;
+import org.colorcoding.ibas.businesspartner.bo.businesspartnerasset.BusinessPartnerAsset;
+import org.colorcoding.ibas.businesspartner.bo.businesspartnerasset.BusinessPartnerAssetJournal;
 import org.colorcoding.ibas.businesspartner.bo.businesspartnergroup.BusinessPartnerGroup;
 import org.colorcoding.ibas.businesspartner.bo.contactperson.ContactPerson;
 import org.colorcoding.ibas.businesspartner.bo.customer.Customer;
@@ -196,6 +199,115 @@ public class DataService extends BORepositoryBusinessPartner {
 	@Path("saveSupplier")
 	public OperationResult<Supplier> saveSupplier(Supplier bo, @QueryParam("token") String token) {
 		return super.saveSupplier(bo, token);
+	}
+
+	// --------------------------------------------------------------------------------------------//
+	/**
+	 * 查询-资产项目
+	 * 
+	 * @param criteria
+	 *            查询
+	 * @param token
+	 *            口令
+	 * @return 操作结果
+	 */
+	@POST
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Path("fetchAssetItem")
+	public OperationResult<AssetItem> fetchAssetItem(Criteria criteria, @QueryParam("token") String token) {
+		return super.fetchAssetItem(criteria, token);
+	}
+
+	/**
+	 * 保存-资产项目
+	 * 
+	 * @param bo
+	 *            对象实例
+	 * @param token
+	 *            口令
+	 * @return 操作结果
+	 */
+	@POST
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Path("saveAssetItem")
+	public OperationResult<AssetItem> saveAssetItem(AssetItem bo, @QueryParam("token") String token) {
+		return super.saveAssetItem(bo, token);
+	}
+
+	// --------------------------------------------------------------------------------------------//
+	/**
+	 * 查询-业务伙伴资产
+	 * 
+	 * @param criteria
+	 *            查询
+	 * @param token
+	 *            口令
+	 * @return 操作结果
+	 */
+	@POST
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Path("fetchBusinessPartnerAsset")
+	public OperationResult<BusinessPartnerAsset> fetchBusinessPartnerAsset(Criteria criteria,
+			@QueryParam("token") String token) {
+		return super.fetchBusinessPartnerAsset(criteria, token);
+	}
+
+	/**
+	 * 保存-业务伙伴资产
+	 * 
+	 * @param bo
+	 *            对象实例
+	 * @param token
+	 *            口令
+	 * @return 操作结果
+	 */
+	@POST
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Path("saveBusinessPartnerAsset")
+	public OperationResult<BusinessPartnerAsset> saveBusinessPartnerAsset(BusinessPartnerAsset bo,
+			@QueryParam("token") String token) {
+		return super.saveBusinessPartnerAsset(bo, token);
+	}
+
+	// --------------------------------------------------------------------------------------------//
+	/**
+	 * 查询-业务伙伴资产日记账
+	 * 
+	 * @param criteria
+	 *            查询
+	 * @param token
+	 *            口令
+	 * @return 操作结果
+	 */
+	@POST
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Path("fetchBusinessPartnerAssetJournal")
+	public OperationResult<BusinessPartnerAssetJournal> fetchBusinessPartnerAssetJournal(Criteria criteria,
+			@QueryParam("token") String token) {
+		return super.fetchBusinessPartnerAssetJournal(criteria, token);
+	}
+
+	/**
+	 * 保存-业务伙伴资产日记账
+	 * 
+	 * @param bo
+	 *            对象实例
+	 * @param token
+	 *            口令
+	 * @return 操作结果
+	 */
+	@POST
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Path("saveBusinessPartnerAssetJournal")
+	public OperationResult<BusinessPartnerAssetJournal> saveBusinessPartnerAssetJournal(BusinessPartnerAssetJournal bo,
+			@QueryParam("token") String token) {
+		return super.saveBusinessPartnerAssetJournal(bo, token);
 	}
 
 	// --------------------------------------------------------------------------------------------//

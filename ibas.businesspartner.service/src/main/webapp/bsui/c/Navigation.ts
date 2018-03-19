@@ -13,6 +13,9 @@
 /// <reference path="./contactperson/index.ts" />
 /// <reference path="./customer/index.ts" />
 /// <reference path="./supplier/index.ts" />
+/// <reference path="./assetitem/index.ts" />
+/// <reference path="./businesspartnerasset/index.ts" />
+/// <reference path="./businesspartnerassetjournal/index.ts" />
 namespace businesspartner {
     export namespace ui {
         /**
@@ -76,6 +79,42 @@ namespace businesspartner {
                         break;
                     case app.SupplierEditApp.APPLICATION_ID:
                         view = new c.SupplierEditView();
+                        break;
+                    case app.AssetItemListApp.APPLICATION_ID:
+                        view = new c.AssetItemListView();
+                        break;
+                    case app.AssetItemChooseApp.APPLICATION_ID:
+                        view = new c.AssetItemChooseView();
+                        break;
+                    case app.AssetItemViewApp.APPLICATION_ID:
+                        view = new c.AssetItemViewView();
+                        break;
+                    case app.AssetItemEditApp.APPLICATION_ID:
+                        view = new c.AssetItemEditView();
+                        break;
+                    case app.BusinessPartnerAssetListApp.APPLICATION_ID:
+                        view = new c.BusinessPartnerAssetListView();
+                        break;
+                    case app.BusinessPartnerAssetChooseApp.APPLICATION_ID:
+                        view = new c.BusinessPartnerAssetChooseView();
+                        break;
+                    case app.BusinessPartnerAssetViewApp.APPLICATION_ID:
+                        view = new c.BusinessPartnerAssetViewView();
+                        break;
+                    case app.BusinessPartnerAssetEditApp.APPLICATION_ID:
+                        view = new c.BusinessPartnerAssetEditView();
+                        break;
+                    case app.BusinessPartnerAssetJournalListApp.APPLICATION_ID:
+                        view = new c.BusinessPartnerAssetJournalListView();
+                        break;
+                    case app.BusinessPartnerAssetJournalChooseApp.APPLICATION_ID:
+                        view = new c.BusinessPartnerAssetJournalChooseView();
+                        break;
+                    case app.BusinessPartnerAssetJournalViewApp.APPLICATION_ID:
+                        view = new c.BusinessPartnerAssetJournalViewView();
+                        break;
+                    case app.BusinessPartnerAssetJournalEditApp.APPLICATION_ID:
+                        view = new c.BusinessPartnerAssetJournalEditView();
                         break;
                     default:
                         break;

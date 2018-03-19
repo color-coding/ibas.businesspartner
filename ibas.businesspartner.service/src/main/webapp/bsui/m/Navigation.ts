@@ -13,6 +13,9 @@
 /// <reference path="./contactperson/index.ts" />
 /// <reference path="./customer/index.ts" />
 /// <reference path="./supplier/index.ts" />
+/// <reference path="./assetitem/index.ts" />
+/// <reference path="./businesspartnerasset/index.ts" />
+/// <reference path="./businesspartnerassetjournal/index.ts" />
 namespace businesspartner {
     export namespace ui {
         /**

@@ -4,6 +4,9 @@ import org.colorcoding.ibas.bobas.common.ICriteria;
 import org.colorcoding.ibas.bobas.common.OperationResult;
 import org.colorcoding.ibas.bobas.repository.IBORepositorySmartService;
 import org.colorcoding.ibas.businesspartner.bo.address.Address;
+import org.colorcoding.ibas.businesspartner.bo.assetitem.AssetItem;
+import org.colorcoding.ibas.businesspartner.bo.businesspartnerasset.BusinessPartnerAsset;
+import org.colorcoding.ibas.businesspartner.bo.businesspartnerasset.BusinessPartnerAssetJournal;
 import org.colorcoding.ibas.businesspartner.bo.businesspartnergroup.BusinessPartnerGroup;
 import org.colorcoding.ibas.businesspartner.bo.contactperson.ContactPerson;
 import org.colorcoding.ibas.businesspartner.bo.customer.Customer;
@@ -128,6 +131,76 @@ public interface IBORepositoryBusinessPartnerSvc extends IBORepositorySmartServi
 	 * @return 操作结果
 	 */
 	OperationResult<Supplier> saveSupplier(Supplier bo, String token);
+
+	// --------------------------------------------------------------------------------------------//
+	/**
+	 * 查询-资产项目
+	 * 
+	 * @param criteria
+	 *            查询
+	 * @param token
+	 *            口令
+	 * @return 操作结果
+	 */
+	OperationResult<AssetItem> fetchAssetItem(ICriteria criteria, String token);
+
+	/**
+	 * 保存-资产项目
+	 * 
+	 * @param bo
+	 *            对象实例
+	 * @param token
+	 *            口令
+	 * @return 操作结果
+	 */
+	OperationResult<AssetItem> saveAssetItem(AssetItem bo, String token);
+
+	// --------------------------------------------------------------------------------------------//
+	/**
+	 * 查询-业务伙伴资产
+	 * 
+	 * @param criteria
+	 *            查询
+	 * @param token
+	 *            口令
+	 * @return 操作结果
+	 */
+	OperationResult<BusinessPartnerAsset> fetchBusinessPartnerAsset(ICriteria criteria, String token);
+
+	/**
+	 * 保存-业务伙伴资产
+	 * 
+	 * @param bo
+	 *            对象实例
+	 * @param token
+	 *            口令
+	 * @return 操作结果
+	 */
+	OperationResult<BusinessPartnerAsset> saveBusinessPartnerAsset(BusinessPartnerAsset bo, String token);
+
+	// --------------------------------------------------------------------------------------------//
+	/**
+	 * 查询-业务伙伴资产日记账
+	 * 
+	 * @param criteria
+	 *            查询
+	 * @param token
+	 *            口令
+	 * @return 操作结果
+	 */
+	OperationResult<BusinessPartnerAssetJournal> fetchBusinessPartnerAssetJournal(ICriteria criteria, String token);
+
+	/**
+	 * 保存-业务伙伴资产日记账
+	 * 
+	 * @param bo
+	 *            对象实例
+	 * @param token
+	 *            口令
+	 * @return 操作结果
+	 */
+	OperationResult<BusinessPartnerAssetJournal> saveBusinessPartnerAssetJournal(BusinessPartnerAssetJournal bo,
+			String token);
 
 	// --------------------------------------------------------------------------------------------//
 

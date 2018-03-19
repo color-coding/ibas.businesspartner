@@ -113,6 +113,51 @@ namespace businesspartner {
                 super.save(bo.Supplier.name, saver);
             }
 
+            /**
+             * 查询 资产项目
+             * @param fetcher 查询者
+             */
+            fetchAssetItem(fetcher: ibas.IFetchCaller<bo.AssetItem>): void {
+                super.fetch(bo.AssetItem.name, fetcher);
+            }
+            /**
+             * 保存 资产项目
+             * @param saver 保存者
+             */
+            saveAssetItem(saver: ibas.ISaveCaller<bo.AssetItem>): void {
+                super.save(bo.AssetItem.name, saver);
+            }
+
+            /**
+             * 查询 业务伙伴资产
+             * @param fetcher 查询者
+             */
+            fetchBusinessPartnerAsset(fetcher: ibas.IFetchCaller<bo.BusinessPartnerAsset>): void {
+                super.fetch(bo.BusinessPartnerAsset.name, fetcher);
+            }
+            /**
+             * 保存 业务伙伴资产
+             * @param saver 保存者
+             */
+            saveBusinessPartnerAsset(saver: ibas.ISaveCaller<bo.BusinessPartnerAsset>): void {
+                super.save(bo.BusinessPartnerAsset.name, saver);
+            }
+
+            /**
+             * 查询 业务伙伴资产日记账
+             * @param fetcher 查询者
+             */
+            fetchBusinessPartnerAssetJournal(fetcher: ibas.IFetchCaller<bo.BusinessPartnerAssetJournal>): void {
+                super.fetch(bo.BusinessPartnerAssetJournal.name, fetcher);
+            }
+            /**
+             * 保存 业务伙伴资产日记账
+             * @param saver 保存者
+             */
+            saveBusinessPartnerAssetJournal(saver: ibas.ISaveCaller<bo.BusinessPartnerAssetJournal>): void {
+                super.save(bo.BusinessPartnerAssetJournal.name, saver);
+            }
+
         }
     }
 }
