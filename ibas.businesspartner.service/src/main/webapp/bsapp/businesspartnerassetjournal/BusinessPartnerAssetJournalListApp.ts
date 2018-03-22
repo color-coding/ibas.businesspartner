@@ -109,7 +109,7 @@ namespace businesspartner {
                     return;
                 }
                 let beDeleteds: ibas.ArrayList<bo.BusinessPartnerAssetJournal> = new ibas.ArrayList<bo.BusinessPartnerAssetJournal>();
-                if (data instanceof Array ) {
+                if (data instanceof Array) {
                     for (let item of data) {
                         item.delete();
                         beDeleteds.add(item);
@@ -129,13 +129,13 @@ namespace businesspartner {
                 this.messages({
                     type: ibas.emMessageType.QUESTION,
                     title: ibas.i18n.prop(this.name),
-                    message: ibas.i18n.prop("shell_whether_to_delete", beDeleteds.length),
+                    message: ibas.i18n.prop("shell_multiple_data_delete_continue", beDeleteds.length),
                     actions: [ibas.emMessageAction.YES, ibas.emMessageAction.NO],
                     onCompleted(action: ibas.emMessageAction): void {
                         if (action === ibas.emMessageAction.YES) {
                             try {
                                 let boRepository: bo.BORepositoryBusinessPartner = new bo.BORepositoryBusinessPartner();
-                                let saveMethod: Function = function(beSaved: bo.BusinessPartnerAssetJournal):void {
+                                let saveMethod: Function = function (beSaved: bo.BusinessPartnerAssetJournal): void {
                                     boRepository.saveBusinessPartnerAssetJournal({
                                         beSaved: beSaved,
                                         onCompleted(opRslt: ibas.IOperationResult<bo.BusinessPartnerAssetJournal>): void {
@@ -151,7 +151,7 @@ namespace businesspartner {
                                                     // 处理完成
                                                     that.busy(false);
                                                     that.messages(ibas.emMessageType.SUCCESS,
-                                                    ibas.i18n.prop("shell_data_delete") + ibas.i18n.prop("shell_sucessful"));
+                                                        ibas.i18n.prop("shell_data_delete") + ibas.i18n.prop("shell_sucessful"));
                                                 }
                                             } catch (error) {
                                                 that.messages(ibas.emMessageType.ERROR,

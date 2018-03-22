@@ -267,7 +267,7 @@ namespace businesspartner {
                     this.messages({
                         title: this.description,
                         type: ibas.emMessageType.WARNING,
-                        message: ibas.i18n.prop("shell_data_save_first"),
+                        message: ibas.i18n.prop("shell_data_saved_first"),
                     });
                     return;
                 }
@@ -284,7 +284,7 @@ namespace businesspartner {
                     this.messages({
                         title: this.description,
                         type: ibas.emMessageType.WARNING,
-                        message: ibas.i18n.prop("shell_data_save_first"),
+                        message: ibas.i18n.prop("shell_data_saved_first"),
                     });
                     return;
                 }
