@@ -28,6 +28,8 @@
     <Property Name="BaseDocumentLineId" Description="基于行号" DataType="Numeric" DataSubType="Default" EditSize="8" Mapped="BaseLine"/>
     <Property Name="TradingAmount" Description="交易金额" DataType="Decimal" DataSubType="Sum" EditSize="8" Mapped="TradingAmount"/>
     <Property Name="TradingCurrency" Description="交易货币" DataType="Alphanumeric" DataSubType="Default" EditSize="8" Mapped="TradingCurrency"/>
+    <Property Name="Remark1" Description="备注 1" DataType="Alphanumeric" DataSubType="Default" EditSize="200" Mapped="Notes1"/>
+    <Property Name="Remark2" Description="备注 2" DataType="Alphanumeric" DataSubType="Default" EditSize="200" Mapped="Notes2"/>
   </Model>
   <BusinessObject MappedModel="BusinessPartnerAsset" ShortName="${Company}_BP_BPASSET"/>
   <Model Name="BusinessPartnerAssetJournal" Description="业务伙伴资产日记账" ModelType="Simple" Mapped="${Company}_BP_BPA1">

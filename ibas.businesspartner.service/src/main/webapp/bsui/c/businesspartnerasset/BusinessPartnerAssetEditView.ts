@@ -14,6 +14,12 @@ namespace businesspartner {
                 deleteDataEvent: Function;
                 /** 新建数据事件，参数1：是否克隆 */
                 createDataEvent: Function;
+                /*** 选择业务伙伴事件 */
+                chooseBusinessPartnerEvent: Function;
+                /*** 选择资产项目事件 */
+                chooseAssetItemEvent: Function;
+                /** 查看数据交易记录 */
+                viewDataJournalEvent: Function;
 
                 /** 绘制视图 */
                 draw(): any {
@@ -21,6 +27,114 @@ namespace businesspartner {
                     let formTop: sap.ui.layout.form.SimpleForm = new sap.ui.layout.form.SimpleForm("", {
                         editable: true,
                         content: [
+                            new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_title_general") }),
+                            new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnerasset_businesspartnertype") }),
+                            new sap.m.Select("", {
+                                items: openui5.utils.createComboBoxItems(bo.emBusinessPartnerType)
+                            }).bindProperty("selectedKey", {
+                                path: "businessPartnerType",
+                                type: "sap.ui.model.type.Integer"
+                            }),
+                            new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnerasset_businesspartnercode") }),
+                            new sap.m.Input("", {
+                                showValueHelp: true,
+                                valueHelpRequest: function (): void {
+                                    that.fireViewEvents(that.chooseBusinessPartnerEvent);
+                                }
+                            }).bindProperty("value", {
+                                path: "businessPartnerCode"
+                            }),
+                            new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnerasset_assetcode") }),
+                            new sap.m.Input("", {
+                                showValueHelp: true,
+                                valueHelpRequest: function (): void {
+                                    that.fireViewEvents(that.chooseAssetItemEvent);
+                                }
+                            }).bindProperty("value", {
+                                path: "assetCode"
+                            }),
+                            new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnerasset_servicecode") }),
+                            new sap.m.Input("", {
+                                editable: false,
+                                type: sap.m.InputType.Text
+                            }).bindProperty("value", {
+                                path: "serviceCode"
+                            }),
+                            new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnerasset_amount") }),
+                            new sap.m.Input("", {
+                                editable: false,
+                                type: sap.m.InputType.Text
+                            }).bindProperty("value", {
+                                path: "amount"
+                            }),
+                            new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnerasset_activated") }),
+                            new sap.m.Select("", {
+                                items: openui5.utils.createComboBoxItems(ibas.emYesNo)
+                            }).bindProperty("selectedKey", {
+                                path: "activated",
+                                type: "sap.ui.model.type.Integer"
+                            }),
+                            new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnerasset_validdate") }),
+                            new sap.m.DatePicker("", {
+                                valueFormat: ibas.config.get(ibas.CONFIG_ITEM_FORMAT_DATE),
+                                displayFormat: ibas.config.get(ibas.CONFIG_ITEM_FORMAT_DATE),
+                            }).bindProperty("dateValue", {
+                                path: "validDate"
+                            }),
+                            new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnerasset_invaliddate") }),
+                            new sap.m.DatePicker("", {
+                                valueFormat: ibas.config.get(ibas.CONFIG_ITEM_FORMAT_DATE),
+                                displayFormat: ibas.config.get(ibas.CONFIG_ITEM_FORMAT_DATE),
+                            }).bindProperty("dateValue", {
+                                path: "invalidDate"
+                            }),
+                            new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnerasset_remark1") }),
+                            new sap.m.Input("", {
+                                type: sap.m.InputType.Text
+                            }).bindProperty("value", {
+                                path: "remark1"
+                            }),
+                            new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnerasset_remark2") }),
+                            new sap.m.Input("", {
+                                type: sap.m.InputType.Text
+                            }).bindProperty("value", {
+                                path: "remark2"
+                            }),
+                            new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_title_others") }),
+                            new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnerasset_basedocumenttype") }),
+                            new sap.m.Input("", {
+                                type: sap.m.InputType.Text,
+                                editable: false,
+                            }).bindProperty("value", {
+                                path: "baseDocumentType"
+                            }),
+                            new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnerasset_basedocumententry") }),
+                            new sap.m.Input("", {
+                                type: sap.m.InputType.Text,
+                                editable: false,
+                            }).bindProperty("value", {
+                                path: "baseDocumentEntry"
+                            }),
+                            new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnerasset_basedocumentlineid") }),
+                            new sap.m.Input("", {
+                                type: sap.m.InputType.Text,
+                                editable: false,
+                            }).bindProperty("value", {
+                                path: "baseDocumentLineId"
+                            }),
+                            new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnerasset_tradingamount") }),
+                            new sap.m.Input("", {
+                                type: sap.m.InputType.Text,
+                                editable: false,
+                            }).bindProperty("value", {
+                                path: "tradingAmount"
+                            }),
+                            new sap.m.Input("", {
+                                type: sap.m.InputType.Text,
+                                editable: false,
+                            }).bindProperty("value", {
+                                path: "tradingCurrency"
+                            }),
                         ]
                     });
                     this.layoutMain = new sap.ui.layout.VerticalLayout("", {
@@ -97,6 +211,8 @@ namespace businesspartner {
                         if (this.page.getSubHeader() instanceof sap.m.Toolbar) {
                             openui5.utils.changeToolbarDeletable(<sap.m.Toolbar>this.page.getSubHeader(), false);
                         }
+                    } else {
+
                     }
                 }
 

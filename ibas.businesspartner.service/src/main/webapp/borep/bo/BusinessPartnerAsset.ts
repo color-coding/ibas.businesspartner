@@ -301,6 +301,28 @@ namespace businesspartner {
                 this.setProperty(BusinessPartnerAsset.PROPERTY_TRADINGCURRENCY_NAME, value);
             }
 
+            /** 映射的属性名称-备注 1 */
+            static PROPERTY_REMARK1_NAME: string = "Remark1";
+            /** 获取-备注 1 */
+            get remark1(): string {
+                return this.getProperty<string>(BusinessPartnerAsset.PROPERTY_REMARK1_NAME);
+            }
+            /** 设置-备注 1 */
+            set remark1(value: string) {
+                this.setProperty(BusinessPartnerAsset.PROPERTY_REMARK1_NAME, value);
+            }
+
+            /** 映射的属性名称-备注 2 */
+            static PROPERTY_REMARK2_NAME: string = "Remark2";
+            /** 获取-备注 2 */
+            get remark2(): string {
+                return this.getProperty<string>(BusinessPartnerAsset.PROPERTY_REMARK2_NAME);
+            }
+            /** 设置-备注 2 */
+            set remark2(value: string) {
+                this.setProperty(BusinessPartnerAsset.PROPERTY_REMARK2_NAME, value);
+            }
+
 
 
             /** 初始化数据 */
@@ -308,6 +330,7 @@ namespace businesspartner {
                 this.objectCode = ibas.config.applyVariables(BusinessPartnerAsset.BUSINESS_OBJECT_CODE);
                 this.activated = ibas.emYesNo.YES;
                 this.businessPartnerType = emBusinessPartnerType.CUSTOMER;
+                this.serviceCode = ibas.uuids.random();
             }
         }
 

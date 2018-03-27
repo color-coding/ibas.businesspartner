@@ -15,7 +15,6 @@
 /// <reference path="./supplier/index.ts" />
 /// <reference path="./assetitem/index.ts" />
 /// <reference path="./businesspartnerasset/index.ts" />
-/// <reference path="./businesspartnerassetjournal/index.ts" />
 namespace businesspartner {
     export namespace ui {
         /**
@@ -106,12 +105,6 @@ namespace businesspartner {
                         break;
                     case app.BusinessPartnerAssetJournalListApp.APPLICATION_ID:
                         view = new c.BusinessPartnerAssetJournalListView();
-                        break;
-                    case app.BusinessPartnerAssetJournalChooseApp.APPLICATION_ID:
-                        view = new c.BusinessPartnerAssetJournalChooseView();
-                        break;
-                    case app.BusinessPartnerAssetJournalViewApp.APPLICATION_ID:
-                        view = new c.BusinessPartnerAssetJournalViewView();
                         break;
                     case app.BusinessPartnerAssetJournalEditApp.APPLICATION_ID:
                         view = new c.BusinessPartnerAssetJournalEditView();

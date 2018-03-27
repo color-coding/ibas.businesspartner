@@ -9,3 +9,5 @@
 /// <reference path="./BusinessPartnerAssetChooseView.ts" />
 /// <reference path="./BusinessPartnerAssetViewView.ts" />
 /// <reference path="./BusinessPartnerAssetEditView.ts" />
+/// <reference path="./BusinessPartnerAssetJournalListView.ts" />
+/// <reference path="./BusinessPartnerAssetJournalEditView.ts" />

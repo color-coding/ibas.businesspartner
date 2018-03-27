@@ -21,6 +21,83 @@ namespace businesspartner {
                     let formTop: sap.ui.layout.form.SimpleForm = new sap.ui.layout.form.SimpleForm("", {
                         editable: true,
                         content: [
+                            new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_title_general") }),
+                            new sap.m.Label("", { text: ibas.i18n.prop("bo_assetitem_code") }),
+                            new sap.m.Input("", {
+                                type: sap.m.InputType.Text
+                            }).bindProperty("value", {
+                                path: "code"
+                            }),
+                            new sap.m.ex.SeriesSelect("", {
+                                objectCode: ibas.config.applyVariables(bo.BO_CODE_SUPPLIER),
+                                bindingValue: {
+                                    path: "series",
+                                    type: "sap.ui.model.type.Integer",
+                                }
+                            }),
+                            new sap.m.Label("", { text: ibas.i18n.prop("bo_assetitem_name") }),
+                            new sap.m.Input("", {
+                                type: sap.m.InputType.Text
+                            }).bindProperty("value", {
+                                path: "name"
+                            }),
+                            new sap.m.Label("", { text: ibas.i18n.prop("bo_assetitem_activated") }),
+                            new sap.m.Select("", {
+                                items: openui5.utils.createComboBoxItems(ibas.emYesNo)
+                            }).bindProperty("selectedKey", {
+                                path: "activated",
+                                type: "sap.ui.model.type.Integer"
+                            }),
+                            new sap.m.Label("", { text: ibas.i18n.prop("bo_assetitem_validdate") }),
+                            new sap.m.DatePicker("", {
+                                valueFormat: ibas.config.get(ibas.CONFIG_ITEM_FORMAT_DATE),
+                                displayFormat: ibas.config.get(ibas.CONFIG_ITEM_FORMAT_DATE),
+                            }).bindProperty("dateValue", {
+                                path: "validDate"
+                            }),
+                            new sap.m.Label("", { text: ibas.i18n.prop("bo_assetitem_invaliddate") }),
+                            new sap.m.DatePicker("", {
+                                valueFormat: ibas.config.get(ibas.CONFIG_ITEM_FORMAT_DATE),
+                                displayFormat: ibas.config.get(ibas.CONFIG_ITEM_FORMAT_DATE),
+                            }).bindProperty("dateValue", {
+                                path: "invalidDate"
+                            }),
+                            new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_title_values") }),
+                            new sap.m.Label("", { text: ibas.i18n.prop("bo_assetitem_faceamount") }),
+                            new sap.m.Input("", {
+                                type: sap.m.InputType.Text
+                            }).bindProperty("value", {
+                                path: "faceAmount"
+                            }),
+                            new sap.m.Input("", {
+                                type: sap.m.InputType.Text
+                            }).bindProperty("value", {
+                                path: "amountUnit"
+                            }),
+                            new sap.m.Label("", { text: ibas.i18n.prop("bo_assetitem_amountvalue") }),
+                            new sap.m.Input("", {
+                                type: sap.m.InputType.Text
+                            }).bindProperty("value", {
+                                path: "amountValue"
+                            }),
+                            new sap.m.Label("", { text: ibas.i18n.prop("bo_assetitem_discountused") }),
+                            new sap.m.Input("", {
+                                type: sap.m.InputType.Text,
+                            }).bindProperty("value", {
+                                path: "discountUsed"
+                            }),
+                            new sap.m.Label("", { text: ibas.i18n.prop("bo_assetitem_overdraft") }),
+                            new sap.m.Input("", {
+                                type: sap.m.InputType.Text,
+                            }).bindProperty("value", {
+                                path: "overdraft"
+                            }),
+                            new sap.m.Label("", { text: ibas.i18n.prop("bo_assetitem_validtime") }),
+                            new sap.m.Input("", {
+                                type: sap.m.InputType.Text,
+                            }).bindProperty("value", {
+                                path: "validTime"
+                            }),
                         ]
                     });
                     this.layoutMain = new sap.ui.layout.VerticalLayout("", {

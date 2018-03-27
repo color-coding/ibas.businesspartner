@@ -18,6 +18,8 @@ namespace businesspartner {
                 editDataEvent: Function;
                 /** 删除数据事件，参数：删除对象集合 */
                 deleteDataEvent: Function;
+                /** 查看数据交易记录 */
+                viewDataJournalEvent: Function;
                 /** 绘制视图 */
                 draw(): any {
                     let that: this = this;
@@ -28,6 +30,92 @@ namespace businesspartner {
                         visibleRowCountMode: sap.ui.table.VisibleRowCountMode.Interactive,
                         rows: "{/rows}",
                         columns: [
+                            new sap.ui.table.Column("", {
+                                label: ibas.i18n.prop("bo_businesspartnerasset_objectkey"),
+                                template: new sap.m.Text("", {
+                                    wrapping: false
+                                }).bindProperty("text", {
+                                    path: "objectKey"
+                                })
+                            }),
+                            new sap.ui.table.Column("", {
+                                label: ibas.i18n.prop("bo_businesspartnerasset_businesspartnertype"),
+                                template: new sap.m.Text("", {
+                                    wrapping: false
+                                }).bindProperty("text", {
+                                    path: "businessPartnerType",
+                                    formatter(data: any): any {
+                                        return ibas.enums.describe(bo.emBusinessPartnerType, data);
+                                    }
+                                })
+                            }),
+                            new sap.ui.table.Column("", {
+                                label: ibas.i18n.prop("bo_businesspartnerasset_businesspartnercode"),
+                                template: new sap.m.Text("", {
+                                    wrapping: false
+                                }).bindProperty("text", {
+                                    path: "businessPartnerCode"
+                                })
+                            }),
+                            new sap.ui.table.Column("", {
+                                label: ibas.i18n.prop("bo_businesspartnerasset_assetcode"),
+                                template: new sap.m.Text("", {
+                                    wrapping: false
+                                }).bindProperty("text", {
+                                    path: "assetCode"
+                                })
+                            }),
+                            new sap.ui.table.Column("", {
+                                label: ibas.i18n.prop("bo_businesspartnerasset_activated"),
+                                template: new sap.m.Text("", {
+                                    wrapping: false
+                                }).bindProperty("text", {
+                                    path: "activated",
+                                    formatter(data: any): any {
+                                        return ibas.enums.describe(ibas.emYesNo, data);
+                                    }
+                                })
+                            }),
+                            new sap.ui.table.Column("", {
+                                label: ibas.i18n.prop("bo_businesspartnerasset_validdate"),
+                                template: new sap.m.Text("", {
+                                    wrapping: false,
+                                }).bindProperty("text", {
+                                    path: "validDate",
+                                    type: new sap.ui.model.type.Date({
+                                        pattern: "yyyy-MM-dd",
+                                        strictParsing: true,
+                                    })
+                                }),
+                            }),
+                            new sap.ui.table.Column("", {
+                                label: ibas.i18n.prop("bo_businesspartnerasset_invaliddate"),
+                                template: new sap.m.Text("", {
+                                    wrapping: false,
+                                }).bindProperty("text", {
+                                    path: "invalidDate",
+                                    type: new sap.ui.model.type.Date({
+                                        pattern: "yyyy-MM-dd",
+                                        strictParsing: true,
+                                    })
+                                }),
+                            }),
+                            new sap.ui.table.Column("", {
+                                label: ibas.i18n.prop("bo_businesspartnerasset_amount"),
+                                template: new sap.m.Text("", {
+                                    wrapping: false,
+                                }).bindProperty("text", {
+                                    path: "amount",
+                                }),
+                            }),
+                            new sap.ui.table.Column("", {
+                                label: ibas.i18n.prop("bo_businesspartnerasset_servicecode"),
+                                template: new sap.m.Text("", {
+                                    wrapping: false
+                                }).bindProperty("text", {
+                                    path: "serviceCode"
+                                })
+                            }),
                         ]
                     });
                     // 添加列表自动查询事件
@@ -57,6 +145,7 @@ namespace businesspartner {
                                         that.fireViewEvents(that.newDataEvent);
                                     }
                                 }),
+                                /*
                                 new sap.m.Button("", {
                                     text: ibas.i18n.prop("shell_data_view"),
                                     type: sap.m.ButtonType.Transparent,
@@ -68,6 +157,7 @@ namespace businesspartner {
                                         );
                                     }
                                 }),
+                                */
                                 new sap.m.Button("", {
                                     text: ibas.i18n.prop("shell_data_edit"),
                                     type: sap.m.ButtonType.Transparent,
@@ -86,6 +176,18 @@ namespace businesspartner {
                                     icon: "sap-icon://delete",
                                     press: function (): void {
                                         that.fireViewEvents(that.deleteDataEvent,
+                                            // 获取表格选中的对象
+                                            openui5.utils.getSelecteds<bo.BusinessPartnerAsset>(that.table)
+                                        );
+                                    }
+                                }),
+                                new sap.m.ToolbarSeparator(""),
+                                new sap.m.Button("", {
+                                    text: ibas.i18n.prop("businesspartner_view_businesspartnerassetjournal"),
+                                    type: sap.m.ButtonType.Transparent,
+                                    icon: "sap-icon://display",
+                                    press: function (): void {
+                                        that.fireViewEvents(that.viewDataJournalEvent,
                                             // 获取表格选中的对象
                                             openui5.utils.getSelecteds<bo.BusinessPartnerAsset>(that.table)
                                         );
@@ -125,7 +227,7 @@ namespace businesspartner {
                             ]
                         }),
                         content: [
-                            new sap.ui.layout.form.SimpleForm("",{
+                            new sap.ui.layout.form.SimpleForm("", {
                                 content: [
                                     this.table,
                                 ]

@@ -7,6 +7,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 import org.colorcoding.ibas.bobas.bo.BusinessObject;
+import org.colorcoding.ibas.bobas.bo.IBOSeriesKey;
 import org.colorcoding.ibas.bobas.core.IPropertyInfo;
 import org.colorcoding.ibas.bobas.data.DateTime;
 import org.colorcoding.ibas.bobas.data.Decimal;
@@ -25,7 +26,7 @@ import org.colorcoding.ibas.businesspartner.MyConfiguration;
 @XmlType(name = AssetItem.BUSINESS_OBJECT_NAME, namespace = MyConfiguration.NAMESPACE_BO)
 @XmlRootElement(name = AssetItem.BUSINESS_OBJECT_NAME, namespace = MyConfiguration.NAMESPACE_BO)
 @BOCode(AssetItem.BUSINESS_OBJECT_CODE)
-public class AssetItem extends BusinessObject<AssetItem> implements IAssetItem {
+public class AssetItem extends BusinessObject<AssetItem> implements IAssetItem, IBOSeriesKey {
 
 	/**
 	 * 序列化版本标记
@@ -851,19 +852,19 @@ public class AssetItem extends BusinessObject<AssetItem> implements IAssetItem {
 	}
 
 	/**
-	 * 属性名称-量单位
+	 * 属性名称-单位
 	 */
 	private static final String PROPERTY_AMOUNTUNIT_NAME = "AmountUnit";
 
 	/**
-	 * 量单位 属性
+	 * 单位 属性
 	 */
 	@DbField(name = "AmountUnit", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME, primaryKey = false)
 	public static final IPropertyInfo<String> PROPERTY_AMOUNTUNIT = registerProperty(PROPERTY_AMOUNTUNIT_NAME,
 			String.class, MY_CLASS);
 
 	/**
-	 * 获取-量单位
+	 * 获取-单位
 	 * 
 	 * @return 值
 	 */
@@ -873,7 +874,7 @@ public class AssetItem extends BusinessObject<AssetItem> implements IAssetItem {
 	}
 
 	/**
-	 * 设置-量单位
+	 * 设置-单位
 	 * 
 	 * @param value
 	 *            值
@@ -883,19 +884,19 @@ public class AssetItem extends BusinessObject<AssetItem> implements IAssetItem {
 	}
 
 	/**
-	 * 属性名称-量价值
+	 * 属性名称-单位价值
 	 */
 	private static final String PROPERTY_AMOUNTVALUE_NAME = "AmountValue";
 
 	/**
-	 * 量价值 属性
+	 * 单位价值 属性
 	 */
 	@DbField(name = "AmountValue", type = DbFieldType.DECIMAL, table = DB_TABLE_NAME, primaryKey = false)
 	public static final IPropertyInfo<Decimal> PROPERTY_AMOUNTVALUE = registerProperty(PROPERTY_AMOUNTVALUE_NAME,
 			Decimal.class, MY_CLASS);
 
 	/**
-	 * 获取-量价值
+	 * 获取-单位价值
 	 * 
 	 * @return 值
 	 */
@@ -905,7 +906,7 @@ public class AssetItem extends BusinessObject<AssetItem> implements IAssetItem {
 	}
 
 	/**
-	 * 设置-量价值
+	 * 设置-单位价值
 	 * 
 	 * @param value
 	 *            值
@@ -915,7 +916,7 @@ public class AssetItem extends BusinessObject<AssetItem> implements IAssetItem {
 	}
 
 	/**
-	 * 设置-量价值
+	 * 设置-单位价值
 	 * 
 	 * @param value
 	 *            值
@@ -925,7 +926,7 @@ public class AssetItem extends BusinessObject<AssetItem> implements IAssetItem {
 	}
 
 	/**
-	 * 设置-量价值
+	 * 设置-单位价值
 	 * 
 	 * @param value
 	 *            值
@@ -935,7 +936,7 @@ public class AssetItem extends BusinessObject<AssetItem> implements IAssetItem {
 	}
 
 	/**
-	 * 设置-量价值
+	 * 设置-单位价值
 	 * 
 	 * @param value
 	 *            值
@@ -1098,6 +1099,43 @@ public class AssetItem extends BusinessObject<AssetItem> implements IAssetItem {
 	 */
 	public final void setValidTime(Integer value) {
 		this.setProperty(PROPERTY_VALIDTIME, value);
+	}
+
+	@Override
+	public void setSeriesValue(Object value) {
+		this.setCode((String) value);
+	}
+
+	/**
+	 * 属性名称-备注
+	 */
+	private static final String PROPERTY_REMARKS_NAME = "Remarks";
+
+	/**
+	 * 备注 属性
+	 */
+	@DbField(name = "Remarks", type = DbFieldType.MEMO, table = DB_TABLE_NAME, primaryKey = false)
+	public static final IPropertyInfo<String> PROPERTY_REMARKS = registerProperty(PROPERTY_REMARKS_NAME, String.class,
+			MY_CLASS);
+
+	/**
+	 * 获取-备注
+	 * 
+	 * @return 值
+	 */
+	@XmlElement(name = PROPERTY_REMARKS_NAME)
+	public final String getRemarks() {
+		return this.getProperty(PROPERTY_REMARKS);
+	}
+
+	/**
+	 * 设置-备注
+	 * 
+	 * @param value
+	 *            值
+	 */
+	public final void setRemarks(String value) {
+		this.setProperty(PROPERTY_REMARKS, value);
 	}
 
 	/**

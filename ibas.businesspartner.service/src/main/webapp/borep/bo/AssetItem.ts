@@ -279,24 +279,24 @@ namespace businesspartner {
                 this.setProperty(AssetItem.PROPERTY_FACEAMOUNT_NAME, value);
             }
 
-            /** 映射的属性名称-量单位 */
+            /** 映射的属性名称-单位 */
             static PROPERTY_AMOUNTUNIT_NAME: string = "AmountUnit";
-            /** 获取-量单位 */
+            /** 获取-单位 */
             get amountUnit(): string {
                 return this.getProperty<string>(AssetItem.PROPERTY_AMOUNTUNIT_NAME);
             }
-            /** 设置-量单位 */
+            /** 设置-单位 */
             set amountUnit(value: string) {
                 this.setProperty(AssetItem.PROPERTY_AMOUNTUNIT_NAME, value);
             }
 
-            /** 映射的属性名称-量价值 */
+            /** 映射的属性名称-单位价值 */
             static PROPERTY_AMOUNTVALUE_NAME: string = "AmountValue";
-            /** 获取-量价值 */
+            /** 获取-单位价值 */
             get amountValue(): number {
                 return this.getProperty<number>(AssetItem.PROPERTY_AMOUNTVALUE_NAME);
             }
-            /** 设置-量价值 */
+            /** 设置-单位价值 */
             set amountValue(value: number) {
                 this.setProperty(AssetItem.PROPERTY_AMOUNTVALUE_NAME, value);
             }
@@ -332,6 +332,17 @@ namespace businesspartner {
             /** 设置-有效期（天） */
             set validTime(value: number) {
                 this.setProperty(AssetItem.PROPERTY_VALIDTIME_NAME, value);
+            }
+
+            /** 映射的属性名称-备注 */
+            static PROPERTY_REMARKS_NAME: string = "Remarks";
+            /** 获取-备注 */
+            get remarks(): string {
+                return this.getProperty<string>(AssetItem.PROPERTY_REMARKS_NAME);
+            }
+            /** 设置-备注 */
+            set remarks(value: string) {
+                this.setProperty(AssetItem.PROPERTY_REMARKS_NAME, value);
             }
 
 

@@ -450,4 +450,33 @@ public interface IBusinessPartnerAsset extends IBOSimple {
 	 */
 	void setTradingCurrency(String value);
 
+	/**
+	 * 获取-备注 1
+	 * 
+	 * @return 值
+	 */
+	String getRemark1();
+
+	/**
+	 * 设置-备注 1
+	 * 
+	 * @param value
+	 *            值
+	 */
+	void setRemark1(String value);
+
+	/**
+	 * 获取-备注 2
+	 * 
+	 * @return 值
+	 */
+	String getRemark2();
+
+	/**
+	 * 设置-备注 2
+	 * 
+	 * @param value
+	 *            值
+	 */
+	void setRemark2(String value);
 }

@@ -5,7 +5,7 @@
  * Use of this source code is governed by an Apache License, Version 2.0
  * that can be found in the LICENSE file at http://www.apache.org/licenses/LICENSE-2.0
  */
- namespace businesspartner {
+namespace businesspartner {
     export namespace app {
         /** 编辑应用-业务伙伴资产 */
         export class BusinessPartnerAssetEditApp extends ibas.BOEditApplication<IBusinessPartnerAssetEditView, bo.BusinessPartnerAsset> {
@@ -30,6 +30,8 @@
                 // 其他事件
                 this.view.deleteDataEvent = this.deleteData;
                 this.view.createDataEvent = this.createData;
+                this.view.chooseBusinessPartnerEvent = this.chooseBusinessPartner;
+                this.view.chooseAssetItemEvent = this.chooseAssetItem;
             }
             /** 视图显示后 */
             protected viewShowed(): void {
@@ -169,6 +171,50 @@
                     createData();
                 }
             }
+            private chooseBusinessPartner(): void {
+                let that: this = this;
+                if (this.editData.businessPartnerType === bo.emBusinessPartnerType.CUSTOMER) {
+                    ibas.servicesManager.runChooseService<bo.Customer>({
+                        boCode: bo.Customer.BUSINESS_OBJECT_CODE,
+                        chooseType: ibas.emChooseType.SINGLE,
+                        criteria: [
+                            new ibas.Condition(bo.Customer.PROPERTY_DELETED_NAME, ibas.emConditionOperation.NOT_EQUAL, ibas.emYesNo.YES)
+                        ],
+                        onCompleted(selecteds: ibas.IList<bo.Customer>): void {
+                            let selected: bo.Customer = selecteds.firstOrDefault();
+                            that.editData.businessPartnerCode = selected.code;
+                        }
+                    });
+                } else if (this.editData.businessPartnerType === bo.emBusinessPartnerType.SUPPLIER) {
+                    ibas.servicesManager.runChooseService<bo.Supplier>({
+                        boCode: bo.Supplier.BUSINESS_OBJECT_CODE,
+                        chooseType: ibas.emChooseType.SINGLE,
+                        criteria: [
+                            new ibas.Condition(bo.Supplier.PROPERTY_DELETED_NAME, ibas.emConditionOperation.NOT_EQUAL, ibas.emYesNo.YES)
+                        ],
+                        onCompleted(selecteds: ibas.IList<bo.Supplier>): void {
+                            let selected: bo.Supplier = selecteds.firstOrDefault();
+                            that.editData.businessPartnerCode = selected.code;
+                        }
+                    });
+
+                }
+            }
+            private chooseAssetItem(): void {
+                let that: this = this;
+                ibas.servicesManager.runChooseService<bo.AssetItem>({
+                    boCode: bo.AssetItem.BUSINESS_OBJECT_CODE,
+                    chooseType: ibas.emChooseType.SINGLE,
+                    criteria: [
+                        new ibas.Condition(bo.AssetItem.PROPERTY_DELETED_NAME, ibas.emConditionOperation.NOT_EQUAL, ibas.emYesNo.YES)
+                    ],
+                    onCompleted(selecteds: ibas.IList<bo.AssetItem>): void {
+                        let selected: bo.AssetItem = selecteds.firstOrDefault();
+                        that.editData.assetCode = selected.code;
+                        that.editData.amount = selected.faceAmount;
+                    }
+                });
+            }
         }
         /** 视图-业务伙伴资产 */
         export interface IBusinessPartnerAssetEditView extends ibas.IBOEditView {
@@ -178,6 +224,10 @@
             deleteDataEvent: Function;
             /** 新建数据事件，参数1：是否克隆 */
             createDataEvent: Function;
+            /*** 选择业务伙伴事件 */
+            chooseBusinessPartnerEvent: Function;
+            /*** 选择资产项目事件 */
+            chooseAssetItemEvent: Function;
         }
     }
 }

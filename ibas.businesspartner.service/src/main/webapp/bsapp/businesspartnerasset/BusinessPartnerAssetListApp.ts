@@ -30,6 +30,7 @@ namespace businesspartner {
                 // 其他事件
                 this.view.editDataEvent = this.editData;
                 this.view.deleteDataEvent = this.deleteData;
+                this.view.viewDataJournalEvent = this.viewDataJournal;
             }
             /** 视图显示后 */
             protected viewShowed(): void {
@@ -181,6 +182,35 @@ namespace businesspartner {
                     })
                 ];
             }
+            private viewDataJournal(data: bo.BusinessPartnerAsset | bo.BusinessPartnerAsset[]): void {
+                let criteria: ibas.ICriteria = new ibas.Criteria();
+                if (data instanceof Array) {
+                    for (let item of data) {
+                        if (item instanceof bo.BusinessPartnerAsset) {
+                            let condition: ibas.ICondition = criteria.conditions.create();
+                            condition.alias = bo.BusinessPartnerAssetJournal.PROPERTY_SERVICECODE_NAME;
+                            condition.operation = ibas.emConditionOperation.EQUAL;
+                            condition.value = item.serviceCode;
+                            if (criteria.conditions.length > 1) {
+                                condition.relationship = ibas.emConditionRelationship.OR;
+                            }
+                        }
+                    }
+                } else if (data instanceof bo.BusinessPartnerAsset) {
+                    let condition: ibas.ICondition = criteria.conditions.create();
+                    condition.alias = bo.BusinessPartnerAssetJournal.PROPERTY_SERVICECODE_NAME;
+                    condition.operation = ibas.emConditionOperation.EQUAL;
+                    condition.value = data.serviceCode;
+                }
+                let app: BusinessPartnerAssetJournalListApp = new BusinessPartnerAssetJournalListApp();
+                app.navigation = this.navigation;
+                app.viewShower = this.viewShower;
+                if (criteria.conditions.length > 0) {
+                    app.run(criteria);
+                } else {
+                    app.run();
+                }
+            }
         }
         /** 视图-业务伙伴资产 */
         export interface IBusinessPartnerAssetListView extends ibas.IBOListView {
@@ -192,6 +222,8 @@ namespace businesspartner {
             showData(datas: bo.BusinessPartnerAsset[]): void;
             /** 获取选择的数据 */
             getSelecteds(): bo.BusinessPartnerAsset[];
+            /** 查看数据交易记录 */
+            viewDataJournalEvent: Function;
         }
     }
 }

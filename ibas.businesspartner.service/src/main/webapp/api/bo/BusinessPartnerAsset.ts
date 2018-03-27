@@ -61,6 +61,10 @@ namespace businesspartner {
             tradingAmount: number;
             /** 交易货币 */
             tradingCurrency: string;
+            /** 备注 1 */
+            remark1: string;
+            /** 备注 2 */
+            remark2: string;
 
         }
 

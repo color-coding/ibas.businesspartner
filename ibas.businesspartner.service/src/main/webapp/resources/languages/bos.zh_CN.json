@@ -33,7 +33,7 @@
         "bo_address_closing_delimiter": "----结束----"
     },
     {
-        "bo_businesspartnergroup": "物料组",
+        "bo_businesspartnergroup": "业务伙伴组",
         "bo_businesspartnergroup_code": "编号",
         "bo_businesspartnergroup_name": "名称",
         "bo_businesspartnergroup_activated": "激活",
@@ -190,12 +190,13 @@
         "bo_assetitem_organization": "数据所属组织",
         "bo_assetitem_validdate": "生效日期",
         "bo_assetitem_invaliddate": "失效日期",
-        "bo_assetitem_faceamount": "票面量",
-        "bo_assetitem_amountunit": "量单位",
-        "bo_assetitem_amountvalue": "量价值",
+        "bo_assetitem_faceamount": "面值",
+        "bo_assetitem_amountunit": "单位",
+        "bo_assetitem_amountvalue": "单位价值",
         "bo_assetitem_discountused": "使用时折扣",
         "bo_assetitem_overdraft": "透支额",
         "bo_assetitem_validtime": "有效期（天）",
+        "bo_assetitem_remarks": "备注",
         "bo_assetitem_closing_delimiter": "----结束----"
     },
     {
@@ -226,6 +227,8 @@
         "bo_businesspartnerasset_basedocumentlineid": "基于行号",
         "bo_businesspartnerasset_tradingamount": "交易金额",
         "bo_businesspartnerasset_tradingcurrency": "交易货币",
+        "bo_businesspartnerasset_remark1": "备注 1",
+        "bo_businesspartnerasset_remark2": "备注 2",
         "bo_businesspartnerasset_closing_delimiter": "----结束----"
     },
     {

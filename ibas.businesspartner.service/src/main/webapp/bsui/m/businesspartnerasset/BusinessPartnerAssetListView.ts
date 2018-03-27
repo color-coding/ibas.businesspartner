@@ -18,6 +18,8 @@ namespace businesspartner {
                 editDataEvent: Function;
                 /** 删除数据事件，参数：删除对象集合 */
                 deleteDataEvent: Function;
+                /** 查看数据交易记录 */
+                viewDataJournalEvent: Function;
                 /** 绘制视图 */
                 draw(): any {
                     let that: this = this;

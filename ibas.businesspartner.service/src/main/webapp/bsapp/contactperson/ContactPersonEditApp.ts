@@ -180,6 +180,7 @@ namespace businesspartner {
                         boCode: bo.Customer.BUSINESS_OBJECT_CODE,
                         chooseType: ibas.emChooseType.SINGLE,
                         criteria: [
+                            new ibas.Condition(bo.Customer.PROPERTY_DELETED_NAME, ibas.emConditionOperation.NOT_EQUAL, ibas.emYesNo.YES)
                         ],
                         onCompleted(selecteds: ibas.IList<bo.Customer>): void {
                             let selected: bo.Customer = selecteds.firstOrDefault();
@@ -191,13 +192,13 @@ namespace businesspartner {
                         boCode: bo.Supplier.BUSINESS_OBJECT_CODE,
                         chooseType: ibas.emChooseType.SINGLE,
                         criteria: [
+                            new ibas.Condition(bo.Supplier.PROPERTY_DELETED_NAME, ibas.emConditionOperation.NOT_EQUAL, ibas.emYesNo.YES)
                         ],
                         onCompleted(selecteds: ibas.IList<bo.Supplier>): void {
                             let selected: bo.Supplier = selecteds.firstOrDefault();
                             that.editData.businessPartner = selected.code;
                         }
                     });
-
                 }
             }
         }

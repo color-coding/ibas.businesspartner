@@ -15,7 +15,6 @@
 /// <reference path="./supplier/index.ts" />
 /// <reference path="./assetitem/index.ts" />
 /// <reference path="./businesspartnerasset/index.ts" />
-/// <reference path="./businesspartnerassetjournal/index.ts" />
 
 namespace businesspartner {
     export namespace app {
@@ -41,7 +40,9 @@ namespace businesspartner {
                 this.register(new SupplierFunc());
                 this.register(new ContactPersonFunc());
                 this.register(new AddressFunc());
+                this.register(new BusinessPartnerAssetFunc());
                 this.register(new BusinessPartnerGroupFunc());
+                this.register(new AssetItemFunc());
 
                 // 注册服务应用
                 this.register(new AddressChooseServiceMapping());
@@ -51,6 +52,8 @@ namespace businesspartner {
                 this.register(new CustomerLinkServiceMapping());
                 this.register(new SupplierChooseServiceMapping());
                 this.register(new SupplierLinkServiceMapping());
+                this.register(new AssetItemChooseServiceMapping());
+                this.register(new BusinessPartnerAssetChooseServiceMapping());
                 // 注册常驻应用
 
             }

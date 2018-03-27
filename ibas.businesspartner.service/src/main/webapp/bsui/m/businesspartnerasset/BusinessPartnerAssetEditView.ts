@@ -14,6 +14,12 @@ namespace businesspartner {
                 deleteDataEvent: Function;
                 /** 新建数据事件，参数1：是否克隆 */
                 createDataEvent: Function;
+                /*** 选择业务伙伴事件 */
+                chooseBusinessPartnerEvent: Function;
+                /*** 选择资产项目事件 */
+                chooseAssetItemEvent: Function;
+                /** 查看数据交易记录 */
+                viewDataJournalEvent: Function;
                 /** 绘制视图 */
                 draw(): any {
                     let that: this = this;

@@ -15,7 +15,6 @@
 /// <reference path="./supplier/index.ts" />
 /// <reference path="./assetitem/index.ts" />
 /// <reference path="./businesspartnerasset/index.ts" />
-/// <reference path="./businesspartnerassetjournal/index.ts" />
 namespace businesspartner {
     export namespace ui {
         /**

@@ -1,5 +1,7 @@
 package org.colorcoding.ibas.businesspartner.bo.businesspartnerasset;
 
+import java.util.UUID;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -945,12 +947,77 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset> i
 	}
 
 	/**
+	 * 属性名称-备注 1
+	 */
+	private static final String PROPERTY_REMARK1_NAME = "Remark1";
+
+	/**
+	 * 备注 1 属性
+	 */
+	@DbField(name = "Notes1", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME, primaryKey = false)
+	public static final IPropertyInfo<String> PROPERTY_REMARK1 = registerProperty(PROPERTY_REMARK1_NAME, String.class,
+			MY_CLASS);
+
+	/**
+	 * 获取-备注 1
+	 * 
+	 * @return 值
+	 */
+	@XmlElement(name = PROPERTY_REMARK1_NAME)
+	public final String getRemark1() {
+		return this.getProperty(PROPERTY_REMARK1);
+	}
+
+	/**
+	 * 设置-备注 1
+	 * 
+	 * @param value
+	 *            值
+	 */
+	public final void setRemark1(String value) {
+		this.setProperty(PROPERTY_REMARK1, value);
+	}
+
+	/**
+	 * 属性名称-备注 2
+	 */
+	private static final String PROPERTY_REMARK2_NAME = "Remark2";
+
+	/**
+	 * 备注 2 属性
+	 */
+	@DbField(name = "Notes2", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME, primaryKey = false)
+	public static final IPropertyInfo<String> PROPERTY_REMARK2 = registerProperty(PROPERTY_REMARK2_NAME, String.class,
+			MY_CLASS);
+
+	/**
+	 * 获取-备注 2
+	 * 
+	 * @return 值
+	 */
+	@XmlElement(name = PROPERTY_REMARK2_NAME)
+	public final String getRemark2() {
+		return this.getProperty(PROPERTY_REMARK2);
+	}
+
+	/**
+	 * 设置-备注 2
+	 * 
+	 * @param value
+	 *            值
+	 */
+	public final void setRemark2(String value) {
+		this.setProperty(PROPERTY_REMARK2, value);
+	}
+
+	/**
 	 * 初始化数据
 	 */
 	@Override
 	protected void initialize() {
 		super.initialize();// 基类初始化，不可去除
 		this.setObjectCode(MyConfiguration.applyVariables(BUSINESS_OBJECT_CODE));
+		this.setServiceCode(UUID.randomUUID().toString());
 	}
 
 }
