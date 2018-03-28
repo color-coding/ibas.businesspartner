@@ -74,17 +74,17 @@ namespace businesspartner {
                             }).bindProperty("value", {
                                 path: "amountUnit"
                             }),
-                            new sap.m.Label("", { text: ibas.i18n.prop("bo_assetitem_amountvalue") }),
+                            new sap.m.Label("", { text: ibas.i18n.prop("bo_assetitem_usingtimes") }),
                             new sap.m.Input("", {
                                 type: sap.m.InputType.Text
                             }).bindProperty("value", {
-                                path: "amountValue"
+                                path: "usingTimes"
                             }),
-                            new sap.m.Label("", { text: ibas.i18n.prop("bo_assetitem_discountused") }),
+                            new sap.m.Label("", { text: ibas.i18n.prop("bo_assetitem_usingdiscount") }),
                             new sap.m.Input("", {
                                 type: sap.m.InputType.Text,
                             }).bindProperty("value", {
-                                path: "discountUsed"
+                                path: "usingDiscount"
                             }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_assetitem_overdraft") }),
                             new sap.m.Input("", {
@@ -92,11 +92,11 @@ namespace businesspartner {
                             }).bindProperty("value", {
                                 path: "overdraft"
                             }),
-                            new sap.m.Label("", { text: ibas.i18n.prop("bo_assetitem_validtime") }),
+                            new sap.m.Label("", { text: ibas.i18n.prop("bo_assetitem_validdays") }),
                             new sap.m.Input("", {
                                 type: sap.m.InputType.Text,
                             }).bindProperty("value", {
-                                path: "validTime"
+                                path: "validDays"
                             }),
                         ]
                     });

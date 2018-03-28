@@ -208,6 +208,36 @@ public interface IBusinessPartnerAsset extends IBOSimple {
 	void setUpdateActionId(String value);
 
 	/**
+	 * 获取-已引用
+	 * 
+	 * @return 值
+	 */
+	emYesNo getReferenced();
+
+	/**
+	 * 设置-已引用
+	 * 
+	 * @param value
+	 *            值
+	 */
+	void setReferenced(emYesNo value);
+
+	/**
+	 * 获取-已删除
+	 * 
+	 * @return 值
+	 */
+	emYesNo getDeleted();
+
+	/**
+	 * 设置-已删除
+	 * 
+	 * @param value
+	 *            值
+	 */
+	void setDeleted(emYesNo value);
+
+	/**
 	 * 获取-业务伙伴类型
 	 * 
 	 * @return 值
@@ -313,14 +343,14 @@ public interface IBusinessPartnerAsset extends IBOSimple {
 	void setInvalidDate(DateTime value);
 
 	/**
-	 * 获取-余量
+	 * 获取-剩余价值
 	 * 
 	 * @return 值
 	 */
 	Decimal getAmount();
 
 	/**
-	 * 设置-余量
+	 * 设置-剩余价值
 	 * 
 	 * @param value
 	 *            值
@@ -328,7 +358,7 @@ public interface IBusinessPartnerAsset extends IBOSimple {
 	void setAmount(Decimal value);
 
 	/**
-	 * 设置-余量
+	 * 设置-剩余价值
 	 * 
 	 * @param value
 	 *            值
@@ -336,7 +366,7 @@ public interface IBusinessPartnerAsset extends IBOSimple {
 	void setAmount(String value);
 
 	/**
-	 * 设置-余量
+	 * 设置-剩余价值
 	 * 
 	 * @param value
 	 *            值
@@ -344,12 +374,27 @@ public interface IBusinessPartnerAsset extends IBOSimple {
 	void setAmount(int value);
 
 	/**
-	 * 设置-余量
+	 * 设置-剩余价值
 	 * 
 	 * @param value
 	 *            值
 	 */
 	void setAmount(double value);
+
+	/**
+	 * 获取-剩余次数
+	 * 
+	 * @return 值
+	 */
+	Integer getTimes();
+
+	/**
+	 * 设置-剩余次数
+	 * 
+	 * @param value
+	 *            值
+	 */
+	void setTimes(Integer value);
 
 	/**
 	 * 获取-基于类型
@@ -479,4 +524,5 @@ public interface IBusinessPartnerAsset extends IBOSimple {
 	 *            值
 	 */
 	void setRemark2(String value);
+
 }

@@ -7,7 +7,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 import org.colorcoding.ibas.bobas.bo.BusinessObject;
-import org.colorcoding.ibas.bobas.bo.IBOSeriesKey;
 import org.colorcoding.ibas.bobas.core.IPropertyInfo;
 import org.colorcoding.ibas.bobas.data.DateTime;
 import org.colorcoding.ibas.bobas.data.Decimal;
@@ -26,12 +25,12 @@ import org.colorcoding.ibas.businesspartner.MyConfiguration;
 @XmlType(name = AssetItem.BUSINESS_OBJECT_NAME, namespace = MyConfiguration.NAMESPACE_BO)
 @XmlRootElement(name = AssetItem.BUSINESS_OBJECT_NAME, namespace = MyConfiguration.NAMESPACE_BO)
 @BOCode(AssetItem.BUSINESS_OBJECT_CODE)
-public class AssetItem extends BusinessObject<AssetItem> implements IAssetItem, IBOSeriesKey {
+public class AssetItem extends BusinessObject<AssetItem> implements IAssetItem {
 
 	/**
 	 * 序列化版本标记
 	 */
-	private static final long serialVersionUID = 7765745643012638857L;
+	private static final long serialVersionUID = -409630571676378789L;
 
 	/**
 	 * 当前类型
@@ -790,19 +789,19 @@ public class AssetItem extends BusinessObject<AssetItem> implements IAssetItem, 
 	}
 
 	/**
-	 * 属性名称-票面量
+	 * 属性名称-面值
 	 */
 	private static final String PROPERTY_FACEAMOUNT_NAME = "FaceAmount";
 
 	/**
-	 * 票面量 属性
+	 * 面值 属性
 	 */
 	@DbField(name = "FaceAmount", type = DbFieldType.DECIMAL, table = DB_TABLE_NAME, primaryKey = false)
 	public static final IPropertyInfo<Decimal> PROPERTY_FACEAMOUNT = registerProperty(PROPERTY_FACEAMOUNT_NAME,
 			Decimal.class, MY_CLASS);
 
 	/**
-	 * 获取-票面量
+	 * 获取-面值
 	 * 
 	 * @return 值
 	 */
@@ -812,7 +811,7 @@ public class AssetItem extends BusinessObject<AssetItem> implements IAssetItem, 
 	}
 
 	/**
-	 * 设置-票面量
+	 * 设置-面值
 	 * 
 	 * @param value
 	 *            值
@@ -822,7 +821,7 @@ public class AssetItem extends BusinessObject<AssetItem> implements IAssetItem, 
 	}
 
 	/**
-	 * 设置-票面量
+	 * 设置-面值
 	 * 
 	 * @param value
 	 *            值
@@ -832,7 +831,7 @@ public class AssetItem extends BusinessObject<AssetItem> implements IAssetItem, 
 	}
 
 	/**
-	 * 设置-票面量
+	 * 设置-面值
 	 * 
 	 * @param value
 	 *            值
@@ -842,7 +841,7 @@ public class AssetItem extends BusinessObject<AssetItem> implements IAssetItem, 
 	}
 
 	/**
-	 * 设置-票面量
+	 * 设置-面值
 	 * 
 	 * @param value
 	 *            值
@@ -884,77 +883,47 @@ public class AssetItem extends BusinessObject<AssetItem> implements IAssetItem, 
 	}
 
 	/**
-	 * 属性名称-单位价值
+	 * 属性名称-可用次数
 	 */
-	private static final String PROPERTY_AMOUNTVALUE_NAME = "AmountValue";
+	private static final String PROPERTY_USINGTIMES_NAME = "UsingTimes";
 
 	/**
-	 * 单位价值 属性
+	 * 可用次数 属性
 	 */
-	@DbField(name = "AmountValue", type = DbFieldType.DECIMAL, table = DB_TABLE_NAME, primaryKey = false)
-	public static final IPropertyInfo<Decimal> PROPERTY_AMOUNTVALUE = registerProperty(PROPERTY_AMOUNTVALUE_NAME,
-			Decimal.class, MY_CLASS);
+	@DbField(name = "UsingTimes", type = DbFieldType.NUMERIC, table = DB_TABLE_NAME, primaryKey = false)
+	public static final IPropertyInfo<Integer> PROPERTY_USINGTIMES = registerProperty(PROPERTY_USINGTIMES_NAME,
+			Integer.class, MY_CLASS);
 
 	/**
-	 * 获取-单位价值
+	 * 获取-可用次数
 	 * 
 	 * @return 值
 	 */
-	@XmlElement(name = PROPERTY_AMOUNTVALUE_NAME)
-	public final Decimal getAmountValue() {
-		return this.getProperty(PROPERTY_AMOUNTVALUE);
+	@XmlElement(name = PROPERTY_USINGTIMES_NAME)
+	public final Integer getUsingTimes() {
+		return this.getProperty(PROPERTY_USINGTIMES);
 	}
 
 	/**
-	 * 设置-单位价值
+	 * 设置-可用次数
 	 * 
 	 * @param value
 	 *            值
 	 */
-	public final void setAmountValue(Decimal value) {
-		this.setProperty(PROPERTY_AMOUNTVALUE, value);
-	}
-
-	/**
-	 * 设置-单位价值
-	 * 
-	 * @param value
-	 *            值
-	 */
-	public final void setAmountValue(String value) {
-		this.setAmountValue(new Decimal(value));
-	}
-
-	/**
-	 * 设置-单位价值
-	 * 
-	 * @param value
-	 *            值
-	 */
-	public final void setAmountValue(int value) {
-		this.setAmountValue(new Decimal(value));
-	}
-
-	/**
-	 * 设置-单位价值
-	 * 
-	 * @param value
-	 *            值
-	 */
-	public final void setAmountValue(double value) {
-		this.setAmountValue(new Decimal(value));
+	public final void setUsingTimes(Integer value) {
+		this.setProperty(PROPERTY_USINGTIMES, value);
 	}
 
 	/**
 	 * 属性名称-使用时折扣
 	 */
-	private static final String PROPERTY_DISCOUNTUSED_NAME = "DiscountUsed";
+	private static final String PROPERTY_USINGDISCOUNT_NAME = "UsingDiscount";
 
 	/**
 	 * 使用时折扣 属性
 	 */
-	@DbField(name = "DiscountUsed", type = DbFieldType.DECIMAL, table = DB_TABLE_NAME, primaryKey = false)
-	public static final IPropertyInfo<Decimal> PROPERTY_DISCOUNTUSED = registerProperty(PROPERTY_DISCOUNTUSED_NAME,
+	@DbField(name = "UsingDiscount", type = DbFieldType.DECIMAL, table = DB_TABLE_NAME, primaryKey = false)
+	public static final IPropertyInfo<Decimal> PROPERTY_USINGDISCOUNT = registerProperty(PROPERTY_USINGDISCOUNT_NAME,
 			Decimal.class, MY_CLASS);
 
 	/**
@@ -962,9 +931,9 @@ public class AssetItem extends BusinessObject<AssetItem> implements IAssetItem, 
 	 * 
 	 * @return 值
 	 */
-	@XmlElement(name = PROPERTY_DISCOUNTUSED_NAME)
-	public final Decimal getDiscountUsed() {
-		return this.getProperty(PROPERTY_DISCOUNTUSED);
+	@XmlElement(name = PROPERTY_USINGDISCOUNT_NAME)
+	public final Decimal getUsingDiscount() {
+		return this.getProperty(PROPERTY_USINGDISCOUNT);
 	}
 
 	/**
@@ -973,8 +942,8 @@ public class AssetItem extends BusinessObject<AssetItem> implements IAssetItem, 
 	 * @param value
 	 *            值
 	 */
-	public final void setDiscountUsed(Decimal value) {
-		this.setProperty(PROPERTY_DISCOUNTUSED, value);
+	public final void setUsingDiscount(Decimal value) {
+		this.setProperty(PROPERTY_USINGDISCOUNT, value);
 	}
 
 	/**
@@ -983,8 +952,8 @@ public class AssetItem extends BusinessObject<AssetItem> implements IAssetItem, 
 	 * @param value
 	 *            值
 	 */
-	public final void setDiscountUsed(String value) {
-		this.setDiscountUsed(new Decimal(value));
+	public final void setUsingDiscount(String value) {
+		this.setUsingDiscount(new Decimal(value));
 	}
 
 	/**
@@ -993,8 +962,8 @@ public class AssetItem extends BusinessObject<AssetItem> implements IAssetItem, 
 	 * @param value
 	 *            值
 	 */
-	public final void setDiscountUsed(int value) {
-		this.setDiscountUsed(new Decimal(value));
+	public final void setUsingDiscount(int value) {
+		this.setUsingDiscount(new Decimal(value));
 	}
 
 	/**
@@ -1003,8 +972,8 @@ public class AssetItem extends BusinessObject<AssetItem> implements IAssetItem, 
 	 * @param value
 	 *            值
 	 */
-	public final void setDiscountUsed(double value) {
-		this.setDiscountUsed(new Decimal(value));
+	public final void setUsingDiscount(double value) {
+		this.setUsingDiscount(new Decimal(value));
 	}
 
 	/**
@@ -1070,40 +1039,35 @@ public class AssetItem extends BusinessObject<AssetItem> implements IAssetItem, 
 	}
 
 	/**
-	 * 属性名称-有效期（天）
+	 * 属性名称-有效天数
 	 */
-	private static final String PROPERTY_VALIDTIME_NAME = "ValidTime";
+	private static final String PROPERTY_VALIDDAYS_NAME = "ValidDays";
 
 	/**
-	 * 有效期（天） 属性
+	 * 有效天数 属性
 	 */
-	@DbField(name = "ValidTime", type = DbFieldType.NUMERIC, table = DB_TABLE_NAME, primaryKey = false)
-	public static final IPropertyInfo<Integer> PROPERTY_VALIDTIME = registerProperty(PROPERTY_VALIDTIME_NAME,
+	@DbField(name = "ValidDays", type = DbFieldType.NUMERIC, table = DB_TABLE_NAME, primaryKey = false)
+	public static final IPropertyInfo<Integer> PROPERTY_VALIDDAYS = registerProperty(PROPERTY_VALIDDAYS_NAME,
 			Integer.class, MY_CLASS);
 
 	/**
-	 * 获取-有效期（天）
+	 * 获取-有效天数
 	 * 
 	 * @return 值
 	 */
-	@XmlElement(name = PROPERTY_VALIDTIME_NAME)
-	public final Integer getValidTime() {
-		return this.getProperty(PROPERTY_VALIDTIME);
+	@XmlElement(name = PROPERTY_VALIDDAYS_NAME)
+	public final Integer getValidDays() {
+		return this.getProperty(PROPERTY_VALIDDAYS);
 	}
 
 	/**
-	 * 设置-有效期（天）
+	 * 设置-有效天数
 	 * 
 	 * @param value
 	 *            值
 	 */
-	public final void setValidTime(Integer value) {
-		this.setProperty(PROPERTY_VALIDTIME, value);
-	}
-
-	@Override
-	public void setSeriesValue(Object value) {
-		this.setCode((String) value);
+	public final void setValidDays(Integer value) {
+		this.setProperty(PROPERTY_VALIDDAYS, value);
 	}
 
 	/**

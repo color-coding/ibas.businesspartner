@@ -39,7 +39,7 @@ namespace businesspartner {
                             path: "/rows",
                             template: new sap.m.ObjectListItem("", {
                                 title: "{assetCode}",
-                                number: "{amount}",
+                                number: "{amount} - {times}",
                                 markers: new sap.m.ObjectMarker("", {
                                     type: {
                                         path: "activated",

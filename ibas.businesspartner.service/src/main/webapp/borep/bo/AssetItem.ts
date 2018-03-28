@@ -268,13 +268,13 @@ namespace businesspartner {
                 this.setProperty(AssetItem.PROPERTY_INVALIDDATE_NAME, value);
             }
 
-            /** 映射的属性名称-票面量 */
+            /** 映射的属性名称-面值 */
             static PROPERTY_FACEAMOUNT_NAME: string = "FaceAmount";
-            /** 获取-票面量 */
+            /** 获取-面值 */
             get faceAmount(): number {
                 return this.getProperty<number>(AssetItem.PROPERTY_FACEAMOUNT_NAME);
             }
-            /** 设置-票面量 */
+            /** 设置-面值 */
             set faceAmount(value: number) {
                 this.setProperty(AssetItem.PROPERTY_FACEAMOUNT_NAME, value);
             }
@@ -290,26 +290,26 @@ namespace businesspartner {
                 this.setProperty(AssetItem.PROPERTY_AMOUNTUNIT_NAME, value);
             }
 
-            /** 映射的属性名称-单位价值 */
-            static PROPERTY_AMOUNTVALUE_NAME: string = "AmountValue";
-            /** 获取-单位价值 */
-            get amountValue(): number {
-                return this.getProperty<number>(AssetItem.PROPERTY_AMOUNTVALUE_NAME);
+            /** 映射的属性名称-可用次数 */
+            static PROPERTY_USINGTIMES_NAME: string = "UsingTimes";
+            /** 获取-可用次数 */
+            get usingTimes(): number {
+                return this.getProperty<number>(AssetItem.PROPERTY_USINGTIMES_NAME);
             }
-            /** 设置-单位价值 */
-            set amountValue(value: number) {
-                this.setProperty(AssetItem.PROPERTY_AMOUNTVALUE_NAME, value);
+            /** 设置-可用次数 */
+            set usingTimes(value: number) {
+                this.setProperty(AssetItem.PROPERTY_USINGTIMES_NAME, value);
             }
 
             /** 映射的属性名称-使用时折扣 */
-            static PROPERTY_DISCOUNTUSED_NAME: string = "DiscountUsed";
+            static PROPERTY_USINGDISCOUNT_NAME: string = "UsingDiscount";
             /** 获取-使用时折扣 */
-            get discountUsed(): number {
-                return this.getProperty<number>(AssetItem.PROPERTY_DISCOUNTUSED_NAME);
+            get usingDiscount(): number {
+                return this.getProperty<number>(AssetItem.PROPERTY_USINGDISCOUNT_NAME);
             }
             /** 设置-使用时折扣 */
-            set discountUsed(value: number) {
-                this.setProperty(AssetItem.PROPERTY_DISCOUNTUSED_NAME, value);
+            set usingDiscount(value: number) {
+                this.setProperty(AssetItem.PROPERTY_USINGDISCOUNT_NAME, value);
             }
 
             /** 映射的属性名称-透支额 */
@@ -323,15 +323,15 @@ namespace businesspartner {
                 this.setProperty(AssetItem.PROPERTY_OVERDRAFT_NAME, value);
             }
 
-            /** 映射的属性名称-有效期（天） */
-            static PROPERTY_VALIDTIME_NAME: string = "ValidTime";
-            /** 获取-有效期（天） */
-            get validTime(): number {
-                return this.getProperty<number>(AssetItem.PROPERTY_VALIDTIME_NAME);
+            /** 映射的属性名称-有效天数 */
+            static PROPERTY_VALIDDAYS_NAME: string = "ValidDays";
+            /** 获取-有效天数 */
+            get validDays(): number {
+                return this.getProperty<number>(AssetItem.PROPERTY_VALIDDAYS_NAME);
             }
-            /** 设置-有效期（天） */
-            set validTime(value: number) {
-                this.setProperty(AssetItem.PROPERTY_VALIDTIME_NAME, value);
+            /** 设置-有效天数 */
+            set validDays(value: number) {
+                this.setProperty(AssetItem.PROPERTY_VALIDDAYS_NAME, value);
             }
 
             /** 映射的属性名称-备注 */
@@ -345,13 +345,11 @@ namespace businesspartner {
                 this.setProperty(AssetItem.PROPERTY_REMARKS_NAME, value);
             }
 
-
-
             /** 初始化数据 */
             protected init(): void {
                 this.objectCode = ibas.config.applyVariables(AssetItem.BUSINESS_OBJECT_CODE);
-                this.activated = ibas.emYesNo.YES;
-                this.discountUsed = 1;
+                this.amountUnit = ibas.config.get(ibas.CONFIG_ITEM_DEFAULT_CURRENCY);
+                this.usingTimes = 9999;
             }
         }
 

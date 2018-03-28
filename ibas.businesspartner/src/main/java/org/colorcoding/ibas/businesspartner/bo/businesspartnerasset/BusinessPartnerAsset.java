@@ -1,7 +1,5 @@
 package org.colorcoding.ibas.businesspartner.bo.businesspartnerasset;
 
-import java.util.UUID;
-
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -32,7 +30,7 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset> i
 	/**
 	 * 序列化版本标记
 	 */
-	private static final long serialVersionUID = 1399668906876936828L;
+	private static final long serialVersionUID = 1089370574556472310L;
 
 	/**
 	 * 当前类型
@@ -471,6 +469,70 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset> i
 	}
 
 	/**
+	 * 属性名称-已引用
+	 */
+	private static final String PROPERTY_REFERENCED_NAME = "Referenced";
+
+	/**
+	 * 已引用 属性
+	 */
+	@DbField(name = "Refed", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME, primaryKey = false)
+	public static final IPropertyInfo<emYesNo> PROPERTY_REFERENCED = registerProperty(PROPERTY_REFERENCED_NAME,
+			emYesNo.class, MY_CLASS);
+
+	/**
+	 * 获取-已引用
+	 * 
+	 * @return 值
+	 */
+	@XmlElement(name = PROPERTY_REFERENCED_NAME)
+	public final emYesNo getReferenced() {
+		return this.getProperty(PROPERTY_REFERENCED);
+	}
+
+	/**
+	 * 设置-已引用
+	 * 
+	 * @param value
+	 *            值
+	 */
+	public final void setReferenced(emYesNo value) {
+		this.setProperty(PROPERTY_REFERENCED, value);
+	}
+
+	/**
+	 * 属性名称-已删除
+	 */
+	private static final String PROPERTY_DELETED_NAME = "Deleted";
+
+	/**
+	 * 已删除 属性
+	 */
+	@DbField(name = "Deleted", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME, primaryKey = false)
+	public static final IPropertyInfo<emYesNo> PROPERTY_DELETED = registerProperty(PROPERTY_DELETED_NAME, emYesNo.class,
+			MY_CLASS);
+
+	/**
+	 * 获取-已删除
+	 * 
+	 * @return 值
+	 */
+	@XmlElement(name = PROPERTY_DELETED_NAME)
+	public final emYesNo getDeleted() {
+		return this.getProperty(PROPERTY_DELETED);
+	}
+
+	/**
+	 * 设置-已删除
+	 * 
+	 * @param value
+	 *            值
+	 */
+	public final void setDeleted(emYesNo value) {
+		this.setProperty(PROPERTY_DELETED, value);
+	}
+
+	/**
 	 * 属性名称-业务伙伴类型
 	 */
 	private static final String PROPERTY_BUSINESSPARTNERTYPE_NAME = "BusinessPartnerType";
@@ -695,19 +757,19 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset> i
 	}
 
 	/**
-	 * 属性名称-余量
+	 * 属性名称-剩余价值
 	 */
 	private static final String PROPERTY_AMOUNT_NAME = "Amount";
 
 	/**
-	 * 余量 属性
+	 * 剩余价值 属性
 	 */
 	@DbField(name = "Amount", type = DbFieldType.DECIMAL, table = DB_TABLE_NAME, primaryKey = false)
 	public static final IPropertyInfo<Decimal> PROPERTY_AMOUNT = registerProperty(PROPERTY_AMOUNT_NAME, Decimal.class,
 			MY_CLASS);
 
 	/**
-	 * 获取-余量
+	 * 获取-剩余价值
 	 * 
 	 * @return 值
 	 */
@@ -717,7 +779,7 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset> i
 	}
 
 	/**
-	 * 设置-余量
+	 * 设置-剩余价值
 	 * 
 	 * @param value
 	 *            值
@@ -727,7 +789,7 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset> i
 	}
 
 	/**
-	 * 设置-余量
+	 * 设置-剩余价值
 	 * 
 	 * @param value
 	 *            值
@@ -737,7 +799,7 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset> i
 	}
 
 	/**
-	 * 设置-余量
+	 * 设置-剩余价值
 	 * 
 	 * @param value
 	 *            值
@@ -747,13 +809,45 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset> i
 	}
 
 	/**
-	 * 设置-余量
+	 * 设置-剩余价值
 	 * 
 	 * @param value
 	 *            值
 	 */
 	public final void setAmount(double value) {
 		this.setAmount(new Decimal(value));
+	}
+
+	/**
+	 * 属性名称-剩余次数
+	 */
+	private static final String PROPERTY_TIMES_NAME = "Times";
+
+	/**
+	 * 剩余次数 属性
+	 */
+	@DbField(name = "Times", type = DbFieldType.NUMERIC, table = DB_TABLE_NAME, primaryKey = false)
+	public static final IPropertyInfo<Integer> PROPERTY_TIMES = registerProperty(PROPERTY_TIMES_NAME, Integer.class,
+			MY_CLASS);
+
+	/**
+	 * 获取-剩余次数
+	 * 
+	 * @return 值
+	 */
+	@XmlElement(name = PROPERTY_TIMES_NAME)
+	public final Integer getTimes() {
+		return this.getProperty(PROPERTY_TIMES);
+	}
+
+	/**
+	 * 设置-剩余次数
+	 * 
+	 * @param value
+	 *            值
+	 */
+	public final void setTimes(Integer value) {
+		this.setProperty(PROPERTY_TIMES, value);
 	}
 
 	/**
@@ -1017,7 +1111,7 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset> i
 	protected void initialize() {
 		super.initialize();// 基类初始化，不可去除
 		this.setObjectCode(MyConfiguration.applyVariables(BUSINESS_OBJECT_CODE));
-		this.setServiceCode(UUID.randomUUID().toString());
+
 	}
 
 }

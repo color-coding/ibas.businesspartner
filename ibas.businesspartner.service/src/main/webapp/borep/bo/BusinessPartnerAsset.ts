@@ -158,6 +158,28 @@ namespace businesspartner {
                 this.setProperty(BusinessPartnerAsset.PROPERTY_UPDATEACTIONID_NAME, value);
             }
 
+            /** 映射的属性名称-已引用 */
+            static PROPERTY_REFERENCED_NAME: string = "Referenced";
+            /** 获取-已引用 */
+            get referenced(): ibas.emYesNo {
+                return this.getProperty<ibas.emYesNo>(AssetItem.PROPERTY_REFERENCED_NAME);
+            }
+            /** 设置-已引用 */
+            set referenced(value: ibas.emYesNo) {
+                this.setProperty(AssetItem.PROPERTY_REFERENCED_NAME, value);
+            }
+
+            /** 映射的属性名称-已删除 */
+            static PROPERTY_DELETED_NAME: string = "Deleted";
+            /** 获取-已删除 */
+            get deleted(): ibas.emYesNo {
+                return this.getProperty<ibas.emYesNo>(AssetItem.PROPERTY_DELETED_NAME);
+            }
+            /** 设置-已删除 */
+            set deleted(value: ibas.emYesNo) {
+                this.setProperty(AssetItem.PROPERTY_DELETED_NAME, value);
+            }
+
             /** 映射的属性名称-业务伙伴类型 */
             static PROPERTY_BUSINESSPARTNERTYPE_NAME: string = "BusinessPartnerType";
             /** 获取-业务伙伴类型 */
@@ -235,15 +257,26 @@ namespace businesspartner {
                 this.setProperty(BusinessPartnerAsset.PROPERTY_INVALIDDATE_NAME, value);
             }
 
-            /** 映射的属性名称-余量 */
+            /** 映射的属性名称-剩余价值 */
             static PROPERTY_AMOUNT_NAME: string = "Amount";
-            /** 获取-余量 */
+            /** 获取-剩余价值 */
             get amount(): number {
                 return this.getProperty<number>(BusinessPartnerAsset.PROPERTY_AMOUNT_NAME);
             }
-            /** 设置-余量 */
+            /** 设置-剩余价值 */
             set amount(value: number) {
                 this.setProperty(BusinessPartnerAsset.PROPERTY_AMOUNT_NAME, value);
+            }
+
+            /** 映射的属性名称-剩余次数 */
+            static PROPERTY_TIMES_NAME: string = "Times";
+            /** 获取-剩余次数 */
+            get times(): number {
+                return this.getProperty<number>(BusinessPartnerAsset.PROPERTY_TIMES_NAME);
+            }
+            /** 设置-剩余次数 */
+            set times(value: number) {
+                this.setProperty(BusinessPartnerAsset.PROPERTY_TIMES_NAME, value);
             }
 
             /** 映射的属性名称-基于类型 */
@@ -323,12 +356,9 @@ namespace businesspartner {
                 this.setProperty(BusinessPartnerAsset.PROPERTY_REMARK2_NAME, value);
             }
 
-
-
             /** 初始化数据 */
             protected init(): void {
                 this.objectCode = ibas.config.applyVariables(BusinessPartnerAsset.BUSINESS_OBJECT_CODE);
-                this.activated = ibas.emYesNo.YES;
                 this.businessPartnerType = emBusinessPartnerType.CUSTOMER;
                 this.serviceCode = ibas.uuids.random();
             }

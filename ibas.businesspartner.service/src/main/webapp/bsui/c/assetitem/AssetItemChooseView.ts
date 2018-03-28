@@ -68,6 +68,14 @@ namespace businesspartner {
                                 }),
                             }),
                             new sap.ui.table.Column("", {
+                                label: ibas.i18n.prop("bo_assetitem_usingtimes"),
+                                template: new sap.m.Text("", {
+                                    wrapping: false,
+                                }).bindProperty("text", {
+                                    path: "usingTimes",
+                                }),
+                            }),
+                            new sap.ui.table.Column("", {
                                 label: ibas.i18n.prop("bo_assetitem_validdate"),
                                 template: new sap.m.Text("", {
                                     wrapping: false,

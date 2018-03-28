@@ -67,6 +67,13 @@ namespace businesspartner {
                             }).bindProperty("value", {
                                 path: "amount"
                             }),
+                            new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnerasset_times") }),
+                            new sap.m.Input("", {
+                                editable: false,
+                                type: sap.m.InputType.Text
+                            }).bindProperty("value", {
+                                path: "times"
+                            }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnerasset_activated") }),
                             new sap.m.Select("", {
                                 items: openui5.utils.createComboBoxItems(ibas.emYesNo)

@@ -55,18 +55,18 @@ namespace businesspartner {
             validDate: Date;
             /** 失效日期 */
             invalidDate: Date;
-            /** 票面量 */
+            /** 面值 */
             faceAmount: number;
             /** 单位 */
             amountUnit: string;
-            /** 单位价值 */
-            amountValue: number;
+            /** 可用次数 */
+            usingTimes: number;
             /** 使用时折扣 */
-            discountUsed: number;
+            usingDiscount: number;
             /** 透支额 */
             overdraft: number;
-            /** 有效期（天） */
-            validTime: number;
+            /** 有效天数 */
+            validDays: number;
             /** 备注 */
             remarks: string;
 

@@ -27,10 +27,10 @@
     <Property Name="InvalidDate" Description="失效日期" DataType="Date" DataSubType="Default" EditSize="8" Mapped="InvalidDate"/>
     <Property Name="FaceAmount" Description="面值" DataType="Decimal" DataSubType="Sum" EditSize="8" Mapped="FaceAmount"/>
     <Property Name="AmountUnit" Description="单位" DataType="Alphanumeric" DataSubType="Default" EditSize="8" Mapped="AmountUnit"/>
-    <Property Name="AmountValue" Description="单位价值" DataType="Decimal" DataSubType="Sum" EditSize="8" Mapped="AmountValue"/>
-    <Property Name="DiscountUsed" Description="使用时折扣" DataType="Decimal" DataSubType="Percentage" EditSize="8" Mapped="DiscountUsed"/>
+    <Property Name="UsingTimes" Description="可用次数" DataType="Numeric" DataSubType="Default" EditSize="8" Mapped="UsingTimes"/>
+    <Property Name="UsingDiscount" Description="使用时折扣" DataType="Decimal" DataSubType="Percentage" EditSize="8" Mapped="UsingDiscount"/>
     <Property Name="Overdraft" Description="透支额" DataType="Decimal" DataSubType="Sum" EditSize="8" Mapped="Overdraft"/>
-    <Property Name="ValidTime" Description="有效期（天）" DataType="Numeric" DataSubType="Default" EditSize="8" Mapped="ValidTime"/>
+    <Property Name="ValidDays" Description="有效天数" DataType="Numeric" DataSubType="Default" EditSize="8" Mapped="ValidDays"/>
     <Property Name="Remarks" Description="备注" DataType="Memo" DataSubType="Default" EditSize="8" Mapped="Remarks"/>
   </Model>
   <BusinessObject MappedModel="AssetItem" ShortName="${Company}_BP_ASSETITEM"/>

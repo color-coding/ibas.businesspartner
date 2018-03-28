@@ -213,41 +213,6 @@ namespace businesspartner {
                 this.setProperty(BusinessPartnerAssetJournal.PROPERTY_BASEDOCUMENTLINEID_NAME, value);
             }
 
-            /** 映射的属性名称-原始类型 */
-            static PROPERTY_ORIGINALDOCUMENTTYPE_NAME: string = "OriginalDocumentType";
-            /** 获取-原始类型 */
-            get originalDocumentType(): string {
-                return this.getProperty<string>(BusinessPartnerAssetJournal.PROPERTY_ORIGINALDOCUMENTTYPE_NAME);
-            }
-            /** 设置-原始类型 */
-            set originalDocumentType(value: string) {
-                this.setProperty(BusinessPartnerAssetJournal.PROPERTY_ORIGINALDOCUMENTTYPE_NAME, value);
-            }
-
-            /** 映射的属性名称-原始标识 */
-            static PROPERTY_ORIGINALDOCUMENTENTRY_NAME: string = "OriginalDocumentEntry";
-            /** 获取-原始标识 */
-            get originalDocumentEntry(): number {
-                return this.getProperty<number>(BusinessPartnerAssetJournal.PROPERTY_ORIGINALDOCUMENTENTRY_NAME);
-            }
-            /** 设置-原始标识 */
-            set originalDocumentEntry(value: number) {
-                this.setProperty(BusinessPartnerAssetJournal.PROPERTY_ORIGINALDOCUMENTENTRY_NAME, value);
-            }
-
-            /** 映射的属性名称-原始行号 */
-            static PROPERTY_ORIGINALDOCUMENTLINEID_NAME: string = "OriginalDocumentLineId";
-            /** 获取-原始行号 */
-            get originalDocumentLineId(): number {
-                return this.getProperty<number>(BusinessPartnerAssetJournal.PROPERTY_ORIGINALDOCUMENTLINEID_NAME);
-            }
-            /** 设置-原始行号 */
-            set originalDocumentLineId(value: number) {
-                this.setProperty(BusinessPartnerAssetJournal.PROPERTY_ORIGINALDOCUMENTLINEID_NAME, value);
-            }
-
-
-
             /** 初始化数据 */
             protected init(): void {
                 this.objectCode = ibas.config.applyVariables(BusinessPartnerAssetJournal.BUSINESS_OBJECT_CODE);
