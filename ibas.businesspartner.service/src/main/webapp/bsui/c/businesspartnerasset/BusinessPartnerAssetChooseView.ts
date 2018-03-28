@@ -103,11 +103,11 @@ namespace businesspartner {
                                 }),
                             }),
                             new sap.ui.table.Column("", {
-                                label: ibas.i18n.prop("bo_businesspartnerasset_servicecode"),
+                                label: ibas.i18n.prop("bo_businesspartnerasset_times"),
                                 template: new sap.m.Text("", {
                                     wrapping: false
                                 }).bindProperty("text", {
-                                    path: "serviceCode"
+                                    path: "times"
                                 })
                             }),
                         ]

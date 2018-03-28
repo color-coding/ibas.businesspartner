@@ -39,7 +39,7 @@ namespace businesspartner {
                             path: "/rows",
                             template: new sap.m.ObjectListItem("", {
                                 title: "{assetCode}",
-                                number: "{amount} - {times}",
+                                number: "{times} - {amount}",
                                 markers: new sap.m.ObjectMarker("", {
                                     type: {
                                         path: "activated",
@@ -53,6 +53,10 @@ namespace businesspartner {
                                     }
                                 }),
                                 attributes: [
+                                    new sap.m.ObjectAttribute("", {
+                                        title: ibas.i18n.prop("bo_businesspartnerasset_businesspartnertype"),
+                                        text: "{businessPartnerType}"
+                                    }),
                                     new sap.m.ObjectAttribute("", {
                                         title: ibas.i18n.prop("bo_businesspartnerasset_businesspartnercode"),
                                         text: "{businessPartnerCode}"
@@ -127,33 +131,6 @@ namespace businesspartner {
                         rows: "{/rows}",
                         columns: [
                             new sap.ui.table.Column("", {
-                                label: ibas.i18n.prop("bo_businesspartnerassetjournal_objectkey"),
-                                template: new sap.m.Text("", {
-                                    wrapping: false
-                                }).bindProperty("text", {
-                                    path: "objectKey",
-                                })
-                            }),
-                            new sap.ui.table.Column("", {
-                                label: ibas.i18n.prop("bo_businesspartnerassetjournal_direction"),
-                                template: new sap.m.Text("", {
-                                    wrapping: false
-                                }).bindProperty("text", {
-                                    path: "direction",
-                                    formatter(data: any): any {
-                                        return ibas.enums.describe(ibas.emDirection, data);
-                                    }
-                                })
-                            }),
-                            new sap.ui.table.Column("", {
-                                label: ibas.i18n.prop("bo_businesspartnerassetjournal_amount"),
-                                template: new sap.m.Text("", {
-                                    wrapping: false
-                                }).bindProperty("text", {
-                                    path: "amount",
-                                })
-                            }),
-                            new sap.ui.table.Column("", {
                                 label: ibas.i18n.prop("bo_businesspartnerassetjournal_basedocumenttype"),
                                 template: new sap.m.Text("", {
                                     wrapping: false
@@ -175,6 +152,25 @@ namespace businesspartner {
                                     wrapping: false
                                 }).bindProperty("text", {
                                     path: "baseDocumentLineId",
+                                })
+                            }),
+                            new sap.ui.table.Column("", {
+                                label: ibas.i18n.prop("bo_businesspartnerassetjournal_direction"),
+                                template: new sap.m.Text("", {
+                                    wrapping: false
+                                }).bindProperty("text", {
+                                    path: "direction",
+                                    formatter(data: any): any {
+                                        return ibas.enums.describe(ibas.emDirection, data);
+                                    }
+                                })
+                            }),
+                            new sap.ui.table.Column("", {
+                                label: ibas.i18n.prop("bo_businesspartnerassetjournal_amount"),
+                                template: new sap.m.Text("", {
+                                    wrapping: false
+                                }).bindProperty("text", {
+                                    path: "amount",
                                 })
                             }),
                         ]
@@ -201,7 +197,7 @@ namespace businesspartner {
                             if (ibas.objects.isNull(asset)) {
                                 that.application.viewShower.messages({
                                     title: that.application.description,
-                                    message: ibas.i18n.prop("shell_please_chooose_data", ibas.i18n.prop("bo_materialasset")),
+                                    message: ibas.i18n.prop("shell_please_chooose_data", ibas.i18n.prop("bo_businesspartnerasset")),
                                     type: ibas.emMessageType.WARNING
                                 });
                                 return;

@@ -235,6 +235,17 @@ namespace businesspartner {
                 this.setProperty(BusinessPartnerAsset.PROPERTY_ACTIVATED_NAME, value);
             }
 
+            /** 映射的属性名称-获得日期 */
+            static PROPERTY_ACQUIREDDATE_NAME: string = "AcquiredDate";
+            /** 获取-获得日期 */
+            get acquiredDate(): Date {
+                return this.getProperty<Date>(BusinessPartnerAsset.PROPERTY_ACQUIREDDATE_NAME);
+            }
+            /** 设置-获得日期 */
+            set acquiredDate(value: Date) {
+                this.setProperty(BusinessPartnerAsset.PROPERTY_ACQUIREDDATE_NAME, value);
+            }
+
             /** 映射的属性名称-生效日期 */
             static PROPERTY_VALIDDATE_NAME: string = "ValidDate";
             /** 获取-生效日期 */
@@ -360,6 +371,7 @@ namespace businesspartner {
             protected init(): void {
                 this.objectCode = ibas.config.applyVariables(BusinessPartnerAsset.BUSINESS_OBJECT_CODE);
                 this.businessPartnerType = emBusinessPartnerType.CUSTOMER;
+                this.activated = ibas.emYesNo.YES;
                 this.serviceCode = ibas.uuids.random();
             }
         }

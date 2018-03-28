@@ -313,6 +313,21 @@ public interface IBusinessPartnerAsset extends IBOSimple {
 	void setActivated(emYesNo value);
 
 	/**
+	 * 获取-获得日期
+	 * 
+	 * @return 值
+	 */
+	DateTime getAcquiredDate();
+
+	/**
+	 * 设置-获得日期
+	 * 
+	 * @param value
+	 *            值
+	 */
+	void setAcquiredDate(DateTime value);
+
+	/**
 	 * 获取-生效日期
 	 * 
 	 * @return 值

@@ -22,6 +22,7 @@
     <Property Name="AssetCode" Description="资产项目" DataType="Alphanumeric" DataSubType="Default" EditSize="20" Mapped="AssetCode"/>
     <Property Name="ServiceCode" Description="服务码" DataType="Alphanumeric" DataSubType="Default" EditSize="36" Mapped="ServiceCode" UniqueKey="Yes"/>
     <Property Name="Activated" Description="激活" DataType="Alphanumeric" DataSubType="Default" EditSize="1" DeclaredType="emYesNo" Mapped="Activated"/>
+    <Property Name="AcquiredDate" Description="获得日期" DataType="Date" DataSubType="Default" EditSize="8" Mapped="AcquiredDate"/>
     <Property Name="ValidDate" Description="生效日期" DataType="Date" DataSubType="Default" EditSize="8" Mapped="ValidDate"/>
     <Property Name="InvalidDate" Description="失效日期" DataType="Date" DataSubType="Default" EditSize="8" Mapped="InvalidDate"/>
     <Property Name="Amount" Description="剩余价值" DataType="Decimal" DataSubType="Sum" EditSize="8" Mapped="Amount"/>

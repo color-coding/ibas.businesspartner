@@ -76,27 +76,11 @@ namespace businesspartner {
                                 }),
                             }),
                             new sap.ui.table.Column("", {
-                                label: ibas.i18n.prop("bo_assetitem_validdate"),
+                                label: ibas.i18n.prop("bo_assetitem_overdraft"),
                                 template: new sap.m.Text("", {
                                     wrapping: false,
                                 }).bindProperty("text", {
-                                    path: "validDate",
-                                    type: new sap.ui.model.type.Date({
-                                        pattern: "yyyy-MM-dd",
-                                        strictParsing: true,
-                                    })
-                                }),
-                            }),
-                            new sap.ui.table.Column("", {
-                                label: ibas.i18n.prop("bo_assetitem_invaliddate"),
-                                template: new sap.m.Text("", {
-                                    wrapping: false,
-                                }).bindProperty("text", {
-                                    path: "invalidDate",
-                                    type: new sap.ui.model.type.Date({
-                                        pattern: "yyyy-MM-dd",
-                                        strictParsing: true,
-                                    })
+                                    path: "overdraft",
                                 }),
                             }),
                         ]

@@ -88,6 +88,7 @@
         "bo_businesspartnerasset_assetcode": "资产项目",
         "bo_businesspartnerasset_servicecode": "服务码",
         "bo_businesspartnerasset_activated": "激活",
+        "bo_businesspartnerasset_acquireddate": "获得日期",
         "bo_businesspartnerasset_validdate": "生效日期",
         "bo_businesspartnerasset_invaliddate": "失效日期",
         "bo_businesspartnerasset_amount": "剩余价值",

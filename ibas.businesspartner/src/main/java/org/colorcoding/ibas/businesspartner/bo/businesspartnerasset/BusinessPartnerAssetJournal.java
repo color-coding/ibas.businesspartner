@@ -1,5 +1,8 @@
 package org.colorcoding.ibas.businesspartner.bo.businesspartnerasset;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -11,10 +14,14 @@ import org.colorcoding.ibas.bobas.core.IPropertyInfo;
 import org.colorcoding.ibas.bobas.data.DateTime;
 import org.colorcoding.ibas.bobas.data.Decimal;
 import org.colorcoding.ibas.bobas.data.emDirection;
+import org.colorcoding.ibas.bobas.logic.IBusinessLogicContract;
+import org.colorcoding.ibas.bobas.logic.IBusinessLogicsHost;
 import org.colorcoding.ibas.bobas.mapping.BOCode;
 import org.colorcoding.ibas.bobas.mapping.DbField;
 import org.colorcoding.ibas.bobas.mapping.DbFieldType;
 import org.colorcoding.ibas.businesspartner.MyConfiguration;
+import org.colorcoding.ibas.businesspartner.logic.IBusinessPartnerAssetAmountContract;
+import org.colorcoding.ibas.businesspartner.logic.IBusinessPartnerAssetTimesContract;
 
 /**
  * 业务伙伴资产日记账
@@ -25,7 +32,7 @@ import org.colorcoding.ibas.businesspartner.MyConfiguration;
 @XmlRootElement(name = BusinessPartnerAssetJournal.BUSINESS_OBJECT_NAME, namespace = MyConfiguration.NAMESPACE_BO)
 @BOCode(BusinessPartnerAssetJournal.BUSINESS_OBJECT_CODE)
 public class BusinessPartnerAssetJournal extends BusinessObject<BusinessPartnerAssetJournal>
-		implements IBusinessPartnerAssetJournal {
+		implements IBusinessPartnerAssetJournal, IBusinessLogicsHost {
 
 	/**
 	 * 序列化版本标记
@@ -666,6 +673,59 @@ public class BusinessPartnerAssetJournal extends BusinessObject<BusinessPartnerA
 		super.initialize();// 基类初始化，不可去除
 		this.setObjectCode(MyConfiguration.applyVariables(BUSINESS_OBJECT_CODE));
 
+	}
+
+	@Override
+	public IBusinessLogicContract[] getContracts() {
+		List<IBusinessLogicContract> contracts = new ArrayList<>(2);
+		contracts.add(new IBusinessPartnerAssetAmountContract() {
+
+			@Override
+			public String getIdentifiers() {
+				return BusinessPartnerAssetJournal.this.getIdentifiers();
+			}
+
+			@Override
+			public String getServiceCode() {
+				return BusinessPartnerAssetJournal.this.getServiceCode();
+			}
+
+			@Override
+			public emDirection getDirection() {
+				return BusinessPartnerAssetJournal.this.getDirection();
+			}
+
+			@Override
+			public Decimal getAmount() {
+				return BusinessPartnerAssetJournal.this.getAmount();
+			}
+		});
+		// 仅消耗时，认为一次
+		if (this.getDirection() == emDirection.OUT) {
+			contracts.add(new IBusinessPartnerAssetTimesContract() {
+
+				@Override
+				public String getIdentifiers() {
+					return BusinessPartnerAssetJournal.this.getIdentifiers();
+				}
+
+				@Override
+				public String getServiceCode() {
+					return BusinessPartnerAssetJournal.this.getServiceCode();
+				}
+
+				@Override
+				public emDirection getDirection() {
+					return BusinessPartnerAssetJournal.this.getDirection();
+				}
+
+				@Override
+				public Integer getTimes() {
+					return 1;
+				}
+			});
+		}
+		return contracts.toArray(new IBusinessLogicContract[] {});
 	}
 
 }

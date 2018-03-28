@@ -49,6 +49,8 @@ namespace businesspartner {
             serviceCode: string;
             /** 激活 */
             activated: ibas.emYesNo;
+            /** 获得日期 */
+            acquiredDate: Date;
             /** 生效日期 */
             validDate: Date;
             /** 失效日期 */

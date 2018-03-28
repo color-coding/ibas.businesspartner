@@ -693,6 +693,38 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset> i
 	}
 
 	/**
+	 * 属性名称-获得日期
+	 */
+	private static final String PROPERTY_ACQUIREDDATE_NAME = "AcquiredDate";
+
+	/**
+	 * 获得日期 属性
+	 */
+	@DbField(name = "AcquiredDate", type = DbFieldType.DATE, table = DB_TABLE_NAME, primaryKey = false)
+	public static final IPropertyInfo<DateTime> PROPERTY_ACQUIREDDATE = registerProperty(PROPERTY_ACQUIREDDATE_NAME,
+			DateTime.class, MY_CLASS);
+
+	/**
+	 * 获取-获得日期
+	 * 
+	 * @return 值
+	 */
+	@XmlElement(name = PROPERTY_ACQUIREDDATE_NAME)
+	public final DateTime getAcquiredDate() {
+		return this.getProperty(PROPERTY_ACQUIREDDATE);
+	}
+
+	/**
+	 * 设置-获得日期
+	 * 
+	 * @param value
+	 *            值
+	 */
+	public final void setAcquiredDate(DateTime value) {
+		this.setProperty(PROPERTY_ACQUIREDDATE, value);
+	}
+
+	/**
 	 * 属性名称-生效日期
 	 */
 	private static final String PROPERTY_VALIDDATE_NAME = "ValidDate";
@@ -1111,7 +1143,7 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset> i
 	protected void initialize() {
 		super.initialize();// 基类初始化，不可去除
 		this.setObjectCode(MyConfiguration.applyVariables(BUSINESS_OBJECT_CODE));
-
+		this.setAcquiredDate(DateTime.getToday());
 	}
 
 }

@@ -81,6 +81,14 @@ namespace businesspartner {
                                 path: "activated",
                                 type: "sap.ui.model.type.Integer"
                             }),
+                            new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnerasset_acquireddate") }),
+                            new sap.m.DatePicker("", {
+                                editable: false,
+                                valueFormat: ibas.config.get(ibas.CONFIG_ITEM_FORMAT_DATE),
+                                displayFormat: ibas.config.get(ibas.CONFIG_ITEM_FORMAT_DATE),
+                            }).bindProperty("dateValue", {
+                                path: "acquiredDate"
+                            }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnerasset_validdate") }),
                             new sap.m.DatePicker("", {
                                 valueFormat: ibas.config.get(ibas.CONFIG_ITEM_FORMAT_DATE),
