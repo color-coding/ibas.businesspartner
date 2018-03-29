@@ -48,11 +48,11 @@ public abstract class BusinessPartnerAssetLogic<C extends IBusinessLogicContract
 		return assetItem;
 	}
 
-	protected IBusinessPartnerAsset checkBusinessPartnerAsset(String serviceCode) {
+	protected IBusinessPartnerAsset checkBusinessPartnerAsset(String code) {
 		ICriteria criteria = new Criteria();
 		ICondition condition = criteria.getConditions().create();
-		condition.setAlias(BusinessPartnerAsset.PROPERTY_SERVICECODE.getName());
-		condition.setValue(serviceCode);
+		condition.setAlias(BusinessPartnerAsset.PROPERTY_CODE.getName());
+		condition.setValue(code);
 		condition.setOperation(ConditionOperation.EQUAL);
 		IBusinessPartnerAsset businessPartnerAsset = super.fetchBeAffected(criteria, IBusinessPartnerAsset.class);
 		if (businessPartnerAsset == null) {
@@ -66,8 +66,8 @@ public abstract class BusinessPartnerAssetLogic<C extends IBusinessLogicContract
 		}
 		// 业务伙伴资产不存在
 		if (businessPartnerAsset == null) {
-			throw new BusinessLogicException(String.format(I18N.prop("msg_bp_businesspartnerasset_is_not_exist"),
-					serviceCode == null ? "" : serviceCode));
+			throw new BusinessLogicException(
+					String.format(I18N.prop("msg_bp_businesspartnerasset_is_not_exist"), code == null ? "" : code));
 		}
 		return businessPartnerAsset;
 	}

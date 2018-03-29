@@ -1,8 +1,9 @@
 package org.colorcoding.ibas.businesspartner.bo.businesspartnerasset;
 
-import org.colorcoding.ibas.bobas.bo.IBOSimple;
+import org.colorcoding.ibas.bobas.bo.IBOMasterData;
 import org.colorcoding.ibas.bobas.data.DateTime;
 import org.colorcoding.ibas.bobas.data.Decimal;
+import org.colorcoding.ibas.bobas.data.emApprovalStatus;
 import org.colorcoding.ibas.bobas.data.emYesNo;
 import org.colorcoding.ibas.businesspartner.data.emBusinessPartnerType;
 
@@ -10,14 +11,44 @@ import org.colorcoding.ibas.businesspartner.data.emBusinessPartnerType;
  * 业务伙伴资产 接口
  * 
  */
-public interface IBusinessPartnerAsset extends IBOSimple {
+public interface IBusinessPartnerAsset extends IBOMasterData {
+
+	/**
+	 * 获取-编号
+	 * 
+	 * @return 值
+	 */
+	String getCode();
+
+	/**
+	 * 设置-编号
+	 * 
+	 * @param value
+	 *            值
+	 */
+	void setCode(String value);
+
+	/**
+	 * 获取-名称
+	 * 
+	 * @return 值
+	 */
+	String getName();
+
+	/**
+	 * 设置-名称
+	 * 
+	 * @param value
+	 *            值
+	 */
+	void setName(String value);
 
 	/**
 	 * 获取-对象编号
 	 * 
 	 * @return 值
 	 */
-	Integer getObjectKey();
+	Integer getDocEntry();
 
 	/**
 	 * 设置-对象编号
@@ -25,7 +56,7 @@ public interface IBusinessPartnerAsset extends IBOSimple {
 	 * @param value
 	 *            值
 	 */
-	void setObjectKey(Integer value);
+	void setDocEntry(Integer value);
 
 	/**
 	 * 获取-对象类型
@@ -43,14 +74,74 @@ public interface IBusinessPartnerAsset extends IBOSimple {
 	void setObjectCode(String value);
 
 	/**
-	 * 获取-实例号
+	 * 获取-创建日期
+	 * 
+	 * @return 值
+	 */
+	DateTime getCreateDate();
+
+	/**
+	 * 设置-创建日期
+	 * 
+	 * @param value
+	 *            值
+	 */
+	void setCreateDate(DateTime value);
+
+	/**
+	 * 获取-创建时间
+	 * 
+	 * @return 值
+	 */
+	Short getCreateTime();
+
+	/**
+	 * 设置-创建时间
+	 * 
+	 * @param value
+	 *            值
+	 */
+	void setCreateTime(Short value);
+
+	/**
+	 * 获取-修改日期
+	 * 
+	 * @return 值
+	 */
+	DateTime getUpdateDate();
+
+	/**
+	 * 设置-修改日期
+	 * 
+	 * @param value
+	 *            值
+	 */
+	void setUpdateDate(DateTime value);
+
+	/**
+	 * 获取-修改时间
+	 * 
+	 * @return 值
+	 */
+	Short getUpdateTime();
+
+	/**
+	 * 设置-修改时间
+	 * 
+	 * @param value
+	 *            值
+	 */
+	void setUpdateTime(Short value);
+
+	/**
+	 * 获取-版本
 	 * 
 	 * @return 值
 	 */
 	Integer getLogInst();
 
 	/**
-	 * 设置-实例号
+	 * 设置-版本
 	 * 
 	 * @param value
 	 *            值
@@ -88,66 +179,6 @@ public interface IBusinessPartnerAsset extends IBOSimple {
 	void setDataSource(String value);
 
 	/**
-	 * 获取-创建日期
-	 * 
-	 * @return 值
-	 */
-	DateTime getCreateDate();
-
-	/**
-	 * 设置-创建日期
-	 * 
-	 * @param value
-	 *            值
-	 */
-	void setCreateDate(DateTime value);
-
-	/**
-	 * 获取-创建时间
-	 * 
-	 * @return 值
-	 */
-	Short getCreateTime();
-
-	/**
-	 * 设置-创建时间
-	 * 
-	 * @param value
-	 *            值
-	 */
-	void setCreateTime(Short value);
-
-	/**
-	 * 获取-更新日期
-	 * 
-	 * @return 值
-	 */
-	DateTime getUpdateDate();
-
-	/**
-	 * 设置-更新日期
-	 * 
-	 * @param value
-	 *            值
-	 */
-	void setUpdateDate(DateTime value);
-
-	/**
-	 * 获取-更新时间
-	 * 
-	 * @return 值
-	 */
-	Short getUpdateTime();
-
-	/**
-	 * 设置-更新时间
-	 * 
-	 * @param value
-	 *            值
-	 */
-	void setUpdateTime(Short value);
-
-	/**
 	 * 获取-创建用户
 	 * 
 	 * @return 值
@@ -163,14 +194,14 @@ public interface IBusinessPartnerAsset extends IBOSimple {
 	void setCreateUserSign(Integer value);
 
 	/**
-	 * 获取-更新用户
+	 * 获取-修改用户
 	 * 
 	 * @return 值
 	 */
 	Integer getUpdateUserSign();
 
 	/**
-	 * 设置-更新用户
+	 * 设置-修改用户
 	 * 
 	 * @param value
 	 *            值
@@ -206,6 +237,51 @@ public interface IBusinessPartnerAsset extends IBOSimple {
 	 *            值
 	 */
 	void setUpdateActionId(String value);
+
+	/**
+	 * 获取-审批状态
+	 * 
+	 * @return 值
+	 */
+	emApprovalStatus getApprovalStatus();
+
+	/**
+	 * 设置-审批状态
+	 * 
+	 * @param value
+	 *            值
+	 */
+	void setApprovalStatus(emApprovalStatus value);
+
+	/**
+	 * 获取-数据所有者
+	 * 
+	 * @return 值
+	 */
+	Integer getDataOwner();
+
+	/**
+	 * 设置-数据所有者
+	 * 
+	 * @param value
+	 *            值
+	 */
+	void setDataOwner(Integer value);
+
+	/**
+	 * 获取-数据所属组织
+	 * 
+	 * @return 值
+	 */
+	String getOrganization();
+
+	/**
+	 * 设置-数据所属组织
+	 * 
+	 * @param value
+	 *            值
+	 */
+	void setOrganization(String value);
 
 	/**
 	 * 获取-已引用
@@ -281,21 +357,6 @@ public interface IBusinessPartnerAsset extends IBOSimple {
 	 *            值
 	 */
 	void setAssetCode(String value);
-
-	/**
-	 * 获取-服务码
-	 * 
-	 * @return 值
-	 */
-	String getServiceCode();
-
-	/**
-	 * 设置-服务码
-	 * 
-	 * @param value
-	 *            值
-	 */
-	void setServiceCode(String value);
 
 	/**
 	 * 获取-激活

@@ -45,10 +45,11 @@ public class BusinessPartnerAssetCreationService
 					assetItem.getName() == null ? assetItem.getCode() : assetItem.getName()));
 		}
 		IBusinessPartnerAsset businessPartnerAsset = new BusinessPartnerAsset();
+		businessPartnerAsset.setCode(UUID.randomUUID().toString());
 		businessPartnerAsset.setBusinessPartnerType(contract.getBusinessPartnerType());
 		businessPartnerAsset.setBusinessPartnerCode(contract.getBusinessPartnerCode());
 		businessPartnerAsset.setAssetCode(assetItem.getCode());
-		businessPartnerAsset.setServiceCode(UUID.randomUUID().toString());
+		businessPartnerAsset.setName(assetItem.getName());
 		businessPartnerAsset.setAmount(assetItem.getFaceAmount());
 		businessPartnerAsset.setTimes(assetItem.getUsingTimes());
 		businessPartnerAsset.setAcquiredDate(DateTime.getToday());

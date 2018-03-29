@@ -28,6 +28,19 @@ namespace businesspartner {
                         editable: true,
                         content: [
                             new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_title_general") }),
+                            new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnerasset_code") }),
+                            new sap.m.Input("", {
+                                editable: false,
+                                type: sap.m.InputType.Text
+                            }).bindProperty("value", {
+                                path: "code"
+                            }),
+                            new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnerasset_name") }),
+                            new sap.m.Input("", {
+                                type: sap.m.InputType.Text
+                            }).bindProperty("value", {
+                                path: "name"
+                            }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnerasset_businesspartnertype") }),
                             new sap.m.Select("", {
                                 items: openui5.utils.createComboBoxItems(bo.emBusinessPartnerType)
@@ -52,13 +65,6 @@ namespace businesspartner {
                                 }
                             }).bindProperty("value", {
                                 path: "assetCode"
-                            }),
-                            new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnerasset_servicecode") }),
-                            new sap.m.Input("", {
-                                editable: false,
-                                type: sap.m.InputType.Text
-                            }).bindProperty("value", {
-                                path: "serviceCode"
                             }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnerasset_amount") }),
                             new sap.m.Input("", {

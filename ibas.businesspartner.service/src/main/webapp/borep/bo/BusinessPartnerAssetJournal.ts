@@ -147,13 +147,13 @@ namespace businesspartner {
                 this.setProperty(BusinessPartnerAssetJournal.PROPERTY_UPDATEACTIONID_NAME, value);
             }
 
-            /** 映射的属性名称-服务码 */
+            /** 映射的属性名称-业务伙伴资产码 */
             static PROPERTY_SERVICECODE_NAME: string = "ServiceCode";
-            /** 获取-服务码 */
+            /** 获取-业务伙伴资产码 */
             get serviceCode(): string {
                 return this.getProperty<string>(BusinessPartnerAssetJournal.PROPERTY_SERVICECODE_NAME);
             }
-            /** 设置-服务码 */
+            /** 设置-业务伙伴资产码 */
             set serviceCode(value: string) {
                 this.setProperty(BusinessPartnerAssetJournal.PROPERTY_SERVICECODE_NAME, value);
             }

@@ -447,19 +447,19 @@ public class BusinessPartnerAssetJournal extends BusinessObject<BusinessPartnerA
 	}
 
 	/**
-	 * 属性名称-服务码
+	 * 属性名称-业务伙伴资产码
 	 */
 	private static final String PROPERTY_SERVICECODE_NAME = "ServiceCode";
 
 	/**
-	 * 服务码 属性
+	 * 业务伙伴资产码 属性
 	 */
 	@DbField(name = "ServiceCode", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME, primaryKey = false)
 	public static final IPropertyInfo<String> PROPERTY_SERVICECODE = registerProperty(PROPERTY_SERVICECODE_NAME,
 			String.class, MY_CLASS);
 
 	/**
-	 * 获取-服务码
+	 * 获取-业务伙伴资产码
 	 * 
 	 * @return 值
 	 */
@@ -469,7 +469,7 @@ public class BusinessPartnerAssetJournal extends BusinessObject<BusinessPartnerA
 	}
 
 	/**
-	 * 设置-服务码
+	 * 设置-业务伙伴资产码
 	 * 
 	 * @param value
 	 *            值

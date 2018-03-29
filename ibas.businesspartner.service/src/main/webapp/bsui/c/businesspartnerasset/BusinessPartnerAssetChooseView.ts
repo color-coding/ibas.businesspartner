@@ -25,11 +25,11 @@ namespace businesspartner {
                         rows: "{/rows}",
                         columns: [
                             new sap.ui.table.Column("", {
-                                label: ibas.i18n.prop("bo_businesspartnerasset_objectkey"),
+                                label: ibas.i18n.prop("bo_businesspartnerasset_docentry"),
                                 template: new sap.m.Text("", {
                                     wrapping: false
                                 }).bindProperty("text", {
-                                    path: "objectKey"
+                                    path: "docEntry"
                                 })
                             }),
                             new sap.ui.table.Column("", {
@@ -52,11 +52,11 @@ namespace businesspartner {
                                 })
                             }),
                             new sap.ui.table.Column("", {
-                                label: ibas.i18n.prop("bo_businesspartnerasset_assetcode"),
+                                label: ibas.i18n.prop("bo_businesspartnerasset_name"),
                                 template: new sap.m.Text("", {
                                     wrapping: false
                                 }).bindProperty("text", {
-                                    path: "assetCode"
+                                    path: "name"
                                 })
                             }),
                             new sap.ui.table.Column("", {

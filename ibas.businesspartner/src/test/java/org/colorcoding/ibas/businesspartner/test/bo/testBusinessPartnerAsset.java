@@ -69,7 +69,7 @@ public class testBusinessPartnerAsset extends TestCase {
 		IContactPerson contactPerson = new SuperContactPerson();
 		contactPerson.setOwnerType(emBusinessPartnerType.CUSTOMER);
 		contactPerson.setBusinessPartner(code);
-		contactPerson.setName(businessPartnerAsset.getServiceCode());
+		contactPerson.setName(businessPartnerAsset.getCode());
 		operationResult = boRepository.saveContactPerson(contactPerson);
 		assertEquals(operationResult.getMessage(), operationResult.getResultCode(), 0);
 		criteria = new Criteria();

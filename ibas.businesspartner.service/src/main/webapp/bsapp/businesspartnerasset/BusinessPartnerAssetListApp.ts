@@ -188,9 +188,9 @@ namespace businesspartner {
                     for (let item of data) {
                         if (item instanceof bo.BusinessPartnerAsset) {
                             let condition: ibas.ICondition = criteria.conditions.create();
-                            condition.alias = bo.BusinessPartnerAssetJournal.PROPERTY_SERVICECODE_NAME;
+                            condition.alias = bo.BusinessPartnerAsset.PROPERTY_CODE_NAME;
                             condition.operation = ibas.emConditionOperation.EQUAL;
-                            condition.value = item.serviceCode;
+                            condition.value = item.code;
                             if (criteria.conditions.length > 1) {
                                 condition.relationship = ibas.emConditionRelationship.OR;
                             }
@@ -198,9 +198,9 @@ namespace businesspartner {
                     }
                 } else if (data instanceof bo.BusinessPartnerAsset) {
                     let condition: ibas.ICondition = criteria.conditions.create();
-                    condition.alias = bo.BusinessPartnerAssetJournal.PROPERTY_SERVICECODE_NAME;
+                    condition.alias = bo.BusinessPartnerAsset.PROPERTY_CODE_NAME;
                     condition.operation = ibas.emConditionOperation.EQUAL;
-                    condition.value = data.serviceCode;
+                    condition.value = data.code;
                 }
                 let app: BusinessPartnerAssetJournalListApp = new BusinessPartnerAssetJournalListApp();
                 app.navigation = this.navigation;

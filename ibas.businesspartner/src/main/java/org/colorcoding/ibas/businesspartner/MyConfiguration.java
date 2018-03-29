@@ -43,7 +43,7 @@ public class MyConfiguration extends org.colorcoding.ibas.bobas.MyConfiguration 
 	 */
 	public static final String ASSET_MODE_EXTERNAL_CASH = "AEXT_CAS";
 	/**
-	 * 资产方式-银行转账
+	 * 资产方式-银行
 	 */
 	public static final String ASSET_MODE_EXTERNAL_BANK = "AEXT_BAK";
 }

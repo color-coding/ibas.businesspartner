@@ -8,22 +8,44 @@
 namespace businesspartner {
     export namespace bo {
         /** 业务伙伴资产 */
-        export class BusinessPartnerAsset extends ibas.BOSimple<BusinessPartnerAsset> implements IBusinessPartnerAsset {
+        export class BusinessPartnerAsset extends ibas.BOMasterData<BusinessPartnerAsset> implements IBusinessPartnerAsset {
             /** 业务对象编码 */
             static BUSINESS_OBJECT_CODE: string = BO_CODE_BUSINESSPARTNERASSET;
             /** 构造函数 */
             constructor() {
                 super();
             }
+            /** 映射的属性名称-编号 */
+            static PROPERTY_CODE_NAME: string = "Code";
+            /** 获取-编号 */
+            get code(): string {
+                return this.getProperty<string>(BusinessPartnerAsset.PROPERTY_CODE_NAME);
+            }
+            /** 设置-编号 */
+            set code(value: string) {
+                this.setProperty(BusinessPartnerAsset.PROPERTY_CODE_NAME, value);
+            }
+
+            /** 映射的属性名称-名称 */
+            static PROPERTY_NAME_NAME: string = "Name";
+            /** 获取-名称 */
+            get name(): string {
+                return this.getProperty<string>(BusinessPartnerAsset.PROPERTY_NAME_NAME);
+            }
+            /** 设置-名称 */
+            set name(value: string) {
+                this.setProperty(BusinessPartnerAsset.PROPERTY_NAME_NAME, value);
+            }
+
             /** 映射的属性名称-对象编号 */
-            static PROPERTY_OBJECTKEY_NAME: string = "ObjectKey";
+            static PROPERTY_DOCENTRY_NAME: string = "DocEntry";
             /** 获取-对象编号 */
-            get objectKey(): number {
-                return this.getProperty<number>(BusinessPartnerAsset.PROPERTY_OBJECTKEY_NAME);
+            get docEntry(): number {
+                return this.getProperty<number>(BusinessPartnerAsset.PROPERTY_DOCENTRY_NAME);
             }
             /** 设置-对象编号 */
-            set objectKey(value: number) {
-                this.setProperty(BusinessPartnerAsset.PROPERTY_OBJECTKEY_NAME, value);
+            set docEntry(value: number) {
+                this.setProperty(BusinessPartnerAsset.PROPERTY_DOCENTRY_NAME, value);
             }
 
             /** 映射的属性名称-对象类型 */
@@ -37,13 +59,57 @@ namespace businesspartner {
                 this.setProperty(BusinessPartnerAsset.PROPERTY_OBJECTCODE_NAME, value);
             }
 
-            /** 映射的属性名称-实例号 */
+            /** 映射的属性名称-创建日期 */
+            static PROPERTY_CREATEDATE_NAME: string = "CreateDate";
+            /** 获取-创建日期 */
+            get createDate(): Date {
+                return this.getProperty<Date>(BusinessPartnerAsset.PROPERTY_CREATEDATE_NAME);
+            }
+            /** 设置-创建日期 */
+            set createDate(value: Date) {
+                this.setProperty(BusinessPartnerAsset.PROPERTY_CREATEDATE_NAME, value);
+            }
+
+            /** 映射的属性名称-创建时间 */
+            static PROPERTY_CREATETIME_NAME: string = "CreateTime";
+            /** 获取-创建时间 */
+            get createTime(): number {
+                return this.getProperty<number>(BusinessPartnerAsset.PROPERTY_CREATETIME_NAME);
+            }
+            /** 设置-创建时间 */
+            set createTime(value: number) {
+                this.setProperty(BusinessPartnerAsset.PROPERTY_CREATETIME_NAME, value);
+            }
+
+            /** 映射的属性名称-修改日期 */
+            static PROPERTY_UPDATEDATE_NAME: string = "UpdateDate";
+            /** 获取-修改日期 */
+            get updateDate(): Date {
+                return this.getProperty<Date>(BusinessPartnerAsset.PROPERTY_UPDATEDATE_NAME);
+            }
+            /** 设置-修改日期 */
+            set updateDate(value: Date) {
+                this.setProperty(BusinessPartnerAsset.PROPERTY_UPDATEDATE_NAME, value);
+            }
+
+            /** 映射的属性名称-修改时间 */
+            static PROPERTY_UPDATETIME_NAME: string = "UpdateTime";
+            /** 获取-修改时间 */
+            get updateTime(): number {
+                return this.getProperty<number>(BusinessPartnerAsset.PROPERTY_UPDATETIME_NAME);
+            }
+            /** 设置-修改时间 */
+            set updateTime(value: number) {
+                this.setProperty(BusinessPartnerAsset.PROPERTY_UPDATETIME_NAME, value);
+            }
+
+            /** 映射的属性名称-版本 */
             static PROPERTY_LOGINST_NAME: string = "LogInst";
-            /** 获取-实例号 */
+            /** 获取-版本 */
             get logInst(): number {
                 return this.getProperty<number>(BusinessPartnerAsset.PROPERTY_LOGINST_NAME);
             }
-            /** 设置-实例号 */
+            /** 设置-版本 */
             set logInst(value: number) {
                 this.setProperty(BusinessPartnerAsset.PROPERTY_LOGINST_NAME, value);
             }
@@ -70,50 +136,6 @@ namespace businesspartner {
                 this.setProperty(BusinessPartnerAsset.PROPERTY_DATASOURCE_NAME, value);
             }
 
-            /** 映射的属性名称-创建日期 */
-            static PROPERTY_CREATEDATE_NAME: string = "CreateDate";
-            /** 获取-创建日期 */
-            get createDate(): Date {
-                return this.getProperty<Date>(BusinessPartnerAsset.PROPERTY_CREATEDATE_NAME);
-            }
-            /** 设置-创建日期 */
-            set createDate(value: Date) {
-                this.setProperty(BusinessPartnerAsset.PROPERTY_CREATEDATE_NAME, value);
-            }
-
-            /** 映射的属性名称-创建时间 */
-            static PROPERTY_CREATETIME_NAME: string = "CreateTime";
-            /** 获取-创建时间 */
-            get createTime(): number {
-                return this.getProperty<number>(BusinessPartnerAsset.PROPERTY_CREATETIME_NAME);
-            }
-            /** 设置-创建时间 */
-            set createTime(value: number) {
-                this.setProperty(BusinessPartnerAsset.PROPERTY_CREATETIME_NAME, value);
-            }
-
-            /** 映射的属性名称-更新日期 */
-            static PROPERTY_UPDATEDATE_NAME: string = "UpdateDate";
-            /** 获取-更新日期 */
-            get updateDate(): Date {
-                return this.getProperty<Date>(BusinessPartnerAsset.PROPERTY_UPDATEDATE_NAME);
-            }
-            /** 设置-更新日期 */
-            set updateDate(value: Date) {
-                this.setProperty(BusinessPartnerAsset.PROPERTY_UPDATEDATE_NAME, value);
-            }
-
-            /** 映射的属性名称-更新时间 */
-            static PROPERTY_UPDATETIME_NAME: string = "UpdateTime";
-            /** 获取-更新时间 */
-            get updateTime(): number {
-                return this.getProperty<number>(BusinessPartnerAsset.PROPERTY_UPDATETIME_NAME);
-            }
-            /** 设置-更新时间 */
-            set updateTime(value: number) {
-                this.setProperty(BusinessPartnerAsset.PROPERTY_UPDATETIME_NAME, value);
-            }
-
             /** 映射的属性名称-创建用户 */
             static PROPERTY_CREATEUSERSIGN_NAME: string = "CreateUserSign";
             /** 获取-创建用户 */
@@ -125,13 +147,13 @@ namespace businesspartner {
                 this.setProperty(BusinessPartnerAsset.PROPERTY_CREATEUSERSIGN_NAME, value);
             }
 
-            /** 映射的属性名称-更新用户 */
+            /** 映射的属性名称-修改用户 */
             static PROPERTY_UPDATEUSERSIGN_NAME: string = "UpdateUserSign";
-            /** 获取-更新用户 */
+            /** 获取-修改用户 */
             get updateUserSign(): number {
                 return this.getProperty<number>(BusinessPartnerAsset.PROPERTY_UPDATEUSERSIGN_NAME);
             }
-            /** 设置-更新用户 */
+            /** 设置-修改用户 */
             set updateUserSign(value: number) {
                 this.setProperty(BusinessPartnerAsset.PROPERTY_UPDATEUSERSIGN_NAME, value);
             }
@@ -158,26 +180,59 @@ namespace businesspartner {
                 this.setProperty(BusinessPartnerAsset.PROPERTY_UPDATEACTIONID_NAME, value);
             }
 
+            /** 映射的属性名称-审批状态 */
+            static PROPERTY_APPROVALSTATUS_NAME: string = "ApprovalStatus";
+            /** 获取-审批状态 */
+            get approvalStatus(): ibas.emApprovalStatus {
+                return this.getProperty<ibas.emApprovalStatus>(BusinessPartnerAsset.PROPERTY_APPROVALSTATUS_NAME);
+            }
+            /** 设置-审批状态 */
+            set approvalStatus(value: ibas.emApprovalStatus) {
+                this.setProperty(BusinessPartnerAsset.PROPERTY_APPROVALSTATUS_NAME, value);
+            }
+
+            /** 映射的属性名称-数据所有者 */
+            static PROPERTY_DATAOWNER_NAME: string = "DataOwner";
+            /** 获取-数据所有者 */
+            get dataOwner(): number {
+                return this.getProperty<number>(BusinessPartnerAsset.PROPERTY_DATAOWNER_NAME);
+            }
+            /** 设置-数据所有者 */
+            set dataOwner(value: number) {
+                this.setProperty(BusinessPartnerAsset.PROPERTY_DATAOWNER_NAME, value);
+            }
+
+            /** 映射的属性名称-数据所属组织 */
+            static PROPERTY_ORGANIZATION_NAME: string = "Organization";
+            /** 获取-数据所属组织 */
+            get organization(): string {
+                return this.getProperty<string>(BusinessPartnerAsset.PROPERTY_ORGANIZATION_NAME);
+            }
+            /** 设置-数据所属组织 */
+            set organization(value: string) {
+                this.setProperty(BusinessPartnerAsset.PROPERTY_ORGANIZATION_NAME, value);
+            }
+
             /** 映射的属性名称-已引用 */
             static PROPERTY_REFERENCED_NAME: string = "Referenced";
             /** 获取-已引用 */
             get referenced(): ibas.emYesNo {
-                return this.getProperty<ibas.emYesNo>(AssetItem.PROPERTY_REFERENCED_NAME);
+                return this.getProperty<ibas.emYesNo>(BusinessPartnerAsset.PROPERTY_REFERENCED_NAME);
             }
             /** 设置-已引用 */
             set referenced(value: ibas.emYesNo) {
-                this.setProperty(AssetItem.PROPERTY_REFERENCED_NAME, value);
+                this.setProperty(BusinessPartnerAsset.PROPERTY_REFERENCED_NAME, value);
             }
 
             /** 映射的属性名称-已删除 */
             static PROPERTY_DELETED_NAME: string = "Deleted";
             /** 获取-已删除 */
             get deleted(): ibas.emYesNo {
-                return this.getProperty<ibas.emYesNo>(AssetItem.PROPERTY_DELETED_NAME);
+                return this.getProperty<ibas.emYesNo>(BusinessPartnerAsset.PROPERTY_DELETED_NAME);
             }
             /** 设置-已删除 */
             set deleted(value: ibas.emYesNo) {
-                this.setProperty(AssetItem.PROPERTY_DELETED_NAME, value);
+                this.setProperty(BusinessPartnerAsset.PROPERTY_DELETED_NAME, value);
             }
 
             /** 映射的属性名称-业务伙伴类型 */
@@ -211,17 +266,6 @@ namespace businesspartner {
             /** 设置-资产项目 */
             set assetCode(value: string) {
                 this.setProperty(BusinessPartnerAsset.PROPERTY_ASSETCODE_NAME, value);
-            }
-
-            /** 映射的属性名称-服务码 */
-            static PROPERTY_SERVICECODE_NAME: string = "ServiceCode";
-            /** 获取-服务码 */
-            get serviceCode(): string {
-                return this.getProperty<string>(BusinessPartnerAsset.PROPERTY_SERVICECODE_NAME);
-            }
-            /** 设置-服务码 */
-            set serviceCode(value: string) {
-                this.setProperty(BusinessPartnerAsset.PROPERTY_SERVICECODE_NAME, value);
             }
 
             /** 映射的属性名称-激活 */
@@ -372,7 +416,6 @@ namespace businesspartner {
                 this.objectCode = ibas.config.applyVariables(BusinessPartnerAsset.BUSINESS_OBJECT_CODE);
                 this.businessPartnerType = emBusinessPartnerType.CUSTOMER;
                 this.activated = ibas.emYesNo.YES;
-                this.serviceCode = ibas.uuids.random();
             }
         }
 

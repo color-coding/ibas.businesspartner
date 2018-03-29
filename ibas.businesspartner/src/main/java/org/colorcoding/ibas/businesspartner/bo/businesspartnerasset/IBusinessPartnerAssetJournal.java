@@ -192,14 +192,14 @@ public interface IBusinessPartnerAssetJournal extends IBOSimple {
 	void setUpdateActionId(String value);
 
 	/**
-	 * 获取-服务码
+	 * 获取-业务伙伴资产码
 	 * 
 	 * @return 值
 	 */
 	String getServiceCode();
 
 	/**
-	 * 设置-服务码
+	 * 设置-业务伙伴资产码
 	 * 
 	 * @param value
 	 *            值

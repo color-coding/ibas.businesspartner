@@ -11,7 +11,7 @@ import org.colorcoding.ibas.bobas.logic.IBusinessLogicContract;
  */
 public interface IBusinessPartnerAssetTimesContract extends IBusinessLogicContract {
 	/**
-	 * 服务码
+	 * 业务伙伴资产码
 	 * 
 	 * @return 值
 	 */

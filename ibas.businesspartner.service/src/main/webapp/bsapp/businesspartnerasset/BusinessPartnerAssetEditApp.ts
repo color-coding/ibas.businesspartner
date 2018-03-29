@@ -211,9 +211,10 @@ namespace businesspartner {
                     onCompleted(selecteds: ibas.IList<bo.AssetItem>): void {
                         let selected: bo.AssetItem = selecteds.firstOrDefault();
                         that.editData.assetCode = selected.code;
+                        that.editData.name = selected.name;
+                        that.editData.code = ibas.uuids.random();
                         that.editData.amount = selected.faceAmount;
                         that.editData.times = selected.usingTimes;
-                        that.editData.serviceCode = ibas.uuids.random();
                     }
                 });
             }

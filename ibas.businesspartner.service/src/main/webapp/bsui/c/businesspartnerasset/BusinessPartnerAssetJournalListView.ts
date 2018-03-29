@@ -38,7 +38,7 @@ namespace businesspartner {
                         items: {
                             path: "/rows",
                             template: new sap.m.ObjectListItem("", {
-                                title: "{assetCode}",
+                                title: "{name}",
                                 number: "{times} | {amount}",
                                 markers: new sap.m.ObjectMarker("", {
                                     type: {
@@ -62,8 +62,8 @@ namespace businesspartner {
                                         text: "{businessPartnerCode}"
                                     }),
                                     new sap.m.ObjectAttribute("", {
-                                        title: ibas.i18n.prop("bo_businesspartnerasset_servicecode"),
-                                        text: "{serviceCode}"
+                                        title: ibas.i18n.prop("bo_businesspartnerasset_code"),
+                                        text: "{code}"
                                     }),
                                     new sap.m.ObjectAttribute("", {
                                         title: ibas.i18n.prop("bo_businesspartnerasset_validdate"),
@@ -217,7 +217,7 @@ namespace businesspartner {
                             condition = criteria.conditions.create();
                             condition.alias = bo.BusinessPartnerAssetJournal.PROPERTY_SERVICECODE_NAME;
                             condition.operation = ibas.emConditionOperation.EQUAL;
-                            condition.value = asset.serviceCode;
+                            condition.value = asset.code;
                             that.fireViewEvents(that.fetchBusinessPartnerAssetJournalEvent, criteria);
                             that.lastJournalCriteria = criteria;
                             that.tableAssetJournal.setFirstVisibleRow(0);

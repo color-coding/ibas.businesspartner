@@ -125,7 +125,7 @@ namespace businesspartner {
                     return;
                 }
                 let journal: bo.BusinessPartnerAssetJournal = new bo.BusinessPartnerAssetJournal();
-                journal.serviceCode = data.serviceCode;
+                journal.serviceCode = data.code;
                 let app: BusinessPartnerAssetJournalEditApp = new BusinessPartnerAssetJournalEditApp();
                 app.navigation = this.navigation;
                 app.viewShower = this.viewShower;

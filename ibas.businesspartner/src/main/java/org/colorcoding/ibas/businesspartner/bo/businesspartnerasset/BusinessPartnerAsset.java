@@ -10,6 +10,7 @@ import org.colorcoding.ibas.bobas.bo.BusinessObject;
 import org.colorcoding.ibas.bobas.core.IPropertyInfo;
 import org.colorcoding.ibas.bobas.data.DateTime;
 import org.colorcoding.ibas.bobas.data.Decimal;
+import org.colorcoding.ibas.bobas.data.emApprovalStatus;
 import org.colorcoding.ibas.bobas.data.emYesNo;
 import org.colorcoding.ibas.bobas.mapping.BOCode;
 import org.colorcoding.ibas.bobas.mapping.DbField;
@@ -56,15 +57,79 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset> i
 	public static final String BUSINESS_OBJECT_NAME = "BusinessPartnerAsset";
 
 	/**
+	 * 属性名称-编号
+	 */
+	private static final String PROPERTY_CODE_NAME = "Code";
+
+	/**
+	 * 编号 属性
+	 */
+	@DbField(name = "Code", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME, primaryKey = false)
+	public static final IPropertyInfo<String> PROPERTY_CODE = registerProperty(PROPERTY_CODE_NAME, String.class,
+			MY_CLASS);
+
+	/**
+	 * 获取-编号
+	 * 
+	 * @return 值
+	 */
+	@XmlElement(name = PROPERTY_CODE_NAME)
+	public final String getCode() {
+		return this.getProperty(PROPERTY_CODE);
+	}
+
+	/**
+	 * 设置-编号
+	 * 
+	 * @param value
+	 *            值
+	 */
+	public final void setCode(String value) {
+		this.setProperty(PROPERTY_CODE, value);
+	}
+
+	/**
+	 * 属性名称-名称
+	 */
+	private static final String PROPERTY_NAME_NAME = "Name";
+
+	/**
+	 * 名称 属性
+	 */
+	@DbField(name = "Name", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME, primaryKey = false)
+	public static final IPropertyInfo<String> PROPERTY_NAME = registerProperty(PROPERTY_NAME_NAME, String.class,
+			MY_CLASS);
+
+	/**
+	 * 获取-名称
+	 * 
+	 * @return 值
+	 */
+	@XmlElement(name = PROPERTY_NAME_NAME)
+	public final String getName() {
+		return this.getProperty(PROPERTY_NAME);
+	}
+
+	/**
+	 * 设置-名称
+	 * 
+	 * @param value
+	 *            值
+	 */
+	public final void setName(String value) {
+		this.setProperty(PROPERTY_NAME, value);
+	}
+
+	/**
 	 * 属性名称-对象编号
 	 */
-	private static final String PROPERTY_OBJECTKEY_NAME = "ObjectKey";
+	private static final String PROPERTY_DOCENTRY_NAME = "DocEntry";
 
 	/**
 	 * 对象编号 属性
 	 */
-	@DbField(name = "ObjectKey", type = DbFieldType.NUMERIC, table = DB_TABLE_NAME, primaryKey = true)
-	public static final IPropertyInfo<Integer> PROPERTY_OBJECTKEY = registerProperty(PROPERTY_OBJECTKEY_NAME,
+	@DbField(name = "DocEntry", type = DbFieldType.NUMERIC, table = DB_TABLE_NAME, primaryKey = true)
+	public static final IPropertyInfo<Integer> PROPERTY_DOCENTRY = registerProperty(PROPERTY_DOCENTRY_NAME,
 			Integer.class, MY_CLASS);
 
 	/**
@@ -72,9 +137,9 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset> i
 	 * 
 	 * @return 值
 	 */
-	@XmlElement(name = PROPERTY_OBJECTKEY_NAME)
-	public final Integer getObjectKey() {
-		return this.getProperty(PROPERTY_OBJECTKEY);
+	@XmlElement(name = PROPERTY_DOCENTRY_NAME)
+	public final Integer getDocEntry() {
+		return this.getProperty(PROPERTY_DOCENTRY);
 	}
 
 	/**
@@ -83,8 +148,8 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset> i
 	 * @param value
 	 *            值
 	 */
-	public final void setObjectKey(Integer value) {
-		this.setProperty(PROPERTY_OBJECTKEY, value);
+	public final void setDocEntry(Integer value) {
+		this.setProperty(PROPERTY_DOCENTRY, value);
 	}
 
 	/**
@@ -120,19 +185,147 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset> i
 	}
 
 	/**
-	 * 属性名称-实例号
+	 * 属性名称-创建日期
+	 */
+	private static final String PROPERTY_CREATEDATE_NAME = "CreateDate";
+
+	/**
+	 * 创建日期 属性
+	 */
+	@DbField(name = "CreateDate", type = DbFieldType.DATE, table = DB_TABLE_NAME, primaryKey = false)
+	public static final IPropertyInfo<DateTime> PROPERTY_CREATEDATE = registerProperty(PROPERTY_CREATEDATE_NAME,
+			DateTime.class, MY_CLASS);
+
+	/**
+	 * 获取-创建日期
+	 * 
+	 * @return 值
+	 */
+	@XmlElement(name = PROPERTY_CREATEDATE_NAME)
+	public final DateTime getCreateDate() {
+		return this.getProperty(PROPERTY_CREATEDATE);
+	}
+
+	/**
+	 * 设置-创建日期
+	 * 
+	 * @param value
+	 *            值
+	 */
+	public final void setCreateDate(DateTime value) {
+		this.setProperty(PROPERTY_CREATEDATE, value);
+	}
+
+	/**
+	 * 属性名称-创建时间
+	 */
+	private static final String PROPERTY_CREATETIME_NAME = "CreateTime";
+
+	/**
+	 * 创建时间 属性
+	 */
+	@DbField(name = "CreateTime", type = DbFieldType.NUMERIC, table = DB_TABLE_NAME, primaryKey = false)
+	public static final IPropertyInfo<Short> PROPERTY_CREATETIME = registerProperty(PROPERTY_CREATETIME_NAME,
+			Short.class, MY_CLASS);
+
+	/**
+	 * 获取-创建时间
+	 * 
+	 * @return 值
+	 */
+	@XmlElement(name = PROPERTY_CREATETIME_NAME)
+	public final Short getCreateTime() {
+		return this.getProperty(PROPERTY_CREATETIME);
+	}
+
+	/**
+	 * 设置-创建时间
+	 * 
+	 * @param value
+	 *            值
+	 */
+	public final void setCreateTime(Short value) {
+		this.setProperty(PROPERTY_CREATETIME, value);
+	}
+
+	/**
+	 * 属性名称-修改日期
+	 */
+	private static final String PROPERTY_UPDATEDATE_NAME = "UpdateDate";
+
+	/**
+	 * 修改日期 属性
+	 */
+	@DbField(name = "UpdateDate", type = DbFieldType.DATE, table = DB_TABLE_NAME, primaryKey = false)
+	public static final IPropertyInfo<DateTime> PROPERTY_UPDATEDATE = registerProperty(PROPERTY_UPDATEDATE_NAME,
+			DateTime.class, MY_CLASS);
+
+	/**
+	 * 获取-修改日期
+	 * 
+	 * @return 值
+	 */
+	@XmlElement(name = PROPERTY_UPDATEDATE_NAME)
+	public final DateTime getUpdateDate() {
+		return this.getProperty(PROPERTY_UPDATEDATE);
+	}
+
+	/**
+	 * 设置-修改日期
+	 * 
+	 * @param value
+	 *            值
+	 */
+	public final void setUpdateDate(DateTime value) {
+		this.setProperty(PROPERTY_UPDATEDATE, value);
+	}
+
+	/**
+	 * 属性名称-修改时间
+	 */
+	private static final String PROPERTY_UPDATETIME_NAME = "UpdateTime";
+
+	/**
+	 * 修改时间 属性
+	 */
+	@DbField(name = "UpdateTime", type = DbFieldType.NUMERIC, table = DB_TABLE_NAME, primaryKey = false)
+	public static final IPropertyInfo<Short> PROPERTY_UPDATETIME = registerProperty(PROPERTY_UPDATETIME_NAME,
+			Short.class, MY_CLASS);
+
+	/**
+	 * 获取-修改时间
+	 * 
+	 * @return 值
+	 */
+	@XmlElement(name = PROPERTY_UPDATETIME_NAME)
+	public final Short getUpdateTime() {
+		return this.getProperty(PROPERTY_UPDATETIME);
+	}
+
+	/**
+	 * 设置-修改时间
+	 * 
+	 * @param value
+	 *            值
+	 */
+	public final void setUpdateTime(Short value) {
+		this.setProperty(PROPERTY_UPDATETIME, value);
+	}
+
+	/**
+	 * 属性名称-版本
 	 */
 	private static final String PROPERTY_LOGINST_NAME = "LogInst";
 
 	/**
-	 * 实例号 属性
+	 * 版本 属性
 	 */
 	@DbField(name = "LogInst", type = DbFieldType.NUMERIC, table = DB_TABLE_NAME, primaryKey = false)
 	public static final IPropertyInfo<Integer> PROPERTY_LOGINST = registerProperty(PROPERTY_LOGINST_NAME, Integer.class,
 			MY_CLASS);
 
 	/**
-	 * 获取-实例号
+	 * 获取-版本
 	 * 
 	 * @return 值
 	 */
@@ -142,7 +335,7 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset> i
 	}
 
 	/**
-	 * 设置-实例号
+	 * 设置-版本
 	 * 
 	 * @param value
 	 *            值
@@ -216,134 +409,6 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset> i
 	}
 
 	/**
-	 * 属性名称-创建日期
-	 */
-	private static final String PROPERTY_CREATEDATE_NAME = "CreateDate";
-
-	/**
-	 * 创建日期 属性
-	 */
-	@DbField(name = "CreateDate", type = DbFieldType.DATE, table = DB_TABLE_NAME, primaryKey = false)
-	public static final IPropertyInfo<DateTime> PROPERTY_CREATEDATE = registerProperty(PROPERTY_CREATEDATE_NAME,
-			DateTime.class, MY_CLASS);
-
-	/**
-	 * 获取-创建日期
-	 * 
-	 * @return 值
-	 */
-	@XmlElement(name = PROPERTY_CREATEDATE_NAME)
-	public final DateTime getCreateDate() {
-		return this.getProperty(PROPERTY_CREATEDATE);
-	}
-
-	/**
-	 * 设置-创建日期
-	 * 
-	 * @param value
-	 *            值
-	 */
-	public final void setCreateDate(DateTime value) {
-		this.setProperty(PROPERTY_CREATEDATE, value);
-	}
-
-	/**
-	 * 属性名称-创建时间
-	 */
-	private static final String PROPERTY_CREATETIME_NAME = "CreateTime";
-
-	/**
-	 * 创建时间 属性
-	 */
-	@DbField(name = "CreateTime", type = DbFieldType.NUMERIC, table = DB_TABLE_NAME, primaryKey = false)
-	public static final IPropertyInfo<Short> PROPERTY_CREATETIME = registerProperty(PROPERTY_CREATETIME_NAME,
-			Short.class, MY_CLASS);
-
-	/**
-	 * 获取-创建时间
-	 * 
-	 * @return 值
-	 */
-	@XmlElement(name = PROPERTY_CREATETIME_NAME)
-	public final Short getCreateTime() {
-		return this.getProperty(PROPERTY_CREATETIME);
-	}
-
-	/**
-	 * 设置-创建时间
-	 * 
-	 * @param value
-	 *            值
-	 */
-	public final void setCreateTime(Short value) {
-		this.setProperty(PROPERTY_CREATETIME, value);
-	}
-
-	/**
-	 * 属性名称-更新日期
-	 */
-	private static final String PROPERTY_UPDATEDATE_NAME = "UpdateDate";
-
-	/**
-	 * 更新日期 属性
-	 */
-	@DbField(name = "UpdateDate", type = DbFieldType.DATE, table = DB_TABLE_NAME, primaryKey = false)
-	public static final IPropertyInfo<DateTime> PROPERTY_UPDATEDATE = registerProperty(PROPERTY_UPDATEDATE_NAME,
-			DateTime.class, MY_CLASS);
-
-	/**
-	 * 获取-更新日期
-	 * 
-	 * @return 值
-	 */
-	@XmlElement(name = PROPERTY_UPDATEDATE_NAME)
-	public final DateTime getUpdateDate() {
-		return this.getProperty(PROPERTY_UPDATEDATE);
-	}
-
-	/**
-	 * 设置-更新日期
-	 * 
-	 * @param value
-	 *            值
-	 */
-	public final void setUpdateDate(DateTime value) {
-		this.setProperty(PROPERTY_UPDATEDATE, value);
-	}
-
-	/**
-	 * 属性名称-更新时间
-	 */
-	private static final String PROPERTY_UPDATETIME_NAME = "UpdateTime";
-
-	/**
-	 * 更新时间 属性
-	 */
-	@DbField(name = "UpdateTime", type = DbFieldType.NUMERIC, table = DB_TABLE_NAME, primaryKey = false)
-	public static final IPropertyInfo<Short> PROPERTY_UPDATETIME = registerProperty(PROPERTY_UPDATETIME_NAME,
-			Short.class, MY_CLASS);
-
-	/**
-	 * 获取-更新时间
-	 * 
-	 * @return 值
-	 */
-	@XmlElement(name = PROPERTY_UPDATETIME_NAME)
-	public final Short getUpdateTime() {
-		return this.getProperty(PROPERTY_UPDATETIME);
-	}
-
-	/**
-	 * 设置-更新时间
-	 * 
-	 * @param value
-	 *            值
-	 */
-	public final void setUpdateTime(Short value) {
-		this.setProperty(PROPERTY_UPDATETIME, value);
-	}
-
-	/**
 	 * 属性名称-创建用户
 	 */
 	private static final String PROPERTY_CREATEUSERSIGN_NAME = "CreateUserSign";
@@ -376,19 +441,19 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset> i
 	}
 
 	/**
-	 * 属性名称-更新用户
+	 * 属性名称-修改用户
 	 */
 	private static final String PROPERTY_UPDATEUSERSIGN_NAME = "UpdateUserSign";
 
 	/**
-	 * 更新用户 属性
+	 * 修改用户 属性
 	 */
 	@DbField(name = "Updator", type = DbFieldType.NUMERIC, table = DB_TABLE_NAME, primaryKey = false)
 	public static final IPropertyInfo<Integer> PROPERTY_UPDATEUSERSIGN = registerProperty(PROPERTY_UPDATEUSERSIGN_NAME,
 			Integer.class, MY_CLASS);
 
 	/**
-	 * 获取-更新用户
+	 * 获取-修改用户
 	 * 
 	 * @return 值
 	 */
@@ -398,7 +463,7 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset> i
 	}
 
 	/**
-	 * 设置-更新用户
+	 * 设置-修改用户
 	 * 
 	 * @param value
 	 *            值
@@ -469,6 +534,102 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset> i
 	 */
 	public final void setUpdateActionId(String value) {
 		this.setProperty(PROPERTY_UPDATEACTIONID, value);
+	}
+
+	/**
+	 * 属性名称-审批状态
+	 */
+	private static final String PROPERTY_APPROVALSTATUS_NAME = "ApprovalStatus";
+
+	/**
+	 * 审批状态 属性
+	 */
+	@DbField(name = "ApvlStatus", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME, primaryKey = false)
+	public static final IPropertyInfo<emApprovalStatus> PROPERTY_APPROVALSTATUS = registerProperty(
+			PROPERTY_APPROVALSTATUS_NAME, emApprovalStatus.class, MY_CLASS);
+
+	/**
+	 * 获取-审批状态
+	 * 
+	 * @return 值
+	 */
+	@XmlElement(name = PROPERTY_APPROVALSTATUS_NAME)
+	public final emApprovalStatus getApprovalStatus() {
+		return this.getProperty(PROPERTY_APPROVALSTATUS);
+	}
+
+	/**
+	 * 设置-审批状态
+	 * 
+	 * @param value
+	 *            值
+	 */
+	public final void setApprovalStatus(emApprovalStatus value) {
+		this.setProperty(PROPERTY_APPROVALSTATUS, value);
+	}
+
+	/**
+	 * 属性名称-数据所有者
+	 */
+	private static final String PROPERTY_DATAOWNER_NAME = "DataOwner";
+
+	/**
+	 * 数据所有者 属性
+	 */
+	@DbField(name = "DataOwner", type = DbFieldType.NUMERIC, table = DB_TABLE_NAME, primaryKey = false)
+	public static final IPropertyInfo<Integer> PROPERTY_DATAOWNER = registerProperty(PROPERTY_DATAOWNER_NAME,
+			Integer.class, MY_CLASS);
+
+	/**
+	 * 获取-数据所有者
+	 * 
+	 * @return 值
+	 */
+	@XmlElement(name = PROPERTY_DATAOWNER_NAME)
+	public final Integer getDataOwner() {
+		return this.getProperty(PROPERTY_DATAOWNER);
+	}
+
+	/**
+	 * 设置-数据所有者
+	 * 
+	 * @param value
+	 *            值
+	 */
+	public final void setDataOwner(Integer value) {
+		this.setProperty(PROPERTY_DATAOWNER, value);
+	}
+
+	/**
+	 * 属性名称-数据所属组织
+	 */
+	private static final String PROPERTY_ORGANIZATION_NAME = "Organization";
+
+	/**
+	 * 数据所属组织 属性
+	 */
+	@DbField(name = "OrgCode", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME, primaryKey = false)
+	public static final IPropertyInfo<String> PROPERTY_ORGANIZATION = registerProperty(PROPERTY_ORGANIZATION_NAME,
+			String.class, MY_CLASS);
+
+	/**
+	 * 获取-数据所属组织
+	 * 
+	 * @return 值
+	 */
+	@XmlElement(name = PROPERTY_ORGANIZATION_NAME)
+	public final String getOrganization() {
+		return this.getProperty(PROPERTY_ORGANIZATION);
+	}
+
+	/**
+	 * 设置-数据所属组织
+	 * 
+	 * @param value
+	 *            值
+	 */
+	public final void setOrganization(String value) {
+		this.setProperty(PROPERTY_ORGANIZATION, value);
 	}
 
 	/**
@@ -629,38 +790,6 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset> i
 	 */
 	public final void setAssetCode(String value) {
 		this.setProperty(PROPERTY_ASSETCODE, value);
-	}
-
-	/**
-	 * 属性名称-服务码
-	 */
-	private static final String PROPERTY_SERVICECODE_NAME = "ServiceCode";
-
-	/**
-	 * 服务码 属性
-	 */
-	@DbField(name = "ServiceCode", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME, primaryKey = false)
-	public static final IPropertyInfo<String> PROPERTY_SERVICECODE = registerProperty(PROPERTY_SERVICECODE_NAME,
-			String.class, MY_CLASS);
-
-	/**
-	 * 获取-服务码
-	 * 
-	 * @return 值
-	 */
-	@XmlElement(name = PROPERTY_SERVICECODE_NAME)
-	public final String getServiceCode() {
-		return this.getProperty(PROPERTY_SERVICECODE);
-	}
-
-	/**
-	 * 设置-服务码
-	 * 
-	 * @param value
-	 *            值
-	 */
-	public final void setServiceCode(String value) {
-		this.setProperty(PROPERTY_SERVICECODE, value);
 	}
 
 	/**
@@ -1154,10 +1283,10 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset> i
 	@Override
 	protected IBusinessRule[] registerRules() {
 		return new IBusinessRule[] { // 注册的业务规则
+				new BusinessRuleRequired(PROPERTY_CODE), // 要求有值
 				new BusinessRuleRequired(PROPERTY_BUSINESSPARTNERTYPE), // 要求有值
 				new BusinessRuleRequired(PROPERTY_BUSINESSPARTNERCODE), // 要求有值
 				new BusinessRuleRequired(PROPERTY_ASSETCODE), // 要求有值
-				new BusinessRuleRequired(PROPERTY_SERVICECODE), // 要求有值
 				new BusinessRuleMinValue<Integer>(0, PROPERTY_TIMES), // 不能低于0
 		};
 	}
