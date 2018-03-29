@@ -39,7 +39,7 @@ namespace businesspartner {
                             path: "/rows",
                             template: new sap.m.ObjectListItem("", {
                                 title: "{assetCode}",
-                                number: "{times} - {amount}",
+                                number: "{times} | {amount}",
                                 markers: new sap.m.ObjectMarker("", {
                                     type: {
                                         path: "activated",
@@ -71,6 +71,7 @@ namespace businesspartner {
                                             path: "validDate",
                                             type: new sap.ui.model.type.Date("", {
                                                 pattern: "yyyy-MM-dd",
+                                                strictParsing: true,
                                             })
                                         }
                                     }),
@@ -80,6 +81,7 @@ namespace businesspartner {
                                             path: "invalidDate",
                                             type: new sap.ui.model.type.Date("", {
                                                 pattern: "yyyy-MM-dd",
+                                                strictParsing: true,
                                             })
                                         }
                                     }),
