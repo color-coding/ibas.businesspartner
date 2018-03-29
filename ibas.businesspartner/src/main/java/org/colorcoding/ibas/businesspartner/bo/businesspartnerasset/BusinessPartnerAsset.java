@@ -14,6 +14,9 @@ import org.colorcoding.ibas.bobas.data.emYesNo;
 import org.colorcoding.ibas.bobas.mapping.BOCode;
 import org.colorcoding.ibas.bobas.mapping.DbField;
 import org.colorcoding.ibas.bobas.mapping.DbFieldType;
+import org.colorcoding.ibas.bobas.rule.IBusinessRule;
+import org.colorcoding.ibas.bobas.rule.common.BusinessRuleMinValue;
+import org.colorcoding.ibas.bobas.rule.common.BusinessRuleRequired;
 import org.colorcoding.ibas.businesspartner.MyConfiguration;
 import org.colorcoding.ibas.businesspartner.data.emBusinessPartnerType;
 
@@ -1148,4 +1151,14 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset> i
 		this.setInvalidDate(DateTime.MAX_VALUE);
 	}
 
+	@Override
+	protected IBusinessRule[] registerRules() {
+		return new IBusinessRule[] { // 注册的业务规则
+				new BusinessRuleRequired(PROPERTY_BUSINESSPARTNERTYPE), // 要求有值
+				new BusinessRuleRequired(PROPERTY_BUSINESSPARTNERCODE), // 要求有值
+				new BusinessRuleRequired(PROPERTY_ASSETCODE), // 要求有值
+				new BusinessRuleRequired(PROPERTY_SERVICECODE), // 要求有值
+				new BusinessRuleMinValue<Integer>(0, PROPERTY_TIMES), // 不能低于0
+		};
+	}
 }

@@ -2,6 +2,7 @@ package org.colorcoding.ibas.businesspartner.logic;
 
 import org.colorcoding.ibas.bobas.data.Decimal;
 import org.colorcoding.ibas.bobas.logic.IBusinessLogicContract;
+import org.colorcoding.ibas.businesspartner.MyConfiguration;
 
 /**
  * 业务伙伴资产消耗契约
@@ -10,6 +11,11 @@ import org.colorcoding.ibas.bobas.logic.IBusinessLogicContract;
  *
  */
 public interface IBusinessPartnerAssetConsumptionContract extends IBusinessLogicContract {
+	/**
+	 * 资产方式标记
+	 */
+	static final String ASSET_MODE_SIGN = MyConfiguration.ASSET_MODE_INTERNAL_BP_ASSET;
+
 	/**
 	 * 服务码
 	 * 

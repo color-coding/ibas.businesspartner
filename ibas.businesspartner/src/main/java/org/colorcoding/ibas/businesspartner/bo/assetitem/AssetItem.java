@@ -15,6 +15,9 @@ import org.colorcoding.ibas.bobas.data.emYesNo;
 import org.colorcoding.ibas.bobas.mapping.BOCode;
 import org.colorcoding.ibas.bobas.mapping.DbField;
 import org.colorcoding.ibas.bobas.mapping.DbFieldType;
+import org.colorcoding.ibas.bobas.rule.IBusinessRule;
+import org.colorcoding.ibas.bobas.rule.common.BusinessRuleMinValue;
+import org.colorcoding.ibas.bobas.rule.common.BusinessRuleRequired;
 import org.colorcoding.ibas.businesspartner.MyConfiguration;
 
 /**
@@ -1113,4 +1116,16 @@ public class AssetItem extends BusinessObject<AssetItem> implements IAssetItem {
 
 	}
 
+	@Override
+	protected IBusinessRule[] registerRules() {
+		return new IBusinessRule[] { // 注册的业务规则
+				new BusinessRuleRequired(PROPERTY_CODE), // 要求有值
+				new BusinessRuleRequired(PROPERTY_NAME), // 要求有值
+				new BusinessRuleMinValue<Decimal>(Decimal.ZERO, PROPERTY_FACEAMOUNT), // 不能低于0
+				new BusinessRuleMinValue<Decimal>(Decimal.ZERO, PROPERTY_USINGDISCOUNT), // 不能低于0
+				new BusinessRuleMinValue<Decimal>(Decimal.ZERO, PROPERTY_OVERDRAFT), // 不能低于0
+				new BusinessRuleMinValue<Integer>(0, PROPERTY_USINGTIMES), // 不能低于0
+				new BusinessRuleMinValue<Integer>(0, PROPERTY_VALIDDAYS), // 不能低于0
+		};
+	}
 }
