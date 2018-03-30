@@ -7,6 +7,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 import org.colorcoding.ibas.bobas.bo.BusinessObject;
+import org.colorcoding.ibas.bobas.bo.IBOSeriesKey;
+import org.colorcoding.ibas.bobas.bo.IBOTagDeleted;
 import org.colorcoding.ibas.bobas.core.IPropertyInfo;
 import org.colorcoding.ibas.bobas.data.DateTime;
 import org.colorcoding.ibas.bobas.data.Decimal;
@@ -29,7 +31,8 @@ import org.colorcoding.ibas.businesspartner.data.emBusinessPartnerType;
 @XmlType(name = BusinessPartnerAsset.BUSINESS_OBJECT_NAME, namespace = MyConfiguration.NAMESPACE_BO)
 @XmlRootElement(name = BusinessPartnerAsset.BUSINESS_OBJECT_NAME, namespace = MyConfiguration.NAMESPACE_BO)
 @BOCode(BusinessPartnerAsset.BUSINESS_OBJECT_CODE)
-public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset> implements IBusinessPartnerAsset {
+public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset>
+		implements IBusinessPartnerAsset, IBOSeriesKey, IBOTagDeleted {
 
 	/**
 	 * 序列化版本标记
@@ -1281,6 +1284,11 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset> i
 	}
 
 	@Override
+	public void setSeriesValue(Object value) {
+		this.setCode((String) value);
+	}
+
+	@Override
 	protected IBusinessRule[] registerRules() {
 		return new IBusinessRule[] { // 注册的业务规则
 				new BusinessRuleRequired(PROPERTY_CODE), // 要求有值
@@ -1290,4 +1298,5 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset> i
 				new BusinessRuleMinValue<Integer>(0, PROPERTY_TIMES), // 不能低于0
 		};
 	}
+
 }
