@@ -31,6 +31,7 @@
     <Property Name="UsingDiscount" Description="使用时折扣" DataType="Decimal" DataSubType="Percentage" EditSize="8" Mapped="UsingDiscount"/>
     <Property Name="Overdraft" Description="透支额" DataType="Decimal" DataSubType="Sum" EditSize="8" Mapped="Overdraft"/>
     <Property Name="ValidDays" Description="有效天数" DataType="Numeric" DataSubType="Default" EditSize="8" Mapped="ValidDays"/>
+    <Property Name="Rechargeable" Description="可充值的" DataType="Alphanumeric" DataSubType="Default" EditSize="1" DeclaredType="emYesNo" Mapped="Rechargeable"/>
     <Property Name="Remarks" Description="备注" DataType="Memo" DataSubType="Default" EditSize="8" Mapped="Remarks"/>
   </Model>
   <BusinessObject MappedModel="AssetItem" ShortName="${Company}_BP_ASSETITEM"/>

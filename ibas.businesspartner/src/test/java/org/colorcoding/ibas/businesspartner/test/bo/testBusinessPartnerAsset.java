@@ -42,6 +42,7 @@ public class testBusinessPartnerAsset extends TestCase {
 		assetItem.setAmountUnit("CNY");
 		assetItem.setValidDays(10);
 		assetItem.setUsingTimes(10);
+		// assetItem.setRechargeable(emYesNo.NO); // 不可充值
 		operationResult = boRepository.saveAssetItem(assetItem);
 		assertEquals(operationResult.getMessage(), operationResult.getResultCode(), 0);
 		ICustomer customer = new SuperCustomer();

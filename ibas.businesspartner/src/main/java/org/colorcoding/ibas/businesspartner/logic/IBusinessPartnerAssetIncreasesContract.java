@@ -15,6 +15,10 @@ public interface IBusinessPartnerAssetIncreasesContract extends IBusinessLogicCo
 	 * 资产方式标记
 	 */
 	static final String ASSET_MODE_SIGN = MyConfiguration.ASSET_MODE_INTERNAL_BP_ASSET;
+	/**
+	 * 超级币种
+	 */
+	static final String POWERFUL_CURRENCY_SIGN = "_POWERFUL_";
 
 	/**
 	 * 业务伙伴资产码
@@ -36,6 +40,15 @@ public interface IBusinessPartnerAssetIncreasesContract extends IBusinessLogicCo
 	 * @return 值
 	 */
 	String getCurrency();
+
+	/**
+	 * 交易次数
+	 * 
+	 * @return 值
+	 */
+	default Integer getTimes() {
+		return 0;
+	}
 
 	/**
 	 * 基于类型

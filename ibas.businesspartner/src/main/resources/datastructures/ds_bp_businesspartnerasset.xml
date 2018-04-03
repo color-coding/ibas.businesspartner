@@ -56,6 +56,7 @@
     <Property Name="ServiceCode" Description="业务伙伴资产码" DataType="Alphanumeric" DataSubType="Default" EditSize="36" Mapped="ServiceCode"/>
     <Property Name="Direction" Description="方向" DataType="Alphanumeric" DataSubType="Default" EditSize="1" DeclaredType="emDirection" Mapped="Direction"/>
     <Property Name="Amount" Description="交易量" DataType="Decimal" DataSubType="Sum" EditSize="8" Mapped="Amount"/>
+    <Property Name="Times" Description="交易次数" DataType="Numeric" DataSubType="Default" EditSize="8" Mapped="Times"/>
     <Property Name="BaseDocumentType" Description="基于类型" DataType="Alphanumeric" DataSubType="Default" EditSize="30" Mapped="BaseType"/>
     <Property Name="BaseDocumentEntry" Description="基于标识" DataType="Numeric" DataSubType="Default" EditSize="8" Mapped="BaseEntry"/>
     <Property Name="BaseDocumentLineId" Description="基于行号" DataType="Numeric" DataSubType="Default" EditSize="8" Mapped="BaseLine"/>

@@ -175,6 +175,14 @@ namespace businesspartner {
                                     path: "amount",
                                 })
                             }),
+                            new sap.ui.table.Column("", {
+                                label: ibas.i18n.prop("bo_businesspartnerassetjournal_times"),
+                                template: new sap.m.Text("", {
+                                    wrapping: false
+                                }).bindProperty("text", {
+                                    path: "times",
+                                })
+                            }),
                         ]
                     });
                     // 添加列表自动查询事件

@@ -1076,6 +1076,38 @@ public class AssetItem extends BusinessObject<AssetItem> implements IAssetItem, 
 	}
 
 	/**
+	 * 属性名称-可充值的
+	 */
+	private static final String PROPERTY_RECHARGEABLE_NAME = "Rechargeable";
+
+	/**
+	 * 可充值的 属性
+	 */
+	@DbField(name = "Rechargeable", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME, primaryKey = false)
+	public static final IPropertyInfo<emYesNo> PROPERTY_RECHARGEABLE = registerProperty(PROPERTY_RECHARGEABLE_NAME,
+			emYesNo.class, MY_CLASS);
+
+	/**
+	 * 获取-可充值的
+	 * 
+	 * @return 值
+	 */
+	@XmlElement(name = PROPERTY_RECHARGEABLE_NAME)
+	public final emYesNo getRechargeable() {
+		return this.getProperty(PROPERTY_RECHARGEABLE);
+	}
+
+	/**
+	 * 设置-可充值的
+	 * 
+	 * @param value
+	 *            值
+	 */
+	public final void setRechargeable(emYesNo value) {
+		this.setProperty(PROPERTY_RECHARGEABLE, value);
+	}
+
+	/**
 	 * 属性名称-备注
 	 */
 	private static final String PROPERTY_REMARKS_NAME = "Remarks";
@@ -1107,6 +1139,11 @@ public class AssetItem extends BusinessObject<AssetItem> implements IAssetItem, 
 		this.setProperty(PROPERTY_REMARKS, value);
 	}
 
+	@Override
+	public void setSeriesValue(Object value) {
+		this.setCode((String) value);
+	}
+
 	/**
 	 * 初始化数据
 	 */
@@ -1115,12 +1152,7 @@ public class AssetItem extends BusinessObject<AssetItem> implements IAssetItem, 
 		super.initialize();// 基类初始化，不可去除
 		this.setObjectCode(MyConfiguration.applyVariables(BUSINESS_OBJECT_CODE));
 		this.setActivated(emYesNo.YES);
-
-	}
-
-	@Override
-	public void setSeriesValue(Object value) {
-		this.setCode((String) value);
+		this.setRechargeable(emYesNo.YES);
 	}
 
 	@Override

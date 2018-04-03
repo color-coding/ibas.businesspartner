@@ -98,6 +98,13 @@ namespace businesspartner {
                             }).bindProperty("value", {
                                 path: "validDays"
                             }),
+                            new sap.m.Label("", { text: ibas.i18n.prop("bo_assetitem_rechargeable") }),
+                            new sap.m.Select("", {
+                                items: openui5.utils.createComboBoxItems(ibas.emYesNo)
+                            }).bindProperty("selectedKey", {
+                                path: "rechargeable",
+                                type: "sap.ui.model.type.Integer"
+                            }),
                         ]
                     });
                     this.layoutMain = new sap.ui.layout.VerticalLayout("", {

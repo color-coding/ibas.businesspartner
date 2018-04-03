@@ -1,6 +1,7 @@
 package org.colorcoding.ibas.businesspartner.logic;
 
 import org.colorcoding.ibas.bobas.data.DateTime;
+import org.colorcoding.ibas.bobas.data.Decimal;
 import org.colorcoding.ibas.bobas.data.emDirection;
 import org.colorcoding.ibas.bobas.data.emYesNo;
 import org.colorcoding.ibas.bobas.i18n.I18N;
@@ -13,17 +14,17 @@ import org.colorcoding.ibas.businesspartner.bo.supplier.ISupplier;
 import org.colorcoding.ibas.businesspartner.data.emBusinessPartnerType;
 
 /**
- * 业务伙伴资产，剩余价值服务
+ * 业务伙伴资产，剩余量服务
  * 
  * @author Niuren.Zhu
  *
  */
-@LogicContract(IBusinessPartnerAssetTimesContract.class)
-public class BusinessPartnerAssetTimesService
-		extends BusinessPartnerAssetLogic<IBusinessPartnerAssetTimesContract, IBusinessPartnerAsset> {
+@LogicContract(IBusinessPartnerAssetTradeContract.class)
+public class BusinessPartnerAssetTradeService
+		extends BusinessPartnerAssetLogic<IBusinessPartnerAssetTradeContract, IBusinessPartnerAsset> {
 
 	@Override
-	protected IBusinessPartnerAsset fetchBeAffected(IBusinessPartnerAssetTimesContract contract) {
+	protected IBusinessPartnerAsset fetchBeAffected(IBusinessPartnerAssetTradeContract contract) {
 		// 检查业务伙伴资产状态
 		IBusinessPartnerAsset businessPartnerAsset = this.checkBusinessPartnerAsset(contract.getServiceCode());
 		if (businessPartnerAsset.getDeleted() == emYesNo.YES || businessPartnerAsset.getActivated() == emYesNo.NO) {
@@ -59,26 +60,71 @@ public class BusinessPartnerAssetTimesService
 	}
 
 	@Override
-	protected void impact(IBusinessPartnerAssetTimesContract contract) {
+	protected void impact(IBusinessPartnerAssetTradeContract contract) {
 		if (contract.getDirection() == emDirection.IN) {
-			this.getBeAffected().setTimes(this.getBeAffected().getTimes() + contract.getTimes());
+			// 检查资产项目是否允许充值
+			IAssetItem assetItem = this.checkAssetItem(this.getBeAffected().getAssetCode());
+			if (assetItem.getRechargeable() != emYesNo.YES) {
+				throw new BusinessLogicException(
+						String.format(I18N.prop("msg_bp_businesspartnerasset_not_allowed_recharge"),
+								this.getBeAffected().getBusinessPartnerCode(), this.getBeAffected().getName()));
+			}
+			// 增加量
+			Decimal amount = this.getBeAffected().getAmount();
+			amount = amount.add(contract.getAmount());
+			this.getBeAffected().setAmount(amount);
+			// 增加次数
+			Integer times = this.getBeAffected().getTimes();
+			times = times + contract.getTimes();
+			this.getBeAffected().setTimes(times);
 		} else if (contract.getDirection() == emDirection.OUT) {
-			this.getBeAffected().setTimes(this.getBeAffected().getTimes() - contract.getTimes());
-			if (this.getBeAffected().getTimes() < 0) {
+			// 减少量
+			Decimal amount = this.getBeAffected().getAmount();
+			amount = amount.subtract(contract.getAmount());
+			if (amount.compareTo(Decimal.ZERO) < 0) {
+				// 剩余价值，小于0，检查是否允许透支
+				IAssetItem assetItem = this.checkAssetItem(this.getBeAffected().getAssetCode());
+				if (amount.abs().compareTo(assetItem.getOverdraft()) > 0) {
+					throw new BusinessLogicException(
+							String.format(I18N.prop("msg_bp_businesspartnerasset_exceeding_overdraft_range"),
+									this.getBeAffected().getBusinessPartnerCode(), this.getBeAffected().getName(),
+									assetItem.getOverdraft()));
+				}
+			}
+			this.getBeAffected().setAmount(amount);
+			// 减少次数
+			Integer times = this.getBeAffected().getTimes();
+			times = times - contract.getTimes();
+			if (times < 0) {
 				IAssetItem assetItem = this.checkAssetItem(this.getBeAffected().getAssetCode());
 				throw new BusinessLogicException(String.format(I18N.prop("msg_bp_businesspartnerasset_exceeding_times"),
 						this.getBeAffected().getBusinessPartnerCode(), this.getBeAffected().getAssetCode(),
 						assetItem.getUsingTimes()));
 			}
+			this.getBeAffected().setTimes(times);
 		}
 	}
 
 	@Override
-	protected void revoke(IBusinessPartnerAssetTimesContract contract) {
+	protected void revoke(IBusinessPartnerAssetTradeContract contract) {
 		if (contract.getDirection() == emDirection.IN) {
-			this.getBeAffected().setTimes(this.getBeAffected().getTimes() - contract.getTimes());
+			// 减少量
+			Decimal amount = this.getBeAffected().getAmount();
+			amount = amount.subtract(contract.getAmount());
+			this.getBeAffected().setAmount(amount);
+			// 减少次数
+			Integer times = this.getBeAffected().getTimes();
+			times = times - contract.getTimes();
+			this.getBeAffected().setTimes(times);
 		} else if (contract.getDirection() == emDirection.OUT) {
-			this.getBeAffected().setTimes(this.getBeAffected().getTimes() + contract.getTimes());
+			// 增加量
+			Decimal amount = this.getBeAffected().getAmount();
+			amount = amount.add(contract.getAmount());
+			this.getBeAffected().setAmount(amount);
+			// 增加次数
+			Integer times = this.getBeAffected().getTimes();
+			times = times + contract.getTimes();
+			this.getBeAffected().setTimes(times);
 		}
 	}
 

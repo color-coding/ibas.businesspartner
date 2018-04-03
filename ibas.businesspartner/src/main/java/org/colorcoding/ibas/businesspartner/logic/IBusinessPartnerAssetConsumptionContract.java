@@ -38,6 +38,15 @@ public interface IBusinessPartnerAssetConsumptionContract extends IBusinessLogic
 	String getCurrency();
 
 	/**
+	 * 交易次数
+	 * 
+	 * @return 值
+	 */
+	default Integer getTimes() {
+		return 1;
+	}
+
+	/**
 	 * 基于类型
 	 * 
 	 * @return 值

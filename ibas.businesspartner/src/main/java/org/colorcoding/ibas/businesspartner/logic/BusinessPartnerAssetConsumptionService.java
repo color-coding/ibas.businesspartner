@@ -89,6 +89,7 @@ public class BusinessPartnerAssetConsumptionService
 	@Override
 	protected void impact(IBusinessPartnerAssetConsumptionContract contract) {
 		this.getBeAffected().setAmount(contract.getAmount());
+		this.getBeAffected().setTimes(contract.getTimes());
 		if (this.getBeAffected().isDeleted()) {
 			this.getBeAffected().undelete();
 		}

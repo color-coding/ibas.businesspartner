@@ -126,6 +126,9 @@ namespace businesspartner {
                 }
                 let journal: bo.BusinessPartnerAssetJournal = new bo.BusinessPartnerAssetJournal();
                 journal.serviceCode = data.code;
+                journal.baseDocumentType = "_MANUAL_";
+                journal.baseDocumentEntry = parseInt(ibas.dates.toString(ibas.dates.now(), "yyyyMMdd"), 0);
+                journal.baseDocumentLineId = parseInt(ibas.dates.toString(ibas.dates.now(), "HHmmss"), 0);
                 let app: BusinessPartnerAssetJournalEditApp = new BusinessPartnerAssetJournalEditApp();
                 app.navigation = this.navigation;
                 app.viewShower = this.viewShower;

@@ -37,23 +37,12 @@ namespace businesspartner {
                                 type: sap.m.InputType.Text
                             }).bindProperty("value", {
                                 path: "amount"
-                            }), new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnerassetjournal_basedocumenttype") }),
-                            new sap.m.Input("", {
-                                type: sap.m.InputType.Text,
-                            }).bindProperty("value", {
-                                path: "baseDocumentType"
                             }),
-                            new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnerassetjournal_basedocumententry") }),
+                            new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnerassetjournal_times") }),
                             new sap.m.Input("", {
-                                type: sap.m.InputType.Text,
+                                type: sap.m.InputType.Text
                             }).bindProperty("value", {
-                                path: "baseDocumentEntry"
-                            }),
-                            new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnerassetjournal_basedocumentlineid") }),
-                            new sap.m.Input("", {
-                                type: sap.m.InputType.Text,
-                            }).bindProperty("value", {
-                                path: "baseDocumentLineId"
+                                path: "times"
                             }),
                         ]
                     });

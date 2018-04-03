@@ -13,79 +13,87 @@ public class SuperContactPerson extends ContactPerson implements IBusinessLogics
 
 	@Override
 	public IBusinessLogicContract[] getContracts() {
-		return new IBusinessLogicContract[] { new IBusinessPartnerAssetIncreasesContract() {
+		return new IBusinessLogicContract[] {
 
-			@Override
-			public String getIdentifiers() {
-				return SuperContactPerson.this.getIdentifiers();
-			}
+				new IBusinessPartnerAssetIncreasesContract() {
 
-			@Override
-			public String getServiceCode() {
-				return SuperContactPerson.this.getName();
-			}
+					@Override
+					public String getIdentifiers() {
+						return SuperContactPerson.this.getIdentifiers();
+					}
 
-			@Override
-			public String getCurrency() {
-				return null;
-			}
+					@Override
+					public String getServiceCode() {
+						return SuperContactPerson.this.getName();
+					}
 
-			@Override
-			public String getBaseDocumentType() {
-				return SuperContactPerson.this.getObjectCode();
-			}
+					@Override
+					public String getCurrency() {
+						return "CNY";
+					}
 
-			@Override
-			public Integer getBaseDocumentEntry() {
-				return SuperContactPerson.this.getObjectKey();
-			}
+					@Override
+					public String getBaseDocumentType() {
+						return SuperContactPerson.this.getObjectCode();
+					}
 
-			@Override
-			public Integer getBaseDocumentLineId() {
-				return -1;
-			}
+					@Override
+					public Integer getBaseDocumentEntry() {
+						return SuperContactPerson.this.getObjectKey();
+					}
 
-			@Override
-			public Decimal getAmount() {
-				return new Decimal(10);
-			}
-		}, new IBusinessPartnerAssetConsumptionContract() {
+					@Override
+					public Integer getBaseDocumentLineId() {
+						return -1;
+					}
 
-			@Override
-			public String getIdentifiers() {
-				return SuperContactPerson.this.getIdentifiers();
-			}
+					@Override
+					public Decimal getAmount() {
+						return new Decimal(10);
+					}
 
-			@Override
-			public String getServiceCode() {
-				return SuperContactPerson.this.getName();
-			}
+				},
 
-			@Override
-			public String getCurrency() {
-				return null;
-			}
+				new IBusinessPartnerAssetConsumptionContract() {
 
-			@Override
-			public String getBaseDocumentType() {
-				return SuperContactPerson.this.getObjectCode();
-			}
+					@Override
+					public String getIdentifiers() {
+						return SuperContactPerson.this.getIdentifiers();
+					}
 
-			@Override
-			public Integer getBaseDocumentEntry() {
-				return SuperContactPerson.this.getObjectKey();
-			}
+					@Override
+					public String getServiceCode() {
+						return SuperContactPerson.this.getName();
+					}
 
-			@Override
-			public Integer getBaseDocumentLineId() {
-				return -1;
-			}
+					@Override
+					public String getCurrency() {
+						return "CNY";
+					}
 
-			@Override
-			public Decimal getAmount() {
-				return new Decimal(20);
-			}
-		} };
+					@Override
+					public String getBaseDocumentType() {
+						return SuperContactPerson.this.getObjectCode();
+					}
+
+					@Override
+					public Integer getBaseDocumentEntry() {
+						return SuperContactPerson.this.getObjectKey();
+					}
+
+					@Override
+					public Integer getBaseDocumentLineId() {
+						return -1;
+					}
+
+					@Override
+					public Decimal getAmount() {
+						return new Decimal(20);
+					}
+
+				}
+
+		};
 	}
 
 }

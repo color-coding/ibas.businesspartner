@@ -63,6 +63,7 @@
         "bo_assetitem_usingdiscount": "使用时折扣",
         "bo_assetitem_overdraft": "透支额",
         "bo_assetitem_validdays": "有效天数",
+        "bo_assetitem_rechargeable": "可充值的",
         "bo_assetitem_remarks": "备注",
         "bo_assetitem_closing_delimiter": "----结束----"
     },
@@ -123,6 +124,7 @@
         "bo_businesspartnerassetjournal_servicecode": "业务伙伴资产码",
         "bo_businesspartnerassetjournal_direction": "方向",
         "bo_businesspartnerassetjournal_amount": "交易量",
+        "bo_businesspartnerassetjournal_times": "交易次数",
         "bo_businesspartnerassetjournal_basedocumenttype": "基于类型",
         "bo_businesspartnerassetjournal_basedocumententry": "基于标识",
         "bo_businesspartnerassetjournal_basedocumentlineid": "基于行号",

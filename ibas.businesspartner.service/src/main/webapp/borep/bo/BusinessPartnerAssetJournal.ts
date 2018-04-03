@@ -180,6 +180,17 @@ namespace businesspartner {
                 this.setProperty(BusinessPartnerAssetJournal.PROPERTY_AMOUNT_NAME, value);
             }
 
+            /** 映射的属性名称-交易次数 */
+            static PROPERTY_TIMES_NAME: string = "Times";
+            /** 获取-交易次数 */
+            get times(): number {
+                return this.getProperty<number>(BusinessPartnerAsset.PROPERTY_TIMES_NAME);
+            }
+            /** 设置-交易次数 */
+            set times(value: number) {
+                this.setProperty(BusinessPartnerAsset.PROPERTY_TIMES_NAME, value);
+            }
+
             /** 映射的属性名称-基于类型 */
             static PROPERTY_BASEDOCUMENTTYPE_NAME: string = "BaseDocumentType";
             /** 获取-基于类型 */
@@ -216,9 +227,22 @@ namespace businesspartner {
             /** 初始化数据 */
             protected init(): void {
                 this.objectCode = ibas.config.applyVariables(BusinessPartnerAssetJournal.BUSINESS_OBJECT_CODE);
+                this.direction = ibas.emDirection.OUT;
+                this.amount = 0;
+            }
+
+            /** 属性改变时 */
+            protected onPropertyChanged(name: string): void {
+                if (ibas.strings.equalsIgnoreCase(BusinessPartnerAssetJournal.PROPERTY_DIRECTION_NAME, name)) {
+                    if (this.direction === ibas.emDirection.OUT) {
+                        this.times = 1;
+                    }
+                    if (this.direction === ibas.emDirection.IN) {
+                        this.times = 0;
+                    }
+                }
             }
         }
-
 
     }
 }

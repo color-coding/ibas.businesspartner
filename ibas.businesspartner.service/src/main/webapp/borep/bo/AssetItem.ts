@@ -334,6 +334,17 @@ namespace businesspartner {
                 this.setProperty(AssetItem.PROPERTY_VALIDDAYS_NAME, value);
             }
 
+            /** 映射的属性名称-可充值的 */
+            static PROPERTY_RECHARGEABLE_NAME: string = "Rechargeable";
+            /** 获取-可充值的 */
+            get rechargeable(): ibas.emYesNo {
+                return this.getProperty<ibas.emYesNo>(AssetItem.PROPERTY_RECHARGEABLE_NAME);
+            }
+            /** 设置-可充值的 */
+            set rechargeable(value: ibas.emYesNo) {
+                this.setProperty(AssetItem.PROPERTY_RECHARGEABLE_NAME, value);
+            }
+
             /** 映射的属性名称-备注 */
             static PROPERTY_REMARKS_NAME: string = "Remarks";
             /** 获取-备注 */
@@ -349,6 +360,7 @@ namespace businesspartner {
             protected init(): void {
                 this.objectCode = ibas.config.applyVariables(AssetItem.BUSINESS_OBJECT_CODE);
                 this.amountUnit = ibas.config.get(ibas.CONFIG_ITEM_DEFAULT_CURRENCY);
+                this.rechargeable = ibas.emYesNo.YES;
                 this.usingTimes = 9999;
             }
         }

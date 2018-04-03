@@ -261,6 +261,21 @@ public interface IBusinessPartnerAssetJournal extends IBOSimple {
 	void setAmount(double value);
 
 	/**
+	 * 获取-交易次数
+	 * 
+	 * @return 值
+	 */
+	Integer getTimes();
+
+	/**
+	 * 设置-交易次数
+	 * 
+	 * @param value
+	 *            值
+	 */
+	void setTimes(Integer value);
+
+	/**
 	 * 获取-基于类型
 	 * 
 	 * @return 值

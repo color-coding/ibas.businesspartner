@@ -273,7 +273,7 @@ namespace businesspartner {
                     return;
                 }
                 let person: bo.ContactPerson = new bo.ContactPerson();
-                person.ownerType = bo.emBusinessPartnerType.SUPPLIER;
+                person.ownerType = bo.emBusinessPartnerType.CUSTOMER;
                 person.businessPartner = this.editData.code;
                 let app: ContactPersonEditApp = new ContactPersonEditApp();
                 app.navigation = this.navigation;
@@ -290,7 +290,7 @@ namespace businesspartner {
                     return;
                 }
                 let address: bo.Address = new bo.Address();
-                address.ownerType = bo.emBusinessPartnerType.SUPPLIER;
+                address.ownerType = bo.emBusinessPartnerType.CUSTOMER;
                 address.businessPartner = this.editData.code;
                 let app: AddressEditApp = new AddressEditApp();
                 app.navigation = this.navigation;

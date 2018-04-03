@@ -1,8 +1,5 @@
 package org.colorcoding.ibas.businesspartner.bo.businesspartnerasset;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -23,8 +20,7 @@ import org.colorcoding.ibas.bobas.rule.IBusinessRule;
 import org.colorcoding.ibas.bobas.rule.common.BusinessRuleMinValue;
 import org.colorcoding.ibas.bobas.rule.common.BusinessRuleRequired;
 import org.colorcoding.ibas.businesspartner.MyConfiguration;
-import org.colorcoding.ibas.businesspartner.logic.IBusinessPartnerAssetAmountContract;
-import org.colorcoding.ibas.businesspartner.logic.IBusinessPartnerAssetTimesContract;
+import org.colorcoding.ibas.businesspartner.logic.IBusinessPartnerAssetTradeContract;
 
 /**
  * 业务伙伴资产日记账
@@ -573,6 +569,38 @@ public class BusinessPartnerAssetJournal extends BusinessObject<BusinessPartnerA
 	}
 
 	/**
+	 * 属性名称-交易次数
+	 */
+	private static final String PROPERTY_TIMES_NAME = "Times";
+
+	/**
+	 * 交易次数 属性
+	 */
+	@DbField(name = "Times", type = DbFieldType.NUMERIC, table = DB_TABLE_NAME, primaryKey = false)
+	public static final IPropertyInfo<Integer> PROPERTY_TIMES = registerProperty(PROPERTY_TIMES_NAME, Integer.class,
+			MY_CLASS);
+
+	/**
+	 * 获取-交易次数
+	 * 
+	 * @return 值
+	 */
+	@XmlElement(name = PROPERTY_TIMES_NAME)
+	public final Integer getTimes() {
+		return this.getProperty(PROPERTY_TIMES);
+	}
+
+	/**
+	 * 设置-交易次数
+	 * 
+	 * @param value
+	 *            值
+	 */
+	public final void setTimes(Integer value) {
+		this.setProperty(PROPERTY_TIMES, value);
+	}
+
+	/**
 	 * 属性名称-基于类型
 	 */
 	private static final String PROPERTY_BASEDOCUMENTTYPE_NAME = "BaseDocumentType";
@@ -688,55 +716,37 @@ public class BusinessPartnerAssetJournal extends BusinessObject<BusinessPartnerA
 
 	@Override
 	public IBusinessLogicContract[] getContracts() {
-		List<IBusinessLogicContract> contracts = new ArrayList<>(2);
-		contracts.add(new IBusinessPartnerAssetAmountContract() {
+		return new IBusinessLogicContract[] {
 
-			@Override
-			public String getIdentifiers() {
-				return BusinessPartnerAssetJournal.this.getIdentifiers();
-			}
+				new IBusinessPartnerAssetTradeContract() {
 
-			@Override
-			public String getServiceCode() {
-				return BusinessPartnerAssetJournal.this.getServiceCode();
-			}
+					@Override
+					public String getIdentifiers() {
+						return BusinessPartnerAssetJournal.this.getIdentifiers();
+					}
 
-			@Override
-			public emDirection getDirection() {
-				return BusinessPartnerAssetJournal.this.getDirection();
-			}
+					@Override
+					public String getServiceCode() {
+						return BusinessPartnerAssetJournal.this.getServiceCode();
+					}
 
-			@Override
-			public Decimal getAmount() {
-				return BusinessPartnerAssetJournal.this.getAmount();
-			}
-		});
-		// 仅消耗时，认为一次
-		if (this.getDirection() == emDirection.OUT) {
-			contracts.add(new IBusinessPartnerAssetTimesContract() {
+					@Override
+					public emDirection getDirection() {
+						return BusinessPartnerAssetJournal.this.getDirection();
+					}
 
-				@Override
-				public String getIdentifiers() {
-					return BusinessPartnerAssetJournal.this.getIdentifiers();
+					@Override
+					public Decimal getAmount() {
+						return BusinessPartnerAssetJournal.this.getAmount();
+					}
+
+					@Override
+					public Integer getTimes() {
+						return BusinessPartnerAssetJournal.this.getTimes();
+					}
 				}
 
-				@Override
-				public String getServiceCode() {
-					return BusinessPartnerAssetJournal.this.getServiceCode();
-				}
-
-				@Override
-				public emDirection getDirection() {
-					return BusinessPartnerAssetJournal.this.getDirection();
-				}
-
-				@Override
-				public Integer getTimes() {
-					return 1;
-				}
-			});
-		}
-		return contracts.toArray(new IBusinessLogicContract[] {});
+		};
 	}
 
 }
