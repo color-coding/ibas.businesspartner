@@ -84,11 +84,20 @@ public class BusinessPartnerAssetTradeService
 			if (amount.compareTo(Decimal.ZERO) < 0) {
 				// 剩余价值，小于0，检查是否允许透支
 				IAssetItem assetItem = this.checkAssetItem(this.getBeAffected().getAssetCode());
-				if (amount.abs().compareTo(assetItem.getOverdraft()) > 0) {
+				if (assetItem.getOverdraft().isZero()) {
+					// 不允许透支
 					throw new BusinessLogicException(
-							String.format(I18N.prop("msg_bp_businesspartnerasset_exceeding_overdraft_range"),
+							String.format(I18N.prop("msg_bp_businesspartnerasset_exceeding_amount"),
 									this.getBeAffected().getBusinessPartnerCode(), this.getBeAffected().getName(),
-									assetItem.getOverdraft()));
+									this.getBeAffected().getAmount()));
+				} else {
+					// 设置了透支
+					if (amount.abs().compareTo(assetItem.getOverdraft()) > 0) {
+						throw new BusinessLogicException(
+								String.format(I18N.prop("msg_bp_businesspartnerasset_exceeding_overdraft_range"),
+										this.getBeAffected().getBusinessPartnerCode(), this.getBeAffected().getName(),
+										assetItem.getOverdraft()));
+					}
 				}
 			}
 			this.getBeAffected().setAmount(amount);
