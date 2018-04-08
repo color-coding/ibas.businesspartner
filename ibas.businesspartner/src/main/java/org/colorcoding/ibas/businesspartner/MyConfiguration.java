@@ -35,15 +35,15 @@ public class MyConfiguration extends org.colorcoding.ibas.bobas.MyConfiguration 
 	public static final String CONFIG_ITEM_BUSINESSPARTNER_FILE_FOLDER = "BPFileFolder";
 
 	/**
-	 * 资产方式-业务伙伴资产
+	 * 交易方式-业务伙伴资产
 	 */
-	public static final String ASSET_MODE_INTERNAL_BP_ASSET = "AINT_BP0";
+	public static final String TRADING_MODE_BP_ASSET = "TM_BPAS";
 	/**
-	 * 资产方式-现金
+	 * 交易方式-现金
 	 */
-	public static final String ASSET_MODE_EXTERNAL_CASH = "AEXT_CAS";
+	public static final String TRADING_MODE_CASH = "TM_CASH";
 	/**
-	 * 资产方式-银行
+	 * 交易方式-银行
 	 */
-	public static final String ASSET_MODE_EXTERNAL_BANK = "AEXT_BAK";
+	public static final String TRADING_MODE_BANK = "TM_BANK";
 }

@@ -14,7 +14,7 @@ public interface IBusinessPartnerAssetIncreasesContract extends IBusinessLogicCo
 	/**
 	 * 资产方式标记
 	 */
-	static final String ASSET_MODE_SIGN = MyConfiguration.ASSET_MODE_INTERNAL_BP_ASSET;
+	static final String ASSET_MODE_SIGN = MyConfiguration.TRADING_MODE_BP_ASSET;
 	/**
 	 * 超级币种
 	 */
