@@ -11,6 +11,7 @@ import org.colorcoding.ibas.businesspartner.bo.businesspartnergroup.IBusinessPar
 import org.colorcoding.ibas.businesspartner.bo.contactperson.IContactPerson;
 import org.colorcoding.ibas.businesspartner.bo.customer.ICustomer;
 import org.colorcoding.ibas.businesspartner.bo.supplier.ISupplier;
+import org.colorcoding.ibas.businesspartner.data.AssetRequest;
 
 /**
  * BusinessPartner仓库应用
@@ -171,4 +172,13 @@ public interface IBORepositoryBusinessPartnerApp extends IBORepositoryApplicatio
 
 	// --------------------------------------------------------------------------------------------//
 
+	/**
+	 * 查询-客户资产
+	 * 
+	 * @param request
+	 *            请求
+	 * @return 操作结果
+	 */
+	IOperationResult<IBusinessPartnerAsset> fetchCustomerAsset(AssetRequest request);
+	// --------------------------------------------------------------------------------------------//
 }

@@ -17,6 +17,7 @@ import org.colorcoding.ibas.businesspartner.bo.businesspartnergroup.BusinessPart
 import org.colorcoding.ibas.businesspartner.bo.contactperson.ContactPerson;
 import org.colorcoding.ibas.businesspartner.bo.customer.Customer;
 import org.colorcoding.ibas.businesspartner.bo.supplier.Supplier;
+import org.colorcoding.ibas.businesspartner.data.AssetRequest;
 import org.colorcoding.ibas.businesspartner.repository.BORepositoryBusinessPartner;
 
 /**
@@ -309,7 +310,25 @@ public class DataService extends BORepositoryBusinessPartner {
 			@QueryParam("token") String token) {
 		return super.saveBusinessPartnerAssetJournal(bo, token);
 	}
+	// --------------------------------------------------------------------------------------------//
 
+	/**
+	 * 查询-客户资产
+	 * 
+	 * @param request
+	 *            请求
+	 * @param token
+	 *            口令
+	 * @return 操作结果
+	 */
+	@POST
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Path("fetchCustomerAsset")
+	public OperationResult<BusinessPartnerAsset> fetchCustomerAsset(AssetRequest request,
+			@QueryParam("token") String token) {
+		return super.fetchCustomerAsset(request, token);
+	}
 	// --------------------------------------------------------------------------------------------//
 
 }

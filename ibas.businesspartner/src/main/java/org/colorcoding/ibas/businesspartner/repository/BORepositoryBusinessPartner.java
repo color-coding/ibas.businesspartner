@@ -1,8 +1,16 @@
 package org.colorcoding.ibas.businesspartner.repository;
 
+import org.colorcoding.ibas.bobas.common.ConditionOperation;
+import org.colorcoding.ibas.bobas.common.ConditionRelationship;
+import org.colorcoding.ibas.bobas.common.Criteria;
+import org.colorcoding.ibas.bobas.common.ICondition;
 import org.colorcoding.ibas.bobas.common.ICriteria;
 import org.colorcoding.ibas.bobas.common.IOperationResult;
 import org.colorcoding.ibas.bobas.common.OperationResult;
+import org.colorcoding.ibas.bobas.data.DateTime;
+import org.colorcoding.ibas.bobas.data.Decimal;
+import org.colorcoding.ibas.bobas.data.emYesNo;
+import org.colorcoding.ibas.bobas.i18n.I18N;
 import org.colorcoding.ibas.bobas.repository.BORepositoryServiceApplication;
 import org.colorcoding.ibas.businesspartner.bo.address.Address;
 import org.colorcoding.ibas.businesspartner.bo.address.IAddress;
@@ -20,6 +28,8 @@ import org.colorcoding.ibas.businesspartner.bo.customer.Customer;
 import org.colorcoding.ibas.businesspartner.bo.customer.ICustomer;
 import org.colorcoding.ibas.businesspartner.bo.supplier.ISupplier;
 import org.colorcoding.ibas.businesspartner.bo.supplier.Supplier;
+import org.colorcoding.ibas.businesspartner.data.AssetRequest;
+import org.colorcoding.ibas.businesspartner.data.emBusinessPartnerType;
 
 /**
  * BusinessPartner仓库
@@ -425,6 +435,128 @@ public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 			IBusinessPartnerAssetJournal bo) {
 		return new OperationResult<IBusinessPartnerAssetJournal>(
 				this.saveBusinessPartnerAssetJournal((BusinessPartnerAssetJournal) bo, this.getUserToken()));
+	}
+
+	// --------------------------------------------------------------------------------------------//
+	@Override
+	public IOperationResult<IBusinessPartnerAsset> fetchCustomerAsset(AssetRequest request) {
+		return new OperationResult<IBusinessPartnerAsset>(this.fetchCustomerAsset(request, this.getUserToken()));
+	}
+
+	@Override
+	public OperationResult<BusinessPartnerAsset> fetchCustomerAsset(AssetRequest request, String token) {
+		try {
+			this.setCurrentUser(token);
+			if (request == null) {
+				throw new Exception(I18N.prop("msg_bobas_invalid_data"));
+			}
+			if (request.getBusinessPartner() == null || request.getBusinessPartner().isEmpty()) {
+				throw new Exception(I18N.prop("msg_bobas_invalid_data"));
+			}
+			// 查询客户
+			ICriteria criteria = new Criteria();
+			ICondition condition = criteria.getConditions().create();
+			condition.setAlias(Customer.PROPERTY_CODE.getName());
+			condition.setValue(request.getBusinessPartner());
+			condition = criteria.getConditions().create();
+			condition.setAlias(Customer.PROPERTY_ACTIVATED.getName());
+			condition.setValue(emYesNo.YES);
+			condition = criteria.getConditions().create();
+			condition.setAlias(Customer.PROPERTY_DELETED.getName());
+			condition.setValue(emYesNo.NO);
+			IOperationResult<ICustomer> opRsltCustomer = this.fetchCustomer(criteria);
+			ICustomer customer = opRsltCustomer.getResultObjects().firstOrDefault();
+			if (customer == null) {
+				throw new Exception(I18N.prop("msg_bp_customer_is_not_exist", request.getBusinessPartner()));
+			}
+			// 查询客户的资产
+			criteria = new Criteria();
+			condition = criteria.getConditions().create();
+			condition.setBracketOpen(1);
+			condition.setAlias(BusinessPartnerAsset.PROPERTY_BUSINESSPARTNERTYPE.getName());
+			condition.setValue(emBusinessPartnerType.CUSTOMER);
+			condition = criteria.getConditions().create();
+			condition.setAlias(BusinessPartnerAsset.PROPERTY_BUSINESSPARTNERCODE.getName());
+			condition.setValue(request.getBusinessPartner());
+			condition = criteria.getConditions().create();
+			condition.setAlias(BusinessPartnerAsset.PROPERTY_ACTIVATED.getName());
+			condition.setValue(emYesNo.YES);
+			condition = criteria.getConditions().create();
+			condition.setAlias(BusinessPartnerAsset.PROPERTY_DELETED.getName());
+			condition.setValue(emYesNo.NO);
+			condition = criteria.getConditions().create();
+			condition.setAlias(BusinessPartnerAsset.PROPERTY_TIMES.getName());
+			condition.setOperation(ConditionOperation.GRATER_THAN);
+			condition.setValue(0);
+			condition.setBracketClose(1);
+			// 有效日期
+			DateTime today = DateTime.getToday();
+			condition = criteria.getConditions().create();
+			condition.setBracketOpen(1);
+			condition.setAlias(BusinessPartnerAsset.PROPERTY_VALIDDATE.getName());
+			condition.setOperation(ConditionOperation.IS_NULL);
+			condition = criteria.getConditions().create();
+			condition.setRelationship(ConditionRelationship.OR);
+			condition.setBracketOpen(1);
+			condition.setAlias(BusinessPartnerAsset.PROPERTY_VALIDDATE.getName());
+			condition.setOperation(ConditionOperation.NOT_NULL);
+			condition = criteria.getConditions().create();
+			condition.setBracketClose(2);
+			condition.setAlias(BusinessPartnerAsset.PROPERTY_VALIDDATE.getName());
+			condition.setOperation(ConditionOperation.LESS_EQUAL);
+			condition.setValue(today);
+			// 失效日期
+			condition = criteria.getConditions().create();
+			condition.setBracketOpen(1);
+			condition.setAlias(BusinessPartnerAsset.PROPERTY_INVALIDDATE.getName());
+			condition.setOperation(ConditionOperation.IS_NULL);
+			condition = criteria.getConditions().create();
+			condition.setRelationship(ConditionRelationship.OR);
+			condition.setBracketOpen(1);
+			condition.setAlias(BusinessPartnerAsset.PROPERTY_INVALIDDATE.getName());
+			condition.setOperation(ConditionOperation.NOT_NULL);
+			condition = criteria.getConditions().create();
+			condition.setBracketClose(2);
+			condition.setAlias(BusinessPartnerAsset.PROPERTY_INVALIDDATE.getName());
+			condition.setOperation(ConditionOperation.GRATER_EQUAL);
+			condition.setValue(today);
+			IOperationResult<IBusinessPartnerAsset> opRsltBPAsset = this.fetchBusinessPartnerAsset(criteria);
+			OperationResult<BusinessPartnerAsset> operationResult = new OperationResult<BusinessPartnerAsset>();
+			for (IBusinessPartnerAsset businessPartnerAsset : opRsltBPAsset.getResultObjects()) {
+				// 查询资产项目
+				criteria = new Criteria();
+				condition = criteria.getConditions().create();
+				condition.setAlias(AssetItem.PROPERTY_CODE.getName());
+				condition.setValue(businessPartnerAsset.getAssetCode());
+				condition = criteria.getConditions().create();
+				condition.setAlias(AssetItem.PROPERTY_ACTIVATED.getName());
+				condition.setValue(emYesNo.YES);
+				condition = criteria.getConditions().create();
+				condition.setAlias(AssetItem.PROPERTY_DELETED.getName());
+				condition.setValue(emYesNo.NO);
+				IOperationResult<IAssetItem> opRsltAsset = this.fetchAssetItem(criteria);
+				IAssetItem assetItem = opRsltAsset.getResultObjects().firstOrDefault();
+				// 资产项目不可用
+				if (assetItem == null) {
+					continue;
+				}
+				// 币种不匹配
+				if (request.getCurrency() != null && !request.getCurrency().isEmpty()
+						&& !request.getCurrency().equals(assetItem.getAmountUnit())) {
+					continue;
+				}
+				// 剩余值不足，或已超过额度
+				if (businessPartnerAsset.getAmount().compareTo(Decimal.ZERO) <= 0) {
+					if (assetItem.getOverdraft().compareTo(Decimal.ZERO) <= 0) {
+						continue;
+					}
+				}
+				operationResult.addResultObjects(businessPartnerAsset);
+			}
+			return operationResult;
+		} catch (Exception e) {
+			return new OperationResult<BusinessPartnerAsset>(e);
+		}
 	}
 
 	// --------------------------------------------------------------------------------------------//

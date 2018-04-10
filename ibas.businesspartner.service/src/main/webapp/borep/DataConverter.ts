@@ -7,10 +7,46 @@
  */
 namespace businesspartner {
     export namespace bo {
-
+        /** 资产请求 */
+        interface IAssetRequest {
+            /** 业务伙伴 */
+            BusinessPartner: string;
+            /** 单据类型 */
+            DocumentType: string;
+            /** 单据编号 */
+            DocumentEntry: number;
+            /** 单据行号 */
+            DocumentLineId: number;
+            /** 总计 */
+            Total: number;
+            /** 货币 */
+            Currency: string;
+        }
         /** 数据转换者 */
         export class DataConverter extends ibas.DataConverter4j {
 
+            /**
+             * 转换业务对象数据
+             * @param data 本地类型
+             * @param sign 特殊标记
+             * @returns 目标类型
+             */
+            convert(data: any, sign: string): any {
+                if (!ibas.strings.isEmpty(sign) && sign.indexOf("fetchCustomerAsset") >= 0) {
+                    let newData: bo.IAssetRequest = data;
+                    let remote: IAssetRequest = {
+                        BusinessPartner: newData.businessPartner,
+                        DocumentType: newData.documentType,
+                        DocumentEntry: newData.documentEntry,
+                        DocumentLineId: newData.documentLineId,
+                        Total: newData.total,
+                        Currency: newData.currency,
+                    };
+                    return remote;
+                } else {
+                    return super.convert(data, sign);
+                }
+            }
             /** 创建业务对象转换者 */
             protected createConverter(): ibas.BOConverter {
                 return new BOConverter;

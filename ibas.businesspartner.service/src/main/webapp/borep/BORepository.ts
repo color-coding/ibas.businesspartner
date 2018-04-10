@@ -158,6 +158,20 @@ namespace businesspartner {
                 super.save(bo.BusinessPartnerAssetJournal.name, saver);
             }
 
+            /**
+             * 查询 业务伙伴资产
+             * @param fetcher 查询者
+             */
+            fetchCustomerAsset(fetcher: IAssetRequester): void {
+                let boRepository: ibas.BORepositoryAjax = new ibas.BORepositoryAjax();
+                boRepository.address = this.address;
+                boRepository.token = this.token;
+                boRepository.converter = this.createConverter();
+                let method: string =
+                    ibas.strings.format("fetchCustomerAsset?token={0}", this.token);
+                let data: string = JSON.stringify(this.createConverter().convert(fetcher.request, method));
+                boRepository.callRemoteMethod(method, data, fetcher);
+            }
         }
     }
 }
