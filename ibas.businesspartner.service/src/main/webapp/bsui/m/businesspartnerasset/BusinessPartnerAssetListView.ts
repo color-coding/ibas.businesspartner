@@ -41,7 +41,11 @@ namespace businesspartner {
                                             icon: "sap-icon://action",
                                             press: function (event: any): void {
                                                 that.page.setShowFooter(true);
-                                                that.fireViewEvents(that.callServicesEvent, {
+                                                ibas.servicesManager.showServices({
+                                                    proxy: new ibas.BOListServiceProxy({
+                                                        data: openui5.utils.getSelecteds(that.list),
+                                                        converter: new bo.DataConverter(),
+                                                    }),
                                                     displayServices(services: ibas.IServiceAgent[]): void {
                                                         if (ibas.objects.isNull(services) || services.length === 0) {
                                                             return;
@@ -188,10 +192,6 @@ namespace businesspartner {
                         this.list.setBusy(true);
                         this.list.setModel(null);
                     }
-                }
-                /** 获取选择的数据 */
-                getSelecteds(): bo.BusinessPartnerAsset[] {
-                    return openui5.utils.getSelecteds<bo.BusinessPartnerAsset>(this.list);
                 }
                 /** 手指触控滑动 */
                 onTouchMove(direction: ibas.emTouchMoveDirection, event: TouchEvent): void {

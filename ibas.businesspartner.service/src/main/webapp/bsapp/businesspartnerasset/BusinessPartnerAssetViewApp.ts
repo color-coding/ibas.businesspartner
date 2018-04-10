@@ -79,10 +79,6 @@ namespace businesspartner {
                 });
                 this.proceeding(ibas.emMessageType.INFORMATION, ibas.i18n.prop("shell_fetching_data"));
             }
-            /** 获取服务的契约 */
-            protected getServiceProxies(): ibas.IServiceProxy<ibas.IServiceContract>[] {
-                return [];
-            }
         }
         /** 视图-业务伙伴资产 */
         export interface IBusinessPartnerAssetViewView extends ibas.IBOViewView {

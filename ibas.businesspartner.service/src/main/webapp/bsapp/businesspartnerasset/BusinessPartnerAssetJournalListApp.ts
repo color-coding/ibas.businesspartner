@@ -82,11 +82,6 @@ namespace businesspartner {
             protected deleteData(data: bo.BusinessPartnerAssetJournal | bo.BusinessPartnerAssetJournal[]): void {
                 throw new Error(ibas.i18n.prop("sys_unsupported_operation"));
             }
-            /** 获取服务的契约 */
-            protected getServiceProxies(): ibas.IServiceProxy<ibas.IServiceContract>[] {
-                return [
-                ];
-            }
             /** 查询业务伙伴资产交易记录 */
             protected fetchBusinessPartnerAssetJournal(criteria: ibas.ICriteria): void {
                 // 检查目标数据

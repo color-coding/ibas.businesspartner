@@ -154,10 +154,6 @@ namespace businesspartner {
                         this.list.setModel(null);
                     }
                 }
-                /** 获取选择的数据 */
-                getSelecteds(): bo.Address[] {
-                    return null;
-                }
                 /** 手指触控滑动 */
                 onTouchMove(direcction: ibas.emTouchMoveDirection, event: TouchEvent): void {
                     if (direcction === ibas.emTouchMoveDirection.UP) {

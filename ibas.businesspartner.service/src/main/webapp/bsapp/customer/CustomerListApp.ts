@@ -169,15 +169,6 @@ namespace businesspartner {
                     }
                 });
             }
-            /** 获取服务的契约 */
-            protected getServiceProxies(): ibas.IServiceProxy<ibas.IServiceContract>[] {
-                return [
-                    new ibas.BOListServiceProxy({
-                        data: this.view.getSelecteds(),
-                        converter: new bo.DataConverter()
-                    })
-                ];
-            }
         }
         /** 视图-客户 */
         export interface ICustomerListView extends ibas.IBOListView {
@@ -187,8 +178,6 @@ namespace businesspartner {
             deleteDataEvent: Function;
             /** 显示数据 */
             showData(datas: bo.Customer[]): void;
-            /** 获取选择的数据 */
-            getSelecteds(): bo.Customer[];
         }
     }
 }

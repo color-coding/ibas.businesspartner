@@ -20,8 +20,6 @@ namespace businesspartner {
                 editDataEvent: Function;
                 /** 显示数据，参数：目标数据 */
                 viewDataEvent: Function;
-                /** 调用服务事件，参数1 IServicesShower显示服务者 */
-                callServicesEvent: Function;
                 /** 新建业务伙伴资产数据 */
                 createBusinessPartnerAssetJournalEvent: Function;
                 /** 查询业务伙伴资产交易记录 */

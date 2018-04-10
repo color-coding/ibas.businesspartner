@@ -139,10 +139,6 @@ namespace businesspartner {
                     this.list.setSelectedItemById("0", true);
                     this.list.setModel(null);
                 }
-                /** 获取选择的数据 */
-                getSelecteds(): bo.Supplier[] {
-                    return null;
-                }
             }
         }
     }
