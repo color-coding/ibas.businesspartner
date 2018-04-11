@@ -15,6 +15,7 @@
 /// <reference path="./bo/AssetItem.ts" />
 /// <reference path="./bo/BusinessPartnerAsset.ts" />
 /// <reference path="./bo/BusinessPartnerAssetJournal.ts" />
+/// <reference path="./DataDeclaration.ts" />
 /// <reference path="./DataConverter.ts" />
 /// <reference path="./BORepository.ts" />
 

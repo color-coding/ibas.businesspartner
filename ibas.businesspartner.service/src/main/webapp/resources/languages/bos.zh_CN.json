@@ -64,6 +64,7 @@
         "bo_assetitem_overdraft": "透支额",
         "bo_assetitem_validdays": "有效天数",
         "bo_assetitem_rechargeable": "可充值的",
+        "bo_assetitem_picture": "图片",
         "bo_assetitem_remarks": "备注",
         "bo_assetitem_closing_delimiter": "----结束----"
     },

@@ -535,6 +535,21 @@ public interface IAssetItem extends IBOMasterData {
 	void setRechargeable(emYesNo value);
 
 	/**
+	 * 获取-图片
+	 * 
+	 * @return 值
+	 */
+	String getPicture();
+
+	/**
+	 * 设置-图片
+	 * 
+	 * @param value
+	 *            值
+	 */
+	void setPicture(String value);
+
+	/**
 	 * 获取-备注
 	 * 
 	 * @return 值

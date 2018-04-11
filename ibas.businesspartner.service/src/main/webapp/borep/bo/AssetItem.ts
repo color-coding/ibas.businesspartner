@@ -345,6 +345,17 @@ namespace businesspartner {
                 this.setProperty(AssetItem.PROPERTY_RECHARGEABLE_NAME, value);
             }
 
+            /** 映射的属性名称-图片 */
+            static PROPERTY_PICTURE_NAME: string = "Picture";
+            /** 获取-图片 */
+            get picture(): string {
+                return this.getProperty<string>(AssetItem.PROPERTY_PICTURE_NAME);
+            }
+            /** 设置-图片 */
+            set picture(value: string) {
+                this.setProperty(AssetItem.PROPERTY_PICTURE_NAME, value);
+            }
+
             /** 映射的属性名称-备注 */
             static PROPERTY_REMARKS_NAME: string = "Remarks";
             /** 获取-备注 */

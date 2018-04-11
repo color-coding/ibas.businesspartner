@@ -18,6 +18,7 @@ import org.colorcoding.ibas.businesspartner.bo.contactperson.ContactPerson;
 import org.colorcoding.ibas.businesspartner.bo.customer.Customer;
 import org.colorcoding.ibas.businesspartner.bo.supplier.Supplier;
 import org.colorcoding.ibas.businesspartner.data.AssetRequest;
+import org.colorcoding.ibas.businesspartner.data.CustomerAsset;
 import org.colorcoding.ibas.businesspartner.repository.BORepositoryBusinessPartner;
 
 /**
@@ -325,8 +326,7 @@ public class DataService extends BORepositoryBusinessPartner {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("fetchCustomerAsset")
-	public OperationResult<BusinessPartnerAsset> fetchCustomerAsset(AssetRequest request,
-			@QueryParam("token") String token) {
+	public OperationResult<CustomerAsset> fetchCustomerAsset(AssetRequest request, @QueryParam("token") String token) {
 		return super.fetchCustomerAsset(request, token);
 	}
 	// --------------------------------------------------------------------------------------------//

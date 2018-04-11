@@ -7,21 +7,6 @@
  */
 namespace businesspartner {
     export namespace bo {
-        /** 资产请求 */
-        interface IAssetRequest {
-            /** 业务伙伴 */
-            BusinessPartner: string;
-            /** 单据类型 */
-            DocumentType: string;
-            /** 单据编号 */
-            DocumentEntry: number;
-            /** 单据行号 */
-            DocumentLineId: number;
-            /** 总计 */
-            Total: number;
-            /** 货币 */
-            Currency: string;
-        }
         /** 数据转换者 */
         export class DataConverter extends ibas.DataConverter4j {
 
@@ -34,7 +19,8 @@ namespace businesspartner {
             convert(data: any, sign: string): any {
                 if (!ibas.strings.isEmpty(sign) && sign.indexOf("fetchCustomerAsset") >= 0) {
                     let newData: bo.IAssetRequest = data;
-                    let remote: IAssetRequest = {
+                    let remote: ibas4j.IAssetRequest = {
+                        type: "AssetRequest",
                         BusinessPartner: newData.businessPartner,
                         DocumentType: newData.documentType,
                         DocumentEntry: newData.documentEntry,
@@ -45,6 +31,31 @@ namespace businesspartner {
                     return remote;
                 } else {
                     return super.convert(data, sign);
+                }
+            }
+            /**
+             * 解析业务对象数据
+             * @param data 目标类型
+             * @param sign 特殊标记
+             * @returns 本地类型
+             */
+            parsing(data: any, sign: string): any {
+                if (data.type === bo.CustomerAsset.name) {
+                    let remote: ibas4j.ICustomerAsset = data;
+                    let newData: bo.CustomerAsset = new bo.CustomerAsset();
+                    newData.code = remote.Code;
+                    newData.name = remote.Name;
+                    newData.picture = remote.Picture;
+                    newData.validDate = ibas.dates.valueOf(remote.ValidDate);
+                    newData.invalidDate = ibas.dates.valueOf(remote.InvalidDate);
+                    newData.amount = remote.Amount;
+                    newData.unit = remote.Unit;
+                    newData.times = remote.Times;
+                    newData.discount = remote.Discount;
+                    newData.customer = remote.Customer;
+                    return newData;
+                } else {
+                    return super.parsing(data, sign);
                 }
             }
             /** 创建业务对象转换者 */

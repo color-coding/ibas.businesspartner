@@ -16,6 +16,7 @@ import org.colorcoding.ibas.businesspartner.bo.contactperson.ContactPerson;
 import org.colorcoding.ibas.businesspartner.bo.customer.Customer;
 import org.colorcoding.ibas.businesspartner.bo.supplier.Supplier;
 import org.colorcoding.ibas.businesspartner.data.AssetRequest;
+import org.colorcoding.ibas.businesspartner.data.CustomerAsset;
 import org.colorcoding.ibas.businesspartner.repository.BORepositoryBusinessPartner;
 
 /**
@@ -283,7 +284,7 @@ public class DataService extends BORepositoryBusinessPartner {
 	 * @return 操作结果
 	 */
 	@WebMethod
-	public OperationResult<BusinessPartnerAsset> fetchCustomerAsset(@WebParam(name = "request") AssetRequest request,
+	public OperationResult<CustomerAsset> fetchCustomerAsset(@WebParam(name = "request") AssetRequest request,
 			@WebParam(name = "token") String token) {
 		return super.fetchCustomerAsset(request, token);
 	}

@@ -29,6 +29,7 @@ import org.colorcoding.ibas.businesspartner.bo.customer.ICustomer;
 import org.colorcoding.ibas.businesspartner.bo.supplier.ISupplier;
 import org.colorcoding.ibas.businesspartner.bo.supplier.Supplier;
 import org.colorcoding.ibas.businesspartner.data.AssetRequest;
+import org.colorcoding.ibas.businesspartner.data.CustomerAsset;
 import org.colorcoding.ibas.businesspartner.data.emBusinessPartnerType;
 
 /**
@@ -439,12 +440,12 @@ public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 
 	// --------------------------------------------------------------------------------------------//
 	@Override
-	public IOperationResult<IBusinessPartnerAsset> fetchCustomerAsset(AssetRequest request) {
-		return new OperationResult<IBusinessPartnerAsset>(this.fetchCustomerAsset(request, this.getUserToken()));
+	public IOperationResult<CustomerAsset> fetchCustomerAsset(AssetRequest request) {
+		return this.fetchCustomerAsset(request, this.getUserToken());
 	}
 
 	@Override
-	public OperationResult<BusinessPartnerAsset> fetchCustomerAsset(AssetRequest request, String token) {
+	public OperationResult<CustomerAsset> fetchCustomerAsset(AssetRequest request, String token) {
 		try {
 			this.setCurrentUser(token);
 			if (request == null) {
@@ -520,9 +521,9 @@ public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 			condition.setAlias(BusinessPartnerAsset.PROPERTY_INVALIDDATE.getName());
 			condition.setOperation(ConditionOperation.GRATER_EQUAL);
 			condition.setValue(today);
-			IOperationResult<IBusinessPartnerAsset> opRsltBPAsset = this.fetchBusinessPartnerAsset(criteria);
-			OperationResult<BusinessPartnerAsset> operationResult = new OperationResult<BusinessPartnerAsset>();
-			for (IBusinessPartnerAsset businessPartnerAsset : opRsltBPAsset.getResultObjects()) {
+			OperationResult<CustomerAsset> operationResult = new OperationResult<CustomerAsset>();
+			for (IBusinessPartnerAsset businessPartnerAsset : this.fetchBusinessPartnerAsset(criteria)
+					.getResultObjects()) {
 				// 查询资产项目
 				criteria = new Criteria();
 				condition = criteria.getConditions().create();
@@ -545,17 +546,25 @@ public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 						&& !request.getCurrency().equals(assetItem.getAmountUnit())) {
 					continue;
 				}
-				// 剩余值不足，或已超过额度
-				if (businessPartnerAsset.getAmount().compareTo(Decimal.ZERO) <= 0) {
-					if (assetItem.getOverdraft().compareTo(Decimal.ZERO) <= 0) {
-						continue;
-					}
+				CustomerAsset customerAsset = new CustomerAsset();
+				customerAsset.setCustomer(String.format("%s - %s", customer.getCode(), customer.getName()));
+				customerAsset.setCode(businessPartnerAsset.getCode());
+				customerAsset.setName(businessPartnerAsset.getName());
+				customerAsset.setValidDate(businessPartnerAsset.getValidDate());
+				customerAsset.setInvalidDate(businessPartnerAsset.getInvalidDate());
+				customerAsset.setTimes(businessPartnerAsset.getTimes());
+				customerAsset.setUnit(assetItem.getAmountUnit());
+				// 可用价值 = 当前价值 + 可透支值
+				customerAsset.setAmount(businessPartnerAsset.getAmount().add(assetItem.getOverdraft()));
+				// 可用价值 不足
+				if (customerAsset.getAmount().compareTo(Decimal.ZERO) <= 0) {
+					continue;
 				}
-				operationResult.addResultObjects(businessPartnerAsset);
+				operationResult.addResultObjects(customerAsset);
 			}
 			return operationResult;
 		} catch (Exception e) {
-			return new OperationResult<BusinessPartnerAsset>(e);
+			return new OperationResult<CustomerAsset>(e);
 		}
 	}
 

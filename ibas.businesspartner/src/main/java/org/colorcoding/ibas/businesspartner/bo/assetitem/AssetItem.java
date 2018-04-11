@@ -1108,6 +1108,38 @@ public class AssetItem extends BusinessObject<AssetItem> implements IAssetItem, 
 	}
 
 	/**
+	 * 属性名称-图片
+	 */
+	private static final String PROPERTY_PICTURE_NAME = "Picture";
+
+	/**
+	 * 图片 属性
+	 */
+	@DbField(name = "Picture", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME, primaryKey = false)
+	public static final IPropertyInfo<String> PROPERTY_PICTURE = registerProperty(PROPERTY_PICTURE_NAME, String.class,
+			MY_CLASS);
+
+	/**
+	 * 获取-图片
+	 * 
+	 * @return 值
+	 */
+	@XmlElement(name = PROPERTY_PICTURE_NAME)
+	public final String getPicture() {
+		return this.getProperty(PROPERTY_PICTURE);
+	}
+
+	/**
+	 * 设置-图片
+	 * 
+	 * @param value
+	 *            值
+	 */
+	public final void setPicture(String value) {
+		this.setProperty(PROPERTY_PICTURE, value);
+	}
+
+	/**
 	 * 属性名称-备注
 	 */
 	private static final String PROPERTY_REMARKS_NAME = "Remarks";
