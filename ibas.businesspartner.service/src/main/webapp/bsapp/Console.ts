@@ -89,5 +89,17 @@ namespace businesspartner {
                 super.run();
             }
         }
+        /** 模块控制台，手机端 */
+        export class ConsolePhone extends Console {
+            /** 初始化 */
+            protected registers(): void {
+                // 注册服务应用
+                this.register(new AddressChooseServiceMapping());
+                this.register(new ContactPersonChooseServiceMapping());
+                this.register(new CustomerChooseServiceMapping());
+                this.register(new SupplierChooseServiceMapping());
+                this.register(new BusinessPartnerAssetChooseServiceMapping());
+            }
+        }
     }
 }
