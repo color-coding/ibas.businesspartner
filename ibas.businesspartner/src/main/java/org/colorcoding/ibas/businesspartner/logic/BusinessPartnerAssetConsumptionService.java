@@ -10,6 +10,8 @@ import org.colorcoding.ibas.bobas.data.emDirection;
 import org.colorcoding.ibas.bobas.i18n.I18N;
 import org.colorcoding.ibas.bobas.logic.BusinessLogicException;
 import org.colorcoding.ibas.bobas.mapping.LogicContract;
+import org.colorcoding.ibas.bobas.message.Logger;
+import org.colorcoding.ibas.bobas.message.MessageLevel;
 import org.colorcoding.ibas.businesspartner.bo.assetitem.IAssetItem;
 import org.colorcoding.ibas.businesspartner.bo.businesspartnerasset.BusinessPartnerAssetJournal;
 import org.colorcoding.ibas.businesspartner.bo.businesspartnerasset.IBusinessPartnerAsset;
@@ -25,6 +27,20 @@ import org.colorcoding.ibas.businesspartner.repository.BORepositoryBusinessPartn
 @LogicContract(IBusinessPartnerAssetConsumptionContract.class)
 public class BusinessPartnerAssetConsumptionService
 		extends BusinessPartnerAssetLogic<IBusinessPartnerAssetConsumptionContract, IBusinessPartnerAssetJournal> {
+
+	@Override
+	protected boolean checkDataStatus(Object data) {
+		if (data instanceof IBusinessPartnerAssetConsumptionContract) {
+			IBusinessPartnerAssetConsumptionContract contract = (IBusinessPartnerAssetConsumptionContract) data;
+			if (contract.getServiceCode().startsWith("_SYS_")) {
+				// 系统前缀，跳过
+				Logger.log(MessageLevel.DEBUG, MSG_LOGICS_SKIP_LOGIC_EXECUTION, this.getClass().getName(),
+						"ServiceCode", contract.getServiceCode());
+				return false;
+			}
+		}
+		return super.checkDataStatus(data);
+	}
 
 	@Override
 	protected IBusinessPartnerAssetJournal fetchBeAffected(IBusinessPartnerAssetConsumptionContract contract) {

@@ -554,6 +554,7 @@ public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 				customerAsset.setInvalidDate(businessPartnerAsset.getInvalidDate());
 				customerAsset.setTimes(businessPartnerAsset.getTimes());
 				customerAsset.setUnit(assetItem.getAmountUnit());
+				customerAsset.setDiscount(assetItem.getUsingDiscount());
 				// 可用价值 = 当前价值 + 可透支值
 				customerAsset.setAmount(businessPartnerAsset.getAmount().add(assetItem.getOverdraft()));
 				// 可用价值 不足

@@ -17,7 +17,7 @@ import org.colorcoding.ibas.businesspartner.bo.businesspartnerasset.IBusinessPar
 import org.colorcoding.ibas.businesspartner.repository.BORepositoryBusinessPartner;
 
 /**
- * 业务伙伴资产，消耗服务
+ * 业务伙伴资产，增加服务
  * 
  * @author Niuren.Zhu
  *
