@@ -32,7 +32,7 @@ public class BusinessPartnerAssetConsumptionService
 	protected boolean checkDataStatus(Object data) {
 		if (data instanceof IBusinessPartnerAssetConsumptionContract) {
 			IBusinessPartnerAssetConsumptionContract contract = (IBusinessPartnerAssetConsumptionContract) data;
-			if (contract.getServiceCode().startsWith("_SYS_")) {
+			if (contract.getServiceCode().startsWith("%")) {
 				// 系统前缀，跳过
 				Logger.log(MessageLevel.DEBUG, MSG_LOGICS_SKIP_LOGIC_EXECUTION, this.getClass().getName(),
 						"ServiceCode", contract.getServiceCode());
