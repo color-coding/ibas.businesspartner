@@ -10,6 +10,7 @@ import org.colorcoding.ibas.bobas.approval.IApprovalData;
 import org.colorcoding.ibas.bobas.bo.BusinessObject;
 import org.colorcoding.ibas.bobas.bo.IBOSeriesKey;
 import org.colorcoding.ibas.bobas.bo.IBOTagDeleted;
+import org.colorcoding.ibas.bobas.bo.IBOUserFields;
 import org.colorcoding.ibas.bobas.core.IPropertyInfo;
 import org.colorcoding.ibas.bobas.data.DateTime;
 import org.colorcoding.ibas.bobas.data.emApprovalStatus;
@@ -32,7 +33,7 @@ import org.colorcoding.ibas.businesspartner.data.emBusinessPartnerNature;
 @XmlRootElement(name = Supplier.BUSINESS_OBJECT_NAME, namespace = MyConfiguration.NAMESPACE_BO)
 @BOCode(Supplier.BUSINESS_OBJECT_CODE)
 public class Supplier extends BusinessObject<Supplier>
-		implements ISupplier, IDataOwnership, IApprovalData, IBOSeriesKey, IBOTagDeleted {
+		implements ISupplier, IDataOwnership, IApprovalData, IBOSeriesKey, IBOTagDeleted, IBOUserFields {
 
 	/**
 	 * 序列化版本标记
