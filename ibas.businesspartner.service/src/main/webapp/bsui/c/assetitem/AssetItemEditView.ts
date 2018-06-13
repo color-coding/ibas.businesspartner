@@ -71,18 +71,19 @@ namespace businesspartner {
                             new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_title_values") }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_assetitem_faceamount") }),
                             new sap.m.Input("", {
-                                type: sap.m.InputType.Text
+                                type: sap.m.InputType.Number,
                             }).bindProperty("value", {
-                                path: "faceAmount"
+                                path: "faceAmount",
+                                type: new openui5.datatype.Sum(),
                             }),
                             new sap.m.Input("", {
-                                type: sap.m.InputType.Text
+                                type: sap.m.InputType.Text,
                             }).bindProperty("value", {
                                 path: "amountUnit"
                             }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_assetitem_usingtimes") }),
                             new sap.m.Input("", {
-                                type: sap.m.InputType.Text
+                                type: sap.m.InputType.Number,
                             }).bindProperty("value", {
                                 path: "usingTimes"
                             }),
@@ -90,17 +91,19 @@ namespace businesspartner {
                             new sap.m.Input("", {
                                 type: sap.m.InputType.Text,
                             }).bindProperty("value", {
-                                path: "usingDiscount"
+                                path: "usingDiscount",
+                                type: new openui5.datatype.Percentage(),
                             }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_assetitem_overdraft") }),
                             new sap.m.Input("", {
-                                type: sap.m.InputType.Text,
+                                type: sap.m.InputType.Number,
                             }).bindProperty("value", {
-                                path: "overdraft"
+                                path: "overdraft",
+                                type: new openui5.datatype.Sum(),
                             }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_assetitem_validdays") }),
                             new sap.m.Input("", {
-                                type: sap.m.InputType.Text,
+                                type: sap.m.InputType.Number,
                             }).bindProperty("value", {
                                 path: "validDays"
                             }),

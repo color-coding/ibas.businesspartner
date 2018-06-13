@@ -8,7 +8,7 @@
 namespace businesspartner {
     export namespace app {
         /** 查看应用-业务伙伴资产 */
-        export class BusinessPartnerAssetViewApp extends ibas.BOViewService<IBusinessPartnerAssetViewView> {
+        export class BusinessPartnerAssetViewApp extends ibas.BOViewService<IBusinessPartnerAssetViewView, bo.BusinessPartnerAsset> {
 
             /** 应用标识 */
             static APPLICATION_ID: string = "946c4e19-95ad-4272-90ff-9fd0eeb92bb4";
@@ -58,7 +58,9 @@ namespace businesspartner {
                 this.busy(true);
                 let that: this = this;
                 if (typeof criteria === "string") {
+                    let value: string = criteria;
                     criteria = new ibas.Criteria();
+                    criteria.result = 1;
                     // 添加查询条件
 
                 }
@@ -71,7 +73,11 @@ namespace businesspartner {
                                 throw new Error(opRslt.message);
                             }
                             that.viewData = opRslt.resultObjects.firstOrDefault();
-                            that.viewShowed();
+                            if (!that.isViewShowed()) {
+                                that.show();
+                            } else {
+                                that.viewShowed();
+                            }
                         } catch (error) {
                             that.messages(error);
                         }

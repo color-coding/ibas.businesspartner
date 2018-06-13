@@ -9,7 +9,7 @@ namespace businesspartner {
     export namespace app {
 
         /** 查看应用-供应商 */
-        export class SupplierViewApp extends ibas.BOViewService<ISupplierViewView> {
+        export class SupplierViewApp extends ibas.BOViewService<ISupplierViewView, bo.Supplier> {
 
             /** 应用标识 */
             static APPLICATION_ID: string = "66dda91a-5bdf-4414-affa-e3128f234cd2";
@@ -95,13 +95,15 @@ namespace businesspartner {
                 }
                 super.run.apply(this, arguments);
             }
-            private viewData: bo.Supplier;
+            protected viewData: bo.Supplier;
             /** 查询数据 */
             protected fetchData(criteria: ibas.ICriteria | string): void {
                 this.busy(true);
                 let that: this = this;
                 if (typeof criteria === "string") {
+                    let value: string = criteria;
                     criteria = new ibas.Criteria();
+                    criteria.result = 1;
                     // 添加查询条件
                 }
                 let boRepository: bo.BORepositoryBusinessPartner = new bo.BORepositoryBusinessPartner();
@@ -113,7 +115,11 @@ namespace businesspartner {
                                 throw new Error(opRslt.message);
                             }
                             that.viewData = opRslt.resultObjects.firstOrDefault();
-                            that.viewShowed();
+                            if (!that.isViewShowed()) {
+                                that.show();
+                            } else {
+                                that.viewShowed();
+                            }
                         } catch (error) {
                             that.messages(error);
                         }

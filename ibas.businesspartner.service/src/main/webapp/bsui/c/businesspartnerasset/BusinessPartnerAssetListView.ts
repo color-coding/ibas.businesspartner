@@ -106,6 +106,7 @@ namespace businesspartner {
                                     wrapping: false,
                                 }).bindProperty("text", {
                                     path: "amount",
+                                    type: new openui5.datatype.Sum(),
                                 }),
                             }),
                             new sap.ui.table.Column("", {

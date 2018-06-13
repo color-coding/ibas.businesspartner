@@ -71,7 +71,8 @@ namespace businesspartner {
                                 editable: false,
                                 type: sap.m.InputType.Text
                             }).bindProperty("value", {
-                                path: "amount"
+                                path: "amount",
+                                type: new openui5.datatype.Sum(),
                             }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnerasset_times") }),
                             new sap.m.Input("", {
@@ -148,7 +149,8 @@ namespace businesspartner {
                                 type: sap.m.InputType.Text,
                                 editable: false,
                             }).bindProperty("value", {
-                                path: "tradingAmount"
+                                path: "tradingAmount",
+                                type: new openui5.datatype.Sum(),
                             }),
                             new sap.m.Input("", {
                                 type: sap.m.InputType.Text,

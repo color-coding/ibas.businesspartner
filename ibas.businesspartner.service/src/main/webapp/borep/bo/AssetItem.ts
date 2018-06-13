@@ -373,6 +373,9 @@ namespace businesspartner {
                 this.amountUnit = ibas.config.get(ibas.CONFIG_ITEM_DEFAULT_CURRENCY);
                 this.rechargeable = ibas.emYesNo.YES;
                 this.usingTimes = 9999;
+                this.usingDiscount = 1;
+                this.overdraft = 0;
+                this.faceAmount = 0;
             }
         }
 

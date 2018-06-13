@@ -57,6 +57,7 @@ namespace businesspartner {
                                     wrapping: false,
                                 }).bindProperty("text", {
                                     path: "faceAmount",
+                                    type: new openui5.datatype.Sum(),
                                 }),
                             }),
                             new sap.ui.table.Column("", {
@@ -81,6 +82,7 @@ namespace businesspartner {
                                     wrapping: false,
                                 }).bindProperty("text", {
                                     path: "overdraft",
+                                    type: new openui5.datatype.Sum(),
                                 }),
                             }),
                         ]
