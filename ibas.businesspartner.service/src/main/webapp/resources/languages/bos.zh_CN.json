@@ -222,6 +222,7 @@
         "bo_customer_approvalstatus": "审批状态",
         "bo_customer_dataowner": "数据所有者",
         "bo_customer_organization": "数据所属组织",
+        "bo_customer_channel": "所属渠道",
         "bo_customer_closing_delimiter": "----结束----"
     },
     {
@@ -262,6 +263,7 @@
         "bo_supplier_approvalstatus": "审批状态",
         "bo_supplier_dataowner": "数据所有者",
         "bo_supplier_organization": "数据所属组织",
+        "bo_supplier_channel": "所属渠道",
         "bo_supplier_closing_delimiter": "----结束----"
     },
     {

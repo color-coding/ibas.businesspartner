@@ -413,6 +413,17 @@ namespace businesspartner {
                 this.setProperty(Customer.PROPERTY_ORGANIZATION_NAME, value);
             }
 
+            /** 映射的属性名称-所属渠道 */
+            static PROPERTY_CHANNEL_NAME: string = "Channel";
+            /** 获取-所属渠道 */
+            get channel(): string {
+                return this.getProperty<string>(Customer.PROPERTY_CHANNEL_NAME);
+            }
+            /** 设置-所属渠道 */
+            set channel(value: string) {
+                this.setProperty(Customer.PROPERTY_CHANNEL_NAME, value);
+            }
+
             /** 初始化数据 */
             protected init(): void {
                 this.objectCode = ibas.config.applyVariables(Customer.BUSINESS_OBJECT_CODE);

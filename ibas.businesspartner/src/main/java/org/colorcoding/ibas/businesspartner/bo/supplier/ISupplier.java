@@ -552,4 +552,18 @@ public interface ISupplier extends IBOMasterData {
 	 */
 	void setOrganization(String value);
 
+	/**
+	 * 获取-所属渠道
+	 * 
+	 * @return 值
+	 */
+	String getChannel();
+
+	/**
+	 * 设置-所属渠道
+	 * 
+	 * @param value
+	 *            值
+	 */
+	void setChannel(String value);
 }

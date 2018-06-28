@@ -1212,6 +1212,38 @@ public class Supplier extends BusinessObject<Supplier>
 		this.setProperty(PROPERTY_ORGANIZATION, value);
 	}
 
+	/**
+	 * 属性名称-所属渠道
+	 */
+	private static final String PROPERTY_CHANNEL_NAME = "Channel";
+
+	/**
+	 * 所属渠道 属性
+	 */
+	@DbField(name = "Channel", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME, primaryKey = false)
+	public static final IPropertyInfo<String> PROPERTY_CHANNEL = registerProperty(PROPERTY_CHANNEL_NAME, String.class,
+			MY_CLASS);
+
+	/**
+	 * 获取-所属渠道
+	 * 
+	 * @return 值
+	 */
+	@XmlElement(name = PROPERTY_CHANNEL_NAME)
+	public final String getChannel() {
+		return this.getProperty(PROPERTY_CHANNEL);
+	}
+
+	/**
+	 * 设置-所属渠道
+	 * 
+	 * @param value
+	 *            值
+	 */
+	public final void setChannel(String value) {
+		this.setProperty(PROPERTY_CHANNEL, value);
+	}
+
 	@Override
 	public void setSeriesValue(Object value) {
 		this.setCode((String) value);

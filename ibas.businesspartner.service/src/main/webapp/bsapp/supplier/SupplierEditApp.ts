@@ -183,6 +183,7 @@ namespace businesspartner {
                 let that: this = this;
                 ibas.servicesManager.runChooseService<bo.BusinessPartnerGroup>({
                     boCode: bo.BusinessPartnerGroup.BUSINESS_OBJECT_CODE,
+                    chooseType: ibas.emChooseType.SINGLE,
                     criteria: [
                         new ibas.Condition(bo.BusinessPartnerGroup.PROPERTY_ACTIVATED_NAME,
                             ibas.emConditionOperation.EQUAL, ibas.emYesNo.YES),
@@ -197,6 +198,7 @@ namespace businesspartner {
                 let that: this = this;
                 ibas.servicesManager.runChooseService<bo.ContactPerson>({
                     boCode: bo.ContactPerson.BUSINESS_OBJECT_CODE,
+                    chooseType: ibas.emChooseType.SINGLE,
                     criteria: [
                         new ibas.Condition(bo.ContactPerson.PROPERTY_ACTIVATED_NAME,
                             ibas.emConditionOperation.EQUAL, ibas.emYesNo.YES),
@@ -219,6 +221,7 @@ namespace businesspartner {
                 let that: this = this;
                 ibas.servicesManager.runChooseService<bo.Address>({
                     boCode: bo.Address.BUSINESS_OBJECT_CODE,
+                    chooseType: ibas.emChooseType.SINGLE,
                     criteria: [
                         new ibas.Condition(bo.Address.PROPERTY_ACTIVATED_NAME,
                             ibas.emConditionOperation.EQUAL, ibas.emYesNo.YES),
@@ -237,6 +240,7 @@ namespace businesspartner {
                 let that: this = this;
                 ibas.servicesManager.runChooseService<bo.Address>({
                     boCode: bo.Address.BUSINESS_OBJECT_CODE,
+                    chooseType: ibas.emChooseType.SINGLE,
                     criteria: [
                         new ibas.Condition(bo.Address.PROPERTY_ACTIVATED_NAME,
                             ibas.emConditionOperation.EQUAL, ibas.emYesNo.YES),
@@ -255,6 +259,7 @@ namespace businesspartner {
                 let that: this = this;
                 ibas.servicesManager.runChooseService<materials.bo.IMaterialPriceList>({
                     boCode: materials.bo.BO_CODE_MATERIALPRICELIST,
+                    chooseType: ibas.emChooseType.SINGLE,
                     criteria: materials.app.conditions.materialpricelist.create(),
                     onCompleted(selecteds: ibas.IList<materials.bo.IMaterialPriceList>): void {
                         let selected: materials.bo.IMaterialPriceList = selecteds.firstOrDefault();

@@ -67,13 +67,17 @@ namespace businesspartner {
                                 type: "sap.ui.model.type.Integer"
                             }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_group") }),
-                            new sap.m.Input("", {
-                                showValueHelp: true,
+                            new sap.m.ex.BOInput("", {
+                                boText: "name",
+                                boKey: "code",
+                                boCode: ibas.config.applyVariables(bo.BO_CODE_BUSINESSPARTNERGROUP),
+                                repositoryName: bo.BO_REPOSITORY_BUSINESSPARTNER,
                                 valueHelpRequest: function (): void {
                                     that.fireViewEvents(that.chooseSupplierGroupEvent);
+                                },
+                                bindingValue: {
+                                    path: "group"
                                 }
-                            }).bindProperty("value", {
-                                path: "group"
                             }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_companyprivate") }),
                             new sap.m.Select("", {
@@ -83,13 +87,17 @@ namespace businesspartner {
                                 type: "sap.ui.model.type.Integer"
                             }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_pricelist") }),
-                            new sap.m.Input("", {
-                                showValueHelp: true,
+                            new sap.m.ex.BOInput("", {
+                                boText: "name",
+                                boKey: "objectKey",
+                                boCode: ibas.config.applyVariables(materials.bo.BO_CODE_MATERIALPRICELIST),
+                                repositoryName: materials.bo.BO_REPOSITORY_MATERIALS,
                                 valueHelpRequest: function (): void {
                                     that.fireViewEvents(that.chooseSupplierPriceListEvent);
+                                },
+                                bindingValue: {
+                                    path: "priceList"
                                 }
-                            }).bindProperty("value", {
-                                path: "priceList"
                             }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_currency") }),
                             new sap.m.Input("", {
@@ -113,31 +121,43 @@ namespace businesspartner {
                             }),
                             new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_title_contact") }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_contactperson") }),
-                            new sap.m.Input("", {
-                                showValueHelp: true,
+                            new sap.m.ex.BOInput("", {
+                                boText: "name",
+                                boKey: "objectKey",
+                                boCode: ibas.config.applyVariables(bo.BO_CODE_CONTACTPERSON),
+                                repositoryName: bo.BO_REPOSITORY_BUSINESSPARTNER,
                                 valueHelpRequest: function (): void {
                                     that.fireViewEvents(that.chooseSupplierContactPersonEvent);
+                                },
+                                bindingValue: {
+                                    path: "contactPerson"
                                 }
-                            }).bindProperty("value", {
-                                path: "contactPerson"
                             }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_billaddress") }),
-                            new sap.m.Input("", {
-                                showValueHelp: true,
+                            new sap.m.ex.BOInput("", {
+                                boText: "name",
+                                boKey: "objectKey",
+                                boCode: ibas.config.applyVariables(bo.BO_CODE_ADDRESS),
+                                repositoryName: bo.BO_REPOSITORY_BUSINESSPARTNER,
                                 valueHelpRequest: function (): void {
                                     that.fireViewEvents(that.chooseSupplierBillAddressEvent);
+                                },
+                                bindingValue: {
+                                    path: "billAddress"
                                 }
-                            }).bindProperty("value", {
-                                path: "billAddress"
                             }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_shipaddress") }),
-                            new sap.m.Input("", {
-                                showValueHelp: true,
+                            new sap.m.ex.BOInput("", {
+                                boText: "name",
+                                boKey: "objectKey",
+                                boCode: ibas.config.applyVariables(bo.BO_CODE_ADDRESS),
+                                repositoryName: bo.BO_REPOSITORY_BUSINESSPARTNER,
                                 valueHelpRequest: function (): void {
                                     that.fireViewEvents(that.chooseSupplierShipAddressEvent);
+                                },
+                                bindingValue: {
+                                    path: "shipAddress"
                                 }
-                            }).bindProperty("value", {
-                                path: "shipAddress"
                             }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_telephone1") }),
                             new sap.m.Input("", {
@@ -168,6 +188,12 @@ namespace businesspartner {
                                 type: sap.m.InputType.Text,
                             }).bindProperty("value", {
                                 path: "taxId",
+                            }),
+                            new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_channel") }),
+                            new sap.m.Input("", {
+                                type: sap.m.InputType.Text
+                            }).bindProperty("value", {
+                                path: "channel"
                             }),
                         ],
                     });
