@@ -238,6 +238,21 @@ public interface ISupplier extends IBOMasterData {
 	void setCurrency(String value);
 
 	/**
+	 * 获取-仓库
+	 * 
+	 * @return 值
+	 */
+	String getWarehouse();
+
+	/**
+	 * 设置-仓库
+	 * 
+	 * @param value
+	 *            值
+	 */
+	void setWarehouse(String value);
+
+	/**
 	 * 获取-生效日期
 	 * 
 	 * @return 值

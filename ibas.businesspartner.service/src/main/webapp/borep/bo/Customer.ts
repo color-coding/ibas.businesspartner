@@ -182,6 +182,17 @@ namespace businesspartner {
                 this.setProperty(Customer.PROPERTY_CURRENCY_NAME, value);
             }
 
+            /** 映射的属性名称-仓库 */
+            static PROPERTY_WAREHOUSE_NAME: string = "Warehouse";
+            /** 获取-仓库 */
+            get warehouse(): string {
+                return this.getProperty<string>(Customer.PROPERTY_WAREHOUSE_NAME);
+            }
+            /** 设置-仓库 */
+            set warehouse(value: string) {
+                this.setProperty(Customer.PROPERTY_WAREHOUSE_NAME, value);
+            }
+
             /** 映射的属性名称-生效日期 */
             static PROPERTY_VALIDDATE_NAME: string = "ValidDate";
             /** 获取-生效日期 */

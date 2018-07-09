@@ -28,6 +28,8 @@ namespace businesspartner {
                 chooseSupplierBillAddressEvent: Function;
                 /** 选择供应商价格清单事件 */
                 chooseSupplierPriceListEvent: Function;
+                /** 选择供应商仓库事件 */
+                chooseSupplierWarehouseEvent: Function;
                 /** 创建联系人 */
                 createContactPersonEvent: Function;
                 /** 创建地址 */
@@ -97,6 +99,19 @@ namespace businesspartner {
                                 },
                                 bindingValue: {
                                     path: "priceList"
+                                }
+                            }),
+                            new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_warehouse") }),
+                            new sap.m.ex.BOInput("", {
+                                boText: "name",
+                                boKey: "code",
+                                boCode: ibas.config.applyVariables(materials.bo.BO_CODE_WAREHOUSE),
+                                repositoryName: materials.bo.BO_REPOSITORY_MATERIALS,
+                                valueHelpRequest: function (): void {
+                                    that.fireViewEvents(that.chooseSupplierWarehouseEvent);
+                                },
+                                bindingValue: {
+                                    path: "warehouse"
                                 }
                             }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_currency") }),

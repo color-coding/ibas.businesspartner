@@ -95,6 +95,14 @@ namespace businesspartner {
                                     path: "group"
                                 })
                             }),
+                            new sap.ui.table.Column("", {
+                                label: ibas.i18n.prop("bo_supplier_channel"),
+                                template: new sap.m.Text("", {
+                                    wrapping: false
+                                }).bindProperty("text", {
+                                    path: "channel"
+                                })
+                            }),
                         ]
                     });
                     // 调整选择样式风格

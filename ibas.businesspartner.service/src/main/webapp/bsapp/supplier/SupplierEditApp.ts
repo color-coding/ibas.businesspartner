@@ -36,6 +36,7 @@ namespace businesspartner {
                 this.view.chooseSupplierBillAddressEvent = this.chooseSupplierBillAddress;
                 this.view.chooseSupplierShipAddressEvent = this.chooseSupplierShipAddress;
                 this.view.chooseSupplierPriceListEvent = this.chooseSupplierPriceList;
+                this.view.chooseSupplierWarehouseEvent = this.chooseSupplierWarehouse;
                 this.view.createAddressEvent = this.createAddress;
                 this.view.createContactPersonEvent = this.createContactPerson;
             }
@@ -268,6 +269,18 @@ namespace businesspartner {
                     }
                 });
             }
+            private chooseSupplierWarehouse(): void {
+                let that: this = this;
+                ibas.servicesManager.runChooseService<materials.bo.IWarehouse>({
+                    boCode: materials.bo.BO_CODE_WAREHOUSE,
+                    chooseType: ibas.emChooseType.SINGLE,
+                    criteria: materials.app.conditions.warehouse.create(),
+                    onCompleted(selecteds: ibas.IList<materials.bo.IWarehouse>): void {
+                        let selected: materials.bo.IWarehouse = selecteds.firstOrDefault();
+                        that.editData.warehouse = selected.code;
+                    }
+                });
+            }
             private createContactPerson(): void {
                 if (this.editData.isNew) {
                     this.messages({
@@ -322,6 +335,8 @@ namespace businesspartner {
             chooseSupplierBillAddressEvent: Function;
             /** 选择供应商价格清单事件 */
             chooseSupplierPriceListEvent: Function;
+            /** 选择供应商仓库事件 */
+            chooseSupplierWarehouseEvent: Function;
             /** 创建联系人 */
             createContactPersonEvent: Function;
             /** 创建地址 */

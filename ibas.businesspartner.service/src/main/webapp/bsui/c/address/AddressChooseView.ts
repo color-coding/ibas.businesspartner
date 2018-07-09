@@ -77,7 +77,7 @@ namespace businesspartner {
                                 template: new sap.m.Text("", {
                                     wrapping: false
                                 }).bindProperty("text", {
-                                    path: "position"
+                                    path: "street"
                                 })
                             }),
                             new sap.ui.table.Column("", {
