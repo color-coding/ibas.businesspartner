@@ -186,8 +186,7 @@ namespace businesspartner {
                     boCode: bo.BusinessPartnerGroup.BUSINESS_OBJECT_CODE,
                     chooseType: ibas.emChooseType.SINGLE,
                     criteria: [
-                        new ibas.Condition(bo.BusinessPartnerGroup.PROPERTY_ACTIVATED_NAME,
-                            ibas.emConditionOperation.EQUAL, ibas.emYesNo.YES),
+                        new ibas.Condition(bo.BusinessPartnerGroup.PROPERTY_ACTIVATED_NAME, ibas.emConditionOperation.EQUAL, ibas.emYesNo.YES),
                     ],
                     onCompleted(selecteds: ibas.IList<bo.BusinessPartnerGroup>): void {
                         let selected: bo.BusinessPartnerGroup = selecteds.firstOrDefault();
@@ -201,12 +200,9 @@ namespace businesspartner {
                     boCode: bo.ContactPerson.BUSINESS_OBJECT_CODE,
                     chooseType: ibas.emChooseType.SINGLE,
                     criteria: [
-                        new ibas.Condition(bo.ContactPerson.PROPERTY_ACTIVATED_NAME,
-                            ibas.emConditionOperation.EQUAL, ibas.emYesNo.YES),
-                        new ibas.Condition(bo.ContactPerson.PROPERTY_OWNERTYPE_NAME,
-                            ibas.emConditionOperation.EQUAL, bo.emBusinessPartnerType.CUSTOMER),
-                        new ibas.Condition(bo.ContactPerson.PROPERTY_BUSINESSPARTNER_NAME,
-                            ibas.emConditionOperation.EQUAL, this.editData.code),
+                        new ibas.Condition(bo.ContactPerson.PROPERTY_ACTIVATED_NAME, ibas.emConditionOperation.EQUAL, ibas.emYesNo.YES),
+                        new ibas.Condition(bo.ContactPerson.PROPERTY_OWNERTYPE_NAME, ibas.emConditionOperation.EQUAL, bo.emBusinessPartnerType.CUSTOMER),
+                        new ibas.Condition(bo.ContactPerson.PROPERTY_BUSINESSPARTNER_NAME, ibas.emConditionOperation.EQUAL, this.editData.code),
                     ],
                     onCompleted(selecteds: ibas.IList<bo.ContactPerson>): void {
                         let selected: bo.ContactPerson = selecteds.firstOrDefault();
@@ -224,12 +220,9 @@ namespace businesspartner {
                     boCode: bo.Address.BUSINESS_OBJECT_CODE,
                     chooseType: ibas.emChooseType.SINGLE,
                     criteria: [
-                        new ibas.Condition(bo.Address.PROPERTY_ACTIVATED_NAME,
-                            ibas.emConditionOperation.EQUAL, ibas.emYesNo.YES),
-                        new ibas.Condition(bo.Address.PROPERTY_OWNERTYPE_NAME,
-                            ibas.emConditionOperation.EQUAL, bo.emBusinessPartnerType.CUSTOMER),
-                        new ibas.Condition(bo.Address.PROPERTY_BUSINESSPARTNER_NAME,
-                            ibas.emConditionOperation.EQUAL, this.editData.code),
+                        new ibas.Condition(bo.Address.PROPERTY_ACTIVATED_NAME, ibas.emConditionOperation.EQUAL, ibas.emYesNo.YES),
+                        new ibas.Condition(bo.Address.PROPERTY_OWNERTYPE_NAME, ibas.emConditionOperation.EQUAL, bo.emBusinessPartnerType.CUSTOMER),
+                        new ibas.Condition(bo.Address.PROPERTY_BUSINESSPARTNER_NAME, ibas.emConditionOperation.EQUAL, this.editData.code),
                     ],
                     onCompleted(selecteds: ibas.IList<bo.Address>): void {
                         let selected: bo.Address = selecteds.firstOrDefault();
@@ -243,12 +236,9 @@ namespace businesspartner {
                     boCode: bo.Address.BUSINESS_OBJECT_CODE,
                     chooseType: ibas.emChooseType.SINGLE,
                     criteria: [
-                        new ibas.Condition(bo.Address.PROPERTY_ACTIVATED_NAME,
-                            ibas.emConditionOperation.EQUAL, ibas.emYesNo.YES),
-                        new ibas.Condition(bo.Address.PROPERTY_OWNERTYPE_NAME,
-                            ibas.emConditionOperation.EQUAL, bo.emBusinessPartnerType.CUSTOMER),
-                        new ibas.Condition(bo.Address.PROPERTY_BUSINESSPARTNER_NAME,
-                            ibas.emConditionOperation.EQUAL, this.editData.code),
+                        new ibas.Condition(bo.Address.PROPERTY_ACTIVATED_NAME, ibas.emConditionOperation.EQUAL, ibas.emYesNo.YES),
+                        new ibas.Condition(bo.Address.PROPERTY_OWNERTYPE_NAME, ibas.emConditionOperation.EQUAL, bo.emBusinessPartnerType.CUSTOMER),
+                        new ibas.Condition(bo.Address.PROPERTY_BUSINESSPARTNER_NAME, ibas.emConditionOperation.EQUAL, this.editData.code),
                     ],
                     onCompleted(selecteds: ibas.IList<bo.Address>): void {
                         let selected: bo.Address = selecteds.firstOrDefault();
