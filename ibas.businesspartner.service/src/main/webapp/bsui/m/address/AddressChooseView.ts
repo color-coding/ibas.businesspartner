@@ -13,36 +13,6 @@ namespace businesspartner {
                 get queryTarget(): any {
                     return bo.Address;
                 }
-                /** 绘制工具条 */
-                drawBars(): any {
-                    let that: this = this;
-                    return [
-                        // new sap.m.ToolbarSpacer(""),
-                        new sap.m.Button("", {
-                            width: "50%",
-                            text: ibas.i18n.prop("shell_data_choose"),
-                            type: sap.m.ButtonType.Transparent,
-                            // icon: "sap-icon://accept",
-                            press: function (): void {
-                                that.fireViewEvents(that.chooseDataEvent,
-                                    // 获取表格选中的对象
-                                    openui5.utils.getSelecteds<bo.Address>(that.list)
-                                );
-                            }
-                        }),
-                        // new sap.m.ToolbarSpacer(""),
-                        new sap.m.Button("", {
-                            width: "50%",
-                            text: ibas.i18n.prop("shell_exit"),
-                            type: sap.m.ButtonType.Transparent,
-                            // icon: "sap-icon://inspect-down",
-                            press: function (): void {
-                                that.fireViewEvents(that.closeEvent);
-                            }
-                        }),
-                        // new sap.m.ToolbarSpacer(""),
-                    ];
-                }
                 /** 绘制视图 */
                 draw(): any {
                     let that: this = this;
@@ -77,7 +47,30 @@ namespace businesspartner {
                         floatingFooter: true,
                         content: [this.list],
                         footer: new sap.m.Toolbar("", {
-                            content: this.drawBars()
+                            content: [
+                                new sap.m.Button("", {
+                                    width: "50%",
+                                    text: ibas.i18n.prop("shell_data_choose"),
+                                    type: sap.m.ButtonType.Transparent,
+                                    // icon: "sap-icon://accept",
+                                    press: function (): void {
+                                        that.fireViewEvents(that.chooseDataEvent,
+                                            // 获取表格选中的对象
+                                            openui5.utils.getSelecteds<bo.Address>(that.list)
+                                        );
+                                    }
+                                }),
+                                // new sap.m.ToolbarSpacer(""),
+                                new sap.m.Button("", {
+                                    width: "50%",
+                                    text: ibas.i18n.prop("shell_exit"),
+                                    type: sap.m.ButtonType.Transparent,
+                                    // icon: "sap-icon://inspect-down",
+                                    press: function (): void {
+                                        that.fireViewEvents(that.closeEvent);
+                                    }
+                                }),
+                            ]
                         })
                     });
                     this.page.setShowSubHeader(false);

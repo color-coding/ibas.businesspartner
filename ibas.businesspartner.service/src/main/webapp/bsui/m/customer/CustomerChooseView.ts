@@ -13,39 +13,6 @@ namespace businesspartner {
                 get queryTarget(): any {
                     return bo.Customer;
                 }
-                /** 绘制工具条 */
-                drawBars(): any {
-                    let that: this = this;
-                    return [
-                        new sap.m.Button("", {
-                            text: ibas.i18n.prop("shell_data_new"),
-                            type: sap.m.ButtonType.Transparent,
-                            // icon: "sap-icon://create",
-                            press: function (): void {
-                                that.fireViewEvents(that.newDataEvent);
-                            }
-                        }),
-                        new sap.m.Button("", {
-                            text: ibas.i18n.prop("shell_data_choose"),
-                            type: sap.m.ButtonType.Transparent,
-                            // icon: "sap-icon://accept",
-                            press: function (): void {
-                                that.fireViewEvents(that.chooseDataEvent,
-                                    // 获取表格选中的对象
-                                    openui5.utils.getSelecteds<bo.Customer>(that.list)
-                                );
-                            }
-                        }),
-                        new sap.m.Button("", {
-                            text: ibas.i18n.prop("shell_exit"),
-                            type: sap.m.ButtonType.Transparent,
-                            // icon: "sap-icon://inspect-down",
-                            press: function (): void {
-                                that.fireViewEvents(that.closeEvent);
-                            }
-                        }),
-                    ];
-                }
                 /** 绘制视图 */
                 draw(): any {
                     let that: this = this;
@@ -84,7 +51,38 @@ namespace businesspartner {
                     });
                     this.page = new sap.m.Page("", {
                         showHeader: false,
-                        content: [this.list]
+                        content: [this.list],
+                        footer: new sap.m.Toolbar("", {
+                            content: [
+                                new sap.m.Button("", {
+                                    text: ibas.i18n.prop("shell_data_new"),
+                                    type: sap.m.ButtonType.Transparent,
+                                    // icon: "sap-icon://create",
+                                    press: function (): void {
+                                        that.fireViewEvents(that.newDataEvent);
+                                    }
+                                }),
+                                new sap.m.Button("", {
+                                    text: ibas.i18n.prop("shell_data_choose"),
+                                    type: sap.m.ButtonType.Transparent,
+                                    // icon: "sap-icon://accept",
+                                    press: function (): void {
+                                        that.fireViewEvents(that.chooseDataEvent,
+                                            // 获取表格选中的对象
+                                            openui5.utils.getSelecteds<bo.Customer>(that.list)
+                                        );
+                                    }
+                                }),
+                                new sap.m.Button("", {
+                                    text: ibas.i18n.prop("shell_exit"),
+                                    type: sap.m.ButtonType.Transparent,
+                                    // icon: "sap-icon://inspect-down",
+                                    press: function (): void {
+                                        that.fireViewEvents(that.closeEvent);
+                                    }
+                                }),
+                            ]
+                        })
                     });
                     this.page.setShowSubHeader(false);
                     this.id = this.page.getId();
