@@ -20,6 +20,8 @@ namespace businesspartner {
                 editDataEvent: Function;
                 /** 删除数据事件，参数：删除对象集合 */
                 deleteDataEvent: Function;
+                /** 业务伙伴组事件 */
+                customerGroupEvent: Function;
                 /** 绘制视图 */
                 draw(): any {
                     let that: this = this;
@@ -123,6 +125,15 @@ namespace businesspartner {
                                             // 获取表格选中的对象
                                             openui5.utils.getSelecteds<bo.Customer>(that.table)
                                         );
+                                    }
+                                }),
+                                new sap.m.ToolbarSeparator(""),
+                                new sap.m.Button("", {
+                                    text: ibas.i18n.prop("businesspartner_func_businesspartnergroup"),
+                                    type: sap.m.ButtonType.Transparent,
+                                    icon: "sap-icon://dimension",
+                                    press: function (): void {
+                                        that.fireViewEvents(that.customerGroupEvent);
                                     }
                                 }),
                                 new sap.m.ToolbarSpacer(""),

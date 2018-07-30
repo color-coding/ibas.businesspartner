@@ -41,7 +41,7 @@ namespace businesspartner {
                 this.register(new ContactPersonFunc());
                 this.register(new AddressFunc());
                 this.register(new BusinessPartnerAssetFunc());
-                this.register(new BusinessPartnerGroupFunc());
+                // this.register(new BusinessPartnerGroupFunc());
                 this.register(new AssetItemFunc());
 
                 // 注册服务应用

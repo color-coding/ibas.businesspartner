@@ -31,6 +31,7 @@ namespace businesspartner {
                 // 其他事件
                 this.view.editDataEvent = this.editData;
                 this.view.deleteDataEvent = this.deleteData;
+                this.view.customerGroupEvent = this.customerGroup;
             }
             /** 视图显示后 */
             protected viewShowed(): void {
@@ -169,6 +170,12 @@ namespace businesspartner {
                     }
                 });
             }
+            private customerGroup(): void {
+                let app: BusinessPartnerGroupListApp = new BusinessPartnerGroupListApp();
+                app.navigation = this.navigation;
+                app.viewShower = this.viewShower;
+                app.run();
+            }
         }
         /** 视图-客户 */
         export interface ICustomerListView extends ibas.IBOListView {
@@ -176,6 +183,8 @@ namespace businesspartner {
             editDataEvent: Function;
             /** 删除数据事件，参数：删除对象集合 */
             deleteDataEvent: Function;
+            /** 业务伙伴组事件 */
+            customerGroupEvent: Function;
             /** 显示数据 */
             showData(datas: bo.Customer[]): void;
         }
