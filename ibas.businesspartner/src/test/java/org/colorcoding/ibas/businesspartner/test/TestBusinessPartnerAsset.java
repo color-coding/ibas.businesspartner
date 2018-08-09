@@ -1,4 +1,4 @@
-package org.colorcoding.ibas.businesspartner.test.bo;
+package org.colorcoding.ibas.businesspartner.test;
 
 import org.colorcoding.ibas.bobas.common.Criteria;
 import org.colorcoding.ibas.bobas.common.ICondition;
@@ -22,7 +22,7 @@ import junit.framework.TestCase;
  * 业务伙伴组 测试
  * 
  */
-public class testBusinessPartnerAsset extends TestCase {
+public class TestBusinessPartnerAsset extends TestCase {
 	/**
 	 * 获取连接口令
 	 */
