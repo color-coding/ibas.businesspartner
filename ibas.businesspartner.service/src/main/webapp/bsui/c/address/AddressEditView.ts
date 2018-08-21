@@ -55,35 +55,25 @@ namespace businesspartner {
                             }).bindProperty("value", {
                                 path: "name"
                             }),
+                            new sap.m.Label("", {
+                                text: ibas.i18n.prop("bo_address_country") +
+                                    "/" + ibas.i18n.prop("bo_address_province") +
+                                    "/" + ibas.i18n.prop("bo_address_city") +
+                                    "/" + ibas.i18n.prop("bo_address_district")
+                            }),
+                            new sap.m.ex.ProvincesCityDistrict("", {
+                                width: "100%",
+                                direction: sap.m.FlexDirection.Column,
+                                country: { path: "country" },
+                                province: { path: "province" },
+                                city: { path: "city" },
+                                district: { path: "district" },
+                            }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_address_street") }),
                             new sap.m.Input("", {
                                 type: sap.m.InputType.Text
                             }).bindProperty("value", {
                                 path: "street"
-                            }),
-                            new sap.m.Label("", { text: ibas.i18n.prop("bo_address_district") }),
-                            new sap.m.Input("", {
-                                type: sap.m.InputType.Text
-                            }).bindProperty("value", {
-                                path: "district"
-                            }),
-                            new sap.m.Label("", { text: ibas.i18n.prop("bo_address_city") }),
-                            new sap.m.Input("", {
-                                type: sap.m.InputType.Text
-                            }).bindProperty("value", {
-                                path: "city"
-                            }),
-                            new sap.m.Label("", { text: ibas.i18n.prop("bo_address_province") }),
-                            new sap.m.Input("", {
-                                type: sap.m.InputType.Text
-                            }).bindProperty("value", {
-                                path: "province"
-                            }),
-                            new sap.m.Label("", { text: ibas.i18n.prop("bo_address_country") }),
-                            new sap.m.Input("", {
-                                type: sap.m.InputType.Text
-                            }).bindProperty("value", {
-                                path: "country"
                             }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_address_zipcode") }),
                             new sap.m.Input("", {
