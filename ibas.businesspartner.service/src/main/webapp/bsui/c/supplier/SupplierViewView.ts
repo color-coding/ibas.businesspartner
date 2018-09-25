@@ -162,7 +162,7 @@ namespace businesspartner {
                                     press: function (event: any): void {
                                         ibas.servicesManager.showServices({
                                             proxy: new ibas.BOServiceProxy({
-                                                data: (<any>that.viewTopForm.getModel()).getObject(),
+                                                data: (<any>that.viewTopForm.getModel()).getData(),
                                                 converter: new bo.DataConverter(),
                                             }),
                                             displayServices(services: ibas.IServiceAgent[]): void {
