@@ -22,8 +22,7 @@ public interface ICustomer extends IBOMasterData {
 	/**
 	 * 设置-编码
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setCode(String value);
 
@@ -37,8 +36,7 @@ public interface ICustomer extends IBOMasterData {
 	/**
 	 * 设置-名称
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setName(String value);
 
@@ -52,8 +50,7 @@ public interface ICustomer extends IBOMasterData {
 	/**
 	 * 设置-组代码
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setGroup(String value);
 
@@ -67,8 +64,7 @@ public interface ICustomer extends IBOMasterData {
 	/**
 	 * 设置-激活
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setActivated(emYesNo value);
 
@@ -82,8 +78,7 @@ public interface ICustomer extends IBOMasterData {
 	/**
 	 * 设置-公司/个人
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setCompanyPrivate(emBusinessPartnerNature value);
 
@@ -97,8 +92,7 @@ public interface ICustomer extends IBOMasterData {
 	/**
 	 * 设置-联系人
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setContactPerson(Integer value);
 
@@ -112,8 +106,7 @@ public interface ICustomer extends IBOMasterData {
 	/**
 	 * 设置-账单地址
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setBillAddress(Integer value);
 
@@ -127,8 +120,7 @@ public interface ICustomer extends IBOMasterData {
 	/**
 	 * 设置-送货地址
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setShipAddress(Integer value);
 
@@ -142,8 +134,7 @@ public interface ICustomer extends IBOMasterData {
 	/**
 	 * 设置-电话 1
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setTelephone1(String value);
 
@@ -157,8 +148,7 @@ public interface ICustomer extends IBOMasterData {
 	/**
 	 * 设置-电话 2
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setTelephone2(String value);
 
@@ -172,8 +162,7 @@ public interface ICustomer extends IBOMasterData {
 	/**
 	 * 设置-移动电话
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setMobilePhone(String value);
 
@@ -187,8 +176,7 @@ public interface ICustomer extends IBOMasterData {
 	/**
 	 * 设置-传真号
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setFaxNumber(String value);
 
@@ -202,8 +190,7 @@ public interface ICustomer extends IBOMasterData {
 	/**
 	 * 设置-国税编号
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setTaxId(String value);
 
@@ -217,8 +204,7 @@ public interface ICustomer extends IBOMasterData {
 	/**
 	 * 设置-价格清单
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setPriceList(Integer value);
 
@@ -232,8 +218,7 @@ public interface ICustomer extends IBOMasterData {
 	/**
 	 * 设置-货币
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setCurrency(String value);
 
@@ -247,8 +232,7 @@ public interface ICustomer extends IBOMasterData {
 	/**
 	 * 设置-仓库
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setWarehouse(String value);
 
@@ -262,8 +246,7 @@ public interface ICustomer extends IBOMasterData {
 	/**
 	 * 设置-生效日期
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setValidDate(DateTime value);
 
@@ -277,8 +260,7 @@ public interface ICustomer extends IBOMasterData {
 	/**
 	 * 设置-失效日期
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setInvalidDate(DateTime value);
 
@@ -292,8 +274,7 @@ public interface ICustomer extends IBOMasterData {
 	/**
 	 * 设置-备注
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setRemarks(String value);
 
@@ -307,8 +288,7 @@ public interface ICustomer extends IBOMasterData {
 	/**
 	 * 设置-已引用
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setReferenced(emYesNo value);
 
@@ -322,8 +302,7 @@ public interface ICustomer extends IBOMasterData {
 	/**
 	 * 设置-已删除
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setDeleted(emYesNo value);
 
@@ -337,8 +316,7 @@ public interface ICustomer extends IBOMasterData {
 	/**
 	 * 设置-对象编号
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setDocEntry(Integer value);
 
@@ -352,8 +330,7 @@ public interface ICustomer extends IBOMasterData {
 	/**
 	 * 设置-对象类型
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setObjectCode(String value);
 
@@ -367,8 +344,7 @@ public interface ICustomer extends IBOMasterData {
 	/**
 	 * 设置-创建日期
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setCreateDate(DateTime value);
 
@@ -382,8 +358,7 @@ public interface ICustomer extends IBOMasterData {
 	/**
 	 * 设置-创建时间
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setCreateTime(Short value);
 
@@ -397,8 +372,7 @@ public interface ICustomer extends IBOMasterData {
 	/**
 	 * 设置-修改日期
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setUpdateDate(DateTime value);
 
@@ -412,8 +386,7 @@ public interface ICustomer extends IBOMasterData {
 	/**
 	 * 设置-修改时间
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setUpdateTime(Short value);
 
@@ -427,8 +400,7 @@ public interface ICustomer extends IBOMasterData {
 	/**
 	 * 设置-版本
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setLogInst(Integer value);
 
@@ -442,8 +414,7 @@ public interface ICustomer extends IBOMasterData {
 	/**
 	 * 设置-服务系列
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setSeries(Integer value);
 
@@ -457,8 +428,7 @@ public interface ICustomer extends IBOMasterData {
 	/**
 	 * 设置-数据源
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setDataSource(String value);
 
@@ -472,8 +442,7 @@ public interface ICustomer extends IBOMasterData {
 	/**
 	 * 设置-创建用户
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setCreateUserSign(Integer value);
 
@@ -487,8 +456,7 @@ public interface ICustomer extends IBOMasterData {
 	/**
 	 * 设置-修改用户
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setUpdateUserSign(Integer value);
 
@@ -502,8 +470,7 @@ public interface ICustomer extends IBOMasterData {
 	/**
 	 * 设置-创建动作标识
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setCreateActionId(String value);
 
@@ -517,8 +484,7 @@ public interface ICustomer extends IBOMasterData {
 	/**
 	 * 设置-更新动作标识
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setUpdateActionId(String value);
 
@@ -532,8 +498,7 @@ public interface ICustomer extends IBOMasterData {
 	/**
 	 * 设置-审批状态
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setApprovalStatus(emApprovalStatus value);
 
@@ -547,8 +512,7 @@ public interface ICustomer extends IBOMasterData {
 	/**
 	 * 设置-数据所有者
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setDataOwner(Integer value);
 
@@ -562,8 +526,7 @@ public interface ICustomer extends IBOMasterData {
 	/**
 	 * 设置-数据所属组织
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setOrganization(String value);
 
@@ -577,8 +540,21 @@ public interface ICustomer extends IBOMasterData {
 	/**
 	 * 设置-所属渠道
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setChannel(String value);
+
+	/**
+	 * 获取-组织单位
+	 * 
+	 * @return 值
+	 */
+	String getOrganizationalUnit();
+
+	/**
+	 * 设置-组织单位
+	 * 
+	 * @param value 值
+	 */
+	void setOrganizationalUnit(String value);
 }

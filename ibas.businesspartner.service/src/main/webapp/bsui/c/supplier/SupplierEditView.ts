@@ -215,6 +215,19 @@ namespace businesspartner {
                             }).bindProperty("value", {
                                 path: "channel"
                             }),
+                            new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_organizationalunit") }),
+                            new sap.m.ex.BOChooseInput("", {
+                                boText: "name",
+                                boKey: "code",
+                                boCode: ibas.config.applyVariables(initialfantasy.bo.BO_CODE_ORGANIZATION),
+                                repositoryName: initialfantasy.bo.BO_REPOSITORY_INITIALFANTASY,
+                                criteria: [
+                                    new ibas.Condition("activated", ibas.emConditionOperation.EQUAL, ibas.emYesNo.YES.toString())
+                                ],
+                                bindingValue: {
+                                    path: "organizationalUnit"
+                                }
+                            }),
                         ],
                     });
                     this.page = new sap.m.Page("", {

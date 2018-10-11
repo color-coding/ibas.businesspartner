@@ -428,11 +428,22 @@ namespace businesspartner {
             static PROPERTY_CHANNEL_NAME: string = "Channel";
             /** 获取-所属渠道 */
             get channel(): string {
-                return this.getProperty<string>(Customer.PROPERTY_CHANNEL_NAME);
+                return this.getProperty<string>(Supplier.PROPERTY_CHANNEL_NAME);
             }
             /** 设置-所属渠道 */
             set channel(value: string) {
-                this.setProperty(Customer.PROPERTY_CHANNEL_NAME, value);
+                this.setProperty(Supplier.PROPERTY_CHANNEL_NAME, value);
+            }
+
+            /** 映射的属性名称-组织单位 */
+            static PROPERTY_ORGANIZATIONALUNIT_NAME: string = "OrganizationalUnit";
+            /** 获取-组织单位 */
+            get organizationalUnit(): string {
+                return this.getProperty<string>(Supplier.PROPERTY_ORGANIZATIONALUNIT_NAME);
+            }
+            /** 设置-组织单位 */
+            set organizationalUnit(value: string) {
+                this.setProperty(Supplier.PROPERTY_ORGANIZATIONALUNIT_NAME, value);
             }
 
             /** 初始化数据 */

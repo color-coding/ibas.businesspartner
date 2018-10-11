@@ -85,8 +85,7 @@ public class Supplier extends BusinessObject<Supplier>
 	/**
 	 * 设置-编码
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setCode(String value) {
 		this.setProperty(PROPERTY_CODE, value);
@@ -117,8 +116,7 @@ public class Supplier extends BusinessObject<Supplier>
 	/**
 	 * 设置-名称
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setName(String value) {
 		this.setProperty(PROPERTY_NAME, value);
@@ -149,8 +147,7 @@ public class Supplier extends BusinessObject<Supplier>
 	/**
 	 * 设置-组代码
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setGroup(String value) {
 		this.setProperty(PROPERTY_GROUP, value);
@@ -181,8 +178,7 @@ public class Supplier extends BusinessObject<Supplier>
 	/**
 	 * 设置-激活
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setActivated(emYesNo value) {
 		this.setProperty(PROPERTY_ACTIVATED, value);
@@ -213,8 +209,7 @@ public class Supplier extends BusinessObject<Supplier>
 	/**
 	 * 设置-公司/个人
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setCompanyPrivate(emBusinessPartnerNature value) {
 		this.setProperty(PROPERTY_COMPANYPRIVATE, value);
@@ -245,8 +240,7 @@ public class Supplier extends BusinessObject<Supplier>
 	/**
 	 * 设置-联系人
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setContactPerson(Integer value) {
 		this.setProperty(PROPERTY_CONTACTPERSON, value);
@@ -277,8 +271,7 @@ public class Supplier extends BusinessObject<Supplier>
 	/**
 	 * 设置-账单地址
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setBillAddress(Integer value) {
 		this.setProperty(PROPERTY_BILLADDRESS, value);
@@ -309,8 +302,7 @@ public class Supplier extends BusinessObject<Supplier>
 	/**
 	 * 设置-送货地址
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setShipAddress(Integer value) {
 		this.setProperty(PROPERTY_SHIPADDRESS, value);
@@ -341,8 +333,7 @@ public class Supplier extends BusinessObject<Supplier>
 	/**
 	 * 设置-电话 1
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setTelephone1(String value) {
 		this.setProperty(PROPERTY_TELEPHONE1, value);
@@ -373,8 +364,7 @@ public class Supplier extends BusinessObject<Supplier>
 	/**
 	 * 设置-电话 2
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setTelephone2(String value) {
 		this.setProperty(PROPERTY_TELEPHONE2, value);
@@ -405,8 +395,7 @@ public class Supplier extends BusinessObject<Supplier>
 	/**
 	 * 设置-移动电话
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setMobilePhone(String value) {
 		this.setProperty(PROPERTY_MOBILEPHONE, value);
@@ -437,8 +426,7 @@ public class Supplier extends BusinessObject<Supplier>
 	/**
 	 * 设置-传真号
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setFaxNumber(String value) {
 		this.setProperty(PROPERTY_FAXNUMBER, value);
@@ -469,8 +457,7 @@ public class Supplier extends BusinessObject<Supplier>
 	/**
 	 * 设置-国税编号
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setTaxId(String value) {
 		this.setProperty(PROPERTY_TAXID, value);
@@ -501,8 +488,7 @@ public class Supplier extends BusinessObject<Supplier>
 	/**
 	 * 设置-价格清单
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setPriceList(Integer value) {
 		this.setProperty(PROPERTY_PRICELIST, value);
@@ -533,8 +519,7 @@ public class Supplier extends BusinessObject<Supplier>
 	/**
 	 * 设置-货币
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setCurrency(String value) {
 		this.setProperty(PROPERTY_CURRENCY, value);
@@ -565,8 +550,7 @@ public class Supplier extends BusinessObject<Supplier>
 	/**
 	 * 设置-仓库
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setWarehouse(String value) {
 		this.setProperty(PROPERTY_WAREHOUSE, value);
@@ -597,8 +581,7 @@ public class Supplier extends BusinessObject<Supplier>
 	/**
 	 * 设置-生效日期
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setValidDate(DateTime value) {
 		this.setProperty(PROPERTY_VALIDDATE, value);
@@ -629,8 +612,7 @@ public class Supplier extends BusinessObject<Supplier>
 	/**
 	 * 设置-失效日期
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setInvalidDate(DateTime value) {
 		this.setProperty(PROPERTY_INVALIDDATE, value);
@@ -661,8 +643,7 @@ public class Supplier extends BusinessObject<Supplier>
 	/**
 	 * 设置-备注
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setRemarks(String value) {
 		this.setProperty(PROPERTY_REMARKS, value);
@@ -693,8 +674,7 @@ public class Supplier extends BusinessObject<Supplier>
 	/**
 	 * 设置-已引用
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setReferenced(emYesNo value) {
 		this.setProperty(PROPERTY_REFERENCED, value);
@@ -725,8 +705,7 @@ public class Supplier extends BusinessObject<Supplier>
 	/**
 	 * 设置-已删除
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setDeleted(emYesNo value) {
 		this.setProperty(PROPERTY_DELETED, value);
@@ -757,8 +736,7 @@ public class Supplier extends BusinessObject<Supplier>
 	/**
 	 * 设置-对象编号
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setDocEntry(Integer value) {
 		this.setProperty(PROPERTY_DOCENTRY, value);
@@ -789,8 +767,7 @@ public class Supplier extends BusinessObject<Supplier>
 	/**
 	 * 设置-对象类型
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setObjectCode(String value) {
 		this.setProperty(PROPERTY_OBJECTCODE, value);
@@ -821,8 +798,7 @@ public class Supplier extends BusinessObject<Supplier>
 	/**
 	 * 设置-创建日期
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setCreateDate(DateTime value) {
 		this.setProperty(PROPERTY_CREATEDATE, value);
@@ -853,8 +829,7 @@ public class Supplier extends BusinessObject<Supplier>
 	/**
 	 * 设置-创建时间
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setCreateTime(Short value) {
 		this.setProperty(PROPERTY_CREATETIME, value);
@@ -885,8 +860,7 @@ public class Supplier extends BusinessObject<Supplier>
 	/**
 	 * 设置-修改日期
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setUpdateDate(DateTime value) {
 		this.setProperty(PROPERTY_UPDATEDATE, value);
@@ -917,8 +891,7 @@ public class Supplier extends BusinessObject<Supplier>
 	/**
 	 * 设置-修改时间
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setUpdateTime(Short value) {
 		this.setProperty(PROPERTY_UPDATETIME, value);
@@ -949,8 +922,7 @@ public class Supplier extends BusinessObject<Supplier>
 	/**
 	 * 设置-版本
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setLogInst(Integer value) {
 		this.setProperty(PROPERTY_LOGINST, value);
@@ -981,8 +953,7 @@ public class Supplier extends BusinessObject<Supplier>
 	/**
 	 * 设置-服务系列
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setSeries(Integer value) {
 		this.setProperty(PROPERTY_SERIES, value);
@@ -1013,8 +984,7 @@ public class Supplier extends BusinessObject<Supplier>
 	/**
 	 * 设置-数据源
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setDataSource(String value) {
 		this.setProperty(PROPERTY_DATASOURCE, value);
@@ -1045,8 +1015,7 @@ public class Supplier extends BusinessObject<Supplier>
 	/**
 	 * 设置-创建用户
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setCreateUserSign(Integer value) {
 		this.setProperty(PROPERTY_CREATEUSERSIGN, value);
@@ -1077,8 +1046,7 @@ public class Supplier extends BusinessObject<Supplier>
 	/**
 	 * 设置-修改用户
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setUpdateUserSign(Integer value) {
 		this.setProperty(PROPERTY_UPDATEUSERSIGN, value);
@@ -1109,8 +1077,7 @@ public class Supplier extends BusinessObject<Supplier>
 	/**
 	 * 设置-创建动作标识
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setCreateActionId(String value) {
 		this.setProperty(PROPERTY_CREATEACTIONID, value);
@@ -1141,8 +1108,7 @@ public class Supplier extends BusinessObject<Supplier>
 	/**
 	 * 设置-更新动作标识
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setUpdateActionId(String value) {
 		this.setProperty(PROPERTY_UPDATEACTIONID, value);
@@ -1173,8 +1139,7 @@ public class Supplier extends BusinessObject<Supplier>
 	/**
 	 * 设置-审批状态
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setApprovalStatus(emApprovalStatus value) {
 		this.setProperty(PROPERTY_APPROVALSTATUS, value);
@@ -1205,8 +1170,7 @@ public class Supplier extends BusinessObject<Supplier>
 	/**
 	 * 设置-数据所有者
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setDataOwner(Integer value) {
 		this.setProperty(PROPERTY_DATAOWNER, value);
@@ -1237,8 +1201,7 @@ public class Supplier extends BusinessObject<Supplier>
 	/**
 	 * 设置-数据所属组织
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setOrganization(String value) {
 		this.setProperty(PROPERTY_ORGANIZATION, value);
@@ -1269,11 +1232,41 @@ public class Supplier extends BusinessObject<Supplier>
 	/**
 	 * 设置-所属渠道
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setChannel(String value) {
 		this.setProperty(PROPERTY_CHANNEL, value);
+	}
+
+	/**
+	 * 属性名称-组织单位
+	 */
+	private static final String PROPERTY_ORGANIZATIONALUNIT_NAME = "OrganizationalUnit";
+
+	/**
+	 * 组织单位 属性
+	 */
+	@DbField(name = "OrgUnit", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME, primaryKey = false)
+	public static final IPropertyInfo<String> PROPERTY_ORGANIZATIONALUNIT = registerProperty(
+			PROPERTY_ORGANIZATIONALUNIT_NAME, String.class, MY_CLASS);
+
+	/**
+	 * 获取-组织单位
+	 * 
+	 * @return 值
+	 */
+	@XmlElement(name = PROPERTY_ORGANIZATIONALUNIT_NAME)
+	public final String getOrganizationalUnit() {
+		return this.getProperty(PROPERTY_ORGANIZATIONALUNIT);
+	}
+
+	/**
+	 * 设置-组织单位
+	 * 
+	 * @param value 值
+	 */
+	public final void setOrganizationalUnit(String value) {
+		this.setProperty(PROPERTY_ORGANIZATIONALUNIT, value);
 	}
 
 	@Override

@@ -7,6 +7,7 @@
  */
 /// <reference path="../3rdparty/ibas/index.d.ts" />
 /// <reference path="../3rdparty/materials/index.ts" />
+/// <reference path="../3rdparty/initialfantasy/index.ts" />
 /// <reference path="../borep/index.ts" />
 /// <reference path="./address/index.ts" />
 /// <reference path="./businesspartnergroup/index.ts" />

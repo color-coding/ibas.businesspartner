@@ -435,6 +435,17 @@ namespace businesspartner {
                 this.setProperty(Customer.PROPERTY_CHANNEL_NAME, value);
             }
 
+            /** 映射的属性名称-组织单位 */
+            static PROPERTY_ORGANIZATIONALUNIT_NAME: string = "OrganizationalUnit";
+            /** 获取-组织单位 */
+            get organizationalUnit(): string {
+                return this.getProperty<string>(Customer.PROPERTY_ORGANIZATIONALUNIT_NAME);
+            }
+            /** 设置-组织单位 */
+            set organizationalUnit(value: string) {
+                this.setProperty(Customer.PROPERTY_ORGANIZATIONALUNIT_NAME, value);
+            }
+
             /** 初始化数据 */
             protected init(): void {
                 this.objectCode = ibas.config.applyVariables(Customer.BUSINESS_OBJECT_CODE);

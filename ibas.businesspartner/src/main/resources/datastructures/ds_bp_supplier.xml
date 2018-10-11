@@ -40,6 +40,7 @@
     <Property Name="DataOwner" Description="数据所有者" DataType="Numeric" DataSubType="Default" EditSize="8" Mapped="DataOwner"/>
     <Property Name="Organization" Description="数据所属组织" DataType="Alphanumeric" DataSubType="Default" EditSize="8" Mapped="OrgCode"/>
     <Property Name="Channel" Description="所属渠道" DataType="Alphanumeric" DataSubType="Default" EditSize="100" Mapped="Channel"/>
+    <Property Name="OrganizationalUnit" Description="组织单位" DataType="Alphanumeric" DataSubType="Default" EditSize="8" Mapped="OrgUnit"/>
   </Model>
   <BusinessObject MappedModel="Supplier" ShortName="${Company}_BP_SUPPLIER"/>
 </Domain>
