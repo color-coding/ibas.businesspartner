@@ -18,6 +18,7 @@ import org.colorcoding.ibas.bobas.data.emYesNo;
 import org.colorcoding.ibas.bobas.mapping.BOCode;
 import org.colorcoding.ibas.bobas.mapping.DbField;
 import org.colorcoding.ibas.bobas.mapping.DbFieldType;
+import org.colorcoding.ibas.bobas.ownership.IDataOwnership;
 import org.colorcoding.ibas.bobas.rule.IBusinessRule;
 import org.colorcoding.ibas.bobas.rule.common.BusinessRuleMinValue;
 import org.colorcoding.ibas.bobas.rule.common.BusinessRuleRequired;
@@ -33,7 +34,7 @@ import org.colorcoding.ibas.businesspartner.data.emBusinessPartnerType;
 @XmlRootElement(name = BusinessPartnerAsset.BUSINESS_OBJECT_NAME, namespace = MyConfiguration.NAMESPACE_BO)
 @BOCode(BusinessPartnerAsset.BUSINESS_OBJECT_CODE)
 public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset>
-		implements IBusinessPartnerAsset, IBOSeriesKey, IBOTagDeleted, IBOUserFields {
+		implements IBusinessPartnerAsset, IBOSeriesKey, IDataOwnership, IBOTagDeleted, IBOUserFields {
 
 	/**
 	 * 序列化版本标记
@@ -85,8 +86,7 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset>
 	/**
 	 * 设置-编号
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setCode(String value) {
 		this.setProperty(PROPERTY_CODE, value);
@@ -117,8 +117,7 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset>
 	/**
 	 * 设置-名称
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setName(String value) {
 		this.setProperty(PROPERTY_NAME, value);
@@ -149,8 +148,7 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset>
 	/**
 	 * 设置-对象编号
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setDocEntry(Integer value) {
 		this.setProperty(PROPERTY_DOCENTRY, value);
@@ -181,8 +179,7 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset>
 	/**
 	 * 设置-对象类型
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setObjectCode(String value) {
 		this.setProperty(PROPERTY_OBJECTCODE, value);
@@ -213,8 +210,7 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset>
 	/**
 	 * 设置-创建日期
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setCreateDate(DateTime value) {
 		this.setProperty(PROPERTY_CREATEDATE, value);
@@ -245,8 +241,7 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset>
 	/**
 	 * 设置-创建时间
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setCreateTime(Short value) {
 		this.setProperty(PROPERTY_CREATETIME, value);
@@ -277,8 +272,7 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset>
 	/**
 	 * 设置-修改日期
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setUpdateDate(DateTime value) {
 		this.setProperty(PROPERTY_UPDATEDATE, value);
@@ -309,8 +303,7 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset>
 	/**
 	 * 设置-修改时间
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setUpdateTime(Short value) {
 		this.setProperty(PROPERTY_UPDATETIME, value);
@@ -341,8 +334,7 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset>
 	/**
 	 * 设置-版本
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setLogInst(Integer value) {
 		this.setProperty(PROPERTY_LOGINST, value);
@@ -373,8 +365,7 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset>
 	/**
 	 * 设置-服务系列
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setSeries(Integer value) {
 		this.setProperty(PROPERTY_SERIES, value);
@@ -405,8 +396,7 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset>
 	/**
 	 * 设置-数据源
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setDataSource(String value) {
 		this.setProperty(PROPERTY_DATASOURCE, value);
@@ -437,8 +427,7 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset>
 	/**
 	 * 设置-创建用户
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setCreateUserSign(Integer value) {
 		this.setProperty(PROPERTY_CREATEUSERSIGN, value);
@@ -469,8 +458,7 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset>
 	/**
 	 * 设置-修改用户
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setUpdateUserSign(Integer value) {
 		this.setProperty(PROPERTY_UPDATEUSERSIGN, value);
@@ -501,8 +489,7 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset>
 	/**
 	 * 设置-创建动作标识
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setCreateActionId(String value) {
 		this.setProperty(PROPERTY_CREATEACTIONID, value);
@@ -533,8 +520,7 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset>
 	/**
 	 * 设置-更新动作标识
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setUpdateActionId(String value) {
 		this.setProperty(PROPERTY_UPDATEACTIONID, value);
@@ -565,8 +551,7 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset>
 	/**
 	 * 设置-审批状态
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setApprovalStatus(emApprovalStatus value) {
 		this.setProperty(PROPERTY_APPROVALSTATUS, value);
@@ -597,8 +582,7 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset>
 	/**
 	 * 设置-数据所有者
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setDataOwner(Integer value) {
 		this.setProperty(PROPERTY_DATAOWNER, value);
@@ -629,8 +613,7 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset>
 	/**
 	 * 设置-数据所属组织
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setOrganization(String value) {
 		this.setProperty(PROPERTY_ORGANIZATION, value);
@@ -661,8 +644,7 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset>
 	/**
 	 * 设置-已引用
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setReferenced(emYesNo value) {
 		this.setProperty(PROPERTY_REFERENCED, value);
@@ -693,8 +675,7 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset>
 	/**
 	 * 设置-已删除
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setDeleted(emYesNo value) {
 		this.setProperty(PROPERTY_DELETED, value);
@@ -725,8 +706,7 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset>
 	/**
 	 * 设置-业务伙伴类型
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setBusinessPartnerType(emBusinessPartnerType value) {
 		this.setProperty(PROPERTY_BUSINESSPARTNERTYPE, value);
@@ -757,8 +737,7 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset>
 	/**
 	 * 设置-业务伙伴编码
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setBusinessPartnerCode(String value) {
 		this.setProperty(PROPERTY_BUSINESSPARTNERCODE, value);
@@ -789,8 +768,7 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset>
 	/**
 	 * 设置-资产项目
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setAssetCode(String value) {
 		this.setProperty(PROPERTY_ASSETCODE, value);
@@ -821,8 +799,7 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset>
 	/**
 	 * 设置-激活
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setActivated(emYesNo value) {
 		this.setProperty(PROPERTY_ACTIVATED, value);
@@ -853,8 +830,7 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset>
 	/**
 	 * 设置-获得日期
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setAcquiredDate(DateTime value) {
 		this.setProperty(PROPERTY_ACQUIREDDATE, value);
@@ -885,8 +861,7 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset>
 	/**
 	 * 设置-生效日期
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setValidDate(DateTime value) {
 		this.setProperty(PROPERTY_VALIDDATE, value);
@@ -917,8 +892,7 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset>
 	/**
 	 * 设置-失效日期
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setInvalidDate(DateTime value) {
 		this.setProperty(PROPERTY_INVALIDDATE, value);
@@ -949,8 +923,7 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset>
 	/**
 	 * 设置-剩余价值
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setAmount(Decimal value) {
 		this.setProperty(PROPERTY_AMOUNT, value);
@@ -959,8 +932,7 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset>
 	/**
 	 * 设置-剩余价值
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setAmount(String value) {
 		this.setAmount(new Decimal(value));
@@ -969,8 +941,7 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset>
 	/**
 	 * 设置-剩余价值
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setAmount(int value) {
 		this.setAmount(new Decimal(value));
@@ -979,8 +950,7 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset>
 	/**
 	 * 设置-剩余价值
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setAmount(double value) {
 		this.setAmount(new Decimal(value));
@@ -1011,8 +981,7 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset>
 	/**
 	 * 设置-剩余次数
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setTimes(Integer value) {
 		this.setProperty(PROPERTY_TIMES, value);
@@ -1043,8 +1012,7 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset>
 	/**
 	 * 设置-基于类型
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setBaseDocumentType(String value) {
 		this.setProperty(PROPERTY_BASEDOCUMENTTYPE, value);
@@ -1075,8 +1043,7 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset>
 	/**
 	 * 设置-基于标识
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setBaseDocumentEntry(Integer value) {
 		this.setProperty(PROPERTY_BASEDOCUMENTENTRY, value);
@@ -1107,8 +1074,7 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset>
 	/**
 	 * 设置-基于行号
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setBaseDocumentLineId(Integer value) {
 		this.setProperty(PROPERTY_BASEDOCUMENTLINEID, value);
@@ -1139,8 +1105,7 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset>
 	/**
 	 * 设置-交易金额
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setTradingAmount(Decimal value) {
 		this.setProperty(PROPERTY_TRADINGAMOUNT, value);
@@ -1149,8 +1114,7 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset>
 	/**
 	 * 设置-交易金额
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setTradingAmount(String value) {
 		this.setTradingAmount(new Decimal(value));
@@ -1159,8 +1123,7 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset>
 	/**
 	 * 设置-交易金额
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setTradingAmount(int value) {
 		this.setTradingAmount(new Decimal(value));
@@ -1169,8 +1132,7 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset>
 	/**
 	 * 设置-交易金额
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setTradingAmount(double value) {
 		this.setTradingAmount(new Decimal(value));
@@ -1201,8 +1163,7 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset>
 	/**
 	 * 设置-交易货币
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setTradingCurrency(String value) {
 		this.setProperty(PROPERTY_TRADINGCURRENCY, value);
@@ -1233,8 +1194,7 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset>
 	/**
 	 * 设置-备注 1
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setRemark1(String value) {
 		this.setProperty(PROPERTY_REMARK1, value);
@@ -1265,8 +1225,7 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset>
 	/**
 	 * 设置-备注 2
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setRemark2(String value) {
 		this.setProperty(PROPERTY_REMARK2, value);
