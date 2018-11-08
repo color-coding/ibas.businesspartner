@@ -21,7 +21,6 @@ namespace businesspartner {
                         growing: true,
                         growingThreshold: ibas.config.get(openui5.utils.CONFIG_ITEM_LIST_TABLE_VISIBLE_ROW_COUNT, 15),
                         growingScrollToLoad: true,
-                        visibleRowCountMode: sap.ui.table.VisibleRowCountMode.Auto,
                         mode: openui5.utils.toListMode(this.chooseType)
                     });
                     let list_item_object: sap.m.ObjectListItem = new sap.m.ObjectListItem("", {

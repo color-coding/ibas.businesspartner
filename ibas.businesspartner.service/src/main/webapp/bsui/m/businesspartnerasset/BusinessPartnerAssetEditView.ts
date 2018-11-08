@@ -25,7 +25,7 @@ namespace businesspartner {
                     let that: this = this;
                     this.pageBusinessPartnerAsset = new sap.m.Page("", {
                         showHeader: false,
-                        showfooter: false,
+                        showFooter: false,
                         content: [
                             new sap.ui.layout.form.SimpleForm("", {
                                 editable: true,

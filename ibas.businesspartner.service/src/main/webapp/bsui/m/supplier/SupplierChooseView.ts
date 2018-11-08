@@ -21,7 +21,6 @@ namespace businesspartner {
                         growing: true,
                         growingThreshold: ibas.config.get(openui5.utils.CONFIG_ITEM_LIST_TABLE_VISIBLE_ROW_COUNT, 15),
                         growingScrollToLoad: true,
-                        visibleRowCountMode: sap.ui.table.VisibleRowCountMode.Auto,
                         mode: sap.m.ListMode.SingleSelectLeft
                     });
                     let list_item_object: sap.m.ObjectListItem = new sap.m.ObjectListItem("", {
@@ -56,7 +55,7 @@ namespace businesspartner {
                             content: [
                                 new sap.m.Button("", {
                                     text: ibas.i18n.prop("shell_data_new"),
-                                visible: this.mode === ibas.emViewMode.VIEW ? false : true,
+                                    visible: this.mode === ibas.emViewMode.VIEW ? false : true,
                                     type: sap.m.ButtonType.Transparent,
                                     // icon: "sap-icon://create",
                                     press: function (): void {

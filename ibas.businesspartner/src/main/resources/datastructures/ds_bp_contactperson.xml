@@ -6,7 +6,7 @@
     <Property Name="OwnerType" Description="归属类型" DataType="Alphanumeric" DataSubType="Default" EditSize="1" DeclaredType="emBusinessPartnerType" Mapped="OwnerType"/>
     <Property Name="Activated" Description="有效的" DataType="Alphanumeric" DataSubType="Default" EditSize="1" DeclaredType="emYesNo" Mapped="Activated"/>
     <Property Name="Name" Description="名称" DataType="Alphanumeric" DataSubType="Default" EditSize="50" Mapped="Name"/>
-    <Property Name="Gender" Description="性别" DataType="Alphanumeric" DataSubType="Default" EditSize="20" DeclaredType="emGender" Mapped="Gender"/>
+    <Property Name="Gender" Description="性别" DataType="Alphanumeric" DataSubType="Default" EditSize="1" DeclaredType="emGender" Mapped="Gender"/>
     <Property Name="Position" Description="职位" DataType="Alphanumeric" DataSubType="Default" EditSize="10" Mapped="Position"/>
     <Property Name="Address" Description="地址" DataType="Alphanumeric" DataSubType="Default" EditSize="100" Mapped="Address"/>
     <Property Name="Telephone1" Description="电话 1" DataType="Alphanumeric" DataSubType="Default" EditSize="20" Mapped="Tel1"/>
