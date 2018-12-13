@@ -5,9 +5,6 @@
  * Use of this source code is governed by an Apache License, Version 2.0
  * that can be found in the LICENSE file at http://www.apache.org/licenses/LICENSE-2.0
  */
-/// <reference path="../3rdparty/ibas/index.d.ts" />
-/// <reference path="../3rdparty/materials/index.ts" />
-/// <reference path="../3rdparty/initialfantasy/index.ts" />
 /// <reference path="../borep/index.ts" />
 /// <reference path="./address/index.ts" />
 /// <reference path="./businesspartnergroup/index.ts" />
@@ -16,7 +13,6 @@
 /// <reference path="./supplier/index.ts" />
 /// <reference path="./assetitem/index.ts" />
 /// <reference path="./businesspartnerasset/index.ts" />
-
 namespace businesspartner {
     export namespace app {
         /** 模块控制台 */
