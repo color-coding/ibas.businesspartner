@@ -9,7 +9,7 @@ namespace businesspartner {
     export namespace ui {
         export namespace c {
             /** 编辑视图-业务伙伴资产日记账 */
-            export class BusinessPartnerAssetJournalEditView extends ibas.BODialogView implements app.IBusinessPartnerAssetJournalEditView {
+            export class BusinessPartnerAssetJournalEditView extends ibas.DialogView implements app.IBusinessPartnerAssetJournalEditView {
                 /** 保存数据事件 */
                 saveDataEvent: Function;
                 /** 绘制视图 */
