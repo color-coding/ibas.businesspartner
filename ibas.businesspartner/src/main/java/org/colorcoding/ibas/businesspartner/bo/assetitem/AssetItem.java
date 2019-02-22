@@ -1,5 +1,7 @@
 package org.colorcoding.ibas.businesspartner.bo.assetitem;
 
+import java.math.BigDecimal;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -84,8 +86,7 @@ public class AssetItem extends BusinessObject<AssetItem>
 	/**
 	 * 设置-编号
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setCode(String value) {
 		this.setProperty(PROPERTY_CODE, value);
@@ -116,8 +117,7 @@ public class AssetItem extends BusinessObject<AssetItem>
 	/**
 	 * 设置-名称
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setName(String value) {
 		this.setProperty(PROPERTY_NAME, value);
@@ -148,8 +148,7 @@ public class AssetItem extends BusinessObject<AssetItem>
 	/**
 	 * 设置-激活
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setActivated(emYesNo value) {
 		this.setProperty(PROPERTY_ACTIVATED, value);
@@ -180,8 +179,7 @@ public class AssetItem extends BusinessObject<AssetItem>
 	/**
 	 * 设置-已引用
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setReferenced(emYesNo value) {
 		this.setProperty(PROPERTY_REFERENCED, value);
@@ -212,8 +210,7 @@ public class AssetItem extends BusinessObject<AssetItem>
 	/**
 	 * 设置-已删除
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setDeleted(emYesNo value) {
 		this.setProperty(PROPERTY_DELETED, value);
@@ -244,8 +241,7 @@ public class AssetItem extends BusinessObject<AssetItem>
 	/**
 	 * 设置-对象编号
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setDocEntry(Integer value) {
 		this.setProperty(PROPERTY_DOCENTRY, value);
@@ -276,8 +272,7 @@ public class AssetItem extends BusinessObject<AssetItem>
 	/**
 	 * 设置-对象类型
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setObjectCode(String value) {
 		this.setProperty(PROPERTY_OBJECTCODE, value);
@@ -308,8 +303,7 @@ public class AssetItem extends BusinessObject<AssetItem>
 	/**
 	 * 设置-创建日期
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setCreateDate(DateTime value) {
 		this.setProperty(PROPERTY_CREATEDATE, value);
@@ -340,8 +334,7 @@ public class AssetItem extends BusinessObject<AssetItem>
 	/**
 	 * 设置-创建时间
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setCreateTime(Short value) {
 		this.setProperty(PROPERTY_CREATETIME, value);
@@ -372,8 +365,7 @@ public class AssetItem extends BusinessObject<AssetItem>
 	/**
 	 * 设置-修改日期
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setUpdateDate(DateTime value) {
 		this.setProperty(PROPERTY_UPDATEDATE, value);
@@ -404,8 +396,7 @@ public class AssetItem extends BusinessObject<AssetItem>
 	/**
 	 * 设置-修改时间
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setUpdateTime(Short value) {
 		this.setProperty(PROPERTY_UPDATETIME, value);
@@ -436,8 +427,7 @@ public class AssetItem extends BusinessObject<AssetItem>
 	/**
 	 * 设置-版本
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setLogInst(Integer value) {
 		this.setProperty(PROPERTY_LOGINST, value);
@@ -468,8 +458,7 @@ public class AssetItem extends BusinessObject<AssetItem>
 	/**
 	 * 设置-服务系列
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setSeries(Integer value) {
 		this.setProperty(PROPERTY_SERIES, value);
@@ -500,8 +489,7 @@ public class AssetItem extends BusinessObject<AssetItem>
 	/**
 	 * 设置-数据源
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setDataSource(String value) {
 		this.setProperty(PROPERTY_DATASOURCE, value);
@@ -532,8 +520,7 @@ public class AssetItem extends BusinessObject<AssetItem>
 	/**
 	 * 设置-创建用户
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setCreateUserSign(Integer value) {
 		this.setProperty(PROPERTY_CREATEUSERSIGN, value);
@@ -564,8 +551,7 @@ public class AssetItem extends BusinessObject<AssetItem>
 	/**
 	 * 设置-修改用户
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setUpdateUserSign(Integer value) {
 		this.setProperty(PROPERTY_UPDATEUSERSIGN, value);
@@ -596,8 +582,7 @@ public class AssetItem extends BusinessObject<AssetItem>
 	/**
 	 * 设置-创建动作标识
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setCreateActionId(String value) {
 		this.setProperty(PROPERTY_CREATEACTIONID, value);
@@ -628,8 +613,7 @@ public class AssetItem extends BusinessObject<AssetItem>
 	/**
 	 * 设置-更新动作标识
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setUpdateActionId(String value) {
 		this.setProperty(PROPERTY_UPDATEACTIONID, value);
@@ -660,8 +644,7 @@ public class AssetItem extends BusinessObject<AssetItem>
 	/**
 	 * 设置-审批状态
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setApprovalStatus(emApprovalStatus value) {
 		this.setProperty(PROPERTY_APPROVALSTATUS, value);
@@ -692,8 +675,7 @@ public class AssetItem extends BusinessObject<AssetItem>
 	/**
 	 * 设置-数据所有者
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setDataOwner(Integer value) {
 		this.setProperty(PROPERTY_DATAOWNER, value);
@@ -724,8 +706,7 @@ public class AssetItem extends BusinessObject<AssetItem>
 	/**
 	 * 设置-数据所属组织
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setOrganization(String value) {
 		this.setProperty(PROPERTY_ORGANIZATION, value);
@@ -756,8 +737,7 @@ public class AssetItem extends BusinessObject<AssetItem>
 	/**
 	 * 设置-生效日期
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setValidDate(DateTime value) {
 		this.setProperty(PROPERTY_VALIDDATE, value);
@@ -788,8 +768,7 @@ public class AssetItem extends BusinessObject<AssetItem>
 	/**
 	 * 设置-失效日期
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setInvalidDate(DateTime value) {
 		this.setProperty(PROPERTY_INVALIDDATE, value);
@@ -804,8 +783,8 @@ public class AssetItem extends BusinessObject<AssetItem>
 	 * 面值 属性
 	 */
 	@DbField(name = "FaceAmount", type = DbFieldType.DECIMAL, table = DB_TABLE_NAME, primaryKey = false)
-	public static final IPropertyInfo<Decimal> PROPERTY_FACEAMOUNT = registerProperty(PROPERTY_FACEAMOUNT_NAME,
-			Decimal.class, MY_CLASS);
+	public static final IPropertyInfo<BigDecimal> PROPERTY_FACEAMOUNT = registerProperty(PROPERTY_FACEAMOUNT_NAME,
+			BigDecimal.class, MY_CLASS);
 
 	/**
 	 * 获取-面值
@@ -813,48 +792,44 @@ public class AssetItem extends BusinessObject<AssetItem>
 	 * @return 值
 	 */
 	@XmlElement(name = PROPERTY_FACEAMOUNT_NAME)
-	public final Decimal getFaceAmount() {
+	public final BigDecimal getFaceAmount() {
 		return this.getProperty(PROPERTY_FACEAMOUNT);
 	}
 
 	/**
 	 * 设置-面值
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
-	public final void setFaceAmount(Decimal value) {
+	public final void setFaceAmount(BigDecimal value) {
 		this.setProperty(PROPERTY_FACEAMOUNT, value);
 	}
 
 	/**
 	 * 设置-面值
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setFaceAmount(String value) {
-		this.setFaceAmount(new Decimal(value));
+		this.setFaceAmount(Decimal.valueOf(value));
 	}
 
 	/**
 	 * 设置-面值
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setFaceAmount(int value) {
-		this.setFaceAmount(new Decimal(value));
+		this.setFaceAmount(Decimal.valueOf(value));
 	}
 
 	/**
 	 * 设置-面值
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setFaceAmount(double value) {
-		this.setFaceAmount(new Decimal(value));
+		this.setFaceAmount(Decimal.valueOf(value));
 	}
 
 	/**
@@ -882,8 +857,7 @@ public class AssetItem extends BusinessObject<AssetItem>
 	/**
 	 * 设置-单位
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setAmountUnit(String value) {
 		this.setProperty(PROPERTY_AMOUNTUNIT, value);
@@ -914,8 +888,7 @@ public class AssetItem extends BusinessObject<AssetItem>
 	/**
 	 * 设置-可用次数
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setUsingTimes(Integer value) {
 		this.setProperty(PROPERTY_USINGTIMES, value);
@@ -930,8 +903,8 @@ public class AssetItem extends BusinessObject<AssetItem>
 	 * 使用时折扣 属性
 	 */
 	@DbField(name = "UsingDiscount", type = DbFieldType.DECIMAL, table = DB_TABLE_NAME, primaryKey = false)
-	public static final IPropertyInfo<Decimal> PROPERTY_USINGDISCOUNT = registerProperty(PROPERTY_USINGDISCOUNT_NAME,
-			Decimal.class, MY_CLASS);
+	public static final IPropertyInfo<BigDecimal> PROPERTY_USINGDISCOUNT = registerProperty(PROPERTY_USINGDISCOUNT_NAME,
+			BigDecimal.class, MY_CLASS);
 
 	/**
 	 * 获取-使用时折扣
@@ -939,48 +912,44 @@ public class AssetItem extends BusinessObject<AssetItem>
 	 * @return 值
 	 */
 	@XmlElement(name = PROPERTY_USINGDISCOUNT_NAME)
-	public final Decimal getUsingDiscount() {
+	public final BigDecimal getUsingDiscount() {
 		return this.getProperty(PROPERTY_USINGDISCOUNT);
 	}
 
 	/**
 	 * 设置-使用时折扣
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
-	public final void setUsingDiscount(Decimal value) {
+	public final void setUsingDiscount(BigDecimal value) {
 		this.setProperty(PROPERTY_USINGDISCOUNT, value);
 	}
 
 	/**
 	 * 设置-使用时折扣
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setUsingDiscount(String value) {
-		this.setUsingDiscount(new Decimal(value));
+		this.setUsingDiscount(Decimal.valueOf(value));
 	}
 
 	/**
 	 * 设置-使用时折扣
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setUsingDiscount(int value) {
-		this.setUsingDiscount(new Decimal(value));
+		this.setUsingDiscount(Decimal.valueOf(value));
 	}
 
 	/**
 	 * 设置-使用时折扣
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setUsingDiscount(double value) {
-		this.setUsingDiscount(new Decimal(value));
+		this.setUsingDiscount(Decimal.valueOf(value));
 	}
 
 	/**
@@ -992,8 +961,8 @@ public class AssetItem extends BusinessObject<AssetItem>
 	 * 透支额 属性
 	 */
 	@DbField(name = "Overdraft", type = DbFieldType.DECIMAL, table = DB_TABLE_NAME, primaryKey = false)
-	public static final IPropertyInfo<Decimal> PROPERTY_OVERDRAFT = registerProperty(PROPERTY_OVERDRAFT_NAME,
-			Decimal.class, MY_CLASS);
+	public static final IPropertyInfo<BigDecimal> PROPERTY_OVERDRAFT = registerProperty(PROPERTY_OVERDRAFT_NAME,
+			BigDecimal.class, MY_CLASS);
 
 	/**
 	 * 获取-透支额
@@ -1001,48 +970,44 @@ public class AssetItem extends BusinessObject<AssetItem>
 	 * @return 值
 	 */
 	@XmlElement(name = PROPERTY_OVERDRAFT_NAME)
-	public final Decimal getOverdraft() {
+	public final BigDecimal getOverdraft() {
 		return this.getProperty(PROPERTY_OVERDRAFT);
 	}
 
 	/**
 	 * 设置-透支额
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
-	public final void setOverdraft(Decimal value) {
+	public final void setOverdraft(BigDecimal value) {
 		this.setProperty(PROPERTY_OVERDRAFT, value);
 	}
 
 	/**
 	 * 设置-透支额
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setOverdraft(String value) {
-		this.setOverdraft(new Decimal(value));
+		this.setOverdraft(Decimal.valueOf(value));
 	}
 
 	/**
 	 * 设置-透支额
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setOverdraft(int value) {
-		this.setOverdraft(new Decimal(value));
+		this.setOverdraft(Decimal.valueOf(value));
 	}
 
 	/**
 	 * 设置-透支额
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setOverdraft(double value) {
-		this.setOverdraft(new Decimal(value));
+		this.setOverdraft(Decimal.valueOf(value));
 	}
 
 	/**
@@ -1070,8 +1035,7 @@ public class AssetItem extends BusinessObject<AssetItem>
 	/**
 	 * 设置-有效天数
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setValidDays(Integer value) {
 		this.setProperty(PROPERTY_VALIDDAYS, value);
@@ -1102,8 +1066,7 @@ public class AssetItem extends BusinessObject<AssetItem>
 	/**
 	 * 设置-可充值的
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setRechargeable(emYesNo value) {
 		this.setProperty(PROPERTY_RECHARGEABLE, value);
@@ -1134,8 +1097,7 @@ public class AssetItem extends BusinessObject<AssetItem>
 	/**
 	 * 设置-图片
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setPicture(String value) {
 		this.setProperty(PROPERTY_PICTURE, value);
@@ -1166,8 +1128,7 @@ public class AssetItem extends BusinessObject<AssetItem>
 	/**
 	 * 设置-备注
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setRemarks(String value) {
 		this.setProperty(PROPERTY_REMARKS, value);
@@ -1194,9 +1155,9 @@ public class AssetItem extends BusinessObject<AssetItem>
 		return new IBusinessRule[] { // 注册的业务规则
 				new BusinessRuleRequired(PROPERTY_CODE), // 要求有值
 				new BusinessRuleRequired(PROPERTY_NAME), // 要求有值
-				new BusinessRuleMinValue<Decimal>(Decimal.ZERO, PROPERTY_FACEAMOUNT), // 不能低于0
-				new BusinessRuleMinValue<Decimal>(Decimal.ZERO, PROPERTY_USINGDISCOUNT), // 不能低于0
-				new BusinessRuleMinValue<Decimal>(Decimal.ZERO, PROPERTY_OVERDRAFT), // 不能低于0
+				new BusinessRuleMinValue<BigDecimal>(Decimal.ZERO, PROPERTY_FACEAMOUNT), // 不能低于0
+				new BusinessRuleMinValue<BigDecimal>(Decimal.ZERO, PROPERTY_USINGDISCOUNT), // 不能低于0
+				new BusinessRuleMinValue<BigDecimal>(Decimal.ZERO, PROPERTY_OVERDRAFT), // 不能低于0
 				new BusinessRuleMinValue<Integer>(0, PROPERTY_USINGTIMES), // 不能低于0
 				new BusinessRuleMinValue<Integer>(0, PROPERTY_VALIDDAYS), // 不能低于0
 		};

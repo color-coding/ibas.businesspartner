@@ -1,8 +1,9 @@
 package org.colorcoding.ibas.businesspartner.bo.assetitem;
 
+import java.math.BigDecimal;
+
 import org.colorcoding.ibas.bobas.bo.IBOMasterData;
 import org.colorcoding.ibas.bobas.data.DateTime;
-import org.colorcoding.ibas.bobas.data.Decimal;
 import org.colorcoding.ibas.bobas.data.emApprovalStatus;
 import org.colorcoding.ibas.bobas.data.emYesNo;
 
@@ -22,8 +23,7 @@ public interface IAssetItem extends IBOMasterData {
 	/**
 	 * 设置-编号
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setCode(String value);
 
@@ -37,8 +37,7 @@ public interface IAssetItem extends IBOMasterData {
 	/**
 	 * 设置-名称
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setName(String value);
 
@@ -52,8 +51,7 @@ public interface IAssetItem extends IBOMasterData {
 	/**
 	 * 设置-激活
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setActivated(emYesNo value);
 
@@ -67,8 +65,7 @@ public interface IAssetItem extends IBOMasterData {
 	/**
 	 * 设置-已引用
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setReferenced(emYesNo value);
 
@@ -82,8 +79,7 @@ public interface IAssetItem extends IBOMasterData {
 	/**
 	 * 设置-已删除
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setDeleted(emYesNo value);
 
@@ -97,8 +93,7 @@ public interface IAssetItem extends IBOMasterData {
 	/**
 	 * 设置-对象编号
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setDocEntry(Integer value);
 
@@ -112,8 +107,7 @@ public interface IAssetItem extends IBOMasterData {
 	/**
 	 * 设置-对象类型
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setObjectCode(String value);
 
@@ -127,8 +121,7 @@ public interface IAssetItem extends IBOMasterData {
 	/**
 	 * 设置-创建日期
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setCreateDate(DateTime value);
 
@@ -142,8 +135,7 @@ public interface IAssetItem extends IBOMasterData {
 	/**
 	 * 设置-创建时间
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setCreateTime(Short value);
 
@@ -157,8 +149,7 @@ public interface IAssetItem extends IBOMasterData {
 	/**
 	 * 设置-修改日期
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setUpdateDate(DateTime value);
 
@@ -172,8 +163,7 @@ public interface IAssetItem extends IBOMasterData {
 	/**
 	 * 设置-修改时间
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setUpdateTime(Short value);
 
@@ -187,8 +177,7 @@ public interface IAssetItem extends IBOMasterData {
 	/**
 	 * 设置-版本
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setLogInst(Integer value);
 
@@ -202,8 +191,7 @@ public interface IAssetItem extends IBOMasterData {
 	/**
 	 * 设置-服务系列
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setSeries(Integer value);
 
@@ -217,8 +205,7 @@ public interface IAssetItem extends IBOMasterData {
 	/**
 	 * 设置-数据源
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setDataSource(String value);
 
@@ -232,8 +219,7 @@ public interface IAssetItem extends IBOMasterData {
 	/**
 	 * 设置-创建用户
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setCreateUserSign(Integer value);
 
@@ -247,8 +233,7 @@ public interface IAssetItem extends IBOMasterData {
 	/**
 	 * 设置-修改用户
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setUpdateUserSign(Integer value);
 
@@ -262,8 +247,7 @@ public interface IAssetItem extends IBOMasterData {
 	/**
 	 * 设置-创建动作标识
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setCreateActionId(String value);
 
@@ -277,8 +261,7 @@ public interface IAssetItem extends IBOMasterData {
 	/**
 	 * 设置-更新动作标识
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setUpdateActionId(String value);
 
@@ -292,8 +275,7 @@ public interface IAssetItem extends IBOMasterData {
 	/**
 	 * 设置-审批状态
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setApprovalStatus(emApprovalStatus value);
 
@@ -307,8 +289,7 @@ public interface IAssetItem extends IBOMasterData {
 	/**
 	 * 设置-数据所有者
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setDataOwner(Integer value);
 
@@ -322,8 +303,7 @@ public interface IAssetItem extends IBOMasterData {
 	/**
 	 * 设置-数据所属组织
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setOrganization(String value);
 
@@ -337,8 +317,7 @@ public interface IAssetItem extends IBOMasterData {
 	/**
 	 * 设置-生效日期
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setValidDate(DateTime value);
 
@@ -352,8 +331,7 @@ public interface IAssetItem extends IBOMasterData {
 	/**
 	 * 设置-失效日期
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setInvalidDate(DateTime value);
 
@@ -362,37 +340,33 @@ public interface IAssetItem extends IBOMasterData {
 	 * 
 	 * @return 值
 	 */
-	Decimal getFaceAmount();
+	BigDecimal getFaceAmount();
 
 	/**
 	 * 设置-面值
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
-	void setFaceAmount(Decimal value);
+	void setFaceAmount(BigDecimal value);
 
 	/**
 	 * 设置-面值
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setFaceAmount(String value);
 
 	/**
 	 * 设置-面值
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setFaceAmount(int value);
 
 	/**
 	 * 设置-面值
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setFaceAmount(double value);
 
@@ -406,8 +380,7 @@ public interface IAssetItem extends IBOMasterData {
 	/**
 	 * 设置-单位
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setAmountUnit(String value);
 
@@ -421,8 +394,7 @@ public interface IAssetItem extends IBOMasterData {
 	/**
 	 * 设置-可用次数
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setUsingTimes(Integer value);
 
@@ -431,37 +403,33 @@ public interface IAssetItem extends IBOMasterData {
 	 * 
 	 * @return 值
 	 */
-	Decimal getUsingDiscount();
+	BigDecimal getUsingDiscount();
 
 	/**
 	 * 设置-使用时折扣
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
-	void setUsingDiscount(Decimal value);
+	void setUsingDiscount(BigDecimal value);
 
 	/**
 	 * 设置-使用时折扣
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setUsingDiscount(String value);
 
 	/**
 	 * 设置-使用时折扣
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setUsingDiscount(int value);
 
 	/**
 	 * 设置-使用时折扣
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setUsingDiscount(double value);
 
@@ -470,37 +438,33 @@ public interface IAssetItem extends IBOMasterData {
 	 * 
 	 * @return 值
 	 */
-	Decimal getOverdraft();
+	BigDecimal getOverdraft();
 
 	/**
 	 * 设置-透支额
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
-	void setOverdraft(Decimal value);
+	void setOverdraft(BigDecimal value);
 
 	/**
 	 * 设置-透支额
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setOverdraft(String value);
 
 	/**
 	 * 设置-透支额
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setOverdraft(int value);
 
 	/**
 	 * 设置-透支额
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setOverdraft(double value);
 
@@ -514,8 +478,7 @@ public interface IAssetItem extends IBOMasterData {
 	/**
 	 * 设置-有效天数
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setValidDays(Integer value);
 
@@ -529,8 +492,7 @@ public interface IAssetItem extends IBOMasterData {
 	/**
 	 * 设置-可充值的
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setRechargeable(emYesNo value);
 
@@ -544,8 +506,7 @@ public interface IAssetItem extends IBOMasterData {
 	/**
 	 * 设置-图片
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setPicture(String value);
 
@@ -559,8 +520,7 @@ public interface IAssetItem extends IBOMasterData {
 	/**
 	 * 设置-备注
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setRemarks(String value);
 

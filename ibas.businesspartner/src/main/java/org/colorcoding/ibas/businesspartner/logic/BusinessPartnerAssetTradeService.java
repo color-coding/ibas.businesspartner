@@ -1,5 +1,7 @@
 package org.colorcoding.ibas.businesspartner.logic;
 
+import java.math.BigDecimal;
+
 import org.colorcoding.ibas.bobas.data.DateTime;
 import org.colorcoding.ibas.bobas.data.Decimal;
 import org.colorcoding.ibas.bobas.data.emDirection;
@@ -70,7 +72,7 @@ public class BusinessPartnerAssetTradeService
 								this.getBeAffected().getBusinessPartnerCode(), this.getBeAffected().getName()));
 			}
 			// 增加量
-			Decimal amount = this.getBeAffected().getAmount();
+			BigDecimal amount = this.getBeAffected().getAmount();
 			amount = amount.add(contract.getAmount());
 			this.getBeAffected().setAmount(amount);
 			// 增加次数
@@ -79,12 +81,12 @@ public class BusinessPartnerAssetTradeService
 			this.getBeAffected().setTimes(times);
 		} else if (contract.getDirection() == emDirection.OUT) {
 			// 减少量
-			Decimal amount = this.getBeAffected().getAmount();
+			BigDecimal amount = this.getBeAffected().getAmount();
 			amount = amount.subtract(contract.getAmount());
 			if (amount.compareTo(Decimal.ZERO) < 0) {
 				// 剩余价值，小于0，检查是否允许透支
 				IAssetItem assetItem = this.checkAssetItem(this.getBeAffected().getAssetCode());
-				if (assetItem.getOverdraft().isZero()) {
+				if (Decimal.isZero(assetItem.getOverdraft())) {
 					// 不允许透支
 					throw new BusinessLogicException(
 							String.format(I18N.prop("msg_bp_businesspartnerasset_exceeding_amount"),
@@ -118,7 +120,7 @@ public class BusinessPartnerAssetTradeService
 	protected void revoke(IBusinessPartnerAssetTradeContract contract) {
 		if (contract.getDirection() == emDirection.IN) {
 			// 减少量
-			Decimal amount = this.getBeAffected().getAmount();
+			BigDecimal amount = this.getBeAffected().getAmount();
 			amount = amount.subtract(contract.getAmount());
 			this.getBeAffected().setAmount(amount);
 			// 减少次数
@@ -127,7 +129,7 @@ public class BusinessPartnerAssetTradeService
 			this.getBeAffected().setTimes(times);
 		} else if (contract.getDirection() == emDirection.OUT) {
 			// 增加量
-			Decimal amount = this.getBeAffected().getAmount();
+			BigDecimal amount = this.getBeAffected().getAmount();
 			amount = amount.add(contract.getAmount());
 			this.getBeAffected().setAmount(amount);
 			// 增加次数

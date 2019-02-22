@@ -1,5 +1,7 @@
 package org.colorcoding.ibas.businesspartner.data;
 
+import java.math.BigDecimal;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -7,7 +9,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 import org.colorcoding.ibas.bobas.data.DateTime;
-import org.colorcoding.ibas.bobas.data.Decimal;
 import org.colorcoding.ibas.bobas.serialization.Serializable;
 
 /**
@@ -78,14 +79,14 @@ public class Asset extends Serializable {
 		this.invalidDate = invalidDate;
 	}
 
-	private Decimal amount;
+	private BigDecimal amount;
 
 	@XmlElement(name = "Amount")
-	public final Decimal getAmount() {
+	public final BigDecimal getAmount() {
 		return amount;
 	}
 
-	public final void setAmount(Decimal amount) {
+	public final void setAmount(BigDecimal amount) {
 		this.amount = amount;
 	}
 
@@ -111,14 +112,14 @@ public class Asset extends Serializable {
 		this.times = times;
 	}
 
-	private Decimal discount;
+	private BigDecimal discount;
 
 	@XmlElement(name = "Discount")
-	public final Decimal getDiscount() {
+	public final BigDecimal getDiscount() {
 		return discount;
 	}
 
-	public final void setDiscount(Decimal discount) {
+	public final void setDiscount(BigDecimal discount) {
 		this.discount = discount;
 	}
 }

@@ -1,12 +1,13 @@
 package org.colorcoding.ibas.businesspartner.data;
 
+import java.math.BigDecimal;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-import org.colorcoding.ibas.bobas.data.Decimal;
 import org.colorcoding.ibas.bobas.serialization.Serializable;
 
 /**
@@ -66,14 +67,14 @@ public class AssetRequest extends Serializable {
 		this.documentLineId = documentLineId;
 	}
 
-	private Decimal total;
+	private BigDecimal total;
 
 	@XmlElement(name = "Total")
-	public final Decimal getTotal() {
+	public final BigDecimal getTotal() {
 		return total;
 	}
 
-	public final void setTotal(Decimal total) {
+	public final void setTotal(BigDecimal total) {
 		this.total = total;
 	}
 

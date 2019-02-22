@@ -1,8 +1,9 @@
 package org.colorcoding.ibas.businesspartner.bo.businesspartnerasset;
 
+import java.math.BigDecimal;
+
 import org.colorcoding.ibas.bobas.bo.IBOMasterData;
 import org.colorcoding.ibas.bobas.data.DateTime;
-import org.colorcoding.ibas.bobas.data.Decimal;
 import org.colorcoding.ibas.bobas.data.emApprovalStatus;
 import org.colorcoding.ibas.bobas.data.emYesNo;
 import org.colorcoding.ibas.businesspartner.data.emBusinessPartnerType;
@@ -23,8 +24,7 @@ public interface IBusinessPartnerAsset extends IBOMasterData {
 	/**
 	 * 设置-编号
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setCode(String value);
 
@@ -38,8 +38,7 @@ public interface IBusinessPartnerAsset extends IBOMasterData {
 	/**
 	 * 设置-名称
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setName(String value);
 
@@ -53,8 +52,7 @@ public interface IBusinessPartnerAsset extends IBOMasterData {
 	/**
 	 * 设置-对象编号
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setDocEntry(Integer value);
 
@@ -68,8 +66,7 @@ public interface IBusinessPartnerAsset extends IBOMasterData {
 	/**
 	 * 设置-对象类型
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setObjectCode(String value);
 
@@ -83,8 +80,7 @@ public interface IBusinessPartnerAsset extends IBOMasterData {
 	/**
 	 * 设置-创建日期
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setCreateDate(DateTime value);
 
@@ -98,8 +94,7 @@ public interface IBusinessPartnerAsset extends IBOMasterData {
 	/**
 	 * 设置-创建时间
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setCreateTime(Short value);
 
@@ -113,8 +108,7 @@ public interface IBusinessPartnerAsset extends IBOMasterData {
 	/**
 	 * 设置-修改日期
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setUpdateDate(DateTime value);
 
@@ -128,8 +122,7 @@ public interface IBusinessPartnerAsset extends IBOMasterData {
 	/**
 	 * 设置-修改时间
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setUpdateTime(Short value);
 
@@ -143,8 +136,7 @@ public interface IBusinessPartnerAsset extends IBOMasterData {
 	/**
 	 * 设置-版本
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setLogInst(Integer value);
 
@@ -158,8 +150,7 @@ public interface IBusinessPartnerAsset extends IBOMasterData {
 	/**
 	 * 设置-服务系列
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setSeries(Integer value);
 
@@ -173,8 +164,7 @@ public interface IBusinessPartnerAsset extends IBOMasterData {
 	/**
 	 * 设置-数据源
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setDataSource(String value);
 
@@ -188,8 +178,7 @@ public interface IBusinessPartnerAsset extends IBOMasterData {
 	/**
 	 * 设置-创建用户
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setCreateUserSign(Integer value);
 
@@ -203,8 +192,7 @@ public interface IBusinessPartnerAsset extends IBOMasterData {
 	/**
 	 * 设置-修改用户
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setUpdateUserSign(Integer value);
 
@@ -218,8 +206,7 @@ public interface IBusinessPartnerAsset extends IBOMasterData {
 	/**
 	 * 设置-创建动作标识
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setCreateActionId(String value);
 
@@ -233,8 +220,7 @@ public interface IBusinessPartnerAsset extends IBOMasterData {
 	/**
 	 * 设置-更新动作标识
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setUpdateActionId(String value);
 
@@ -248,8 +234,7 @@ public interface IBusinessPartnerAsset extends IBOMasterData {
 	/**
 	 * 设置-审批状态
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setApprovalStatus(emApprovalStatus value);
 
@@ -263,8 +248,7 @@ public interface IBusinessPartnerAsset extends IBOMasterData {
 	/**
 	 * 设置-数据所有者
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setDataOwner(Integer value);
 
@@ -278,8 +262,7 @@ public interface IBusinessPartnerAsset extends IBOMasterData {
 	/**
 	 * 设置-数据所属组织
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setOrganization(String value);
 
@@ -293,8 +276,7 @@ public interface IBusinessPartnerAsset extends IBOMasterData {
 	/**
 	 * 设置-已引用
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setReferenced(emYesNo value);
 
@@ -308,8 +290,7 @@ public interface IBusinessPartnerAsset extends IBOMasterData {
 	/**
 	 * 设置-已删除
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setDeleted(emYesNo value);
 
@@ -323,8 +304,7 @@ public interface IBusinessPartnerAsset extends IBOMasterData {
 	/**
 	 * 设置-业务伙伴类型
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setBusinessPartnerType(emBusinessPartnerType value);
 
@@ -338,8 +318,7 @@ public interface IBusinessPartnerAsset extends IBOMasterData {
 	/**
 	 * 设置-业务伙伴编码
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setBusinessPartnerCode(String value);
 
@@ -353,8 +332,7 @@ public interface IBusinessPartnerAsset extends IBOMasterData {
 	/**
 	 * 设置-资产项目
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setAssetCode(String value);
 
@@ -368,8 +346,7 @@ public interface IBusinessPartnerAsset extends IBOMasterData {
 	/**
 	 * 设置-激活
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setActivated(emYesNo value);
 
@@ -383,8 +360,7 @@ public interface IBusinessPartnerAsset extends IBOMasterData {
 	/**
 	 * 设置-获得日期
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setAcquiredDate(DateTime value);
 
@@ -398,8 +374,7 @@ public interface IBusinessPartnerAsset extends IBOMasterData {
 	/**
 	 * 设置-生效日期
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setValidDate(DateTime value);
 
@@ -413,8 +388,7 @@ public interface IBusinessPartnerAsset extends IBOMasterData {
 	/**
 	 * 设置-失效日期
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setInvalidDate(DateTime value);
 
@@ -423,37 +397,33 @@ public interface IBusinessPartnerAsset extends IBOMasterData {
 	 * 
 	 * @return 值
 	 */
-	Decimal getAmount();
+	BigDecimal getAmount();
 
 	/**
 	 * 设置-剩余价值
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
-	void setAmount(Decimal value);
+	void setAmount(BigDecimal value);
 
 	/**
 	 * 设置-剩余价值
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setAmount(String value);
 
 	/**
 	 * 设置-剩余价值
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setAmount(int value);
 
 	/**
 	 * 设置-剩余价值
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setAmount(double value);
 
@@ -467,8 +437,7 @@ public interface IBusinessPartnerAsset extends IBOMasterData {
 	/**
 	 * 设置-剩余次数
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setTimes(Integer value);
 
@@ -482,8 +451,7 @@ public interface IBusinessPartnerAsset extends IBOMasterData {
 	/**
 	 * 设置-基于类型
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setBaseDocumentType(String value);
 
@@ -497,8 +465,7 @@ public interface IBusinessPartnerAsset extends IBOMasterData {
 	/**
 	 * 设置-基于标识
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setBaseDocumentEntry(Integer value);
 
@@ -512,8 +479,7 @@ public interface IBusinessPartnerAsset extends IBOMasterData {
 	/**
 	 * 设置-基于行号
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setBaseDocumentLineId(Integer value);
 
@@ -522,37 +488,33 @@ public interface IBusinessPartnerAsset extends IBOMasterData {
 	 * 
 	 * @return 值
 	 */
-	Decimal getTradingAmount();
+	BigDecimal getTradingAmount();
 
 	/**
 	 * 设置-交易金额
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
-	void setTradingAmount(Decimal value);
+	void setTradingAmount(BigDecimal value);
 
 	/**
 	 * 设置-交易金额
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setTradingAmount(String value);
 
 	/**
 	 * 设置-交易金额
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setTradingAmount(int value);
 
 	/**
 	 * 设置-交易金额
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setTradingAmount(double value);
 
@@ -566,8 +528,7 @@ public interface IBusinessPartnerAsset extends IBOMasterData {
 	/**
 	 * 设置-交易货币
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setTradingCurrency(String value);
 
@@ -581,8 +542,7 @@ public interface IBusinessPartnerAsset extends IBOMasterData {
 	/**
 	 * 设置-备注 1
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setRemark1(String value);
 
@@ -596,8 +556,7 @@ public interface IBusinessPartnerAsset extends IBOMasterData {
 	/**
 	 * 设置-备注 2
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setRemark2(String value);
 

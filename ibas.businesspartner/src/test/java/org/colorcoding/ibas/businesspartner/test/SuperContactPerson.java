@@ -1,5 +1,7 @@
 package org.colorcoding.ibas.businesspartner.test;
 
+import java.math.BigDecimal;
+
 import org.colorcoding.ibas.bobas.data.Decimal;
 import org.colorcoding.ibas.bobas.logic.IBusinessLogicContract;
 import org.colorcoding.ibas.bobas.logic.IBusinessLogicsHost;
@@ -48,8 +50,8 @@ public class SuperContactPerson extends ContactPerson implements IBusinessLogics
 					}
 
 					@Override
-					public Decimal getAmount() {
-						return new Decimal(10);
+					public BigDecimal getAmount() {
+						return Decimal.valueOf(10);
 					}
 
 				},
@@ -87,8 +89,8 @@ public class SuperContactPerson extends ContactPerson implements IBusinessLogics
 					}
 
 					@Override
-					public Decimal getAmount() {
-						return new Decimal(20);
+					public BigDecimal getAmount() {
+						return Decimal.valueOf(20);
 					}
 
 				}

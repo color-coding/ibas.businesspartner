@@ -1,5 +1,7 @@
 package org.colorcoding.ibas.businesspartner.test;
 
+import java.math.BigDecimal;
+
 import org.colorcoding.ibas.bobas.data.Decimal;
 import org.colorcoding.ibas.bobas.logic.IBusinessLogicContract;
 import org.colorcoding.ibas.bobas.logic.IBusinessLogicsHost;
@@ -46,7 +48,7 @@ public class SuperCustomer extends Customer implements IBusinessLogicsHost {
 			}
 
 			@Override
-			public Decimal getTradingAmount() {
+			public BigDecimal getTradingAmount() {
 				return Decimal.ONE;
 			}
 

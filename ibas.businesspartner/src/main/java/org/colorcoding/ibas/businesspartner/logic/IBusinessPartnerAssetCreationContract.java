@@ -1,6 +1,7 @@
 package org.colorcoding.ibas.businesspartner.logic;
 
-import org.colorcoding.ibas.bobas.data.Decimal;
+import java.math.BigDecimal;
+
 import org.colorcoding.ibas.bobas.logic.IBusinessLogicContract;
 import org.colorcoding.ibas.businesspartner.data.emBusinessPartnerType;
 
@@ -59,7 +60,7 @@ public interface IBusinessPartnerAssetCreationContract extends IBusinessLogicCon
 	 * 
 	 * @return 值
 	 */
-	Decimal getTradingAmount();
+	BigDecimal getTradingAmount();
 
 	/**
 	 * 交易货币

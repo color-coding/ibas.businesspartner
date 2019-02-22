@@ -1,8 +1,9 @@
 package org.colorcoding.ibas.businesspartner.bo.businesspartnerasset;
 
+import java.math.BigDecimal;
+
 import org.colorcoding.ibas.bobas.bo.IBOSimple;
 import org.colorcoding.ibas.bobas.data.DateTime;
-import org.colorcoding.ibas.bobas.data.Decimal;
 import org.colorcoding.ibas.bobas.data.emDirection;
 
 /**
@@ -21,8 +22,7 @@ public interface IBusinessPartnerAssetJournal extends IBOSimple {
 	/**
 	 * 设置-对象编号
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setObjectKey(Integer value);
 
@@ -36,8 +36,7 @@ public interface IBusinessPartnerAssetJournal extends IBOSimple {
 	/**
 	 * 设置-对象类型
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setObjectCode(String value);
 
@@ -51,8 +50,7 @@ public interface IBusinessPartnerAssetJournal extends IBOSimple {
 	/**
 	 * 设置-实例号
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setLogInst(Integer value);
 
@@ -66,8 +64,7 @@ public interface IBusinessPartnerAssetJournal extends IBOSimple {
 	/**
 	 * 设置-数据源
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setDataSource(String value);
 
@@ -81,8 +78,7 @@ public interface IBusinessPartnerAssetJournal extends IBOSimple {
 	/**
 	 * 设置-创建日期
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setCreateDate(DateTime value);
 
@@ -96,8 +92,7 @@ public interface IBusinessPartnerAssetJournal extends IBOSimple {
 	/**
 	 * 设置-创建时间
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setCreateTime(Short value);
 
@@ -111,8 +106,7 @@ public interface IBusinessPartnerAssetJournal extends IBOSimple {
 	/**
 	 * 设置-更新日期
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setUpdateDate(DateTime value);
 
@@ -126,8 +120,7 @@ public interface IBusinessPartnerAssetJournal extends IBOSimple {
 	/**
 	 * 设置-更新时间
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setUpdateTime(Short value);
 
@@ -141,8 +134,7 @@ public interface IBusinessPartnerAssetJournal extends IBOSimple {
 	/**
 	 * 设置-创建用户
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setCreateUserSign(Integer value);
 
@@ -156,8 +148,7 @@ public interface IBusinessPartnerAssetJournal extends IBOSimple {
 	/**
 	 * 设置-更新用户
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setUpdateUserSign(Integer value);
 
@@ -171,8 +162,7 @@ public interface IBusinessPartnerAssetJournal extends IBOSimple {
 	/**
 	 * 设置-创建动作标识
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setCreateActionId(String value);
 
@@ -186,8 +176,7 @@ public interface IBusinessPartnerAssetJournal extends IBOSimple {
 	/**
 	 * 设置-更新动作标识
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setUpdateActionId(String value);
 
@@ -201,8 +190,7 @@ public interface IBusinessPartnerAssetJournal extends IBOSimple {
 	/**
 	 * 设置-业务伙伴资产码
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setServiceCode(String value);
 
@@ -216,8 +204,7 @@ public interface IBusinessPartnerAssetJournal extends IBOSimple {
 	/**
 	 * 设置-方向
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setDirection(emDirection value);
 
@@ -226,37 +213,33 @@ public interface IBusinessPartnerAssetJournal extends IBOSimple {
 	 * 
 	 * @return 值
 	 */
-	Decimal getAmount();
+	BigDecimal getAmount();
 
 	/**
 	 * 设置-交易量
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
-	void setAmount(Decimal value);
+	void setAmount(BigDecimal value);
 
 	/**
 	 * 设置-交易量
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setAmount(String value);
 
 	/**
 	 * 设置-交易量
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setAmount(int value);
 
 	/**
 	 * 设置-交易量
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setAmount(double value);
 
@@ -270,8 +253,7 @@ public interface IBusinessPartnerAssetJournal extends IBOSimple {
 	/**
 	 * 设置-交易次数
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setTimes(Integer value);
 
@@ -285,8 +267,7 @@ public interface IBusinessPartnerAssetJournal extends IBOSimple {
 	/**
 	 * 设置-基于类型
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setBaseDocumentType(String value);
 
@@ -300,8 +281,7 @@ public interface IBusinessPartnerAssetJournal extends IBOSimple {
 	/**
 	 * 设置-基于标识
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setBaseDocumentEntry(Integer value);
 
@@ -315,8 +295,7 @@ public interface IBusinessPartnerAssetJournal extends IBOSimple {
 	/**
 	 * 设置-基于行号
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setBaseDocumentLineId(Integer value);
 

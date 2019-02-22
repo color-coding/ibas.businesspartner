@@ -1,5 +1,7 @@
 package org.colorcoding.ibas.businesspartner.bo.businesspartnerasset;
 
+import java.math.BigDecimal;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -907,8 +909,8 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset>
 	 * 剩余价值 属性
 	 */
 	@DbField(name = "Amount", type = DbFieldType.DECIMAL, table = DB_TABLE_NAME, primaryKey = false)
-	public static final IPropertyInfo<Decimal> PROPERTY_AMOUNT = registerProperty(PROPERTY_AMOUNT_NAME, Decimal.class,
-			MY_CLASS);
+	public static final IPropertyInfo<BigDecimal> PROPERTY_AMOUNT = registerProperty(PROPERTY_AMOUNT_NAME,
+			BigDecimal.class, MY_CLASS);
 
 	/**
 	 * 获取-剩余价值
@@ -916,7 +918,7 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset>
 	 * @return 值
 	 */
 	@XmlElement(name = PROPERTY_AMOUNT_NAME)
-	public final Decimal getAmount() {
+	public final BigDecimal getAmount() {
 		return this.getProperty(PROPERTY_AMOUNT);
 	}
 
@@ -925,7 +927,7 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset>
 	 * 
 	 * @param value 值
 	 */
-	public final void setAmount(Decimal value) {
+	public final void setAmount(BigDecimal value) {
 		this.setProperty(PROPERTY_AMOUNT, value);
 	}
 
@@ -935,7 +937,7 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset>
 	 * @param value 值
 	 */
 	public final void setAmount(String value) {
-		this.setAmount(new Decimal(value));
+		this.setAmount(Decimal.valueOf(value));
 	}
 
 	/**
@@ -944,7 +946,7 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset>
 	 * @param value 值
 	 */
 	public final void setAmount(int value) {
-		this.setAmount(new Decimal(value));
+		this.setAmount(Decimal.valueOf(value));
 	}
 
 	/**
@@ -953,7 +955,7 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset>
 	 * @param value 值
 	 */
 	public final void setAmount(double value) {
-		this.setAmount(new Decimal(value));
+		this.setAmount(Decimal.valueOf(value));
 	}
 
 	/**
@@ -1089,8 +1091,8 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset>
 	 * 交易金额 属性
 	 */
 	@DbField(name = "TradingAmount", type = DbFieldType.DECIMAL, table = DB_TABLE_NAME, primaryKey = false)
-	public static final IPropertyInfo<Decimal> PROPERTY_TRADINGAMOUNT = registerProperty(PROPERTY_TRADINGAMOUNT_NAME,
-			Decimal.class, MY_CLASS);
+	public static final IPropertyInfo<BigDecimal> PROPERTY_TRADINGAMOUNT = registerProperty(PROPERTY_TRADINGAMOUNT_NAME,
+			BigDecimal.class, MY_CLASS);
 
 	/**
 	 * 获取-交易金额
@@ -1098,7 +1100,7 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset>
 	 * @return 值
 	 */
 	@XmlElement(name = PROPERTY_TRADINGAMOUNT_NAME)
-	public final Decimal getTradingAmount() {
+	public final BigDecimal getTradingAmount() {
 		return this.getProperty(PROPERTY_TRADINGAMOUNT);
 	}
 
@@ -1107,7 +1109,7 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset>
 	 * 
 	 * @param value 值
 	 */
-	public final void setTradingAmount(Decimal value) {
+	public final void setTradingAmount(BigDecimal value) {
 		this.setProperty(PROPERTY_TRADINGAMOUNT, value);
 	}
 
@@ -1117,7 +1119,7 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset>
 	 * @param value 值
 	 */
 	public final void setTradingAmount(String value) {
-		this.setTradingAmount(new Decimal(value));
+		this.setTradingAmount(Decimal.valueOf(value));
 	}
 
 	/**
@@ -1126,7 +1128,7 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset>
 	 * @param value 值
 	 */
 	public final void setTradingAmount(int value) {
-		this.setTradingAmount(new Decimal(value));
+		this.setTradingAmount(Decimal.valueOf(value));
 	}
 
 	/**
@@ -1135,7 +1137,7 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset>
 	 * @param value 值
 	 */
 	public final void setTradingAmount(double value) {
-		this.setTradingAmount(new Decimal(value));
+		this.setTradingAmount(Decimal.valueOf(value));
 	}
 
 	/**
