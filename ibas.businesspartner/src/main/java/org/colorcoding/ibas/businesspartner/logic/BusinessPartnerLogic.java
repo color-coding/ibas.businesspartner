@@ -6,6 +6,7 @@ import org.colorcoding.ibas.bobas.common.Criteria;
 import org.colorcoding.ibas.bobas.common.ICondition;
 import org.colorcoding.ibas.bobas.common.ICriteria;
 import org.colorcoding.ibas.bobas.common.IOperationResult;
+import org.colorcoding.ibas.bobas.data.emYesNo;
 import org.colorcoding.ibas.bobas.i18n.I18N;
 import org.colorcoding.ibas.bobas.logic.BusinessLogic;
 import org.colorcoding.ibas.bobas.logic.BusinessLogicException;
@@ -43,8 +44,16 @@ public abstract class BusinessPartnerLogic<C extends IBusinessLogicContract, B e
 		}
 		// 客户不存在
 		if (customer == null) {
+			throw new BusinessLogicException(I18N.prop("msg_bp_customer_is_not_exist", bpCode == null ? "" : bpCode));
+		}
+		// 客户是否可用
+		if (customer.getActivated() == emYesNo.NO) {
 			throw new BusinessLogicException(
-					String.format(I18N.prop("msg_bp_customer_is_not_exist"), bpCode == null ? "" : bpCode));
+					I18N.prop("msg_bp_customer_is_unavailable", customer.getCode(), customer.getName()));
+		}
+		if (customer.getDeleted() == emYesNo.YES) {
+			throw new BusinessLogicException(
+					I18N.prop("msg_bp_customer_is_unavailable", customer.getCode(), customer.getName()));
 		}
 		return customer;
 	}
@@ -67,8 +76,16 @@ public abstract class BusinessPartnerLogic<C extends IBusinessLogicContract, B e
 		}
 		// 供应商不存在
 		if (supplier == null) {
+			throw new BusinessLogicException(I18N.prop("msg_bp_supplier_is_not_exist", bpCode == null ? "" : bpCode));
+		}
+		// 供应商是否可用
+		if (supplier.getActivated() == emYesNo.NO) {
 			throw new BusinessLogicException(
-					String.format(I18N.prop("msg_bp_supplier_is_not_exist"), bpCode == null ? "" : bpCode));
+					I18N.prop("msg_bp_supplier_is_unavailable", supplier.getCode(), supplier.getName()));
+		}
+		if (supplier.getDeleted() == emYesNo.YES) {
+			throw new BusinessLogicException(
+					I18N.prop("msg_bp_supplier_is_unavailable", supplier.getCode(), supplier.getName()));
 		}
 		return supplier;
 	}

@@ -49,7 +49,7 @@ public class BusinessPartnerAssetConsumptionService
 		IAssetItem assetItem = this.checkAssetItem(businessPartnerAsset.getAssetCode());
 		if (assetItem.getAmountUnit() != null && !assetItem.getAmountUnit().isEmpty()) {
 			if (!assetItem.getAmountUnit().equals(contract.getCurrency())) {
-				throw new BusinessLogicException(String.format(I18N.prop("msg_bp_disagreement_unit_with_assetitem"),
+				throw new BusinessLogicException(I18N.prop("msg_bp_disagreement_unit_with_assetitem",
 						assetItem.getName() == null ? assetItem.getCode() : assetItem.getName()));
 			}
 		}

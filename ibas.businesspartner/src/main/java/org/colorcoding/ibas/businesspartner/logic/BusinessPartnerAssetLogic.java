@@ -6,6 +6,8 @@ import org.colorcoding.ibas.bobas.common.Criteria;
 import org.colorcoding.ibas.bobas.common.ICondition;
 import org.colorcoding.ibas.bobas.common.ICriteria;
 import org.colorcoding.ibas.bobas.common.IOperationResult;
+import org.colorcoding.ibas.bobas.data.DateTime;
+import org.colorcoding.ibas.bobas.data.emYesNo;
 import org.colorcoding.ibas.bobas.i18n.I18N;
 import org.colorcoding.ibas.bobas.logic.BusinessLogicException;
 import org.colorcoding.ibas.bobas.logic.IBusinessLogicContract;
@@ -43,7 +45,12 @@ public abstract class BusinessPartnerAssetLogic<C extends IBusinessLogicContract
 		// 资产项目不存在
 		if (assetItem == null) {
 			throw new BusinessLogicException(
-					String.format(I18N.prop("msg_bp_assetitem_is_not_exist"), assetCode == null ? "" : assetCode));
+					I18N.prop("msg_bp_assetitem_is_not_exist", assetCode == null ? "" : assetCode));
+		}
+		// 资产项目是否可用
+		if (assetItem.getDeleted() == emYesNo.YES || assetItem.getActivated() == emYesNo.NO) {
+			throw new BusinessLogicException(
+					I18N.prop("msg_bp_assetitem_is_unavailable", assetItem.getCode(), assetItem.getName()));
 		}
 		return assetItem;
 	}
@@ -67,7 +74,17 @@ public abstract class BusinessPartnerAssetLogic<C extends IBusinessLogicContract
 		// 业务伙伴资产不存在
 		if (businessPartnerAsset == null) {
 			throw new BusinessLogicException(
-					String.format(I18N.prop("msg_bp_businesspartnerasset_is_not_exist"), code == null ? "" : code));
+					I18N.prop("msg_bp_businesspartnerasset_is_not_exist", code == null ? "" : code));
+		}
+		// 业务伙伴资产是否可用
+		if (businessPartnerAsset.getDeleted() == emYesNo.YES || businessPartnerAsset.getActivated() == emYesNo.NO) {
+			throw new BusinessLogicException(I18N.prop("msg_bp_businesspartnerasset_is_unavailable",
+					businessPartnerAsset.getBusinessPartnerCode(), businessPartnerAsset.getAssetCode()));
+		}
+		DateTime today = DateTime.getToday();
+		if (today.before(businessPartnerAsset.getValidDate()) || today.after(businessPartnerAsset.getInvalidDate())) {
+			throw new BusinessLogicException(I18N.prop("msg_bp_businesspartnerasset_is_unavailable",
+					businessPartnerAsset.getBusinessPartnerCode(), businessPartnerAsset.getAssetCode()));
 		}
 		return businessPartnerAsset;
 	}
