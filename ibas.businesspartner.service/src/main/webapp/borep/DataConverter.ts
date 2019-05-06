@@ -9,7 +9,6 @@ namespace businesspartner {
     export namespace bo {
         /** 数据转换者 */
         export class DataConverter extends ibas.DataConverter4j {
-
             /**
              * 转换业务对象数据
              * @param data 本地类型
@@ -158,6 +157,27 @@ namespace businesspartner {
                     }
                 }
                 return super.parsingData(boName, property, value);
+            }
+        }
+        /** 业务规则-清理属性值 */
+        export class BusinessRuleClearValue extends ibas.BusinessRuleCommon {
+            /**
+             * 构造
+             * @param sProperty 触发属性
+             * @param tProperty 目标属性
+             */
+            constructor(sProperty: string, tProperty: string) {
+                super();
+                this.sourceProperty = sProperty;
+                this.targetProperty = tProperty;
+                this.inputProperties.add(this.sourceProperty);
+                this.affectedProperties.add(this.targetProperty);
+            }
+            sourceProperty: string;
+            targetProperty: string;
+            /** 计算规则 */
+            protected compute(context: ibas.BusinessRuleContextCommon): void {
+                context.outputValues.set(this.targetProperty, null);
             }
         }
     }

@@ -12,69 +12,65 @@ namespace businesspartner {
              * 编辑视图-业务伙伴组
              */
             export class BusinessPartnerGroupEditView extends ibas.BOEditView implements app.IBusinessPartnerGroupEditView {
-
-                private page: sap.m.Page;
-                private viewTopForm: sap.ui.layout.form.SimpleForm;
-
                 /** 删除数据事件 */
                 deleteDataEvent: Function;
                 /** 新建数据事件，参数1：是否克隆 */
                 createDataEvent: Function;
-
                 /** 绘制视图 */
                 draw(): any {
                     let that: this = this;
-                    this.viewTopForm = new sap.ui.layout.form.SimpleForm("", {
+                    let formTop: sap.ui.layout.form.SimpleForm = new sap.ui.layout.form.SimpleForm("", {
                         editable: true,
                         content: [
                             new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_title_general") }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnergroup_code") }),
-                            new sap.m.Input("", {
-                            }).bindProperty("value", {
+                            new sap.extension.m.Input("", {
+                                type: sap.m.InputType.Text
+                            }).bindProperty("bindingValue", {
                                 path: "code",
+                                type: new sap.extension.data.Alphanumeric({
+                                    maxLength: 8
+                                })
                             }).bindProperty("editable", {
                                 path: "series",
                                 formatter(data: any): any {
                                     return data > 0 ? false : true;
                                 }
                             }),
-                            new sap.m.ex.SeriesSelect("", {
+                            new sap.extension.m.SeriesSelect("", {
                                 objectCode: ibas.config.applyVariables(bo.BO_CODE_BUSINESSPARTNERGROUP),
-                                bindingValue: {
-                                    path: "series",
-                                    type: "sap.ui.model.type.Integer",
+                            }).bindProperty("bindingValue", {
+                                path: "series",
+                                type: new sap.extension.data.Numeric()
+                            }).bindProperty("enabled", {
+                                path: "isNew",
+                                formatter(data: any): any {
+                                    return !!data ? true : false;
                                 }
                             }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnergroup_name") }),
-                            new sap.m.Input("", {
-                            }).bindProperty("value", {
+                            new sap.extension.m.Input("", {
+                            }).bindProperty("bindingValue", {
                                 path: "name",
+                                type: new sap.extension.data.Alphanumeric({
+                                    maxLength: 100
+                                })
                             }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnergroup_activated") }),
-                            new sap.m.Select("", {
-                                items: openui5.utils.createComboBoxItems(ibas.emYesNo)
-                            }).bindProperty("selectedKey", {
+                            new sap.extension.m.EnumSelect("", {
+                                enumType: ibas.emYesNo
+                            }).bindProperty("bindingValue", {
                                 path: "activated",
-                                type: "sap.ui.model.type.Integer"
+                                type: new sap.extension.data.YesNo()
                             }),
-                            new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_title_others") }),
-                            new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnergroup_docentry") }),
-                            new sap.m.Input("", {
-                                type: sap.m.InputType.Text
-                            }).bindProperty("value", {
-                                path: "docEntry"
-                            }),
-                            new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnergroup_objectcode") }),
-                            new sap.m.Input("", {
-                                enabled: false,
-                                type: sap.m.InputType.Text
-                            }).bindProperty("value", {
-                                path: "objectCode"
-                            }),
+                            new sap.ui.core.Title("", {}),
                         ],
                     });
-                    this.page = new sap.m.Page("", {
+                    return this.page = new sap.extension.m.DataPage("", {
                         showHeader: false,
+                        dataInfo: {
+                            code: bo.BusinessPartnerGroup.BUSINESS_OBJECT_CODE,
+                        },
                         subHeader: new sap.m.Toolbar("", {
                             content: [
                                 new sap.m.Button("", {
@@ -122,34 +118,18 @@ namespace businesspartner {
                                 }),
                             ]
                         }),
-                        content: [this.viewTopForm],
+                        content: [
+                            formTop,
+                        ]
                     });
-                    this.id = this.page.getId();
-                    return this.page;
                 }
-                /** 改变视图状态 */
-                private changeViewStatus(data: bo.BusinessPartnerGroup): void {
-                    if (ibas.objects.isNull(data)) {
-                        return;
-                    }
-                    // 新建时：禁用删除，
-                    if (data.isNew) {
-                        if (this.page.getSubHeader() instanceof sap.m.Toolbar) {
-                            openui5.utils.changeToolbarSavable(<sap.m.Toolbar>this.page.getSubHeader(), true);
-                            openui5.utils.changeToolbarDeletable(<sap.m.Toolbar>this.page.getSubHeader(), false);
-                        }
-                    }
-                    // 不可编辑：已批准，
-                }
+                private page: sap.extension.m.Page;
 
                 /** 显示数据 */
                 showBusinessPartnerGroup(data: bo.BusinessPartnerGroup): void {
-                    this.viewTopForm.setModel(new sap.ui.model.json.JSONModel(data));
-                    this.viewTopForm.bindObject("/");
-                    // 监听属性改变，并更新控件
-                    openui5.utils.refreshModelChanged(this.viewTopForm, data);
-                    // 改变视图状态
-                    this.changeViewStatus(data);
+                    this.page.setModel(new sap.extension.model.JSONModel(data));
+                    // 改变页面状态
+                    sap.extension.pages.changeStatus(this.page);
                 }
             }
         }

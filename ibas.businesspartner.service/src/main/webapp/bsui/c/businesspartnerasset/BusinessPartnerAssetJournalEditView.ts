@@ -15,35 +15,44 @@ namespace businesspartner {
                 /** 绘制视图 */
                 draw(): any {
                     let that: this = this;
-                    this.layoutMain = new sap.ui.layout.form.SimpleForm("", {
+                    this.formTop = new sap.ui.layout.form.SimpleForm("", {
                         editable: true,
                         content: [
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnerassetjournal_servicecode") }),
-                            new sap.m.Input("", {
-                                type: sap.m.InputType.Text,
+                            new sap.extension.m.RepositoryInput("", {
                                 editable: false,
-                            }).bindProperty("value", {
-                                path: "serviceCode"
+                                repository: bo.BORepositoryBusinessPartner,
+                                dataInfo: {
+                                    type: bo.BusinessPartnerAsset,
+                                    key: "Code",
+                                    text: "Name"
+                                },
+                            }).bindProperty("bindingValue", {
+                                path: "serviceCode",
+                                type: new sap.extension.data.Alphanumeric({
+                                    maxLength: 36
+                                })
                             }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnerassetjournal_direction") }),
-                            new sap.m.Select("", {
-                                items: openui5.utils.createComboBoxItems(ibas.emDirection)
-                            }).bindProperty("selectedKey", {
+                            new sap.extension.m.EnumSelect("", {
+                                enumType: ibas.emDirection
+                            }).bindProperty("bindingValue", {
                                 path: "direction",
-                                type: "sap.ui.model.type.Integer"
+                                type: new sap.extension.data.Direction()
                             }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnerassetjournal_amount") }),
-                            new sap.m.Input("", {
-                                type: sap.m.InputType.Text
-                            }).bindProperty("value", {
+                            new sap.extension.m.Input("", {
+                                type: sap.m.InputType.Number
+                            }).bindProperty("bindingValue", {
                                 path: "amount",
-                                type: new openui5.datatype.Sum(),
+                                type: new sap.extension.data.Sum()
                             }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnerassetjournal_times") }),
-                            new sap.m.Input("", {
-                                type: sap.m.InputType.Text
-                            }).bindProperty("value", {
-                                path: "times"
+                            new sap.extension.m.Input("", {
+                                type: sap.m.InputType.Number
+                            }).bindProperty("bindingValue", {
+                                path: "times",
+                                type: new sap.extension.data.Numeric()
                             }),
                         ]
                     });
@@ -51,10 +60,11 @@ namespace businesspartner {
                         title: this.title,
                         type: sap.m.DialogType.Standard,
                         state: sap.ui.core.ValueState.None,
-                        stretchOnPhone: true,
                         horizontalScrolling: true,
                         verticalScrolling: true,
-                        content: [this.layoutMain],
+                        content: [
+                            this.formTop
+                        ],
                         buttons: [
                             new sap.m.Button("", {
                                 text: ibas.i18n.prop("shell_data_save"),
@@ -75,13 +85,11 @@ namespace businesspartner {
                         ]
                     });
                 }
-                private layoutMain: sap.ui.layout.form.SimpleForm;
+                private formTop: sap.ui.layout.form.SimpleForm;
                 /** 显示数据 */
                 showBusinessPartnerAssetJournal(data: bo.BusinessPartnerAssetJournal): void {
-                    this.layoutMain.setModel(new sap.ui.model.json.JSONModel(data));
-                    this.layoutMain.bindObject("/");
-                    // 监听属性改变，并更新控件
-                    openui5.utils.refreshModelChanged(this.layoutMain, data);
+                    this.formTop.bindObject("/");
+                    this.formTop.setModel(new sap.ui.model.json.JSONModel(data));
                 }
             }
         }

@@ -17,108 +17,105 @@ namespace businesspartner {
                 /** 绘制视图 */
                 draw(): any {
                     let that: this = this;
-                    this.table = new sap.ui.table.Table("", {
-                        enableSelectAll: false,
-                        selectionBehavior: sap.ui.table.SelectionBehavior.Row,
-                        selectionMode: openui5.utils.toSelectionMode(this.chooseType),
-                        visibleRowCount: ibas.config.get(openui5.utils.CONFIG_ITEM_LIST_TABLE_VISIBLE_ROW_COUNT, 15),
+                    this.table = new sap.extension.table.DataTable("", {
+                        chooseType: this.chooseType,
+                        visibleRowCount: sap.extension.table.visibleRowCount(15),
+                        dataInfo: this.queryTarget,
                         rows: "{/rows}",
                         columns: [
-                            new sap.ui.table.Column("", {
+                            new sap.extension.table.DataColumn("", {
                                 label: ibas.i18n.prop("bo_businesspartnerasset_docentry"),
-                                template: new sap.m.Text("", {
-                                    wrapping: false
-                                }).bindProperty("text", {
-                                    path: "docEntry"
-                                })
+                                template: new sap.extension.m.Text("", {
+                                }).bindProperty("bindingValue", {
+                                    path: "docEntry",
+                                    type: new sap.extension.data.Numeric()
+                                }),
                             }),
-                            new sap.ui.table.Column("", {
+                            new sap.extension.table.DataColumn("", {
                                 label: ibas.i18n.prop("bo_businesspartnerasset_businesspartnertype"),
-                                template: new sap.m.Text("", {
-                                    wrapping: false
-                                }).bindProperty("text", {
+                                template: new sap.extension.m.Text("", {
+                                }).bindProperty("bindingValue", {
                                     path: "businessPartnerType",
-                                    formatter(data: any): any {
-                                        return ibas.enums.describe(bo.emBusinessPartnerType, data);
-                                    }
-                                })
+                                    type: new sap.extension.data.Enum({
+                                        enumType: bo.emBusinessPartnerType,
+                                        describe: true,
+                                    })
+                                }),
                             }),
-                            new sap.ui.table.Column("", {
-                                label: ibas.i18n.prop("bo_businesspartnerasset_businesspartnercode"),
-                                template: new sap.m.Text("", {
-                                    wrapping: false
-                                }).bindProperty("text", {
-                                    path: "businessPartnerCode"
-                                })
+                            new sap.extension.table.DataColumn("", {
+                                label: ibas.i18n.prop("bo_businesspartnerasset_businesspartnercode")
+                                    + ibas.i18n.prop("bo_businesspartnerasset_code"),
+                                template: new sap.extension.m.Text("", {
+                                }).bindProperty("bindingValue", {
+                                    path: "businessPartnerCode",
+                                    type: new sap.extension.data.Alphanumeric()
+                                }),
                             }),
-                            new sap.ui.table.Column("", {
+                            new sap.extension.table.DataColumn("", {
+                                label: ibas.i18n.prop("bo_businesspartnerasset_businesspartnercode")
+                                    + ibas.i18n.prop("bo_businesspartnerasset_name"),
+                                template: new component.BusinessPartnerText("", {
+                                    typeProperty: "businessPartnerType",
+                                }).bindProperty("bindingValue", {
+                                    path: "businessPartnerCode",
+                                    type: new sap.extension.data.Alphanumeric()
+                                }),
+                            }),
+                            new sap.extension.table.DataColumn("", {
                                 label: ibas.i18n.prop("bo_businesspartnerasset_name"),
-                                template: new sap.m.Text("", {
-                                    wrapping: false
-                                }).bindProperty("text", {
-                                    path: "name"
-                                })
+                                template: new sap.extension.m.Text("", {
+                                }).bindProperty("bindingValue", {
+                                    path: "name",
+                                    type: new sap.extension.data.Alphanumeric()
+                                }),
                             }),
-                            new sap.ui.table.Column("", {
+                            new sap.extension.table.DataColumn("", {
                                 label: ibas.i18n.prop("bo_businesspartnerasset_activated"),
-                                template: new sap.m.Text("", {
-                                    wrapping: false
-                                }).bindProperty("text", {
+                                template: new sap.extension.m.Text("", {
+                                }).bindProperty("bindingValue", {
                                     path: "activated",
-                                    formatter(data: any): any {
-                                        return ibas.enums.describe(ibas.emYesNo, data);
-                                    }
-                                })
+                                    type: new sap.extension.data.YesNo(true)
+                                }),
                             }),
-                            new sap.ui.table.Column("", {
+                            new sap.extension.table.DataColumn("", {
                                 label: ibas.i18n.prop("bo_businesspartnerasset_validdate"),
-                                template: new sap.m.Text("", {
-                                    wrapping: false,
-                                }).bindProperty("text", {
+                                template: new sap.extension.m.Text("", {
+                                }).bindProperty("bindingValue", {
                                     path: "validDate",
-                                    type: new sap.ui.model.type.Date({
-                                        pattern: "yyyy-MM-dd",
-                                        strictParsing: true,
-                                    })
+                                    type: new sap.extension.data.Date()
                                 }),
                             }),
-                            new sap.ui.table.Column("", {
+                            new sap.extension.table.DataColumn("", {
                                 label: ibas.i18n.prop("bo_businesspartnerasset_invaliddate"),
-                                template: new sap.m.Text("", {
-                                    wrapping: false,
-                                }).bindProperty("text", {
+                                template: new sap.extension.m.Text("", {
+                                }).bindProperty("bindingValue", {
                                     path: "invalidDate",
-                                    type: new sap.ui.model.type.Date({
-                                        pattern: "yyyy-MM-dd",
-                                        strictParsing: true,
-                                    })
+                                    type: new sap.extension.data.Date()
                                 }),
                             }),
-                            new sap.ui.table.Column("", {
+                            new sap.extension.table.DataColumn("", {
                                 label: ibas.i18n.prop("bo_businesspartnerasset_amount"),
-                                template: new sap.m.Text("", {
-                                    wrapping: false,
-                                }).bindProperty("text", {
+                                template: new sap.extension.m.Text("", {
+                                }).bindProperty("bindingValue", {
                                     path: "amount",
-                                    type: new openui5.datatype.Sum(),
+                                    type: new sap.extension.data.Sum()
                                 }),
                             }),
-                            new sap.ui.table.Column("", {
+                            new sap.extension.table.DataColumn("", {
                                 label: ibas.i18n.prop("bo_businesspartnerasset_times"),
-                                template: new sap.m.Text("", {
-                                    wrapping: false
-                                }).bindProperty("text", {
-                                    path: "times"
-                                })
+                                template: new sap.extension.m.Text("", {
+                                }).bindProperty("bindingValue", {
+                                    path: "times",
+                                    type: new sap.extension.data.Numeric()
+                                }),
                             }),
-                        ]
-                    });
-                    // 调整选择样式风格
-                    openui5.utils.changeSelectionStyle(this.table, this.chooseType);
-                    // 添加列表自动查询事件
-                    openui5.utils.triggerNextResults({
-                        listener: this.table,
-                        next(data: any): void {
+                        ],
+                        nextDataSet(event: sap.ui.base.Event): void {
+                            // 查询下一个数据集
+                            let data: any = event.getParameter("data");
+                            if (ibas.objects.isNull(data)) {
+                                return;
+                            }
                             if (ibas.objects.isNull(that.lastCriteria)) {
                                 return;
                             }
@@ -134,10 +131,11 @@ namespace businesspartner {
                         title: this.title,
                         type: sap.m.DialogType.Standard,
                         state: sap.ui.core.ValueState.None,
-                        stretchOnPhone: true,
                         horizontalScrolling: true,
                         verticalScrolling: true,
-                        content: [this.table],
+                        content: [
+                            this.table
+                        ],
                         buttons: [
                             new sap.m.Button("", {
                                 text: ibas.i18n.prop("shell_data_new"),
@@ -151,10 +149,7 @@ namespace businesspartner {
                                 text: ibas.i18n.prop("shell_data_choose"),
                                 type: sap.m.ButtonType.Transparent,
                                 press: function (): void {
-                                    that.fireViewEvents(that.chooseDataEvent,
-                                        // 获取表格选中的对象
-                                        openui5.utils.getSelecteds<bo.BusinessPartnerAsset>(that.table)
-                                    );
+                                    that.fireViewEvents(that.chooseDataEvent, that.table.getSelecteds());
                                 }
                             }),
                             new sap.m.Button("", {
@@ -167,25 +162,16 @@ namespace businesspartner {
                         ],
                     });
                 }
-                private table: sap.ui.table.Table;
+                private table: sap.extension.table.Table;
                 /** 显示数据 */
                 showData(datas: bo.BusinessPartnerAsset[]): void {
-                    let done: boolean = false;
-                    let model: sap.ui.model.Model = this.table.getModel(undefined);
-                    if (!ibas.objects.isNull(model)) {
-                        // 已存在绑定数据，添加新的
-                        let hDatas: any = (<any>model).getData();
-                        if (!ibas.objects.isNull(hDatas) && hDatas.rows instanceof Array) {
-                            for (let item of datas) {
-                                hDatas.rows.push(item);
-                            }
-                            model.refresh(false);
-                            done = true;
-                        }
-                    }
-                    if (!done) {
-                        // 没有显示数据
-                        this.table.setModel(new sap.ui.model.json.JSONModel({ rows: datas }));
+                    let model: sap.ui.model.Model = this.table.getModel();
+                    if (model instanceof sap.extension.model.JSONModel) {
+                        // 已绑定过数据
+                        model.addData(datas);
+                    } else {
+                        // 未绑定过数据
+                        this.table.setModel(new sap.extension.model.JSONModel({ rows: datas }));
                     }
                     this.table.setBusy(false);
                 }

@@ -215,11 +215,10 @@ namespace businesspartner {
                 this.setProperty(BusinessPartnerGroup.PROPERTY_ORGANIZATION_NAME, value);
             }
 
-
-
             /** 初始化数据 */
             protected init(): void {
                 this.objectCode = ibas.config.applyVariables(BusinessPartnerGroup.BUSINESS_OBJECT_CODE);
+                this.activated = ibas.emYesNo.YES;
             }
         }
     }

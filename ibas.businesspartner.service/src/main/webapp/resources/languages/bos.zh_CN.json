@@ -91,7 +91,7 @@
         "bo_businesspartnerasset_referenced": "已引用",
         "bo_businesspartnerasset_deleted": "已删除",
         "bo_businesspartnerasset_businesspartnertype": "业务伙伴类型",
-        "bo_businesspartnerasset_businesspartnercode": "业务伙伴编码",
+        "bo_businesspartnerasset_businesspartnercode": "业务伙伴",
         "bo_businesspartnerasset_assetcode": "资产项目",
         "bo_businesspartnerasset_activated": "激活",
         "bo_businesspartnerasset_acquireddate": "获得日期",
@@ -271,11 +271,15 @@
         "bo_supplier_closing_delimiter": "----结束----"
     },
     {
-        "em_male": "男",
-        "em_female": "女",
-        "em_supplier": "供应商",
-        "em_customer": "客户",
-        "em_company": "公司",
-        "em_private": "个人"
+        "em_gender_male": "男",
+        "em_gender_female": "女"
+    },
+    {
+        "em_businesspartnertype_supplier": "供应商",
+        "em_businesspartnertype_customer": "客户"
+    },
+    {
+        "em_businesspartnernature_company": "公司",
+        "em_businesspartnernature_private": "个人"
     }
 ]

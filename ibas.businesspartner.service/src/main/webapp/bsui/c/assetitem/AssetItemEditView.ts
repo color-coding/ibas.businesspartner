@@ -23,112 +23,122 @@ namespace businesspartner {
                         content: [
                             new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_title_general") }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_assetitem_code") }),
-                            new sap.m.Input("", {
+                            new sap.extension.m.Input("", {
                                 type: sap.m.InputType.Text
-                            }).bindProperty("value", {
-                                path: "code"
+                            }).bindProperty("bindingValue", {
+                                path: "code",
+                                type: new sap.extension.data.Alphanumeric({
+                                    maxLength: 20
+                                })
                             }).bindProperty("editable", {
                                 path: "series",
                                 formatter(data: any): any {
                                     return data > 0 ? false : true;
                                 }
                             }),
-                            new sap.m.ex.SeriesSelect("", {
-                                objectCode: ibas.config.applyVariables(bo.BO_CODE_SUPPLIER),
-                                bindingValue: {
-                                    path: "series",
-                                    type: "sap.ui.model.type.Integer",
+                            new sap.extension.m.SeriesSelect("", {
+                                objectCode: ibas.config.applyVariables(bo.BO_CODE_ASSETITEM),
+                            }).bindProperty("bindingValue", {
+                                path: "series",
+                                type: new sap.extension.data.Numeric()
+                            }).bindProperty("enabled", {
+                                path: "isNew",
+                                formatter(data: any): any {
+                                    return !!data ? true : false;
                                 }
                             }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_assetitem_name") }),
-                            new sap.m.Input("", {
-                                type: sap.m.InputType.Text
-                            }).bindProperty("value", {
-                                path: "name"
+                            new sap.extension.m.Input("", {
+                            }).bindProperty("bindingValue", {
+                                path: "name",
+                                type: new sap.extension.data.Alphanumeric({
+                                    maxLength: 100
+                                })
                             }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_assetitem_picture") }),
-                            new sap.m.Input("", {
-                                type: sap.m.InputType.Text
-                            }).bindProperty("value", {
-                                path: "picture"
+                            new sap.extension.m.Input("", {
+                            }).bindProperty("bindingValue", {
+                                path: "picture",
+                                type: new sap.extension.data.Alphanumeric({
+                                    maxLength: 250
+                                })
                             }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_assetitem_activated") }),
-                            new sap.m.Select("", {
-                                items: openui5.utils.createComboBoxItems(ibas.emYesNo)
-                            }).bindProperty("selectedKey", {
+                            new sap.extension.m.EnumSelect("", {
+                                enumType: ibas.emYesNo
+                            }).bindProperty("bindingValue", {
                                 path: "activated",
-                                type: "sap.ui.model.type.Integer"
+                                type: new sap.extension.data.YesNo()
                             }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_assetitem_validdate") }),
-                            new sap.m.DatePicker("", {
-                                valueFormat: ibas.config.get(ibas.CONFIG_ITEM_FORMAT_DATE),
-                                displayFormat: ibas.config.get(ibas.CONFIG_ITEM_FORMAT_DATE),
-                            }).bindProperty("dateValue", {
-                                path: "validDate"
+                            new sap.extension.m.DatePicker("", {
+                            }).bindProperty("bindingValue", {
+                                path: "validDate",
+                                type: new sap.extension.data.Date()
                             }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_assetitem_invaliddate") }),
-                            new sap.m.DatePicker("", {
-                                valueFormat: ibas.config.get(ibas.CONFIG_ITEM_FORMAT_DATE),
-                                displayFormat: ibas.config.get(ibas.CONFIG_ITEM_FORMAT_DATE),
-                            }).bindProperty("dateValue", {
-                                path: "invalidDate"
+                            new sap.extension.m.DatePicker("", {
+                            }).bindProperty("bindingValue", {
+                                path: "invalidDate",
+                                type: new sap.extension.data.Date()
                             }),
                             new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_title_values") }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_assetitem_faceamount") }),
-                            new sap.m.Input("", {
-                                type: sap.m.InputType.Number,
-                            }).bindProperty("value", {
+                            new sap.extension.m.Input("", {
+                                type: sap.m.InputType.Number
+                            }).bindProperty("bindingValue", {
                                 path: "faceAmount",
-                                type: new openui5.datatype.Sum(),
+                                type: new sap.extension.data.Sum()
                             }),
-                            new sap.m.Input("", {
-                                type: sap.m.InputType.Text,
-                            }).bindProperty("value", {
-                                path: "amountUnit"
+                            new sap.extension.m.Input("", {
+                            }).bindProperty("bindingValue", {
+                                path: "amountUnit",
+                                type: new sap.extension.data.Alphanumeric({
+                                    maxLength: 8
+                                })
                             }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_assetitem_usingtimes") }),
-                            new sap.m.Input("", {
-                                type: sap.m.InputType.Number,
-                            }).bindProperty("value", {
-                                path: "usingTimes"
+                            new sap.extension.m.Input("", {
+                                type: sap.m.InputType.Number
+                            }).bindProperty("bindingValue", {
+                                path: "usingTimes",
+                                type: new sap.extension.data.Numeric()
                             }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_assetitem_usingdiscount") }),
-                            new sap.m.Input("", {
-                                type: sap.m.InputType.Text,
-                            }).bindProperty("value", {
+                            new sap.extension.m.Input("", {
+                                type: sap.m.InputType.Text
+                            }).bindProperty("bindingValue", {
                                 path: "usingDiscount",
-                                type: new openui5.datatype.Percentage(),
+                                type: new sap.extension.data.Percentage()
                             }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_assetitem_overdraft") }),
-                            new sap.m.Input("", {
-                                type: sap.m.InputType.Number,
-                            }).bindProperty("value", {
+                            new sap.extension.m.Input("", {
+                                type: sap.m.InputType.Number
+                            }).bindProperty("bindingValue", {
                                 path: "overdraft",
-                                type: new openui5.datatype.Sum(),
+                                type: new sap.extension.data.Sum()
                             }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_assetitem_validdays") }),
-                            new sap.m.Input("", {
-                                type: sap.m.InputType.Number,
-                            }).bindProperty("value", {
-                                path: "validDays"
+                            new sap.extension.m.Input("", {
+                                type: sap.m.InputType.Number
+                            }).bindProperty("bindingValue", {
+                                path: "validDays",
+                                type: new sap.extension.data.Numeric()
                             }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_assetitem_rechargeable") }),
-                            new sap.m.Select("", {
-                                items: openui5.utils.createComboBoxItems(ibas.emYesNo)
-                            }).bindProperty("selectedKey", {
+                            new sap.extension.m.EnumSelect("", {
+                                enumType: ibas.emYesNo
+                            }).bindProperty("bindingValue", {
                                 path: "rechargeable",
-                                type: "sap.ui.model.type.Integer"
+                                type: new sap.extension.data.YesNo()
                             }),
                         ]
                     });
-                    this.layoutMain = new sap.ui.layout.VerticalLayout("", {
-                        width: "100%",
-                        content: [
-                            formTop,
-                        ]
-                    });
-                    this.page = new sap.m.Page("", {
+                    return this.page = new sap.extension.m.DataPage("", {
                         showHeader: false,
+                        dataInfo: {
+                            code: bo.AssetItem.BUSINESS_OBJECT_CODE,
+                        },
                         subHeader: new sap.m.Toolbar("", {
                             content: [
                                 new sap.m.Button("", {
@@ -176,44 +186,18 @@ namespace businesspartner {
                                 }),
                             ]
                         }),
-                        content: [this.layoutMain]
+                        content: [
+                            formTop,
+                        ]
                     });
-                    return this.page;
                 }
-
-                private page: sap.m.Page;
-                private layoutMain: sap.ui.layout.VerticalLayout;
-
-                /** 改变视图状态 */
-                private changeViewStatus(data: bo.AssetItem): void {
-                    if (ibas.objects.isNull(data)) {
-                        return;
-                    }
-                    // 新建时：禁用删除，
-                    if (data.isNew) {
-                        if (this.page.getSubHeader() instanceof sap.m.Toolbar) {
-                            openui5.utils.changeToolbarSavable(<sap.m.Toolbar>this.page.getSubHeader(), true);
-                            openui5.utils.changeToolbarDeletable(<sap.m.Toolbar>this.page.getSubHeader(), false);
-                        }
-                    }
-                    // 不可编辑：已批准，
-                    if (data.approvalStatus === ibas.emApprovalStatus.APPROVED) {
-                        if (this.page.getSubHeader() instanceof sap.m.Toolbar) {
-                            openui5.utils.changeToolbarSavable(<sap.m.Toolbar>this.page.getSubHeader(), false);
-                            openui5.utils.changeToolbarDeletable(<sap.m.Toolbar>this.page.getSubHeader(), false);
-                        }
-                        openui5.utils.changeFormEditable(this.layoutMain, false);
-                    }
-                }
+                private page: sap.extension.m.Page;
 
                 /** 显示数据 */
                 showAssetItem(data: bo.AssetItem): void {
-                    this.layoutMain.setModel(new sap.ui.model.json.JSONModel(data));
-                    this.layoutMain.bindObject("/");
-                    // 监听属性改变，并更新控件
-                    openui5.utils.refreshModelChanged(this.layoutMain, data);
-                    // 改变视图状态
-                    this.changeViewStatus(data);
+                    this.page.setModel(new sap.extension.model.JSONModel(data));
+                    // 改变页面状态
+                    sap.extension.pages.changeStatus(this.page);
                 }
             }
         }

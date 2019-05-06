@@ -342,6 +342,13 @@ namespace businesspartner {
                 this.activated = ibas.emYesNo.YES;
                 this.ownerType = emBusinessPartnerType.CUSTOMER;
             }
+
+            protected registerRules(): ibas.IBusinessRule[] {
+                return [
+                    // 清理属性值
+                    new BusinessRuleClearValue(Address.PROPERTY_OWNERTYPE_NAME, Address.PROPERTY_BUSINESSPARTNER_NAME),
+                ];
+            }
         }
     }
 }

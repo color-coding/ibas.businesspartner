@@ -6,6 +6,8 @@
  * that can be found in the LICENSE file at http://www.apache.org/licenses/LICENSE-2.0
  */
 /// <reference path="../../index.d.ts" />
+/// <reference path="../Component.d.ts" />
+/// <reference path="../Component.ts" />
 /// <reference path="./address/index.ts" />
 /// <reference path="./businesspartnergroup/index.ts" />
 /// <reference path="./contactperson/index.ts" />
@@ -59,9 +61,6 @@ namespace businesspartner {
                     case app.CustomerChooseApp.APPLICATION_ID:
                         view = new c.CustomerChooseView();
                         break;
-                    case app.CustomerViewApp.APPLICATION_ID:
-                        view = new c.CustomerViewView();
-                        break;
                     case app.CustomerEditApp.APPLICATION_ID:
                         view = new c.CustomerEditView();
                         break;
@@ -70,9 +69,6 @@ namespace businesspartner {
                         break;
                     case app.SupplierChooseApp.APPLICATION_ID:
                         view = new c.SupplierChooseView();
-                        break;
-                    case app.SupplierViewApp.APPLICATION_ID:
-                        view = new c.SupplierViewView();
                         break;
                     case app.SupplierEditApp.APPLICATION_ID:
                         view = new c.SupplierEditView();
@@ -83,9 +79,6 @@ namespace businesspartner {
                     case app.AssetItemChooseApp.APPLICATION_ID:
                         view = new c.AssetItemChooseView();
                         break;
-                    case app.AssetItemViewApp.APPLICATION_ID:
-                        view = new c.AssetItemViewView();
-                        break;
                     case app.AssetItemEditApp.APPLICATION_ID:
                         view = new c.AssetItemEditView();
                         break;
@@ -94,9 +87,6 @@ namespace businesspartner {
                         break;
                     case app.BusinessPartnerAssetChooseApp.APPLICATION_ID:
                         view = new c.BusinessPartnerAssetChooseView();
-                        break;
-                    case app.BusinessPartnerAssetViewApp.APPLICATION_ID:
-                        view = new c.BusinessPartnerAssetViewView();
                         break;
                     case app.BusinessPartnerAssetEditApp.APPLICATION_ID:
                         view = new c.BusinessPartnerAssetEditView();

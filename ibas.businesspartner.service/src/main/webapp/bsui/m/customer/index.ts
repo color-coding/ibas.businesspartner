@@ -6,6 +6,3 @@
  * that can be found in the LICENSE file at http://www.apache.org/licenses/LICENSE-2.0
  */
 /// <reference path="./CustomerChooseView.ts" />
-/// <reference path="./CustomerEditView.ts" />
-/// <reference path="./CustomerListView.ts" />
-/// <reference path="./CustomerViewView.ts" />

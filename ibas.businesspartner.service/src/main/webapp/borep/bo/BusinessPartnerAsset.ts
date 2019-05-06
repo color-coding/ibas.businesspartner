@@ -417,6 +417,13 @@ namespace businesspartner {
                 this.businessPartnerType = emBusinessPartnerType.CUSTOMER;
                 this.activated = ibas.emYesNo.YES;
             }
+
+            protected registerRules(): ibas.IBusinessRule[] {
+                return [
+                    // 清理属性值
+                    new BusinessRuleClearValue(BusinessPartnerAsset.PROPERTY_BUSINESSPARTNERTYPE_NAME, BusinessPartnerAsset.PROPERTY_BUSINESSPARTNERCODE_NAME),
+                ];
+            }
         }
 
         /** 客户资产 */

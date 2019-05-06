@@ -320,6 +320,13 @@ namespace businesspartner {
                 this.ownerType = emBusinessPartnerType.CUSTOMER;
                 this.activated = ibas.emYesNo.YES;
             }
+
+            protected registerRules(): ibas.IBusinessRule[] {
+                return [
+                    // 清理属性值
+                    new BusinessRuleClearValue(ContactPerson.PROPERTY_OWNERTYPE_NAME, ContactPerson.PROPERTY_BUSINESSPARTNER_NAME),
+                ];
+            }
         }
 
 

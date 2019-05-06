@@ -8,12 +8,10 @@
 namespace businesspartner {
     export namespace ui {
         export namespace c {
-
             /**
              * 编辑视图-供应商
              */
             export class SupplierEditView extends ibas.BOEditView implements app.ISupplierEditView {
-
                 /** 删除数据事件 */
                 deleteDataEvent: Function;
                 /** 新建数据事件，参数1：是否克隆 */
@@ -38,200 +36,245 @@ namespace businesspartner {
                 /** 绘制视图 */
                 draw(): any {
                     let that: this = this;
-                    this.viewTopForm = new sap.ui.layout.form.SimpleForm("", {
+                    let formTop: sap.ui.layout.form.SimpleForm = new sap.ui.layout.form.SimpleForm("", {
                         editable: true,
                         content: [
                             new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_title_general") }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_code") }),
-                            new sap.m.Input("", {
+                            new sap.extension.m.Input("", {
                                 type: sap.m.InputType.Text
-                            }).bindProperty("value", {
-                                path: "code"
+                            }).bindProperty("bindingValue", {
+                                path: "code",
+                                type: new sap.extension.data.Alphanumeric({
+                                    maxLength: 20
+                                })
                             }).bindProperty("editable", {
                                 path: "series",
                                 formatter(data: any): any {
                                     return data > 0 ? false : true;
                                 }
                             }),
-                            new sap.m.ex.SeriesSelect("", {
+                            new sap.extension.m.SeriesSelect("", {
                                 objectCode: ibas.config.applyVariables(bo.BO_CODE_SUPPLIER),
-                                bindingValue: {
-                                    path: "series",
-                                    type: "sap.ui.model.type.Integer",
+                            }).bindProperty("bindingValue", {
+                                path: "series",
+                                type: new sap.extension.data.Numeric()
+                            }).bindProperty("enabled", {
+                                path: "isNew",
+                                formatter(data: any): any {
+                                    return !!data ? true : false;
                                 }
                             }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_name") }),
-                            new sap.m.Input("", {
-                                type: sap.m.InputType.Text
-                            }).bindProperty("value", {
-                                path: "name"
+                            new sap.extension.m.Input("", {
+                            }).bindProperty("bindingValue", {
+                                path: "name",
+                                type: new sap.extension.data.Alphanumeric({
+                                    maxLength: 100
+                                })
                             }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_activated") }),
-                            new sap.m.Select("", {
-                                items: openui5.utils.createComboBoxItems(ibas.emYesNo)
-                            }).bindProperty("selectedKey", {
+                            new sap.extension.m.EnumSelect("", {
+                                enumType: ibas.emYesNo
+                            }).bindProperty("bindingValue", {
                                 path: "activated",
-                                type: "sap.ui.model.type.Integer"
+                                type: new sap.extension.data.YesNo()
                             }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_group") }),
-                            new sap.m.ex.BOInput("", {
-                                boText: "name",
-                                boKey: "code",
-                                boCode: ibas.config.applyVariables(bo.BO_CODE_BUSINESSPARTNERGROUP),
-                                repositoryName: bo.BO_REPOSITORY_BUSINESSPARTNER,
+                            new sap.extension.m.RepositoryInput("", {
+                                showValueHelp: true,
+                                repository: bo.BORepositoryBusinessPartner,
+                                dataInfo: {
+                                    type: bo.BusinessPartnerGroup,
+                                    key: "Code",
+                                    text: "Name"
+                                },
                                 valueHelpRequest: function (): void {
                                     that.fireViewEvents(that.chooseSupplierGroupEvent);
                                 },
-                                bindingValue: {
-                                    path: "group"
-                                }
+                            }).bindProperty("bindingValue", {
+                                path: "group",
+                                type: new sap.extension.data.Alphanumeric({
+                                    maxLength: 8
+                                })
                             }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_companyprivate") }),
-                            new sap.m.Select("", {
-                                items: openui5.utils.createComboBoxItems(bo.emBusinessPartnerNature)
-                            }).bindProperty("selectedKey", {
+                            new sap.extension.m.EnumSelect("", {
+                                enumType: bo.emBusinessPartnerNature
+                            }).bindProperty("bindingValue", {
                                 path: "companyPrivate",
-                                type: "sap.ui.model.type.Integer"
+                                type: new sap.extension.data.Enum({
+                                    enumType: bo.emBusinessPartnerNature
+                                })
                             }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_pricelist") }),
-                            new sap.m.ex.BOInput("", {
-                                boText: "name",
-                                boKey: "objectKey",
-                                boCode: ibas.config.applyVariables(materials.bo.BO_CODE_MATERIALPRICELIST),
-                                repositoryName: materials.bo.BO_REPOSITORY_MATERIALS,
+                            new sap.extension.m.RepositoryInput("", {
+                                showValueHelp: true,
+                                repository: materials.bo.BORepositoryMaterials,
+                                dataInfo: {
+                                    type: materials.bo.MaterialPriceList,
+                                    key: "ObjectKey",
+                                    text: "Name"
+                                },
                                 valueHelpRequest: function (): void {
                                     that.fireViewEvents(that.chooseSupplierPriceListEvent);
                                 },
-                                bindingValue: {
-                                    path: "priceList"
-                                }
+                            }).bindProperty("bindingValue", {
+                                path: "priceList",
+                                type: new sap.extension.data.Numeric()
                             }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_warehouse") }),
-                            new sap.m.ex.BOInput("", {
-                                boText: "name",
-                                boKey: "code",
-                                boCode: ibas.config.applyVariables(materials.bo.BO_CODE_WAREHOUSE),
-                                repositoryName: materials.bo.BO_REPOSITORY_MATERIALS,
+                            new sap.extension.m.RepositoryInput("", {
+                                showValueHelp: true,
+                                repository: materials.bo.BORepositoryMaterials,
+                                dataInfo: {
+                                    type: materials.bo.Warehouse,
+                                    key: "Code",
+                                    text: "Name"
+                                },
                                 valueHelpRequest: function (): void {
                                     that.fireViewEvents(that.chooseSupplierWarehouseEvent);
                                 },
-                                bindingValue: {
-                                    path: "warehouse"
-                                }
+                            }).bindProperty("bindingValue", {
+                                path: "warehouse",
+                                type: new sap.extension.data.Alphanumeric({
+                                    maxLength: 8
+                                })
                             }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_currency") }),
-                            new sap.m.Input("", {
-                                type: sap.m.InputType.Text,
-                            }).bindProperty("value", {
-                                path: "currency"
+                            new sap.extension.m.Input("", {
+                            }).bindProperty("bindingValue", {
+                                path: "currency",
+                                type: new sap.extension.data.Alphanumeric({
+                                    maxLength: 5
+                                })
                             }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_validdate") }),
-                            new sap.m.DatePicker("", {
-                                valueFormat: ibas.config.get(ibas.CONFIG_ITEM_FORMAT_DATE),
-                                displayFormat: ibas.config.get(ibas.CONFIG_ITEM_FORMAT_DATE),
-                            }).bindProperty("dateValue", {
-                                path: "validDate"
+                            new sap.extension.m.DatePicker("", {
+                            }).bindProperty("bindingValue", {
+                                path: "validDate",
+                                type: new sap.extension.data.Date()
                             }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_invaliddate") }),
-                            new sap.m.DatePicker("", {
-                                valueFormat: ibas.config.get(ibas.CONFIG_ITEM_FORMAT_DATE),
-                                displayFormat: ibas.config.get(ibas.CONFIG_ITEM_FORMAT_DATE),
-                            }).bindProperty("dateValue", {
-                                path: "invalidDate"
+                            new sap.extension.m.DatePicker("", {
+                            }).bindProperty("bindingValue", {
+                                path: "invalidDate",
+                                type: new sap.extension.data.Date()
                             }),
                             new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_title_contact") }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_contactperson") }),
-                            new sap.m.ex.BOInput("", {
-                                boText: "name",
-                                boKey: "objectKey",
-                                boCode: ibas.config.applyVariables(bo.BO_CODE_CONTACTPERSON),
-                                repositoryName: bo.BO_REPOSITORY_BUSINESSPARTNER,
+                            new sap.extension.m.RepositoryInput("", {
+                                showValueHelp: true,
+                                repository: bo.BORepositoryBusinessPartner,
+                                dataInfo: {
+                                    type: bo.ContactPerson,
+                                    key: "ObjectKey",
+                                    text: "Name"
+                                },
                                 valueHelpRequest: function (): void {
                                     that.fireViewEvents(that.chooseSupplierContactPersonEvent);
                                 },
-                                bindingValue: {
-                                    path: "contactPerson"
-                                }
+                            }).bindProperty("bindingValue", {
+                                path: "contactPerson",
+                                type: new sap.extension.data.Numeric()
                             }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_billaddress") }),
-                            new sap.m.ex.BOInput("", {
-                                boText: "name",
-                                boKey: "objectKey",
-                                boCode: ibas.config.applyVariables(bo.BO_CODE_ADDRESS),
-                                repositoryName: bo.BO_REPOSITORY_BUSINESSPARTNER,
+                            new sap.extension.m.RepositoryInput("", {
+                                showValueHelp: true,
+                                repository: bo.BORepositoryBusinessPartner,
+                                dataInfo: {
+                                    type: bo.Address,
+                                    key: "ObjectKey",
+                                    text: "Name"
+                                },
                                 valueHelpRequest: function (): void {
                                     that.fireViewEvents(that.chooseSupplierBillAddressEvent);
                                 },
-                                bindingValue: {
-                                    path: "billAddress"
-                                }
+                            }).bindProperty("bindingValue", {
+                                path: "billAddress",
+                                type: new sap.extension.data.Numeric()
                             }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_shipaddress") }),
-                            new sap.m.ex.BOInput("", {
-                                boText: "name",
-                                boKey: "objectKey",
-                                boCode: ibas.config.applyVariables(bo.BO_CODE_ADDRESS),
-                                repositoryName: bo.BO_REPOSITORY_BUSINESSPARTNER,
+                            new sap.extension.m.RepositoryInput("", {
+                                showValueHelp: true,
+                                repository: bo.BORepositoryBusinessPartner,
+                                dataInfo: {
+                                    type: bo.Address,
+                                    key: "ObjectKey",
+                                    text: "Name"
+                                },
                                 valueHelpRequest: function (): void {
                                     that.fireViewEvents(that.chooseSupplierShipAddressEvent);
                                 },
-                                bindingValue: {
-                                    path: "shipAddress"
-                                }
+                            }).bindProperty("bindingValue", {
+                                path: "shipAddress",
+                                type: new sap.extension.data.Numeric()
                             }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_telephone1") }),
-                            new sap.m.Input("", {
-                                type: sap.m.InputType.Text,
-                            }).bindProperty("value", {
-                                path: "telephone1"
+                            new sap.extension.m.Input("", {
+                            }).bindProperty("bindingValue", {
+                                path: "telephone1",
+                                type: new sap.extension.data.Alphanumeric({
+                                    maxLength: 20
+                                })
                             }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_telephone2") }),
-                            new sap.m.Input("", {
-                                type: sap.m.InputType.Text,
-                            }).bindProperty("value", {
-                                path: "telephone2"
+                            new sap.extension.m.Input("", {
+                            }).bindProperty("bindingValue", {
+                                path: "telephone2",
+                                type: new sap.extension.data.Alphanumeric({
+                                    maxLength: 20
+                                })
                             }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_mobilephone") }),
-                            new sap.m.Input("", {
-                                type: sap.m.InputType.Text,
-                            }).bindProperty("value", {
-                                path: "mobilePhone"
+                            new sap.extension.m.Input("", {
+                            }).bindProperty("bindingValue", {
+                                path: "mobilePhone",
+                                type: new sap.extension.data.Alphanumeric({
+                                    maxLength: 50
+                                })
                             }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_faxnumber") }),
-                            new sap.m.Input("", {
-                                type: sap.m.InputType.Text,
-                            }).bindProperty("value", {
-                                path: "faxNumber"
+                            new sap.extension.m.Input("", {
+                            }).bindProperty("bindingValue", {
+                                path: "faxNumber",
+                                type: new sap.extension.data.Alphanumeric({
+                                    maxLength: 20
+                                })
                             }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_taxid") }),
-                            new sap.m.Input("", {
-                                type: sap.m.InputType.Text,
-                            }).bindProperty("value", {
+                            new sap.extension.m.Input("", {
+                            }).bindProperty("bindingValue", {
                                 path: "taxId",
+                                type: new sap.extension.data.Alphanumeric({
+                                    maxLength: 30
+                                })
                             }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_channel") }),
-                            new sap.m.Input("", {
-                                type: sap.m.InputType.Text
-                            }).bindProperty("value", {
-                                path: "channel"
+                            new sap.extension.m.Input("", {
+                            }).bindProperty("bindingValue", {
+                                path: "channel",
+                                type: new sap.extension.data.Alphanumeric({
+                                    maxLength: 100
+                                })
                             }),
-                            new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_organizationalunit") }),
-                            new sap.m.ex.BOChooseInput("", {
-                                boText: "name",
-                                boKey: "code",
-                                boCode: ibas.config.applyVariables(initialfantasy.bo.BO_CODE_ORGANIZATION),
-                                repositoryName: initialfantasy.bo.BO_REPOSITORY_INITIALFANTASY,
-                                criteria: [
-                                    new ibas.Condition("activated", ibas.emConditionOperation.EQUAL, ibas.emYesNo.YES.toString())
-                                ],
-                                bindingValue: {
-                                    path: "organizationalUnit"
-                                }
+                            new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_organizationalunit") }),
+                            new sap.extension.m.OrganizationInput("", {
+                                showValueHelp: true,
+                                chooseType: ibas.emChooseType.SINGLE,
+                            }).bindProperty("bindingValue", {
+                                path: "organizationalUnit",
+                                type: new sap.extension.data.Alphanumeric({
+                                    maxLength: 8
+                                })
                             }),
                         ],
                     });
-                    this.page = new sap.m.Page("", {
+                    return this.page = new sap.extension.m.DataPage("", {
                         showHeader: false,
+                        dataInfo: {
+                            code: bo.Supplier.BUSINESS_OBJECT_CODE,
+                        },
                         subHeader: new sap.m.Toolbar("", {
                             content: [
                                 new sap.m.Button("", {
@@ -304,43 +347,17 @@ namespace businesspartner {
                                 }),
                             ]
                         }),
-                        content: [this.viewTopForm],
+                        content: [
+                            formTop,
+                        ]
                     });
-                    this.id = this.page.getId();
-                    return this.page;
                 }
-                private page: sap.m.Page;
-                private viewTopForm: sap.ui.layout.form.SimpleForm;
-                /** 改变视图状态 */
-                private changeViewStatus(data: bo.Supplier): void {
-                    if (ibas.objects.isNull(data)) {
-                        return;
-                    }
-                    // 新建时：禁用删除，
-                    if (data.isNew) {
-                        if (this.page.getSubHeader() instanceof sap.m.Toolbar) {
-                            openui5.utils.changeToolbarSavable(<sap.m.Toolbar>this.page.getSubHeader(), true);
-                            openui5.utils.changeToolbarDeletable(<sap.m.Toolbar>this.page.getSubHeader(), false);
-                        }
-                    }
-                    // 不可编辑：已批准，
-                    if (data.approvalStatus === ibas.emApprovalStatus.APPROVED) {
-                        if (this.page.getSubHeader() instanceof sap.m.Toolbar) {
-                            openui5.utils.changeToolbarSavable(<sap.m.Toolbar>this.page.getSubHeader(), false);
-                            openui5.utils.changeToolbarDeletable(<sap.m.Toolbar>this.page.getSubHeader(), false);
-                        }
-                        openui5.utils.changeFormEditable(this.viewTopForm, false);
-                    }
-                }
-
+                private page: sap.extension.m.Page;
                 /** 显示数据 */
                 showSupplier(data: bo.Supplier): void {
-                    this.viewTopForm.setModel(new sap.ui.model.json.JSONModel(data));
-                    this.viewTopForm.bindObject("/");
-                    // 监听属性改变，并更新控件
-                    openui5.utils.refreshModelChanged(this.viewTopForm, data);
-                    // 改变视图状态
-                    this.changeViewStatus(data);
+                    this.page.setModel(new sap.extension.model.JSONModel(data));
+                    // 改变页面状态
+                    sap.extension.pages.changeStatus(this.page);
                 }
             }
         }

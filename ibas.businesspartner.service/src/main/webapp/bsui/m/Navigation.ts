@@ -7,12 +7,8 @@
  */
 /// <reference path="../../index.d.ts" />
 /// <reference path="./address/index.ts" />
-/// <reference path="./businesspartnergroup/index.ts" />
-/// <reference path="./contactperson/index.ts" />
 /// <reference path="./customer/index.ts" />
 /// <reference path="./supplier/index.ts" />
-/// <reference path="./assetitem/index.ts" />
-/// <reference path="./businesspartnerasset/index.ts" />
 namespace businesspartner {
     export namespace ui {
         /**
