@@ -541,7 +541,7 @@ public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 				if (assetItem == null) {
 					continue;
 				}
-				// 币种不匹配
+				// 货币不匹配
 				if (request.getCurrency() != null && !request.getCurrency().isEmpty()
 						&& !request.getCurrency().equals(assetItem.getAmountUnit())) {
 					continue;

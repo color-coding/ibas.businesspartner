@@ -17,7 +17,7 @@ public interface IBusinessPartnerAssetIncreasesContract extends IBusinessLogicCo
 	 */
 	static final String ASSET_MODE_SIGN = MyConfiguration.TRADING_MODE_BP_ASSET;
 	/**
-	 * 超级币种
+	 * 超级货币
 	 */
 	static final String POWERFUL_CURRENCY_SIGN = "_POWERFUL_";
 
@@ -36,7 +36,7 @@ public interface IBusinessPartnerAssetIncreasesContract extends IBusinessLogicCo
 	BigDecimal getAmount();
 
 	/**
-	 * 币种
+	 * 货币
 	 * 
 	 * @return 值
 	 */

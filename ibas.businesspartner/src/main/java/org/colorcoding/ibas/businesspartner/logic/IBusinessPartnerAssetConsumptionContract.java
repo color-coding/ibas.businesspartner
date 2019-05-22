@@ -32,7 +32,7 @@ public interface IBusinessPartnerAssetConsumptionContract extends IBusinessLogic
 	BigDecimal getAmount();
 
 	/**
-	 * 币种
+	 * 货币
 	 * 
 	 * @return 值
 	 */
