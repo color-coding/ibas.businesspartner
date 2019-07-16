@@ -215,6 +215,17 @@ namespace businesspartner {
                 this.setProperty(Customer.PROPERTY_INVALIDDATE_NAME, value);
             }
 
+            /** 映射的属性名称-底价清单 */
+            static PROPERTY_FLOORLIST_NAME: string = "FloorList";
+            /** 获取-底价清单 */
+            get floorList(): number {
+                return this.getProperty<number>(Customer.PROPERTY_FLOORLIST_NAME);
+            }
+            /** 设置-底价清单 */
+            set floorList(value: number) {
+                this.setProperty(Customer.PROPERTY_FLOORLIST_NAME, value);
+            }
+
             /** 映射的属性名称-备注 */
             static PROPERTY_REMARKS_NAME: string = "Remarks";
             /** 获取-备注 */

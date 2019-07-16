@@ -16,4 +16,5 @@ public interface ICustomerCheckContract extends IBusinessLogicContract {
 	 * @return
 	 */
 	String getCustomerCode();
+
 }

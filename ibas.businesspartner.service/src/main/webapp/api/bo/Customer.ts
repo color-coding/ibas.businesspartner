@@ -64,6 +64,9 @@ namespace businesspartner {
             /** 失效日期 */
             invalidDate: Date;
 
+            /** 底价清单 */
+            floorList: number;
+
             /** 备注 */
             remarks: string;
 

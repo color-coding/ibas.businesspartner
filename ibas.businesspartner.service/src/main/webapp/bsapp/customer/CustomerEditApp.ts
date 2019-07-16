@@ -36,6 +36,7 @@ namespace businesspartner {
                 this.view.chooseCustomerBillAddressEvent = this.chooseCustomerBillAddress;
                 this.view.chooseCustomerShipAddressEvent = this.chooseCustomerShipAddress;
                 this.view.chooseCustomerPriceListEvent = this.chooseCustomerPriceList;
+                this.view.chooseCustomerFloorListEvent = this.chooseCustomerFloorList;
                 this.view.chooseCustomerWarehouseEvent = this.chooseCustomerWarehouse;
                 this.view.createAddressEvent = this.createAddress;
                 this.view.createContactPersonEvent = this.createContactPerson;
@@ -260,6 +261,18 @@ namespace businesspartner {
                     }
                 });
             }
+            private chooseCustomerFloorList(): void {
+                let that: this = this;
+                ibas.servicesManager.runChooseService<materials.bo.IMaterialPriceList>({
+                    boCode: materials.bo.BO_CODE_MATERIALPRICELIST,
+                    chooseType: ibas.emChooseType.SINGLE,
+                    criteria: materials.app.conditions.materialpricelist.create(),
+                    onCompleted(selecteds: ibas.IList<materials.bo.IMaterialPriceList>): void {
+                        let selected: materials.bo.IMaterialPriceList = selecteds.firstOrDefault();
+                        that.editData.floorList = selected.objectKey;
+                    }
+                });
+            }
             private chooseCustomerWarehouse(): void {
                 let that: this = this;
                 ibas.servicesManager.runChooseService<materials.bo.IWarehouse>({
@@ -325,6 +338,8 @@ namespace businesspartner {
             chooseCustomerBillAddressEvent: Function;
             /** 选择客户价格清单事件 */
             chooseCustomerPriceListEvent: Function;
+            /** 选择客户底价清单事件 */
+            chooseCustomerFloorListEvent: Function;
             /** 选择客户仓库事件 */
             chooseCustomerWarehouseEvent: Function;
             /** 创建联系人 */
