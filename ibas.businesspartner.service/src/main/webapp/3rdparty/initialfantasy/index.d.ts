@@ -5100,14 +5100,11 @@ declare namespace initialfantasy {
             protected viewShowed(): void;
             private user;
             private fetchUser;
-            private saveUser;
         }
         /** 视图-用户配置 */
         interface IUserProfileView extends ibas.IResidentView {
             /** 显示用户信息 */
             showUser(user: bo.User): void;
-            /** 保存用户事件 */
-            saveUserEvent: Function;
         }
     }
 }

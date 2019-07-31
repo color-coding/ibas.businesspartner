@@ -1261,4 +1261,11 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset>
 		};
 	}
 
+	/** 重置 */
+	public void reset() {
+		super.reset();
+		this.setAmount(Decimal.ZERO);
+		this.setTimes(0);
+	}
+
 }

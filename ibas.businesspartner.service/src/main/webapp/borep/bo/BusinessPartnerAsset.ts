@@ -417,6 +417,12 @@ namespace businesspartner {
                 this.businessPartnerType = emBusinessPartnerType.CUSTOMER;
                 this.activated = ibas.emYesNo.YES;
             }
+            /** 重置 */
+            reset(): void {
+                super.reset();
+                this.times = 0;
+                this.amount = 0;
+            }
 
             protected registerRules(): ibas.IBusinessRule[] {
                 return [
