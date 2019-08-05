@@ -41,6 +41,20 @@ public interface ISupplier extends IBOMasterData {
 	void setName(String value);
 
 	/**
+	 * 获取-标识
+	 * 
+	 * @return 值
+	 */
+	String getSign();
+
+	/**
+	 * 设置-标识
+	 * 
+	 * @param value 值
+	 */
+	void setSign(String value);
+
+	/**
 	 * 获取-组代码
 	 * 
 	 * @return 值

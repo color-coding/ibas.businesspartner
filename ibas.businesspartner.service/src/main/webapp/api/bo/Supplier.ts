@@ -16,6 +16,9 @@ namespace businesspartner {
             /** 名称 */
             name: string;
 
+            /** 标识 */
+            sign: string;
+
             /** 组代码 */
             group: string;
 

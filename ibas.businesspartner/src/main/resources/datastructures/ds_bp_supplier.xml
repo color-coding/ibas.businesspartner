@@ -4,6 +4,7 @@
   <Model Name="Supplier" Description="供应商" ModelType="MasterData" Mapped="${Company}_BP_OSUP">
     <Property Name="Code" Description="编码" DataType="Alphanumeric" DataSubType="Default" EditSize="20" Mapped="Code" UniqueKey="Yes"/>
     <Property Name="Name" Description="名称" DataType="Alphanumeric" DataSubType="Default" EditSize="100" Mapped="Name"/>
+    <Property Name="Sign" Description="标识" DataType="Alphanumeric" DataSubType="Default" EditSize="60" Mapped="Sign"/>
     <Property Name="Group" Description="组代码" DataType="Alphanumeric" DataSubType="Default" EditSize="8" Mapped="Group"/>
     <Property Name="Activated" Description="激活" DataType="Alphanumeric" DataSubType="Default" EditSize="1" DeclaredType="emYesNo" Mapped="Activated"/>
     <Property Name="CompanyPrivate" Description="公司/个人" DataType="Alphanumeric" DataSubType="Default" EditSize="1" DeclaredType="emBusinessPartnerNature" Mapped="CmpPrivate"/>

@@ -55,7 +55,7 @@ namespace businesspartner {
                                 }
                             }),
                             new sap.extension.m.SeriesSelect("", {
-                                objectCode: ibas.config.applyVariables(bo.BO_CODE_SUPPLIER),
+                                objectCode: bo.BO_CODE_SUPPLIER,
                             }).bindProperty("bindingValue", {
                                 path: "series",
                                 type: new sap.extension.data.Numeric()
@@ -71,6 +71,14 @@ namespace businesspartner {
                                 path: "name",
                                 type: new sap.extension.data.Alphanumeric({
                                     maxLength: 100
+                                })
+                            }),
+                            new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_sign") }),
+                            new sap.extension.m.Input("", {
+                            }).bindProperty("bindingValue", {
+                                path: "sign",
+                                type: new sap.extension.data.Alphanumeric({
+                                    maxLength: 60
                                 })
                             }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_activated") }),

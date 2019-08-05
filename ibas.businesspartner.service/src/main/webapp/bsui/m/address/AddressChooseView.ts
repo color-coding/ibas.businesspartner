@@ -147,7 +147,7 @@ namespace businesspartner {
                     }
                 }
                 /** 手指触控滑动 */
-                onTouchMove(direcction: ibas.emTouchMoveDirection, event: TouchEvent): void {
+                protected onTouchMove(direcction: ibas.emTouchMoveDirection, event: TouchEvent): void {
                     if (direcction === ibas.emTouchMoveDirection.UP) {
                         this.page.setShowFooter(false);
                     } else if (direcction === ibas.emTouchMoveDirection.DOWN) {

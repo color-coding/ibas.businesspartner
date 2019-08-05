@@ -39,6 +39,17 @@ namespace businesspartner {
                 this.setProperty(Customer.PROPERTY_NAME_NAME, value);
             }
 
+            /** 映射的属性名称-标识 */
+            static PROPERTY_SIGN_NAME: string = "Sign";
+            /** 获取-标识 */
+            get sign(): string {
+                return this.getProperty<string>(Customer.PROPERTY_SIGN_NAME);
+            }
+            /** 设置-标识 */
+            set sign(value: string) {
+                this.setProperty(Customer.PROPERTY_SIGN_NAME, value);
+            }
+
             /** 映射的属性名称-组代码 */
             static PROPERTY_GROUP_NAME: string = "Group";
             /** 获取-组代码 */
