@@ -226,6 +226,17 @@ namespace businesspartner {
                 this.setProperty(Supplier.PROPERTY_INVALIDDATE_NAME, value);
             }
 
+            /** 映射的属性名称-税收组 */
+            static PROPERTY_TAXGROUP_NAME: string = "TaxGroup";
+            /** 获取-税收组 */
+            get taxGroup(): string {
+                return this.getProperty<string>(Supplier.PROPERTY_TAXGROUP_NAME);
+            }
+            /** 设置-税收组 */
+            set taxGroup(value: string) {
+                this.setProperty(Supplier.PROPERTY_TAXGROUP_NAME, value);
+            }
+
             /** 映射的属性名称-备注 */
             static PROPERTY_REMARKS_NAME: string = "Remarks";
             /** 获取-备注 */

@@ -96,8 +96,8 @@ namespace businesspartner {
                                 repository: bo.BORepositoryBusinessPartner,
                                 dataInfo: {
                                     type: bo.BusinessPartnerGroup,
-                                    key: "Code",
-                                    text: "Name"
+                                    key: bo.BusinessPartnerGroup.PROPERTY_CODE_NAME,
+                                    text: bo.BusinessPartnerGroup.PROPERTY_NAME_NAME
                                 },
                                 valueHelpRequest: function (): void {
                                     that.fireViewEvents(that.chooseCustomerGroupEvent);
@@ -123,8 +123,8 @@ namespace businesspartner {
                                 repository: materials.bo.BORepositoryMaterials,
                                 dataInfo: {
                                     type: materials.bo.MaterialPriceList,
-                                    key: "ObjectKey",
-                                    text: "Name"
+                                    key: materials.bo.MaterialPriceList.PROPERTY_OBJECTKEY_NAME,
+                                    text: materials.bo.MaterialPriceList.PROPERTY_NAME_NAME
                                 },
                                 valueHelpRequest: function (): void {
                                     that.fireViewEvents(that.chooseCustomerPriceListEvent);
@@ -139,8 +139,8 @@ namespace businesspartner {
                                 repository: materials.bo.BORepositoryMaterials,
                                 dataInfo: {
                                     type: materials.bo.Warehouse,
-                                    key: "Code",
-                                    text: "Name"
+                                    key: materials.bo.Warehouse.PROPERTY_CODE_NAME,
+                                    text: materials.bo.Warehouse.PROPERTY_NAME_NAME
                                 },
                                 valueHelpRequest: function (): void {
                                     that.fireViewEvents(that.chooseCustomerWarehouseEvent);
@@ -158,6 +158,24 @@ namespace businesspartner {
                                 type: new sap.extension.data.Alphanumeric({
                                     maxLength: 5
                                 })
+                            }),
+                            new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_taxgroup") }),
+                            new sap.extension.m.SelectionInput("", {
+                                showValueHelp: true,
+                                repository: accounting.bo.BORepositoryAccounting,
+                                dataInfo: {
+                                    type: accounting.bo.TaxGroup,
+                                    key: accounting.bo.TaxGroup.PROPERTY_CODE_NAME,
+                                    text: accounting.bo.TaxGroup.PROPERTY_NAME_NAME,
+                                },
+                                criteria: [
+                                    new ibas.Condition(accounting.bo.TaxGroup.PROPERTY_ACTIVATED_NAME, ibas.emConditionOperation.EQUAL, ibas.emYesNo.YES.toString())
+                                ]
+                            }).bindProperty("bindingValue", {
+                                path: "taxGroup",
+                                type: new sap.extension.data.Alphanumeric({
+                                    maxLength: 8
+                                }),
                             }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_validdate") }),
                             new sap.extension.m.DatePicker("", {
@@ -177,8 +195,8 @@ namespace businesspartner {
                                 repository: materials.bo.BORepositoryMaterials,
                                 dataInfo: {
                                     type: materials.bo.MaterialPriceList,
-                                    key: "ObjectKey",
-                                    text: "Name"
+                                    key: materials.bo.MaterialPriceList.PROPERTY_OBJECTKEY_NAME,
+                                    text: materials.bo.MaterialPriceList.PROPERTY_NAME_NAME
                                 },
                                 valueHelpRequest: function (): void {
                                     that.fireViewEvents(that.chooseCustomerFloorListEvent);
@@ -194,8 +212,8 @@ namespace businesspartner {
                                 repository: bo.BORepositoryBusinessPartner,
                                 dataInfo: {
                                     type: bo.ContactPerson,
-                                    key: "ObjectKey",
-                                    text: "Name"
+                                    key: bo.ContactPerson.PROPERTY_OBJECTKEY_NAME,
+                                    text: bo.ContactPerson.PROPERTY_NAME_NAME
                                 },
                                 valueHelpRequest: function (): void {
                                     that.fireViewEvents(that.chooseCustomerContactPersonEvent);
@@ -210,8 +228,8 @@ namespace businesspartner {
                                 repository: bo.BORepositoryBusinessPartner,
                                 dataInfo: {
                                     type: bo.Address,
-                                    key: "ObjectKey",
-                                    text: "Name"
+                                    key: bo.Address.PROPERTY_OBJECTKEY_NAME,
+                                    text: bo.Address.PROPERTY_NAME_NAME,
                                 },
                                 valueHelpRequest: function (): void {
                                     that.fireViewEvents(that.chooseCustomerBillAddressEvent);
@@ -226,8 +244,8 @@ namespace businesspartner {
                                 repository: bo.BORepositoryBusinessPartner,
                                 dataInfo: {
                                     type: bo.Address,
-                                    key: "ObjectKey",
-                                    text: "Name"
+                                    key: bo.Address.PROPERTY_OBJECTKEY_NAME,
+                                    text: bo.Address.PROPERTY_NAME_NAME,
                                 },
                                 valueHelpRequest: function (): void {
                                     that.fireViewEvents(that.chooseCustomerShipAddressEvent);

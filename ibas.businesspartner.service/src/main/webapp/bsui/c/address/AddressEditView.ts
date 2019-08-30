@@ -48,8 +48,8 @@ namespace businesspartner {
                                         repository: bo.BORepositoryBusinessPartner,
                                         dataInfo: {
                                             type: bo.Customer,
-                                            key: "Code",
-                                            text: "Name"
+                                            key: bo.Customer.PROPERTY_CODE_NAME,
+                                            text: bo.Customer.PROPERTY_NAME_NAME
                                         },
                                         valueHelpRequest: function (): void {
                                             that.fireViewEvents(that.chooseBusinessPartnerEvent);
@@ -78,8 +78,8 @@ namespace businesspartner {
                                         repository: bo.BORepositoryBusinessPartner,
                                         dataInfo: {
                                             type: bo.Supplier,
-                                            key: "Code",
-                                            text: "Name"
+                                            key: bo.Customer.PROPERTY_CODE_NAME,
+                                            text: bo.Customer.PROPERTY_NAME_NAME
                                         },
                                         valueHelpRequest: function (): void {
                                             that.fireViewEvents(that.chooseBusinessPartnerEvent);

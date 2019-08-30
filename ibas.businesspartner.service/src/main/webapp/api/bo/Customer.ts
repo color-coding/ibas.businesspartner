@@ -70,6 +70,9 @@ namespace businesspartner {
             /** 底价清单 */
             floorList: number;
 
+            /** 税收组 */
+            taxGroup: string;
+
             /** 备注 */
             remarks: string;
 

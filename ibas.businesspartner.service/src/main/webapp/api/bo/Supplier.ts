@@ -67,6 +67,9 @@ namespace businesspartner {
             /** 失效日期 */
             invalidDate: Date;
 
+            /** 税收组 */
+            taxGroup: string;
+
             /** 备注 */
             remarks: string;
 

@@ -650,6 +650,37 @@ public class Supplier extends BusinessObject<Supplier>
 	}
 
 	/**
+	 * 属性名称-税收组
+	 */
+	private static final String PROPERTY_TAXGROUP_NAME = "TaxGroup";
+
+	/**
+	 * 税收组 属性
+	 */
+	@DbField(name = "TaxGroup", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME, primaryKey = false)
+	public static final IPropertyInfo<String> PROPERTY_TAXGROUP = registerProperty(PROPERTY_TAXGROUP_NAME, String.class,
+			MY_CLASS);
+
+	/**
+	 * 获取-税收组
+	 * 
+	 * @return 值
+	 */
+	@XmlElement(name = PROPERTY_TAXGROUP_NAME)
+	public final String getTaxGroup() {
+		return this.getProperty(PROPERTY_TAXGROUP);
+	}
+
+	/**
+	 * 设置-税收组
+	 * 
+	 * @param value 值
+	 */
+	public final void setTaxGroup(String value) {
+		this.setProperty(PROPERTY_TAXGROUP, value);
+	}
+
+	/**
 	 * 属性名称-备注
 	 */
 	private static final String PROPERTY_REMARKS_NAME = "Remarks";

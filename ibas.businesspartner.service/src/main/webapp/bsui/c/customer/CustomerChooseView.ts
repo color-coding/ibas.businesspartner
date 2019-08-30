@@ -56,8 +56,8 @@ namespace businesspartner {
                                     repository: bo.BORepositoryBusinessPartner,
                                     dataInfo: {
                                         type: bo.BusinessPartnerGroup,
-                                        key: "Code",
-                                        text: "Name"
+                                        key:bo.BusinessPartnerGroup.PROPERTY_CODE_NAME,
+                                        text:bo.BusinessPartnerGroup.PROPERTY_NAME_NAME
                                     },
                                 }).bindProperty("bindingValue", {
                                     path: "group",

@@ -279,6 +279,20 @@ public interface ISupplier extends IBOMasterData {
 	void setInvalidDate(DateTime value);
 
 	/**
+	 * 获取-税收组
+	 * 
+	 * @return 值
+	 */
+	String getTaxGroup();
+
+	/**
+	 * 设置-税收组
+	 * 
+	 * @param value 值
+	 */
+	void setTaxGroup(String value);
+
+	/**
 	 * 获取-备注
 	 * 
 	 * @return 值

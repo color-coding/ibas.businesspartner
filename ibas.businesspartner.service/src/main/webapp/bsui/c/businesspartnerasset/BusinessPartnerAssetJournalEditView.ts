@@ -24,8 +24,8 @@ namespace businesspartner {
                                 repository: bo.BORepositoryBusinessPartner,
                                 dataInfo: {
                                     type: bo.BusinessPartnerAsset,
-                                    key: "Code",
-                                    text: "Name"
+                                    key: bo.BusinessPartnerAsset.PROPERTY_CODE_NAME,
+                                    text: bo.BusinessPartnerAsset.PROPERTY_NAME_NAME
                                 },
                             }).bindProperty("bindingValue", {
                                 path: "serviceCode",
