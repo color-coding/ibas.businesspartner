@@ -35,6 +35,7 @@ namespace businesspartner {
                 this.view.chooseCustomerContactPersonEvent = this.chooseCustomerContactPerson;
                 this.view.chooseCustomerBillAddressEvent = this.chooseCustomerBillAddress;
                 this.view.chooseCustomerShipAddressEvent = this.chooseCustomerShipAddress;
+                this.view.chooseCustomerRegistrationAddress = this.chooseCustomerRegistrationAddress;
                 this.view.chooseCustomerPriceListEvent = this.chooseCustomerPriceList;
                 this.view.chooseCustomerFloorListEvent = this.chooseCustomerFloorList;
                 this.view.chooseCustomerWarehouseEvent = this.chooseCustomerWarehouse;
@@ -248,6 +249,22 @@ namespace businesspartner {
                     }
                 });
             }
+            private chooseCustomerRegistrationAddress(): void {
+                let that: this = this;
+                ibas.servicesManager.runChooseService<bo.Address>({
+                    boCode: bo.Address.BUSINESS_OBJECT_CODE,
+                    chooseType: ibas.emChooseType.SINGLE,
+                    criteria: [
+                        new ibas.Condition(bo.Address.PROPERTY_ACTIVATED_NAME, ibas.emConditionOperation.EQUAL, ibas.emYesNo.YES),
+                        new ibas.Condition(bo.Address.PROPERTY_OWNERTYPE_NAME, ibas.emConditionOperation.EQUAL, bo.emBusinessPartnerType.CUSTOMER),
+                        new ibas.Condition(bo.Address.PROPERTY_BUSINESSPARTNER_NAME, ibas.emConditionOperation.EQUAL, this.editData.code),
+                    ],
+                    onCompleted(selecteds: ibas.IList<bo.Address>): void {
+                        let selected: bo.Address = selecteds.firstOrDefault();
+                        that.editData.registrationAddress = selected.objectKey;
+                    }
+                });
+            }
             private chooseCustomerPriceList(): void {
                 let that: this = this;
                 ibas.servicesManager.runChooseService<materials.bo.IMaterialPriceList>({
@@ -336,6 +353,8 @@ namespace businesspartner {
             chooseCustomerShipAddressEvent: Function;
             /** 选择客户账单地址事件 */
             chooseCustomerBillAddressEvent: Function;
+            /** 选择客户注册地址事件 */
+            chooseCustomerRegistrationAddress: Function;
             /** 选择客户价格清单事件 */
             chooseCustomerPriceListEvent: Function;
             /** 选择客户底价清单事件 */

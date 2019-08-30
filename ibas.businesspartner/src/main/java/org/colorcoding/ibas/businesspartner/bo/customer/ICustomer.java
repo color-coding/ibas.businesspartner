@@ -139,6 +139,20 @@ public interface ICustomer extends IBOMasterData {
 	void setShipAddress(Integer value);
 
 	/**
+	 * 获取-注册地址
+	 * 
+	 * @return 值
+	 */
+	Integer getRegistrationAddress();
+
+	/**
+	 * 设置-注册地址
+	 * 
+	 * @param value 值
+	 */
+	void setRegistrationAddress(Integer value);
+
+	/**
 	 * 获取-电话 1
 	 * 
 	 * @return 值
@@ -207,6 +221,62 @@ public interface ICustomer extends IBOMasterData {
 	 * @param value 值
 	 */
 	void setTaxId(String value);
+
+	/**
+	 * 获取-开户银行
+	 * 
+	 * @return 值
+	 */
+	String getBank();
+
+	/**
+	 * 设置-开户银行
+	 * 
+	 * @param value 值
+	 */
+	void setBank(String value);
+
+	/**
+	 * 获取-银行账户
+	 * 
+	 * @return 值
+	 */
+	String getBankAccount();
+
+	/**
+	 * 设置-银行账户
+	 * 
+	 * @param value 值
+	 */
+	void setBankAccount(String value);
+
+	/**
+	 * 获取-发票地址
+	 * 
+	 * @return 值
+	 */
+	String getInvoiceAddress();
+
+	/**
+	 * 设置-发票地址
+	 * 
+	 * @param value 值
+	 */
+	void setInvoiceAddress(String value);
+
+	/**
+	 * 获取-发票电话
+	 * 
+	 * @return 值
+	 */
+	String getInvoiceTelephone();
+
+	/**
+	 * 设置-发票电话
+	 * 
+	 * @param value 值
+	 */
+	void setInvoiceTelephone(String value);
 
 	/**
 	 * 获取-价格清单

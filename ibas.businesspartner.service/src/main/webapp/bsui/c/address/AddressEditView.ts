@@ -172,7 +172,7 @@ namespace businesspartner {
                             }),
                             new sap.extension.m.AddressArea("", {
                                 countryVisible: true,
-                                zipCodeVisible: true,
+                                zipCodeVisible: false,
                             }).bindProperty("country", {
                                 path: "country",
                             }).bindProperty("province", {

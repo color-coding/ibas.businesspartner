@@ -35,6 +35,7 @@ namespace businesspartner {
                 this.view.chooseSupplierContactPersonEvent = this.chooseSupplierContactPerson;
                 this.view.chooseSupplierBillAddressEvent = this.chooseSupplierBillAddress;
                 this.view.chooseSupplierShipAddressEvent = this.chooseSupplierShipAddress;
+                this.view.chooseSupplierRegistrationAddress = this.chooseSupplierRegistrationAddress;
                 this.view.chooseSupplierPriceListEvent = this.chooseSupplierPriceList;
                 this.view.chooseSupplierWarehouseEvent = this.chooseSupplierWarehouse;
                 this.view.createAddressEvent = this.createAddress;
@@ -247,6 +248,22 @@ namespace businesspartner {
                     }
                 });
             }
+            private chooseSupplierRegistrationAddress(): void {
+                let that: this = this;
+                ibas.servicesManager.runChooseService<bo.Address>({
+                    boCode: bo.Address.BUSINESS_OBJECT_CODE,
+                    chooseType: ibas.emChooseType.SINGLE,
+                    criteria: [
+                        new ibas.Condition(bo.Address.PROPERTY_ACTIVATED_NAME, ibas.emConditionOperation.EQUAL, ibas.emYesNo.YES),
+                        new ibas.Condition(bo.Address.PROPERTY_OWNERTYPE_NAME, ibas.emConditionOperation.EQUAL, bo.emBusinessPartnerType.SUPPLIER),
+                        new ibas.Condition(bo.Address.PROPERTY_BUSINESSPARTNER_NAME, ibas.emConditionOperation.EQUAL, this.editData.code),
+                    ],
+                    onCompleted(selecteds: ibas.IList<bo.Address>): void {
+                        let selected: bo.Address = selecteds.firstOrDefault();
+                        that.editData.registrationAddress = selected.objectKey;
+                    }
+                });
+            }
             private chooseSupplierPriceList(): void {
                 let that: this = this;
                 ibas.servicesManager.runChooseService<materials.bo.IMaterialPriceList>({
@@ -324,6 +341,8 @@ namespace businesspartner {
             chooseSupplierShipAddressEvent: Function;
             /** 选择供应商账单地址事件 */
             chooseSupplierBillAddressEvent: Function;
+            /** 选择客供应商注册地址事件 */
+            chooseSupplierRegistrationAddress: Function;
             /** 选择供应商价格清单事件 */
             chooseSupplierPriceListEvent: Function;
             /** 选择供应商仓库事件 */

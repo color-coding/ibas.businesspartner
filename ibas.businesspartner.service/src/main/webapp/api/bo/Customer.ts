@@ -37,6 +37,9 @@ namespace businesspartner {
             /** 送货地址 */
             shipAddress: number;
 
+            /** 注册地址 */
+            registrationAddress: number;
+
             /** 电话 1 */
             telephone1: string;
 
@@ -51,6 +54,18 @@ namespace businesspartner {
 
             /** 国税编号 */
             taxId: string;
+
+            /** 开户银行 */
+            bank: string;
+
+            /** 银行账户 */
+            bankAccount: string;
+
+            /** 发票地址 */
+            invoiceAddress: string;
+
+            /** 发票电话 */
+            invoiceTelephone: string;
 
             /** 价格清单 */
             priceList: number;

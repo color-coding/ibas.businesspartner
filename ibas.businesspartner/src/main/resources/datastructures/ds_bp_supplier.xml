@@ -11,11 +11,16 @@
     <Property Name="ContactPerson" Description="联系人" DataType="Numeric" DataSubType="Default" EditSize="8" Mapped="CntctPrsn"/>
     <Property Name="BillAddress" Description="账单地址" DataType="Numeric" DataSubType="Default" EditSize="8" Mapped="BillAddress"/>
     <Property Name="ShipAddress" Description="送货地址" DataType="Numeric" DataSubType="Default" EditSize="8" Mapped="ShipAddress"/>
+    <Property Name="RegistrationAddress" Description="注册地址" DataType="Numeric" DataSubType="Default" EditSize="8" Mapped="RegsAddress"/>
     <Property Name="Telephone1" Description="电话 1" DataType="Alphanumeric" DataSubType="Default" EditSize="20" Mapped="Phone1"/>
     <Property Name="Telephone2" Description="电话 2" DataType="Alphanumeric" DataSubType="Default" EditSize="20" Mapped="Phone2"/>
     <Property Name="MobilePhone" Description="移动电话" DataType="Alphanumeric" DataSubType="Default" EditSize="50" Mapped="Cellular"/>
     <Property Name="FaxNumber" Description="传真号" DataType="Alphanumeric" DataSubType="Default" EditSize="20" Mapped="Fax"/>
     <Property Name="TaxId" Description="国税编号" DataType="Alphanumeric" DataSubType="Default" EditSize="30" Mapped="TaxId"/>
+    <Property Name="Bank" Description="开户银行" DataType="Alphanumeric" DataSubType="Default" EditSize="60" Mapped="Bank"/>
+    <Property Name="BankAccount" Description="银行账户" DataType="Alphanumeric" DataSubType="Default" EditSize="30" Mapped="BankAcnt"/>
+    <Property Name="InvoiceAddress" Description="发票地址" DataType="Alphanumeric" DataSubType="Default" EditSize="200" Mapped="InvAddress"/>
+    <Property Name="InvoiceTelephone" Description="发票电话" DataType="Alphanumeric" DataSubType="Default" EditSize="20" Mapped="InvPhone"/>
     <Property Name="PriceList" Description="价格清单" DataType="Numeric" DataSubType="Default" EditSize="8" Mapped="PriceList"/>
     <Property Name="Currency" Description="货币" DataType="Alphanumeric" DataSubType="Default" EditSize="5" Mapped="Currency"/>
     <Property Name="Warehouse" Description="仓库" DataType="Alphanumeric" DataSubType="Default" EditSize="8" Mapped="WhsCode"/>

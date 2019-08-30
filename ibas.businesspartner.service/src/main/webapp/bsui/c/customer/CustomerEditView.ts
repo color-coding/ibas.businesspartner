@@ -24,6 +24,8 @@ namespace businesspartner {
                 chooseCustomerShipAddressEvent: Function;
                 /** 选择客户账单地址事件 */
                 chooseCustomerBillAddressEvent: Function;
+                /** 选择客户注册地址事件 */
+                chooseCustomerRegistrationAddress: Function;
                 /** 选择客户价格清单事件 */
                 chooseCustomerPriceListEvent: Function;
                 /** 选择客户底价清单事件 */
@@ -169,7 +171,9 @@ namespace businesspartner {
                                     text: accounting.bo.TaxGroup.PROPERTY_NAME_NAME,
                                 },
                                 criteria: [
-                                    new ibas.Condition(accounting.bo.TaxGroup.PROPERTY_ACTIVATED_NAME, ibas.emConditionOperation.EQUAL, ibas.emYesNo.YES.toString())
+                                    new ibas.Condition(accounting.bo.TaxGroup.PROPERTY_ACTIVATED_NAME, ibas.emConditionOperation.EQUAL, ibas.emYesNo.YES),
+                                    new ibas.Condition(accounting.bo.TaxGroup.PROPERTY_CATEGORY_NAME, ibas.emConditionOperation.EQUAL, accounting.bo.emTaxGroupCategory.OUTPUT)
+
                                 ]
                             }).bindProperty("bindingValue", {
                                 path: "taxGroup",
@@ -254,6 +258,22 @@ namespace businesspartner {
                                 path: "shipAddress",
                                 type: new sap.extension.data.Numeric()
                             }),
+                            new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_registrationaddress") }),
+                            new sap.extension.m.RepositoryInput("", {
+                                showValueHelp: true,
+                                repository: bo.BORepositoryBusinessPartner,
+                                dataInfo: {
+                                    type: bo.Address,
+                                    key: bo.Address.PROPERTY_OBJECTKEY_NAME,
+                                    text: bo.Address.PROPERTY_NAME_NAME,
+                                },
+                                valueHelpRequest: function (): void {
+                                    that.fireViewEvents(that.chooseCustomerRegistrationAddress);
+                                },
+                            }).bindProperty("bindingValue", {
+                                path: "registrationAddress",
+                                type: new sap.extension.data.Numeric(),
+                            }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_telephone1") }),
                             new sap.extension.m.Input("", {
                             }).bindProperty("bindingValue", {
@@ -286,14 +306,6 @@ namespace businesspartner {
                                     maxLength: 20
                                 })
                             }),
-                            new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_taxid") }),
-                            new sap.extension.m.Input("", {
-                            }).bindProperty("bindingValue", {
-                                path: "taxId",
-                                type: new sap.extension.data.Alphanumeric({
-                                    maxLength: 30
-                                })
-                            }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_channel") }),
                             new sap.extension.m.Input("", {
                             }).bindProperty("bindingValue", {
@@ -312,6 +324,78 @@ namespace businesspartner {
                                     maxLength: 8
                                 })
                             }),
+                            new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_title_invoices") }),
+                            new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_taxid") }),
+                            new sap.extension.m.Input("", {
+                            }).bindProperty("bindingValue", {
+                                path: "taxId",
+                                type: new sap.extension.data.Alphanumeric({
+                                    maxLength: 30
+                                })
+                            }),
+                            new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_bank") }),
+                            new sap.extension.m.Input("", {
+                            }).bindProperty("bindingValue", {
+                                path: "bank",
+                                type: new sap.extension.data.Alphanumeric({
+                                    maxLength: 60
+                                }),
+                            }),
+                            new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_bankaccount") }),
+                            new sap.extension.m.Input("", {
+                            }).bindProperty("bindingValue", {
+                                path: "bankAccount",
+                                type: new sap.extension.data.Alphanumeric({
+                                    maxLength: 30
+                                }),
+                            }),
+                            new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_invoiceaddress") }),
+                            new sap.extension.m.Input("", {
+                                showValueHelp: true,
+                                valueHelpOnly: false,
+                                valueHelpRequest: function (event: sap.ui.base.Event): void {
+                                    let source: sap.extension.m.Input = <sap.extension.m.Input>event.getSource();
+                                    if (source instanceof sap.extension.m.Input) {
+                                        let popover: sap.m.Popover = new sap.m.Popover("", {
+                                            showHeader: false,
+                                            placement: sap.m.PlacementType.Right,
+                                            enableScrolling: false,
+                                            horizontalScrolling: false,
+                                            contentWidth: "auto",
+                                            contentHeight: "auto",
+                                            content: [
+                                                new sap.ui.layout.form.SimpleForm("", {
+                                                    content: [
+                                                        new sap.extension.m.AddressArea("", {
+                                                            countryVisible: false,
+                                                            zipCodeVisible: false,
+                                                            addressChange: function (event: sap.ui.base.Event): void {
+                                                                source.setBindingValue(event.getParameter("address"));
+                                                            }
+                                                        }),
+                                                    ]
+                                                })
+                                            ]
+                                        });
+                                        popover.addStyleClass("sapMOTAPopover sapTntToolHeaderPopover");
+                                        popover.openBy(event.getSource(), true);
+                                    }
+                                },
+                            }).bindProperty("bindingValue", {
+                                path: "invoiceAddress",
+                                type: new sap.extension.data.Alphanumeric({
+                                    maxLength: 200
+                                }),
+                            }),
+                            new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_invoicetelephone") }),
+                            new sap.extension.m.Input("", {
+                            }).bindProperty("bindingValue", {
+                                path: "invoiceTelephone",
+                                type: new sap.extension.data.Alphanumeric({
+                                    maxLength: 20
+                                }),
+                            }),
+                            new sap.ui.core.Title("", {}),
                         ],
                     });
                     return this.page = new sap.extension.m.DataPage("", {

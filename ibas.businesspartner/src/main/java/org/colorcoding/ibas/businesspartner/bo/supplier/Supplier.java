@@ -340,6 +340,37 @@ public class Supplier extends BusinessObject<Supplier>
 	}
 
 	/**
+	 * 属性名称-注册地址
+	 */
+	private static final String PROPERTY_REGISTRATIONADDRESS_NAME = "RegistrationAddress";
+
+	/**
+	 * 注册地址 属性
+	 */
+	@DbField(name = "RegsAddress", type = DbFieldType.NUMERIC, table = DB_TABLE_NAME, primaryKey = false)
+	public static final IPropertyInfo<Integer> PROPERTY_REGISTRATIONADDRESS = registerProperty(
+			PROPERTY_REGISTRATIONADDRESS_NAME, Integer.class, MY_CLASS);
+
+	/**
+	 * 获取-注册地址
+	 * 
+	 * @return 值
+	 */
+	@XmlElement(name = PROPERTY_REGISTRATIONADDRESS_NAME)
+	public final Integer getRegistrationAddress() {
+		return this.getProperty(PROPERTY_REGISTRATIONADDRESS);
+	}
+
+	/**
+	 * 设置-注册地址
+	 * 
+	 * @param value 值
+	 */
+	public final void setRegistrationAddress(Integer value) {
+		this.setProperty(PROPERTY_REGISTRATIONADDRESS, value);
+	}
+
+	/**
 	 * 属性名称-电话 1
 	 */
 	private static final String PROPERTY_TELEPHONE1_NAME = "Telephone1";
@@ -492,6 +523,130 @@ public class Supplier extends BusinessObject<Supplier>
 	 */
 	public final void setTaxId(String value) {
 		this.setProperty(PROPERTY_TAXID, value);
+	}
+
+	/**
+	 * 属性名称-开户银行
+	 */
+	private static final String PROPERTY_BANK_NAME = "Bank";
+
+	/**
+	 * 开户银行 属性
+	 */
+	@DbField(name = "Bank", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME, primaryKey = false)
+	public static final IPropertyInfo<String> PROPERTY_BANK = registerProperty(PROPERTY_BANK_NAME, String.class,
+			MY_CLASS);
+
+	/**
+	 * 获取-开户银行
+	 * 
+	 * @return 值
+	 */
+	@XmlElement(name = PROPERTY_BANK_NAME)
+	public final String getBank() {
+		return this.getProperty(PROPERTY_BANK);
+	}
+
+	/**
+	 * 设置-开户银行
+	 * 
+	 * @param value 值
+	 */
+	public final void setBank(String value) {
+		this.setProperty(PROPERTY_BANK, value);
+	}
+
+	/**
+	 * 属性名称-银行账户
+	 */
+	private static final String PROPERTY_BANKACCOUNT_NAME = "BankAccount";
+
+	/**
+	 * 银行账户 属性
+	 */
+	@DbField(name = "BankAcnt", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME, primaryKey = false)
+	public static final IPropertyInfo<String> PROPERTY_BANKACCOUNT = registerProperty(PROPERTY_BANKACCOUNT_NAME,
+			String.class, MY_CLASS);
+
+	/**
+	 * 获取-银行账户
+	 * 
+	 * @return 值
+	 */
+	@XmlElement(name = PROPERTY_BANKACCOUNT_NAME)
+	public final String getBankAccount() {
+		return this.getProperty(PROPERTY_BANKACCOUNT);
+	}
+
+	/**
+	 * 设置-银行账户
+	 * 
+	 * @param value 值
+	 */
+	public final void setBankAccount(String value) {
+		this.setProperty(PROPERTY_BANKACCOUNT, value);
+	}
+
+	/**
+	 * 属性名称-发票地址
+	 */
+	private static final String PROPERTY_INVOICEADDRESS_NAME = "InvoiceAddress";
+
+	/**
+	 * 发票地址 属性
+	 */
+	@DbField(name = "InvAddress", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME, primaryKey = false)
+	public static final IPropertyInfo<String> PROPERTY_INVOICEADDRESS = registerProperty(PROPERTY_INVOICEADDRESS_NAME,
+			String.class, MY_CLASS);
+
+	/**
+	 * 获取-发票地址
+	 * 
+	 * @return 值
+	 */
+	@XmlElement(name = PROPERTY_INVOICEADDRESS_NAME)
+	public final String getInvoiceAddress() {
+		return this.getProperty(PROPERTY_INVOICEADDRESS);
+	}
+
+	/**
+	 * 设置-发票地址
+	 * 
+	 * @param value 值
+	 */
+	public final void setInvoiceAddress(String value) {
+		this.setProperty(PROPERTY_INVOICEADDRESS, value);
+	}
+
+	/**
+	 * 属性名称-发票电话
+	 */
+	private static final String PROPERTY_INVOICETELEPHONE_NAME = "InvoiceTelephone";
+
+	/**
+	 * 发票电话 属性
+	 */
+	@DbField(name = "InvPhone", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME, primaryKey = false)
+	public static final IPropertyInfo<String> PROPERTY_INVOICETELEPHONE = registerProperty(
+			PROPERTY_INVOICETELEPHONE_NAME, String.class, MY_CLASS);
+
+	/**
+	 * 获取-发票电话
+	 * 
+	 * @return 值
+	 */
+	@XmlElement(name = PROPERTY_INVOICETELEPHONE_NAME)
+	public final String getInvoiceTelephone() {
+		return this.getProperty(PROPERTY_INVOICETELEPHONE);
+	}
+
+	/**
+	 * 设置-发票电话
+	 * 
+	 * @param value 值
+	 */
+	public final void setInvoiceTelephone(String value) {
+		this.setProperty(PROPERTY_INVOICETELEPHONE, value);
 	}
 
 	/**

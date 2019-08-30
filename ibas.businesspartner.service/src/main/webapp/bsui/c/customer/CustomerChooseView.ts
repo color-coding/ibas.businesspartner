@@ -56,8 +56,8 @@ namespace businesspartner {
                                     repository: bo.BORepositoryBusinessPartner,
                                     dataInfo: {
                                         type: bo.BusinessPartnerGroup,
-                                        key:bo.BusinessPartnerGroup.PROPERTY_CODE_NAME,
-                                        text:bo.BusinessPartnerGroup.PROPERTY_NAME_NAME
+                                        key: bo.BusinessPartnerGroup.PROPERTY_CODE_NAME,
+                                        text: bo.BusinessPartnerGroup.PROPERTY_NAME_NAME
                                     },
                                 }).bindProperty("bindingValue", {
                                     path: "group",
@@ -70,6 +70,20 @@ namespace businesspartner {
                                 }).bindProperty("bindingValue", {
                                     path: "channel",
                                     type: new sap.extension.data.Alphanumeric()
+                                }),
+                            }),
+                            new sap.extension.table.DataColumn("", {
+                                label: ibas.i18n.prop("bo_customer_organizationalunit"),
+                                template: new sap.extension.m.RepositoryText("", {
+                                    repository: initialfantasy.bo.BORepositoryInitialFantasy,
+                                    dataInfo: {
+                                        type: initialfantasy.bo.Organization,
+                                        key: initialfantasy.bo.Organization.PROPERTY_CODE_NAME,
+                                        text: initialfantasy.bo.Organization.PROPERTY_NAME_NAME
+                                    },
+                                }).bindProperty("bindingValue", {
+                                    path: "organizationalUnit",
+                                    type: new sap.extension.data.Alphanumeric(),
                                 }),
                             }),
                         ],

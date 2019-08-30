@@ -116,6 +116,17 @@ namespace businesspartner {
                 this.setProperty(Supplier.PROPERTY_SHIPADDRESS_NAME, value);
             }
 
+            /** 映射的属性名称-注册地址 */
+            static PROPERTY_REGISTRATIONADDRESS_NAME: string = "RegistrationAddress";
+            /** 获取-注册地址 */
+            get registrationAddress(): number {
+                return this.getProperty<number>(Supplier.PROPERTY_REGISTRATIONADDRESS_NAME);
+            }
+            /** 设置-注册地址 */
+            set registrationAddress(value: number) {
+                this.setProperty(Supplier.PROPERTY_REGISTRATIONADDRESS_NAME, value);
+            }
+
             /** 映射的属性名称-电话 1 */
             static PROPERTY_TELEPHONE1_NAME: string = "Telephone1";
             /** 获取-电话 1 */
@@ -169,6 +180,50 @@ namespace businesspartner {
             /** 设置-国税编号 */
             set taxId(value: string) {
                 this.setProperty(Supplier.PROPERTY_TAXID_NAME, value);
+            }
+
+            /** 映射的属性名称-开户银行 */
+            static PROPERTY_BANK_NAME: string = "Bank";
+            /** 获取-开户银行 */
+            get bank(): string {
+                return this.getProperty<string>(Supplier.PROPERTY_BANK_NAME);
+            }
+            /** 设置-开户银行 */
+            set bank(value: string) {
+                this.setProperty(Supplier.PROPERTY_BANK_NAME, value);
+            }
+
+            /** 映射的属性名称-银行账户 */
+            static PROPERTY_BANKACCOUNT_NAME: string = "BankAccount";
+            /** 获取-银行账户 */
+            get bankAccount(): string {
+                return this.getProperty<string>(Supplier.PROPERTY_BANKACCOUNT_NAME);
+            }
+            /** 设置-银行账户 */
+            set bankAccount(value: string) {
+                this.setProperty(Supplier.PROPERTY_BANKACCOUNT_NAME, value);
+            }
+
+            /** 映射的属性名称-发票地址 */
+            static PROPERTY_INVOICEADDRESS_NAME: string = "InvoiceAddress";
+            /** 获取-发票地址 */
+            get invoiceAddress(): string {
+                return this.getProperty<string>(Supplier.PROPERTY_INVOICEADDRESS_NAME);
+            }
+            /** 设置-发票地址 */
+            set invoiceAddress(value: string) {
+                this.setProperty(Supplier.PROPERTY_INVOICEADDRESS_NAME, value);
+            }
+
+            /** 映射的属性名称-发票电话 */
+            static PROPERTY_INVOICETELEPHONE_NAME: string = "InvoiceTelephone";
+            /** 获取-发票电话 */
+            get invoiceTelephone(): string {
+                return this.getProperty<string>(Supplier.PROPERTY_INVOICETELEPHONE_NAME);
+            }
+            /** 设置-发票电话 */
+            set invoiceTelephone(value: string) {
+                this.setProperty(Supplier.PROPERTY_INVOICETELEPHONE_NAME, value);
             }
 
             /** 映射的属性名称-价格清单 */

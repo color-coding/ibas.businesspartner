@@ -79,6 +79,20 @@ namespace businesspartner {
                                     type: new sap.extension.data.Alphanumeric()
                                 }),
                             }),
+                            new sap.extension.table.DataColumn("", {
+                                label: ibas.i18n.prop("bo_supplier_organizationalunit"),
+                                template: new sap.extension.m.RepositoryText("", {
+                                    repository: initialfantasy.bo.BORepositoryInitialFantasy,
+                                    dataInfo: {
+                                        type: initialfantasy.bo.Organization,
+                                        key: initialfantasy.bo.Organization.PROPERTY_CODE_NAME,
+                                        text: initialfantasy.bo.Organization.PROPERTY_NAME_NAME
+                                    },
+                                }).bindProperty("bindingValue", {
+                                    path: "organizationalUnit",
+                                    type: new sap.extension.data.Alphanumeric(),
+                                }),
+                            }),
                         ],
                         nextDataSet(event: sap.ui.base.Event): void {
                             // 查询下一个数据集
