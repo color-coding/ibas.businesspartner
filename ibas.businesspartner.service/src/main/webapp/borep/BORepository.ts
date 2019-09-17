@@ -170,7 +170,9 @@ namespace businesspartner {
                 let method: string =
                     ibas.strings.format("fetchCustomerAsset?token={0}", this.token);
                 let data: string = JSON.stringify(this.createConverter().convert(fetcher.request, method));
-                boRepository.callRemoteMethod(method, data, fetcher);
+                boRepository.callRemoteMethod(method, data, (opRslt) => {
+                    fetcher.onCompleted.call(ibas.objects.isNull(fetcher.caller) ? fetcher : fetcher.caller, opRslt);
+                });
             }
         }
     }
