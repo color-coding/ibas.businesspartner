@@ -90,6 +90,10 @@ namespace businesspartner {
             documentCurrency: string;
             /** 单据摘要 */
             documentSummary?: string;
+            /** 允许部分收款 */
+            allowPartial?: boolean;
+            /** 允许超出收款 */
+            allowOver?: boolean;
         }
         /** 收款服务代理 */
         export class ReceiptServiceProxy extends ibas.ServiceProxy<IReceiptContract> {
@@ -113,6 +117,10 @@ namespace businesspartner {
             documentCurrency: string;
             /** 单据摘要 */
             documentSummary?: string;
+            /** 允许部分付款 */
+            allowPartial?: boolean;
+            /** 允许超出付款 */
+            allowOver?: boolean;
         }
         /** 付款服务代理 */
         export class PaymentServiceProxy extends ibas.ServiceProxy<IPaymentContract> {
