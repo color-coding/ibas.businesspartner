@@ -305,6 +305,13 @@ namespace businesspartner {
                                     maxLength: 8
                                 })
                             }),
+                            new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_remarks") }),
+                            new sap.extension.m.TextArea("", {
+                                rows: 3,
+                            }).bindProperty("bindingValue", {
+                                path: "remarks",
+                                type: new sap.extension.data.Alphanumeric()
+                            }),
                             new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_title_invoices") }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_taxid") }),
                             new sap.extension.m.Input("", {
