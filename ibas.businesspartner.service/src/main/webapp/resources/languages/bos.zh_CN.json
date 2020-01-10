@@ -261,6 +261,7 @@
         "bo_supplier_warehouse": "仓库",
         "bo_supplier_validdate": "生效日期",
         "bo_supplier_invaliddate": "失效日期",
+        "bo_supplier_floorlist": "底价清单",
         "bo_supplier_taxgroup": "税收组",
         "bo_supplier_remarks": "备注",
         "bo_supplier_referenced": "已引用",

@@ -349,6 +349,20 @@ public interface ISupplier extends IBOMasterData {
 	void setInvalidDate(DateTime value);
 
 	/**
+	 * 获取-底价清单
+	 * 
+	 * @return 值
+	 */
+	Integer getFloorList();
+
+	/**
+	 * 设置-底价清单
+	 * 
+	 * @param value 值
+	 */
+	void setFloorList(Integer value);
+
+	/**
 	 * 获取-税收组
 	 * 
 	 * @return 值

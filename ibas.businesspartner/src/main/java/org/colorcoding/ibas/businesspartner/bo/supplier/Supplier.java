@@ -805,6 +805,37 @@ public class Supplier extends BusinessObject<Supplier>
 	}
 
 	/**
+	 * 属性名称-底价清单
+	 */
+	private static final String PROPERTY_FLOORLIST_NAME = "FloorList";
+
+	/**
+	 * 底价清单 属性
+	 */
+	@DbField(name = "FloorList", type = DbFieldType.NUMERIC, table = DB_TABLE_NAME, primaryKey = false)
+	public static final IPropertyInfo<Integer> PROPERTY_FLOORLIST = registerProperty(PROPERTY_FLOORLIST_NAME,
+			Integer.class, MY_CLASS);
+
+	/**
+	 * 获取-底价清单
+	 * 
+	 * @return 值
+	 */
+	@XmlElement(name = PROPERTY_FLOORLIST_NAME)
+	public final Integer getFloorList() {
+		return this.getProperty(PROPERTY_FLOORLIST);
+	}
+
+	/**
+	 * 设置-底价清单
+	 * 
+	 * @param value 值
+	 */
+	public final void setFloorList(Integer value) {
+		this.setProperty(PROPERTY_FLOORLIST, value);
+	}
+
+	/**
 	 * 属性名称-税收组
 	 */
 	private static final String PROPERTY_TAXGROUP_NAME = "TaxGroup";

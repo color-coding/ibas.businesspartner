@@ -281,6 +281,17 @@ namespace businesspartner {
                 this.setProperty(Supplier.PROPERTY_INVALIDDATE_NAME, value);
             }
 
+            /** 映射的属性名称-底价清单 */
+            static PROPERTY_FLOORLIST_NAME: string = "FloorList";
+            /** 获取-底价清单 */
+            get floorList(): number {
+                return this.getProperty<number>(Supplier.PROPERTY_FLOORLIST_NAME);
+            }
+            /** 设置-底价清单 */
+            set floorList(value: number) {
+                this.setProperty(Supplier.PROPERTY_FLOORLIST_NAME, value);
+            }
+
             /** 映射的属性名称-税收组 */
             static PROPERTY_TAXGROUP_NAME: string = "TaxGroup";
             /** 获取-税收组 */

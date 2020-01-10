@@ -82,6 +82,9 @@ namespace businesspartner {
             /** 失效日期 */
             invalidDate: Date;
 
+            /** 底价清单 */
+            floorList: number;
+
             /** 税收组 */
             taxGroup: string;
 

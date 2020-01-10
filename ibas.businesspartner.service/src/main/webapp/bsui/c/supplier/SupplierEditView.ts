@@ -30,6 +30,8 @@ namespace businesspartner {
                 chooseSupplierPriceListEvent: Function;
                 /** 选择供应商仓库事件 */
                 chooseSupplierWarehouseEvent: Function;
+                /** 选择供应商底价清单事件 */
+                chooseSupplierFloorListEvent: Function;
                 /** 创建联系人 */
                 createContactPersonEvent: Function;
                 /** 创建地址 */
@@ -189,6 +191,22 @@ namespace businesspartner {
                             }).bindProperty("bindingValue", {
                                 path: "invalidDate",
                                 type: new sap.extension.data.Date()
+                            }),
+                            new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_floorlist") }),
+                            new sap.extension.m.RepositoryInput("", {
+                                showValueHelp: true,
+                                repository: materials.bo.BORepositoryMaterials,
+                                dataInfo: {
+                                    type: materials.bo.MaterialPriceList,
+                                    key: materials.bo.MaterialPriceList.PROPERTY_OBJECTKEY_NAME,
+                                    text: materials.bo.MaterialPriceList.PROPERTY_NAME_NAME
+                                },
+                                valueHelpRequest: function (): void {
+                                    that.fireViewEvents(that.chooseSupplierFloorListEvent);
+                                },
+                            }).bindProperty("bindingValue", {
+                                path: "floorList",
+                                type: new sap.extension.data.Numeric()
                             }),
                             new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_title_contact") }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_contactperson") }),
