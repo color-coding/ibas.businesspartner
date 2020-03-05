@@ -216,6 +216,11 @@ namespace businesspartner {
                         that.editData.code = ibas.uuids.random();
                         that.editData.amount = selected.faceAmount;
                         that.editData.times = selected.usingTimes;
+                        that.editData.acquiredDate = ibas.dates.today();
+                        that.editData.validDate = ibas.dates.today();
+                        if (selected.validDays > 0) {
+                            that.editData.invalidDate = ibas.dates.add(ibas.dates.emDifferenceType.DAY, that.editData.acquiredDate, selected.validDays);
+                        }
                     }
                 });
             }
