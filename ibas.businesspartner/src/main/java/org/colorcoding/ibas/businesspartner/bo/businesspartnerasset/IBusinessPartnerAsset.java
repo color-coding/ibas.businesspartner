@@ -337,6 +337,20 @@ public interface IBusinessPartnerAsset extends IBOMasterData {
 	void setAssetCode(String value);
 
 	/**
+	 * 获取-资产项目组
+	 * 
+	 * @return 值
+	 */
+	String getAssetGroup();
+
+	/**
+	 * 设置-资产项目组
+	 * 
+	 * @param value 值
+	 */
+	void setAssetGroup(String value);
+
+	/**
 	 * 获取-激活
 	 * 
 	 * @return 值

@@ -777,6 +777,37 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset>
 	}
 
 	/**
+	 * 属性名称-资产项目组
+	 */
+	private static final String PROPERTY_ASSETGROUP_NAME = "AssetGroup";
+
+	/**
+	 * 资产项目组 属性
+	 */
+	@DbField(name = "AssetGroup", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME, primaryKey = false)
+	public static final IPropertyInfo<String> PROPERTY_ASSETGROUP = registerProperty(PROPERTY_ASSETGROUP_NAME,
+			String.class, MY_CLASS);
+
+	/**
+	 * 获取-资产项目组
+	 * 
+	 * @return 值
+	 */
+	@XmlElement(name = PROPERTY_ASSETGROUP_NAME)
+	public final String getAssetGroup() {
+		return this.getProperty(PROPERTY_ASSETGROUP);
+	}
+
+	/**
+	 * 设置-资产项目组
+	 * 
+	 * @param value 值
+	 */
+	public final void setAssetGroup(String value) {
+		this.setProperty(PROPERTY_ASSETGROUP, value);
+	}
+
+	/**
 	 * 属性名称-激活
 	 */
 	private static final String PROPERTY_ACTIVATED_NAME = "Activated";

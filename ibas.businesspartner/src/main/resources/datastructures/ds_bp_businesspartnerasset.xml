@@ -25,6 +25,7 @@
     <Property Name="BusinessPartnerType" Description="业务伙伴类型" DataType="Alphanumeric" DataSubType="Default" EditSize="1" DeclaredType="emBusinessPartnerType" Mapped="CardType"/>
     <Property Name="BusinessPartnerCode" Description="业务伙伴编码" DataType="Alphanumeric" DataSubType="Default" EditSize="20" Mapped="CardCode"/>
     <Property Name="AssetCode" Description="资产项目" DataType="Alphanumeric" DataSubType="Default" EditSize="20" Mapped="AssetCode"/>
+    <Property Name="AssetGroup" Description="资产项目组" DataType="Alphanumeric" DataSubType="Default" EditSize="8" Mapped="AssetGroup"/>
     <Property Name="Activated" Description="激活" DataType="Alphanumeric" DataSubType="Default" EditSize="1" DeclaredType="emYesNo" Mapped="Activated"/>
     <Property Name="AcquiredDate" Description="获得日期" DataType="Date" DataSubType="Default" EditSize="8" Mapped="AcquiredDate"/>
     <Property Name="ValidDate" Description="生效日期" DataType="Date" DataSubType="Default" EditSize="8" Mapped="ValidDate"/>

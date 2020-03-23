@@ -33,6 +33,7 @@ public class BusinessPartnerAssetCreationService
 		businessPartnerAsset.setBusinessPartnerType(contract.getBusinessPartnerType());
 		businessPartnerAsset.setBusinessPartnerCode(contract.getBusinessPartnerCode());
 		businessPartnerAsset.setAssetCode(assetItem.getCode());
+		businessPartnerAsset.setAssetGroup(assetItem.getGroup());
 		businessPartnerAsset.setName(assetItem.getName());
 		businessPartnerAsset.setAmount(assetItem.getFaceAmount());
 		businessPartnerAsset.setTimes(assetItem.getUsingTimes());

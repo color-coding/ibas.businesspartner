@@ -55,6 +55,8 @@ namespace businesspartner {
             businessPartnerCode: string;
             /** 资产项目 */
             assetCode: string;
+            /** 资产项目组 */
+            assetGroup: string;
             /** 激活 */
             activated: ibas.emYesNo;
             /** 获得日期 */

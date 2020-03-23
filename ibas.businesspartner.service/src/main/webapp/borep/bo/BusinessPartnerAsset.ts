@@ -268,6 +268,17 @@ namespace businesspartner {
                 this.setProperty(BusinessPartnerAsset.PROPERTY_ASSETCODE_NAME, value);
             }
 
+            /** 映射的属性名称-资产项目组 */
+            static PROPERTY_ASSETGROUP_NAME: string = "AssetGroup";
+            /** 获取-资产项目组 */
+            get assetGroup(): string {
+                return this.getProperty<string>(BusinessPartnerAsset.PROPERTY_ASSETGROUP_NAME);
+            }
+            /** 设置-资产项目组 */
+            set assetGroup(value: string) {
+                this.setProperty(BusinessPartnerAsset.PROPERTY_ASSETGROUP_NAME, value);
+            }
+
             /** 映射的属性名称-激活 */
             static PROPERTY_ACTIVATED_NAME: string = "Activated";
             /** 获取-激活 */

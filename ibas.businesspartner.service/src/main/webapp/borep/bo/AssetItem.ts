@@ -37,6 +37,17 @@ namespace businesspartner {
                 this.setProperty(AssetItem.PROPERTY_NAME_NAME, value);
             }
 
+            /** 映射的属性名称-组 */
+            static PROPERTY_GROUP_NAME: string = "Group";
+            /** 获取-组 */
+            get group(): string {
+                return this.getProperty<string>(AssetItem.PROPERTY_GROUP_NAME);
+            }
+            /** 设置-组 */
+            set group(value: string) {
+                this.setProperty(AssetItem.PROPERTY_GROUP_NAME, value);
+            }
+
             /** 映射的属性名称-激活 */
             static PROPERTY_ACTIVATED_NAME: string = "Activated";
             /** 获取-激活 */

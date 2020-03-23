@@ -55,6 +55,18 @@ namespace businesspartner {
                                     maxLength: 100
                                 })
                             }),
+                            new sap.m.Label("", { text: ibas.i18n.prop("bo_assetitem_group") }),
+                            new sap.extension.m.PropertySelect("", {
+                                dataInfo: {
+                                    code: bo.AssetItem.BUSINESS_OBJECT_CODE,
+                                },
+                                propertyName: "group",
+                            }).bindProperty("bindingValue", {
+                                path: "group",
+                                type: new sap.extension.data.Alphanumeric({
+                                    maxLength: 8
+                                })
+                            }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_assetitem_picture") }),
                             new sap.extension.m.Input("", {
                             }).bindProperty("bindingValue", {

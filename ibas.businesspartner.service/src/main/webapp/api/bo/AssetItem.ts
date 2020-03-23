@@ -13,6 +13,8 @@ namespace businesspartner {
             code: string;
             /** 名称 */
             name: string;
+            /** 组 */
+            group: string;
             /** 激活 */
             activated: ibas.emYesNo;
             /** 已引用 */
