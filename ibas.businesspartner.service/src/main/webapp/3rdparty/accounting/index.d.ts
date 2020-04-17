@@ -12,6 +12,14 @@ declare namespace accounting {
     const CONSOLE_NAME: string;
     /** 模块-版本 */
     const CONSOLE_VERSION: string;
+    namespace config {
+        /**
+         * 获取此模块配置
+         * @param key 配置项
+         * @param defalut 默认值
+         */
+        function get<T>(key: string, defalut?: T): T;
+    }
     namespace bo {
         /** 业务仓库名称 */
         const BO_REPOSITORY_ACCOUNTING: string;
@@ -1343,8 +1351,6 @@ declare namespace accounting {
             protected viewShowed(): void;
             run(): void;
             run(data: bo.PostingPeriod): void;
-            /** 待编辑的数据 */
-            protected editData: bo.PostingPeriod;
             /** 保存数据 */
             protected saveData(): void;
             /** 删除数据 */
@@ -1517,8 +1523,6 @@ declare namespace accounting {
             protected viewShowed(): void;
             run(): void;
             run(data: bo.Project): void;
-            /** 待编辑的数据 */
-            protected editData: bo.Project;
             /** 保存数据 */
             protected saveData(): void;
             /** 删除数据 */
@@ -1685,8 +1689,6 @@ declare namespace accounting {
             protected viewShowed(): void;
             run(): void;
             run(data: bo.Dimension): void;
-            /** 待编辑的数据 */
-            protected editData: bo.Dimension;
             /** 保存数据 */
             protected saveData(): void;
             /** 编辑源 */
@@ -1880,8 +1882,6 @@ declare namespace accounting {
             protected viewShowed(): void;
             run(): void;
             run(data: bo.TaxGroup): void;
-            /** 待编辑的数据 */
-            protected editData: bo.TaxGroup;
             /** 保存数据 */
             protected saveData(): void;
             /** 删除数据 */

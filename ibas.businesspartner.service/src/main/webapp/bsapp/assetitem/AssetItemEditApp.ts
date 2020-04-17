@@ -5,7 +5,7 @@
  * Use of this source code is governed by an Apache License, Version 2.0
  * that can be found in the LICENSE file at http://www.apache.org/licenses/LICENSE-2.0
  */
- namespace businesspartner {
+namespace businesspartner {
     export namespace app {
         /** 编辑应用-资产项目 */
         export class AssetItemEditApp extends ibas.BOEditApplication<IAssetItemEditView, bo.AssetItem> {
@@ -87,8 +87,6 @@
                 }
                 super.run.apply(this, arguments);
             }
-            /** 待编辑的数据 */
-            protected editData: bo.AssetItem;
             /** 保存数据 */
             protected saveData(): void {
                 this.busy(true);
