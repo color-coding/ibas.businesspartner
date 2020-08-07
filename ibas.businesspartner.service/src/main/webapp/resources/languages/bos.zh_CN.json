@@ -138,6 +138,8 @@
         "bo_businesspartnergroup_code": "编码",
         "bo_businesspartnergroup_name": "名称",
         "bo_businesspartnergroup_activated": "激活",
+        "bo_businesspartnergroup_phantom": "虚拟的",
+        "bo_businesspartnergroup_parents": "父项",
         "bo_businesspartnergroup_docentry": "对象编号",
         "bo_businesspartnergroup_objectcode": "对象类型",
         "bo_businesspartnergroup_createdate": "创建日期",

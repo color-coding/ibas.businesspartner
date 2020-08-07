@@ -116,6 +116,10 @@ namespace businesspartner {
                     if (property === bo.AssetItem.PROPERTY_RECHARGEABLE_NAME) {
                         return ibas.enums.toString(ibas.emYesNo, value);
                     }
+                } else if (boName === bo.BusinessPartnerGroup.name) {
+                    if (property === bo.BusinessPartnerGroup.PROPERTY_PHANTOM_NAME) {
+                        return ibas.enums.toString(ibas.emYesNo, value);
+                    }
                 }
                 return super.convertData(boName, property, value);
             }
@@ -153,6 +157,10 @@ namespace businesspartner {
                     }
                 } else if (boName === bo.AssetItem.name) {
                     if (property === bo.AssetItem.PROPERTY_RECHARGEABLE_NAME) {
+                        return ibas.enums.valueOf(ibas.emYesNo, value);
+                    }
+                } else if (boName === bo.BusinessPartnerGroup.name) {
+                    if (property === bo.BusinessPartnerGroup.PROPERTY_PHANTOM_NAME) {
                         return ibas.enums.valueOf(ibas.emYesNo, value);
                     }
                 }

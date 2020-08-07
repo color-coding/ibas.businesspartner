@@ -19,6 +19,12 @@ namespace businesspartner {
             /** 激活 */
             activated: ibas.emYesNo;
 
+            /** 虚拟的 */
+            phantom: ibas.emYesNo;
+
+            /** 父项 */
+            parents: string;
+
             /** 对象编号 */
             docEntry: number;
 

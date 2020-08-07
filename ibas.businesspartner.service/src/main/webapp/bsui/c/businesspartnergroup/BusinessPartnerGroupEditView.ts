@@ -16,6 +16,8 @@ namespace businesspartner {
                 deleteDataEvent: Function;
                 /** 新建数据事件，参数1：是否克隆 */
                 createDataEvent: Function;
+                /** 选择父项 */
+                chooseParentsEvent: Function;
                 /** 绘制视图 */
                 draw(): any {
                     let that: this = this;
@@ -62,6 +64,31 @@ namespace businesspartner {
                             }).bindProperty("bindingValue", {
                                 path: "activated",
                                 type: new sap.extension.data.YesNo()
+                            }),
+                            new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnergroup_phantom") }),
+                            new sap.extension.m.EnumSelect("", {
+                                enumType: ibas.emYesNo
+                            }).bindProperty("bindingValue", {
+                                path: "phantom",
+                                type: new sap.extension.data.YesNo(),
+                            }),
+                            new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnergroup_parents") }),
+                            new sap.extension.m.RepositoryInput("", {
+                                showValueHelp: true,
+                                repository: bo.BORepositoryBusinessPartner,
+                                dataInfo: {
+                                    type: bo.BusinessPartnerGroup,
+                                    key: bo.BusinessPartnerGroup.PROPERTY_CODE_NAME,
+                                    text: bo.BusinessPartnerGroup.PROPERTY_NAME_NAME
+                                },
+                                valueHelpRequest: function (): void {
+                                    that.fireViewEvents(that.chooseParentsEvent);
+                                },
+                            }).bindProperty("bindingValue", {
+                                path: "parents",
+                                type: new sap.extension.data.Alphanumeric({
+                                    maxLength: 60
+                                })
                             }),
                             new sap.ui.core.Title("", {}),
                         ],

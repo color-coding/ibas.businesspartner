@@ -188,6 +188,7 @@ namespace businesspartner {
                     chooseType: ibas.emChooseType.SINGLE,
                     criteria: [
                         new ibas.Condition(bo.BusinessPartnerGroup.PROPERTY_ACTIVATED_NAME, ibas.emConditionOperation.EQUAL, ibas.emYesNo.YES),
+                        new ibas.Condition(bo.BusinessPartnerGroup.PROPERTY_PHANTOM_NAME, ibas.emConditionOperation.NOT_EQUAL, ibas.emYesNo.YES)
                     ],
                     onCompleted(selecteds: ibas.IList<bo.BusinessPartnerGroup>): void {
                         let selected: bo.BusinessPartnerGroup = selecteds.firstOrDefault();
