@@ -48,8 +48,8 @@ namespace businesspartner {
                                         repository: bo.BORepositoryBusinessPartner,
                                         dataInfo: {
                                             type: bo.Customer,
-                                            key:bo.Customer.PROPERTY_CODE_NAME,
-                                            text:bo.Customer.PROPERTY_NAME_NAME
+                                            key: bo.Customer.PROPERTY_CODE_NAME,
+                                            text: bo.Customer.PROPERTY_NAME_NAME
                                         },
                                         valueHelpRequest: function (): void {
                                             that.fireViewEvents(that.chooseBusinessPartnerEvent);
@@ -78,8 +78,8 @@ namespace businesspartner {
                                         repository: bo.BORepositoryBusinessPartner,
                                         dataInfo: {
                                             type: bo.Supplier,
-                                            key:bo.Supplier.PROPERTY_CODE_NAME,
-                                            text:bo.Supplier.PROPERTY_NAME_NAME
+                                            key: bo.Supplier.PROPERTY_CODE_NAME,
+                                            text: bo.Supplier.PROPERTY_NAME_NAME
                                         },
                                         valueHelpRequest: function (): void {
                                             that.fireViewEvents(that.chooseBusinessPartnerEvent);
@@ -100,13 +100,6 @@ namespace businesspartner {
                                     }),
                                 ]
                             }),
-                            new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_activated") }),
-                            new sap.extension.m.EnumSelect("", {
-                                enumType: ibas.emYesNo
-                            }).bindProperty("bindingValue", {
-                                path: "activated",
-                                type: new sap.extension.data.YesNo()
-                            }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_name") }),
                             new sap.extension.m.Input("", {
                             }).bindProperty("bindingValue", {
@@ -114,6 +107,12 @@ namespace businesspartner {
                                 type: new sap.extension.data.Alphanumeric({
                                     maxLength: 50
                                 })
+                            }),
+                            new sap.extension.m.CheckBox("", {
+                                text: ibas.i18n.prop("bo_contactperson_activated"),
+                            }).bindProperty("bindingValue", {
+                                path: "activated",
+                                type: new sap.extension.data.YesNo()
                             }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_gender") }),
                             new sap.extension.m.EnumSelect("", {
@@ -132,15 +131,23 @@ namespace businesspartner {
                                     maxLength: 10
                                 })
                             }),
-                            new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_title_contact") }),
-                            new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_address") }),
+                            new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_remark1") }),
                             new sap.extension.m.Input("", {
                             }).bindProperty("bindingValue", {
-                                path: "address",
+                                path: "remark1",
                                 type: new sap.extension.data.Alphanumeric({
-                                    maxLength: 100
+                                    maxLength: 200
                                 })
                             }),
+                            new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_remark2") }),
+                            new sap.extension.m.Input("", {
+                            }).bindProperty("bindingValue", {
+                                path: "remark2",
+                                type: new sap.extension.data.Alphanumeric({
+                                    maxLength: 200
+                                })
+                            }),
+                            new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_title_contact") }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_mobilephone") }),
                             new sap.extension.m.Input("", {
                             }).bindProperty("bindingValue", {
@@ -163,6 +170,14 @@ namespace businesspartner {
                                 path: "fax",
                                 type: new sap.extension.data.Alphanumeric({
                                     maxLength: 20
+                                })
+                            }),
+                            new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_address") }),
+                            new sap.extension.m.Input("", {
+                            }).bindProperty("bindingValue", {
+                                path: "address",
+                                type: new sap.extension.data.Alphanumeric({
+                                    maxLength: 100
                                 })
                             }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_telephone1") }),

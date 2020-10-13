@@ -75,6 +75,14 @@ namespace businesspartner {
                                 }),
                             }),
                             new sap.extension.table.DataColumn("", {
+                                label: ibas.i18n.prop("bo_address_street"),
+                                template: new sap.extension.m.Text("", {
+                                }).bindProperty("bindingValue", {
+                                    path: "street",
+                                    type: new sap.extension.data.Alphanumeric()
+                                }),
+                            }),
+                            new sap.extension.table.DataColumn("", {
                                 label: ibas.i18n.prop("bo_address_contacts"),
                                 template: new sap.extension.m.Text("", {
                                 }).bindProperty("bindingValue", {
@@ -83,18 +91,10 @@ namespace businesspartner {
                                 }),
                             }),
                             new sap.extension.table.DataColumn("", {
-                                label: ibas.i18n.prop("bo_address_mobilephone"),
+                                label: ibas.i18n.prop("bo_address_remark1"),
                                 template: new sap.extension.m.Text("", {
                                 }).bindProperty("bindingValue", {
-                                    path: "mobilePhone",
-                                    type: new sap.extension.data.Alphanumeric()
-                                }),
-                            }),
-                            new sap.extension.table.DataColumn("", {
-                                label: ibas.i18n.prop("bo_address_street"),
-                                template: new sap.extension.m.Text("", {
-                                }).bindProperty("bindingValue", {
-                                    path: "street",
+                                    path: "remark1",
                                     type: new sap.extension.data.Alphanumeric()
                                 }),
                             }),

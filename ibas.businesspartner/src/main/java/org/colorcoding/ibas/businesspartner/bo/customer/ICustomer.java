@@ -251,6 +251,20 @@ public interface ICustomer extends IBOMasterData {
 	void setBankAccount(String value);
 
 	/**
+	 * 获取-发票抬头
+	 * 
+	 * @return 值
+	 */
+	String getInvoiceTitle();
+
+	/**
+	 * 设置-发票抬头
+	 * 
+	 * @param value 值
+	 */
+	void setInvoiceTitle(String value);
+
+	/**
 	 * 获取-发票地址
 	 * 
 	 * @return 值

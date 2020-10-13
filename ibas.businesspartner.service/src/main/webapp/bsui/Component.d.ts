@@ -17,6 +17,15 @@ declare namespace businesspartner {
                 /** 设置-业务伙伴类型属性 */
                 setTypeProperty(value: string): BusinessPartnerText;
             }
+            /**
+             * 业务伙伴描述（根据类型加载客户或供应商）
+             */
+            class BusinessPartnerAttribute extends sap.extension.m.ConversionObjectAttribute {
+                /** 获取-业务伙伴类型属性 */
+                getTypeProperty(): string;
+                /** 设置-业务伙伴类型属性 */
+                setTypeProperty(value: string): BusinessPartnerAttribute;
+            }
         }
     }
 }

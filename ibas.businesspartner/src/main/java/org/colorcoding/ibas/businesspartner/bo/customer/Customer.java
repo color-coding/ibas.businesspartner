@@ -588,6 +588,37 @@ public class Customer extends BusinessObject<Customer>
 	}
 
 	/**
+	 * 属性名称-发票抬头
+	 */
+	private static final String PROPERTY_INVOICETITLE_NAME = "InvoiceTitle";
+
+	/**
+	 * 发票抬头 属性
+	 */
+	@DbField(name = "InvTitle", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME)
+	public static final IPropertyInfo<String> PROPERTY_INVOICETITLE = registerProperty(PROPERTY_INVOICETITLE_NAME,
+			String.class, MY_CLASS);
+
+	/**
+	 * 获取-发票抬头
+	 * 
+	 * @return 值
+	 */
+	@XmlElement(name = PROPERTY_INVOICETITLE_NAME)
+	public final String getInvoiceTitle() {
+		return this.getProperty(PROPERTY_INVOICETITLE);
+	}
+
+	/**
+	 * 设置-发票抬头
+	 * 
+	 * @param value 值
+	 */
+	public final void setInvoiceTitle(String value) {
+		this.setProperty(PROPERTY_INVOICETITLE, value);
+	}
+
+	/**
 	 * 属性名称-发票地址
 	 */
 	private static final String PROPERTY_INVOICEADDRESS_NAME = "InvoiceAddress";

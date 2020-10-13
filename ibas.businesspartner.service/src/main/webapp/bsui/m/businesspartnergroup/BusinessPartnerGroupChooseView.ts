@@ -8,10 +8,10 @@
 namespace businesspartner {
     export namespace ui {
         export namespace m {
-            export class CustomerChooseView extends ibas.BOChooseView implements app.ICustomerChooseView {
+            export class BusinessPartnerGroupChooseView extends ibas.BOChooseView implements app.IBusinessPartnerGroupChooseView {
                 /** 返回查询的对象 */
                 get queryTarget(): any {
-                    return bo.Customer;
+                    return bo.BusinessPartnerGroup;
                 }
                 /** 绘制视图 */
                 draw(): any {
@@ -29,16 +29,16 @@ namespace businesspartner {
                                 },
                                 attributes: [
                                     new sap.extension.m.ObjectAttribute("", {
-                                        title: ibas.i18n.prop("bo_customer_code"),
+                                        title: ibas.i18n.prop("bo_businesspartnergroup_code"),
                                         bindingValue: {
                                             path: "code",
                                             type: new sap.extension.data.Alphanumeric(),
                                         },
                                     }),
                                     new sap.extension.m.RepositoryObjectAttribute("", {
-                                        title: ibas.i18n.prop("bo_businesspartnergroup"),
+                                        title: ibas.i18n.prop("bo_businesspartnergroup_parents"),
                                         bindingValue: {
-                                            path: "group",
+                                            path: "parents",
                                             type: new sap.extension.data.Alphanumeric(),
                                         },
                                         repository: bo.BORepositoryBusinessPartner,
@@ -47,51 +47,6 @@ namespace businesspartner {
                                             key: bo.BusinessPartnerGroup.PROPERTY_CODE_NAME,
                                             text: bo.BusinessPartnerGroup.PROPERTY_NAME_NAME
                                         },
-                                    }),
-                                    new sap.extension.m.ObjectAttribute("", {
-                                        title: ibas.i18n.prop("bo_customer_channel"),
-                                        bindingValue: {
-                                            path: "channel",
-                                            type: new sap.extension.data.Alphanumeric(),
-                                        },
-                                        visible: {
-                                            path: "channel",
-                                            formatter(data: string): boolean {
-                                                return ibas.strings.isEmpty(data) ? false : true;
-                                            }
-                                        }
-                                    }),
-                                    new sap.extension.m.RepositoryObjectAttribute("", {
-                                        title: ibas.i18n.prop("bo_customer_organizationalunit"),
-                                        bindingValue: {
-                                            path: "organizationalUnit",
-                                            type: new sap.extension.data.Alphanumeric(),
-                                        },
-                                        repository: initialfantasy.bo.BORepositoryInitialFantasy,
-                                        dataInfo: {
-                                            type: initialfantasy.bo.Organization,
-                                            key: initialfantasy.bo.Organization.PROPERTY_CODE_NAME,
-                                            text: initialfantasy.bo.Organization.PROPERTY_NAME_NAME
-                                        },
-                                        visible: {
-                                            path: "organizationalUnit",
-                                            formatter(data: string): boolean {
-                                                return ibas.strings.isEmpty(data) ? false : true;
-                                            }
-                                        }
-                                    }),
-                                    new sap.extension.m.ObjectAttribute("", {
-                                        title: ibas.i18n.prop("bo_customer_remarks"),
-                                        bindingValue: {
-                                            path: "remarks",
-                                            type: new sap.extension.data.Alphanumeric(),
-                                        },
-                                        visible: {
-                                            path: "remarks",
-                                            formatter(data: string): boolean {
-                                                return ibas.strings.isEmpty(data) ? false : true;
-                                            }
-                                        }
                                     }),
                                 ],
                                 type: sap.m.ListType.Active,
@@ -169,7 +124,7 @@ namespace businesspartner {
                     }
                 }
                 /** 显示数据 */
-                showData(datas: bo.Customer[]): void {
+                showData(datas: bo.BusinessPartnerGroup[]): void {
                     if (!ibas.objects.isNull(this.pullToRefresh)) {
                         this.pullToRefresh.hide();
                     }

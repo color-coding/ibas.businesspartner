@@ -94,12 +94,17 @@ namespace businesspartner {
         export class ConsolePhone extends Console {
             /** 初始化 */
             protected registers(): void {
+                // 注册功能
+                this.register(new CustomerFunc());
+                this.register(new SupplierFunc());
+                this.register(new ContactPersonFunc());
+                this.register(new AddressFunc());
                 // 注册服务应用
                 this.register(new AddressChooseServiceMapping());
                 this.register(new ContactPersonChooseServiceMapping());
                 this.register(new CustomerChooseServiceMapping());
                 this.register(new SupplierChooseServiceMapping());
-                this.register(new BusinessPartnerAssetChooseServiceMapping());
+                this.register(new BusinessPartnerGroupChooseServiceMapping());
             }
         }
     }

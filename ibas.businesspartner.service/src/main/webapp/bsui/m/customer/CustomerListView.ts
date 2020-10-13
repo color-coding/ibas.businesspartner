@@ -8,18 +8,90 @@
 namespace businesspartner {
     export namespace ui {
         export namespace m {
-            export class CustomerChooseView extends ibas.BOChooseView implements app.ICustomerChooseView {
+            /** 列表视图-客户 */
+            export class CustomerListView extends ibas.BOListView implements app.ICustomerListView {
                 /** 返回查询的对象 */
                 get queryTarget(): any {
                     return bo.Customer;
                 }
+                /** 编辑数据，参数：目标数据 */
+                editDataEvent: Function;
+                /** 删除数据事件，参数：删除对象集合 */
+                deleteDataEvent: Function;
+
+                customerGroupEvent: Function;
                 /** 绘制视图 */
                 draw(): any {
                     let that: this = this;
                     this.list = new sap.extension.m.List("", {
-                        chooseType: this.chooseType,
-                        growingThreshold: sap.extension.table.visibleRowCount(15),
+                        inset: false,
+                        growing: false,
                         mode: sap.m.ListMode.None,
+                        swipeDirection: sap.m.SwipeDirection.RightToLeft,
+                        swipeContent: new sap.m.FlexBox("", {
+                            height: "100%",
+                            alignItems: sap.m.FlexAlignItems.Start,
+                            justifyContent: sap.m.FlexJustifyContent.End,
+                            items: [
+                                new sap.m.SegmentedButton("", {
+                                    width: "9rem",
+                                    items: [
+                                        new sap.m.SegmentedButtonItem("", {
+                                            width: "3rem",
+                                            icon: "sap-icon://action",
+                                            press(event: sap.ui.base.Event): void {
+                                                ibas.servicesManager.showServices({
+                                                    proxy: new ibas.BOServiceProxy({
+                                                        data: that.list.getSelecteds(),
+                                                        converter: new bo.DataConverter(),
+                                                    }),
+                                                    displayServices(services: ibas.IServiceAgent[]): void {
+                                                        if (ibas.objects.isNull(services) || services.length === 0) {
+                                                            return;
+                                                        }
+                                                        let popover: sap.m.Popover = new sap.m.Popover("", {
+                                                            showHeader: false,
+                                                            placement: sap.m.PlacementType.Bottom,
+                                                        });
+                                                        for (let service of services) {
+                                                            popover.addContent(new sap.m.Button("", {
+                                                                text: ibas.i18n.prop(service.name),
+                                                                type: sap.m.ButtonType.Transparent,
+                                                                icon: service.icon,
+                                                                press(): void {
+                                                                    service.run();
+                                                                    popover.close();
+                                                                    that.list.swipeOut(null);
+                                                                }
+                                                            }));
+                                                        }
+                                                        popover.addStyleClass("sapMOTAPopover sapTntToolHeaderPopover");
+                                                        popover.openBy(event.getSource(), true);
+                                                    }
+                                                });
+                                            }
+                                        }),
+                                        new sap.m.SegmentedButtonItem("", {
+                                            width: "3rem",
+                                            icon: "sap-icon://delete",
+                                            press(oEvent: any): void {
+                                                that.fireViewEvents(that.deleteDataEvent, that.list.getSelecteds());
+                                            }
+                                        }),
+                                        new sap.m.SegmentedButtonItem("", {
+                                            width: "3rem",
+                                            icon: "sap-icon://edit",
+                                            press(oEvent: any): void {
+                                                that.fireViewEvents(that.editDataEvent, that.list.getSelecteds().firstOrDefault());
+                                            }
+                                        })
+                                    ]
+                                }),
+                            ]
+                        }).addStyleClass("sapUiSmallMarginTop"),
+                        swipe(event: sap.ui.base.Event): void {
+                            that.page.setShowFooter(true);
+                        },
                         items: {
                             path: "/rows",
                             template: new sap.m.ObjectListItem("", {
@@ -80,23 +152,10 @@ namespace businesspartner {
                                             }
                                         }
                                     }),
-                                    new sap.extension.m.ObjectAttribute("", {
-                                        title: ibas.i18n.prop("bo_customer_remarks"),
-                                        bindingValue: {
-                                            path: "remarks",
-                                            type: new sap.extension.data.Alphanumeric(),
-                                        },
-                                        visible: {
-                                            path: "remarks",
-                                            formatter(data: string): boolean {
-                                                return ibas.strings.isEmpty(data) ? false : true;
-                                            }
-                                        }
-                                    }),
                                 ],
                                 type: sap.m.ListType.Active,
                                 press: function (oEvent: sap.ui.base.Event): void {
-                                    that.fireViewEvents(that.chooseDataEvent, this.getBindingContext().getObject());
+                                    that.fireViewEvents(that.editDataEvent, this.getBindingContext().getObject());
                                 },
                             })
                         },
@@ -117,43 +176,24 @@ namespace businesspartner {
                             that.fireViewEvents(that.fetchDataEvent, criteria);
                         }
                     });
-                    return new sap.extension.m.Dialog("", {
-                        title: this.title,
-                        type: sap.m.DialogType.Standard,
-                        state: sap.ui.core.ValueState.None,
-                        stretch: ibas.config.get(ibas.CONFIG_ITEM_PLANTFORM) === ibas.emPlantform.PHONE ? true : false,
-                        horizontalScrolling: true,
-                        verticalScrolling: true,
+                    return this.page = new sap.m.Page("", {
+                        showHeader: false,
+                        showSubHeader: false,
+                        floatingFooter: true,
                         content: [
-                            this.page = new sap.m.Page("", {
-                                showHeader: false,
-                                showSubHeader: false,
-                                floatingFooter: true,
-                                content: [
-                                    this.list
-                                ],
-                                footer: new sap.m.Toolbar("", {
-                                    content: [
-                                        new sap.m.Button("", {
-                                            width: "50%",
-                                            text: ibas.i18n.prop("shell_data_choose"),
-                                            type: sap.m.ButtonType.Transparent,
-                                            press: function (): void {
-                                                that.fireViewEvents(that.chooseDataEvent, that.list.getSelecteds());
-                                            }
-                                        }),
-                                        new sap.m.Button("", {
-                                            width: "50%",
-                                            text: ibas.i18n.prop("shell_exit"),
-                                            type: sap.m.ButtonType.Transparent,
-                                            press: function (): void {
-                                                that.fireViewEvents(that.closeEvent);
-                                            }
-                                        }),
-                                    ]
-                                })
-                            })
+                            this.list
                         ],
+                        footer: new sap.m.Toolbar("", {
+                            content: [
+                                new sap.m.Button("", {
+                                    width: "100%",
+                                    text: ibas.i18n.prop("shell_data_new"),
+                                    press(): void {
+                                        that.fireViewEvents(that.newDataEvent);
+                                    }
+                                })
+                            ]
+                        })
                     });
                 }
                 private page: sap.m.Page;
@@ -190,6 +230,14 @@ namespace businesspartner {
                     if (this.isDisplayed) {
                         this.list.setBusy(true);
                         this.list.setModel(null);
+                    }
+                }
+                /** 手指触控滑动 */
+                protected onTouchMove(direction: ibas.emTouchMoveDirection, event: TouchEvent): void {
+                    if (direction === ibas.emTouchMoveDirection.UP) {
+                        this.page.setShowFooter(false);
+                    } else if (direction === ibas.emTouchMoveDirection.DOWN) {
+                        this.page.setShowFooter(true);
                     }
                 }
             }

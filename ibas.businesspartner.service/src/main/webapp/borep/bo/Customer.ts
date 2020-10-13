@@ -204,6 +204,17 @@ namespace businesspartner {
                 this.setProperty(Customer.PROPERTY_BANKACCOUNT_NAME, value);
             }
 
+            /** 映射的属性名称-发票抬头 */
+            static PROPERTY_INVOICETITLE_NAME: string = "InvoiceTitle";
+            /** 获取-发票抬头 */
+            get invoiceTitle(): string {
+                return this.getProperty<string>(Customer.PROPERTY_INVOICETITLE_NAME);
+            }
+            /** 设置-发票抬头 */
+            set invoiceTitle(value: string) {
+                this.setProperty(Customer.PROPERTY_INVOICETITLE_NAME, value);
+            }
+
             /** 映射的属性名称-发票地址 */
             static PROPERTY_INVOICEADDRESS_NAME: string = "InvoiceAddress";
             /** 获取-发票地址 */

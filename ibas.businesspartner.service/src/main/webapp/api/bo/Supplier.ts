@@ -61,6 +61,9 @@ namespace businesspartner {
             /** 银行账户 */
             bankAccount: string;
 
+            /** 发票抬头 */
+            invoiceTitle: string;
+
             /** 发票地址 */
             invoiceAddress: string;
 

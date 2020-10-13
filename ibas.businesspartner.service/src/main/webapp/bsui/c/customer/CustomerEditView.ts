@@ -135,23 +135,21 @@ namespace businesspartner {
                                 path: "priceList",
                                 type: new sap.extension.data.Numeric()
                             }),
-                            new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_warehouse") }),
+                            new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_floorlist") }),
                             new sap.extension.m.RepositoryInput("", {
                                 showValueHelp: true,
                                 repository: materials.bo.BORepositoryMaterials,
                                 dataInfo: {
-                                    type: materials.bo.Warehouse,
-                                    key: materials.bo.Warehouse.PROPERTY_CODE_NAME,
-                                    text: materials.bo.Warehouse.PROPERTY_NAME_NAME
+                                    type: materials.bo.MaterialPriceList,
+                                    key: materials.bo.MaterialPriceList.PROPERTY_OBJECTKEY_NAME,
+                                    text: materials.bo.MaterialPriceList.PROPERTY_NAME_NAME
                                 },
                                 valueHelpRequest: function (): void {
-                                    that.fireViewEvents(that.chooseCustomerWarehouseEvent);
+                                    that.fireViewEvents(that.chooseCustomerFloorListEvent);
                                 },
                             }).bindProperty("bindingValue", {
-                                path: "warehouse",
-                                type: new sap.extension.data.Alphanumeric({
-                                    maxLength: 8
-                                })
+                                path: "floorList",
+                                type: new sap.extension.data.Numeric()
                             }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_currency") }),
                             new sap.extension.m.Input("", {
@@ -181,6 +179,24 @@ namespace businesspartner {
                                     maxLength: 8
                                 }),
                             }),
+                            new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_warehouse") }),
+                            new sap.extension.m.RepositoryInput("", {
+                                showValueHelp: true,
+                                repository: materials.bo.BORepositoryMaterials,
+                                dataInfo: {
+                                    type: materials.bo.Warehouse,
+                                    key: materials.bo.Warehouse.PROPERTY_CODE_NAME,
+                                    text: materials.bo.Warehouse.PROPERTY_NAME_NAME
+                                },
+                                valueHelpRequest: function (): void {
+                                    that.fireViewEvents(that.chooseCustomerWarehouseEvent);
+                                },
+                            }).bindProperty("bindingValue", {
+                                path: "warehouse",
+                                type: new sap.extension.data.Alphanumeric({
+                                    maxLength: 8
+                                })
+                            }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_validdate") }),
                             new sap.extension.m.DatePicker("", {
                             }).bindProperty("bindingValue", {
@@ -192,22 +208,6 @@ namespace businesspartner {
                             }).bindProperty("bindingValue", {
                                 path: "invalidDate",
                                 type: new sap.extension.data.Date()
-                            }),
-                            new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_floorlist") }),
-                            new sap.extension.m.RepositoryInput("", {
-                                showValueHelp: true,
-                                repository: materials.bo.BORepositoryMaterials,
-                                dataInfo: {
-                                    type: materials.bo.MaterialPriceList,
-                                    key: materials.bo.MaterialPriceList.PROPERTY_OBJECTKEY_NAME,
-                                    text: materials.bo.MaterialPriceList.PROPERTY_NAME_NAME
-                                },
-                                valueHelpRequest: function (): void {
-                                    that.fireViewEvents(that.chooseCustomerFloorListEvent);
-                                },
-                            }).bindProperty("bindingValue", {
-                                path: "floorList",
-                                type: new sap.extension.data.Numeric()
                             }),
                             new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_title_contact") }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_contactperson") }),
@@ -356,6 +356,14 @@ namespace businesspartner {
                                     maxLength: 30
                                 }),
                             }),
+                            new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_invoicetitle") }),
+                            new sap.extension.m.Input("", {
+                            }).bindProperty("bindingValue", {
+                                path: "invoiceTitle",
+                                type: new sap.extension.data.Alphanumeric({
+                                    maxLength: 100
+                                }),
+                            }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_invoiceaddress") }),
                             new sap.extension.m.Input("", {
                                 showValueHelp: true,
@@ -377,7 +385,10 @@ namespace businesspartner {
                                                             countryVisible: false,
                                                             zipCodeVisible: false,
                                                             addressChange: function (event: sap.ui.base.Event): void {
-                                                                source.setBindingValue(event.getParameter("address"));
+                                                                let address: string = event.getParameter("address");
+                                                                if (!ibas.strings.isEmpty(address)) {
+                                                                    source.setBindingValue(address);
+                                                                }
                                                             }
                                                         }),
                                                     ]

@@ -49,34 +49,37 @@ namespace businesspartner {
                                     }
                                 }),
                                 attributes: [
-                                    new sap.m.ObjectAttribute("", {
+                                    new sap.extension.m.ObjectEnumStatus("", {
                                         title: ibas.i18n.prop("bo_businesspartnerasset_businesspartnertype"),
+                                        enumType: bo.emBusinessPartnerType,
                                         text: {
                                             path: "businessPartnerType",
-                                            type: new sap.extension.data.Enum({
-                                                enumType: bo.emBusinessPartnerType,
-                                                describe: true
-                                            }),
                                         }
                                     }),
-                                    new sap.m.ObjectAttribute("", {
+                                    new sap.extension.m.ObjectAttribute("", {
                                         title: ibas.i18n.prop("bo_businesspartnerasset_businesspartnercode"),
-                                        text: "{businessPartnerCode}"
+                                        bindingValue: {
+                                            path: "businessPartnerCode",
+                                            type: new sap.extension.data.Alphanumeric(),
+                                        }
                                     }),
-                                    new sap.m.ObjectAttribute("", {
+                                    new sap.extension.m.ObjectAttribute("", {
                                         title: ibas.i18n.prop("bo_businesspartnerasset_code"),
-                                        text: "{code}"
+                                        bindingValue: {
+                                            path: "code",
+                                            type: new sap.extension.data.Alphanumeric(),
+                                        }
                                     }),
-                                    new sap.m.ObjectAttribute("", {
+                                    new sap.extension.m.ObjectAttribute("", {
                                         title: ibas.i18n.prop("bo_businesspartnerasset_validdate"),
-                                        text: {
+                                        bindingValue: {
                                             path: "validDate",
                                             type: new sap.extension.data.Date(),
                                         }
                                     }),
-                                    new sap.m.ObjectAttribute("", {
+                                    new sap.extension.m.ObjectAttribute("", {
                                         title: ibas.i18n.prop("bo_businesspartnerasset_invaliddate"),
-                                        text: {
+                                        bindingValue: {
                                             path: "invalidDate",
                                             type: new sap.extension.data.Date(),
                                         }

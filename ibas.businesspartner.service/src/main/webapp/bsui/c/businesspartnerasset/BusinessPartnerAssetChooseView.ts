@@ -109,6 +109,14 @@ namespace businesspartner {
                                     type: new sap.extension.data.Numeric()
                                 }),
                             }),
+                            new sap.extension.table.DataColumn("", {
+                                label: ibas.i18n.prop("bo_businesspartnerasset_remark1"),
+                                template: new sap.extension.m.Text("", {
+                                }).bindProperty("bindingValue", {
+                                    path: "remark1",
+                                    type: new sap.extension.data.Alphanumeric()
+                                }),
+                            }),
                         ],
                         nextDataSet(event: sap.ui.base.Event): void {
                             // 查询下一个数据集

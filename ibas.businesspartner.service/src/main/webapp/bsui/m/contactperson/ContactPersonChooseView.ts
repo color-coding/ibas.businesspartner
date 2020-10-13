@@ -8,10 +8,10 @@
 namespace businesspartner {
     export namespace ui {
         export namespace m {
-            export class AddressChooseView extends ibas.BOChooseView implements app.IAddressChooseView {
+            export class ContactPersonChooseView extends ibas.BOChooseView implements app.IContactPersonChooseView {
                 /** 返回查询的对象 */
                 get queryTarget(): any {
-                    return bo.Address;
+                    return bo.ContactPerson;
                 }
                 /** 绘制视图 */
                 draw(): any {
@@ -23,13 +23,13 @@ namespace businesspartner {
                         items: {
                             path: "/rows",
                             template: new sap.m.ObjectListItem("", {
-                                title: "{name}",
+                                title: "{name} {position}",
                                 firstStatus: new sap.m.ObjectStatus("", {
                                     text: "{objectKey}"
                                 }),
                                 attributes: [
                                     new component.BusinessPartnerAttribute("", {
-                                        title: ibas.i18n.prop("bo_address_businesspartner"),
+                                        title: ibas.i18n.prop("bo_contactperson_businesspartner"),
                                         bindingValue: {
                                             path: "businessPartner",
                                             type: new sap.extension.data.Alphanumeric(),
@@ -37,21 +37,14 @@ namespace businesspartner {
                                         typeProperty: "ownerType",
                                     }),
                                     new sap.extension.m.ObjectAttribute("", {
-                                        title: ibas.i18n.prop("bo_address_street"),
+                                        title: ibas.i18n.prop("bo_contactperson_mobilephone"),
                                         bindingValue: {
-                                            path: "street",
+                                            path: "mobilePhone",
                                             type: new sap.extension.data.Alphanumeric(),
                                         },
                                     }),
                                     new sap.extension.m.ObjectAttribute("", {
-                                        title: ibas.i18n.prop("bo_address_contacts"),
-                                        bindingValue: {
-                                            path: "contacts",
-                                            type: new sap.extension.data.Alphanumeric(),
-                                        },
-                                    }),
-                                    new sap.extension.m.ObjectAttribute("", {
-                                        title: ibas.i18n.prop("bo_address_remark1"),
+                                        title: ibas.i18n.prop("bo_contactperson_remark1"),
                                         bindingValue: {
                                             path: "remark1",
                                             type: new sap.extension.data.Alphanumeric(),
@@ -133,7 +126,7 @@ namespace businesspartner {
                     }
                 }
                 /** 显示数据 */
-                showData(datas: bo.Address[]): void {
+                showData(datas: bo.ContactPerson[]): void {
                     if (!ibas.objects.isNull(this.pullToRefresh)) {
                         this.pullToRefresh.hide();
                     }
