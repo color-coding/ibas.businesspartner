@@ -18,7 +18,7 @@
     <Property Name="FaxNumber" Description="传真号" DataType="Alphanumeric" DataSubType="Default" EditSize="20" Mapped="Fax"/>
     <Property Name="TaxId" Description="国税编号" DataType="Alphanumeric" DataSubType="Default" EditSize="30" Mapped="TaxId"/>
     <Property Name="Bank" Description="开户银行" DataType="Alphanumeric" DataSubType="Default" EditSize="60" Mapped="Bank"/>
-    <Property Name="BankAccount" Description="银行账户" DataType="Alphanumeric" DataSubType="Default" EditSize="30" Mapped="BankAcnt"/>
+    <Property Name="BankAccount" Description="银行账户" DataType="Alphanumeric" DataSubType="Default" EditSize="60" Mapped="BankAcnt"/>
     <Property Name="InvoiceTitle" Description="发票抬头" DataType="Alphanumeric" DataSubType="Default" EditSize="100" Mapped="InvTitle"/>
     <Property Name="InvoiceAddress" Description="发票地址" DataType="Alphanumeric" DataSubType="Default" EditSize="200" Mapped="InvAddress"/>
     <Property Name="InvoiceTelephone" Description="发票电话" DataType="Alphanumeric" DataSubType="Default" EditSize="20" Mapped="InvPhone"/>

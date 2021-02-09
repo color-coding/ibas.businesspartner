@@ -123,8 +123,9 @@ namespace businesspartner {
                                 subSections: [
                                     new sap.uxap.ObjectPageSubSection("", {
                                         blocks: [
-                                            new sap.extension.layout.SimpleForm("", {
+                                            new sap.ui.layout.form.SimpleForm("", {
                                                 editable: true,
+                                                width: "auto",
                                                 content: [
                                                     new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_code") }),
                                                     new sap.extension.m.Input("", {
@@ -296,7 +297,7 @@ namespace businesspartner {
                                                         type: new sap.extension.data.Date()
                                                     }),
                                                 ]
-                                            }).addStyleClass("sapUiNoContentPadding")
+                                            }).addStyleClass("sapUxAPObjectPageSubSectionAlignContent")
                                         ]
                                     }),
                                 ]
@@ -306,8 +307,9 @@ namespace businesspartner {
                                 subSections: [
                                     new sap.uxap.ObjectPageSubSection("", {
                                         blocks: [
-                                            new sap.extension.layout.SimpleForm("", {
+                                            new sap.ui.layout.form.SimpleForm("", {
                                                 editable: true,
+                                                width: "auto",
                                                 content: [
                                                     new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_contactperson") }),
                                                     new sap.m.FlexBox("", {
@@ -455,7 +457,7 @@ namespace businesspartner {
                                                         type: new sap.extension.data.Alphanumeric()
                                                     }),
                                                 ]
-                                            }).addStyleClass("sapUiNoContentPadding")
+                                            }).addStyleClass("sapUxAPObjectPageSubSectionAlignContent")
                                         ]
                                     }),
                                 ]
@@ -465,8 +467,9 @@ namespace businesspartner {
                                 subSections: [
                                     new sap.uxap.ObjectPageSubSection("", {
                                         blocks: [
-                                            new sap.extension.layout.SimpleForm("", {
+                                            new sap.ui.layout.form.SimpleForm("", {
                                                 editable: true,
+                                                width: "auto",
                                                 content: [
                                                     new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_taxid") }),
                                                     new sap.extension.m.Input("", {
@@ -508,12 +511,12 @@ namespace businesspartner {
                                                             let input: any = event.getSource();
                                                             if (input instanceof sap.extension.m.Input) {
                                                                 let address: sap.extension.m.AddressArea;
-                                                                let dialog: sap.extension.m.Dialog = new sap.extension.m.Dialog("", {
+                                                                let dialog: sap.m.Dialog = new sap.m.Dialog("", {
                                                                     showHeader: false,
                                                                     type: sap.m.DialogType.Standard,
                                                                     state: sap.ui.core.ValueState.None,
                                                                     content: [
-                                                                        new sap.extension.layout.SimpleForm("", {
+                                                                        new sap.ui.layout.form.SimpleForm("", {
                                                                             content: [
                                                                                 address = new sap.extension.m.AddressArea("", {
                                                                                     countryVisible: false,
@@ -542,7 +545,7 @@ namespace businesspartner {
                                                                             }
                                                                         }),
                                                                     ]
-                                                                });
+                                                                }).addStyleClass("sapUiNoContentPadding");
                                                                 dialog.open();
                                                             }
                                                         },
@@ -561,7 +564,7 @@ namespace businesspartner {
                                                         }),
                                                     }),
                                                 ]
-                                            }).addStyleClass("sapUiNoContentPadding")
+                                            }).addStyleClass("sapUxAPObjectPageSubSectionAlignContent")
                                         ]
                                     }),
                                 ]

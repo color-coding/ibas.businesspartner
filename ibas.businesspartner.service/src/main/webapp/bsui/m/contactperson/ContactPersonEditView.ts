@@ -82,8 +82,9 @@ namespace businesspartner {
                                 subSections: [
                                     new sap.uxap.ObjectPageSubSection("", {
                                         blocks: [
-                                            new sap.extension.layout.SimpleForm("", {
+                                            new sap.ui.layout.form.SimpleForm("", {
                                                 editable: true,
+                                                width: "auto",
                                                 content: [
                                                     new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_ownertype") }),
                                                     new sap.extension.m.EnumSelect("", {
@@ -207,7 +208,7 @@ namespace businesspartner {
                                                         })
                                                     }),
                                                 ]
-                                            }).addStyleClass("sapUiNoContentPadding")
+                                            }).addStyleClass("sapUxAPObjectPageSubSectionAlignContent")
                                         ]
                                     }),
                                 ]
@@ -217,8 +218,9 @@ namespace businesspartner {
                                 subSections: [
                                     new sap.uxap.ObjectPageSubSection("", {
                                         blocks: [
-                                            new sap.extension.layout.SimpleForm("", {
+                                            new sap.ui.layout.form.SimpleForm("", {
                                                 editable: true,
+                                                width: "auto",
                                                 content: [
                                                     new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_mobilephone") }),
                                                     new sap.extension.m.Input("", {
@@ -269,7 +271,7 @@ namespace businesspartner {
                                                         })
                                                     }),
                                                 ]
-                                            }).addStyleClass("sapUiNoContentPadding")
+                                            }).addStyleClass("sapUxAPObjectPageSubSectionAlignContent")
                                         ]
                                     }),
                                 ]
