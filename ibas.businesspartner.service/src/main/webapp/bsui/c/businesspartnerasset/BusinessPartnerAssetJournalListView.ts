@@ -49,19 +49,22 @@ namespace businesspartner {
                                     }
                                 }),
                                 attributes: [
-                                    new sap.extension.m.ObjectEnumStatus("", {
-                                        title: ibas.i18n.prop("bo_businesspartnerasset_businesspartnertype"),
-                                        enumType: bo.emBusinessPartnerType,
-                                        text: {
-                                            path: "businessPartnerType",
-                                        }
-                                    }),
                                     new sap.extension.m.ObjectAttribute("", {
-                                        title: ibas.i18n.prop("bo_businesspartnerasset_businesspartnercode"),
+                                        title: ibas.i18n.prop("bo_businesspartnerasset_businesspartnercode")
+                                            + ibas.i18n.prop("bo_businesspartnerasset_code"),
                                         bindingValue: {
                                             path: "businessPartnerCode",
                                             type: new sap.extension.data.Alphanumeric(),
                                         }
+                                    }),
+                                    new component.BusinessPartnerAttribute("", {
+                                        title: ibas.i18n.prop("bo_businesspartnerasset_businesspartnercode")
+                                            + ibas.i18n.prop("bo_businesspartnerasset_name"),
+                                        bindingValue: {
+                                            path: "businessPartnerCode",
+                                            type: new sap.extension.data.Alphanumeric(),
+                                        },
+                                        typeProperty: "businessPartnerType",
                                     }),
                                     new sap.extension.m.ObjectAttribute("", {
                                         title: ibas.i18n.prop("bo_businesspartnerasset_code"),

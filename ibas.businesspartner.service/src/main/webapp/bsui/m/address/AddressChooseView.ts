@@ -23,13 +23,34 @@ namespace businesspartner {
                         items: {
                             path: "/rows",
                             template: new sap.m.ObjectListItem("", {
-                                title: "{name}",
+                                title: "{name} {contacts}",
                                 firstStatus: new sap.m.ObjectStatus("", {
-                                    text: "{objectKey}"
+                                    text: "# {objectKey}"
                                 }),
                                 attributes: [
+                                    new sap.extension.m.ObjectAttribute("", {
+                                        title: {
+                                            path: "ownerType",
+                                            formatter(data: businesspartner.bo.emBusinessPartnerType): string {
+                                                return data === businesspartner.bo.emBusinessPartnerType.SUPPLIER
+                                                    ? ibas.i18n.prop(["bo_supplier", "bo_supplier_code"])
+                                                    : ibas.i18n.prop(["bo_customer", "bo_customer_code"]);
+                                            }
+                                        },
+                                        bindingValue: {
+                                            path: "businessPartner",
+                                            type: new sap.extension.data.Alphanumeric(),
+                                        },
+                                    }),
                                     new component.BusinessPartnerAttribute("", {
-                                        title: ibas.i18n.prop("bo_address_businesspartner"),
+                                        title: {
+                                            path: "ownerType",
+                                            formatter(data: businesspartner.bo.emBusinessPartnerType): string {
+                                                return data === businesspartner.bo.emBusinessPartnerType.SUPPLIER
+                                                    ? ibas.i18n.prop(["bo_supplier", "bo_supplier_name"])
+                                                    : ibas.i18n.prop(["bo_customer", "bo_customer_name"]);
+                                            }
+                                        },
                                         bindingValue: {
                                             path: "businessPartner",
                                             type: new sap.extension.data.Alphanumeric(),

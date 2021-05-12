@@ -50,7 +50,17 @@ namespace businesspartner {
                                 }),
                             }),
                             new sap.extension.table.DataColumn("", {
-                                label: ibas.i18n.prop("bo_contactperson_businesspartner"),
+                                label: ibas.i18n.prop("bo_address_businesspartner")
+                                    + ibas.i18n.prop("bo_businesspartnerasset_code"),
+                                template: new sap.extension.m.Text("", {
+                                }).bindProperty("bindingValue", {
+                                    path: "businessPartner",
+                                    type: new sap.extension.data.Alphanumeric()
+                                }),
+                            }),
+                            new sap.extension.table.DataColumn("", {
+                                label: ibas.i18n.prop("bo_address_businesspartner")
+                                    + ibas.i18n.prop("bo_businesspartnerasset_name"),
                                 template: new component.BusinessPartnerText("", {
                                     typeProperty: "ownerType",
                                 }).bindProperty("bindingValue", {

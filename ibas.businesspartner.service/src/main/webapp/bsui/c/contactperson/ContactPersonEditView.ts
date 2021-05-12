@@ -128,7 +128,7 @@ namespace businesspartner {
                             }).bindProperty("bindingValue", {
                                 path: "position",
                                 type: new sap.extension.data.Alphanumeric({
-                                    maxLength: 10
+                                    maxLength: 60
                                 })
                             }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_remark1") }),

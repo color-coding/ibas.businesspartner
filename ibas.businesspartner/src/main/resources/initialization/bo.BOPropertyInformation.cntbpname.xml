@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!DOCTYPE BOPropertyInformation>
+<ns2:BOPropertyInformation
+	xmlns:ns2="http://colorcoding.org/ibas/initialfantasy/bo">
+	<Code>${Company}_BP_CONTACTPERSON</Code>
+	<Property>BusinessPartnerName</Property>
+	<Description>业务伙伴名称</Description>
+	<DataType>Alphanumeric</DataType>
+	<EditType>Default</EditType>
+	<EditSize>100</EditSize>
+	<Searched>YES</Searched>
+	<Systemed>YES</Systemed>
+</ns2:BOPropertyInformation>

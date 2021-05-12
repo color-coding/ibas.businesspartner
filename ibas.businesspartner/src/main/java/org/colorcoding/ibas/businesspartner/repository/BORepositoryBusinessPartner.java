@@ -6,6 +6,7 @@ import org.colorcoding.ibas.bobas.common.Criteria;
 import org.colorcoding.ibas.bobas.common.ICondition;
 import org.colorcoding.ibas.bobas.common.ICriteria;
 import org.colorcoding.ibas.bobas.common.IOperationResult;
+import org.colorcoding.ibas.bobas.common.ISort;
 import org.colorcoding.ibas.bobas.common.OperationResult;
 import org.colorcoding.ibas.bobas.data.DateTime;
 import org.colorcoding.ibas.bobas.data.Decimal;
@@ -37,25 +38,125 @@ import org.colorcoding.ibas.businesspartner.data.emBusinessPartnerType;
  */
 public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 		implements IBORepositoryBusinessPartnerSvc, IBORepositoryBusinessPartnerApp {
+
+	// --------------------------------------------------------------------------------------------//
+	/**
+	 * 查询条件字段-业务伙伴编码
+	 */
+	public static final String CONDITION_ALIAS_BUSINESS_PARTNER_CODE = "BusinessPartnerCode";
+	/**
+	 * 查询条件字段-业务伙伴名称
+	 */
+	public static final String CONDITION_ALIAS_BUSINESS_PARTNER_NAME = "BusinessPartnerName";
+
+	/**
+	 * 替换业务伙伴查询条件
+	 * 
+	 * @param criteria
+	 */
+	private ICriteria flushBusinessPartnerCriteria(ICriteria criteria, String token) {
+		if (criteria == null) {
+			return criteria;
+		}
+		ICondition condition;
+		Criteria bpCriteria = new Criteria();
+		for (ICondition item : criteria.getConditions()) {
+			if (CONDITION_ALIAS_BUSINESS_PARTNER_CODE.equalsIgnoreCase(item.getAlias())) {
+				condition = bpCriteria.getConditions().create();
+				condition.setAlias(Customer.PROPERTY_CODE.getName());
+				condition.setOperation(item.getOperation());
+				condition.setValue(item.getValue());
+				condition.setRelationship(item.getRelationship());
+			} else if (CONDITION_ALIAS_BUSINESS_PARTNER_NAME.equalsIgnoreCase(item.getAlias())) {
+				condition = bpCriteria.getConditions().create();
+				condition.setAlias(Customer.PROPERTY_NAME.getName());
+				condition.setOperation(item.getOperation());
+				condition.setValue(item.getValue());
+				condition.setRelationship(item.getRelationship());
+			}
+		}
+		if (!bpCriteria.getConditions().isEmpty()) {
+			Criteria cCriteria = new Criteria();
+			for (Customer item : this.fetchCustomer(bpCriteria, token).getResultObjects()) {
+				condition = cCriteria.getConditions().create();
+				condition.setAlias("CardCode");
+				condition.setValue(item.getCode());
+				if (cCriteria.getConditions().size() > 1) {
+					condition.setRelationship(ConditionRelationship.OR);
+				}
+			}
+			for (Supplier item : this.fetchSupplier(bpCriteria, token).getResultObjects()) {
+				condition = cCriteria.getConditions().create();
+				condition.setAlias("CardCode");
+				condition.setValue(item.getCode());
+				if (cCriteria.getConditions().size() > 1) {
+					condition.setRelationship(ConditionRelationship.OR);
+				}
+			}
+			if (cCriteria.getConditions().size() > 1) {
+				condition = cCriteria.getConditions().firstOrDefault();
+				condition.setBracketOpen(condition.getBracketOpen() + 1);
+				condition = cCriteria.getConditions().lastOrDefault();
+				condition.setBracketClose(condition.getBracketClose() + 1);
+			}
+			if (cCriteria.getConditions().isEmpty()) {
+				// 没有条件则替换为常满足
+				condition = cCriteria.getConditions().create();
+				condition.setAlias("CardCode");
+				condition.setOperation(ConditionOperation.NOT_NULL);
+			}
+			// 替换业务伙伴查询为编码
+			Criteria nCriteria = new Criteria();
+			nCriteria.setResultCount(criteria.getResultCount());
+			for (ICondition item : criteria.getConditions()) {
+				if (CONDITION_ALIAS_BUSINESS_PARTNER_CODE.equalsIgnoreCase(item.getAlias())
+						|| CONDITION_ALIAS_BUSINESS_PARTNER_NAME.equalsIgnoreCase(item.getAlias())) {
+					ICriteria tCriteria = cCriteria.clone();
+					// 处理括号
+					ICondition tCondition = tCriteria.getConditions().firstOrDefault();
+					tCondition.setRelationship(item.getRelationship());
+					tCondition.setBracketOpen(tCondition.getBracketOpen() + item.getBracketOpen());
+					tCondition = tCriteria.getConditions().lastOrDefault();
+					tCondition.setBracketClose(tCondition.getBracketClose() + item.getBracketClose());
+					// 替换
+					for (ICondition tItem : tCriteria.getConditions()) {
+						nCriteria.getConditions().add(tItem);
+					}
+				} else {
+					nCriteria.getConditions().add(item);
+				}
+			}
+			for (ISort item : criteria.getSorts()) {
+				if (CONDITION_ALIAS_BUSINESS_PARTNER_CODE.equalsIgnoreCase(item.getAlias())
+						|| CONDITION_ALIAS_BUSINESS_PARTNER_NAME.equalsIgnoreCase(item.getAlias())) {
+					ISort tSort = nCriteria.getSorts().create();
+					tSort.setAlias("CardCode");
+					tSort.setSortType(item.getSortType());
+				} else {
+					nCriteria.getSorts().add(item);
+				}
+			}
+			return nCriteria;
+		}
+		return criteria;
+	}
+
 	// --------------------------------------------------------------------------------------------//
 	/**
 	 * 查询-业务伙伴地址
 	 * 
-	 * @param criteria
-	 *            查询
-	 * @param token
-	 *            口令
+	 * @param criteria 查询
+	 * @param token    口令
 	 * @return 操作结果
 	 */
 	public OperationResult<Address> fetchAddress(ICriteria criteria, String token) {
-		return super.fetch(criteria, token, Address.class);
+		return super.fetch(this.flushBusinessPartnerCriteria(criteria, token), token, Address.class);
 	}
 
 	/**
 	 * 查询-业务伙伴地址（提前设置用户口令）
 	 * 
-	 * @param criteria
-	 *            查询
+	 * @param criteria 查询
 	 * @return 操作结果
 	 */
 	public IOperationResult<IAddress> fetchAddress(ICriteria criteria) {
@@ -65,10 +166,8 @@ public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 	/**
 	 * 保存-业务伙伴地址
 	 * 
-	 * @param bo
-	 *            对象实例
-	 * @param token
-	 *            口令
+	 * @param bo    对象实例
+	 * @param token 口令
 	 * @return 操作结果
 	 */
 	public OperationResult<Address> saveAddress(Address bo, String token) {
@@ -78,8 +177,7 @@ public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 	/**
 	 * 保存-业务伙伴地址（提前设置用户口令）
 	 * 
-	 * @param bo
-	 *            对象实例
+	 * @param bo 对象实例
 	 * @return 操作结果
 	 */
 	public IOperationResult<IAddress> saveAddress(IAddress bo) {
@@ -90,10 +188,8 @@ public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 	/**
 	 * 查询-业务伙伴组
 	 * 
-	 * @param criteria
-	 *            查询
-	 * @param token
-	 *            口令
+	 * @param criteria 查询
+	 * @param token    口令
 	 * @return 操作结果
 	 */
 	public OperationResult<BusinessPartnerGroup> fetchBusinessPartnerGroup(ICriteria criteria, String token) {
@@ -103,8 +199,7 @@ public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 	/**
 	 * 查询-业务伙伴组（提前设置用户口令）
 	 * 
-	 * @param criteria
-	 *            查询
+	 * @param criteria 查询
 	 * @return 操作结果
 	 */
 	public IOperationResult<IBusinessPartnerGroup> fetchBusinessPartnerGroup(ICriteria criteria) {
@@ -115,10 +210,8 @@ public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 	/**
 	 * 保存-业务伙伴组
 	 * 
-	 * @param bo
-	 *            对象实例
-	 * @param token
-	 *            口令
+	 * @param bo    对象实例
+	 * @param token 口令
 	 * @return 操作结果
 	 */
 	public OperationResult<BusinessPartnerGroup> saveBusinessPartnerGroup(BusinessPartnerGroup bo, String token) {
@@ -128,8 +221,7 @@ public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 	/**
 	 * 保存-业务伙伴组（提前设置用户口令）
 	 * 
-	 * @param bo
-	 *            对象实例
+	 * @param bo 对象实例
 	 * @return 操作结果
 	 */
 	public IOperationResult<IBusinessPartnerGroup> saveBusinessPartnerGroup(IBusinessPartnerGroup bo) {
@@ -141,21 +233,18 @@ public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 	/**
 	 * 查询-业务伙伴联系人
 	 * 
-	 * @param criteria
-	 *            查询
-	 * @param token
-	 *            口令
+	 * @param criteria 查询
+	 * @param token    口令
 	 * @return 操作结果
 	 */
 	public OperationResult<ContactPerson> fetchContactPerson(ICriteria criteria, String token) {
-		return super.fetch(criteria, token, ContactPerson.class);
+		return super.fetch(this.flushBusinessPartnerCriteria(criteria, token), token, ContactPerson.class);
 	}
 
 	/**
 	 * 查询-业务伙伴联系人（提前设置用户口令）
 	 * 
-	 * @param criteria
-	 *            查询
+	 * @param criteria 查询
 	 * @return 操作结果
 	 */
 	public IOperationResult<IContactPerson> fetchContactPerson(ICriteria criteria) {
@@ -165,10 +254,8 @@ public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 	/**
 	 * 保存-业务伙伴联系人
 	 * 
-	 * @param bo
-	 *            对象实例
-	 * @param token
-	 *            口令
+	 * @param bo    对象实例
+	 * @param token 口令
 	 * @return 操作结果
 	 */
 	public OperationResult<ContactPerson> saveContactPerson(ContactPerson bo, String token) {
@@ -178,8 +265,7 @@ public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 	/**
 	 * 保存-业务伙伴联系人（提前设置用户口令）
 	 * 
-	 * @param bo
-	 *            对象实例
+	 * @param bo 对象实例
 	 * @return 操作结果
 	 */
 	public IOperationResult<IContactPerson> saveContactPerson(IContactPerson bo) {
@@ -190,10 +276,8 @@ public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 	/**
 	 * 查询-客户
 	 * 
-	 * @param criteria
-	 *            查询
-	 * @param token
-	 *            口令
+	 * @param criteria 查询
+	 * @param token    口令
 	 * @return 操作结果
 	 */
 	public OperationResult<Customer> fetchCustomer(ICriteria criteria, String token) {
@@ -203,8 +287,7 @@ public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 	/**
 	 * 查询-客户（提前设置用户口令）
 	 * 
-	 * @param criteria
-	 *            查询
+	 * @param criteria 查询
 	 * @return 操作结果
 	 */
 	public IOperationResult<ICustomer> fetchCustomer(ICriteria criteria) {
@@ -214,10 +297,8 @@ public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 	/**
 	 * 保存-客户
 	 * 
-	 * @param bo
-	 *            对象实例
-	 * @param token
-	 *            口令
+	 * @param bo    对象实例
+	 * @param token 口令
 	 * @return 操作结果
 	 */
 	public OperationResult<Customer> saveCustomer(Customer bo, String token) {
@@ -227,8 +308,7 @@ public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 	/**
 	 * 保存-客户（提前设置用户口令）
 	 * 
-	 * @param bo
-	 *            对象实例
+	 * @param bo 对象实例
 	 * @return 操作结果
 	 */
 	public IOperationResult<ICustomer> saveCustomer(ICustomer bo) {
@@ -239,10 +319,8 @@ public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 	/**
 	 * 查询-供应商
 	 * 
-	 * @param criteria
-	 *            查询
-	 * @param token
-	 *            口令
+	 * @param criteria 查询
+	 * @param token    口令
 	 * @return 操作结果
 	 */
 	public OperationResult<Supplier> fetchSupplier(ICriteria criteria, String token) {
@@ -252,8 +330,7 @@ public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 	/**
 	 * 查询-供应商（提前设置用户口令）
 	 * 
-	 * @param criteria
-	 *            查询
+	 * @param criteria 查询
 	 * @return 操作结果
 	 */
 	public IOperationResult<ISupplier> fetchSupplier(ICriteria criteria) {
@@ -263,10 +340,8 @@ public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 	/**
 	 * 保存-供应商
 	 * 
-	 * @param bo
-	 *            对象实例
-	 * @param token
-	 *            口令
+	 * @param bo    对象实例
+	 * @param token 口令
 	 * @return 操作结果
 	 */
 	public OperationResult<Supplier> saveSupplier(Supplier bo, String token) {
@@ -276,8 +351,7 @@ public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 	/**
 	 * 保存-供应商（提前设置用户口令）
 	 * 
-	 * @param bo
-	 *            对象实例
+	 * @param bo 对象实例
 	 * @return 操作结果
 	 */
 	public IOperationResult<ISupplier> saveSupplier(ISupplier bo) {
@@ -288,10 +362,8 @@ public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 	/**
 	 * 查询-资产项目
 	 * 
-	 * @param criteria
-	 *            查询
-	 * @param token
-	 *            口令
+	 * @param criteria 查询
+	 * @param token    口令
 	 * @return 操作结果
 	 */
 	public OperationResult<AssetItem> fetchAssetItem(ICriteria criteria, String token) {
@@ -301,8 +373,7 @@ public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 	/**
 	 * 查询-资产项目（提前设置用户口令）
 	 * 
-	 * @param criteria
-	 *            查询
+	 * @param criteria 查询
 	 * @return 操作结果
 	 */
 	public IOperationResult<IAssetItem> fetchAssetItem(ICriteria criteria) {
@@ -312,10 +383,8 @@ public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 	/**
 	 * 保存-资产项目
 	 * 
-	 * @param bo
-	 *            对象实例
-	 * @param token
-	 *            口令
+	 * @param bo    对象实例
+	 * @param token 口令
 	 * @return 操作结果
 	 */
 	public OperationResult<AssetItem> saveAssetItem(AssetItem bo, String token) {
@@ -325,8 +394,7 @@ public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 	/**
 	 * 保存-资产项目（提前设置用户口令）
 	 * 
-	 * @param bo
-	 *            对象实例
+	 * @param bo 对象实例
 	 * @return 操作结果
 	 */
 	public IOperationResult<IAssetItem> saveAssetItem(IAssetItem bo) {
@@ -337,21 +405,18 @@ public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 	/**
 	 * 查询-业务伙伴资产
 	 * 
-	 * @param criteria
-	 *            查询
-	 * @param token
-	 *            口令
+	 * @param criteria 查询
+	 * @param token    口令
 	 * @return 操作结果
 	 */
 	public OperationResult<BusinessPartnerAsset> fetchBusinessPartnerAsset(ICriteria criteria, String token) {
-		return super.fetch(criteria, token, BusinessPartnerAsset.class);
+		return super.fetch(this.flushBusinessPartnerCriteria(criteria, token), token, BusinessPartnerAsset.class);
 	}
 
 	/**
 	 * 查询-业务伙伴资产（提前设置用户口令）
 	 * 
-	 * @param criteria
-	 *            查询
+	 * @param criteria 查询
 	 * @return 操作结果
 	 */
 	public IOperationResult<IBusinessPartnerAsset> fetchBusinessPartnerAsset(ICriteria criteria) {
@@ -362,10 +427,8 @@ public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 	/**
 	 * 保存-业务伙伴资产
 	 * 
-	 * @param bo
-	 *            对象实例
-	 * @param token
-	 *            口令
+	 * @param bo    对象实例
+	 * @param token 口令
 	 * @return 操作结果
 	 */
 	public OperationResult<BusinessPartnerAsset> saveBusinessPartnerAsset(BusinessPartnerAsset bo, String token) {
@@ -375,8 +438,7 @@ public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 	/**
 	 * 保存-业务伙伴资产（提前设置用户口令）
 	 * 
-	 * @param bo
-	 *            对象实例
+	 * @param bo 对象实例
 	 * @return 操作结果
 	 */
 	public IOperationResult<IBusinessPartnerAsset> saveBusinessPartnerAsset(IBusinessPartnerAsset bo) {
@@ -388,10 +450,8 @@ public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 	/**
 	 * 查询-业务伙伴资产日记账
 	 * 
-	 * @param criteria
-	 *            查询
-	 * @param token
-	 *            口令
+	 * @param criteria 查询
+	 * @param token    口令
 	 * @return 操作结果
 	 */
 	public OperationResult<BusinessPartnerAssetJournal> fetchBusinessPartnerAssetJournal(ICriteria criteria,
@@ -402,8 +462,7 @@ public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 	/**
 	 * 查询-业务伙伴资产日记账（提前设置用户口令）
 	 * 
-	 * @param criteria
-	 *            查询
+	 * @param criteria 查询
 	 * @return 操作结果
 	 */
 	public IOperationResult<IBusinessPartnerAssetJournal> fetchBusinessPartnerAssetJournal(ICriteria criteria) {
@@ -414,10 +473,8 @@ public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 	/**
 	 * 保存-业务伙伴资产日记账
 	 * 
-	 * @param bo
-	 *            对象实例
-	 * @param token
-	 *            口令
+	 * @param bo    对象实例
+	 * @param token 口令
 	 * @return 操作结果
 	 */
 	public OperationResult<BusinessPartnerAssetJournal> saveBusinessPartnerAssetJournal(BusinessPartnerAssetJournal bo,
@@ -428,8 +485,7 @@ public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 	/**
 	 * 保存-业务伙伴资产日记账（提前设置用户口令）
 	 * 
-	 * @param bo
-	 *            对象实例
+	 * @param bo 对象实例
 	 * @return 操作结果
 	 */
 	public IOperationResult<IBusinessPartnerAssetJournal> saveBusinessPartnerAssetJournal(

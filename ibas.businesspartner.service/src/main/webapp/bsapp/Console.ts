@@ -105,6 +105,8 @@ namespace businesspartner {
                 this.register(new CustomerChooseServiceMapping());
                 this.register(new SupplierChooseServiceMapping());
                 this.register(new BusinessPartnerGroupChooseServiceMapping());
+                this.register(new AssetItemChooseServiceMapping());
+                this.register(new BusinessPartnerAssetChooseServiceMapping());
             }
         }
     }
