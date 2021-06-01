@@ -21,8 +21,7 @@ public interface IAddress extends IBOSimple {
 	/**
 	 * 设置-业务伙伴
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setBusinessPartner(String value);
 
@@ -36,8 +35,7 @@ public interface IAddress extends IBOSimple {
 	/**
 	 * 设置-归属类型
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setOwnerType(emBusinessPartnerType value);
 
@@ -51,8 +49,7 @@ public interface IAddress extends IBOSimple {
 	/**
 	 * 设置-有效的
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setActivated(emYesNo value);
 
@@ -66,8 +63,7 @@ public interface IAddress extends IBOSimple {
 	/**
 	 * 设置-名称
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setName(String value);
 
@@ -81,8 +77,7 @@ public interface IAddress extends IBOSimple {
 	/**
 	 * 设置-街道
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setStreet(String value);
 
@@ -96,8 +91,7 @@ public interface IAddress extends IBOSimple {
 	/**
 	 * 设置-县/区
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setDistrict(String value);
 
@@ -111,8 +105,7 @@ public interface IAddress extends IBOSimple {
 	/**
 	 * 设置-市
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setCity(String value);
 
@@ -126,8 +119,7 @@ public interface IAddress extends IBOSimple {
 	/**
 	 * 设置-省
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setProvince(String value);
 
@@ -141,8 +133,7 @@ public interface IAddress extends IBOSimple {
 	/**
 	 * 设置-国
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setCountry(String value);
 
@@ -156,8 +147,7 @@ public interface IAddress extends IBOSimple {
 	/**
 	 * 设置-邮编
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setZipCode(String value);
 
@@ -171,8 +161,7 @@ public interface IAddress extends IBOSimple {
 	/**
 	 * 设置-联系电话
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setMobilePhone(String value);
 
@@ -186,8 +175,7 @@ public interface IAddress extends IBOSimple {
 	/**
 	 * 设置-电话 1
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setTelephone1(String value);
 
@@ -201,8 +189,7 @@ public interface IAddress extends IBOSimple {
 	/**
 	 * 设置-电话 2
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setTelephone2(String value);
 
@@ -216,8 +203,7 @@ public interface IAddress extends IBOSimple {
 	/**
 	 * 设置-备注 1
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setRemark1(String value);
 
@@ -231,8 +217,7 @@ public interface IAddress extends IBOSimple {
 	/**
 	 * 设置-备注 2
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setRemark2(String value);
 
@@ -246,8 +231,7 @@ public interface IAddress extends IBOSimple {
 	/**
 	 * 设置-联系人
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setContacts(String value);
 
@@ -261,8 +245,7 @@ public interface IAddress extends IBOSimple {
 	/**
 	 * 设置-对象编号
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setObjectKey(Integer value);
 
@@ -276,8 +259,7 @@ public interface IAddress extends IBOSimple {
 	/**
 	 * 设置-对象类型
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setObjectCode(String value);
 
@@ -291,8 +273,7 @@ public interface IAddress extends IBOSimple {
 	/**
 	 * 设置-创建日期
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setCreateDate(DateTime value);
 
@@ -306,8 +287,7 @@ public interface IAddress extends IBOSimple {
 	/**
 	 * 设置-创建时间
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setCreateTime(Short value);
 
@@ -321,8 +301,7 @@ public interface IAddress extends IBOSimple {
 	/**
 	 * 设置-修改日期
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setUpdateDate(DateTime value);
 
@@ -336,8 +315,7 @@ public interface IAddress extends IBOSimple {
 	/**
 	 * 设置-修改时间
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setUpdateTime(Short value);
 
@@ -351,8 +329,7 @@ public interface IAddress extends IBOSimple {
 	/**
 	 * 设置-实例号（版本）
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setLogInst(Integer value);
 
@@ -366,8 +343,7 @@ public interface IAddress extends IBOSimple {
 	/**
 	 * 设置-服务系列
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setSeries(Integer value);
 
@@ -381,8 +357,7 @@ public interface IAddress extends IBOSimple {
 	/**
 	 * 设置-数据源
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setDataSource(String value);
 
@@ -396,8 +371,7 @@ public interface IAddress extends IBOSimple {
 	/**
 	 * 设置-创建用户
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setCreateUserSign(Integer value);
 
@@ -411,8 +385,7 @@ public interface IAddress extends IBOSimple {
 	/**
 	 * 设置-修改用户
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setUpdateUserSign(Integer value);
 
@@ -426,8 +399,7 @@ public interface IAddress extends IBOSimple {
 	/**
 	 * 设置-创建动作标识
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setCreateActionId(String value);
 
@@ -441,9 +413,35 @@ public interface IAddress extends IBOSimple {
 	/**
 	 * 设置-更新动作标识
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	void setUpdateActionId(String value);
 
+	/**
+	 * 获取-数据所有者
+	 * 
+	 * @return 值
+	 */
+	Integer getDataOwner();
+
+	/**
+	 * 设置-数据所有者
+	 * 
+	 * @param value 值
+	 */
+	void setDataOwner(Integer value);
+
+	/**
+	 * 获取-数据所属组织
+	 * 
+	 * @return 值
+	 */
+	String getOrganization();
+
+	/**
+	 * 设置-数据所属组织
+	 * 
+	 * @param value 值
+	 */
+	void setOrganization(String value);
 }

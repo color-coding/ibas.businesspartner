@@ -14,6 +14,7 @@ import org.colorcoding.ibas.bobas.data.emYesNo;
 import org.colorcoding.ibas.bobas.mapping.BusinessObjectUnit;
 import org.colorcoding.ibas.bobas.mapping.DbField;
 import org.colorcoding.ibas.bobas.mapping.DbFieldType;
+import org.colorcoding.ibas.bobas.ownership.IDataOwnership;
 import org.colorcoding.ibas.bobas.rule.IBusinessRule;
 import org.colorcoding.ibas.bobas.rule.common.BusinessRuleRequired;
 import org.colorcoding.ibas.businesspartner.MyConfiguration;
@@ -28,7 +29,8 @@ import org.colorcoding.ibas.businesspartner.data.emGender;
 @XmlType(name = ContactPerson.BUSINESS_OBJECT_NAME, namespace = MyConfiguration.NAMESPACE_BO)
 @XmlRootElement(name = ContactPerson.BUSINESS_OBJECT_NAME, namespace = MyConfiguration.NAMESPACE_BO)
 @BusinessObjectUnit(code = ContactPerson.BUSINESS_OBJECT_CODE)
-public class ContactPerson extends BusinessObject<ContactPerson> implements IContactPerson, IBOUserFields {
+public class ContactPerson extends BusinessObject<ContactPerson>
+		implements IContactPerson, IDataOwnership, IBOUserFields {
 
 	/**
 	 * 序列化版本标记
@@ -80,8 +82,7 @@ public class ContactPerson extends BusinessObject<ContactPerson> implements ICon
 	/**
 	 * 设置-业务伙伴
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setBusinessPartner(String value) {
 		this.setProperty(PROPERTY_BUSINESSPARTNER, value);
@@ -112,8 +113,7 @@ public class ContactPerson extends BusinessObject<ContactPerson> implements ICon
 	/**
 	 * 设置-归属类型
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setOwnerType(emBusinessPartnerType value) {
 		this.setProperty(PROPERTY_OWNERTYPE, value);
@@ -144,8 +144,7 @@ public class ContactPerson extends BusinessObject<ContactPerson> implements ICon
 	/**
 	 * 设置-有效的
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setActivated(emYesNo value) {
 		this.setProperty(PROPERTY_ACTIVATED, value);
@@ -176,8 +175,7 @@ public class ContactPerson extends BusinessObject<ContactPerson> implements ICon
 	/**
 	 * 设置-名称
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setName(String value) {
 		this.setProperty(PROPERTY_NAME, value);
@@ -208,8 +206,7 @@ public class ContactPerson extends BusinessObject<ContactPerson> implements ICon
 	/**
 	 * 设置-性别
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setGender(emGender value) {
 		this.setProperty(PROPERTY_GENDER, value);
@@ -240,8 +237,7 @@ public class ContactPerson extends BusinessObject<ContactPerson> implements ICon
 	/**
 	 * 设置-职位
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setPosition(String value) {
 		this.setProperty(PROPERTY_POSITION, value);
@@ -272,8 +268,7 @@ public class ContactPerson extends BusinessObject<ContactPerson> implements ICon
 	/**
 	 * 设置-地址
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setAddress(String value) {
 		this.setProperty(PROPERTY_ADDRESS, value);
@@ -304,8 +299,7 @@ public class ContactPerson extends BusinessObject<ContactPerson> implements ICon
 	/**
 	 * 设置-电话 1
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setTelephone1(String value) {
 		this.setProperty(PROPERTY_TELEPHONE1, value);
@@ -336,8 +330,7 @@ public class ContactPerson extends BusinessObject<ContactPerson> implements ICon
 	/**
 	 * 设置-电话 2
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setTelephone2(String value) {
 		this.setProperty(PROPERTY_TELEPHONE2, value);
@@ -368,8 +361,7 @@ public class ContactPerson extends BusinessObject<ContactPerson> implements ICon
 	/**
 	 * 设置-移动电话
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setMobilePhone(String value) {
 		this.setProperty(PROPERTY_MOBILEPHONE, value);
@@ -400,8 +392,7 @@ public class ContactPerson extends BusinessObject<ContactPerson> implements ICon
 	/**
 	 * 设置-传真
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setFax(String value) {
 		this.setProperty(PROPERTY_FAX, value);
@@ -432,8 +423,7 @@ public class ContactPerson extends BusinessObject<ContactPerson> implements ICon
 	/**
 	 * 设置-电子邮件
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setMail(String value) {
 		this.setProperty(PROPERTY_MAIL, value);
@@ -464,8 +454,7 @@ public class ContactPerson extends BusinessObject<ContactPerson> implements ICon
 	/**
 	 * 设置-备注 1
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setRemark1(String value) {
 		this.setProperty(PROPERTY_REMARK1, value);
@@ -496,8 +485,7 @@ public class ContactPerson extends BusinessObject<ContactPerson> implements ICon
 	/**
 	 * 设置-备注 2
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setRemark2(String value) {
 		this.setProperty(PROPERTY_REMARK2, value);
@@ -528,8 +516,7 @@ public class ContactPerson extends BusinessObject<ContactPerson> implements ICon
 	/**
 	 * 设置-对象编号
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setObjectKey(Integer value) {
 		this.setProperty(PROPERTY_OBJECTKEY, value);
@@ -560,8 +547,7 @@ public class ContactPerson extends BusinessObject<ContactPerson> implements ICon
 	/**
 	 * 设置-对象类型
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setObjectCode(String value) {
 		this.setProperty(PROPERTY_OBJECTCODE, value);
@@ -592,8 +578,7 @@ public class ContactPerson extends BusinessObject<ContactPerson> implements ICon
 	/**
 	 * 设置-创建日期
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setCreateDate(DateTime value) {
 		this.setProperty(PROPERTY_CREATEDATE, value);
@@ -624,8 +609,7 @@ public class ContactPerson extends BusinessObject<ContactPerson> implements ICon
 	/**
 	 * 设置-创建时间
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setCreateTime(Short value) {
 		this.setProperty(PROPERTY_CREATETIME, value);
@@ -656,8 +640,7 @@ public class ContactPerson extends BusinessObject<ContactPerson> implements ICon
 	/**
 	 * 设置-修改日期
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setUpdateDate(DateTime value) {
 		this.setProperty(PROPERTY_UPDATEDATE, value);
@@ -688,8 +671,7 @@ public class ContactPerson extends BusinessObject<ContactPerson> implements ICon
 	/**
 	 * 设置-修改时间
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setUpdateTime(Short value) {
 		this.setProperty(PROPERTY_UPDATETIME, value);
@@ -720,8 +702,7 @@ public class ContactPerson extends BusinessObject<ContactPerson> implements ICon
 	/**
 	 * 设置-实例号（版本）
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setLogInst(Integer value) {
 		this.setProperty(PROPERTY_LOGINST, value);
@@ -752,8 +733,7 @@ public class ContactPerson extends BusinessObject<ContactPerson> implements ICon
 	/**
 	 * 设置-服务系列
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setSeries(Integer value) {
 		this.setProperty(PROPERTY_SERIES, value);
@@ -784,8 +764,7 @@ public class ContactPerson extends BusinessObject<ContactPerson> implements ICon
 	/**
 	 * 设置-数据源
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setDataSource(String value) {
 		this.setProperty(PROPERTY_DATASOURCE, value);
@@ -816,8 +795,7 @@ public class ContactPerson extends BusinessObject<ContactPerson> implements ICon
 	/**
 	 * 设置-创建用户
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setCreateUserSign(Integer value) {
 		this.setProperty(PROPERTY_CREATEUSERSIGN, value);
@@ -848,8 +826,7 @@ public class ContactPerson extends BusinessObject<ContactPerson> implements ICon
 	/**
 	 * 设置-修改用户
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setUpdateUserSign(Integer value) {
 		this.setProperty(PROPERTY_UPDATEUSERSIGN, value);
@@ -880,8 +857,7 @@ public class ContactPerson extends BusinessObject<ContactPerson> implements ICon
 	/**
 	 * 设置-创建动作标识
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setCreateActionId(String value) {
 		this.setProperty(PROPERTY_CREATEACTIONID, value);
@@ -912,11 +888,72 @@ public class ContactPerson extends BusinessObject<ContactPerson> implements ICon
 	/**
 	 * 设置-更新动作标识
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setUpdateActionId(String value) {
 		this.setProperty(PROPERTY_UPDATEACTIONID, value);
+	}
+
+	/**
+	 * 属性名称-数据所有者
+	 */
+	private static final String PROPERTY_DATAOWNER_NAME = "DataOwner";
+
+	/**
+	 * 数据所有者 属性
+	 */
+	@DbField(name = "DataOwner", type = DbFieldType.NUMERIC, table = DB_TABLE_NAME, primaryKey = false)
+	public static final IPropertyInfo<Integer> PROPERTY_DATAOWNER = registerProperty(PROPERTY_DATAOWNER_NAME,
+			Integer.class, MY_CLASS);
+
+	/**
+	 * 获取-数据所有者
+	 * 
+	 * @return 值
+	 */
+	@XmlElement(name = PROPERTY_DATAOWNER_NAME)
+	public final Integer getDataOwner() {
+		return this.getProperty(PROPERTY_DATAOWNER);
+	}
+
+	/**
+	 * 设置-数据所有者
+	 * 
+	 * @param value 值
+	 */
+	public final void setDataOwner(Integer value) {
+		this.setProperty(PROPERTY_DATAOWNER, value);
+	}
+
+	/**
+	 * 属性名称-数据所属组织
+	 */
+	private static final String PROPERTY_ORGANIZATION_NAME = "Organization";
+
+	/**
+	 * 数据所属组织 属性
+	 */
+	@DbField(name = "OrgCode", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME, primaryKey = false)
+	public static final IPropertyInfo<String> PROPERTY_ORGANIZATION = registerProperty(PROPERTY_ORGANIZATION_NAME,
+			String.class, MY_CLASS);
+
+	/**
+	 * 获取-数据所属组织
+	 * 
+	 * @return 值
+	 */
+	@XmlElement(name = PROPERTY_ORGANIZATION_NAME)
+	public final String getOrganization() {
+		return this.getProperty(PROPERTY_ORGANIZATION);
+	}
+
+	/**
+	 * 设置-数据所属组织
+	 * 
+	 * @param value 值
+	 */
+	public final void setOrganization(String value) {
+		this.setProperty(PROPERTY_ORGANIZATION, value);
 	}
 
 	/**

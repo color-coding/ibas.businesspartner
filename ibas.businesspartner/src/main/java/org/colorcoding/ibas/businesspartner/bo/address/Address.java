@@ -14,6 +14,7 @@ import org.colorcoding.ibas.bobas.data.emYesNo;
 import org.colorcoding.ibas.bobas.mapping.BusinessObjectUnit;
 import org.colorcoding.ibas.bobas.mapping.DbField;
 import org.colorcoding.ibas.bobas.mapping.DbFieldType;
+import org.colorcoding.ibas.bobas.ownership.IDataOwnership;
 import org.colorcoding.ibas.bobas.rule.IBusinessRule;
 import org.colorcoding.ibas.bobas.rule.common.BusinessRuleRequired;
 import org.colorcoding.ibas.businesspartner.MyConfiguration;
@@ -27,7 +28,7 @@ import org.colorcoding.ibas.businesspartner.data.emBusinessPartnerType;
 @XmlType(name = Address.BUSINESS_OBJECT_NAME, namespace = MyConfiguration.NAMESPACE_BO)
 @XmlRootElement(name = Address.BUSINESS_OBJECT_NAME, namespace = MyConfiguration.NAMESPACE_BO)
 @BusinessObjectUnit(code = Address.BUSINESS_OBJECT_CODE)
-public class Address extends BusinessObject<Address> implements IAddress, IBOUserFields {
+public class Address extends BusinessObject<Address> implements IAddress, IDataOwnership, IBOUserFields {
 
 	/**
 	 * 序列化版本标记
@@ -79,8 +80,7 @@ public class Address extends BusinessObject<Address> implements IAddress, IBOUse
 	/**
 	 * 设置-业务伙伴
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setBusinessPartner(String value) {
 		this.setProperty(PROPERTY_BUSINESSPARTNER, value);
@@ -111,8 +111,7 @@ public class Address extends BusinessObject<Address> implements IAddress, IBOUse
 	/**
 	 * 设置-归属类型
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setOwnerType(emBusinessPartnerType value) {
 		this.setProperty(PROPERTY_OWNERTYPE, value);
@@ -143,8 +142,7 @@ public class Address extends BusinessObject<Address> implements IAddress, IBOUse
 	/**
 	 * 设置-有效的
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setActivated(emYesNo value) {
 		this.setProperty(PROPERTY_ACTIVATED, value);
@@ -175,8 +173,7 @@ public class Address extends BusinessObject<Address> implements IAddress, IBOUse
 	/**
 	 * 设置-名称
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setName(String value) {
 		this.setProperty(PROPERTY_NAME, value);
@@ -207,8 +204,7 @@ public class Address extends BusinessObject<Address> implements IAddress, IBOUse
 	/**
 	 * 设置-街道
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setStreet(String value) {
 		this.setProperty(PROPERTY_STREET, value);
@@ -239,8 +235,7 @@ public class Address extends BusinessObject<Address> implements IAddress, IBOUse
 	/**
 	 * 设置-县/区
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setDistrict(String value) {
 		this.setProperty(PROPERTY_DISTRICT, value);
@@ -271,8 +266,7 @@ public class Address extends BusinessObject<Address> implements IAddress, IBOUse
 	/**
 	 * 设置-市
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setCity(String value) {
 		this.setProperty(PROPERTY_CITY, value);
@@ -303,8 +297,7 @@ public class Address extends BusinessObject<Address> implements IAddress, IBOUse
 	/**
 	 * 设置-省
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setProvince(String value) {
 		this.setProperty(PROPERTY_PROVINCE, value);
@@ -335,8 +328,7 @@ public class Address extends BusinessObject<Address> implements IAddress, IBOUse
 	/**
 	 * 设置-国
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setCountry(String value) {
 		this.setProperty(PROPERTY_COUNTRY, value);
@@ -367,8 +359,7 @@ public class Address extends BusinessObject<Address> implements IAddress, IBOUse
 	/**
 	 * 设置-邮编
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setZipCode(String value) {
 		this.setProperty(PROPERTY_ZIPCODE, value);
@@ -399,8 +390,7 @@ public class Address extends BusinessObject<Address> implements IAddress, IBOUse
 	/**
 	 * 设置-联系电话
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setMobilePhone(String value) {
 		this.setProperty(PROPERTY_MOBILEPHONE, value);
@@ -431,8 +421,7 @@ public class Address extends BusinessObject<Address> implements IAddress, IBOUse
 	/**
 	 * 设置-电话 1
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setTelephone1(String value) {
 		this.setProperty(PROPERTY_TELEPHONE1, value);
@@ -463,8 +452,7 @@ public class Address extends BusinessObject<Address> implements IAddress, IBOUse
 	/**
 	 * 设置-电话 2
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setTelephone2(String value) {
 		this.setProperty(PROPERTY_TELEPHONE2, value);
@@ -495,8 +483,7 @@ public class Address extends BusinessObject<Address> implements IAddress, IBOUse
 	/**
 	 * 设置-备注 1
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setRemark1(String value) {
 		this.setProperty(PROPERTY_REMARK1, value);
@@ -527,8 +514,7 @@ public class Address extends BusinessObject<Address> implements IAddress, IBOUse
 	/**
 	 * 设置-备注 2
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setRemark2(String value) {
 		this.setProperty(PROPERTY_REMARK2, value);
@@ -559,8 +545,7 @@ public class Address extends BusinessObject<Address> implements IAddress, IBOUse
 	/**
 	 * 设置-联系人
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setContacts(String value) {
 		this.setProperty(PROPERTY_CONTACTS, value);
@@ -591,8 +576,7 @@ public class Address extends BusinessObject<Address> implements IAddress, IBOUse
 	/**
 	 * 设置-对象编号
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setObjectKey(Integer value) {
 		this.setProperty(PROPERTY_OBJECTKEY, value);
@@ -623,8 +607,7 @@ public class Address extends BusinessObject<Address> implements IAddress, IBOUse
 	/**
 	 * 设置-对象类型
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setObjectCode(String value) {
 		this.setProperty(PROPERTY_OBJECTCODE, value);
@@ -655,8 +638,7 @@ public class Address extends BusinessObject<Address> implements IAddress, IBOUse
 	/**
 	 * 设置-创建日期
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setCreateDate(DateTime value) {
 		this.setProperty(PROPERTY_CREATEDATE, value);
@@ -687,8 +669,7 @@ public class Address extends BusinessObject<Address> implements IAddress, IBOUse
 	/**
 	 * 设置-创建时间
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setCreateTime(Short value) {
 		this.setProperty(PROPERTY_CREATETIME, value);
@@ -719,8 +700,7 @@ public class Address extends BusinessObject<Address> implements IAddress, IBOUse
 	/**
 	 * 设置-修改日期
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setUpdateDate(DateTime value) {
 		this.setProperty(PROPERTY_UPDATEDATE, value);
@@ -751,8 +731,7 @@ public class Address extends BusinessObject<Address> implements IAddress, IBOUse
 	/**
 	 * 设置-修改时间
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setUpdateTime(Short value) {
 		this.setProperty(PROPERTY_UPDATETIME, value);
@@ -783,8 +762,7 @@ public class Address extends BusinessObject<Address> implements IAddress, IBOUse
 	/**
 	 * 设置-实例号（版本）
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setLogInst(Integer value) {
 		this.setProperty(PROPERTY_LOGINST, value);
@@ -815,8 +793,7 @@ public class Address extends BusinessObject<Address> implements IAddress, IBOUse
 	/**
 	 * 设置-服务系列
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setSeries(Integer value) {
 		this.setProperty(PROPERTY_SERIES, value);
@@ -847,8 +824,7 @@ public class Address extends BusinessObject<Address> implements IAddress, IBOUse
 	/**
 	 * 设置-数据源
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setDataSource(String value) {
 		this.setProperty(PROPERTY_DATASOURCE, value);
@@ -879,8 +855,7 @@ public class Address extends BusinessObject<Address> implements IAddress, IBOUse
 	/**
 	 * 设置-创建用户
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setCreateUserSign(Integer value) {
 		this.setProperty(PROPERTY_CREATEUSERSIGN, value);
@@ -911,8 +886,7 @@ public class Address extends BusinessObject<Address> implements IAddress, IBOUse
 	/**
 	 * 设置-修改用户
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setUpdateUserSign(Integer value) {
 		this.setProperty(PROPERTY_UPDATEUSERSIGN, value);
@@ -943,8 +917,7 @@ public class Address extends BusinessObject<Address> implements IAddress, IBOUse
 	/**
 	 * 设置-创建动作标识
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setCreateActionId(String value) {
 		this.setProperty(PROPERTY_CREATEACTIONID, value);
@@ -975,11 +948,72 @@ public class Address extends BusinessObject<Address> implements IAddress, IBOUse
 	/**
 	 * 设置-更新动作标识
 	 * 
-	 * @param value
-	 *            值
+	 * @param value 值
 	 */
 	public final void setUpdateActionId(String value) {
 		this.setProperty(PROPERTY_UPDATEACTIONID, value);
+	}
+
+	/**
+	 * 属性名称-数据所有者
+	 */
+	private static final String PROPERTY_DATAOWNER_NAME = "DataOwner";
+
+	/**
+	 * 数据所有者 属性
+	 */
+	@DbField(name = "DataOwner", type = DbFieldType.NUMERIC, table = DB_TABLE_NAME, primaryKey = false)
+	public static final IPropertyInfo<Integer> PROPERTY_DATAOWNER = registerProperty(PROPERTY_DATAOWNER_NAME,
+			Integer.class, MY_CLASS);
+
+	/**
+	 * 获取-数据所有者
+	 * 
+	 * @return 值
+	 */
+	@XmlElement(name = PROPERTY_DATAOWNER_NAME)
+	public final Integer getDataOwner() {
+		return this.getProperty(PROPERTY_DATAOWNER);
+	}
+
+	/**
+	 * 设置-数据所有者
+	 * 
+	 * @param value 值
+	 */
+	public final void setDataOwner(Integer value) {
+		this.setProperty(PROPERTY_DATAOWNER, value);
+	}
+
+	/**
+	 * 属性名称-数据所属组织
+	 */
+	private static final String PROPERTY_ORGANIZATION_NAME = "Organization";
+
+	/**
+	 * 数据所属组织 属性
+	 */
+	@DbField(name = "OrgCode", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME, primaryKey = false)
+	public static final IPropertyInfo<String> PROPERTY_ORGANIZATION = registerProperty(PROPERTY_ORGANIZATION_NAME,
+			String.class, MY_CLASS);
+
+	/**
+	 * 获取-数据所属组织
+	 * 
+	 * @return 值
+	 */
+	@XmlElement(name = PROPERTY_ORGANIZATION_NAME)
+	public final String getOrganization() {
+		return this.getProperty(PROPERTY_ORGANIZATION);
+	}
+
+	/**
+	 * 设置-数据所属组织
+	 * 
+	 * @param value 值
+	 */
+	public final void setOrganization(String value) {
+		this.setProperty(PROPERTY_ORGANIZATION, value);
 	}
 
 	/**
@@ -998,4 +1032,5 @@ public class Address extends BusinessObject<Address> implements IAddress, IBOUse
 				new BusinessRuleRequired(PROPERTY_BUSINESSPARTNER), // 要求有值
 		};
 	}
+
 }

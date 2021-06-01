@@ -30,6 +30,8 @@
         "bo_address_updateusersign": "修改用户",
         "bo_address_createactionid": "创建动作标识",
         "bo_address_updateactionid": "更新动作标识",
+        "bo_address_dataowner": "数据所有者",
+        "bo_address_organization": "数据所属组织",
         "bo_address_closing_delimiter": "----结束----"
     },
     {
@@ -186,6 +188,8 @@
         "bo_contactperson_updateusersign": "修改用户",
         "bo_contactperson_createactionid": "创建动作标识",
         "bo_contactperson_updateactionid": "更新动作标识",
+        "bo_contactperson_dataowner": "数据所有者",
+        "bo_contactperson_organization": "数据所属组织",
         "bo_contactperson_closing_delimiter": "----结束----"
     },
     {

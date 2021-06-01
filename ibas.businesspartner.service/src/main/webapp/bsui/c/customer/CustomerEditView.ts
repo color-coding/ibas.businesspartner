@@ -66,7 +66,7 @@ namespace businesspartner {
                             }).bindProperty("editable", {
                                 path: "isNew",
                                 formatter(data: any): any {
-                                    return !!data ? true : false;
+                                    return data === false ? false : true;
                                 }
                             }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_name") }),
@@ -323,6 +323,13 @@ namespace businesspartner {
                                 type: new sap.extension.data.Alphanumeric({
                                     maxLength: 8
                                 })
+                            }),
+                            new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_dataowner") }),
+                            new sap.extension.m.DataOwnerInput("", {
+                                showValueHelp: true,
+                            }).bindProperty("bindingValue", {
+                                path: "dataOwner",
+                                type: new sap.extension.data.Numeric()
                             }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_remarks") }),
                             new sap.extension.m.TextArea("", {

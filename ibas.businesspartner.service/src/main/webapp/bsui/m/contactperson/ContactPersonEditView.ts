@@ -188,40 +188,9 @@ namespace businesspartner {
                                                     }).bindProperty("bindingValue", {
                                                         path: "position",
                                                         type: new sap.extension.data.Alphanumeric({
-                                                            maxLength: 10
+                                                            maxLength: 60
                                                         })
                                                     }),
-                                                    new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_remark1") }),
-                                                    new sap.extension.m.Input("", {
-                                                    }).bindProperty("bindingValue", {
-                                                        path: "remark1",
-                                                        type: new sap.extension.data.Alphanumeric({
-                                                            maxLength: 200
-                                                        })
-                                                    }),
-                                                    new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_remark2") }),
-                                                    new sap.extension.m.Input("", {
-                                                    }).bindProperty("bindingValue", {
-                                                        path: "remark2",
-                                                        type: new sap.extension.data.Alphanumeric({
-                                                            maxLength: 200
-                                                        })
-                                                    }),
-                                                ]
-                                            }).addStyleClass("sapUxAPObjectPageSubSectionAlignContent")
-                                        ]
-                                    }),
-                                ]
-                            }),
-                            new sap.uxap.ObjectPageSection("", {
-                                title: ibas.i18n.prop("businesspartner_title_contact"),
-                                subSections: [
-                                    new sap.uxap.ObjectPageSubSection("", {
-                                        blocks: [
-                                            new sap.ui.layout.form.SimpleForm("", {
-                                                editable: true,
-                                                width: "auto",
-                                                content: [
                                                     new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_mobilephone") }),
                                                     new sap.extension.m.Input("", {
                                                     }).bindProperty("bindingValue", {
@@ -246,6 +215,21 @@ namespace businesspartner {
                                                             maxLength: 20
                                                         })
                                                     }),
+                                                ]
+                                            }).addStyleClass("sapUxAPObjectPageSubSectionAlignContent")
+                                        ]
+                                    }),
+                                ]
+                            }),
+                            new sap.uxap.ObjectPageSection("", {
+                                title: ibas.i18n.prop("businesspartner_title_contact"),
+                                subSections: [
+                                    new sap.uxap.ObjectPageSubSection("", {
+                                        blocks: [
+                                            new sap.ui.layout.form.SimpleForm("", {
+                                                editable: true,
+                                                width: "auto",
+                                                content: [
                                                     new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_address") }),
                                                     new sap.extension.m.Input("", {
                                                     }).bindProperty("bindingValue", {
@@ -268,6 +252,31 @@ namespace businesspartner {
                                                         path: "telephone2",
                                                         type: new sap.extension.data.Alphanumeric({
                                                             maxLength: 20
+                                                        })
+                                                    }),
+                                                    new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_dataowner") }),
+                                                    new sap.extension.m.DataOwnerInput("", {
+                                                        showValueHelp: true,
+                                                    }).bindProperty("bindingValue", {
+                                                        path: "dataOwner",
+                                                        type: new sap.extension.data.Numeric()
+                                                    }),
+                                                    new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_remark1") }),
+                                                    new sap.extension.m.TextArea("", {
+                                                        rows: 2
+                                                    }).bindProperty("bindingValue", {
+                                                        path: "remark1",
+                                                        type: new sap.extension.data.Alphanumeric({
+                                                            maxLength: 200
+                                                        })
+                                                    }),
+                                                    new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_remark2") }),
+                                                    new sap.extension.m.TextArea("", {
+                                                        rows: 2
+                                                    }).bindProperty("bindingValue", {
+                                                        path: "remark2",
+                                                        type: new sap.extension.data.Alphanumeric({
+                                                            maxLength: 200
                                                         })
                                                     }),
                                                 ]

@@ -261,8 +261,16 @@ namespace businesspartner {
                                                             maxLength: 20
                                                         })
                                                     }),
+                                                    new sap.m.Label("", { text: ibas.i18n.prop("bo_address_dataowner") }),
+                                                    new sap.extension.m.DataOwnerInput("", {
+                                                        showValueHelp: true,
+                                                    }).bindProperty("bindingValue", {
+                                                        path: "dataOwner",
+                                                        type: new sap.extension.data.Numeric()
+                                                    }),
                                                     new sap.m.Label("", { text: ibas.i18n.prop("bo_address_remark1") }),
-                                                    new sap.extension.m.Input("", {
+                                                    new sap.extension.m.TextArea("", {
+                                                        rows: 2
                                                     }).bindProperty("bindingValue", {
                                                         path: "remark1",
                                                         type: new sap.extension.data.Alphanumeric({
@@ -270,7 +278,8 @@ namespace businesspartner {
                                                         })
                                                     }),
                                                     new sap.m.Label("", { text: ibas.i18n.prop("bo_address_remark2") }),
-                                                    new sap.extension.m.Input("", {
+                                                    new sap.extension.m.TextArea("", {
+                                                        rows: 2
                                                     }).bindProperty("bindingValue", {
                                                         path: "remark2",
                                                         type: new sap.extension.data.Alphanumeric({

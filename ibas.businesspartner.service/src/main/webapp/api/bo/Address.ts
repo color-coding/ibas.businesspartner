@@ -98,6 +98,11 @@ namespace businesspartner {
             /** 更新动作标识 */
             updateActionId: string;
 
+            /** 数据所有者 */
+            dataOwner: number;
+
+            /** 数据所属组织 */
+            organization: string;
         }
     }
 }

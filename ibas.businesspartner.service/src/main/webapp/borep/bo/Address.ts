@@ -336,6 +336,28 @@ namespace businesspartner {
                 this.setProperty(Address.PROPERTY_UPDATEACTIONID_NAME, value);
             }
 
+            /** 映射的属性名称-数据所有者 */
+            static PROPERTY_DATAOWNER_NAME: string = "DataOwner";
+            /** 获取-数据所有者 */
+            get dataOwner(): number {
+                return this.getProperty<number>(Address.PROPERTY_DATAOWNER_NAME);
+            }
+            /** 设置-数据所有者 */
+            set dataOwner(value: number) {
+                this.setProperty(Address.PROPERTY_DATAOWNER_NAME, value);
+            }
+
+            /** 映射的属性名称-数据所属组织 */
+            static PROPERTY_ORGANIZATION_NAME: string = "Organization";
+            /** 获取-数据所属组织 */
+            get organization(): string {
+                return this.getProperty<string>(Address.PROPERTY_ORGANIZATION_NAME);
+            }
+            /** 设置-数据所属组织 */
+            set organization(value: string) {
+                this.setProperty(Address.PROPERTY_ORGANIZATION_NAME, value);
+            }
+
             /** 初始化数据 */
             protected init(): void {
                 this.objectCode = ibas.config.applyVariables(Address.BUSINESS_OBJECT_CODE);
