@@ -23,6 +23,7 @@ namespace businesspartner {
                         dataInfo: {
                             code: bo.ContactPerson.BUSINESS_OBJECT_CODE,
                         },
+                        userFieldsMode: "input",
                         showFooter: false,
                         headerTitle: new sap.uxap.ObjectPageHeader("", {
                             objectTitle: {
@@ -33,17 +34,15 @@ namespace businesspartner {
                                 path: "position",
                                 type: new sap.extension.data.Alphanumeric(),
                             },
+                            sideContentButton: new sap.m.Button("", {
+                                text: ibas.i18n.prop("shell_data_save"),
+                                type: sap.m.ButtonType.Transparent,
+                                icon: "sap-icon://save",
+                                press(): void {
+                                    that.fireViewEvents(that.saveDataEvent);
+                                }
+                            }),
                             actions: [
-                                new sap.uxap.ObjectPageHeaderActionButton("", {
-                                    text: ibas.i18n.prop("shell_data_save"),
-                                    type: sap.m.ButtonType.Transparent,
-                                    icon: "sap-icon://save",
-                                    hideText: true,
-                                    importance: sap.uxap.Importance.High,
-                                    press(): void {
-                                        that.fireViewEvents(that.saveDataEvent);
-                                    }
-                                }),
                                 new sap.uxap.ObjectPageHeaderActionButton("", {
                                     text: ibas.i18n.prop("shell_data_clone"),
                                     type: sap.m.ButtonType.Transparent,
@@ -70,9 +69,9 @@ namespace businesspartner {
                             new sap.extension.m.ObjectYesNoStatus("", {
                                 title: ibas.i18n.prop("bo_contactperson_activated"),
                                 negative: false,
-                                text: {
+                                enumValue: {
                                     path: "activated",
-                                    type: new sap.extension.data.YesNo(true),
+                                    type: new sap.extension.data.YesNo(),
                                 }
                             }),
                         ],

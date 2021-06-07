@@ -22,7 +22,10 @@ namespace businesspartner {
                         mode: sap.m.ListMode.None,
                         items: {
                             path: "/rows",
-                            template: new sap.m.ObjectListItem("", {
+                            template: new sap.extension.m.DataObjectListItem("", {
+                                dataInfo: {
+                                    code: bo.ContactPerson.BUSINESS_OBJECT_CODE,
+                                },
                                 title: "{name} {position}",
                                 firstStatus: new sap.m.ObjectStatus("", {
                                     text: "# {objectKey}"

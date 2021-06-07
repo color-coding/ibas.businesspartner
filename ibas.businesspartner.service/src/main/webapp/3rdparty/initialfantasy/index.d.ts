@@ -74,7 +74,9 @@ declare namespace initialfantasy {
             /** 用户 */
             USER = 0,
             /** 角色 */
-            ROLE = 1
+            ROLE = 1,
+            /** 全部 */
+            ALL = 2
         }
         /**
          * 筛选类型
@@ -501,6 +503,8 @@ declare namespace initialfantasy {
             updateActionId: string;
             /** 数据所属组织 */
             organization: string;
+            /** 备注 */
+            remarks: string;
         }
     }
 }
@@ -557,6 +561,8 @@ declare namespace initialfantasy {
             dataOwner: number;
             /** 数据所属组织 */
             organization: string;
+            /** 备注 */
+            remarks: string;
             /** 业务对象筛选-条件集合 */
             boFilteringConditions: IBOFilteringConditions;
         }
@@ -600,6 +606,8 @@ declare namespace initialfantasy {
             bracketOpen: number;
             /** 闭括号数 */
             bracketClose: number;
+            /** 备注 */
+            remarks: string;
         }
         /** 业务对象筛选-条件 集合 */
         interface IBOFilteringConditions extends ibas.IBusinessObjects<IBOFilteringCondition> {
@@ -652,6 +660,8 @@ declare namespace initialfantasy {
             searched: ibas.emYesNo;
             /** 系统的 */
             systemed: ibas.emYesNo;
+            /** 链接的对象 */
+            linkedObject: string;
             /** 业务对象属性值集合 */
             boPropertyValues: IBOPropertyValues;
         }
@@ -725,6 +735,8 @@ declare namespace initialfantasy {
             updateActionId: string;
             /** 数据所有者 */
             dataOwner: number;
+            /** 备注 */
+            remarks: string;
         }
     }
 }
@@ -839,6 +851,8 @@ declare namespace initialfantasy {
             dataOwner: number;
             /** 数据所属组织 */
             organization: string;
+            /** 备注 */
+            remarks: string;
         }
     }
 }
@@ -1991,6 +2005,13 @@ declare namespace initialfantasy {
             get organization(): string;
             /** 设置-数据所属组织 */
             set organization(value: string);
+            /** 映射的属性名称-备注 */
+            static PROPERTY_REMARKS_NAME: string;
+            /** 获取-备注 */
+            get remarks(): string;
+            /** 设置-备注 */
+            set remarks(value: string);
+            protected onPropertyChanged(name: string): void;
             /** 初始化数据 */
             protected init(): void;
         }
@@ -2137,6 +2158,12 @@ declare namespace initialfantasy {
             get organization(): string;
             /** 设置-数据所属组织 */
             set organization(value: string);
+            /** 映射的属性名称-备注 */
+            static PROPERTY_REMARKS_NAME: string;
+            /** 获取-备注 */
+            get remarks(): string;
+            /** 设置-备注 */
+            set remarks(value: string);
             /** 映射的属性名称-业务对象筛选-条件集合 */
             static PROPERTY_BOFILTERINGCONDITIONS_NAME: string;
             /** 获取-业务对象筛选-条件集合 */
@@ -2264,6 +2291,12 @@ declare namespace initialfantasy {
             get bracketClose(): number;
             /** 设置-闭括号数 */
             set bracketClose(value: number);
+            /** 映射的属性名称-备注 */
+            static PROPERTY_REMARKS_NAME: string;
+            /** 获取-备注 */
+            get remarks(): string;
+            /** 设置-备注 */
+            set remarks(value: string);
             /** 初始化数据 */
             protected init(): void;
         }
@@ -2390,6 +2423,12 @@ declare namespace initialfantasy {
             get systemed(): ibas.emYesNo;
             /** 设置-系统的 */
             set systemed(value: ibas.emYesNo);
+            /** 映射的属性名称-链接的对象 */
+            static PROPERTY_LINKEDOBJECT_NAME: string;
+            /** 获取-链接的对象 */
+            get linkedObject(): string;
+            /** 设置-链接的对象 */
+            set linkedObject(value: string);
             /** 映射的属性名称-业务对象属性值集合 */
             static PROPERTY_BOPROPERTYVALUES_NAME: string;
             /** 获取-业务对象属性信息集合 */
@@ -2656,6 +2695,12 @@ declare namespace initialfantasy {
             get dataOwner(): number;
             /** 设置-数据所有者 */
             set dataOwner(value: number);
+            /** 映射的属性名称-备注 */
+            static PROPERTY_REMARKS_NAME: string;
+            /** 获取-备注 */
+            get remarks(): string;
+            /** 设置-备注 */
+            set remarks(value: string);
             /** 初始化数据 */
             protected init(): void;
         }
@@ -2954,6 +2999,12 @@ declare namespace initialfantasy {
             get organization(): string;
             /** 设置-数据所属组织 */
             set organization(value: string);
+            /** 映射的属性名称-备注 */
+            static PROPERTY_REMARKS_NAME: string;
+            /** 获取-备注 */
+            get remarks(): string;
+            /** 设置-备注 */
+            set remarks(value: string);
             /** 初始化数据 */
             protected init(): void;
         }
@@ -4437,8 +4488,6 @@ declare namespace initialfantasy {
             protected deleteData(): void;
             /** 新建数据，参数1：是否克隆 */
             protected createData(clone: boolean): void;
-            /** 选择应用 */
-            private chooseApplication;
             /** 选择业务对象编码 */
             private chooseBusinessObject;
             /** 选择用户或角色 */
@@ -4454,8 +4503,6 @@ declare namespace initialfantasy {
             deleteDataEvent: Function;
             /** 新建数据事件，参数1：是否克隆 */
             createDataEvent: Function;
-            /** 选择应用 */
-            chooseApplicationEvent: Function;
             /** 选择查询目标 */
             chooseBusinessObjectEvent: Function;
             /** 选择用户或角色 */
@@ -4803,6 +4850,7 @@ declare namespace initialfantasy {
             /** 删除属性值事件 */
             removeBOPropertyValue(items: bo.BOPropertyValue[]): void;
             private boNumbering;
+            private chooseLinkedObject;
         }
         /** 视图-业务对象信息 */
         interface IBOInformationEditView extends ibas.IBOEditView {
@@ -4828,6 +4876,8 @@ declare namespace initialfantasy {
             showBOPropertyValues(datas: bo.BOPropertyValue[]): void;
             /** 业务对象编号 */
             boNumberingEvent: Function;
+            /** 选择链接的对象事件 */
+            chooseLinkedObjectEvent: Function;
         }
     }
 }
@@ -6017,6 +6067,11 @@ declare namespace initialfantasy {
         interface IUserProfileView extends ibas.IResidentView {
             /** 显示用户信息 */
             showUser(user: bo.User): void;
+        }
+        class UserProfileApplicationMapping extends ibas.ResidentApplicationMapping {
+            /** 构造函数 */
+            constructor();
+            create(): ibas.ResidentApplication<ibas.IResidentView>;
         }
     }
 }

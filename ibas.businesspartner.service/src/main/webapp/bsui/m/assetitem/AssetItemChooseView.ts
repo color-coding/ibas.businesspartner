@@ -22,7 +22,10 @@ namespace businesspartner {
                         mode: sap.m.ListMode.None,
                         items: {
                             path: "/rows",
-                            template: new sap.m.ObjectListItem("", {
+                            template: new sap.extension.m.DataObjectListItem("", {
+                                dataInfo: {
+                                    code: bo.AssetItem.BUSINESS_OBJECT_CODE,
+                                },
                                 title: {
                                     path: "name",
                                     type: new sap.extension.data.Alphanumeric(),

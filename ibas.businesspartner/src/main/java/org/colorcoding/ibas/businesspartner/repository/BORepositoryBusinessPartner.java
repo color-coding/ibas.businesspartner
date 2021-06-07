@@ -103,7 +103,7 @@ public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 				// 没有条件则替换为常满足
 				condition = cCriteria.getConditions().create();
 				condition.setAlias("CardCode");
-				condition.setOperation(ConditionOperation.NOT_NULL);
+				condition.setOperation(ConditionOperation.IS_NULL);
 			}
 			// 替换业务伙伴查询为编码
 			Criteria nCriteria = new Criteria();

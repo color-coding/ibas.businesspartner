@@ -32,27 +32,26 @@ namespace businesspartner {
                         dataInfo: {
                             code: bo.Customer.BUSINESS_OBJECT_CODE,
                         },
+                        userFieldsMode: "input",
                         showFooter: false,
                         headerTitle: new sap.uxap.ObjectPageHeader("", {
                             objectTitle: {
-                                path: "name",
-                                type: new sap.extension.data.Alphanumeric(),
-                            },
-                            objectSubtitle: {
                                 path: "code",
                                 type: new sap.extension.data.Alphanumeric(),
                             },
+                            objectSubtitle: {
+                                path: "name",
+                                type: new sap.extension.data.Alphanumeric(),
+                            },
+                            sideContentButton: new sap.m.Button("", {
+                                text: ibas.i18n.prop("shell_data_save"),
+                                type: sap.m.ButtonType.Transparent,
+                                icon: "sap-icon://save",
+                                press(): void {
+                                    that.fireViewEvents(that.saveDataEvent);
+                                }
+                            }),
                             actions: [
-                                new sap.uxap.ObjectPageHeaderActionButton("", {
-                                    text: ibas.i18n.prop("shell_data_save"),
-                                    type: sap.m.ButtonType.Transparent,
-                                    icon: "sap-icon://save",
-                                    hideText: true,
-                                    importance: sap.uxap.Importance.High,
-                                    press(): void {
-                                        that.fireViewEvents(that.saveDataEvent);
-                                    }
-                                }),
                                 new sap.uxap.ObjectPageHeaderActionButton("", {
                                     text: ibas.i18n.prop("shell_data_clone"),
                                     type: sap.m.ButtonType.Transparent,
@@ -79,9 +78,9 @@ namespace businesspartner {
                             new sap.extension.m.ObjectYesNoStatus("", {
                                 title: ibas.i18n.prop("bo_customer_activated"),
                                 negative: false,
-                                text: {
+                                enumValue: {
                                     path: "activated",
-                                    type: new sap.extension.data.YesNo(true),
+                                    type: new sap.extension.data.YesNo(),
                                 }
                             }),
                             new sap.extension.m.RepositoryObjectAttribute("", {
@@ -440,7 +439,7 @@ namespace businesspartner {
                                                         })
                                                     }),
                                                     new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_organizationalunit") }),
-                                                    new sap.extension.m.OrganizationInput("", {
+                                                    new sap.extension.m.DataOrganizationInput("", {
                                                         showValueHelp: true,
                                                         chooseType: ibas.emChooseType.SINGLE,
                                                     }).bindProperty("bindingValue", {

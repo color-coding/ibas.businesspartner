@@ -315,7 +315,7 @@ namespace businesspartner {
                                 })
                             }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_organizationalunit") }),
-                            new sap.extension.m.OrganizationInput("", {
+                            new sap.extension.m.DataOrganizationInput("", {
                                 showValueHelp: true,
                                 chooseType: ibas.emChooseType.SINGLE,
                             }).bindProperty("bindingValue", {
