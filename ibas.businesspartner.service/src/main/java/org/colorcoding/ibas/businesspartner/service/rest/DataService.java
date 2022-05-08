@@ -16,6 +16,7 @@ import org.colorcoding.ibas.businesspartner.bo.businesspartnerasset.BusinessPart
 import org.colorcoding.ibas.businesspartner.bo.businesspartnergroup.BusinessPartnerGroup;
 import org.colorcoding.ibas.businesspartner.bo.contactperson.ContactPerson;
 import org.colorcoding.ibas.businesspartner.bo.customer.Customer;
+import org.colorcoding.ibas.businesspartner.bo.lead.Lead;
 import org.colorcoding.ibas.businesspartner.bo.supplier.Supplier;
 import org.colorcoding.ibas.businesspartner.data.AssetRequest;
 import org.colorcoding.ibas.businesspartner.data.CustomerAsset;
@@ -30,10 +31,8 @@ public class DataService extends BORepositoryBusinessPartner {
 	/**
 	 * 查询-业务伙伴地址
 	 * 
-	 * @param criteria
-	 *            查询
-	 * @param token
-	 *            口令
+	 * @param criteria 查询
+	 * @param token    口令
 	 * @return 操作结果
 	 */
 	@POST
@@ -47,10 +46,8 @@ public class DataService extends BORepositoryBusinessPartner {
 	/**
 	 * 保存-业务伙伴地址
 	 * 
-	 * @param bo
-	 *            对象实例
-	 * @param token
-	 *            口令
+	 * @param bo    对象实例
+	 * @param token 口令
 	 * @return 操作结果
 	 */
 	@POST
@@ -65,10 +62,8 @@ public class DataService extends BORepositoryBusinessPartner {
 	/**
 	 * 查询-业务伙伴组
 	 * 
-	 * @param criteria
-	 *            查询
-	 * @param token
-	 *            口令
+	 * @param criteria 查询
+	 * @param token    口令
 	 * @return 操作结果
 	 */
 	@POST
@@ -83,10 +78,8 @@ public class DataService extends BORepositoryBusinessPartner {
 	/**
 	 * 保存-业务伙伴组
 	 * 
-	 * @param bo
-	 *            对象实例
-	 * @param token
-	 *            口令
+	 * @param bo    对象实例
+	 * @param token 口令
 	 * @return 操作结果
 	 */
 	@POST
@@ -102,10 +95,8 @@ public class DataService extends BORepositoryBusinessPartner {
 	/**
 	 * 查询-业务伙伴联系人
 	 * 
-	 * @param criteria
-	 *            查询
-	 * @param token
-	 *            口令
+	 * @param criteria 查询
+	 * @param token    口令
 	 * @return 操作结果
 	 */
 	@POST
@@ -119,10 +110,8 @@ public class DataService extends BORepositoryBusinessPartner {
 	/**
 	 * 保存-业务伙伴联系人
 	 * 
-	 * @param bo
-	 *            对象实例
-	 * @param token
-	 *            口令
+	 * @param bo    对象实例
+	 * @param token 口令
 	 * @return 操作结果
 	 */
 	@POST
@@ -137,10 +126,8 @@ public class DataService extends BORepositoryBusinessPartner {
 	/**
 	 * 查询-客户
 	 * 
-	 * @param criteria
-	 *            查询
-	 * @param token
-	 *            口令
+	 * @param criteria 查询
+	 * @param token    口令
 	 * @return 操作结果
 	 */
 	@POST
@@ -154,10 +141,8 @@ public class DataService extends BORepositoryBusinessPartner {
 	/**
 	 * 保存-客户
 	 * 
-	 * @param bo
-	 *            对象实例
-	 * @param token
-	 *            口令
+	 * @param bo    对象实例
+	 * @param token 口令
 	 * @return 操作结果
 	 */
 	@POST
@@ -172,10 +157,8 @@ public class DataService extends BORepositoryBusinessPartner {
 	/**
 	 * 查询-供应商
 	 * 
-	 * @param criteria
-	 *            查询
-	 * @param token
-	 *            口令
+	 * @param criteria 查询
+	 * @param token    口令
 	 * @return 操作结果
 	 */
 	@POST
@@ -189,10 +172,8 @@ public class DataService extends BORepositoryBusinessPartner {
 	/**
 	 * 保存-供应商
 	 * 
-	 * @param bo
-	 *            对象实例
-	 * @param token
-	 *            口令
+	 * @param bo    对象实例
+	 * @param token 口令
 	 * @return 操作结果
 	 */
 	@POST
@@ -207,10 +188,8 @@ public class DataService extends BORepositoryBusinessPartner {
 	/**
 	 * 查询-资产项目
 	 * 
-	 * @param criteria
-	 *            查询
-	 * @param token
-	 *            口令
+	 * @param criteria 查询
+	 * @param token    口令
 	 * @return 操作结果
 	 */
 	@POST
@@ -224,10 +203,8 @@ public class DataService extends BORepositoryBusinessPartner {
 	/**
 	 * 保存-资产项目
 	 * 
-	 * @param bo
-	 *            对象实例
-	 * @param token
-	 *            口令
+	 * @param bo    对象实例
+	 * @param token 口令
 	 * @return 操作结果
 	 */
 	@POST
@@ -242,10 +219,8 @@ public class DataService extends BORepositoryBusinessPartner {
 	/**
 	 * 查询-业务伙伴资产
 	 * 
-	 * @param criteria
-	 *            查询
-	 * @param token
-	 *            口令
+	 * @param criteria 查询
+	 * @param token    口令
 	 * @return 操作结果
 	 */
 	@POST
@@ -260,10 +235,8 @@ public class DataService extends BORepositoryBusinessPartner {
 	/**
 	 * 保存-业务伙伴资产
 	 * 
-	 * @param bo
-	 *            对象实例
-	 * @param token
-	 *            口令
+	 * @param bo    对象实例
+	 * @param token 口令
 	 * @return 操作结果
 	 */
 	@POST
@@ -279,10 +252,8 @@ public class DataService extends BORepositoryBusinessPartner {
 	/**
 	 * 查询-业务伙伴资产日记账
 	 * 
-	 * @param criteria
-	 *            查询
-	 * @param token
-	 *            口令
+	 * @param criteria 查询
+	 * @param token    口令
 	 * @return 操作结果
 	 */
 	@POST
@@ -297,10 +268,8 @@ public class DataService extends BORepositoryBusinessPartner {
 	/**
 	 * 保存-业务伙伴资产日记账
 	 * 
-	 * @param bo
-	 *            对象实例
-	 * @param token
-	 *            口令
+	 * @param bo    对象实例
+	 * @param token 口令
 	 * @return 操作结果
 	 */
 	@POST
@@ -316,10 +285,8 @@ public class DataService extends BORepositoryBusinessPartner {
 	/**
 	 * 查询-客户资产
 	 * 
-	 * @param request
-	 *            请求
-	 * @param token
-	 *            口令
+	 * @param request 请求
+	 * @param token   口令
 	 * @return 操作结果
 	 */
 	@POST
@@ -329,6 +296,38 @@ public class DataService extends BORepositoryBusinessPartner {
 	public OperationResult<CustomerAsset> fetchCustomerAsset(AssetRequest request, @QueryParam("token") String token) {
 		return super.fetchCustomerAsset(request, token);
 	}
+
+	// --------------------------------------------------------------------------------------------//
+	/**
+	 * 查询-潜在客户
+	 * 
+	 * @param criteria 查询
+	 * @param token    口令
+	 * @return 操作结果
+	 */
+	@POST
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Path("fetchLead")
+	public OperationResult<Lead> fetchLead(Criteria criteria, @QueryParam("token") String token) {
+		return super.fetchLead(criteria, token);
+	}
+
+	/**
+	 * 保存-潜在客户
+	 * 
+	 * @param bo    对象实例
+	 * @param token 口令
+	 * @return 操作结果
+	 */
+	@POST
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Path("saveLead")
+	public OperationResult<Lead> saveLead(Lead bo, @QueryParam("token") String token) {
+		return super.saveLead(bo, token);
+	}
+
 	// --------------------------------------------------------------------------------------------//
 
 }

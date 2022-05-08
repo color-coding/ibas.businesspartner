@@ -50,6 +50,7 @@
     <Property Name="Organization" Description="数据所属组织" DataType="Alphanumeric" DataSubType="Default" EditSize="8" Mapped="OrgCode"/>
     <Property Name="Channel" Description="所属渠道" DataType="Alphanumeric" DataSubType="Default" EditSize="100" Mapped="Channel"/>
     <Property Name="OrganizationalUnit" Description="组织单位" DataType="Alphanumeric" DataSubType="Default" EditSize="8" Mapped="OrgUnit"/>
+    <Property Name="Lead" Description="潜在客户" DataType="Alphanumeric" DataSubType="Default" EditSize="20" Mapped="Lead"/>
   </Model>
   <BusinessObject MappedModel="Customer" ShortName="${Company}_BP_CUSTOMER"/>
 </Domain>

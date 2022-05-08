@@ -144,6 +144,29 @@ namespace businesspartner {
                                 path: "rechargeable",
                                 type: new sap.extension.data.YesNo()
                             }),
+                            new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_title_others") }),
+                            new sap.m.Label("", { text: ibas.i18n.prop("bo_assetitem_dataowner") }),
+                            new sap.extension.m.DataOwnerInput("", {
+                                showValueHelp: true,
+                            }).bindProperty("bindingValue", {
+                                path: "dataOwner",
+                                type: new sap.extension.data.Numeric()
+                            }),
+                            new sap.m.Label("", { text: ibas.i18n.prop("bo_assetitem_organization") }),
+                            new sap.extension.m.OrganizationInput("", {
+                                showValueHelp: true,
+                            }).bindProperty("bindingValue", {
+                                path: "organization",
+                                type: new sap.extension.data.Alphanumeric()
+                            }),
+                            new sap.m.Label("", { text: ibas.i18n.prop("bo_assetitem_remarks") }),
+                            new sap.extension.m.TextArea("", {
+                                rows: 3,
+                            }).bindProperty("bindingValue", {
+                                path: "remarks",
+                                type: new sap.extension.data.Alphanumeric()
+                            }),
+                            new sap.ui.core.Title("", {}),
                         ]
                     });
                     return this.page = new sap.extension.m.DataPage("", {

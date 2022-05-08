@@ -120,6 +120,10 @@ namespace businesspartner {
                     if (property === bo.BusinessPartnerGroup.PROPERTY_PHANTOM_NAME) {
                         return ibas.enums.toString(ibas.emYesNo, value);
                     }
+                } else if (boName === bo.Lead.name) {
+                    if (property === bo.Lead.PROPERTY_COMPANYPRIVATE_NAME) {
+                        return ibas.enums.toString(emBusinessPartnerNature, value);
+                    }
                 }
                 return super.convertData(boName, property, value);
             }
@@ -162,6 +166,10 @@ namespace businesspartner {
                 } else if (boName === bo.BusinessPartnerGroup.name) {
                     if (property === bo.BusinessPartnerGroup.PROPERTY_PHANTOM_NAME) {
                         return ibas.enums.valueOf(ibas.emYesNo, value);
+                    }
+                } else if (boName === bo.Lead.name) {
+                    if (property === bo.Lead.PROPERTY_COMPANYPRIVATE_NAME) {
+                        return ibas.enums.valueOf(emBusinessPartnerNature, value);
                     }
                 }
                 return super.parsingData(boName, property, value);

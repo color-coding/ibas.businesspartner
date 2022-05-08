@@ -15,6 +15,7 @@
 /// <reference path="./supplier/index.ts" />
 /// <reference path="./assetitem/index.ts" />
 /// <reference path="./businesspartnerasset/index.ts" />
+/// <reference path="./lead/index.ts" />
 namespace businesspartner {
     export namespace ui {
         /**
@@ -72,6 +73,15 @@ namespace businesspartner {
                         break;
                     case app.BusinessPartnerAssetChooseApp.APPLICATION_ID:
                         view = new m.BusinessPartnerAssetChooseView();
+                        break;
+                    case app.LeadListApp.APPLICATION_ID:
+                        view = new m.LeadListView();
+                        break;
+                    case app.LeadChooseApp.APPLICATION_ID:
+                        view = new m.LeadChooseView();
+                        break;
+                    case app.LeadEditApp.APPLICATION_ID:
+                        view = new m.LeadEditView();
                         break;
                     default:
                         break;

@@ -1548,6 +1548,37 @@ public class Customer extends BusinessObject<Customer>
 		this.setProperty(PROPERTY_ORGANIZATIONALUNIT, value);
 	}
 
+	/**
+	 * 属性名称-潜在客户
+	 */
+	private static final String PROPERTY_LEAD_NAME = "Lead";
+
+	/**
+	 * 潜在客户 属性
+	 */
+	@DbField(name = "Lead", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME)
+	public static final IPropertyInfo<String> PROPERTY_LEAD = registerProperty(PROPERTY_LEAD_NAME, String.class,
+			MY_CLASS);
+
+	/**
+	 * 获取-潜在客户
+	 * 
+	 * @return 值
+	 */
+	@XmlElement(name = PROPERTY_LEAD_NAME)
+	public final String getLead() {
+		return this.getProperty(PROPERTY_LEAD);
+	}
+
+	/**
+	 * 设置-潜在客户
+	 * 
+	 * @param value 值
+	 */
+	public final void setLead(String value) {
+		this.setProperty(PROPERTY_LEAD, value);
+	}
+
 	@Override
 	public void setSeriesValue(Object value) {
 		this.setCode((String) value);

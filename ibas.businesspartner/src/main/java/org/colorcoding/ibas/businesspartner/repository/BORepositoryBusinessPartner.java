@@ -27,6 +27,8 @@ import org.colorcoding.ibas.businesspartner.bo.contactperson.ContactPerson;
 import org.colorcoding.ibas.businesspartner.bo.contactperson.IContactPerson;
 import org.colorcoding.ibas.businesspartner.bo.customer.Customer;
 import org.colorcoding.ibas.businesspartner.bo.customer.ICustomer;
+import org.colorcoding.ibas.businesspartner.bo.lead.ILead;
+import org.colorcoding.ibas.businesspartner.bo.lead.Lead;
 import org.colorcoding.ibas.businesspartner.bo.supplier.ISupplier;
 import org.colorcoding.ibas.businesspartner.bo.supplier.Supplier;
 import org.colorcoding.ibas.businesspartner.data.AssetRequest;
@@ -625,6 +627,48 @@ public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 		}
 	}
 
+	// --------------------------------------------------------------------------------------------//
+	/**
+	 * 查询-潜在客户
+	 * 
+	 * @param criteria 查询
+	 * @param token    口令
+	 * @return 操作结果
+	 */
+	public OperationResult<Lead> fetchLead(ICriteria criteria, String token) {
+		return super.fetch(criteria, token, Lead.class);
+	}
+
+	/**
+	 * 查询-潜在客户（提前设置用户口令）
+	 * 
+	 * @param criteria 查询
+	 * @return 操作结果
+	 */
+	public IOperationResult<ILead> fetchLead(ICriteria criteria) {
+		return new OperationResult<ILead>(this.fetchLead(criteria, this.getUserToken()));
+	}
+
+	/**
+	 * 保存-潜在客户
+	 * 
+	 * @param bo    对象实例
+	 * @param token 口令
+	 * @return 操作结果
+	 */
+	public OperationResult<Lead> saveLead(Lead bo, String token) {
+		return super.save(bo, token);
+	}
+
+	/**
+	 * 保存-潜在客户（提前设置用户口令）
+	 * 
+	 * @param bo 对象实例
+	 * @return 操作结果
+	 */
+	public IOperationResult<ILead> saveLead(ILead bo) {
+		return new OperationResult<ILead>(this.saveLead((Lead) bo, this.getUserToken()));
+	}
 	// --------------------------------------------------------------------------------------------//
 
 }

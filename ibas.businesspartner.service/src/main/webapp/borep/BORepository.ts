@@ -174,6 +174,20 @@ namespace businesspartner {
                     fetcher.onCompleted.call(ibas.objects.isNull(fetcher.caller) ? fetcher : fetcher.caller, opRslt);
                 });
             }
+            /**
+             * 查询 潜在客户
+             * @param fetcher 查询者
+             */
+            fetchLead(fetcher: ibas.IFetchCaller<bo.Lead>): void {
+                super.fetch(bo.Lead.name, fetcher);
+            }
+            /**
+             * 保存 潜在客户
+             * @param saver 保存者
+             */
+            saveLead(saver: ibas.ISaveCaller<bo.Lead>): void {
+                super.save(bo.Lead.name, saver);
+            }
         }
     }
 }

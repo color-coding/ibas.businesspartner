@@ -88,6 +88,7 @@ namespace businesspartner {
                             }),
                             new sap.extension.table.DataColumn("", {
                                 label: ibas.i18n.prop("bo_customer_remarks"),
+                                width: "20rem",
                                 template: new sap.extension.m.Text("", {
                                 }).bindProperty("bindingValue", {
                                     path: "remarks",

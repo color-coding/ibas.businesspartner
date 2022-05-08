@@ -324,18 +324,17 @@ namespace businesspartner {
                                     maxLength: 8
                                 })
                             }),
-                            new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_dataowner") }),
-                            new sap.extension.m.DataOwnerInput("", {
+                            new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_lead") }),
+                            new sap.extension.m.SelectionInput("", {
                                 showValueHelp: true,
+                                repository: bo.BORepositoryBusinessPartner,
+                                dataInfo: {
+                                    type: bo.Lead,
+                                    key: bo.Lead.PROPERTY_CODE_NAME,
+                                    text: bo.Lead.PROPERTY_NAME_NAME,
+                                },
                             }).bindProperty("bindingValue", {
-                                path: "dataOwner",
-                                type: new sap.extension.data.Numeric()
-                            }),
-                            new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_remarks") }),
-                            new sap.extension.m.TextArea("", {
-                                rows: 3,
-                            }).bindProperty("bindingValue", {
-                                path: "remarks",
+                                path: "lead",
                                 type: new sap.extension.data.Alphanumeric()
                             }),
                             new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_title_invoices") }),
@@ -420,7 +419,28 @@ namespace businesspartner {
                                     maxLength: 20
                                 }),
                             }),
-                            new sap.ui.core.Title("", {}),
+                            new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_title_others") }),
+                            new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_dataowner") }),
+                            new sap.extension.m.DataOwnerInput("", {
+                                showValueHelp: true,
+                            }).bindProperty("bindingValue", {
+                                path: "dataOwner",
+                                type: new sap.extension.data.Numeric()
+                            }),
+                            new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_organization") }),
+                            new sap.extension.m.OrganizationInput("", {
+                                showValueHelp: true,
+                            }).bindProperty("bindingValue", {
+                                path: "organization",
+                                type: new sap.extension.data.Alphanumeric()
+                            }),
+                            new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_remarks") }),
+                            new sap.extension.m.TextArea("", {
+                                rows: 3,
+                            }).bindProperty("bindingValue", {
+                                path: "remarks",
+                                type: new sap.extension.data.Alphanumeric()
+                            }),
                         ],
                     });
                     return this.page = new sap.extension.m.DataPage("", {

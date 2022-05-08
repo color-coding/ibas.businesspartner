@@ -683,4 +683,18 @@ public interface ICustomer extends IBOMasterData {
 	 * @param value 值
 	 */
 	void setOrganizationalUnit(String value);
+
+	/**
+	 * 获取-潜在客户
+	 * 
+	 * @return 值
+	 */
+	String getLead();
+
+	/**
+	 * 设置-潜在客户
+	 * 
+	 * @param value 值
+	 */
+	void setLead(String value);
 }

@@ -153,6 +153,9 @@ namespace businesspartner {
 
             /** 组织单位 */
             organizationalUnit: string;
+
+            /** 潜在客户 */
+            lead: string;
         }
     }
 

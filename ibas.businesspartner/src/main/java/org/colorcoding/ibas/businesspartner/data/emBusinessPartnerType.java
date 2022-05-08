@@ -20,4 +20,9 @@ public enum emBusinessPartnerType {
 	 */
 	@Value("S")
 	SUPPLIER,
+	/**
+	 * 潜在客户
+	 */
+	@Value("L")
+	LEAD,
 }

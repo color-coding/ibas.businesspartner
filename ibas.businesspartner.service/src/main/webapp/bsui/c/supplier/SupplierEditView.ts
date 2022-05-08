@@ -323,12 +323,20 @@ namespace businesspartner {
                                     maxLength: 8
                                 })
                             }),
-                            new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_dataowner") }),
+                            new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_title_others") }),
+                            new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_dataowner") }),
                             new sap.extension.m.DataOwnerInput("", {
                                 showValueHelp: true,
                             }).bindProperty("bindingValue", {
                                 path: "dataOwner",
                                 type: new sap.extension.data.Numeric()
+                            }),
+                            new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_organization") }),
+                            new sap.extension.m.OrganizationInput("", {
+                                showValueHelp: true,
+                            }).bindProperty("bindingValue", {
+                                path: "organization",
+                                type: new sap.extension.data.Alphanumeric()
                             }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_remarks") }),
                             new sap.extension.m.TextArea("", {
@@ -336,88 +344,6 @@ namespace businesspartner {
                             }).bindProperty("bindingValue", {
                                 path: "remarks",
                                 type: new sap.extension.data.Alphanumeric()
-                            }),
-                            new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_title_invoices") }),
-                            new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_taxid") }),
-                            new sap.extension.m.Input("", {
-                            }).bindProperty("bindingValue", {
-                                path: "taxId",
-                                type: new sap.extension.data.Alphanumeric({
-                                    maxLength: 30
-                                })
-                            }),
-                            new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_bank") }),
-                            new sap.extension.m.Input("", {
-                            }).bindProperty("bindingValue", {
-                                path: "bank",
-                                type: new sap.extension.data.Alphanumeric({
-                                    maxLength: 60
-                                }),
-                            }),
-                            new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_bankaccount") }),
-                            new sap.extension.m.Input("", {
-                            }).bindProperty("bindingValue", {
-                                path: "bankAccount",
-                                type: new sap.extension.data.Alphanumeric({
-                                    maxLength: 60
-                                }),
-                            }),
-                            new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_invoicetitle") }),
-                            new sap.extension.m.Input("", {
-                            }).bindProperty("bindingValue", {
-                                path: "invoiceTitle",
-                                type: new sap.extension.data.Alphanumeric({
-                                    maxLength: 100
-                                }),
-                            }),
-                            new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_invoiceaddress") }),
-                            new sap.extension.m.Input("", {
-                                showValueHelp: true,
-                                valueHelpOnly: false,
-                                valueHelpRequest: function (event: sap.ui.base.Event): void {
-                                    let source: sap.extension.m.Input = <sap.extension.m.Input>event.getSource();
-                                    if (source instanceof sap.extension.m.Input) {
-                                        let popover: sap.m.Popover = new sap.m.Popover("", {
-                                            showHeader: false,
-                                            placement: sap.m.PlacementType.Right,
-                                            enableScrolling: false,
-                                            horizontalScrolling: false,
-                                            contentWidth: "auto",
-                                            contentHeight: "auto",
-                                            content: [
-                                                new sap.ui.layout.form.SimpleForm("", {
-                                                    content: [
-                                                        new sap.extension.m.AddressArea("", {
-                                                            countryVisible: false,
-                                                            zipCodeVisible: false,
-                                                            addressChange: function (event: sap.ui.base.Event): void {
-                                                                let address: string = event.getParameter("address");
-                                                                if (!ibas.strings.isEmpty(address)) {
-                                                                    source.setBindingValue(address);
-                                                                }
-                                                            }
-                                                        }),
-                                                    ]
-                                                })
-                                            ]
-                                        });
-                                        popover.addStyleClass("sapMOTAPopover sapTntToolHeaderPopover");
-                                        popover.openBy(event.getSource(), true);
-                                    }
-                                },
-                            }).bindProperty("bindingValue", {
-                                path: "invoiceAddress",
-                                type: new sap.extension.data.Alphanumeric({
-                                    maxLength: 200
-                                }),
-                            }),
-                            new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_invoicetelephone") }),
-                            new sap.extension.m.Input("", {
-                            }).bindProperty("bindingValue", {
-                                path: "invoiceTelephone",
-                                type: new sap.extension.data.Alphanumeric({
-                                    maxLength: 20
-                                }),
                             }),
                             new sap.ui.core.Title("", {}),
                         ],

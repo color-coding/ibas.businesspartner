@@ -242,6 +242,7 @@
         "bo_customer_organization": "数据所属组织",
         "bo_customer_channel": "所属渠道",
         "bo_customer_organizationalunit": "组织单位",
+        "bo_customer_lead": "潜在客户",
         "bo_customer_closing_delimiter": "----结束----"
     },
     {
@@ -297,12 +298,58 @@
         "bo_supplier_closing_delimiter": "----结束----"
     },
     {
+        "bo_lead": "潜在客户",
+        "bo_lead_code": "编码",
+        "bo_lead_name": "名称",
+        "bo_lead_sign": "标识",
+        "bo_lead_group": "组代码",
+        "bo_lead_activated": "激活",
+        "bo_lead_companyprivate": "公司/个人",
+        "bo_lead_contactperson": "联系人",
+        "bo_lead_billaddress": "账单地址",
+        "bo_lead_shipaddress": "送货地址",
+        "bo_lead_registrationaddress": "注册地址",
+        "bo_lead_telephone1": "电话 1",
+        "bo_lead_telephone2": "电话 2",
+        "bo_lead_mobilephone": "移动电话",
+        "bo_lead_faxnumber": "传真号",
+        "bo_lead_pricelist": "价格清单",
+        "bo_lead_currency": "货币",
+        "bo_lead_validdate": "生效日期",
+        "bo_lead_invaliddate": "失效日期",
+        "bo_lead_floorlist": "底价清单",
+        "bo_lead_taxgroup": "税收组",
+        "bo_lead_remarks": "备注",
+        "bo_lead_referenced": "已引用",
+        "bo_lead_deleted": "已删除",
+        "bo_lead_docentry": "对象编号",
+        "bo_lead_objectcode": "对象类型",
+        "bo_lead_createdate": "创建日期",
+        "bo_lead_createtime": "创建时间",
+        "bo_lead_updatedate": "修改日期",
+        "bo_lead_updatetime": "修改时间",
+        "bo_lead_loginst": "版本",
+        "bo_lead_series": "服务系列",
+        "bo_lead_datasource": "数据源",
+        "bo_lead_createusersign": "创建用户",
+        "bo_lead_updateusersign": "修改用户",
+        "bo_lead_createactionid": "创建动作标识",
+        "bo_lead_updateactionid": "更新动作标识",
+        "bo_lead_approvalstatus": "审批状态",
+        "bo_lead_dataowner": "数据所有者",
+        "bo_lead_organization": "数据所属组织",
+        "bo_lead_channel": "所属渠道",
+        "bo_lead_organizationalunit": "组织单位",
+        "bo_lead_closing_delimiter": "----结束----"
+    },
+    {
         "em_gender_male": "男",
         "em_gender_female": "女"
     },
     {
         "em_businesspartnertype_supplier": "供应商",
-        "em_businesspartnertype_customer": "客户"
+        "em_businesspartnertype_customer": "客户",
+        "em_businesspartnertype_lead": "潜在客户"
     },
     {
         "em_businesspartnernature_company": "公司",

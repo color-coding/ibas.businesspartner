@@ -13,6 +13,7 @@
 /// <reference path="./supplier/index.ts" />
 /// <reference path="./assetitem/index.ts" />
 /// <reference path="./businesspartnerasset/index.ts" />
+/// <reference path="./lead/index.ts" />
 namespace businesspartner {
     export namespace app {
         /** 属性-导航 */
@@ -36,6 +37,7 @@ namespace businesspartner {
                 // 注册功能
                 this.register(new CustomerFunc());
                 this.register(new SupplierFunc());
+                this.register(new LeadFunc());
                 this.register(new ContactPersonFunc());
                 this.register(new AddressFunc());
                 this.register(new BusinessPartnerAssetFunc());
@@ -52,6 +54,8 @@ namespace businesspartner {
                 this.register(new SupplierLinkServiceMapping());
                 this.register(new AssetItemChooseServiceMapping());
                 this.register(new BusinessPartnerAssetChooseServiceMapping());
+                this.register(new LeadChooseServiceMapping());
+                this.register(new LeadLinkServiceMapping());
                 // 注册常驻应用
 
             }
@@ -97,6 +101,7 @@ namespace businesspartner {
                 // 注册功能
                 this.register(new CustomerFunc());
                 this.register(new SupplierFunc());
+                this.register(new LeadFunc());
                 this.register(new ContactPersonFunc());
                 this.register(new AddressFunc());
                 // 注册服务应用
@@ -107,6 +112,8 @@ namespace businesspartner {
                 this.register(new BusinessPartnerGroupChooseServiceMapping());
                 this.register(new AssetItemChooseServiceMapping());
                 this.register(new BusinessPartnerAssetChooseServiceMapping());
+                this.register(new LeadChooseServiceMapping());
+                this.register(new LeadLinkServiceMapping());
             }
         }
     }

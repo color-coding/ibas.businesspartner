@@ -35,9 +35,13 @@ namespace businesspartner {
                                         title: {
                                             path: "ownerType",
                                             formatter(data: businesspartner.bo.emBusinessPartnerType): string {
-                                                return data === businesspartner.bo.emBusinessPartnerType.SUPPLIER
-                                                    ? ibas.i18n.prop(["bo_supplier", "bo_supplier_code"])
-                                                    : ibas.i18n.prop(["bo_customer", "bo_customer_code"]);
+                                                if (data === businesspartner.bo.emBusinessPartnerType.SUPPLIER) {
+                                                    return ibas.i18n.prop(["bo_supplier", "bo_supplier_code"]);
+                                                } else if (data === businesspartner.bo.emBusinessPartnerType.LEAD) {
+                                                    return ibas.i18n.prop(["bo_lead", "bo_lead_code"]);
+                                                } else {
+                                                    return ibas.i18n.prop(["bo_customer", "bo_customer_code"]);
+                                                }
                                             }
                                         },
                                         bindingValue: {
@@ -49,9 +53,13 @@ namespace businesspartner {
                                         title: {
                                             path: "ownerType",
                                             formatter(data: businesspartner.bo.emBusinessPartnerType): string {
-                                                return data === businesspartner.bo.emBusinessPartnerType.SUPPLIER
-                                                    ? ibas.i18n.prop(["bo_supplier", "bo_supplier_name"])
-                                                    : ibas.i18n.prop(["bo_customer", "bo_customer_name"]);
+                                                if (data === businesspartner.bo.emBusinessPartnerType.SUPPLIER) {
+                                                    return ibas.i18n.prop(["bo_supplier", "bo_supplier_name"]);
+                                                } else if (data === businesspartner.bo.emBusinessPartnerType.LEAD) {
+                                                    return ibas.i18n.prop(["bo_lead", "bo_lead_name"]);
+                                                } else {
+                                                    return ibas.i18n.prop(["bo_customer", "bo_customer_name"]);
+                                                }
                                             }
                                         },
                                         bindingValue: {

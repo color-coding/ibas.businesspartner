@@ -109,6 +109,16 @@ namespace businesspartner {
              * @param fetcher 查询者
              */
             fetchCustomerAsset(fetcher: IAssetRequester): void;
+            /**
+             * 查询 潜在客户
+             * @param fetcher 查询者
+             */
+            fetchLead(fetcher: ibas.IFetchCaller<bo.ILead>): void;
+            /**
+             * 保存 潜在客户
+             * @param saver 保存者
+             */
+            saveLead(saver: ibas.ISaveCaller<bo.ILead>): void;
         }
 
         /**

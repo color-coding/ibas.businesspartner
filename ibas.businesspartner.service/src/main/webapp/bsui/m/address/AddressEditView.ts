@@ -118,8 +118,6 @@ namespace businesspartner {
                                                                 formatter(data: any): any {
                                                                     if (data === bo.emBusinessPartnerType.CUSTOMER) {
                                                                         return true;
-                                                                    } else if (data === bo.emBusinessPartnerType.SUPPLIER) {
-                                                                        return false;
                                                                     }
                                                                     return false;
                                                                 }
@@ -146,9 +144,35 @@ namespace businesspartner {
                                                             }).bindProperty("visible", {
                                                                 path: "ownerType",
                                                                 formatter(data: any): any {
-                                                                    if (data === bo.emBusinessPartnerType.CUSTOMER) {
-                                                                        return false;
-                                                                    } else if (data === bo.emBusinessPartnerType.SUPPLIER) {
+                                                                    if (data === bo.emBusinessPartnerType.SUPPLIER) {
+                                                                        return true;
+                                                                    }
+                                                                    return false;
+                                                                }
+                                                            }).bindProperty("bindingValue", {
+                                                                path: "businessPartner",
+                                                                type: new sap.extension.data.Alphanumeric()
+                                                            }),
+                                                            // 潜在客户
+                                                            new sap.extension.m.RepositoryInput("", {
+                                                                showValueHelp: true,
+                                                                width: "100%",
+                                                                layoutData: new sap.m.FlexItemData("", {
+                                                                    growFactor: 1,
+                                                                }),
+                                                                repository: bo.BORepositoryBusinessPartner,
+                                                                dataInfo: {
+                                                                    type: bo.Lead,
+                                                                    key: bo.Lead.PROPERTY_CODE_NAME,
+                                                                    text: bo.Lead.PROPERTY_NAME_NAME
+                                                                },
+                                                                valueHelpRequest: function (): void {
+                                                                    that.fireViewEvents(that.chooseBusinessPartnerEvent);
+                                                                }
+                                                            }).bindProperty("visible", {
+                                                                path: "ownerType",
+                                                                formatter(data: any): any {
+                                                                    if (data === bo.emBusinessPartnerType.LEAD) {
                                                                         return true;
                                                                     }
                                                                     return false;
@@ -260,13 +284,6 @@ namespace businesspartner {
                                                             maxLength: 20
                                                         })
                                                     }),
-                                                    new sap.m.Label("", { text: ibas.i18n.prop("bo_address_dataowner") }),
-                                                    new sap.extension.m.DataOwnerInput("", {
-                                                        showValueHelp: true,
-                                                    }).bindProperty("bindingValue", {
-                                                        path: "dataOwner",
-                                                        type: new sap.extension.data.Numeric()
-                                                    }),
                                                     new sap.m.Label("", { text: ibas.i18n.prop("bo_address_remark1") }),
                                                     new sap.extension.m.TextArea("", {
                                                         rows: 2
@@ -284,6 +301,35 @@ namespace businesspartner {
                                                         type: new sap.extension.data.Alphanumeric({
                                                             maxLength: 200
                                                         })
+                                                    }),
+                                                ]
+                                            }).addStyleClass("sapUxAPObjectPageSubSectionAlignContent")
+                                        ]
+                                    }),
+                                ]
+                            }),
+                            new sap.uxap.ObjectPageSection("", {
+                                title: ibas.i18n.prop("businesspartner_title_others"),
+                                subSections: [
+                                    new sap.uxap.ObjectPageSubSection("", {
+                                        blocks: [
+                                            new sap.ui.layout.form.SimpleForm("", {
+                                                editable: true,
+                                                width: "auto",
+                                                content: [
+                                                    new sap.m.Label("", { text: ibas.i18n.prop("bo_address_dataowner") }),
+                                                    new sap.extension.m.DataOwnerInput("", {
+                                                        showValueHelp: true,
+                                                    }).bindProperty("bindingValue", {
+                                                        path: "dataOwner",
+                                                        type: new sap.extension.data.Numeric()
+                                                    }),
+                                                    new sap.m.Label("", { text: ibas.i18n.prop("bo_address_organization") }),
+                                                    new sap.extension.m.OrganizationInput("", {
+                                                        showValueHelp: true,
+                                                    }).bindProperty("bindingValue", {
+                                                        path: "organization",
+                                                        type: new sap.extension.data.Alphanumeric()
                                                     }),
                                                 ]
                                             }).addStyleClass("sapUxAPObjectPageSubSectionAlignContent")

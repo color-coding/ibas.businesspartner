@@ -92,6 +92,17 @@ namespace businesspartner {
                                 sap.extension.variables.set(supplierInfo, BusinessPartnerText, "supplierInfo");
                             }
                             sap.extension.repository.batchFetch(boRepository, supplierInfo, criteria, fetched);
+                        } else if (type === bo.emBusinessPartnerType.LEAD) {
+                            let supplierInfo: any = sap.extension.variables.get(BusinessPartnerText, "supplierInfo");
+                            if (ibas.objects.isNull(supplierInfo)) {
+                                supplierInfo = {
+                                    type: bo.Lead,
+                                    key: "Code",
+                                    text: "Name"
+                                };
+                                sap.extension.variables.set(supplierInfo, BusinessPartnerText, "supplierInfo");
+                            }
+                            sap.extension.repository.batchFetch(boRepository, supplierInfo, criteria, fetched);
                         }
                     });
                 }
@@ -174,6 +185,17 @@ namespace businesspartner {
                             if (ibas.objects.isNull(supplierInfo)) {
                                 supplierInfo = {
                                     type: bo.Supplier,
+                                    key: "Code",
+                                    text: "Name"
+                                };
+                                sap.extension.variables.set(supplierInfo, BusinessPartnerAttribute, "supplierInfo");
+                            }
+                            sap.extension.repository.batchFetch(boRepository, supplierInfo, criteria, fetched);
+                        } else if (type === bo.emBusinessPartnerType.LEAD) {
+                            let supplierInfo: any = sap.extension.variables.get(BusinessPartnerAttribute, "supplierInfo");
+                            if (ibas.objects.isNull(supplierInfo)) {
+                                supplierInfo = {
+                                    type: bo.Lead,
                                     key: "Code",
                                     text: "Name"
                                 };

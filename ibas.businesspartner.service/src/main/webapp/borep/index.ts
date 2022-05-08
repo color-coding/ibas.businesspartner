@@ -14,6 +14,7 @@
 /// <reference path="./bo/AssetItem.ts" />
 /// <reference path="./bo/BusinessPartnerAsset.ts" />
 /// <reference path="./bo/BusinessPartnerAssetJournal.ts" />
+/// <reference path="./bo/Lead.ts" />
 /// <reference path="./DataDeclaration.ts" />
 /// <reference path="./DataConverter.ts" />
 /// <reference path="./BORepository.ts" />
@@ -31,5 +32,6 @@ namespace businesspartner {
         boFactory.register(AssetItem.BUSINESS_OBJECT_CODE, AssetItem);
         boFactory.register(BusinessPartnerAsset.BUSINESS_OBJECT_CODE, BusinessPartnerAsset);
         boFactory.register(BusinessPartnerAssetJournal.BUSINESS_OBJECT_CODE, BusinessPartnerAssetJournal);
+        boFactory.register(Lead.BUSINESS_OBJECT_CODE, Lead);
     }
 }

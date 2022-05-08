@@ -42,6 +42,8 @@ namespace businesspartner {
         export const BO_CODE_BUSINESSPARTNERASSET: string = "${Company}_BP_BPASSET";
         /** 业务对象编码-业务伙伴资产日记账 */
         export const BO_CODE_BUSINESSPARTNERASSETJOURNAL: string = "${Company}_BP_BPASSETJOURNAL";
+        /** 业务对象编码-潜在客户 */
+        export const BO_CODE_LEAD: string = "${Company}_BP_LEAD";
 
         /** 业务伙伴性质 */
         export enum emBusinessPartnerNature {
@@ -56,6 +58,8 @@ namespace businesspartner {
             CUSTOMER,
             /** 供应商 */
             SUPPLIER,
+            /** 潜在客户 */
+            LEAD,
         }
         /** 性别 */
         export enum emGender {

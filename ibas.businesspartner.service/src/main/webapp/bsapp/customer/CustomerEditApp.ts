@@ -198,14 +198,38 @@ namespace businesspartner {
             }
             private chooseCustomerContactPerson(): void {
                 let that: this = this;
+                let criteria: ibas.ICriteria = new ibas.Criteria();
+                let condition: ibas.ICondition = criteria.conditions.create();
+                condition.alias = bo.ContactPerson.PROPERTY_OWNERTYPE_NAME;
+                condition.value = bo.emBusinessPartnerType.CUSTOMER.toString();
+                condition.bracketOpen = 1;
+                condition = criteria.conditions.create();
+                condition.alias = bo.ContactPerson.PROPERTY_BUSINESSPARTNER_NAME;
+                condition.value = this.editData.code;
+                condition = criteria.conditions.create();
+                condition.alias = bo.ContactPerson.PROPERTY_ACTIVATED_NAME;
+                condition.value = ibas.emYesNo.YES.toString();
+                condition.bracketClose = 1;
+                if (!ibas.strings.isEmpty(this.editData.lead)) {
+                    // 由潜在客户转换
+                    condition = criteria.conditions.create();
+                    condition.relationship = ibas.emConditionRelationship.OR;
+                    condition.alias = bo.ContactPerson.PROPERTY_OWNERTYPE_NAME;
+                    condition.value = bo.emBusinessPartnerType.LEAD.toString();
+                    condition.bracketOpen = 1;
+                    condition = criteria.conditions.create();
+                    condition.alias = bo.ContactPerson.PROPERTY_BUSINESSPARTNER_NAME;
+                    condition.value = this.editData.lead;
+                    condition = criteria.conditions.create();
+                    condition.alias = bo.ContactPerson.PROPERTY_ACTIVATED_NAME;
+                    condition.value = ibas.emYesNo.YES.toString();
+                    condition.bracketClose = 1;
+                }
+
                 ibas.servicesManager.runChooseService<bo.ContactPerson>({
                     boCode: bo.ContactPerson.BUSINESS_OBJECT_CODE,
                     chooseType: ibas.emChooseType.SINGLE,
-                    criteria: [
-                        new ibas.Condition(bo.ContactPerson.PROPERTY_ACTIVATED_NAME, ibas.emConditionOperation.EQUAL, ibas.emYesNo.YES),
-                        new ibas.Condition(bo.ContactPerson.PROPERTY_OWNERTYPE_NAME, ibas.emConditionOperation.EQUAL, bo.emBusinessPartnerType.CUSTOMER),
-                        new ibas.Condition(bo.ContactPerson.PROPERTY_BUSINESSPARTNER_NAME, ibas.emConditionOperation.EQUAL, this.editData.code),
-                    ],
+                    criteria: criteria,
                     onCompleted(selecteds: ibas.IList<bo.ContactPerson>): void {
                         let selected: bo.ContactPerson = selecteds.firstOrDefault();
                         that.editData.contactPerson = selected.objectKey;
@@ -218,14 +242,37 @@ namespace businesspartner {
             }
             private chooseCustomerShipAddress(): void {
                 let that: this = this;
+                let criteria: ibas.ICriteria = new ibas.Criteria();
+                let condition: ibas.ICondition = criteria.conditions.create();
+                condition.alias = bo.Address.PROPERTY_OWNERTYPE_NAME;
+                condition.value = bo.emBusinessPartnerType.CUSTOMER.toString();
+                condition.bracketOpen = 1;
+                condition = criteria.conditions.create();
+                condition.alias = bo.Address.PROPERTY_BUSINESSPARTNER_NAME;
+                condition.value = this.editData.code;
+                condition = criteria.conditions.create();
+                condition.alias = bo.Address.PROPERTY_ACTIVATED_NAME;
+                condition.value = ibas.emYesNo.YES.toString();
+                condition.bracketClose = 1;
+                if (!ibas.strings.isEmpty(this.editData.lead)) {
+                    // 由潜在客户转换
+                    condition = criteria.conditions.create();
+                    condition.relationship = ibas.emConditionRelationship.OR;
+                    condition.alias = bo.Address.PROPERTY_OWNERTYPE_NAME;
+                    condition.value = bo.emBusinessPartnerType.LEAD.toString();
+                    condition.bracketOpen = 1;
+                    condition = criteria.conditions.create();
+                    condition.alias = bo.Address.PROPERTY_BUSINESSPARTNER_NAME;
+                    condition.value = this.editData.lead;
+                    condition = criteria.conditions.create();
+                    condition.alias = bo.Address.PROPERTY_ACTIVATED_NAME;
+                    condition.value = ibas.emYesNo.YES.toString();
+                    condition.bracketClose = 1;
+                }
                 ibas.servicesManager.runChooseService<bo.Address>({
                     boCode: bo.Address.BUSINESS_OBJECT_CODE,
                     chooseType: ibas.emChooseType.SINGLE,
-                    criteria: [
-                        new ibas.Condition(bo.Address.PROPERTY_ACTIVATED_NAME, ibas.emConditionOperation.EQUAL, ibas.emYesNo.YES),
-                        new ibas.Condition(bo.Address.PROPERTY_OWNERTYPE_NAME, ibas.emConditionOperation.EQUAL, bo.emBusinessPartnerType.CUSTOMER),
-                        new ibas.Condition(bo.Address.PROPERTY_BUSINESSPARTNER_NAME, ibas.emConditionOperation.EQUAL, this.editData.code),
-                    ],
+                    criteria: criteria,
                     onCompleted(selecteds: ibas.IList<bo.Address>): void {
                         let selected: bo.Address = selecteds.firstOrDefault();
                         that.editData.shipAddress = selected.objectKey;
@@ -234,14 +281,37 @@ namespace businesspartner {
             }
             private chooseCustomerBillAddress(): void {
                 let that: this = this;
+                let criteria: ibas.ICriteria = new ibas.Criteria();
+                let condition: ibas.ICondition = criteria.conditions.create();
+                condition.alias = bo.Address.PROPERTY_OWNERTYPE_NAME;
+                condition.value = bo.emBusinessPartnerType.CUSTOMER.toString();
+                condition.bracketOpen = 1;
+                condition = criteria.conditions.create();
+                condition.alias = bo.Address.PROPERTY_BUSINESSPARTNER_NAME;
+                condition.value = this.editData.code;
+                condition = criteria.conditions.create();
+                condition.alias = bo.Address.PROPERTY_ACTIVATED_NAME;
+                condition.value = ibas.emYesNo.YES.toString();
+                condition.bracketClose = 1;
+                if (!ibas.strings.isEmpty(this.editData.lead)) {
+                    // 由潜在客户转换
+                    condition = criteria.conditions.create();
+                    condition.relationship = ibas.emConditionRelationship.OR;
+                    condition.alias = bo.Address.PROPERTY_OWNERTYPE_NAME;
+                    condition.value = bo.emBusinessPartnerType.LEAD.toString();
+                    condition.bracketOpen = 1;
+                    condition = criteria.conditions.create();
+                    condition.alias = bo.Address.PROPERTY_BUSINESSPARTNER_NAME;
+                    condition.value = this.editData.lead;
+                    condition = criteria.conditions.create();
+                    condition.alias = bo.Address.PROPERTY_ACTIVATED_NAME;
+                    condition.value = ibas.emYesNo.YES.toString();
+                    condition.bracketClose = 1;
+                }
                 ibas.servicesManager.runChooseService<bo.Address>({
                     boCode: bo.Address.BUSINESS_OBJECT_CODE,
                     chooseType: ibas.emChooseType.SINGLE,
-                    criteria: [
-                        new ibas.Condition(bo.Address.PROPERTY_ACTIVATED_NAME, ibas.emConditionOperation.EQUAL, ibas.emYesNo.YES),
-                        new ibas.Condition(bo.Address.PROPERTY_OWNERTYPE_NAME, ibas.emConditionOperation.EQUAL, bo.emBusinessPartnerType.CUSTOMER),
-                        new ibas.Condition(bo.Address.PROPERTY_BUSINESSPARTNER_NAME, ibas.emConditionOperation.EQUAL, this.editData.code),
-                    ],
+                    criteria: criteria,
                     onCompleted(selecteds: ibas.IList<bo.Address>): void {
                         let selected: bo.Address = selecteds.firstOrDefault();
                         that.editData.billAddress = selected.objectKey;
@@ -250,14 +320,37 @@ namespace businesspartner {
             }
             private chooseCustomerRegistrationAddress(): void {
                 let that: this = this;
+                let criteria: ibas.ICriteria = new ibas.Criteria();
+                let condition: ibas.ICondition = criteria.conditions.create();
+                condition.alias = bo.Address.PROPERTY_OWNERTYPE_NAME;
+                condition.value = bo.emBusinessPartnerType.CUSTOMER.toString();
+                condition.bracketOpen = 1;
+                condition = criteria.conditions.create();
+                condition.alias = bo.Address.PROPERTY_BUSINESSPARTNER_NAME;
+                condition.value = this.editData.code;
+                condition = criteria.conditions.create();
+                condition.alias = bo.Address.PROPERTY_ACTIVATED_NAME;
+                condition.value = ibas.emYesNo.YES.toString();
+                condition.bracketClose = 1;
+                if (!ibas.strings.isEmpty(this.editData.lead)) {
+                    // 由潜在客户转换
+                    condition = criteria.conditions.create();
+                    condition.relationship = ibas.emConditionRelationship.OR;
+                    condition.alias = bo.Address.PROPERTY_OWNERTYPE_NAME;
+                    condition.value = bo.emBusinessPartnerType.LEAD.toString();
+                    condition.bracketOpen = 1;
+                    condition = criteria.conditions.create();
+                    condition.alias = bo.Address.PROPERTY_BUSINESSPARTNER_NAME;
+                    condition.value = this.editData.lead;
+                    condition = criteria.conditions.create();
+                    condition.alias = bo.Address.PROPERTY_ACTIVATED_NAME;
+                    condition.value = ibas.emYesNo.YES.toString();
+                    condition.bracketClose = 1;
+                }
                 ibas.servicesManager.runChooseService<bo.Address>({
                     boCode: bo.Address.BUSINESS_OBJECT_CODE,
                     chooseType: ibas.emChooseType.SINGLE,
-                    criteria: [
-                        new ibas.Condition(bo.Address.PROPERTY_ACTIVATED_NAME, ibas.emConditionOperation.EQUAL, ibas.emYesNo.YES),
-                        new ibas.Condition(bo.Address.PROPERTY_OWNERTYPE_NAME, ibas.emConditionOperation.EQUAL, bo.emBusinessPartnerType.CUSTOMER),
-                        new ibas.Condition(bo.Address.PROPERTY_BUSINESSPARTNER_NAME, ibas.emConditionOperation.EQUAL, this.editData.code),
-                    ],
+                    criteria: criteria,
                     onCompleted(selecteds: ibas.IList<bo.Address>): void {
                         let selected: bo.Address = selecteds.firstOrDefault();
                         that.editData.registrationAddress = selected.objectKey;

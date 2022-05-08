@@ -87,8 +87,6 @@ namespace businesspartner {
                                         formatter(data: any): any {
                                             if (data === bo.emBusinessPartnerType.CUSTOMER) {
                                                 return true;
-                                            } else if (data === bo.emBusinessPartnerType.SUPPLIER) {
-                                                return false;
                                             }
                                             return false;
                                         }
@@ -115,9 +113,7 @@ namespace businesspartner {
                                     }).bindProperty("visible", {
                                         path: "businessPartnerType",
                                         formatter(data: any): any {
-                                            if (data === bo.emBusinessPartnerType.CUSTOMER) {
-                                                return false;
-                                            } else if (data === bo.emBusinessPartnerType.SUPPLIER) {
+                                            if (data === bo.emBusinessPartnerType.SUPPLIER) {
                                                 return true;
                                             }
                                             return false;
@@ -129,7 +125,17 @@ namespace businesspartner {
                                 ]
                             }),
                             new sap.extension.m.EnumSelect("", {
-                                enumType: bo.emBusinessPartnerType
+                                items: [
+                                    new sap.extension.m.SelectItem("", {
+                                        key: bo.emBusinessPartnerType.CUSTOMER,
+                                        text: ibas.enums.describe(bo.emBusinessPartnerType, bo.emBusinessPartnerType.CUSTOMER)
+                                    }),
+                                    new sap.extension.m.SelectItem("", {
+                                        key: bo.emBusinessPartnerType.SUPPLIER,
+                                        text: ibas.enums.describe(bo.emBusinessPartnerType, bo.emBusinessPartnerType.SUPPLIER)
+                                    })
+                                ]
+                                // enumType: bo.emBusinessPartnerType
                             }).bindProperty("bindingValue", {
                                 path: "businessPartnerType",
                                 type: new sap.extension.data.Enum({

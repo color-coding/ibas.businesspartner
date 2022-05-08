@@ -545,6 +545,18 @@ namespace businesspartner {
                 this.setProperty(Customer.PROPERTY_ORGANIZATIONALUNIT_NAME, value);
             }
 
+            /** 映射的属性名称-潜在客户 */
+            static PROPERTY_LEAD_NAME: string = "Lead";
+            /** 获取-潜在客户 */
+            get lead(): string {
+                return this.getProperty<string>(Customer.PROPERTY_LEAD_NAME);
+            }
+            /** 设置-潜在客户 */
+            set lead(value: string) {
+                this.setProperty(Customer.PROPERTY_LEAD_NAME, value);
+            }
+
+
             /** 初始化数据 */
             protected init(): void {
                 this.objectCode = ibas.config.applyVariables(Customer.BUSINESS_OBJECT_CODE);
