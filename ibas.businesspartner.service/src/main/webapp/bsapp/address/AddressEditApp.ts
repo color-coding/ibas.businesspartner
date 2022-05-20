@@ -195,7 +195,18 @@ namespace businesspartner {
                             that.editData.businessPartner = selected.code;
                         }
                     });
-
+                } else if (this.editData.ownerType === bo.emBusinessPartnerType.LEAD) {
+                    ibas.servicesManager.runChooseService<bo.Lead>({
+                        boCode: bo.Lead.BUSINESS_OBJECT_CODE,
+                        chooseType: ibas.emChooseType.SINGLE,
+                        criteria: [
+                            new ibas.Condition(bo.Lead.PROPERTY_DELETED_NAME, ibas.emConditionOperation.NOT_EQUAL, ibas.emYesNo.YES)
+                        ],
+                        onCompleted(selecteds: ibas.IList<bo.Lead>): void {
+                            let selected: bo.Lead = selecteds.firstOrDefault();
+                            that.editData.businessPartner = selected.code;
+                        }
+                    });
                 }
             }
         }

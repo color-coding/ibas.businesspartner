@@ -8,3 +8,4 @@
 /// <reference path="./ContactPersonListView.ts" />
 /// <reference path="./ContactPersonChooseView.ts" />
 /// <reference path="./ContactPersonEditView.ts" />
+/// <reference path="./ContactPersonViewView.ts" />

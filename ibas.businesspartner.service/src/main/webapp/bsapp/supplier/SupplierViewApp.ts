@@ -105,6 +105,9 @@ namespace businesspartner {
                     criteria = new ibas.Criteria();
                     criteria.result = 1;
                     // 添加查询条件
+                    let condition: ibas.ICondition = criteria.conditions.create();
+                    condition.alias = bo.Supplier.PROPERTY_CODE_NAME;
+                    condition.value = value;
                 }
                 let boRepository: bo.BORepositoryBusinessPartner = new bo.BORepositoryBusinessPartner();
                 boRepository.fetchSupplier({

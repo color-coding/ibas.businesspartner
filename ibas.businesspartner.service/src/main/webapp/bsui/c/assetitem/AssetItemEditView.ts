@@ -97,7 +97,7 @@ namespace businesspartner {
                             new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_title_values") }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_assetitem_faceamount") }),
                             new sap.extension.m.Input("", {
-                                type: sap.m.InputType.Number
+
                             }).bindProperty("bindingValue", {
                                 path: "faceAmount",
                                 type: new sap.extension.data.Sum()
@@ -111,7 +111,7 @@ namespace businesspartner {
                             }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_assetitem_usingtimes") }),
                             new sap.extension.m.Input("", {
-                                type: sap.m.InputType.Number
+
                             }).bindProperty("bindingValue", {
                                 path: "usingTimes",
                                 type: new sap.extension.data.Numeric()
@@ -125,14 +125,14 @@ namespace businesspartner {
                             }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_assetitem_overdraft") }),
                             new sap.extension.m.Input("", {
-                                type: sap.m.InputType.Number
+
                             }).bindProperty("bindingValue", {
                                 path: "overdraft",
                                 type: new sap.extension.data.Sum()
                             }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_assetitem_validdays") }),
                             new sap.extension.m.Input("", {
-                                type: sap.m.InputType.Number
+
                             }).bindProperty("bindingValue", {
                                 path: "validDays",
                                 type: new sap.extension.data.Numeric()
@@ -148,6 +148,12 @@ namespace businesspartner {
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_assetitem_dataowner") }),
                             new sap.extension.m.DataOwnerInput("", {
                                 showValueHelp: true,
+                                organization: {
+                                    path: "organization",
+                                    type: new sap.extension.data.Alphanumeric({
+                                        maxLength: 8
+                                    })
+                                }
                             }).bindProperty("bindingValue", {
                                 path: "dataOwner",
                                 type: new sap.extension.data.Numeric()

@@ -32,7 +32,8 @@ namespace businesspartner {
                         columns: [
                             new sap.extension.table.DataColumn("", {
                                 label: ibas.i18n.prop("bo_contactperson_objectkey"),
-                                template: new sap.extension.m.Text("", {
+                                template: new sap.extension.m.DataLink("", {
+                                    objectCode: bo.ContactPerson.BUSINESS_OBJECT_CODE,
                                 }).bindProperty("bindingValue", {
                                     path: "objectKey",
                                     type: new sap.extension.data.Numeric()

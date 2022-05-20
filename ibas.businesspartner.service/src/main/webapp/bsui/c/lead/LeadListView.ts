@@ -30,7 +30,8 @@ namespace businesspartner {
                         columns: [
                             new sap.extension.table.DataColumn("", {
                                 label: ibas.i18n.prop("bo_lead_code"),
-                                template: new sap.extension.m.Text("", {
+                                template: new sap.extension.m.DataLink("", {
+                                    objectCode: bo.Lead.BUSINESS_OBJECT_CODE,
                                 }).bindProperty("bindingValue", {
                                     path: "code",
                                     type: new sap.extension.data.Alphanumeric()

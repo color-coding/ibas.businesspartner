@@ -8,3 +8,5 @@
 /// <reference path="./AddressChooseView.ts" />
 /// <reference path="./AddressEditView.ts" />
 /// <reference path="./AddressListView.ts" />
+/// <reference path="./AddressViewView.ts" />
+

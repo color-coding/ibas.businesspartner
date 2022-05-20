@@ -123,7 +123,7 @@ namespace businesspartner {
                         if (action !== ibas.emMessageAction.YES) {
                             return;
                         }
-                        let boRepository: bo.BORepositoryBusinessPartner = new bo.BORepositoryBusinessPartner;
+                        let boRepository: bo.BORepositoryBusinessPartner = new bo.BORepositoryBusinessPartner();
                         ibas.queues.execute(beDeleteds, (data, next) => {
                             // 处理数据
                             boRepository.saveLead({

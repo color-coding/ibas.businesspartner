@@ -42,14 +42,14 @@ namespace businesspartner {
                             }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnerassetjournal_amount") }),
                             new sap.extension.m.Input("", {
-                                type: sap.m.InputType.Number
+
                             }).bindProperty("bindingValue", {
                                 path: "amount",
                                 type: new sap.extension.data.Sum()
                             }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnerassetjournal_times") }),
                             new sap.extension.m.Input("", {
-                                type: sap.m.InputType.Number
+
                             }).bindProperty("bindingValue", {
                                 path: "times",
                                 type: new sap.extension.data.Numeric()

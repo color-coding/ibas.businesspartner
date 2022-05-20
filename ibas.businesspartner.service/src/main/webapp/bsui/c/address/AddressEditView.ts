@@ -232,6 +232,12 @@ namespace businesspartner {
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_address_dataowner") }),
                             new sap.extension.m.DataOwnerInput("", {
                                 showValueHelp: true,
+                                organization: {
+                                    path: "organization",
+                                    type: new sap.extension.data.Alphanumeric({
+                                        maxLength: 8
+                                    })
+                                }
                             }).bindProperty("bindingValue", {
                                 path: "dataOwner",
                                 type: new sap.extension.data.Numeric()

@@ -8,3 +8,4 @@
 /// <reference path="./LeadListView.ts" />
 /// <reference path="./LeadChooseView.ts" />
 /// <reference path="./LeadEditView.ts" />
+/// <reference path="./LeadViewView.ts" />

@@ -9,3 +9,4 @@
 /// <reference path="./ContactPersonEditApp.ts" />
 /// <reference path="./ContactPersonFunc.ts" />
 /// <reference path="./ContactPersonListApp.ts" />
+/// <reference path="./ContactPersonViewApp.ts" />

@@ -34,6 +34,12 @@ namespace businesspartner {
             protected viewShowed(): void {
                 // 视图加载完成
                 super.viewShowed();
+                if (ibas.objects.isNull(this.viewData)) {
+                    // 创建编辑对象实例
+                    this.viewData = new bo.AssetItem();
+                    this.proceeding(ibas.emMessageType.WARNING, ibas.i18n.prop("shell_data_created_new"));
+                }
+                this.view.showAssetItem(this.viewData);
             }
             /** 编辑数据，参数：目标数据 */
             protected editData(): void {
@@ -62,7 +68,9 @@ namespace businesspartner {
                     criteria = new ibas.Criteria();
                     criteria.result = 1;
                     // 添加查询条件
-
+                    let condition: ibas.ICondition = criteria.conditions.create();
+                    condition.alias = bo.AssetItem.PROPERTY_CODE_NAME;
+                    condition.value = value;
                 }
                 let boRepository: bo.BORepositoryBusinessPartner = new bo.BORepositoryBusinessPartner();
                 boRepository.fetchAssetItem({
@@ -88,6 +96,7 @@ namespace businesspartner {
         }
         /** 视图-资产项目 */
         export interface IAssetItemViewView extends ibas.IBOViewView {
+            showAssetItem(viewData: bo.AssetItem): void;
 
         }
         /** 资产项目连接服务映射 */

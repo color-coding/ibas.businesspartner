@@ -9,3 +9,4 @@
 /// <reference path="./AddressEditApp.ts" />
 /// <reference path="./AddressFunc.ts" />
 /// <reference path="./AddressListApp.ts" />
+/// <reference path="./AddressViewApp.ts" />

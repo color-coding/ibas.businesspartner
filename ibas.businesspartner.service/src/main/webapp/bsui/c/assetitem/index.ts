@@ -8,3 +8,4 @@
 /// <reference path="./AssetItemListView.ts" />
 /// <reference path="./AssetItemChooseView.ts" />
 /// <reference path="./AssetItemEditView.ts" />
+/// <reference path="./AssetItemViewView.ts" />

@@ -8,3 +8,5 @@
 /// <reference path="./SupplierListView.ts" />
 /// <reference path="./SupplierChooseView.ts" />
 /// <reference path="./SupplierEditView.ts" />
+/// <reference path="./SupplierViewView.ts" />
+

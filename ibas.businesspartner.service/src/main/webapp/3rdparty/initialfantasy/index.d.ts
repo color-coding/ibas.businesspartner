@@ -180,17 +180,20 @@ declare namespace initialfantasy {
             /** 没有 */
             NONE = 3
         }
-        /**
-         * 配置种类
-         *
-         * @author Niuren.Zhu
-         *
-         */
+        /** 配置种类 */
         enum emConfigCategory {
             /** 服务端 */
             SERVER = 0,
             /** 客户端 */
             CLIENT = 1
+        }
+        enum emRequiredValue {
+            /** 默认值 */
+            DEFAULT = 0,
+            /** 否 */
+            NO = 1,
+            /** 是 */
+            YES = 2
         }
     }
     namespace app {
@@ -1033,6 +1036,8 @@ declare namespace initialfantasy {
             searched: emSearchedValue;
             /** 权限 */
             authorised: emAuthorisedValue;
+            /** 必填的 */
+            required: emRequiredValue;
             /** 对象编号 */
             objectKey: number;
             /** 对象类型 */
@@ -3457,6 +3462,12 @@ declare namespace initialfantasy {
             get authorised(): emAuthorisedValue;
             /** 设置-权限 */
             set authorised(value: emAuthorisedValue);
+            /** 映射的属性名称-必填 */
+            static PROPERTY_REQUIRED_NAME: string;
+            /** 获取-必填 */
+            get required(): emRequiredValue;
+            /** 设置-必填 */
+            set required(value: emRequiredValue);
             /** 映射的属性名称-对象编号 */
             static PROPERTY_OBJECTKEY_NAME: string;
             /** 获取-对象编号 */
@@ -6496,6 +6507,8 @@ declare namespace initialfantasy {
             set authorised(value: bo.emAuthorisedValue);
             get position(): number;
             set position(value: number);
+            get required(): bo.emRequiredValue;
+            set required(value: bo.emRequiredValue);
             protected firePropertyChanged(property: string): void;
             delete(): void;
             reset(setting?: bo.BOPropertySetting): void;

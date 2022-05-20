@@ -46,13 +46,16 @@ namespace businesspartner {
 
                 // 注册服务应用
                 this.register(new AddressChooseServiceMapping());
+                this.register(new AddressLinkServiceMapping());
                 this.register(new BusinessPartnerGroupChooseServiceMapping());
                 this.register(new ContactPersonChooseServiceMapping());
+                this.register(new ContactPersonLinkServiceMapping());
                 this.register(new CustomerChooseServiceMapping());
                 this.register(new CustomerLinkServiceMapping());
                 this.register(new SupplierChooseServiceMapping());
                 this.register(new SupplierLinkServiceMapping());
                 this.register(new AssetItemChooseServiceMapping());
+                this.register(new AssetItemLinkServiceMapping());
                 this.register(new BusinessPartnerAssetChooseServiceMapping());
                 this.register(new LeadChooseServiceMapping());
                 this.register(new LeadLinkServiceMapping());
@@ -106,11 +109,16 @@ namespace businesspartner {
                 this.register(new AddressFunc());
                 // 注册服务应用
                 this.register(new AddressChooseServiceMapping());
+                this.register(new AddressLinkServiceMapping());
                 this.register(new ContactPersonChooseServiceMapping());
+                this.register(new ContactPersonLinkServiceMapping());
                 this.register(new CustomerChooseServiceMapping());
+                this.register(new CustomerLinkServiceMapping());
                 this.register(new SupplierChooseServiceMapping());
+                this.register(new SupplierLinkServiceMapping());
                 this.register(new BusinessPartnerGroupChooseServiceMapping());
                 this.register(new AssetItemChooseServiceMapping());
+                this.register(new AssetItemLinkServiceMapping());
                 this.register(new BusinessPartnerAssetChooseServiceMapping());
                 this.register(new LeadChooseServiceMapping());
                 this.register(new LeadLinkServiceMapping());

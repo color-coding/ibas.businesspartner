@@ -38,6 +38,9 @@ namespace businesspartner {
                     case app.AddressEditApp.APPLICATION_ID:
                         view = new m.AddressEditView();
                         break;
+                    case app.AddressViewApp.APPLICATION_ID:
+                        view = new m.AddressViewView();
+                        break;
                     case app.BusinessPartnerGroupChooseApp.APPLICATION_ID:
                         view = new m.BusinessPartnerGroupChooseView();
                         break;
@@ -50,6 +53,9 @@ namespace businesspartner {
                     case app.ContactPersonEditApp.APPLICATION_ID:
                         view = new m.ContactPersonEditView();
                         break;
+                    case app.ContactPersonViewApp.APPLICATION_ID:
+                        view = new m.ContactPersonViewView();
+                        break;
                     case app.CustomerListApp.APPLICATION_ID:
                         view = new m.CustomerListView();
                         break;
@@ -58,6 +64,9 @@ namespace businesspartner {
                         break;
                     case app.CustomerEditApp.APPLICATION_ID:
                         view = new m.CustomerEditView();
+                        break;
+                    case app.CustomerViewApp.APPLICATION_ID:
+                        view = new m.CustomerViewView();
                         break;
                     case app.SupplierListApp.APPLICATION_ID:
                         view = new m.SupplierListView();
@@ -68,8 +77,14 @@ namespace businesspartner {
                     case app.SupplierEditApp.APPLICATION_ID:
                         view = new m.SupplierEditView();
                         break;
+                    case app.SupplierViewApp.APPLICATION_ID:
+                        view = new m.SupplierViewView();
+                        break;
                     case app.AssetItemChooseApp.APPLICATION_ID:
                         view = new m.AssetItemChooseView();
+                        break;
+                    case app.AssetItemViewApp.APPLICATION_ID:
+                        view = new m.AssetItemViewView();
                         break;
                     case app.BusinessPartnerAssetChooseApp.APPLICATION_ID:
                         view = new m.BusinessPartnerAssetChooseView();
@@ -82,6 +97,9 @@ namespace businesspartner {
                         break;
                     case app.LeadEditApp.APPLICATION_ID:
                         view = new m.LeadEditView();
+                        break;
+                    case app.LeadViewApp.APPLICATION_ID:
+                        view = new m.LeadViewView();
                         break;
                     default:
                         break;
