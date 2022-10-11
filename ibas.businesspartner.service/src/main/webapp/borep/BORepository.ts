@@ -188,6 +188,20 @@ namespace businesspartner {
             saveLead(saver: ibas.ISaveCaller<bo.Lead>): void {
                 super.save(bo.Lead.name, saver);
             }
+            /**
+             * 查询 付款条款
+             * @param fetcher 查询者
+             */
+            fetchPaymentTerm(fetcher: ibas.IFetchCaller<bo.PaymentTerm>): void {
+                super.fetch(bo.PaymentTerm.name, fetcher);
+            }
+            /**
+             * 保存 付款条款
+             * @param saver 保存者
+             */
+            savePaymentTerm(saver: ibas.ISaveCaller<bo.PaymentTerm>): void {
+                super.save(bo.PaymentTerm.name, saver);
+            }
         }
     }
 }

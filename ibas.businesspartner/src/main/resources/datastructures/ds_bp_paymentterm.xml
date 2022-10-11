@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE Domain>
+<Domain Name="BusinessPartner" ShortName="BP">
+  <Model Name="PaymentTerm" Description="付款条款" ModelType="MasterData" Mapped="${Company}_BP_OCTG">
+    <Property Name="Code" Description="编码" DataType="Alphanumeric" DataSubType="Default" EditSize="20" Mapped="Code" UniqueKey="Yes"/>
+    <Property Name="Name" Description="名称" DataType="Alphanumeric" DataSubType="Default" EditSize="100" Mapped="Name"/>
+    <Property Name="Activated" Description="激活" DataType="Alphanumeric" DataSubType="Default" EditSize="1" DeclaredType="emYesNo" Mapped="Activated"/>
+    <Property Name="StartAt" Description="起始于" DataType="Alphanumeric" DataSubType="Default" EditSize="1" DeclaredType="emPayTermDueType" Mapped="PayDuMonth"/>
+    <Property Name="ExtraMonth" Description="附加月数" DataType="Numeric" DataSubType="Default" EditSize="8" Mapped="ExtraMonth"/>
+    <Property Name="ExtraDays" Description="附加天数" DataType="Numeric" DataSubType="Default" EditSize="8" Mapped="ExtraDays"/>
+    <Property Name="DueDateBaseOn" Description="到期日基于" DataType="Alphanumeric" DataSubType="Default" EditSize="1" DeclaredType="emDueDateBaseOn" Mapped="BslineDate"/>
+    <Property Name="ToleranceDays" Description="容差天数" DataType="Numeric" DataSubType="Default" EditSize="8" Mapped="TolDays"/>
+    <Property Name="DocEntry" Description="对象编号" DataType="Numeric" DataSubType="Default" EditSize="8" Mapped="DocEntry" PrimaryKey="Yes"/>
+    <Property Name="ObjectCode" Description="对象类型" DataType="Alphanumeric" DataSubType="Default" EditSize="30" Mapped="ObjectCode"/>
+    <Property Name="CreateDate" Description="创建日期" DataType="Date" DataSubType="Default" EditSize="8" Mapped="CreateDate"/>
+    <Property Name="CreateTime" Description="创建时间" DataType="Date" DataSubType="Time" EditSize="8" Mapped="CreateTime"/>
+    <Property Name="UpdateDate" Description="修改日期" DataType="Date" DataSubType="Default" EditSize="8" Mapped="UpdateDate"/>
+    <Property Name="UpdateTime" Description="修改时间" DataType="Date" DataSubType="Time" EditSize="8" Mapped="UpdateTime"/>
+    <Property Name="LogInst" Description="版本" DataType="Numeric" DataSubType="Default" EditSize="8" Mapped="LogInst"/>
+    <Property Name="Series" Description="服务系列" DataType="Numeric" DataSubType="Default" EditSize="8" Mapped="Series"/>
+    <Property Name="DataSource" Description="数据源" DataType="Alphanumeric" DataSubType="Default" EditSize="8" Mapped="DataSource"/>
+    <Property Name="CreateUserSign" Description="创建用户" DataType="Numeric" DataSubType="Default" EditSize="8" Mapped="Creator"/>
+    <Property Name="UpdateUserSign" Description="修改用户" DataType="Numeric" DataSubType="Default" EditSize="8" Mapped="Updator"/>
+    <Property Name="CreateActionId" Description="创建动作标识" DataType="Alphanumeric" DataSubType="Default" EditSize="36" Mapped="CreateActId"/>
+    <Property Name="UpdateActionId" Description="更新动作标识" DataType="Alphanumeric" DataSubType="Default" EditSize="36" Mapped="UpdateActId"/>
+    <Property Name="DataOwner" Description="数据所有者" DataType="Numeric" DataSubType="Default" EditSize="8" Mapped="DataOwner"/>
+    <Property Name="Organization" Description="数据所属组织" DataType="Alphanumeric" DataSubType="Default" EditSize="8" Mapped="OrgCode"/>
+    <Property Name="Remarks" Description="备注" DataType="Memo" DataSubType="Default" EditSize="8" Mapped="Remarks"/>
+  </Model>
+  <BusinessObject MappedModel="PaymentTerm" ShortName="${Company}_BP_PAYMENTTERM"/>
+</Domain>

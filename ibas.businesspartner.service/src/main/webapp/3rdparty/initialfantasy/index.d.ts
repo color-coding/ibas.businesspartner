@@ -640,6 +640,8 @@ declare namespace initialfantasy {
             mapped: string;
             /** 对象类型 */
             objectType: string;
+            /** 开启修改日志 */
+            modified: ibas.emYesNo;
             /** 业务对象属性信息集合 */
             boPropertyInformations: IBOPropertyInformations;
         }
@@ -1064,6 +1066,38 @@ declare namespace initialfantasy {
             createActionId: string;
             /** 更新动作标识 */
             updateActionId: string;
+        }
+    }
+}
+/**
+ * @license
+ * Copyright Color-Coding Studio. All Rights Reserved.
+ *
+ * Use of this source code is governed by an Apache License, Version 2.0
+ * that can be found in the LICENSE file at http://www.apache.org/licenses/LICENSE-2.0
+ */
+declare namespace initialfantasy {
+    namespace bo {
+        /** 业务对象日志 */
+        interface IBOLogst extends ibas.IBusinessObject {
+            /** 类型 */
+            boCode: string;
+            /** 主键值 */
+            boKeys: string;
+            /** 实例号 */
+            logInst: number;
+            /** 修改用户 */
+            modifyUser: number;
+            /** 修改日期 */
+            modifyDate: Date;
+            /** 修改时间 */
+            modifyTime: number;
+            /** 事务标识 */
+            transationId: string;
+            /** 动机 */
+            cause: string;
+            /** 内容 */
+            content: string | object;
         }
     }
 }
@@ -2357,6 +2391,12 @@ declare namespace initialfantasy {
             get objectType(): string;
             /** 设置-对象类型 */
             set objectType(value: string);
+            /** 映射的属性名称-开启修改日志 */
+            static PROPERTY_MODIFIED_NAME: string;
+            /** 获取-开启修改日志 */
+            get modified(): ibas.emYesNo;
+            /** 设置-开启修改日志 */
+            set modified(value: ibas.emYesNo);
             /** 映射的属性名称-业务对象属性信息集合 */
             static PROPERTY_BOPROPERTYINFORMATIONS_NAME: string;
             /** 获取-业务对象属性信息集合 */
@@ -3560,6 +3600,80 @@ declare namespace initialfantasy {
  */
 declare namespace initialfantasy {
     namespace bo {
+        /** 业务对象日志 */
+        class BOLogst extends ibas.BusinessObject<BOLogst> implements IBOLogst {
+            /** 构造函数 */
+            constructor();
+            /** 映射的属性名称-类型 */
+            static PROPERTY_BOCODE_NAME: string;
+            /** 获取-类型 */
+            get boCode(): string;
+            /** 设置-类型 */
+            set boCode(value: string);
+            /** 映射的属性名称-主键值 */
+            static PROPERTY_BOKEYS_NAME: string;
+            /** 获取-主键值 */
+            get boKeys(): string;
+            /** 设置-主键值 */
+            set boKeys(value: string);
+            /** 映射的属性名称-实例号 */
+            static PROPERTY_LOGINST_NAME: string;
+            /** 获取-实例号 */
+            get logInst(): number;
+            /** 设置-实例号 */
+            set logInst(value: number);
+            /** 映射的属性名称-修改用户 */
+            static PROPERTY_MODIFYUSER_NAME: string;
+            /** 获取-修改用户 */
+            get modifyUser(): number;
+            /** 设置-修改用户 */
+            set modifyUser(value: number);
+            /** 映射的属性名称-修改日期 */
+            static PROPERTY_MODIFYDATE_NAME: string;
+            /** 获取-修改日期 */
+            get modifyDate(): Date;
+            /** 设置-修改日期 */
+            set modifyDate(value: Date);
+            /** 映射的属性名称-修改时间 */
+            static PROPERTY_MODIFYTIME_NAME: string;
+            /** 获取-修改时间 */
+            get modifyTime(): number;
+            /** 设置-修改时间 */
+            set modifyTime(value: number);
+            /** 映射的属性名称-事务标识 */
+            static PROPERTY_TRANSATIONID_NAME: string;
+            /** 获取-事务标识 */
+            get transationId(): string;
+            /** 设置-事务标识 */
+            set transationId(value: string);
+            /** 映射的属性名称-动机 */
+            static PROPERTY_CAUSE_NAME: string;
+            /** 获取-动机 */
+            get cause(): string;
+            /** 设置-动机 */
+            set cause(value: string);
+            /** 映射的属性名称-内容 */
+            static PROPERTY_CONTENT_NAME: string;
+            /** 获取-内容 */
+            get content(): string | object;
+            /** 设置-内容 */
+            set content(value: string | object);
+            /** 初始化数据 */
+            protected init(): void;
+            criteria(): ibas.ICriteria;
+            toString(): string;
+        }
+    }
+}
+/**
+ * @license
+ * Copyright Color-Coding Studio. All Rights Reserved.
+ *
+ * Use of this source code is governed by an Apache License, Version 2.0
+ * that can be found in the LICENSE file at http://www.apache.org/licenses/LICENSE-2.0
+ */
+declare namespace initialfantasy {
+    namespace bo {
         /** 数据转换者 */
         class DataConverter extends ibas.DataConverter4j {
             /** 创建业务对象转换者 */
@@ -3762,6 +3876,11 @@ declare namespace initialfantasy {
              * @param saver 保存者
              */
             saveApplicationConfigIdentity(saver: ibas.ISaveCaller<bo.ApplicationConfigIdentity>): void;
+            /**
+             * 查询 业务对象日志
+             * @param fetcher 查询者
+             */
+            fetchBOLogst(fetcher: ibas.IFetchCaller<bo.BOLogst>): void;
         }
     }
 }
@@ -5317,6 +5436,50 @@ declare namespace initialfantasy {
  * Use of this source code is governed by an Apache License, Version 2.0
  * that can be found in the LICENSE file at http://www.apache.org/licenses/LICENSE-2.0
  */
+declare namespace initialfantasy {
+    namespace app {
+        /** 查看应用-组织 */
+        class OrganizationViewApp extends ibas.BOViewService<IOrganizationViewView, bo.Organization> {
+            /** 应用标识 */
+            static APPLICATION_ID: string;
+            /** 应用名称 */
+            static APPLICATION_NAME: string;
+            /** 业务对象编码 */
+            static BUSINESS_OBJECT_CODE: string;
+            /** 构造函数 */
+            constructor();
+            /** 注册视图 */
+            protected registerView(): void;
+            /** 视图显示后 */
+            protected viewShowed(): void;
+            /** 编辑数据，参数：目标数据 */
+            protected editData(): void;
+            run(): void;
+            run(data: bo.Organization): void;
+            /** 查询数据 */
+            protected fetchData(criteria: ibas.ICriteria | string): void;
+        }
+        /** 视图-组织 */
+        interface IOrganizationViewView extends ibas.IBOViewView {
+            /** 显示数据 */
+            showOrganization(data: bo.Organization): void;
+        }
+        /** 组织连接服务映射 */
+        class OrganizationLinkServiceMapping extends ibas.BOLinkServiceMapping {
+            /** 构造函数 */
+            constructor();
+            /** 创建服务实例 */
+            create(): ibas.IBOLinkService;
+        }
+    }
+}
+/**
+ * @license
+ * Copyright Color-Coding Studio. All Rights Reserved.
+ *
+ * Use of this source code is governed by an Apache License, Version 2.0
+ * that can be found in the LICENSE file at http://www.apache.org/licenses/LICENSE-2.0
+ */
 /**
  * @license
  * Copyright Color-Coding Studio. All Rights Reserved.
@@ -6093,6 +6256,50 @@ declare namespace initialfantasy {
  * Use of this source code is governed by an Apache License, Version 2.0
  * that can be found in the LICENSE file at http://www.apache.org/licenses/LICENSE-2.0
  */
+declare namespace initialfantasy {
+    namespace app {
+        /** 查看应用-用户 */
+        class UserViewApp extends ibas.BOViewService<IUserViewView, bo.User> {
+            /** 应用标识 */
+            static APPLICATION_ID: string;
+            /** 应用名称 */
+            static APPLICATION_NAME: string;
+            /** 业务对象编码 */
+            static BUSINESS_OBJECT_CODE: string;
+            /** 构造函数 */
+            constructor();
+            /** 注册视图 */
+            protected registerView(): void;
+            /** 视图显示后 */
+            protected viewShowed(): void;
+            /** 编辑数据，参数：目标数据 */
+            protected editData(): void;
+            run(): void;
+            run(data: bo.User): void;
+            /** 查询数据 */
+            protected fetchData(criteria: ibas.ICriteria | string): void;
+        }
+        /** 视图-用户 */
+        interface IUserViewView extends ibas.IBOViewView {
+            /** 显示数据 */
+            showUser(data: bo.User): void;
+        }
+        /** 用户连接服务映射 */
+        class UserLinkServiceMapping extends ibas.BOLinkServiceMapping {
+            /** 构造函数 */
+            constructor();
+            /** 创建服务实例 */
+            create(): ibas.IBOLinkService;
+        }
+    }
+}
+/**
+ * @license
+ * Copyright Color-Coding Studio. All Rights Reserved.
+ *
+ * Use of this source code is governed by an Apache License, Version 2.0
+ * that can be found in the LICENSE file at http://www.apache.org/licenses/LICENSE-2.0
+ */
 /**
  * @license
  * Copyright Color-Coding Studio. All Rights Reserved.
@@ -6408,6 +6615,165 @@ declare namespace initialfantasy {
             chooseUserEvent: Function;
             /** 选择身份事件 */
             chooseIdentityEvent: Function;
+        }
+    }
+}
+/**
+ * @license
+ * Copyright Color-Coding Studio. All Rights Reserved.
+ *
+ * Use of this source code is governed by an Apache License, Version 2.0
+ * that can be found in the LICENSE file at http://www.apache.org/licenses/LICENSE-2.0
+ */
+/**
+ * @license
+ * Copyright Color-Coding Studio. All Rights Reserved.
+ *
+ * Use of this source code is governed by an Apache License, Version 2.0
+ * that can be found in the LICENSE file at http://www.apache.org/licenses/LICENSE-2.0
+ */
+declare namespace initialfantasy {
+    namespace app {
+        /** 列表应用-业务对象日志 */
+        class BOLogstListApp extends ibas.BOListApplication<IBOLogstListView, bo.BOLogst> {
+            /** 应用标识 */
+            static APPLICATION_ID: string;
+            /** 应用名称 */
+            static APPLICATION_NAME: string;
+            /** 构造函数 */
+            constructor();
+            /** 注册视图 */
+            protected registerView(): void;
+            /** 视图显示后 */
+            protected viewShowed(): void;
+            /** 查询数据 */
+            protected fetchData(criteria: ibas.ICriteria): void;
+            /** 新建数据 */
+            protected newData(): void;
+            /** 查看数据，参数：目标数据 */
+            protected viewData(data: bo.BOLogst): void;
+        }
+        /** 视图-业务对象日志 */
+        interface IBOLogstListView extends ibas.IBOListView {
+            /** 删除数据 */
+            deleteDataEvent: Function;
+            /** 显示数据 */
+            showData(datas: bo.BOLogst[]): void;
+            /** 查看数据 */
+            viewDataEvent: Function;
+        }
+    }
+}
+/**
+ * @license
+ * Copyright Color-Coding Studio. All Rights Reserved.
+ *
+ * Use of this source code is governed by an Apache License, Version 2.0
+ * that can be found in the LICENSE file at http://www.apache.org/licenses/LICENSE-2.0
+ */
+declare namespace initialfantasy {
+    namespace app {
+        /** 查看应用-业务对象日志 */
+        class BOLogstViewApp extends ibas.Application<IBOLogstViewView> {
+            /** 应用标识 */
+            static APPLICATION_ID: string;
+            /** 应用名称 */
+            static APPLICATION_NAME: string;
+            /** 构造函数 */
+            constructor();
+            /** 注册视图 */
+            protected registerView(): void;
+            /** 视图显示后 */
+            protected viewShowed(): void;
+            private datas;
+            run(data?: bo.BOLogst | bo.BOLogst[]): void;
+            onViewShowed: () => void;
+            private template;
+        }
+        /** 视图-业务对象日志 */
+        interface IBOLogstViewView extends ibas.IBOViewView {
+            /** 绘制窗体 */
+            drawView(template: outs.BOType): void;
+            /** 显示数据 */
+            showData(datas: object[]): void;
+        }
+        namespace outs {
+            function template(datas: object[], boInfos: ibas.IList<bo.BOInformation>): BOType;
+            class BOType {
+                code: string;
+                name: string;
+                description: string;
+                properties: ibas.IList<BOTypeProperty>;
+            }
+            abstract class BOTypeProperty {
+                name: string;
+                description: string;
+                type: any;
+            }
+            class BOTypePropertyString extends BOTypeProperty {
+                get type(): any;
+            }
+            class BOTypePropertyDecimal extends BOTypeProperty {
+                get type(): any;
+            }
+            class BOTypePropertyNumeric extends BOTypeProperty {
+                get type(): any;
+            }
+            class BOTypePropertyDate extends BOTypeProperty {
+                get type(): any;
+            }
+            class BOTypePropertyTime extends BOTypeProperty {
+                get type(): any;
+            }
+            class BOTypePropertyObject extends BOTypeProperty {
+                type: BOType;
+            }
+            class BOTypePropertyArray extends BOTypeProperty {
+                type: BOType;
+            }
+        }
+    }
+}
+/**
+ * @license
+ * Copyright Color-Coding Studio. All Rights Reserved.
+ *
+ * Use of this source code is governed by an Apache License, Version 2.0
+ * that can be found in the LICENSE file at http://www.apache.org/licenses/LICENSE-2.0
+ */
+declare namespace initialfantasy {
+    namespace app {
+        /** 业务对象日志服务 */
+        class BOLogstService extends ibas.ServiceApplication<IBOLogstServiceView, ibas.IBOServiceContract> {
+            /** 应用标识 */
+            static APPLICATION_ID: string;
+            /** 应用名称 */
+            static APPLICATION_NAME: string;
+            constructor();
+            /** 注册视图 */
+            protected registerView(): void;
+            /** 视图显示后 */
+            protected viewShowed(): void;
+            /** 运行服务 */
+            runService(contract: ibas.IBOServiceContract): void;
+            /** 关联的数据 */
+            private bo;
+            private viewData;
+        }
+        /** 业务对象日志服务-视图 */
+        interface IBOLogstServiceView extends ibas.IView {
+            /** 显示关联对象 */
+            showBusinessObject(bo: ibas.IBusinessObject): void;
+            /** 显示已存在日志 */
+            showLogsts(datas: bo.BOLogst[]): void;
+            /** 查看数据 */
+            viewDataEvent: Function;
+        }
+        /** 业务对象日志服务映射 */
+        class BOLogstServiceMapping extends ibas.ServiceMapping {
+            constructor();
+            /** 创建服务实例 */
+            create(): ibas.IService<ibas.IServiceContract>;
         }
     }
 }

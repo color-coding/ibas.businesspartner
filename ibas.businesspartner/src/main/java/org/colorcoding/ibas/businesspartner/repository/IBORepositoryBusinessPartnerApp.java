@@ -11,6 +11,7 @@ import org.colorcoding.ibas.businesspartner.bo.businesspartnergroup.IBusinessPar
 import org.colorcoding.ibas.businesspartner.bo.contactperson.IContactPerson;
 import org.colorcoding.ibas.businesspartner.bo.customer.ICustomer;
 import org.colorcoding.ibas.businesspartner.bo.lead.ILead;
+import org.colorcoding.ibas.businesspartner.bo.paymentterm.IPaymentTerm;
 import org.colorcoding.ibas.businesspartner.bo.supplier.ISupplier;
 import org.colorcoding.ibas.businesspartner.data.AssetRequest;
 import org.colorcoding.ibas.businesspartner.data.CustomerAsset;
@@ -183,6 +184,23 @@ public interface IBORepositoryBusinessPartnerApp extends IBORepositoryApplicatio
 	 * @return 操作结果
 	 */
 	IOperationResult<ILead> saveLead(ILead bo);
+
+	// --------------------------------------------------------------------------------------------//
+	/**
+	 * 查询-付款条款
+	 * 
+	 * @param criteria 查询
+	 * @return 操作结果
+	 */
+	IOperationResult<IPaymentTerm> fetchPaymentTerm(ICriteria criteria);
+
+	/**
+	 * 保存-付款条款
+	 * 
+	 * @param bo 对象实例
+	 * @return 操作结果
+	 */
+	IOperationResult<IPaymentTerm> savePaymentTerm(IPaymentTerm bo);
 
 	// --------------------------------------------------------------------------------------------//
 }

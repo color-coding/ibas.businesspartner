@@ -17,6 +17,7 @@ import org.colorcoding.ibas.businesspartner.bo.businesspartnergroup.BusinessPart
 import org.colorcoding.ibas.businesspartner.bo.contactperson.ContactPerson;
 import org.colorcoding.ibas.businesspartner.bo.customer.Customer;
 import org.colorcoding.ibas.businesspartner.bo.lead.Lead;
+import org.colorcoding.ibas.businesspartner.bo.paymentterm.PaymentTerm;
 import org.colorcoding.ibas.businesspartner.bo.supplier.Supplier;
 import org.colorcoding.ibas.businesspartner.data.AssetRequest;
 import org.colorcoding.ibas.businesspartner.data.CustomerAsset;
@@ -328,6 +329,36 @@ public class DataService extends BORepositoryBusinessPartner {
 		return super.saveLead(bo, token);
 	}
 
+	// --------------------------------------------------------------------------------------------//
+	/**
+	 * 查询-付款条款
+	 * 
+	 * @param criteria 查询
+	 * @param token    口令
+	 * @return 操作结果
+	 */
+	@POST
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Path("fetchPaymentTerm")
+	public OperationResult<PaymentTerm> fetchPaymentTerm(Criteria criteria, @QueryParam("token") String token) {
+		return super.fetchPaymentTerm(criteria, token);
+	}
+
+	/**
+	 * 保存-付款条款
+	 * 
+	 * @param bo    对象实例
+	 * @param token 口令
+	 * @return 操作结果
+	 */
+	@POST
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Path("savePaymentTerm")
+	public OperationResult<PaymentTerm> savePaymentTerm(PaymentTerm bo, @QueryParam("token") String token) {
+		return super.savePaymentTerm(bo, token);
+	}
 	// --------------------------------------------------------------------------------------------//
 
 }

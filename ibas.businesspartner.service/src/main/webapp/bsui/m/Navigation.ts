@@ -16,6 +16,7 @@
 /// <reference path="./assetitem/index.ts" />
 /// <reference path="./businesspartnerasset/index.ts" />
 /// <reference path="./lead/index.ts" />
+/// <reference path="./paymentterm/index.ts" />
 namespace businesspartner {
     export namespace ui {
         /**
@@ -100,6 +101,9 @@ namespace businesspartner {
                         break;
                     case app.LeadViewApp.APPLICATION_ID:
                         view = new m.LeadViewView();
+                        break;
+                    case app.PaymentTermChooseApp.APPLICATION_ID:
+                        view = new m.PaymentTermChooseView();
                         break;
                     default:
                         break;

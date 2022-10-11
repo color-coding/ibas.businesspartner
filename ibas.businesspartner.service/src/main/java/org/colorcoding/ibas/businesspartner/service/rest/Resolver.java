@@ -17,6 +17,7 @@ import org.colorcoding.ibas.businesspartner.bo.businesspartnergroup.BusinessPart
 import org.colorcoding.ibas.businesspartner.bo.contactperson.ContactPerson;
 import org.colorcoding.ibas.businesspartner.bo.customer.Customer;
 import org.colorcoding.ibas.businesspartner.bo.lead.Lead;
+import org.colorcoding.ibas.businesspartner.bo.paymentterm.PaymentTerm;
 import org.colorcoding.ibas.businesspartner.bo.supplier.Supplier;
 
 /**
@@ -33,7 +34,8 @@ public class Resolver implements ContextResolver<JAXBContext> {
 			if (jaxbContext == null) {
 				jaxbContext = JAXBContext.newInstance(Criteria.class, OperationResult.class, UserFieldProxy.class,
 						BusinessPartnerGroup.class, ContactPerson.class, Customer.class, Supplier.class, Lead.class,
-						AssetItem.class, BusinessPartnerAsset.class, BusinessPartnerAssetJournal.class, Address.class);
+						AssetItem.class, BusinessPartnerAsset.class, BusinessPartnerAssetJournal.class, Address.class,
+						PaymentTerm.class);
 			}
 		} catch (JAXBException e) {
 			e.printStackTrace();

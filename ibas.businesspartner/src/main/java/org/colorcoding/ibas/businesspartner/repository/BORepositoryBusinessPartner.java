@@ -29,6 +29,8 @@ import org.colorcoding.ibas.businesspartner.bo.customer.Customer;
 import org.colorcoding.ibas.businesspartner.bo.customer.ICustomer;
 import org.colorcoding.ibas.businesspartner.bo.lead.ILead;
 import org.colorcoding.ibas.businesspartner.bo.lead.Lead;
+import org.colorcoding.ibas.businesspartner.bo.paymentterm.IPaymentTerm;
+import org.colorcoding.ibas.businesspartner.bo.paymentterm.PaymentTerm;
 import org.colorcoding.ibas.businesspartner.bo.supplier.ISupplier;
 import org.colorcoding.ibas.businesspartner.bo.supplier.Supplier;
 import org.colorcoding.ibas.businesspartner.data.AssetRequest;
@@ -668,7 +670,50 @@ public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 	 */
 	public IOperationResult<ILead> saveLead(ILead bo) {
 		return new OperationResult<ILead>(this.saveLead((Lead) bo, this.getUserToken()));
+	} // --------------------------------------------------------------------------------------------//
+
+	/**
+	 * 查询-付款条款
+	 * 
+	 * @param criteria 查询
+	 * @param token    口令
+	 * @return 操作结果
+	 */
+	public OperationResult<PaymentTerm> fetchPaymentTerm(ICriteria criteria, String token) {
+		return super.fetch(criteria, token, PaymentTerm.class);
 	}
+
+	/**
+	 * 查询-付款条款（提前设置用户口令）
+	 * 
+	 * @param criteria 查询
+	 * @return 操作结果
+	 */
+	public IOperationResult<IPaymentTerm> fetchPaymentTerm(ICriteria criteria) {
+		return new OperationResult<IPaymentTerm>(this.fetchPaymentTerm(criteria, this.getUserToken()));
+	}
+
+	/**
+	 * 保存-付款条款
+	 * 
+	 * @param bo    对象实例
+	 * @param token 口令
+	 * @return 操作结果
+	 */
+	public OperationResult<PaymentTerm> savePaymentTerm(PaymentTerm bo, String token) {
+		return super.save(bo, token);
+	}
+
+	/**
+	 * 保存-付款条款（提前设置用户口令）
+	 * 
+	 * @param bo 对象实例
+	 * @return 操作结果
+	 */
+	public IOperationResult<IPaymentTerm> savePaymentTerm(IPaymentTerm bo) {
+		return new OperationResult<IPaymentTerm>(this.savePaymentTerm((PaymentTerm) bo, this.getUserToken()));
+	}
+
 	// --------------------------------------------------------------------------------------------//
 
 }

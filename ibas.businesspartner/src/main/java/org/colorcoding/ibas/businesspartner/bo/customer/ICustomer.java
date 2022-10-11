@@ -391,6 +391,20 @@ public interface ICustomer extends IBOMasterData {
 	void setTaxGroup(String value);
 
 	/**
+	 * 获取-付款条款代码
+	 * 
+	 * @return 值
+	 */
+	String getPaymentCode();
+
+	/**
+	 * 设置-付款条款代码
+	 * 
+	 * @param value 值
+	 */
+	void setPaymentCode(String value);
+
+	/**
 	 * 获取-备注
 	 * 
 	 * @return 值

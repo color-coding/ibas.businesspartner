@@ -44,6 +44,8 @@ namespace businesspartner {
         export const BO_CODE_BUSINESSPARTNERASSETJOURNAL: string = "${Company}_BP_BPASSETJOURNAL";
         /** 业务对象编码-潜在客户 */
         export const BO_CODE_LEAD: string = "${Company}_BP_LEAD";
+        /** 业务对象编码-付款条款 */
+        export const BO_CODE_PAYMENTTERM: string = "${Company}_BP_PAYMENTTERM";
 
         /** 业务伙伴性质 */
         export enum emBusinessPartnerNature {
@@ -67,6 +69,24 @@ namespace businesspartner {
             MALE,
             /** 女 */
             FEMALE,
+        }
+        export enum emDueDateBaseOn {
+            /** 单据日期 */
+            DOCUMENT_DATE,
+            /** 过账日期 */
+            POSTING_DATE,
+            /** 系统日期 */
+            SYSTEM_DATE,
+        }
+        export enum emPayTermDueType {
+            /** 无 */
+            NONE,
+            /** 月初 */
+            MONTH_START,
+            /** 月中 */
+            MONTH_HALF,
+            /** 月末 */
+            MONTH_END,
         }
         /** 资产请求 */
         export class IAssetRequest {
@@ -152,52 +172,66 @@ namespace businesspartner {
                     // 激活的
                     condition = new ibas.Condition();
                     condition.bracketOpen = 1;
-                    condition.alias = "Activated";
+                    condition.alias = bo.Customer.PROPERTY_ACTIVATED_NAME;
                     condition.operation = ibas.emConditionOperation.EQUAL;
                     condition.value = ibas.emYesNo.YES.toString();
                     conditions.add(condition);
                     // 有效日期
                     condition = new ibas.Condition();
                     condition.bracketOpen = 1;
-                    condition.alias = "ValidDate";
+                    condition.alias = bo.Customer.PROPERTY_VALIDDATE_NAME;
                     condition.operation = ibas.emConditionOperation.IS_NULL;
                     conditions.add(condition);
                     condition = new ibas.Condition();
                     condition.relationship = ibas.emConditionRelationship.OR;
                     condition.bracketOpen = 1;
-                    condition.alias = "ValidDate";
+                    condition.alias = bo.Customer.PROPERTY_VALIDDATE_NAME;
                     condition.operation = ibas.emConditionOperation.NOT_NULL;
                     conditions.add(condition);
                     condition = new ibas.Condition();
                     condition.bracketClose = 2;
-                    condition.alias = "ValidDate";
+                    condition.alias = bo.Customer.PROPERTY_VALIDDATE_NAME;
                     condition.operation = ibas.emConditionOperation.LESS_EQUAL;
                     condition.value = today;
                     conditions.add(condition);
                     // 失效日期
                     condition = new ibas.Condition();
                     condition.bracketOpen = 1;
-                    condition.alias = "InvalidDate";
+                    condition.alias = bo.Customer.PROPERTY_INVALIDDATE_NAME;
                     condition.operation = ibas.emConditionOperation.IS_NULL;
                     conditions.add(condition);
                     condition = new ibas.Condition();
                     condition.relationship = ibas.emConditionRelationship.OR;
                     condition.bracketOpen = 1;
-                    condition.alias = "InvalidDate";
+                    condition.alias = bo.Customer.PROPERTY_INVALIDDATE_NAME;
                     condition.operation = ibas.emConditionOperation.NOT_NULL;
                     conditions.add(condition);
                     condition = new ibas.Condition();
                     condition.bracketClose = 2;
-                    condition.alias = "InvalidDate";
+                    condition.alias = bo.Customer.PROPERTY_INVALIDDATE_NAME;
                     condition.operation = ibas.emConditionOperation.GRATER_EQUAL;
                     condition.value = today;
                     conditions.add(condition);
                     // 没删除
                     condition = new ibas.Condition();
                     condition.bracketClose = 1;
-                    condition.alias = "Deleted";
+                    condition.alias = bo.Customer.PROPERTY_DELETED_NAME;
                     condition.operation = ibas.emConditionOperation.EQUAL;
                     condition.value = ibas.emYesNo.NO.toString();
+                    conditions.add(condition);
+                    // 审批通过的或未进审批
+                    condition = new ibas.Condition();
+                    condition.alias = bo.Customer.PROPERTY_APPROVALSTATUS_NAME;
+                    condition.operation = ibas.emConditionOperation.EQUAL;
+                    condition.value = ibas.emApprovalStatus.APPROVED.toString();
+                    condition.bracketOpen = 1;
+                    conditions.add(condition);
+                    condition = new ibas.Condition();
+                    condition.alias = bo.Customer.PROPERTY_APPROVALSTATUS_NAME;
+                    condition.operation = ibas.emConditionOperation.EQUAL;
+                    condition.value = ibas.emApprovalStatus.UNAFFECTED.toString();
+                    condition.relationship = ibas.emConditionRelationship.OR;
+                    condition.bracketClose = 1;
                     conditions.add(condition);
                     return conditions;
                 }
@@ -211,52 +245,66 @@ namespace businesspartner {
                     // 激活的
                     condition = new ibas.Condition();
                     condition.bracketOpen = 1;
-                    condition.alias = "Activated";
+                    condition.alias = bo.Supplier.PROPERTY_ACTIVATED_NAME;
                     condition.operation = ibas.emConditionOperation.EQUAL;
                     condition.value = ibas.emYesNo.YES.toString();
                     conditions.add(condition);
                     // 有效日期
                     condition = new ibas.Condition();
                     condition.bracketOpen = 1;
-                    condition.alias = "ValidDate";
+                    condition.alias = bo.Supplier.PROPERTY_VALIDDATE_NAME;
                     condition.operation = ibas.emConditionOperation.IS_NULL;
                     conditions.add(condition);
                     condition = new ibas.Condition();
                     condition.relationship = ibas.emConditionRelationship.OR;
                     condition.bracketOpen = 1;
-                    condition.alias = "ValidDate";
+                    condition.alias = bo.Supplier.PROPERTY_VALIDDATE_NAME;
                     condition.operation = ibas.emConditionOperation.NOT_NULL;
                     conditions.add(condition);
                     condition = new ibas.Condition();
                     condition.bracketClose = 2;
-                    condition.alias = "ValidDate";
+                    condition.alias = bo.Supplier.PROPERTY_VALIDDATE_NAME;
                     condition.operation = ibas.emConditionOperation.LESS_EQUAL;
                     condition.value = today;
                     conditions.add(condition);
                     // 失效日期
                     condition = new ibas.Condition();
                     condition.bracketOpen = 1;
-                    condition.alias = "InvalidDate";
+                    condition.alias = bo.Supplier.PROPERTY_INVALIDDATE_NAME;
                     condition.operation = ibas.emConditionOperation.IS_NULL;
                     conditions.add(condition);
                     condition = new ibas.Condition();
                     condition.relationship = ibas.emConditionRelationship.OR;
                     condition.bracketOpen = 1;
-                    condition.alias = "InvalidDate";
+                    condition.alias = bo.Supplier.PROPERTY_INVALIDDATE_NAME;
                     condition.operation = ibas.emConditionOperation.NOT_NULL;
                     conditions.add(condition);
                     condition = new ibas.Condition();
                     condition.bracketClose = 2;
-                    condition.alias = "InvalidDate";
+                    condition.alias = bo.Supplier.PROPERTY_INVALIDDATE_NAME;
                     condition.operation = ibas.emConditionOperation.GRATER_EQUAL;
                     condition.value = today;
                     conditions.add(condition);
                     // 没删除
                     condition = new ibas.Condition();
                     condition.bracketClose = 1;
-                    condition.alias = "Deleted";
+                    condition.alias = bo.Supplier.PROPERTY_DELETED_NAME;
                     condition.operation = ibas.emConditionOperation.EQUAL;
                     condition.value = ibas.emYesNo.NO.toString();
+                    conditions.add(condition);
+                    // 审批通过的或未进审批
+                    condition = new ibas.Condition();
+                    condition.alias = bo.Customer.PROPERTY_APPROVALSTATUS_NAME;
+                    condition.operation = ibas.emConditionOperation.EQUAL;
+                    condition.value = ibas.emApprovalStatus.APPROVED.toString();
+                    condition.bracketOpen = 1;
+                    conditions.add(condition);
+                    condition = new ibas.Condition();
+                    condition.alias = bo.Customer.PROPERTY_APPROVALSTATUS_NAME;
+                    condition.operation = ibas.emConditionOperation.EQUAL;
+                    condition.value = ibas.emApprovalStatus.UNAFFECTED.toString();
+                    condition.relationship = ibas.emConditionRelationship.OR;
+                    condition.bracketClose = 1;
                     conditions.add(condition);
                     return conditions;
                 }
@@ -268,20 +316,20 @@ namespace businesspartner {
                     // 类型
                     condition = new ibas.Condition();
                     condition.bracketOpen = 1;
-                    condition.alias = "OwnerType";
+                    condition.alias = bo.ContactPerson.PROPERTY_OWNERTYPE_NAME;
                     condition.operation = ibas.emConditionOperation.EQUAL;
                     condition.value = type.toString();
                     conditions.add(condition);
                     // 激活的
                     condition = new ibas.Condition();
-                    condition.alias = "Activated";
+                    condition.alias = bo.ContactPerson.PROPERTY_ACTIVATED_NAME;
                     condition.operation = ibas.emConditionOperation.EQUAL;
                     condition.value = ibas.emYesNo.YES.toString();
                     conditions.add(condition);
                     // 业务伙伴编码
                     condition = new ibas.Condition();
                     condition.bracketClose = 1;
-                    condition.alias = "BusinessPartner";
+                    condition.alias = bo.ContactPerson.PROPERTY_BUSINESSPARTNER_NAME;
                     condition.operation = ibas.emConditionOperation.EQUAL;
                     condition.value = bpCode;
                     conditions.add(condition);
@@ -295,20 +343,20 @@ namespace businesspartner {
                     // 类型
                     condition = new ibas.Condition();
                     condition.bracketOpen = 1;
-                    condition.alias = "OwnerType";
+                    condition.alias = bo.Address.PROPERTY_OWNERTYPE_NAME;
                     condition.operation = ibas.emConditionOperation.EQUAL;
                     condition.value = type.toString();
                     conditions.add(condition);
                     // 激活的
                     condition = new ibas.Condition();
-                    condition.alias = "Activated";
+                    condition.alias = bo.Address.PROPERTY_ACTIVATED_NAME;
                     condition.operation = ibas.emConditionOperation.EQUAL;
                     condition.value = ibas.emYesNo.YES.toString();
                     conditions.add(condition);
                     // 业务伙伴编码
                     condition = new ibas.Condition();
                     condition.bracketClose = 1;
-                    condition.alias = "BusinessPartner";
+                    condition.alias = bo.Address.PROPERTY_BUSINESSPARTNER_NAME;
                     condition.operation = ibas.emConditionOperation.EQUAL;
                     condition.value = bpCode;
                     conditions.add(condition);
@@ -324,50 +372,50 @@ namespace businesspartner {
                     // 激活的
                     condition = new ibas.Condition();
                     condition.bracketOpen = 1;
-                    condition.alias = "Activated";
+                    condition.alias = bo.AssetItem.PROPERTY_ACTIVATED_NAME;
                     condition.operation = ibas.emConditionOperation.EQUAL;
                     condition.value = ibas.emYesNo.YES.toString();
                     conditions.add(condition);
                     // 有效日期
                     condition = new ibas.Condition();
                     condition.bracketOpen = 1;
-                    condition.alias = "ValidDate";
+                    condition.alias = bo.AssetItem.PROPERTY_VALIDDATE_NAME;
                     condition.operation = ibas.emConditionOperation.IS_NULL;
                     conditions.add(condition);
                     condition = new ibas.Condition();
                     condition.relationship = ibas.emConditionRelationship.OR;
                     condition.bracketOpen = 1;
-                    condition.alias = "ValidDate";
+                    condition.alias = bo.AssetItem.PROPERTY_VALIDDATE_NAME;
                     condition.operation = ibas.emConditionOperation.NOT_NULL;
                     conditions.add(condition);
                     condition = new ibas.Condition();
                     condition.bracketClose = 2;
-                    condition.alias = "ValidDate";
+                    condition.alias = bo.AssetItem.PROPERTY_VALIDDATE_NAME;
                     condition.operation = ibas.emConditionOperation.LESS_EQUAL;
                     condition.value = today;
                     conditions.add(condition);
                     // 失效日期
                     condition = new ibas.Condition();
                     condition.bracketOpen = 1;
-                    condition.alias = "InvalidDate";
+                    condition.alias = bo.AssetItem.PROPERTY_INVALIDDATE_NAME;
                     condition.operation = ibas.emConditionOperation.IS_NULL;
                     conditions.add(condition);
                     condition = new ibas.Condition();
                     condition.relationship = ibas.emConditionRelationship.OR;
                     condition.bracketOpen = 1;
-                    condition.alias = "InvalidDate";
+                    condition.alias = bo.AssetItem.PROPERTY_INVALIDDATE_NAME;
                     condition.operation = ibas.emConditionOperation.NOT_NULL;
                     conditions.add(condition);
                     condition = new ibas.Condition();
                     condition.bracketClose = 2;
-                    condition.alias = "InvalidDate";
+                    condition.alias = bo.AssetItem.PROPERTY_INVALIDDATE_NAME;
                     condition.operation = ibas.emConditionOperation.GRATER_EQUAL;
                     condition.value = today;
                     conditions.add(condition);
                     // 没删除
                     condition = new ibas.Condition();
                     condition.bracketClose = 1;
-                    condition.alias = "Deleted";
+                    condition.alias = bo.AssetItem.PROPERTY_DELETED_NAME;
                     condition.operation = ibas.emConditionOperation.EQUAL;
                     condition.value = ibas.emYesNo.NO.toString();
                     conditions.add(condition);
@@ -383,69 +431,69 @@ namespace businesspartner {
                     // 激活的
                     condition = new ibas.Condition();
                     condition.bracketOpen = 1;
-                    condition.alias = "Activated";
+                    condition.alias = bo.BusinessPartnerAsset.PROPERTY_ACTIVATED_NAME;
                     condition.operation = ibas.emConditionOperation.EQUAL;
                     condition.value = ibas.emYesNo.YES.toString();
                     conditions.add(condition);
                     // 有效日期
                     condition = new ibas.Condition();
                     condition.bracketOpen = 1;
-                    condition.alias = "ValidDate";
+                    condition.alias = bo.BusinessPartnerAsset.PROPERTY_VALIDDATE_NAME;
                     condition.operation = ibas.emConditionOperation.IS_NULL;
                     conditions.add(condition);
                     condition = new ibas.Condition();
                     condition.relationship = ibas.emConditionRelationship.OR;
                     condition.bracketOpen = 1;
-                    condition.alias = "ValidDate";
+                    condition.alias = bo.BusinessPartnerAsset.PROPERTY_VALIDDATE_NAME;
                     condition.operation = ibas.emConditionOperation.NOT_NULL;
                     conditions.add(condition);
                     condition = new ibas.Condition();
                     condition.bracketClose = 2;
-                    condition.alias = "ValidDate";
+                    condition.alias = bo.BusinessPartnerAsset.PROPERTY_VALIDDATE_NAME;
                     condition.operation = ibas.emConditionOperation.LESS_EQUAL;
                     condition.value = today;
                     conditions.add(condition);
                     // 失效日期
                     condition = new ibas.Condition();
                     condition.bracketOpen = 1;
-                    condition.alias = "InvalidDate";
+                    condition.alias = bo.BusinessPartnerAsset.PROPERTY_INVALIDDATE_NAME;
                     condition.operation = ibas.emConditionOperation.IS_NULL;
                     conditions.add(condition);
                     condition = new ibas.Condition();
                     condition.relationship = ibas.emConditionRelationship.OR;
                     condition.bracketOpen = 1;
-                    condition.alias = "InvalidDate";
+                    condition.alias = bo.BusinessPartnerAsset.PROPERTY_INVALIDDATE_NAME;
                     condition.operation = ibas.emConditionOperation.NOT_NULL;
                     conditions.add(condition);
                     condition = new ibas.Condition();
                     condition.bracketClose = 2;
-                    condition.alias = "InvalidDate";
+                    condition.alias = bo.BusinessPartnerAsset.PROPERTY_INVALIDDATE_NAME;
                     condition.operation = ibas.emConditionOperation.GRATER_EQUAL;
                     condition.value = today;
                     conditions.add(condition);
                     // 没删除
                     condition = new ibas.Condition();
                     condition.bracketClose = 1;
-                    condition.alias = "Deleted";
+                    condition.alias = bo.BusinessPartnerAsset.PROPERTY_DELETED_NAME;
                     condition.operation = ibas.emConditionOperation.EQUAL;
                     condition.value = ibas.emYesNo.NO.toString();
                     conditions.add(condition);
                     // 业务伙伴
                     condition = new ibas.Condition();
                     condition.bracketOpen = 1;
-                    condition.alias = "BusinessPartnerType";
+                    condition.alias = bo.BusinessPartnerAsset.PROPERTY_BUSINESSPARTNERTYPE_NAME;
                     condition.operation = ibas.emConditionOperation.EQUAL;
                     condition.value = type.toString();
                     conditions.add(condition);
                     condition = new ibas.Condition();
                     condition.bracketClose = 1;
-                    condition.alias = "BusinessPartnerCode";
+                    condition.alias = bo.BusinessPartnerAsset.PROPERTY_BUSINESSPARTNERCODE_NAME;
                     condition.operation = ibas.emConditionOperation.EQUAL;
                     condition.value = bpCode;
                     conditions.add(condition);
                     // 使用次数
                     condition = new ibas.Condition();
-                    condition.alias = "Times";
+                    condition.alias = bo.BusinessPartnerAsset.PROPERTY_TIMES_NAME;
                     condition.operation = ibas.emConditionOperation.GRATER_THAN;
                     condition.value = "0";
                     conditions.add(condition);

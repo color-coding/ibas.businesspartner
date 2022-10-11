@@ -91,6 +91,9 @@ namespace businesspartner {
             /** 税收组 */
             taxGroup: string;
 
+            /** 付款条款 */
+            paymentCode: string;
+
             /** 备注 */
             remarks: string;
 

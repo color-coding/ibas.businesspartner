@@ -119,6 +119,16 @@ namespace businesspartner {
              * @param saver 保存者
              */
             saveLead(saver: ibas.ISaveCaller<bo.ILead>): void;
+            /**
+             * 查询 付款条款
+             * @param fetcher 查询者
+             */
+            fetchPaymentTerm(fetcher: ibas.IFetchCaller<bo.IPaymentTerm>): void;
+            /**
+             * 保存 付款条款
+             * @param saver 保存者
+             */
+            savePaymentTerm(saver: ibas.ISaveCaller<bo.IPaymentTerm>): void;
         }
 
         /**

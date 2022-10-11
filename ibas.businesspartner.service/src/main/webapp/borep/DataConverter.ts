@@ -124,6 +124,12 @@ namespace businesspartner {
                     if (property === bo.Lead.PROPERTY_COMPANYPRIVATE_NAME) {
                         return ibas.enums.toString(emBusinessPartnerNature, value);
                     }
+                } else if (boName === bo.PaymentTerm.name) {
+                    if (property === bo.PaymentTerm.PROPERTY_DUEDATEBASEON_NAME) {
+                        return ibas.enums.toString(emDueDateBaseOn, value);
+                    } else if (property === bo.PaymentTerm.PROPERTY_STARTAT_NAME) {
+                        return ibas.enums.toString(emPayTermDueType, value);
+                    }
                 }
                 return super.convertData(boName, property, value);
             }
@@ -170,6 +176,12 @@ namespace businesspartner {
                 } else if (boName === bo.Lead.name) {
                     if (property === bo.Lead.PROPERTY_COMPANYPRIVATE_NAME) {
                         return ibas.enums.valueOf(emBusinessPartnerNature, value);
+                    }
+                } else if (boName === bo.PaymentTerm.name) {
+                    if (property === bo.PaymentTerm.PROPERTY_DUEDATEBASEON_NAME) {
+                        return ibas.enums.valueOf(emDueDateBaseOn, value);
+                    } else if (property === bo.PaymentTerm.PROPERTY_STARTAT_NAME) {
+                        return ibas.enums.valueOf(emPayTermDueType, value);
                     }
                 }
                 return super.parsingData(boName, property, value);

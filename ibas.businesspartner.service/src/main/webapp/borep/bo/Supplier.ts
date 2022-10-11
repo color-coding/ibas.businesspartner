@@ -314,6 +314,17 @@ namespace businesspartner {
                 this.setProperty(Supplier.PROPERTY_TAXGROUP_NAME, value);
             }
 
+            /** 映射的属性名称-付款条款 */
+            static PROPERTY_PAYMENTCODE_NAME: string = "PaymentCode";
+            /** 获取-付款条款 */
+            get paymentCode(): string {
+                return this.getProperty<string>(Supplier.PROPERTY_PAYMENTCODE_NAME);
+            }
+            /** 设置-付款条款 */
+            set paymentCode(value: string) {
+                this.setProperty(Supplier.PROPERTY_PAYMENTCODE_NAME, value);
+            }
+
             /** 映射的属性名称-备注 */
             static PROPERTY_REMARKS_NAME: string = "Remarks";
             /** 获取-备注 */
