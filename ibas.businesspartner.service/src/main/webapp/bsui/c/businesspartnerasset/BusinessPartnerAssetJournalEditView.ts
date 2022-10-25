@@ -89,7 +89,7 @@ namespace businesspartner {
                 /** 显示数据 */
                 showBusinessPartnerAssetJournal(data: bo.BusinessPartnerAssetJournal): void {
                     this.formTop.bindObject("/");
-                    this.formTop.setModel(new sap.ui.model.json.JSONModel(data));
+                    this.formTop.setModel(new sap.extension.model.JSONModel(data));
                 }
             }
         }

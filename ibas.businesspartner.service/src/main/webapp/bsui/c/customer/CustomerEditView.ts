@@ -152,11 +152,12 @@ namespace businesspartner {
                                 type: new sap.extension.data.Numeric()
                             }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_currency") }),
-                            new sap.extension.m.Input("", {
+                            new sap.extension.m.CurrencySelect("", {
+                                editable: true,
                             }).bindProperty("bindingValue", {
                                 path: "currency",
                                 type: new sap.extension.data.Alphanumeric({
-                                    maxLength: 5
+                                    maxLength: 8
                                 })
                             }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_taxgroup") }),

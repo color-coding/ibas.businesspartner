@@ -266,6 +266,54 @@ namespace businesspartner {
                                 ]
                             }),
                             new sap.uxap.ObjectPageSection("", {
+                                title: ibas.i18n.prop("businesspartner_title_invoices"),
+                                subSections: [
+                                    new sap.uxap.ObjectPageSubSection("", {
+                                        blocks: [
+                                            new sap.extension.m.ObjectAttribute("", {
+                                                title: ibas.i18n.prop("bo_supplier_invoicetitle"),
+                                                bindingValue: {
+                                                    path: "invoiceTitle",
+                                                    type: new sap.extension.data.Alphanumeric(),
+                                                }
+                                            }),
+                                            new sap.extension.m.ObjectAttribute("", {
+                                                title: ibas.i18n.prop("bo_supplier_taxid"),
+                                                bindingValue: {
+                                                    path: "taxId",
+                                                    type: new sap.extension.data.Alphanumeric(),
+                                                }
+                                            }),
+                                        ],
+                                    }),
+                                    new sap.uxap.ObjectPageSubSection("", {
+                                        blocks: [
+                                            new sap.extension.m.ObjectAttribute("", {
+                                                title: ibas.i18n.prop("bo_supplier_invoiceaddress"),
+                                                bindingValue: {
+                                                    path: "invoiceAddress",
+                                                    type: new sap.extension.data.Alphanumeric(),
+                                                }
+                                            }),
+                                            new sap.extension.m.ObjectAttribute("", {
+                                                title: ibas.i18n.prop("bo_supplier_bank"),
+                                                bindingValue: {
+                                                    path: "bank",
+                                                    type: new sap.extension.data.Alphanumeric(),
+                                                }
+                                            }),
+                                            new sap.extension.m.ObjectAttribute("", {
+                                                title: ibas.i18n.prop("bo_supplier_bankaccount"),
+                                                bindingValue: {
+                                                    path: "bankAccount",
+                                                    type: new sap.extension.data.Alphanumeric(),
+                                                }
+                                            }),
+                                        ],
+                                    })
+                                ]
+                            }),
+                            new sap.uxap.ObjectPageSection("", {
                                 title: ibas.i18n.prop("businesspartner_title_others"),
                                 subSections: [
                                     new sap.uxap.ObjectPageSubSection("", {

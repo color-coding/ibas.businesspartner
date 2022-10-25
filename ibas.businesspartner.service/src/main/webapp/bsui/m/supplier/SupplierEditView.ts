@@ -234,11 +234,12 @@ namespace businesspartner {
                                                         type: new sap.extension.data.Numeric()
                                                     }),
                                                     new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_currency") }),
-                                                    new sap.extension.m.Input("", {
+                                                    new sap.extension.m.CurrencySelect("", {
+                                                        editable: true,
                                                     }).bindProperty("bindingValue", {
                                                         path: "currency",
                                                         type: new sap.extension.data.Alphanumeric({
-                                                            maxLength: 5
+                                                            maxLength: 8
                                                         })
                                                     }),
                                                     new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_taxgroup") }),
@@ -447,6 +448,113 @@ namespace businesspartner {
                                                         type: new sap.extension.data.Alphanumeric({
                                                             maxLength: 8
                                                         })
+                                                    }),
+                                                ]
+                                            }).addStyleClass("sapUxAPObjectPageSubSectionAlignContent")
+                                        ]
+                                    }),
+                                ]
+                            }),
+                            new sap.uxap.ObjectPageSection("", {
+                                title: ibas.i18n.prop("businesspartner_title_invoices"),
+                                subSections: [
+                                    new sap.uxap.ObjectPageSubSection("", {
+                                        blocks: [
+                                            new sap.ui.layout.form.SimpleForm("", {
+                                                editable: true,
+                                                width: "auto",
+                                                content: [
+                                                    new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_taxid") }),
+                                                    new sap.extension.m.Input("", {
+                                                    }).bindProperty("bindingValue", {
+                                                        path: "taxId",
+                                                        type: new sap.extension.data.Alphanumeric({
+                                                            maxLength: 30
+                                                        })
+                                                    }),
+                                                    new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_bank") }),
+                                                    new sap.extension.m.Input("", {
+                                                    }).bindProperty("bindingValue", {
+                                                        path: "bank",
+                                                        type: new sap.extension.data.Alphanumeric({
+                                                            maxLength: 60
+                                                        }),
+                                                    }),
+                                                    new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_bankaccount") }),
+                                                    new sap.extension.m.Input("", {
+                                                    }).bindProperty("bindingValue", {
+                                                        path: "bankAccount",
+                                                        type: new sap.extension.data.Alphanumeric({
+                                                            maxLength: 30
+                                                        }),
+                                                    }),
+                                                    new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_invoicetitle") }),
+                                                    new sap.extension.m.Input("", {
+                                                    }).bindProperty("bindingValue", {
+                                                        path: "invoiceTitle",
+                                                        type: new sap.extension.data.Alphanumeric({
+                                                            maxLength: 100
+                                                        }),
+                                                    }),
+                                                    new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_invoiceaddress") }),
+                                                    new sap.extension.m.Input("", {
+                                                        showValueHelp: true,
+                                                        valueHelpOnly: false,
+                                                        valueHelpRequest: function (event: sap.ui.base.Event): void {
+                                                            let input: any = event.getSource();
+                                                            if (input instanceof sap.extension.m.Input) {
+                                                                let address: sap.extension.m.AddressArea;
+                                                                let dialog: sap.m.Dialog = new sap.m.Dialog("", {
+                                                                    showHeader: false,
+                                                                    type: sap.m.DialogType.Standard,
+                                                                    state: sap.ui.core.ValueState.None,
+                                                                    content: [
+                                                                        new sap.ui.layout.form.SimpleForm("", {
+                                                                            content: [
+                                                                                address = new sap.extension.m.AddressArea("", {
+                                                                                    countryVisible: false,
+                                                                                    zipCodeVisible: false,
+                                                                                }),
+                                                                            ]
+                                                                        }),
+                                                                    ],
+                                                                    buttons: [
+                                                                        new sap.m.Button("", {
+                                                                            text: ibas.i18n.prop("shell_confirm"),
+                                                                            type: sap.m.ButtonType.Transparent,
+                                                                            press(event: sap.ui.base.Event): void {
+                                                                                let value: string = address.getAddress();
+                                                                                if (!ibas.strings.isEmpty(value)) {
+                                                                                    input.setBindingValue(value);
+                                                                                }
+                                                                                dialog.close();
+                                                                            }
+                                                                        }),
+                                                                        new sap.m.Button("", {
+                                                                            text: ibas.i18n.prop("shell_exit"),
+                                                                            type: sap.m.ButtonType.Transparent,
+                                                                            press(): void {
+                                                                                dialog.close();
+                                                                            }
+                                                                        }),
+                                                                    ]
+                                                                }).addStyleClass("sapUiNoContentPadding");
+                                                                dialog.open();
+                                                            }
+                                                        },
+                                                    }).bindProperty("bindingValue", {
+                                                        path: "invoiceAddress",
+                                                        type: new sap.extension.data.Alphanumeric({
+                                                            maxLength: 200
+                                                        }),
+                                                    }),
+                                                    new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_invoicetelephone") }),
+                                                    new sap.extension.m.Input("", {
+                                                    }).bindProperty("bindingValue", {
+                                                        path: "invoiceTelephone",
+                                                        type: new sap.extension.data.Alphanumeric({
+                                                            maxLength: 20
+                                                        }),
                                                     }),
                                                 ]
                                             }).addStyleClass("sapUxAPObjectPageSubSectionAlignContent")

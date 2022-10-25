@@ -67,6 +67,8 @@ declare namespace initialfantasy {
         const BO_CODE_APPLICATIONCONFIGIDENTITY: string;
         /** 业务对象编码-业务对象属性值 */
         const BO_CODE_BOPROPERTY_VALUE: string;
+        /** 业务对象编码-业务对象关系 */
+        const BO_CODE_BORELATIONSHIP: string;
         /**
          * 分配类型
          */
@@ -577,6 +579,8 @@ declare namespace initialfantasy {
             objectCode: string;
             /** 行号 */
             lineId: number;
+            /** 显示顺序 */
+            visOrder: number;
             /** 实例号（版本） */
             logInst: number;
             /** 数据源 */
@@ -692,6 +696,19 @@ declare namespace initialfantasy {
         interface IBOPropertyValues extends ibas.IBusinessObjects<IBOPropertyValue> {
             /** 创建并添加子项 */
             create(): IBOPropertyValue;
+        }
+        /** 业务对象关系 */
+        interface IBORelationship extends ibas.IBusinessObject {
+            /** 编码 */
+            code: string;
+            /** 目标对象 */
+            target: string;
+            /** 关系 */
+            relation: string;
+            /** 关联的属性 */
+            associatedProperty: string;
+            /** 描述 */
+            description: string;
         }
     }
 }
@@ -2234,6 +2251,12 @@ declare namespace initialfantasy {
             get lineId(): number;
             /** 设置-行号 */
             set lineId(value: number);
+            /** 映射的属性名称-显示顺序 */
+            static PROPERTY_VISORDER_NAME: string;
+            /** 获取-显示顺序 */
+            get visOrder(): number;
+            /** 设置-显示顺序 */
+            set visOrder(value: number);
             /** 映射的属性名称-实例号（版本） */
             static PROPERTY_LOGINST_NAME: string;
             /** 获取-实例号（版本） */
@@ -2539,6 +2562,49 @@ declare namespace initialfantasy {
             create(): BOPropertyValue;
             /** 子项属性改变时 */
             protected onItemPropertyChanged(item: BOPropertyValue, name: string): void;
+        }
+        /** 业务对象关系 */
+        class BORelationship extends ibas.BusinessObject<BORelationship> implements IBORelationship {
+            /** 业务对象编码 */
+            static BUSINESS_OBJECT_CODE: string;
+            /** 构造函数 */
+            constructor();
+            /** 映射的属性名称-编码 */
+            static PROPERTY_CODE_NAME: string;
+            /** 获取-编码 */
+            get code(): string;
+            /** 设置-编码 */
+            set code(value: string);
+            /** 映射的属性名称-目标对象 */
+            static PROPERTY_TARGET_NAME: string;
+            /** 获取-目标对象 */
+            get target(): string;
+            /** 设置-目标对象 */
+            set target(value: string);
+            /** 映射的属性名称-关系 */
+            static PROPERTY_RELATION_NAME: string;
+            /** 获取-关系 */
+            get relation(): string;
+            /** 设置-关系 */
+            set relation(value: string);
+            /** 映射的属性名称-关联的属性 */
+            static PROPERTY_ASSOCIATEDPROPERTY_NAME: string;
+            /** 获取-关联的属性 */
+            get associatedProperty(): string;
+            /** 设置-关联的属性 */
+            set associatedProperty(value: string);
+            /** 映射的属性名称-描述 */
+            static PROPERTY_DESCRIPTION_NAME: string;
+            /** 获取-描述 */
+            get description(): string;
+            /** 设置-描述 */
+            set description(value: string);
+            /** 初始化数据 */
+            protected init(): void;
+            /** 字符串 */
+            toString(): string;
+            /** 获取查询 */
+            criteria(): ibas.ICriteria;
         }
     }
 }
@@ -3881,6 +3947,11 @@ declare namespace initialfantasy {
              * @param fetcher 查询者
              */
             fetchBOLogst(fetcher: ibas.IFetchCaller<bo.BOLogst>): void;
+            /**
+             * 查询 业务对象关系
+             * @param fetcher 查询者
+             */
+            fetchBORelationship(fetcher: ibas.IFetchCaller<bo.BORelationship>): void;
         }
     }
 }
@@ -4981,6 +5052,7 @@ declare namespace initialfantasy {
             removeBOPropertyValue(items: bo.BOPropertyValue[]): void;
             private boNumbering;
             private chooseLinkedObject;
+            private showBORelationship;
         }
         /** 视图-业务对象信息 */
         interface IBOInformationEditView extends ibas.IBOEditView {
@@ -5008,6 +5080,10 @@ declare namespace initialfantasy {
             boNumberingEvent: Function;
             /** 选择链接的对象事件 */
             chooseLinkedObjectEvent: Function;
+            /** 显示对象关系事件 */
+            showBORelationshipEvent: Function;
+            /** 显示对象关系 */
+            showBORelationships(datas: bo.BORelationship[]): void;
         }
     }
 }
@@ -6008,6 +6084,71 @@ declare namespace initialfantasy {
  * Use of this source code is governed by an Apache License, Version 2.0
  * that can be found in the LICENSE file at http://www.apache.org/licenses/LICENSE-2.0
  */
+declare namespace initialfantasy {
+    namespace app {
+        /** 单据流程服务 */
+        export class DocumentProcessService extends ibas.ServiceApplication<IDocumentProcessServiceView, ibas.IBOServiceContract> {
+            /** 应用标识 */
+            static APPLICATION_ID: string;
+            /** 应用名称 */
+            static APPLICATION_NAME: string;
+            /** 构造函数 */
+            constructor();
+            /** 注册视图 */
+            protected registerView(): void;
+            /** 视图显示后 */
+            protected viewShowed(): void;
+            protected runService(contract: ibas.IBOServiceContract): void;
+            protected documentRepository: DocumentRepository;
+            protected originData: DocumentChain;
+            protected chainData(origin: DocumentChain, onCompleted: () => void): void;
+        }
+        interface IFetchCallerEx extends ibas.IFetchCaller<ibas.IBODocument> {
+            type: any;
+        }
+        interface IFetchSourceCaller extends ibas.IMethodCaller<ibas.IBODocument> {
+            origin: ibas.IBODocument;
+        }
+        interface IFetchTargetCaller extends ibas.IMethodCaller<ibas.IBODocument> {
+            origin: ibas.IBODocument;
+        }
+        class DocumentRepository {
+            constructor();
+            init(onCompleted: (error?: Error) => void): void;
+            protected getRepository(boType: any): any;
+            fetch(fetcher: IFetchCallerEx): void;
+            protected boShipMap: ibas.IList<bo.IBORelationship>;
+            fetchSources(fetcher: IFetchSourceCaller): void;
+            fetchTargets(fetcher: IFetchTargetCaller): void;
+            protected fetchDatas(criterias: ibas.ICriteria[], onCompleted: (opRslt: ibas.IOperationResult<ibas.IBODocument>) => void): void;
+        }
+        export class DocumentChain {
+            constructor(data?: ibas.IBODocument);
+            data: ibas.IBODocument;
+            sources: ibas.IList<DocumentChain>;
+            targets: ibas.IList<DocumentChain>;
+        }
+        /** 视图-单据流程 */
+        export interface IDocumentProcessServiceView extends ibas.IView {
+            /** 显示数据 */
+            showDocumentChain(data: DocumentChain): void;
+        }
+        /** 单据流程服务映射 */
+        export class DocumentProcessServiceMapping extends ibas.ServiceMapping {
+            constructor();
+            /** 创建服务实例 */
+            create(): ibas.IService<ibas.IServiceContract>;
+        }
+        export {};
+    }
+}
+/**
+ * @license
+ * Copyright Color-Coding Studio. All Rights Reserved.
+ *
+ * Use of this source code is governed by an Apache License, Version 2.0
+ * that can be found in the LICENSE file at http://www.apache.org/licenses/LICENSE-2.0
+ */
 /**
  * @license
  * Copyright Color-Coding Studio. All Rights Reserved.
@@ -6018,7 +6159,7 @@ declare namespace initialfantasy {
 declare namespace initialfantasy {
     namespace app {
         /** 应用-更改用户配置 */
-        class ChangeUserProfileApp extends ibas.Application<IChangeUserProfileView> implements ibas.IService<ibas.IServiceCaller<ibas.IServiceContract>> {
+        class ChangeUserProfileApp extends ibas.Application<IChangeUserProfileView> {
             /** 应用标识 */
             static APPLICATION_ID: string;
             /** 应用名称 */
@@ -6029,12 +6170,7 @@ declare namespace initialfantasy {
             /** 视图显示后 */
             protected viewShowed(): void;
             /** 运行 */
-            run(): void;
-            /**
-             * 运行
-             * @param caller 服务调用者
-             */
-            run(caller: ibas.IServiceCaller<ibas.IServiceContract>): void;
+            run(user?: bo.User | string | number): void;
             private user;
             private fetchUser;
             private saveUser;
@@ -6045,13 +6181,6 @@ declare namespace initialfantasy {
             showUser(user: bo.User): void;
             /** 保存用户事件 */
             saveUserEvent: Function;
-        }
-        /** 用户选择服务映射 */
-        class ChangeUserProfileMapping extends ibas.ServiceMapping {
-            /** 构造函数 */
-            constructor();
-            /** 创建服务实例 */
-            create(): ibas.IService<ibas.IServiceContract>;
         }
     }
 }
@@ -6236,11 +6365,14 @@ declare namespace initialfantasy {
             protected viewShowed(): void;
             private user;
             private fetchUser;
+            private editUser;
         }
         /** 视图-用户配置 */
         interface IUserProfileView extends ibas.IResidentView {
             /** 显示用户信息 */
             showUser(user: bo.User): void;
+            /** 编辑用户 */
+            editUserEvent: Function;
         }
         class UserProfileApplicationMapping extends ibas.ResidentApplicationMapping {
             /** 构造函数 */

@@ -102,7 +102,8 @@ namespace businesspartner {
                                 path: "faceAmount",
                                 type: new sap.extension.data.Sum()
                             }),
-                            new sap.extension.m.Input("", {
+                            new sap.extension.m.CurrencySelect("", {
+                                editable: true,
                             }).bindProperty("bindingValue", {
                                 path: "amountUnit",
                                 type: new sap.extension.data.Alphanumeric({
