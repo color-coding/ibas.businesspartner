@@ -23,6 +23,7 @@ namespace businesspartner {
                 this.name = BusinessPartnerAssetJournalEditApp.APPLICATION_NAME;
                 this.boCode = BusinessPartnerAssetJournalEditApp.BUSINESS_OBJECT_CODE;
                 this.description = ibas.i18n.prop(this.name);
+                this.warningClose = false;
             }
             /** 注册视图 */
             protected registerView(): void {

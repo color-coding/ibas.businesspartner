@@ -21,7 +21,7 @@ namespace businesspartner {
                     let formTop: sap.ui.layout.form.SimpleForm = new sap.ui.layout.form.SimpleForm("", {
                         editable: true,
                         content: [
-                            new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_title_general") }),
+                            new sap.m.Toolbar("", { visible: false }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_assetitem_code") }),
                             new sap.extension.m.Input("", {
                                 type: sap.m.InputType.Text
@@ -67,14 +67,7 @@ namespace businesspartner {
                                     maxLength: 8
                                 })
                             }),
-                            new sap.m.Label("", { text: ibas.i18n.prop("bo_assetitem_picture") }),
-                            new sap.extension.m.Input("", {
-                            }).bindProperty("bindingValue", {
-                                path: "picture",
-                                type: new sap.extension.data.Alphanumeric({
-                                    maxLength: 250
-                                })
-                            }),
+                            new sap.m.Toolbar("", { visible: false }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_assetitem_activated") }),
                             new sap.extension.m.EnumSelect("", {
                                 enumType: ibas.emYesNo
@@ -94,58 +87,86 @@ namespace businesspartner {
                                 path: "invalidDate",
                                 type: new sap.extension.data.Date()
                             }),
-                            new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_title_values") }),
-                            new sap.m.Label("", { text: ibas.i18n.prop("bo_assetitem_faceamount") }),
-                            new sap.extension.m.Input("", {
+                        ],
+                    });
+                    let formMiddle: sap.ui.layout.form.SimpleForm = new sap.ui.layout.form.SimpleForm("", {
+                        editable: true,
+                        content: [
+                            new sap.m.IconTabBar("", {
+                                headerBackgroundDesign: sap.m.BackgroundDesign.Transparent,
+                                backgroundDesign: sap.m.BackgroundDesign.Transparent,
+                                expandable: false,
+                                items: [
+                                    new sap.m.IconTabFilter("", {
+                                        text: ibas.i18n.prop("businesspartner_title_general"),
+                                        content: [
+                                            new sap.ui.layout.form.SimpleForm("", {
+                                                editable: true,
+                                                content: [
+                                                    new sap.m.Toolbar("", { visible: false }),
+                                                    new sap.m.Label("", { text: ibas.i18n.prop("bo_assetitem_faceamount") }),
+                                                    new sap.extension.m.Input("", {
 
-                            }).bindProperty("bindingValue", {
-                                path: "faceAmount",
-                                type: new sap.extension.data.Sum()
-                            }),
-                            new sap.extension.m.CurrencySelect("", {
-                                editable: true,
-                            }).bindProperty("bindingValue", {
-                                path: "amountUnit",
-                                type: new sap.extension.data.Alphanumeric({
-                                    maxLength: 8
-                                })
-                            }),
-                            new sap.m.Label("", { text: ibas.i18n.prop("bo_assetitem_usingtimes") }),
-                            new sap.extension.m.Input("", {
+                                                    }).bindProperty("bindingValue", {
+                                                        path: "faceAmount",
+                                                        type: new sap.extension.data.Sum()
+                                                    }),
+                                                    new sap.extension.m.CurrencySelect("", {
+                                                        editable: true,
+                                                    }).bindProperty("bindingValue", {
+                                                        path: "amountUnit",
+                                                        type: new sap.extension.data.Alphanumeric({
+                                                            maxLength: 8
+                                                        })
+                                                    }),
+                                                    new sap.m.Label("", { text: ibas.i18n.prop("bo_assetitem_usingtimes") }),
+                                                    new sap.extension.m.Input("", {
 
-                            }).bindProperty("bindingValue", {
-                                path: "usingTimes",
-                                type: new sap.extension.data.Numeric()
-                            }),
-                            new sap.m.Label("", { text: ibas.i18n.prop("bo_assetitem_usingdiscount") }),
-                            new sap.extension.m.Input("", {
-                                type: sap.m.InputType.Text
-                            }).bindProperty("bindingValue", {
-                                path: "usingDiscount",
-                                type: new sap.extension.data.Percentage()
-                            }),
-                            new sap.m.Label("", { text: ibas.i18n.prop("bo_assetitem_overdraft") }),
-                            new sap.extension.m.Input("", {
+                                                    }).bindProperty("bindingValue", {
+                                                        path: "usingTimes",
+                                                        type: new sap.extension.data.Numeric()
+                                                    }),
+                                                    new sap.m.Label("", { text: ibas.i18n.prop("bo_assetitem_usingdiscount") }),
+                                                    new sap.extension.m.Input("", {
+                                                        type: sap.m.InputType.Text
+                                                    }).bindProperty("bindingValue", {
+                                                        path: "usingDiscount",
+                                                        type: new sap.extension.data.Percentage()
+                                                    }),
+                                                    new sap.m.Label("", { text: ibas.i18n.prop("bo_assetitem_overdraft") }),
+                                                    new sap.extension.m.Input("", {
 
-                            }).bindProperty("bindingValue", {
-                                path: "overdraft",
-                                type: new sap.extension.data.Sum()
-                            }),
-                            new sap.m.Label("", { text: ibas.i18n.prop("bo_assetitem_validdays") }),
-                            new sap.extension.m.Input("", {
+                                                    }).bindProperty("bindingValue", {
+                                                        path: "overdraft",
+                                                        type: new sap.extension.data.Sum()
+                                                    }),
+                                                    new sap.m.Toolbar("", { visible: false }),
+                                                    new sap.m.Label("", { text: ibas.i18n.prop("bo_assetitem_validdays") }),
+                                                    new sap.extension.m.Input("", {
 
-                            }).bindProperty("bindingValue", {
-                                path: "validDays",
-                                type: new sap.extension.data.Numeric()
+                                                    }).bindProperty("bindingValue", {
+                                                        path: "validDays",
+                                                        type: new sap.extension.data.Numeric()
+                                                    }),
+                                                    new sap.m.Label("", { text: ibas.i18n.prop("bo_assetitem_rechargeable") }),
+                                                    new sap.extension.m.EnumSelect("", {
+                                                        enumType: ibas.emYesNo
+                                                    }).bindProperty("bindingValue", {
+                                                        path: "rechargeable",
+                                                        type: new sap.extension.data.YesNo()
+                                                    }),
+                                                ]
+                                            })
+                                        ]
+                                    }),
+                                ]
                             }),
-                            new sap.m.Label("", { text: ibas.i18n.prop("bo_assetitem_rechargeable") }),
-                            new sap.extension.m.EnumSelect("", {
-                                enumType: ibas.emYesNo
-                            }).bindProperty("bindingValue", {
-                                path: "rechargeable",
-                                type: new sap.extension.data.YesNo()
-                            }),
-                            new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_title_others") }),
+                        ]
+                    });
+                    let formBottom: sap.ui.layout.form.SimpleForm = new sap.ui.layout.form.SimpleForm("", {
+                        editable: true,
+                        content: [
+                            new sap.m.Toolbar("", { visible: false }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_assetitem_dataowner") }),
                             new sap.extension.m.DataOwnerInput("", {
                                 showValueHelp: true,
@@ -173,7 +194,15 @@ namespace businesspartner {
                                 path: "remarks",
                                 type: new sap.extension.data.Alphanumeric()
                             }),
-                            new sap.ui.core.Title("", {}),
+                            new sap.m.Toolbar("", { visible: false }),
+                            new sap.m.Label("", { text: ibas.i18n.prop("bo_assetitem_picture") }),
+                            new sap.extension.m.IconInput("", {
+                            }).bindProperty("bindingValue", {
+                                path: "picture",
+                                type: new sap.extension.data.Alphanumeric({
+                                    maxLength: 250
+                                })
+                            }),
                         ]
                     });
                     return this.page = new sap.extension.m.DataPage("", {
@@ -230,6 +259,8 @@ namespace businesspartner {
                         }),
                         content: [
                             formTop,
+                            formMiddle,
+                            formBottom,
                         ]
                     });
                 }

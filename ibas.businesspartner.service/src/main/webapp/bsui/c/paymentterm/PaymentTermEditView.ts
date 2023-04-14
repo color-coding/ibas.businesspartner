@@ -21,7 +21,7 @@ namespace businesspartner {
                     let formTop: sap.ui.layout.form.SimpleForm = new sap.ui.layout.form.SimpleForm("", {
                         editable: true,
                         content: [
-                            new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_title_general") }),
+                            new sap.m.Toolbar("", { visible: false }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_paymentterm_code") }),
                             new sap.extension.m.Input("", {
                                 type: sap.m.InputType.Text
@@ -55,6 +55,7 @@ namespace businesspartner {
                                     maxLength: 100
                                 }),
                             }),
+                            new sap.m.Toolbar("", { visible: false }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_paymentterm_activated") }),
                             new sap.extension.m.EnumSelect("", {
                                 enumType: ibas.emYesNo
@@ -62,41 +63,91 @@ namespace businesspartner {
                                 path: "activated",
                                 type: new sap.extension.data.YesNo(),
                             }),
-                            new sap.m.Label("", { text: ibas.i18n.prop("bo_paymentterm_startat") }),
-                            new sap.extension.m.EnumSelect("", {
-                                enumType: bo.emPayTermDueType
-                            }).bindProperty("bindingValue", {
-                                path: "startAt",
-                                type: new sap.extension.data.Enum({
-                                    enumType: bo.emPayTermDueType
-                                }),
+                        ],
+                    });
+                    let formMiddle: sap.ui.layout.form.SimpleForm = new sap.ui.layout.form.SimpleForm("", {
+                        editable: true,
+                        content: [
+                            new sap.m.IconTabBar("", {
+                                headerBackgroundDesign: sap.m.BackgroundDesign.Transparent,
+                                backgroundDesign: sap.m.BackgroundDesign.Transparent,
+                                expandable: false,
+                                items: [
+                                    new sap.m.IconTabFilter("", {
+                                        text: ibas.i18n.prop("businesspartner_title_general"),
+                                        content: [
+                                            new sap.ui.layout.form.SimpleForm("", {
+                                                editable: true,
+                                                content: [
+                                                    new sap.m.Toolbar("", { visible: false }),
+                                                    new sap.m.Label("", { text: ibas.i18n.prop("bo_paymentterm_startat") }),
+                                                    new sap.extension.m.EnumSelect("", {
+                                                        enumType: bo.emPayTermDueType
+                                                    }).bindProperty("bindingValue", {
+                                                        path: "startAt",
+                                                        type: new sap.extension.data.Enum({
+                                                            enumType: bo.emPayTermDueType
+                                                        }),
+                                                    }),
+                                                    new sap.m.Label("", { text: ibas.i18n.prop("bo_paymentterm_extramonth") }),
+                                                    new sap.extension.m.Input("", {
+                                                    }).bindProperty("bindingValue", {
+                                                        path: "extraMonth",
+                                                        type: new sap.extension.data.Numeric(),
+                                                    }),
+                                                    new sap.m.Label("", { text: ibas.i18n.prop("bo_paymentterm_extradays") }),
+                                                    new sap.extension.m.Input("", {
+                                                    }).bindProperty("bindingValue", {
+                                                        path: "extraDays",
+                                                        type: new sap.extension.data.Numeric(),
+                                                    }),
+                                                    new sap.m.Toolbar("", { visible: false }),
+                                                    new sap.m.Label("", { text: ibas.i18n.prop("bo_paymentterm_duedatebaseon") }),
+                                                    new sap.extension.m.EnumSelect("", {
+                                                        enumType: bo.emDueDateBaseOn
+                                                    }).bindProperty("bindingValue", {
+                                                        path: "dueDateBaseOn",
+                                                        type: new sap.extension.data.Enum({
+                                                            enumType: bo.emDueDateBaseOn
+                                                        }),
+                                                    }),
+                                                    new sap.m.Label("", { text: ibas.i18n.prop("bo_paymentterm_tolerancedays") }),
+                                                    new sap.extension.m.Input("", {
+                                                    }).bindProperty("bindingValue", {
+                                                        path: "toleranceDays",
+                                                        type: new sap.extension.data.Numeric(),
+                                                    }),
+                                                ]
+                                            })
+                                        ]
+                                    }),
+                                ]
                             }),
-                            new sap.m.Label("", { text: ibas.i18n.prop("bo_paymentterm_extramonth") }),
-                            new sap.extension.m.Input("", {
+                        ]
+                    });
+                    let formBottom: sap.ui.layout.form.SimpleForm = new sap.ui.layout.form.SimpleForm("", {
+                        editable: true,
+                        content: [
+                            new sap.m.Toolbar("", { visible: false }),
+                            new sap.m.Label("", { text: ibas.i18n.prop("bo_paymentterm_dataowner") }),
+                            new sap.extension.m.DataOwnerInput("", {
+                                showValueHelp: true,
+                                organization: {
+                                    path: "organization",
+                                    type: new sap.extension.data.Alphanumeric({
+                                        maxLength: 8
+                                    })
+                                }
                             }).bindProperty("bindingValue", {
-                                path: "extraMonth",
-                                type: new sap.extension.data.Numeric(),
+                                path: "dataOwner",
+                                type: new sap.extension.data.Numeric()
                             }),
-                            new sap.m.Label("", { text: ibas.i18n.prop("bo_paymentterm_extradays") }),
-                            new sap.extension.m.Input("", {
+                            new sap.m.Label("", { text: ibas.i18n.prop("bo_paymentterm_organization") }),
+                            new sap.extension.m.OrganizationInput("", {
+                                showValueHelp: true,
                             }).bindProperty("bindingValue", {
-                                path: "extraDays",
-                                type: new sap.extension.data.Numeric(),
-                            }),
-                            new sap.m.Label("", { text: ibas.i18n.prop("bo_paymentterm_duedatebaseon") }),
-                            new sap.extension.m.EnumSelect("", {
-                                enumType: bo.emDueDateBaseOn
-                            }).bindProperty("bindingValue", {
-                                path: "dueDateBaseOn",
-                                type: new sap.extension.data.Enum({
-                                    enumType: bo.emDueDateBaseOn
-                                }),
-                            }),
-                            new sap.m.Label("", { text: ibas.i18n.prop("bo_paymentterm_tolerancedays") }),
-                            new sap.extension.m.Input("", {
-                            }).bindProperty("bindingValue", {
-                                path: "toleranceDays",
-                                type: new sap.extension.data.Numeric(),
+                                path: "organization",
+                                type: new sap.extension.data.Alphanumeric()
                             }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_paymentterm_remarks") }),
                             new sap.extension.m.TextArea("", {
@@ -105,7 +156,7 @@ namespace businesspartner {
                                 path: "remarks",
                                 type: new sap.extension.data.Alphanumeric(),
                             }),
-                            new sap.ui.core.Title("", {}),
+                            new sap.m.Toolbar("", { visible: false }),
                         ]
                     });
                     return this.page = new sap.extension.m.DataPage("", {
@@ -211,6 +262,8 @@ namespace businesspartner {
                         }),
                         content: [
                             formTop,
+                            formMiddle,
+                            formBottom,
                         ]
                     });
                 }

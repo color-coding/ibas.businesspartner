@@ -99,16 +99,6 @@ namespace businesspartner {
                                 ]
                             }),
                             actions: [
-                                new sap.extension.m.ObjectEnumStatus("", {
-                                    title: ibas.i18n.prop("bo_customer_companyprivate"),
-                                    text: {
-                                        path: "companyPrivate",
-                                        type: new sap.extension.data.Enum({
-                                            enumType: bo.emBusinessPartnerNature,
-                                            describe: true,
-                                        }),
-                                    }
-                                }),
                                 new sap.extension.m.ObjectYesNoStatus("", {
                                     title: ibas.i18n.prop("bo_customer_activated"),
                                     enumValue: {
@@ -119,6 +109,36 @@ namespace businesspartner {
                             ]
                         }),
                         headerContent: [
+                            new sap.extension.m.ObjectEnumStatus("", {
+                                title: ibas.i18n.prop("bo_customer_companyprivate"),
+                                text: {
+                                    path: "companyPrivate",
+                                    type: new sap.extension.data.Enum({
+                                        enumType: bo.emBusinessPartnerNature,
+                                        describe: true,
+                                    }),
+                                }
+                            }),
+                            new sap.extension.m.RepositoryObjectAttribute("", {
+                                title: ibas.i18n.prop("bo_customer_group"),
+                                repository: bo.BORepositoryBusinessPartner,
+                                dataInfo: {
+                                    type: bo.BusinessPartnerGroup,
+                                    key: bo.BusinessPartnerGroup.PROPERTY_CODE_NAME,
+                                    text: bo.BusinessPartnerGroup.PROPERTY_NAME_NAME
+                                },
+                                bindingValue: {
+                                    path: "group",
+                                    type: new sap.extension.data.Alphanumeric(),
+                                }
+                            }),
+                            new sap.extension.m.ObjectAttribute("", {
+                                title: ibas.i18n.prop("bo_customer_currency"),
+                                bindingValue: {
+                                    path: "currency",
+                                    type: new sap.extension.data.Alphanumeric(),
+                                }
+                            }),
                         ],
                         sections: [
                             new sap.uxap.ObjectPageSection("", {
@@ -126,16 +146,10 @@ namespace businesspartner {
                                 subSections: [
                                     new sap.uxap.ObjectPageSubSection("", {
                                         blocks: [
-                                            new sap.extension.m.RepositoryObjectAttribute("", {
-                                                title: ibas.i18n.prop("bo_customer_group"),
-                                                repository: bo.BORepositoryBusinessPartner,
-                                                dataInfo: {
-                                                    type: bo.BusinessPartnerGroup,
-                                                    key: bo.BusinessPartnerGroup.PROPERTY_CODE_NAME,
-                                                    text: bo.BusinessPartnerGroup.PROPERTY_NAME_NAME
-                                                },
+                                            new sap.extension.m.ObjectAttribute("", {
+                                                title: ibas.i18n.prop("bo_customer_channel"),
                                                 bindingValue: {
-                                                    path: "group",
+                                                    path: "channel",
                                                     type: new sap.extension.data.Alphanumeric(),
                                                 }
                                             }),
@@ -152,24 +166,10 @@ namespace businesspartner {
                                                     type: new sap.extension.data.Alphanumeric(),
                                                 }
                                             }),
-                                            new sap.extension.m.ObjectAttribute("", {
-                                                title: ibas.i18n.prop("bo_customer_channel"),
-                                                bindingValue: {
-                                                    path: "channel",
-                                                    type: new sap.extension.data.Alphanumeric(),
-                                                }
-                                            }),
                                         ],
                                     }),
                                     new sap.uxap.ObjectPageSubSection("", {
                                         blocks: [
-                                            new sap.extension.m.ObjectAttribute("", {
-                                                title: ibas.i18n.prop("bo_customer_currency"),
-                                                bindingValue: {
-                                                    path: "currency",
-                                                    type: new sap.extension.data.Alphanumeric(),
-                                                }
-                                            }),
                                             new sap.extension.m.RepositoryObjectAttribute("", {
                                                 title: ibas.i18n.prop("bo_customer_pricelist"),
                                                 repository: materials.bo.BORepositoryMaterials,

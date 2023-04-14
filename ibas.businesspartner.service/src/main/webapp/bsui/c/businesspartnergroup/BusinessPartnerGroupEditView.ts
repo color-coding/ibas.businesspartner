@@ -24,14 +24,13 @@ namespace businesspartner {
                     let formTop: sap.ui.layout.form.SimpleForm = new sap.ui.layout.form.SimpleForm("", {
                         editable: true,
                         content: [
-                            new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_title_general") }),
+                            new sap.m.Toolbar("", { visible: false }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnergroup_code") }),
                             new sap.extension.m.Input("", {
-                                type: sap.m.InputType.Text
                             }).bindProperty("bindingValue", {
                                 path: "code",
                                 type: new sap.extension.data.Alphanumeric({
-                                    maxLength: 8
+                                    maxLength: 20
                                 })
                             }).bindProperty("editable", {
                                 path: "series",
@@ -58,6 +57,7 @@ namespace businesspartner {
                                     maxLength: 100
                                 })
                             }),
+                            new sap.m.Toolbar("", { visible: false }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnergroup_activated") }),
                             new sap.extension.m.EnumSelect("", {
                                 enumType: ibas.emYesNo
@@ -65,33 +65,70 @@ namespace businesspartner {
                                 path: "activated",
                                 type: new sap.extension.data.YesNo()
                             }),
-                            new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnergroup_phantom") }),
-                            new sap.extension.m.EnumSelect("", {
-                                enumType: ibas.emYesNo
-                            }).bindProperty("bindingValue", {
-                                path: "phantom",
-                                type: new sap.extension.data.YesNo(),
-                            }),
-                            new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnergroup_parents") }),
-                            new sap.extension.m.RepositoryInput("", {
-                                showValueHelp: true,
-                                repository: bo.BORepositoryBusinessPartner,
-                                dataInfo: {
-                                    type: bo.BusinessPartnerGroup,
-                                    key: bo.BusinessPartnerGroup.PROPERTY_CODE_NAME,
-                                    text: bo.BusinessPartnerGroup.PROPERTY_NAME_NAME
-                                },
-                                valueHelpRequest: function (): void {
-                                    that.fireViewEvents(that.chooseParentsEvent);
-                                },
-                            }).bindProperty("bindingValue", {
-                                path: "parents",
-                                type: new sap.extension.data.Alphanumeric({
-                                    maxLength: 60
-                                })
-                            }),
-                            new sap.ui.core.Title("", {}),
-                        ],
+                        ]
+                    });
+                    let formBottom: sap.ui.layout.form.SimpleForm = new sap.ui.layout.form.SimpleForm("", {
+                        editable: true,
+                        content: [
+                            new sap.m.IconTabBar("", {
+                                headerBackgroundDesign: sap.m.BackgroundDesign.Transparent,
+                                backgroundDesign: sap.m.BackgroundDesign.Transparent,
+                                expandable: false,
+                                items: [
+                                    new sap.m.IconTabFilter("", {
+                                        text: ibas.i18n.prop("materials_title_general"),
+                                        content: [
+                                            new sap.ui.layout.form.SimpleForm("", {
+                                                editable: true,
+                                                content: [
+                                                    new sap.m.Toolbar("", { visible: false }),
+                                                    new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnergroup_remarks") }),
+                                                    new sap.extension.m.TextArea("", {
+                                                        rows: 3,
+                                                    }).bindProperty("bindingValue", {
+                                                        path: "remarks",
+                                                        type: new sap.extension.data.Alphanumeric(),
+                                                    }),
+                                                    new sap.m.Toolbar("", { visible: false }),
+                                                    new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnergroup_phantom") }),
+                                                    new sap.extension.m.EnumSelect("", {
+                                                        enumType: ibas.emYesNo
+                                                    }).bindProperty("bindingValue", {
+                                                        path: "phantom",
+                                                        type: new sap.extension.data.YesNo(),
+                                                    }),
+                                                    new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnergroup_parents") }),
+                                                    new sap.extension.m.RepositoryInput("", {
+                                                        showValueHelp: true,
+                                                        repository: bo.BORepositoryBusinessPartner,
+                                                        dataInfo: {
+                                                            type: bo.BusinessPartnerGroup,
+                                                            key: bo.BusinessPartnerGroup.PROPERTY_CODE_NAME,
+                                                            text: bo.BusinessPartnerGroup.PROPERTY_NAME_NAME
+                                                        },
+                                                        valueHelpRequest: function (): void {
+                                                            that.fireViewEvents(that.chooseParentsEvent);
+                                                        },
+                                                        editable: {
+                                                            path: "phantom",
+                                                            type: new sap.extension.data.YesNo(),
+                                                            formatter(data: any): boolean {
+                                                                return !data;
+                                                            }
+                                                        },
+                                                    }).bindProperty("bindingValue", {
+                                                        path: "parents",
+                                                        type: new sap.extension.data.Alphanumeric({
+                                                            maxLength: 60
+                                                        })
+                                                    }),
+                                                ]
+                                            })
+                                        ]
+                                    }),
+                                ]
+                            })
+                        ]
                     });
                     return this.page = new sap.extension.m.DataPage("", {
                         showHeader: false,
@@ -147,6 +184,7 @@ namespace businesspartner {
                         }),
                         content: [
                             formTop,
+                            formBottom,
                         ]
                     });
                 }

@@ -1271,6 +1271,7 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset>
 	protected void initialize() {
 		super.initialize();// 基类初始化，不可去除
 		this.setObjectCode(MyConfiguration.applyVariables(BUSINESS_OBJECT_CODE));
+		this.setActivated(emYesNo.YES);
 		this.setAcquiredDate(DateTime.getToday());
 		this.setValidDate(DateTime.getToday());
 		this.setInvalidDate(DateTime.MAX_VALUE);

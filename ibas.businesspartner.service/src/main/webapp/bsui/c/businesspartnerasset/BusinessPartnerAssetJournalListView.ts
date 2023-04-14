@@ -68,10 +68,13 @@ namespace businesspartner {
                                     }),
                                     new sap.extension.m.ObjectAttribute("", {
                                         title: ibas.i18n.prop("bo_businesspartnerasset_code"),
-                                        bindingValue: {
-                                            path: "code",
-                                            type: new sap.extension.data.Alphanumeric(),
-                                        }
+                                        customContent: new sap.m.Text("", {
+                                            wrapping: false,
+                                            text: {
+                                                path: "code",
+                                                type: new sap.extension.data.Alphanumeric(),
+                                            }
+                                        })
                                     }),
                                     new sap.extension.m.ObjectAttribute("", {
                                         title: ibas.i18n.prop("bo_businesspartnerasset_validdate"),

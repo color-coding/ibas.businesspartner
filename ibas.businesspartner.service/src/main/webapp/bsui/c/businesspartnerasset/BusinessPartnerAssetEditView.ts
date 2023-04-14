@@ -27,7 +27,7 @@ namespace businesspartner {
                     let formTop: sap.ui.layout.form.SimpleForm = new sap.ui.layout.form.SimpleForm("", {
                         editable: true,
                         content: [
-                            new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_title_general") }),
+                            new sap.m.Toolbar("", { visible: false }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnerasset_code") }),
                             new sap.extension.m.Input("", {
                                 editable: false,
@@ -142,32 +142,13 @@ namespace businesspartner {
                                     enumType: bo.emBusinessPartnerType
                                 })
                             }),
-                            new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnerasset_amount") }),
-                            new sap.extension.m.Input("", {
-
-                            }).bindProperty("bindingValue", {
-                                path: "amount",
-                                type: new sap.extension.data.Sum()
-                            }),
-                            new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnerasset_times") }),
-                            new sap.extension.m.Input("", {
-
-                            }).bindProperty("bindingValue", {
-                                path: "times",
-                                type: new sap.extension.data.Numeric()
-                            }),
+                            new sap.m.Toolbar("", { visible: false }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnerasset_activated") }),
                             new sap.extension.m.EnumSelect("", {
                                 enumType: ibas.emYesNo
                             }).bindProperty("bindingValue", {
                                 path: "activated",
                                 type: new sap.extension.data.YesNo()
-                            }),
-                            new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnerasset_acquireddate") }),
-                            new sap.extension.m.DatePicker("", {
-                            }).bindProperty("bindingValue", {
-                                path: "acquiredDate",
-                                type: new sap.extension.data.Date()
                             }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnerasset_validdate") }),
                             new sap.extension.m.DatePicker("", {
@@ -180,6 +161,124 @@ namespace businesspartner {
                             }).bindProperty("bindingValue", {
                                 path: "invalidDate",
                                 type: new sap.extension.data.Date()
+                            }),
+                        ],
+                    });
+                    let formMiddle: sap.ui.layout.form.SimpleForm = new sap.ui.layout.form.SimpleForm("", {
+                        editable: true,
+                        content: [
+                            new sap.m.IconTabBar("", {
+                                headerBackgroundDesign: sap.m.BackgroundDesign.Transparent,
+                                backgroundDesign: sap.m.BackgroundDesign.Transparent,
+                                expandable: false,
+                                items: [
+                                    new sap.m.IconTabFilter("", {
+                                        text: ibas.i18n.prop("businesspartner_title_general"),
+                                        content: [
+                                            new sap.ui.layout.form.SimpleForm("", {
+                                                editable: true,
+                                                content: [
+                                                    new sap.m.Toolbar("", { visible: false }),
+                                                    new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnerasset_amount") }),
+                                                    new sap.extension.m.Input("", {
+
+                                                    }).bindProperty("bindingValue", {
+                                                        path: "amount",
+                                                        type: new sap.extension.data.Sum()
+                                                    }),
+                                                    new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnerasset_times") }),
+                                                    new sap.extension.m.Input("", {
+
+                                                    }).bindProperty("bindingValue", {
+                                                        path: "times",
+                                                        type: new sap.extension.data.Numeric()
+                                                    }),
+                                                    new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnerasset_acquireddate") }),
+                                                    new sap.extension.m.DatePicker("", {
+                                                    }).bindProperty("bindingValue", {
+                                                        path: "acquiredDate",
+                                                        type: new sap.extension.data.Date()
+                                                    }),
+                                                    new sap.m.Toolbar("", { visible: false }),
+                                                    new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnerasset_basedocument") }),
+                                                    new sap.extension.m.Input("", {
+                                                        editable: false,
+                                                        showValueLink: true,
+                                                        valueLinkRequest: function (event: sap.ui.base.Event): void {
+                                                            let data: any = this.getBindingContext().getObject();
+                                                            if (data instanceof bo.BusinessPartnerAsset && data.baseDocumentEntry > 0) {
+                                                                ibas.servicesManager.runLinkService({
+                                                                    boCode: data.baseDocumentType,
+                                                                    linkValue: data.baseDocumentEntry.toString()
+                                                                });
+                                                            }
+                                                        }
+                                                    }).bindProperty("bindingValue", {
+                                                        parts: [
+                                                            {
+                                                                path: "baseDocumentType",
+                                                                type: new sap.extension.data.Alphanumeric(),
+                                                            },
+                                                            {
+                                                                path: "baseDocumentEntry",
+                                                                type: new sap.extension.data.Numeric(),
+                                                            },
+                                                            {
+                                                                path: "baseDocumentLineId",
+                                                                type: new sap.extension.data.Numeric(),
+                                                            }
+                                                        ],
+                                                        formatter(type: string, entry: number, lineId: number): string {
+                                                            if (ibas.strings.isEmpty(type)) {
+                                                                return "";
+                                                            }
+                                                            return ibas.businessobjects.describe(ibas.strings.format("{[{0}].[DocEntry = {1}]}", type, entry));
+                                                        }
+                                                    }),
+                                                    new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnerasset_tradingamount") }),
+                                                    new sap.extension.m.Input("", {
+                                                        editable: false,
+                                                    }).bindProperty("bindingValue", {
+                                                        path: "tradingAmount",
+                                                        type: new sap.extension.data.Sum()
+                                                    }),
+                                                    new sap.m.Input("", {
+                                                        type: sap.m.InputType.Text,
+                                                        editable: false,
+                                                    }).bindProperty("value", {
+                                                        path: "tradingCurrency"
+                                                    }),
+                                                ]
+                                            })
+                                        ]
+                                    }),
+                                ]
+                            }),
+                        ]
+                    });
+                    let formBottom: sap.ui.layout.form.SimpleForm = new sap.ui.layout.form.SimpleForm("", {
+                        editable: true,
+                        content: [
+                            new sap.m.Toolbar("", { visible: false }),
+                            new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnerasset_dataowner") }),
+                            new sap.extension.m.DataOwnerInput("", {
+                                showValueHelp: true,
+                                organization: {
+                                    path: "organization",
+                                    type: new sap.extension.data.Alphanumeric({
+                                        maxLength: 8
+                                    })
+                                }
+                            }).bindProperty("bindingValue", {
+                                path: "dataOwner",
+                                type: new sap.extension.data.Numeric()
+                            }),
+                            new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnerasset_organization") }),
+                            new sap.extension.m.OrganizationInput("", {
+                                showValueHelp: true,
+                            }).bindProperty("bindingValue", {
+                                path: "organization",
+                                type: new sap.extension.data.Alphanumeric()
                             }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnerasset_remark1") }),
                             new sap.extension.m.Input("", {
@@ -197,43 +296,7 @@ namespace businesspartner {
                                     maxLength: 200
                                 })
                             }),
-                            new sap.ui.core.Title("", { text: ibas.i18n.prop("businesspartner_title_others") }),
-                            new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnerasset_basedocumenttype") }),
-                            new sap.extension.m.Input("", {
-                                editable: false,
-                            }).bindProperty("bindingValue", {
-                                path: "baseDocumentType",
-                                type: new sap.extension.data.Alphanumeric({
-                                    maxLength: 30
-                                })
-                            }),
-                            new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnerasset_basedocumententry") }),
-                            new sap.extension.m.Input("", {
-                                editable: false,
-                            }).bindProperty("bindingValue", {
-                                path: "baseDocumentEntry",
-                                type: new sap.extension.data.Numeric()
-                            }),
-                            new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnerasset_basedocumentlineid") }),
-                            new sap.extension.m.Input("", {
-                                editable: false,
-                            }).bindProperty("bindingValue", {
-                                path: "baseDocumentLineId",
-                                type: new sap.extension.data.Numeric()
-                            }),
-                            new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnerasset_tradingamount") }),
-                            new sap.extension.m.Input("", {
-                                editable: false,
-                            }).bindProperty("bindingValue", {
-                                path: "tradingAmount",
-                                type: new sap.extension.data.Sum()
-                            }),
-                            new sap.m.Input("", {
-                                type: sap.m.InputType.Text,
-                                editable: false,
-                            }).bindProperty("value", {
-                                path: "tradingCurrency"
-                            }),
+                            new sap.m.Toolbar("", { visible: false }),
                         ]
                     });
                     return this.page = new sap.extension.m.DataPage("", {
@@ -290,6 +353,8 @@ namespace businesspartner {
                         }),
                         content: [
                             formTop,
+                            formMiddle,
+                            formBottom,
                         ]
                     });
                 }

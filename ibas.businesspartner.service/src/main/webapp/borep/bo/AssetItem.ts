@@ -382,6 +382,7 @@ namespace businesspartner {
             protected init(): void {
                 this.objectCode = ibas.config.applyVariables(AssetItem.BUSINESS_OBJECT_CODE);
                 this.amountUnit = ibas.config.get(ibas.CONFIG_ITEM_DEFAULT_CURRENCY);
+                this.activated = ibas.emYesNo.YES;
                 this.rechargeable = ibas.emYesNo.YES;
                 this.usingTimes = 9999;
                 this.usingDiscount = 1;
