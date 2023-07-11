@@ -16,6 +16,7 @@ import org.colorcoding.ibas.businesspartner.bo.assetitem.IAssetItem;
 import org.colorcoding.ibas.businesspartner.bo.businesspartnerasset.BusinessPartnerAssetJournal;
 import org.colorcoding.ibas.businesspartner.bo.businesspartnerasset.IBusinessPartnerAsset;
 import org.colorcoding.ibas.businesspartner.bo.businesspartnerasset.IBusinessPartnerAssetJournal;
+import org.colorcoding.ibas.businesspartner.data.DataConvert;
 import org.colorcoding.ibas.businesspartner.repository.BORepositoryBusinessPartner;
 
 /**
@@ -32,7 +33,7 @@ public class BusinessPartnerAssetConsumptionService
 	protected boolean checkDataStatus(Object data) {
 		if (data instanceof IBusinessPartnerAssetConsumptionContract) {
 			IBusinessPartnerAssetConsumptionContract contract = (IBusinessPartnerAssetConsumptionContract) data;
-			if (contract.getServiceCode().startsWith("%")) {
+			if (DataConvert.isNullOrEmpty(contract.getServiceCode()) || contract.getServiceCode().startsWith("%")) {
 				// 系统前缀，跳过
 				Logger.log(MessageLevel.DEBUG, MSG_LOGICS_SKIP_LOGIC_EXECUTION, this.getClass().getName(),
 						"ServiceCode", contract.getServiceCode());
