@@ -4,6 +4,7 @@ import org.colorcoding.ibas.bobas.common.ICriteria;
 import org.colorcoding.ibas.bobas.common.OperationResult;
 import org.colorcoding.ibas.bobas.repository.IBORepositorySmartService;
 import org.colorcoding.ibas.businesspartner.bo.address.Address;
+import org.colorcoding.ibas.businesspartner.bo.agreement.Agreement;
 import org.colorcoding.ibas.businesspartner.bo.assetitem.AssetItem;
 import org.colorcoding.ibas.businesspartner.bo.businesspartnerasset.BusinessPartnerAsset;
 import org.colorcoding.ibas.businesspartner.bo.businesspartnerasset.BusinessPartnerAssetJournal;
@@ -222,6 +223,25 @@ public interface IBORepositoryBusinessPartnerSvc extends IBORepositorySmartServi
 	 * @return 操作结果
 	 */
 	OperationResult<PaymentTerm> savePaymentTerm(PaymentTerm bo, String token);
+
+	// --------------------------------------------------------------------------------------------//
+	/**
+	 * 查询-合同/协议
+	 * 
+	 * @param criteria 查询
+	 * @param token    口令
+	 * @return 操作结果
+	 */
+	OperationResult<Agreement> fetchAgreement(ICriteria criteria, String token);
+
+	/**
+	 * 保存-合同/协议
+	 * 
+	 * @param bo    对象实例
+	 * @param token 口令
+	 * @return 操作结果
+	 */
+	OperationResult<Agreement> saveAgreement(Agreement bo, String token);
 
 	// --------------------------------------------------------------------------------------------//
 }

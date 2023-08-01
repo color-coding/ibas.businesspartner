@@ -15,6 +15,8 @@ import org.colorcoding.ibas.bobas.i18n.I18N;
 import org.colorcoding.ibas.bobas.repository.BORepositoryServiceApplication;
 import org.colorcoding.ibas.businesspartner.bo.address.Address;
 import org.colorcoding.ibas.businesspartner.bo.address.IAddress;
+import org.colorcoding.ibas.businesspartner.bo.agreement.Agreement;
+import org.colorcoding.ibas.businesspartner.bo.agreement.IAgreement;
 import org.colorcoding.ibas.businesspartner.bo.assetitem.AssetItem;
 import org.colorcoding.ibas.businesspartner.bo.assetitem.IAssetItem;
 import org.colorcoding.ibas.businesspartner.bo.businesspartnerasset.BusinessPartnerAsset;
@@ -712,6 +714,49 @@ public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 	 */
 	public IOperationResult<IPaymentTerm> savePaymentTerm(IPaymentTerm bo) {
 		return new OperationResult<IPaymentTerm>(this.savePaymentTerm((PaymentTerm) bo, this.getUserToken()));
+	}
+
+	// --------------------------------------------------------------------------------------------//
+	/**
+	 * 查询-合同/协议
+	 * 
+	 * @param criteria 查询
+	 * @param token    口令
+	 * @return 操作结果
+	 */
+	public OperationResult<Agreement> fetchAgreement(ICriteria criteria, String token) {
+		return super.fetch(criteria, token, Agreement.class);
+	}
+
+	/**
+	 * 查询-合同/协议（提前设置用户口令）
+	 * 
+	 * @param criteria 查询
+	 * @return 操作结果
+	 */
+	public IOperationResult<IAgreement> fetchAgreement(ICriteria criteria) {
+		return new OperationResult<IAgreement>(this.fetchAgreement(criteria, this.getUserToken()));
+	}
+
+	/**
+	 * 保存-合同/协议
+	 * 
+	 * @param bo    对象实例
+	 * @param token 口令
+	 * @return 操作结果
+	 */
+	public OperationResult<Agreement> saveAgreement(Agreement bo, String token) {
+		return super.save(bo, token);
+	}
+
+	/**
+	 * 保存-合同/协议（提前设置用户口令）
+	 * 
+	 * @param bo 对象实例
+	 * @return 操作结果
+	 */
+	public IOperationResult<IAgreement> saveAgreement(IAgreement bo) {
+		return new OperationResult<IAgreement>(this.saveAgreement((Agreement) bo, this.getUserToken()));
 	}
 
 	// --------------------------------------------------------------------------------------------//

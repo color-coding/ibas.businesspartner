@@ -202,6 +202,20 @@ namespace businesspartner {
             savePaymentTerm(saver: ibas.ISaveCaller<bo.PaymentTerm>): void {
                 super.save(bo.PaymentTerm.name, saver);
             }
+            /**
+             * 查询 合同/协议
+             * @param fetcher 查询者
+             */
+            fetchAgreement(fetcher: ibas.IFetchCaller<bo.Agreement>): void {
+                super.fetch(bo.Agreement.name, fetcher);
+            }
+            /**
+             * 保存 合同/协议
+             * @param saver 保存者
+             */
+            saveAgreement(saver: ibas.ISaveCaller<bo.Agreement>): void {
+                super.save(bo.Agreement.name, saver);
+            }
         }
     }
 }

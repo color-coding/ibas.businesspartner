@@ -10,6 +10,7 @@ import javax.ws.rs.core.MediaType;
 import org.colorcoding.ibas.bobas.common.Criteria;
 import org.colorcoding.ibas.bobas.common.OperationResult;
 import org.colorcoding.ibas.businesspartner.bo.address.Address;
+import org.colorcoding.ibas.businesspartner.bo.agreement.Agreement;
 import org.colorcoding.ibas.businesspartner.bo.assetitem.AssetItem;
 import org.colorcoding.ibas.businesspartner.bo.businesspartnerasset.BusinessPartnerAsset;
 import org.colorcoding.ibas.businesspartner.bo.businesspartnerasset.BusinessPartnerAssetJournal;
@@ -359,6 +360,38 @@ public class DataService extends BORepositoryBusinessPartner {
 	public OperationResult<PaymentTerm> savePaymentTerm(PaymentTerm bo, @QueryParam("token") String token) {
 		return super.savePaymentTerm(bo, token);
 	}
+
+	// --------------------------------------------------------------------------------------------//
+	/**
+	 * 查询-合同/协议
+	 * 
+	 * @param criteria 查询
+	 * @param token    口令
+	 * @return 操作结果
+	 */
+	@POST
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Path("fetchAgreement")
+	public OperationResult<Agreement> fetchAgreement(Criteria criteria, @QueryParam("token") String token) {
+		return super.fetchAgreement(criteria, token);
+	}
+
+	/**
+	 * 保存-合同/协议
+	 * 
+	 * @param bo    对象实例
+	 * @param token 口令
+	 * @return 操作结果
+	 */
+	@POST
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Path("saveAgreement")
+	public OperationResult<Agreement> saveAgreement(Agreement bo, @QueryParam("token") String token) {
+		return super.saveAgreement(bo, token);
+	}
+
 	// --------------------------------------------------------------------------------------------//
 
 }

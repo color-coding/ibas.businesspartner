@@ -16,4 +16,5 @@
 /// <reference path="./bo/BusinessPartnerAssetJournal.ts" />
 /// <reference path="./bo/Lead.ts" />
 /// <reference path="./bo/PaymentTerm.ts" />
+/// <reference path="./bo/Agreement.ts" />
 /// <reference path="./BORepository.ts" />

@@ -130,6 +130,10 @@ namespace businesspartner {
                     } else if (property === bo.PaymentTerm.PROPERTY_STARTAT_NAME) {
                         return ibas.enums.toString(emPayTermDueType, value);
                     }
+                } else if (boName === bo.Agreement.name) {
+                    if (property === bo.Agreement.PROPERTY_BUSINESSPARTNERTYPE_NAME) {
+                        return ibas.enums.toString(emBusinessPartnerType, value);
+                    }
                 }
                 return super.convertData(boName, property, value);
             }
@@ -182,6 +186,10 @@ namespace businesspartner {
                         return ibas.enums.valueOf(emDueDateBaseOn, value);
                     } else if (property === bo.PaymentTerm.PROPERTY_STARTAT_NAME) {
                         return ibas.enums.valueOf(emPayTermDueType, value);
+                    }
+                } else if (boName === bo.Agreement.name) {
+                    if (property === bo.Agreement.PROPERTY_BUSINESSPARTNERTYPE_NAME) {
+                        return ibas.enums.valueOf(emBusinessPartnerType, value);
                     }
                 }
                 return super.parsingData(boName, property, value);

@@ -46,6 +46,8 @@ namespace businesspartner {
         export const BO_CODE_LEAD: string = "${Company}_BP_LEAD";
         /** 业务对象编码-付款条款 */
         export const BO_CODE_PAYMENTTERM: string = "${Company}_BP_PAYMENTTERM";
+        /** 业务对象编码-合同/协议 */
+        export const BO_CODE_AGREEMENT: string = "${Company}_BP_AGREEMENT";
 
         /** 业务伙伴性质 */
         export enum emBusinessPartnerNature {

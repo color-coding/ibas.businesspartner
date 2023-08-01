@@ -4,6 +4,7 @@ import org.colorcoding.ibas.bobas.common.ICriteria;
 import org.colorcoding.ibas.bobas.common.IOperationResult;
 import org.colorcoding.ibas.bobas.repository.IBORepositoryApplication;
 import org.colorcoding.ibas.businesspartner.bo.address.IAddress;
+import org.colorcoding.ibas.businesspartner.bo.agreement.IAgreement;
 import org.colorcoding.ibas.businesspartner.bo.assetitem.IAssetItem;
 import org.colorcoding.ibas.businesspartner.bo.businesspartnerasset.IBusinessPartnerAsset;
 import org.colorcoding.ibas.businesspartner.bo.businesspartnerasset.IBusinessPartnerAssetJournal;
@@ -201,6 +202,23 @@ public interface IBORepositoryBusinessPartnerApp extends IBORepositoryApplicatio
 	 * @return 操作结果
 	 */
 	IOperationResult<IPaymentTerm> savePaymentTerm(IPaymentTerm bo);
+
+	// --------------------------------------------------------------------------------------------//
+	/**
+	 * 查询-合同/协议
+	 * 
+	 * @param criteria 查询
+	 * @return 操作结果
+	 */
+	IOperationResult<IAgreement> fetchAgreement(ICriteria criteria);
+
+	/**
+	 * 保存-合同/协议
+	 * 
+	 * @param bo 对象实例
+	 * @return 操作结果
+	 */
+	IOperationResult<IAgreement> saveAgreement(IAgreement bo);
 
 	// --------------------------------------------------------------------------------------------//
 }
