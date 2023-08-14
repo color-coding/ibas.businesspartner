@@ -332,10 +332,31 @@ namespace businesspartner {
                     "Deleted", "ApprovalStatus", "LineStatus", "Status", "DocumentStatus", "DataSource",
                     "Period", "DataOwner", "Organization", "Series"
                 ]);
-                let app: CustomerEditApp = new CustomerEditApp();
-                app.navigation = this.navigation;
-                app.viewShower = this.viewShower;
-                app.run(customer);
+                let criteria: ibas.ICriteria = new ibas.Criteria();
+                criteria.result = 1;
+                let condition: ibas.ICondition = criteria.conditions.create();
+                condition.alias = initialfantasy.bo.BOInformation.PROPERTY_CODE_NAME;
+                condition.value = customer.objectCode;
+                let boRepository: initialfantasy.bo.BORepositoryInitialFantasy = new initialfantasy.bo.BORepositoryInitialFantasy();
+                boRepository.fetchBOInformation({
+                    criteria: criteria,
+                    onCompleted: (opRslt) => {
+                        for (let boItem of opRslt.resultObjects) {
+                            for (let ptyItem of boItem.boPropertyInformations) {
+                                if (ibas.strings.isWith(ptyItem.property, "U_", undefined)) {
+                                    let field: ibas.IUserField = this.editData.userFields.get(ptyItem.property);
+                                    if (!ibas.objects.isNull(field)) {
+                                        customer.userFields.register(field.name, field.valueType).value = field.value;
+                                    }
+                                }
+                            }
+                        }
+                        let app: CustomerEditApp = new CustomerEditApp();
+                        app.navigation = this.navigation;
+                        app.viewShower = this.viewShower;
+                        app.run(customer);
+                    }
+                });
             }
         }
         /** 视图-潜在客户 */

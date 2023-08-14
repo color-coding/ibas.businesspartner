@@ -213,7 +213,7 @@ namespace businesspartner {
                                                         }
                                                     }),
                                                     new sap.extension.m.SeriesSelect("", {
-                                                        objectCode: bo.BO_CODE_CUSTOMER,
+                                                        objectCode: bo.BO_CODE_LEAD,
                                                     }).bindProperty("bindingValue", {
                                                         path: "series",
                                                         type: new sap.extension.data.Numeric()
