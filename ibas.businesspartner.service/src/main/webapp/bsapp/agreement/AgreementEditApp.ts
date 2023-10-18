@@ -8,7 +8,7 @@
 namespace businesspartner {
     export namespace app {
         /** 编辑应用-协议/合同 */
-        export class AgreementEditApp extends ibas.BOEditApplication<IAgreementEditView, bo.Agreement> {
+        export class AgreementEditApp extends ibas.BOEditService<IAgreementEditView, bo.Agreement> {
             /** 应用标识 */
             static APPLICATION_ID: string = "478e493d-c566-48bd-b80d-d459399a7c8a";
             /** 应用名称 */
@@ -209,6 +209,21 @@ namespace businesspartner {
             createDataEvent: Function;
             /*** 选择业务伙伴事件 */
             chooseBusinessPartnerEvent: Function;
+        }
+        /** 协议/合同编辑服务映射 */
+        export class AgreementEditServiceMapping extends ibas.BOEditServiceMapping {
+            /** 构造函数 */
+            constructor() {
+                super();
+                this.id = AgreementEditApp.APPLICATION_ID;
+                this.name = AgreementEditApp.APPLICATION_NAME;
+                this.boCode = AgreementEditApp.BUSINESS_OBJECT_CODE;
+                this.description = ibas.i18n.prop(this.name);
+            }
+            /** 创建服务实例 */
+            create(): ibas.IService<ibas.IBOEditServiceCaller<bo.Agreement>> {
+                return new AgreementEditApp();
+            }
         }
     }
 }

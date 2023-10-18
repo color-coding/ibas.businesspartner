@@ -67,6 +67,7 @@ namespace businesspartner {
                 this.register(new PaymentTermLinkServiceMapping());
                 this.register(new AgreementChooseServiceMapping());
                 this.register(new AgreementLinkServiceMapping());
+                this.register(new AgreementEditServiceMapping());
                 // 注册常驻应用
 
             }
