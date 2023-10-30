@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!DOCTYPE LedgerAccount>
+<ns:LedgerAccount xmlns:ns="http://colorcoding.org/ibas/accounting/bo">
+	<Sign>GL-BP-P7</Sign>
+	<Group>PURCHASE</Group>
+	<Description>费用清算科目</Description>
+	<Settings>Material;MaterialGroup;Warehouse;</Settings>
+	<Remarks></Remarks>
+</ns:LedgerAccount>

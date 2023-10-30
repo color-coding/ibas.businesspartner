@@ -10,21 +10,32 @@ namespace businesspartner {
         export namespace m {
             /** 编辑视图-客户 */
             export class CustomerEditView extends ibas.BOEditView implements app.ICustomerEditView {
-                createAddressEvent: Function;
                 /** 删除数据事件 */
                 deleteDataEvent: Function;
                 /** 新建数据事件，参数1：是否克隆 */
                 createDataEvent: Function;
-
+                /*** 选择客户组事件*/
                 chooseCustomerGroupEvent: Function;
+                /** 选择客户联系人事件 */
                 chooseCustomerContactPersonEvent: Function;
+                /** 选择客户送货地址事件 */
                 chooseCustomerShipAddressEvent: Function;
+                /** 选择客户账单地址事件 */
                 chooseCustomerBillAddressEvent: Function;
+                /** 选择客户注册地址事件 */
                 chooseCustomerRegistrationAddress: Function;
+                /** 选择客户价格清单事件 */
                 chooseCustomerPriceListEvent: Function;
+                /** 选择客户底价清单事件 */
                 chooseCustomerFloorListEvent: Function;
+                /** 选择客户仓库事件 */
                 chooseCustomerWarehouseEvent: Function;
+                /** 创建联系人 */
                 createContactPersonEvent: Function;
+                /** 创建地址 */
+                createAddressEvent: Function;
+                /** 选择总账科目事件 */
+                chooseLedgerAccountEvent: Function;
                 /** 绘制视图 */
                 draw(): any {
                     let that: this = this;

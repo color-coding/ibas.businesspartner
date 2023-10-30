@@ -36,6 +36,8 @@ namespace businesspartner {
                 createContactPersonEvent: Function;
                 /** 创建地址 */
                 createAddressEvent: Function;
+                /** 选择总账科目事件 */
+                chooseLedgerAccountEvent: Function;
 
                 /** 绘制视图 */
                 draw(): any {
@@ -599,6 +601,17 @@ namespace businesspartner {
                                                 visible: shell.app.privileges.canRun({
                                                     id: app.ContactPersonFunc.FUNCTION_ID,
                                                     name: app.ContactPersonFunc.FUNCTION_NAME,
+                                                })
+                                            }),
+                                            new sap.m.MenuItem("", {
+                                                text: ibas.i18n.prop("businesspartner_ledgeraccount_setting"),
+                                                icon: "sap-icon://credit-card",
+                                                press: function (): void {
+                                                    that.fireViewEvents(that.chooseLedgerAccountEvent);
+                                                },
+                                                visible: shell.app.privileges.canRun({
+                                                    id: accounting.app.LedgerAccountSettingService.APPLICATION_ID,
+                                                    name: accounting.app.LedgerAccountSettingService.APPLICATION_NAME,
                                                 })
                                             }),
                                         ],

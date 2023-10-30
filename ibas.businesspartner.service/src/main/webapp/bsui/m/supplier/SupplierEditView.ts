@@ -10,21 +10,32 @@ namespace businesspartner {
         export namespace m {
             /** 编辑视图-客户 */
             export class SupplierEditView extends ibas.BOEditView implements app.ISupplierEditView {
-                createAddressEvent: Function;
                 /** 删除数据事件 */
                 deleteDataEvent: Function;
                 /** 新建数据事件，参数1：是否克隆 */
                 createDataEvent: Function;
-
+                /*** 选择供应商组事件*/
                 chooseSupplierGroupEvent: Function;
+                /** 选择供应商联系人事件 */
                 chooseSupplierContactPersonEvent: Function;
+                /** 选择供应商送货地址事件 */
                 chooseSupplierShipAddressEvent: Function;
+                /** 选择供应商账单地址事件 */
                 chooseSupplierBillAddressEvent: Function;
+                /** 选择客供应商注册地址事件 */
                 chooseSupplierRegistrationAddress: Function;
+                /** 选择供应商价格清单事件 */
                 chooseSupplierPriceListEvent: Function;
-                chooseSupplierFloorListEvent: Function;
+                /** 选择供应商仓库事件 */
                 chooseSupplierWarehouseEvent: Function;
+                /** 选择供应商底价清单事件 */
+                chooseSupplierFloorListEvent: Function;
+                /** 创建联系人 */
                 createContactPersonEvent: Function;
+                /** 创建地址 */
+                createAddressEvent: Function;
+                /** 选择总账科目事件 */
+                chooseLedgerAccountEvent: Function;
                 /** 绘制视图 */
                 draw(): any {
                     let that: this = this;

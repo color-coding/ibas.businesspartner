@@ -41,6 +41,7 @@ namespace businesspartner {
                 this.view.chooseCustomerWarehouseEvent = this.chooseCustomerWarehouse;
                 this.view.createAddressEvent = this.createAddress;
                 this.view.createContactPersonEvent = this.createContactPerson;
+                this.view.chooseLedgerAccountEvent = this.chooseLedgerAccount;
             }
             /** 视图显示后 */
             protected viewShowed(): void {
@@ -428,6 +429,24 @@ namespace businesspartner {
                 app.viewShower = this.viewShower;
                 app.run(address);
             }
+            /** 选择总账科目事件 */
+            private chooseLedgerAccount(): void {
+                if (ibas.objects.isNull(this.editData) || this.editData.isDirty) {
+                    throw new Error(ibas.i18n.prop("shell_data_saved_first"));
+                }
+                ibas.servicesManager.runApplicationService<accounting.app.ILedgerAccountSettingContract>({
+                    proxy: new accounting.app.LedgerAccountSettingServiceProxy({
+                        objectCode: this.editData.objectCode,
+                        description: ibas.strings.format("{0} - {1}", this.editData.code, this.editData.name),
+                        settings: {
+                            category: ibas.objects.nameOf(this.editData),
+                            conditions: [
+                                new ibas.Condition(accounting.app.emLedgerAccountConditionProperty.Customer, ibas.emConditionOperation.EQUAL, this.editData.code)
+                            ]
+                        }
+                    }),
+                });
+            }
         }
         /** 视图-客户 */
         export interface ICustomerEditView extends ibas.IBOEditView {
@@ -457,6 +476,8 @@ namespace businesspartner {
             createContactPersonEvent: Function;
             /** 创建地址 */
             createAddressEvent: Function;
+            /** 选择总账科目事件 */
+            chooseLedgerAccountEvent: Function;
         }
     }
 }
