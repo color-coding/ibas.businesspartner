@@ -30,7 +30,7 @@ namespace businesspartner {
                             }).bindProperty("bindingValue", {
                                 path: "code",
                                 type: new sap.extension.data.Alphanumeric({
-                                    maxLength: 20
+                                    maxLength: 36
                                 })
                             }).bindProperty("editable", {
                                 path: "series",

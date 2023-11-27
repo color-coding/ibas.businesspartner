@@ -186,7 +186,11 @@ public class Ledgers extends org.colorcoding.ibas.accounting.data.Ledgers {
 	 */
 	public static final String CONDITION_PROPERTY_SUPPLIER = "Supplier";
 	/**
-	 * 业务伙伴组
+	 * 客户组
 	 */
-	public static final String CONDITION_PROPERTY_PARTNERGROUP = "PartnerGroup";
+	public static final String CONDITION_PROPERTY_CUSTOMER_GROUP = "CustomerGroup";
+	/**
+	 * 供应商组
+	 */
+	public static final String CONDITION_PROPERTY_SUPPLIER_GROUP = "SupplierGroup";
 }
