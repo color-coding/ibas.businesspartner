@@ -301,6 +301,17 @@ namespace businesspartner {
                 this.setProperty(Agreement.PROPERTY_REMARKS_NAME, value);
             }
 
+            /** 映射的属性名称-分支 */
+            static PROPERTY_BRANCH_NAME: string = "Branch";
+            /** 获取-分支 */
+            get branch(): string {
+                return this.getProperty<string>(Agreement.PROPERTY_BRANCH_NAME);
+            }
+            /** 设置-分支 */
+            set branch(value: string) {
+                this.setProperty(Agreement.PROPERTY_BRANCH_NAME, value);
+            }
+
             /** 初始化数据 */
             protected init(): void {
                 this.objectCode = ibas.config.applyVariables(Agreement.BUSINESS_OBJECT_CODE);

@@ -10230,6 +10230,8 @@ declare namespace materials {
             baseBusinessObject(data: IMaterialSerial): void;
             /** 初始化数据 */
             protected init(): void;
+            /** 重置 */
+            reset(): void;
         }
     }
 }
@@ -10610,6 +10612,8 @@ declare namespace materials {
             set updateActionId(value: string);
             /** 初始化数据 */
             protected init(): void;
+            /** 重置 */
+            reset(): void;
         }
     }
 }
@@ -11211,6 +11215,13 @@ declare namespace materials {
             /** 创建业务对象转换者 */
             protected createConverter(): ibas.BOConverter;
             /**
+             * 转换数据
+             * @param data 当前类型数据
+             * @param sign 操作标记
+             * @returns 转换的数据
+             */
+            convert(data: any, sign: string): any;
+            /**
              * 解析业务对象数据
              * @param data 目标类型
              * @param sign 特殊标记
@@ -11283,6 +11294,12 @@ declare namespace materials {
                 Description: string;
                 /** 关联 */
                 Associated: string;
+            }
+            /** 物料编码改变 */
+            interface IMaterialNumberChange extends IDataDeclaration {
+                Issue: GoodsIssue;
+                Receipt: GoodsReceipt;
+                Reservations: MaterialInventoryReservation[];
             }
         }
     }
@@ -11564,6 +11581,19 @@ declare namespace materials {
              * @param saver 保存者
              */
             savePickLists(saver: ibas.ISaveCaller<bo.PickLists>): void;
+            /**
+             * 改变物料批次/序列号
+             * @param changer 改变者
+             */
+            changeMaterialNumbers(changer: IChangeCaller): void;
+        }
+        interface IChangeCaller extends ibas.IMethodCaller<string> {
+            /** 改变内容 */
+            changes: {
+                issue: GoodsIssue;
+                receipt: GoodsReceipt;
+                reservations: MaterialInventoryReservation[];
+            };
         }
     }
 }
@@ -11693,7 +11723,7 @@ declare namespace materials {
             chooseGoodsIssueLineMaterialBatchEvent: Function;
             /** 选择库存发货单行物料序列事件 */
             chooseGoodsIssueLineMaterialSerialEvent: Function;
-            /** 选择库存发货单行分配中心事件 */
+            /** 选择库存发货单行成本中心事件 */
             chooseGoodsIssueLineDistributionRuleEvent: Function;
             /** 默认仓库 */
             defaultWarehouse: string;
@@ -11942,7 +11972,7 @@ declare namespace materials {
             chooseGoodsReceiptLineMaterialBatchEvent: Function;
             /** 批次管理物料新建序列 */
             chooseGoodsReceiptLineMaterialSerialEvent: Function;
-            /** 选择库存收货单行分配中心事件 */
+            /** 选择库存收货单行成本中心事件 */
             chooseGoodsReceiptLineDistributionRuleEvent: Function;
             /** 默认仓库 */
             defaultWarehouse: string;
@@ -12193,7 +12223,7 @@ declare namespace materials {
             chooseInventoryTransferLineMaterialBatchEvent: Function;
             /** 选择库存转储单行物料序列事件 */
             chooseInventoryTransferLineMaterialSerialEvent: Function;
-            /** 选择库存转储单行分配中心事件 */
+            /** 选择库存转储单行成本中心事件 */
             chooseInventoryTransferLineDistributionRuleEvent: Function;
             /** 调用库存转储添加服务 */
             callInventoryTransferAddServiceEvent: Function;
@@ -12482,6 +12512,16 @@ declare namespace materials {
             default(): ibas.IApplication<ibas.IView>;
         }
         class MaterialOverviewFunc extends ibas.ModuleFunction {
+            /** 功能标识 */
+            static FUNCTION_ID: string;
+            /** 功能名称 */
+            static FUNCTION_NAME: string;
+            /** 构造函数 */
+            constructor();
+            /** 默认功能 */
+            default(): ibas.IApplication<ibas.IView>;
+        }
+        class MaterialNumberChangeFunc extends ibas.ModuleFunction {
             /** 功能标识 */
             static FUNCTION_ID: string;
             /** 功能名称 */
@@ -13118,6 +13158,91 @@ declare namespace materials {
  * Use of this source code is governed by an Apache License, Version 2.0
  * that can be found in the LICENSE file at http://www.apache.org/licenses/LICENSE-2.0
  */
+declare namespace materials {
+    namespace app {
+        enum emNumberChangeStatus {
+            NOT = 0,
+            PROCESSING = 1,
+            DONE = 2
+        }
+        class MaterialNumberItem extends ibas.Bindable {
+            constructor(source: bo.MaterialBatch | bo.MaterialSerial);
+            get status(): emNumberChangeStatus;
+            set status(value: emNumberChangeStatus);
+            material: bo.Material;
+            source: bo.MaterialBatch | bo.MaterialSerial;
+            target: bo.MaterialBatch | bo.MaterialSerial;
+            get quantity(): number;
+            set quantity(value: number);
+            get sourceNumber(): string;
+            set sourceNumber(value: string);
+            get targetNumber(): string;
+            set targetNumber(value: string);
+            get sourceWarehouse(): string;
+            set sourceWarehouse(value: string);
+            get targetWarehouse(): string;
+            set targetWarehouse(value: string);
+            reservations: ibas.IList<MaterialNumberReservation>;
+            get reservationQuantity(): number;
+            get transferQuantity(): number;
+            check(): void;
+        }
+        class MaterialNumberReservation extends ibas.Bindable {
+            constructor(data: bo.MaterialInventoryReservation);
+            source: bo.MaterialInventoryReservation;
+            sourceQuantity: number;
+            target: bo.MaterialInventoryReservation;
+        }
+        /** 应用-物料批次序列号变更 */
+        class MaterialNumberChangeApp extends ibas.Application<IMaterialNumberChangeView> {
+            /** 应用标识 */
+            static APPLICATION_ID: string;
+            /** 应用名称 */
+            static APPLICATION_NAME: string;
+            /** 构造函数 */
+            constructor();
+            /** 注册视图 */
+            protected registerView(): void;
+            /** 视图显示后 */
+            protected viewShowed(): void;
+            private changeItems;
+            private addMaterialBatch;
+            private addMaterialSerial;
+            private removeItem;
+            private showItems;
+            private editMaterialSerial;
+            private editMaterialBatch;
+            private reset;
+            private changeTo;
+        }
+        /** 视图-物料批次序列号变更 */
+        interface IMaterialNumberChangeView extends ibas.IView {
+            /** 添加物料批次事件 */
+            addMaterialBatchEvent: Function;
+            /** 添加物料序列事件 */
+            addMaterialSerialEvent: Function;
+            /** 移除项目事件 */
+            removeItemEvent: Function;
+            /** 显示项目 */
+            showItems(datas: MaterialNumberItem[]): void;
+            /** 编辑批次信息 */
+            editMaterialBatchEvent: Function;
+            /** 编辑序列信息 */
+            editMaterialSerialEvent: Function;
+            /** 重置事件 */
+            resetEvent: Function;
+            /** 改变事件 */
+            changeToEvent: Function;
+        }
+    }
+}
+/**
+ * @license
+ * Copyright Color-Coding Studio. All Rights Reserved.
+ *
+ * Use of this source code is governed by an Apache License, Version 2.0
+ * that can be found in the LICENSE file at http://www.apache.org/licenses/LICENSE-2.0
+ */
 /**
  * @license
  * Copyright Color-Coding Studio. All Rights Reserved.
@@ -13189,11 +13314,13 @@ declare namespace materials {
             private chooseSpecification;
             /** 选择物料版本 */
             private chooseVersion;
+            /** 视图状态 */
+            viewMode: ibas.emViewMode;
         }
         /** 视图-物料批次 */
         interface IMaterialBatchEditView extends ibas.IBOEditView {
             /** 显示数据 */
-            showMaterialBatch(data: bo.MaterialBatch): void;
+            showMaterialBatch(data: bo.MaterialBatch, viewMode?: ibas.emViewMode): void;
             /** 选择物料规格 */
             chooseSpecificationEvent: Function;
             /** 选择物料版本 */
@@ -13946,11 +14073,13 @@ declare namespace materials {
             private chooseSpecification;
             /** 选择物料版本 */
             private chooseVersion;
+            /** 视图状态 */
+            viewMode: ibas.emViewMode;
         }
         /** 视图-物料序列 */
         interface IMaterialSerialEditView extends ibas.IBOEditView {
             /** 显示数据 */
-            showMaterialSerial(data: bo.MaterialSerial): void;
+            showMaterialSerial(data: bo.MaterialSerial, viewMode?: ibas.emViewMode): void;
             /** 选择物料规格 */
             chooseSpecificationEvent: Function;
             /** 选择物料版本 */

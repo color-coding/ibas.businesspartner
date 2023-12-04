@@ -375,4 +375,18 @@ public interface IAgreement extends IBOMasterData {
 	 */
 	void setRemarks(String value);
 
+	/**
+	 * 获取-分支
+	 * 
+	 * @return 值
+	 */
+	String getBranch();
+
+	/**
+	 * 设置-分支
+	 * 
+	 * @param value 值
+	 */
+	void setBranch(String value);
+
 }

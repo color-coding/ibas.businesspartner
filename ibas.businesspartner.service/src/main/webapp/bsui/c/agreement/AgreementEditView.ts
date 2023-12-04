@@ -94,6 +94,17 @@ namespace businesspartner {
                                                 editable: true,
                                                 content: [
                                                     new sap.m.Toolbar("", { visible: false }),
+                                                    new sap.m.Label("", {
+                                                        text: ibas.i18n.prop("bo_agreement_branch"),
+                                                        visible: accounting.config.isEnableBranch(),
+                                                    }),
+                                                    new sap.extension.m.DataBranchInput("", {
+                                                        showValueHelp: true,
+                                                        visible: accounting.config.isEnableBranch(),
+                                                    }).bindProperty("bindingValue", {
+                                                        path: "branch",
+                                                        type: new sap.extension.data.Alphanumeric()
+                                                    }),
                                                     new sap.m.Label("", { text: ibas.i18n.prop("bo_agreement_businesspartner") }),
                                                     new sap.m.FlexBox("", {
                                                         items: [
@@ -227,7 +238,7 @@ namespace businesspartner {
                                 type: new sap.extension.data.Numeric()
                             }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_agreement_organization") }),
-                            new sap.extension.m.OrganizationInput("", {
+                            new sap.extension.m.DataOrganizationInput("", {
                                 showValueHelp: true,
                             }).bindProperty("bindingValue", {
                                 path: "organization",

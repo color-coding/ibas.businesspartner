@@ -403,6 +403,7 @@
         "bo_agreement_dataowner": "数据所有者",
         "bo_agreement_organization": "数据所属组织",
         "bo_agreement_remarks": "备注",
+        "bo_agreement_branch": "分支",
         "bo_agreement_closing_delimiter": "----结束----"
     },
     {
