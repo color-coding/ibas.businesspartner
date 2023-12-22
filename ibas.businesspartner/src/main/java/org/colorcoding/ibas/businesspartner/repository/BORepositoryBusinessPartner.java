@@ -37,6 +37,7 @@ import org.colorcoding.ibas.businesspartner.bo.supplier.ISupplier;
 import org.colorcoding.ibas.businesspartner.bo.supplier.Supplier;
 import org.colorcoding.ibas.businesspartner.data.AssetRequest;
 import org.colorcoding.ibas.businesspartner.data.CustomerAsset;
+import org.colorcoding.ibas.businesspartner.data.SupplierAsset;
 import org.colorcoding.ibas.businesspartner.data.emBusinessPartnerType;
 
 /**
@@ -628,6 +629,136 @@ public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 			return operationResult;
 		} catch (Exception e) {
 			return new OperationResult<CustomerAsset>(e);
+		}
+	}
+
+	@Override
+	public IOperationResult<SupplierAsset> fetchSupplierAsset(AssetRequest request) {
+		return this.fetchSupplierAsset(request, this.getUserToken());
+	}
+
+	@Override
+	public OperationResult<SupplierAsset> fetchSupplierAsset(AssetRequest request, String token) {
+		try {
+			this.setCurrentUser(token);
+			if (request == null) {
+				throw new Exception(I18N.prop("msg_bobas_invalid_data"));
+			}
+			if (request.getBusinessPartner() == null || request.getBusinessPartner().isEmpty()) {
+				throw new Exception(I18N.prop("msg_bobas_invalid_data"));
+			}
+			// 查询供应商
+			ICriteria criteria = new Criteria();
+			ICondition condition = criteria.getConditions().create();
+			condition.setAlias(Supplier.PROPERTY_CODE.getName());
+			condition.setValue(request.getBusinessPartner());
+			condition = criteria.getConditions().create();
+			condition.setAlias(Supplier.PROPERTY_ACTIVATED.getName());
+			condition.setValue(emYesNo.YES);
+			condition = criteria.getConditions().create();
+			condition.setAlias(Supplier.PROPERTY_DELETED.getName());
+			condition.setValue(emYesNo.NO);
+			IOperationResult<ISupplier> opRsltSupplier = this.fetchSupplier(criteria);
+			ISupplier supplier = opRsltSupplier.getResultObjects().firstOrDefault();
+			if (supplier == null) {
+				throw new Exception(I18N.prop("msg_bp_supplier_is_not_exist", request.getBusinessPartner()));
+			}
+			// 查询供应商的资产
+			criteria = new Criteria();
+			condition = criteria.getConditions().create();
+			condition.setBracketOpen(1);
+			condition.setAlias(BusinessPartnerAsset.PROPERTY_BUSINESSPARTNERTYPE.getName());
+			condition.setValue(emBusinessPartnerType.SUPPLIER);
+			condition = criteria.getConditions().create();
+			condition.setAlias(BusinessPartnerAsset.PROPERTY_BUSINESSPARTNERCODE.getName());
+			condition.setValue(request.getBusinessPartner());
+			condition = criteria.getConditions().create();
+			condition.setAlias(BusinessPartnerAsset.PROPERTY_ACTIVATED.getName());
+			condition.setValue(emYesNo.YES);
+			condition = criteria.getConditions().create();
+			condition.setAlias(BusinessPartnerAsset.PROPERTY_DELETED.getName());
+			condition.setValue(emYesNo.NO);
+			condition = criteria.getConditions().create();
+			condition.setAlias(BusinessPartnerAsset.PROPERTY_TIMES.getName());
+			condition.setOperation(ConditionOperation.GRATER_THAN);
+			condition.setValue(0);
+			condition.setBracketClose(1);
+			// 有效日期
+			DateTime today = DateTime.getToday();
+			condition = criteria.getConditions().create();
+			condition.setBracketOpen(1);
+			condition.setAlias(BusinessPartnerAsset.PROPERTY_VALIDDATE.getName());
+			condition.setOperation(ConditionOperation.IS_NULL);
+			condition = criteria.getConditions().create();
+			condition.setRelationship(ConditionRelationship.OR);
+			condition.setBracketOpen(1);
+			condition.setAlias(BusinessPartnerAsset.PROPERTY_VALIDDATE.getName());
+			condition.setOperation(ConditionOperation.NOT_NULL);
+			condition = criteria.getConditions().create();
+			condition.setBracketClose(2);
+			condition.setAlias(BusinessPartnerAsset.PROPERTY_VALIDDATE.getName());
+			condition.setOperation(ConditionOperation.LESS_EQUAL);
+			condition.setValue(today);
+			// 失效日期
+			condition = criteria.getConditions().create();
+			condition.setBracketOpen(1);
+			condition.setAlias(BusinessPartnerAsset.PROPERTY_INVALIDDATE.getName());
+			condition.setOperation(ConditionOperation.IS_NULL);
+			condition = criteria.getConditions().create();
+			condition.setRelationship(ConditionRelationship.OR);
+			condition.setBracketOpen(1);
+			condition.setAlias(BusinessPartnerAsset.PROPERTY_INVALIDDATE.getName());
+			condition.setOperation(ConditionOperation.NOT_NULL);
+			condition = criteria.getConditions().create();
+			condition.setBracketClose(2);
+			condition.setAlias(BusinessPartnerAsset.PROPERTY_INVALIDDATE.getName());
+			condition.setOperation(ConditionOperation.GRATER_EQUAL);
+			condition.setValue(today);
+			OperationResult<SupplierAsset> operationResult = new OperationResult<SupplierAsset>();
+			for (IBusinessPartnerAsset businessPartnerAsset : this.fetchBusinessPartnerAsset(criteria)
+					.getResultObjects()) {
+				// 查询资产项目
+				criteria = new Criteria();
+				condition = criteria.getConditions().create();
+				condition.setAlias(AssetItem.PROPERTY_CODE.getName());
+				condition.setValue(businessPartnerAsset.getAssetCode());
+				condition = criteria.getConditions().create();
+				condition.setAlias(AssetItem.PROPERTY_ACTIVATED.getName());
+				condition.setValue(emYesNo.YES);
+				condition = criteria.getConditions().create();
+				condition.setAlias(AssetItem.PROPERTY_DELETED.getName());
+				condition.setValue(emYesNo.NO);
+				IOperationResult<IAssetItem> opRsltAsset = this.fetchAssetItem(criteria);
+				IAssetItem assetItem = opRsltAsset.getResultObjects().firstOrDefault();
+				// 资产项目不可用
+				if (assetItem == null) {
+					continue;
+				}
+				// 货币不匹配
+				if (request.getCurrency() != null && !request.getCurrency().isEmpty()
+						&& !request.getCurrency().equals(assetItem.getAmountUnit())) {
+					continue;
+				}
+				SupplierAsset supplierAsset = new SupplierAsset();
+				supplierAsset.setSupplier(String.format("%s - %s", supplier.getCode(), supplier.getName()));
+				supplierAsset.setCode(businessPartnerAsset.getCode());
+				supplierAsset.setName(businessPartnerAsset.getName());
+				supplierAsset.setValidDate(businessPartnerAsset.getValidDate());
+				supplierAsset.setInvalidDate(businessPartnerAsset.getInvalidDate());
+				supplierAsset.setTimes(businessPartnerAsset.getTimes());
+				supplierAsset.setUnit(assetItem.getAmountUnit());
+				supplierAsset.setDiscount(assetItem.getUsingDiscount());
+				// 可用价值 = 当前价值 + 可透支值
+				supplierAsset.setAmount(businessPartnerAsset.getAmount().add(assetItem.getOverdraft()));
+				// 可用价值 不足
+				if (supplierAsset.getAmount().compareTo(Decimal.ZERO) <= 0) {
+					continue;
+				}
+				operationResult.addResultObjects(supplierAsset);
+			}
+			return operationResult;
+		} catch (Exception e) {
+			return new OperationResult<SupplierAsset>(e);
 		}
 	}
 

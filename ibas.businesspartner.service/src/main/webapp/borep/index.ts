@@ -37,5 +37,7 @@ namespace businesspartner {
         boFactory.register(Lead.BUSINESS_OBJECT_CODE, Lead);
         boFactory.register(PaymentTerm.BUSINESS_OBJECT_CODE, PaymentTerm);
         boFactory.register(Agreement.BUSINESS_OBJECT_CODE, Agreement);
+        boFactory.register(BO_CODE_CUSTOMERASSET, CustomerAsset);
+        boFactory.register(BO_CODE_SUPPLIERASSET, SupplierAsset);
     }
 }

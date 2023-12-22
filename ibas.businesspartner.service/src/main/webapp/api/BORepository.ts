@@ -108,7 +108,13 @@ namespace businesspartner {
              * 查询 客户资产
              * @param fetcher 查询者
              */
-            fetchCustomerAsset(fetcher: IAssetRequester): void;
+            fetchCustomerAsset(fetcher: IAssetRequester<ICustomerAsset>): void;
+
+            /**
+             * 查询 供应商资产
+             * @param fetcher 查询者
+             */
+            fetchSupplierAsset(fetcher: IAssetRequester<ISupplierAsset>): void;
             /**
              * 查询 潜在客户
              * @param fetcher 查询者
@@ -144,7 +150,7 @@ namespace businesspartner {
         /**
          * 查询调用者
          */
-        export interface IAssetRequester extends ibas.IMethodCaller<bo.ICustomerAsset> {
+        export interface IAssetRequester<T extends bo.ICustomerAsset | bo.ISupplierAsset> extends ibas.IMethodCaller<T> {
             /** 请求 */
             request: IAssetRequest;
         }

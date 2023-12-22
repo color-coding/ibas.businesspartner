@@ -16,6 +16,7 @@ import org.colorcoding.ibas.businesspartner.bo.paymentterm.IPaymentTerm;
 import org.colorcoding.ibas.businesspartner.bo.supplier.ISupplier;
 import org.colorcoding.ibas.businesspartner.data.AssetRequest;
 import org.colorcoding.ibas.businesspartner.data.CustomerAsset;
+import org.colorcoding.ibas.businesspartner.data.SupplierAsset;
 
 /**
  * BusinessPartner仓库应用
@@ -168,6 +169,13 @@ public interface IBORepositoryBusinessPartnerApp extends IBORepositoryApplicatio
 	 */
 	IOperationResult<CustomerAsset> fetchCustomerAsset(AssetRequest request);
 
+	/**
+	 * 查询-供应商资产
+	 * 
+	 * @param request 请求
+	 * @return 操作结果
+	 */
+	IOperationResult<SupplierAsset> fetchSupplierAsset(AssetRequest request);
 	// --------------------------------------------------------------------------------------------//
 
 	/**

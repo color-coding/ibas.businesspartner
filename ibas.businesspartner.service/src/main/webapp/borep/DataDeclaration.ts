@@ -54,6 +54,29 @@ namespace businesspartner {
                 /** 客户 */
                 Customer: string;
             }
+            /** 供应商资产 */
+            export interface ISupplierAsset extends IDataDeclaration {
+                /** 资产编码 */
+                Code: string;
+                /** 资产名称 */
+                Name: string;
+                /** 图片 */
+                Picture: string;
+                /** 生效日期 */
+                ValidDate: string;
+                /** 失效日期 */
+                InvalidDate: string;
+                /** 可用值 */
+                Amount: number;
+                /** 值单位 */
+                Unit: string;
+                /** 可用次数 */
+                Times: number;
+                /** 折扣 */
+                Discount: number;
+                /** 供应商 */
+                Supplier: string;
+            }
         }
     }
 }

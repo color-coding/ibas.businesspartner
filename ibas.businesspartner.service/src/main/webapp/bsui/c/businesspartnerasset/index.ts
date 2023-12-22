@@ -10,3 +10,5 @@
 /// <reference path="./BusinessPartnerAssetEditView.ts" />
 /// <reference path="./BusinessPartnerAssetJournalListView.ts" />
 /// <reference path="./BusinessPartnerAssetJournalEditView.ts" />
+/// <reference path="./CustomerAssetChooseView.ts" />
+/// <reference path="./SupplierAssetChooseView.ts" />

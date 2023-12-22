@@ -16,7 +16,8 @@ namespace businesspartner {
              * @returns 目标类型
              */
             convert(data: any, sign: string): any {
-                if (!ibas.strings.isEmpty(sign) && sign.indexOf("fetchCustomerAsset") >= 0) {
+                if (!ibas.strings.isEmpty(sign) &&
+                    (sign.indexOf("fetchCustomerAsset") >= 0 || sign.indexOf("fetchSupplierAsset") >= 0)) {
                     let newData: bo.IAssetRequest = data;
                     let remote: ibas4j.IAssetRequest = {
                         type: "AssetRequest",
@@ -52,6 +53,20 @@ namespace businesspartner {
                     newData.times = remote.Times;
                     newData.discount = remote.Discount;
                     newData.customer = remote.Customer;
+                    return newData;
+                } else if (data.type === bo.SupplierAsset.name) {
+                    let remote: ibas4j.ISupplierAsset = data;
+                    let newData: bo.SupplierAsset = new bo.SupplierAsset();
+                    newData.code = remote.Code;
+                    newData.name = remote.Name;
+                    newData.picture = remote.Picture;
+                    newData.validDate = ibas.dates.valueOf(remote.ValidDate);
+                    newData.invalidDate = ibas.dates.valueOf(remote.InvalidDate);
+                    newData.amount = remote.Amount;
+                    newData.unit = remote.Unit;
+                    newData.times = remote.Times;
+                    newData.discount = remote.Discount;
+                    newData.supplier = remote.Supplier;
                     return newData;
                 } else {
                     return super.parsing(data, sign);

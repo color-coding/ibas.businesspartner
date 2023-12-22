@@ -68,6 +68,8 @@ namespace businesspartner {
                 this.register(new AgreementChooseServiceMapping());
                 this.register(new AgreementLinkServiceMapping());
                 this.register(new AgreementEditServiceMapping());
+                this.register(new CustomerAssetChooseServiceMapping());
+                this.register(new SupplierAssetChooseServiceMapping());
                 // 注册常驻应用
 
             }

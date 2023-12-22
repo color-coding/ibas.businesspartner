@@ -159,16 +159,32 @@ namespace businesspartner {
             }
 
             /**
-             * 查询 业务伙伴资产
+             * 查询 客户资产
              * @param fetcher 查询者
              */
-            fetchCustomerAsset(fetcher: IAssetRequester): void {
+            fetchCustomerAsset(fetcher: IAssetRequester<ICustomerAsset>): void {
                 let boRepository: ibas.BORepositoryAjax = new ibas.BORepositoryAjax();
                 boRepository.address = this.address;
                 boRepository.token = this.token;
                 boRepository.converter = this.createConverter();
                 let method: string =
                     ibas.strings.format("fetchCustomerAsset?token={0}", this.token);
+                let data: string = JSON.stringify(this.createConverter().convert(fetcher.request, method));
+                boRepository.callRemoteMethod(method, data, (opRslt) => {
+                    fetcher.onCompleted.call(ibas.objects.isNull(fetcher.caller) ? fetcher : fetcher.caller, opRslt);
+                });
+            }
+            /**
+             * 查询 供应商资产
+             * @param fetcher 查询者
+             */
+            fetchSupplierAsset(fetcher: IAssetRequester<ISupplierAsset>): void {
+                let boRepository: ibas.BORepositoryAjax = new ibas.BORepositoryAjax();
+                boRepository.address = this.address;
+                boRepository.token = this.token;
+                boRepository.converter = this.createConverter();
+                let method: string =
+                    ibas.strings.format("fetchSupplierAsset?token={0}", this.token);
                 let data: string = JSON.stringify(this.createConverter().convert(fetcher.request, method));
                 boRepository.callRemoteMethod(method, data, (opRslt) => {
                     fetcher.onCompleted.call(ibas.objects.isNull(fetcher.caller) ? fetcher : fetcher.caller, opRslt);

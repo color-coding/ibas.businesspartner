@@ -22,6 +22,7 @@ import org.colorcoding.ibas.businesspartner.bo.paymentterm.PaymentTerm;
 import org.colorcoding.ibas.businesspartner.bo.supplier.Supplier;
 import org.colorcoding.ibas.businesspartner.data.AssetRequest;
 import org.colorcoding.ibas.businesspartner.data.CustomerAsset;
+import org.colorcoding.ibas.businesspartner.data.SupplierAsset;
 import org.colorcoding.ibas.businesspartner.repository.BORepositoryBusinessPartner;
 
 /**
@@ -297,6 +298,21 @@ public class DataService extends BORepositoryBusinessPartner {
 	@Path("fetchCustomerAsset")
 	public OperationResult<CustomerAsset> fetchCustomerAsset(AssetRequest request, @QueryParam("token") String token) {
 		return super.fetchCustomerAsset(request, token);
+	}
+
+	/**
+	 * 查询-供应商资产
+	 * 
+	 * @param request 请求
+	 * @param token   口令
+	 * @return 操作结果
+	 */
+	@POST
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Path("fetchSupplierAsset")
+	public OperationResult<SupplierAsset> fetchSupplierAsset(AssetRequest request, @QueryParam("token") String token) {
+		return super.fetchSupplierAsset(request, token);
 	}
 
 	// --------------------------------------------------------------------------------------------//

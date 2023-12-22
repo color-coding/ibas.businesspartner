@@ -151,6 +151,12 @@ namespace businesspartner {
                     case app.AgreementEditApp.APPLICATION_ID:
                         view = new c.AgreementEditView();
                         break;
+                    case app.CustomerAssetChooseApp.APPLICATION_ID:
+                        view = new c.CustomerAssetChooseView();
+                        break;
+                    case app.SupplierAssetChooseApp.APPLICATION_ID:
+                        view = new c.SupplierAssetChooseView();
+                        break;
                     default:
                         break;
                 }
