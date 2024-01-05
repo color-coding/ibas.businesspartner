@@ -1,6 +1,9 @@
 package org.colorcoding.ibas.businesspartner.data;
 
+import javax.xml.bind.annotation.XmlType;
+
 import org.colorcoding.ibas.bobas.mapping.Value;
+import org.colorcoding.ibas.businesspartner.MyConfiguration;
 
 /**
  * 业务伙伴类型
@@ -8,6 +11,7 @@ import org.colorcoding.ibas.bobas.mapping.Value;
  * @author Niuren.Zhu
  *
  */
+@XmlType(namespace = MyConfiguration.NAMESPACE_BO)
 public enum emBusinessPartnerType {
 
 	/**

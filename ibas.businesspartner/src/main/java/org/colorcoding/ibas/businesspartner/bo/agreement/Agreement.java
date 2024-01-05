@@ -15,6 +15,7 @@ import org.colorcoding.ibas.bobas.data.emYesNo;
 import org.colorcoding.ibas.bobas.mapping.BusinessObjectUnit;
 import org.colorcoding.ibas.bobas.mapping.DbField;
 import org.colorcoding.ibas.bobas.mapping.DbFieldType;
+import org.colorcoding.ibas.bobas.ownership.IDataOwnership;
 import org.colorcoding.ibas.businesspartner.MyConfiguration;
 import org.colorcoding.ibas.businesspartner.data.emBusinessPartnerType;
 
@@ -26,7 +27,8 @@ import org.colorcoding.ibas.businesspartner.data.emBusinessPartnerType;
 @XmlType(name = Agreement.BUSINESS_OBJECT_NAME, namespace = MyConfiguration.NAMESPACE_BO)
 @XmlRootElement(name = Agreement.BUSINESS_OBJECT_NAME, namespace = MyConfiguration.NAMESPACE_BO)
 @BusinessObjectUnit(code = Agreement.BUSINESS_OBJECT_CODE)
-public class Agreement extends BusinessObject<Agreement> implements IAgreement, IBOSeriesKey, IBOUserFields {
+public class Agreement extends BusinessObject<Agreement>
+		implements IAgreement, IBOSeriesKey, IDataOwnership, IBOUserFields {
 
 	/**
 	 * 序列化版本标记

@@ -70,6 +70,11 @@ namespace businesspartner {
                 this.register(new AgreementEditServiceMapping());
                 this.register(new CustomerAssetChooseServiceMapping());
                 this.register(new SupplierAssetChooseServiceMapping());
+                this.register(new CustomerEditServiceMapping());
+                this.register(new SupplierEditServiceMapping());
+                this.register(new LeadEditServiceMapping());
+                this.register(new ContactPersonEditServiceMapping());
+                this.register(new AddressEditServiceMapping());
                 // 注册常驻应用
 
             }
@@ -135,6 +140,11 @@ namespace businesspartner {
                 this.register(new LeadLinkServiceMapping());
                 this.register(new PaymentTermChooseServiceMapping());
                 this.register(new AgreementChooseServiceMapping());
+                this.register(new CustomerEditServiceMapping());
+                this.register(new SupplierEditServiceMapping());
+                this.register(new LeadEditServiceMapping());
+                this.register(new ContactPersonEditServiceMapping());
+                this.register(new AddressEditServiceMapping());
             }
         }
     }

@@ -561,7 +561,7 @@ namespace businesspartner {
                 this.objectCode = ibas.config.applyVariables(Supplier.BUSINESS_OBJECT_CODE);
                 this.activated = ibas.emYesNo.YES;
                 this.companyPrivate = emBusinessPartnerNature.COMPANY;
-                this.currency = ibas.config.get(ibas.CONFIG_ITEM_DEFAULT_CURRENCY);
+                this.currency = accounting.config.currency("LOCAL");
             }
         }
     }

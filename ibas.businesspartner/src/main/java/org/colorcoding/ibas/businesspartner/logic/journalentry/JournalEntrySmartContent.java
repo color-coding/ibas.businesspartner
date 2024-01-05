@@ -10,6 +10,9 @@ import org.colorcoding.ibas.businesspartner.bo.supplier.ISupplier;
 import org.colorcoding.ibas.businesspartner.bo.supplier.Supplier;
 import org.colorcoding.ibas.businesspartner.data.Ledgers;
 import org.colorcoding.ibas.businesspartner.repository.BORepositoryBusinessPartner;
+import org.colorcoding.ibas.initialfantasy.bo.organization.IOrganization;
+import org.colorcoding.ibas.initialfantasy.bo.organization.Organization;
+import org.colorcoding.ibas.initialfantasy.repository.BORepositoryInitialFantasy;
 
 public class JournalEntrySmartContent extends org.colorcoding.ibas.accounting.logic.JournalEntrySmartContent {
 
@@ -53,6 +56,25 @@ public class JournalEntrySmartContent extends org.colorcoding.ibas.accounting.lo
 				}
 				for (ISupplier item : operationResult.getResultObjects()) {
 					return item.getGroup();
+				}
+			}
+		} else if (Ledgers.CONDITION_PROPERTY_ORGANIZATION_CATEGORY.equals(property)) {
+			String organization = String
+					.valueOf(super.getSourceDataPropertyValue(Ledgers.CONDITION_PROPERTY_ORGANIZATION));
+			if (!JournalEntrySmartContent.VALUE_NULL.equalsIgnoreCase(organization)) {
+				Criteria criteria = new Criteria();
+				criteria.setResultCount(1);
+				ICondition condition = criteria.getConditions().create();
+				condition.setAlias(Organization.PROPERTY_CODE.getName());
+				condition.setValue(organization);
+				BORepositoryInitialFantasy boRepository = new BORepositoryInitialFantasy();
+				boRepository.setRepository(this.getService().getRepository());
+				IOperationResult<IOrganization> operationResult = boRepository.fetchOrganization(criteria);
+				if (operationResult.getError() != null) {
+					throw new BusinessLogicException(operationResult.getError());
+				}
+				for (IOrganization item : operationResult.getResultObjects()) {
+					return item.getCategory();
 				}
 			}
 		}

@@ -367,7 +367,8 @@ namespace businesspartner {
                                                 content: [
                                                     new sap.m.Label("", { text: ibas.i18n.prop("bo_lead_contactperson") }),
                                                     new sap.m.FlexBox("", {
-                                                        justifyContent: sap.m.FlexJustifyContent.End,
+                                                        width: "100%",
+                                                        justifyContent: sap.m.FlexJustifyContent.Start,
                                                         renderType: sap.m.FlexRendertype.Bare,
                                                         items: [
                                                             new sap.extension.m.RepositoryInput("", {
@@ -386,32 +387,56 @@ namespace businesspartner {
                                                                 type: new sap.extension.data.Numeric()
                                                             }),
                                                             new sap.m.Button("", {
+                                                                type: sap.m.ButtonType.Default,
                                                                 icon: "sap-icon://create",
-                                                                press: function (): void {
-                                                                    that.fireViewEvents(that.createContactPersonEvent);
-                                                                }
-                                                            }),
+                                                                press: function (event: any): void {
+                                                                    that.fireViewEvents(that.createContactPersonEvent, bo.Lead.PROPERTY_CONTACTPERSON_NAME);
+                                                                },
+                                                                visible: shell.app.privileges.canRun({
+                                                                    id: app.ContactPersonFunc.FUNCTION_ID,
+                                                                    name: app.ContactPersonFunc.FUNCTION_NAME,
+                                                                })
+                                                            }).addStyleClass("sapUiTinyMarginBegin"),
                                                         ]
                                                     }),
                                                     new sap.m.Label("", { text: ibas.i18n.prop("bo_lead_billaddress") }),
-                                                    new sap.extension.m.RepositoryInput("", {
-                                                        showValueHelp: true,
-                                                        repository: bo.BORepositoryBusinessPartner,
-                                                        dataInfo: {
-                                                            type: bo.Address,
-                                                            key: bo.Address.PROPERTY_OBJECTKEY_NAME,
-                                                            text: bo.Address.PROPERTY_NAME_NAME,
-                                                        },
-                                                        valueHelpRequest: function (): void {
-                                                            that.fireViewEvents(that.chooseLeadBillAddressEvent);
-                                                        },
-                                                    }).bindProperty("bindingValue", {
-                                                        path: "billAddress",
-                                                        type: new sap.extension.data.Numeric()
+                                                    new sap.m.FlexBox("", {
+                                                        width: "100%",
+                                                        justifyContent: sap.m.FlexJustifyContent.Start,
+                                                        renderType: sap.m.FlexRendertype.Bare,
+                                                        items: [
+                                                            new sap.extension.m.RepositoryInput("", {
+                                                                showValueHelp: true,
+                                                                repository: bo.BORepositoryBusinessPartner,
+                                                                dataInfo: {
+                                                                    type: bo.Address,
+                                                                    key: bo.Address.PROPERTY_OBJECTKEY_NAME,
+                                                                    text: bo.Address.PROPERTY_NAME_NAME,
+                                                                },
+                                                                valueHelpRequest: function (): void {
+                                                                    that.fireViewEvents(that.chooseLeadBillAddressEvent);
+                                                                },
+                                                            }).bindProperty("bindingValue", {
+                                                                path: "billAddress",
+                                                                type: new sap.extension.data.Numeric()
+                                                            }),
+                                                            new sap.m.Button("", {
+                                                                type: sap.m.ButtonType.Default,
+                                                                icon: "sap-icon://create",
+                                                                press: function (event: any): void {
+                                                                    that.fireViewEvents(that.createAddressEvent, bo.Lead.PROPERTY_BILLADDRESS_NAME);
+                                                                },
+                                                                visible: shell.app.privileges.canRun({
+                                                                    id: app.AddressFunc.FUNCTION_ID,
+                                                                    name: app.AddressFunc.FUNCTION_NAME,
+                                                                })
+                                                            }).addStyleClass("sapUiTinyMarginBegin"),
+                                                        ]
                                                     }),
                                                     new sap.m.Label("", { text: ibas.i18n.prop("bo_lead_shipaddress") }),
                                                     new sap.m.FlexBox("", {
-                                                        justifyContent: sap.m.FlexJustifyContent.End,
+                                                        width: "100%",
+                                                        justifyContent: sap.m.FlexJustifyContent.Start,
                                                         renderType: sap.m.FlexRendertype.Bare,
                                                         items: [
                                                             new sap.extension.m.RepositoryInput("", {
@@ -430,28 +455,51 @@ namespace businesspartner {
                                                                 type: new sap.extension.data.Numeric()
                                                             }),
                                                             new sap.m.Button("", {
+                                                                type: sap.m.ButtonType.Default,
                                                                 icon: "sap-icon://create",
-                                                                press: function (): void {
-                                                                    that.fireViewEvents(that.createAddressEvent);
-                                                                }
-                                                            }),
+                                                                press: function (event: any): void {
+                                                                    that.fireViewEvents(that.createAddressEvent, bo.Lead.PROPERTY_SHIPADDRESS_NAME);
+                                                                },
+                                                                visible: shell.app.privileges.canRun({
+                                                                    id: app.AddressFunc.FUNCTION_ID,
+                                                                    name: app.AddressFunc.FUNCTION_NAME,
+                                                                })
+                                                            }).addStyleClass("sapUiTinyMarginBegin"),
                                                         ]
                                                     }),
                                                     new sap.m.Label("", { text: ibas.i18n.prop("bo_lead_registrationaddress") }),
-                                                    new sap.extension.m.RepositoryInput("", {
-                                                        showValueHelp: true,
-                                                        repository: bo.BORepositoryBusinessPartner,
-                                                        dataInfo: {
-                                                            type: bo.Address,
-                                                            key: bo.Address.PROPERTY_OBJECTKEY_NAME,
-                                                            text: bo.Address.PROPERTY_NAME_NAME,
-                                                        },
-                                                        valueHelpRequest: function (): void {
-                                                            that.fireViewEvents(that.chooseLeadRegistrationAddress);
-                                                        },
-                                                    }).bindProperty("bindingValue", {
-                                                        path: "registrationAddress",
-                                                        type: new sap.extension.data.Numeric(),
+                                                    new sap.m.FlexBox("", {
+                                                        width: "100%",
+                                                        justifyContent: sap.m.FlexJustifyContent.Start,
+                                                        renderType: sap.m.FlexRendertype.Bare,
+                                                        items: [
+                                                            new sap.extension.m.RepositoryInput("", {
+                                                                showValueHelp: true,
+                                                                repository: bo.BORepositoryBusinessPartner,
+                                                                dataInfo: {
+                                                                    type: bo.Address,
+                                                                    key: bo.Address.PROPERTY_OBJECTKEY_NAME,
+                                                                    text: bo.Address.PROPERTY_NAME_NAME,
+                                                                },
+                                                                valueHelpRequest: function (): void {
+                                                                    that.fireViewEvents(that.chooseLeadRegistrationAddress);
+                                                                },
+                                                            }).bindProperty("bindingValue", {
+                                                                path: "registrationAddress",
+                                                                type: new sap.extension.data.Numeric(),
+                                                            }),
+                                                            new sap.m.Button("", {
+                                                                type: sap.m.ButtonType.Default,
+                                                                icon: "sap-icon://create",
+                                                                press: function (event: any): void {
+                                                                    that.fireViewEvents(that.createAddressEvent, bo.Lead.PROPERTY_REGISTRATIONADDRESS_NAME);
+                                                                },
+                                                                visible: shell.app.privileges.canRun({
+                                                                    id: app.AddressFunc.FUNCTION_ID,
+                                                                    name: app.AddressFunc.FUNCTION_NAME,
+                                                                })
+                                                            }).addStyleClass("sapUiTinyMarginBegin"),
+                                                        ]
                                                     }),
                                                     new sap.m.Label("", { text: ibas.i18n.prop("bo_lead_telephone1") }),
                                                     new sap.extension.m.Input("", {

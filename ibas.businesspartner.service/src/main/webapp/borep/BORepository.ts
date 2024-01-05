@@ -233,5 +233,33 @@ namespace businesspartner {
                 super.save(bo.Agreement.name, saver);
             }
         }
+        /** 提供查询业务伙伴方法 */
+        const FETCH_BUSINESS_PARTNER: Function = accounting.bo.BORepositoryAccounting.prototype.fetchBusinessPartner;
+        accounting.bo.BORepositoryAccounting.prototype.fetchBusinessPartner = function (fetcher: ibas.IFetchCaller<ibas.IBOMasterData>): void {
+            let boRepository: BORepositoryBusinessPartner = new BORepositoryBusinessPartner();
+            boRepository.fetchCustomer({
+                criteria: fetcher.criteria,
+                onCompleted: (opRslt) => {
+                    if (opRslt.resultCode === 0 && opRslt.resultObjects.length > 0) {
+                        if (fetcher.onCompleted instanceof Function) {
+                            fetcher.onCompleted(opRslt);
+                        }
+                    } else {
+                        boRepository.fetchSupplier({
+                            criteria: fetcher.criteria,
+                            onCompleted: (opRslt) => {
+                                if (opRslt.resultCode === 0 && opRslt.resultObjects.length > 0) {
+                                    if (fetcher.onCompleted instanceof Function) {
+                                        fetcher.onCompleted(opRslt);
+                                    }
+                                } else {
+                                    FETCH_BUSINESS_PARTNER(fetcher);
+                                }
+                            }
+                        });
+                    }
+                }
+            });
+        };
     }
 }

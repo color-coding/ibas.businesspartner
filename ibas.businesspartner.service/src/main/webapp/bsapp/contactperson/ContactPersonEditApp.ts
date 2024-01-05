@@ -9,7 +9,7 @@ namespace businesspartner {
     export namespace app {
 
         /** 编辑应用-业务伙伴联系人 */
-        export class ContactPersonEditApp extends ibas.BOEditApplication<IContactPersonEditView, bo.ContactPerson> {
+        export class ContactPersonEditApp extends ibas.BOEditService<IContactPersonEditView, bo.ContactPerson> {
 
             /** 应用标识 */
             static APPLICATION_ID: string = "948ce4a2-795a-46b7-970c-812451c1a688";
@@ -223,6 +223,21 @@ namespace businesspartner {
             createDataEvent: Function;
             /*** 选择业务伙伴事件 */
             chooseBusinessPartnerEvent: Function;
+        }
+        /** 业务伙伴联系人编辑服务映射 */
+        export class ContactPersonEditServiceMapping extends ibas.BOEditServiceMapping {
+            /** 构造函数 */
+            constructor() {
+                super();
+                this.id = ContactPersonEditApp.APPLICATION_ID;
+                this.name = ContactPersonEditApp.APPLICATION_NAME;
+                this.boCode = ContactPersonEditApp.BUSINESS_OBJECT_CODE;
+                this.description = ibas.i18n.prop(this.name);
+            }
+            /** 创建服务实例 */
+            create(): ibas.IService<ibas.IBOEditServiceCaller<bo.ContactPerson>> {
+                return new ContactPersonEditApp();
+            }
         }
     }
 }

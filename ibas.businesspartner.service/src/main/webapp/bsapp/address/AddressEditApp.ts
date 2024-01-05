@@ -8,7 +8,7 @@
 namespace businesspartner {
     export namespace app {
         /** 编辑应用-业务伙伴地址 */
-        export class AddressEditApp extends ibas.BOEditApplication<IAddressEditView, bo.Address> {
+        export class AddressEditApp extends ibas.BOEditService<IAddressEditView, bo.Address> {
 
             /** 应用标识 */
             static APPLICATION_ID: string = "dd0ed1eb-e658-4fef-b492-e07dd58827fb";
@@ -220,6 +220,21 @@ namespace businesspartner {
             createDataEvent: Function;
             /*** 选择业务伙伴事件 */
             chooseBusinessPartnerEvent: Function;
+        }
+        /** 业务伙伴地址服务映射 */
+        export class AddressEditServiceMapping extends ibas.BOEditServiceMapping {
+            /** 构造函数 */
+            constructor() {
+                super();
+                this.id = AddressEditApp.APPLICATION_ID;
+                this.name = AddressEditApp.APPLICATION_NAME;
+                this.boCode = AddressEditApp.BUSINESS_OBJECT_CODE;
+                this.description = ibas.i18n.prop(this.name);
+            }
+            /** 创建服务实例 */
+            create(): ibas.IService<ibas.IBOEditServiceCaller<bo.Address>> {
+                return new AddressEditApp();
+            }
         }
     }
 }

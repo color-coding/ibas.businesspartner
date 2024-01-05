@@ -375,7 +375,8 @@ namespace businesspartner {
                                                 content: [
                                                     new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_contactperson") }),
                                                     new sap.m.FlexBox("", {
-                                                        justifyContent: sap.m.FlexJustifyContent.End,
+                                                        width: "100%",
+                                                        justifyContent: sap.m.FlexJustifyContent.Start,
                                                         renderType: sap.m.FlexRendertype.Bare,
                                                         items: [
                                                             new sap.extension.m.RepositoryInput("", {
@@ -394,32 +395,56 @@ namespace businesspartner {
                                                                 type: new sap.extension.data.Numeric()
                                                             }),
                                                             new sap.m.Button("", {
+                                                                type: sap.m.ButtonType.Default,
                                                                 icon: "sap-icon://create",
-                                                                press: function (): void {
-                                                                    that.fireViewEvents(that.createContactPersonEvent);
-                                                                }
-                                                            }),
+                                                                press: function (event: any): void {
+                                                                    that.fireViewEvents(that.createContactPersonEvent, bo.Customer.PROPERTY_CONTACTPERSON_NAME);
+                                                                },
+                                                                visible: shell.app.privileges.canRun({
+                                                                    id: app.ContactPersonFunc.FUNCTION_ID,
+                                                                    name: app.ContactPersonFunc.FUNCTION_NAME,
+                                                                })
+                                                            }).addStyleClass("sapUiTinyMarginBegin"),
                                                         ]
                                                     }),
                                                     new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_billaddress") }),
-                                                    new sap.extension.m.RepositoryInput("", {
-                                                        showValueHelp: true,
-                                                        repository: bo.BORepositoryBusinessPartner,
-                                                        dataInfo: {
-                                                            type: bo.Address,
-                                                            key: bo.Address.PROPERTY_OBJECTKEY_NAME,
-                                                            text: bo.Address.PROPERTY_NAME_NAME,
-                                                        },
-                                                        valueHelpRequest: function (): void {
-                                                            that.fireViewEvents(that.chooseCustomerBillAddressEvent);
-                                                        },
-                                                    }).bindProperty("bindingValue", {
-                                                        path: "billAddress",
-                                                        type: new sap.extension.data.Numeric()
+                                                    new sap.m.FlexBox("", {
+                                                        width: "100%",
+                                                        justifyContent: sap.m.FlexJustifyContent.Start,
+                                                        renderType: sap.m.FlexRendertype.Bare,
+                                                        items: [
+                                                            new sap.extension.m.RepositoryInput("", {
+                                                                showValueHelp: true,
+                                                                repository: bo.BORepositoryBusinessPartner,
+                                                                dataInfo: {
+                                                                    type: bo.Address,
+                                                                    key: bo.Address.PROPERTY_OBJECTKEY_NAME,
+                                                                    text: bo.Address.PROPERTY_NAME_NAME,
+                                                                },
+                                                                valueHelpRequest: function (): void {
+                                                                    that.fireViewEvents(that.chooseCustomerBillAddressEvent);
+                                                                },
+                                                            }).bindProperty("bindingValue", {
+                                                                path: "billAddress",
+                                                                type: new sap.extension.data.Numeric()
+                                                            }),
+                                                            new sap.m.Button("", {
+                                                                type: sap.m.ButtonType.Default,
+                                                                icon: "sap-icon://create",
+                                                                press: function (event: any): void {
+                                                                    that.fireViewEvents(that.createAddressEvent, bo.Customer.PROPERTY_BILLADDRESS_NAME);
+                                                                },
+                                                                visible: shell.app.privileges.canRun({
+                                                                    id: app.AddressFunc.FUNCTION_ID,
+                                                                    name: app.AddressFunc.FUNCTION_NAME,
+                                                                })
+                                                            }).addStyleClass("sapUiTinyMarginBegin"),
+                                                        ]
                                                     }),
                                                     new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_shipaddress") }),
                                                     new sap.m.FlexBox("", {
-                                                        justifyContent: sap.m.FlexJustifyContent.End,
+                                                        width: "100%",
+                                                        justifyContent: sap.m.FlexJustifyContent.Start,
                                                         renderType: sap.m.FlexRendertype.Bare,
                                                         items: [
                                                             new sap.extension.m.RepositoryInput("", {
@@ -438,28 +463,51 @@ namespace businesspartner {
                                                                 type: new sap.extension.data.Numeric()
                                                             }),
                                                             new sap.m.Button("", {
+                                                                type: sap.m.ButtonType.Default,
                                                                 icon: "sap-icon://create",
-                                                                press: function (): void {
-                                                                    that.fireViewEvents(that.createAddressEvent);
-                                                                }
-                                                            }),
+                                                                press: function (event: any): void {
+                                                                    that.fireViewEvents(that.createAddressEvent, bo.Customer.PROPERTY_SHIPADDRESS_NAME);
+                                                                },
+                                                                visible: shell.app.privileges.canRun({
+                                                                    id: app.AddressFunc.FUNCTION_ID,
+                                                                    name: app.AddressFunc.FUNCTION_NAME,
+                                                                })
+                                                            }).addStyleClass("sapUiTinyMarginBegin"),
                                                         ]
                                                     }),
                                                     new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_registrationaddress") }),
-                                                    new sap.extension.m.RepositoryInput("", {
-                                                        showValueHelp: true,
-                                                        repository: bo.BORepositoryBusinessPartner,
-                                                        dataInfo: {
-                                                            type: bo.Address,
-                                                            key: bo.Address.PROPERTY_OBJECTKEY_NAME,
-                                                            text: bo.Address.PROPERTY_NAME_NAME,
-                                                        },
-                                                        valueHelpRequest: function (): void {
-                                                            that.fireViewEvents(that.chooseCustomerRegistrationAddress);
-                                                        },
-                                                    }).bindProperty("bindingValue", {
-                                                        path: "registrationAddress",
-                                                        type: new sap.extension.data.Numeric(),
+                                                    new sap.m.FlexBox("", {
+                                                        width: "100%",
+                                                        justifyContent: sap.m.FlexJustifyContent.Start,
+                                                        renderType: sap.m.FlexRendertype.Bare,
+                                                        items: [
+                                                            new sap.extension.m.RepositoryInput("", {
+                                                                showValueHelp: true,
+                                                                repository: bo.BORepositoryBusinessPartner,
+                                                                dataInfo: {
+                                                                    type: bo.Address,
+                                                                    key: bo.Address.PROPERTY_OBJECTKEY_NAME,
+                                                                    text: bo.Address.PROPERTY_NAME_NAME,
+                                                                },
+                                                                valueHelpRequest: function (): void {
+                                                                    that.fireViewEvents(that.chooseCustomerRegistrationAddress);
+                                                                },
+                                                            }).bindProperty("bindingValue", {
+                                                                path: "registrationAddress",
+                                                                type: new sap.extension.data.Numeric(),
+                                                            }),
+                                                            new sap.m.Button("", {
+                                                                type: sap.m.ButtonType.Default,
+                                                                icon: "sap-icon://create",
+                                                                press: function (event: any): void {
+                                                                    that.fireViewEvents(that.createAddressEvent, bo.Customer.PROPERTY_REGISTRATIONADDRESS_NAME);
+                                                                },
+                                                                visible: shell.app.privileges.canRun({
+                                                                    id: app.AddressFunc.FUNCTION_ID,
+                                                                    name: app.AddressFunc.FUNCTION_NAME,
+                                                                })
+                                                            }).addStyleClass("sapUiTinyMarginBegin"),
+                                                        ]
                                                     }),
                                                     new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_telephone1") }),
                                                     new sap.extension.m.Input("", {
@@ -572,56 +620,64 @@ namespace businesspartner {
                                                         }),
                                                     }),
                                                     new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_invoiceaddress") }),
-                                                    new sap.extension.m.Input("", {
-                                                        showValueHelp: true,
-                                                        valueHelpOnly: false,
-                                                        valueHelpRequest: function (event: sap.ui.base.Event): void {
-                                                            let input: any = event.getSource();
-                                                            if (input instanceof sap.extension.m.Input) {
-                                                                let address: sap.extension.m.AddressArea;
-                                                                let dialog: sap.m.Dialog = new sap.m.Dialog("", {
-                                                                    showHeader: false,
-                                                                    type: sap.m.DialogType.Standard,
-                                                                    state: sap.ui.core.ValueState.None,
-                                                                    content: [
-                                                                        new sap.ui.layout.form.SimpleForm("", {
+                                                    new sap.m.FlexBox("", {
+                                                        width: "100%",
+                                                        justifyContent: sap.m.FlexJustifyContent.Start,
+                                                        renderType: sap.m.FlexRendertype.Bare,
+                                                        items: [
+                                                            new sap.extension.m.Input("", {
+                                                            }).bindProperty("bindingValue", {
+                                                                path: "invoiceAddress",
+                                                                type: new sap.extension.data.Alphanumeric({
+                                                                    maxLength: 200
+                                                                }),
+                                                            }),
+                                                            new sap.m.Button("", {
+                                                                type: sap.m.ButtonType.Default,
+                                                                icon: "sap-icon://create",
+                                                                press: function (event: any): void {
+                                                                    let source: sap.m.Button = <sap.m.Button>event.getSource();
+                                                                    if (source instanceof sap.m.Button) {
+                                                                        let dialog: sap.m.Dialog = new sap.m.Dialog("", {
+                                                                            showHeader: false,
+                                                                            type: sap.m.DialogType.Standard,
+                                                                            state: sap.ui.core.ValueState.None,
                                                                             content: [
-                                                                                address = new sap.extension.m.AddressArea("", {
-                                                                                    countryVisible: false,
-                                                                                    zipCodeVisible: false,
+                                                                                new sap.ui.layout.form.SimpleForm("", {
+                                                                                    content: [
+                                                                                        new sap.extension.m.AddressArea("", {
+                                                                                            countryVisible: false,
+                                                                                            zipCodeVisible: false,
+                                                                                        }),
+                                                                                    ]
+                                                                                })
+                                                                            ],
+                                                                            buttons: [
+                                                                                new sap.m.Button("", {
+                                                                                    text: ibas.i18n.prop("shell_confirm"),
+                                                                                    type: sap.m.ButtonType.Transparent,
+                                                                                    press(event: sap.ui.base.Event): void {
+                                                                                        let address: string = this.getParent().getContent()[0].getContent()[0].getAddress();
+                                                                                        if (!ibas.strings.isEmpty(address)) {
+                                                                                            (<any>source.getParent()).getItems()[0].setBindingValue(address);
+                                                                                        }
+                                                                                        dialog.close();
+                                                                                    }
+                                                                                }),
+                                                                                new sap.m.Button("", {
+                                                                                    text: ibas.i18n.prop("shell_exit"),
+                                                                                    type: sap.m.ButtonType.Transparent,
+                                                                                    press(): void {
+                                                                                        dialog.close();
+                                                                                    }
                                                                                 }),
                                                                             ]
-                                                                        }),
-                                                                    ],
-                                                                    buttons: [
-                                                                        new sap.m.Button("", {
-                                                                            text: ibas.i18n.prop("shell_confirm"),
-                                                                            type: sap.m.ButtonType.Transparent,
-                                                                            press(event: sap.ui.base.Event): void {
-                                                                                let value: string = address.getAddress();
-                                                                                if (!ibas.strings.isEmpty(value)) {
-                                                                                    input.setBindingValue(value);
-                                                                                }
-                                                                                dialog.close();
-                                                                            }
-                                                                        }),
-                                                                        new sap.m.Button("", {
-                                                                            text: ibas.i18n.prop("shell_exit"),
-                                                                            type: sap.m.ButtonType.Transparent,
-                                                                            press(): void {
-                                                                                dialog.close();
-                                                                            }
-                                                                        }),
-                                                                    ]
-                                                                }).addStyleClass("sapUiNoContentPadding");
-                                                                dialog.open();
-                                                            }
-                                                        },
-                                                    }).bindProperty("bindingValue", {
-                                                        path: "invoiceAddress",
-                                                        type: new sap.extension.data.Alphanumeric({
-                                                            maxLength: 200
-                                                        }),
+                                                                        }).addStyleClass("sapUiNoContentPadding");
+                                                                        dialog.open();
+                                                                    }
+                                                                },
+                                                            }).addStyleClass("sapUiTinyMarginBegin"),
+                                                        ]
                                                     }),
                                                     new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_invoicetelephone") }),
                                                     new sap.extension.m.Input("", {

@@ -381,7 +381,7 @@ namespace businesspartner {
             /** 初始化数据 */
             protected init(): void {
                 this.objectCode = ibas.config.applyVariables(AssetItem.BUSINESS_OBJECT_CODE);
-                this.amountUnit = ibas.config.get(ibas.CONFIG_ITEM_DEFAULT_CURRENCY);
+                this.amountUnit = accounting.config.currency("LOCAL");
                 this.activated = ibas.emYesNo.YES;
                 this.rechargeable = ibas.emYesNo.YES;
                 this.usingTimes = 9999;

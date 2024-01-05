@@ -8,7 +8,7 @@
 namespace businesspartner {
     export namespace app {
         /** 编辑应用-潜在潜在客户 */
-        export class LeadEditApp extends ibas.BOEditApplication<ILeadEditView, bo.Lead> {
+        export class LeadEditApp extends ibas.BOEditService<ILeadEditView, bo.Lead> {
             /** 应用标识 */
             static APPLICATION_ID: string = "6902ff4c-ab5a-432e-9375-4de367111ba5";
             /** 应用名称 */
@@ -287,7 +287,7 @@ namespace businesspartner {
                     }
                 });
             }
-            private createContactPerson(): void {
+            private createContactPerson(property?: string): void {
                 if (this.editData.isNew) {
                     this.messages({
                         title: this.description,
@@ -299,12 +299,19 @@ namespace businesspartner {
                 let person: bo.ContactPerson = new bo.ContactPerson();
                 person.ownerType = bo.emBusinessPartnerType.LEAD;
                 person.businessPartner = this.editData.code;
-                let app: ContactPersonEditApp = new ContactPersonEditApp();
-                app.navigation = this.navigation;
-                app.viewShower = this.viewShower;
-                app.run(person);
+                ibas.servicesManager.runEditService<bo.ContactPerson>({
+                    boCode: person.objectCode,
+                    editData: person,
+                    onCompleted: (data: any) => {
+                        if (data instanceof bo.ContactPerson) {
+                            if (bo.Customer.PROPERTY_CONTACTPERSON_NAME === property) {
+                                this.editData.contactPerson = data.objectKey;
+                            }
+                        }
+                    }
+                });
             }
-            private createAddress(): void {
+            private createAddress(property?: string): void {
                 if (this.editData.isNew) {
                     this.messages({
                         title: this.description,
@@ -316,10 +323,21 @@ namespace businesspartner {
                 let address: bo.Address = new bo.Address();
                 address.ownerType = bo.emBusinessPartnerType.LEAD;
                 address.businessPartner = this.editData.code;
-                let app: AddressEditApp = new AddressEditApp();
-                app.navigation = this.navigation;
-                app.viewShower = this.viewShower;
-                app.run(address);
+                ibas.servicesManager.runEditService<bo.Address>({
+                    boCode: address.objectCode,
+                    editData: address,
+                    onCompleted: (data: any) => {
+                        if (data instanceof bo.Address) {
+                            if (bo.Customer.PROPERTY_BILLADDRESS_NAME === property) {
+                                this.editData.billAddress = data.objectKey;
+                            } else if (bo.Customer.PROPERTY_REGISTRATIONADDRESS_NAME === property) {
+                                this.editData.registrationAddress = data.objectKey;
+                            } else if (bo.Customer.PROPERTY_SHIPADDRESS_NAME === property) {
+                                this.editData.shipAddress = data.objectKey;
+                            }
+                        }
+                    }
+                });
             }
             /** 转为客户 */
             private turnToCustomer(): void {
@@ -389,6 +407,21 @@ namespace businesspartner {
             createAddressEvent: Function;
             /** 转为客户 */
             turnToCustomerEvent: Function;
+        }
+        /** 潜在潜在客户辑服务映射 */
+        export class LeadEditServiceMapping extends ibas.BOEditServiceMapping {
+            /** 构造函数 */
+            constructor() {
+                super();
+                this.id = LeadEditApp.APPLICATION_ID;
+                this.name = LeadEditApp.APPLICATION_NAME;
+                this.boCode = LeadEditApp.BUSINESS_OBJECT_CODE;
+                this.description = ibas.i18n.prop(this.name);
+            }
+            /** 创建服务实例 */
+            create(): ibas.IService<ibas.IBOEditServiceCaller<bo.Lead>> {
+                return new LeadEditApp();
+            }
         }
     }
 }
