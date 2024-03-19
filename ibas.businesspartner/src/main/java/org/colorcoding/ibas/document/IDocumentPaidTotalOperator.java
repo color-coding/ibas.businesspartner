@@ -10,7 +10,7 @@ import org.colorcoding.ibas.bobas.bo.IBODocument;
  * @author Niuren.Zhu
  *
  */
-public interface IDocumentPaidTotalOperator extends IBODocument {
+public interface IDocumentPaidTotalOperator extends IDocumentOperatingTarget, IBODocument {
 
 	/**
 	 * 获取单据货币

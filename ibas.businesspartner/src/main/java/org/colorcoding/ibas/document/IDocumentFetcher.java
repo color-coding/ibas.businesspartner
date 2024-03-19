@@ -9,7 +9,7 @@ import org.colorcoding.ibas.bobas.core.IBORepository;
  *
  * @param <T> 检索的类型
  */
-public interface IDocumentFetcher<T extends IDocumentPaidTotalOperator> {
+public interface IDocumentFetcher<T extends IDocumentOperatingTarget> {
 
 	/**
 	 * 设置业务仓库

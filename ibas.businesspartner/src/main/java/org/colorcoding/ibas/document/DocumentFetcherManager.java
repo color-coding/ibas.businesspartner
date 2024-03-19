@@ -59,7 +59,7 @@ public class DocumentFetcherManager {
 	}
 
 	@SuppressWarnings("unchecked")
-	public <T extends IDocumentPaidTotalOperator> IDocumentFetcher<T> newFetcher(String documentType) throws Exception {
+	public <T extends IDocumentOperatingTarget> IDocumentFetcher<T> newFetcher(String documentType) throws Exception {
 		Class<? extends IDocumentFetcher<?>> clazz = this.getFetcherMap().get(documentType);
 		if (clazz == null) {
 			throw new Exception(I18N.prop("msg_bp_no_fetch_method_defined", documentType));
