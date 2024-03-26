@@ -29,6 +29,8 @@ import org.colorcoding.ibas.businesspartner.bo.contactperson.ContactPerson;
 import org.colorcoding.ibas.businesspartner.bo.contactperson.IContactPerson;
 import org.colorcoding.ibas.businesspartner.bo.customer.Customer;
 import org.colorcoding.ibas.businesspartner.bo.customer.ICustomer;
+import org.colorcoding.ibas.businesspartner.bo.internalreconciliation.IInternalReconciliation;
+import org.colorcoding.ibas.businesspartner.bo.internalreconciliation.InternalReconciliation;
 import org.colorcoding.ibas.businesspartner.bo.lead.ILead;
 import org.colorcoding.ibas.businesspartner.bo.lead.Lead;
 import org.colorcoding.ibas.businesspartner.bo.paymentterm.IPaymentTerm;
@@ -888,6 +890,29 @@ public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 	 */
 	public IOperationResult<IAgreement> saveAgreement(IAgreement bo) {
 		return new OperationResult<IAgreement>(this.saveAgreement((Agreement) bo, this.getUserToken()));
+	}
+
+	// --------------------------------------------------------------------------------------------//
+	/**
+	 * 查询-内部对账
+	 * 
+	 * @param criteria 查询
+	 * @param token    口令
+	 * @return 操作结果
+	 */
+	public OperationResult<InternalReconciliation> fetchInternalReconciliation(ICriteria criteria, String token) {
+		return super.fetch(criteria, token, InternalReconciliation.class);
+	}
+
+	/**
+	 * 查询-内部对账（提前设置用户口令）
+	 * 
+	 * @param criteria 查询
+	 * @return 操作结果
+	 */
+	public IOperationResult<IInternalReconciliation> fetchInternalReconciliation(ICriteria criteria) {
+		return new OperationResult<IInternalReconciliation>(
+				this.fetchInternalReconciliation(criteria, this.getUserToken()));
 	}
 
 	// --------------------------------------------------------------------------------------------//

@@ -176,6 +176,10 @@ public class Ledgers extends org.colorcoding.ibas.accounting.data.Ledgers {
 	 * 付款方式科目
 	 */
 	public static final String LEDGER_PAYMENT_PAYMENT_METHOD_ACCOUNT = "GL-BP-M2";
+	/**
+	 * 资产充值科目
+	 */
+	public static final String LEDGER_PAYMENT_ASSET_ITEM_ACCOUNT = "GL-BP-M3";
 
 	/**
 	 * 客户
@@ -193,4 +197,8 @@ public class Ledgers extends org.colorcoding.ibas.accounting.data.Ledgers {
 	 * 供应商组
 	 */
 	public static final String CONDITION_PROPERTY_SUPPLIER_GROUP = "SupplierGroup";
+	/**
+	 * 资产项目
+	 */
+	public static final String CONDITION_PROPERTY_ASSET_ITEM = "AssetItem";
 }

@@ -232,6 +232,7 @@ namespace businesspartner {
             saveAgreement(saver: ibas.ISaveCaller<bo.Agreement>): void {
                 super.save(bo.Agreement.name, saver);
             }
+
         }
         /** 提供查询业务伙伴方法 */
         const FETCH_BUSINESS_PARTNER: Function = accounting.bo.BORepositoryAccounting.prototype.fetchBusinessPartner;

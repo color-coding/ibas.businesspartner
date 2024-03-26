@@ -407,7 +407,6 @@ public class DataService extends BORepositoryBusinessPartner {
 	public OperationResult<Agreement> saveAgreement(Agreement bo, @QueryParam("token") String token) {
 		return super.saveAgreement(bo, token);
 	}
-
 	// --------------------------------------------------------------------------------------------//
 
 }

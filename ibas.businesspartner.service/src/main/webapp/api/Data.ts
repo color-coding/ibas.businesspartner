@@ -52,6 +52,8 @@ namespace businesspartner {
         export const BO_CODE_CUSTOMERASSET: string = "${Company}_BP_CUSTOMERASSET";
         /** 业务对象编码-供应商伴资产 */
         export const BO_CODE_SUPPLIERASSET: string = "${Company}_BP_SUPPLIERASSET";
+        /** 业务对象编码-内部对账 */
+        export const BO_CODE_INTERNALRECONCILIATION: string = "${Company}_BP_INTRECON";
 
         /** 业务伙伴性质 */
         export enum emBusinessPartnerNature {
