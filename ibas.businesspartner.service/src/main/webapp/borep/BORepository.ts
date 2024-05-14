@@ -168,7 +168,7 @@ namespace businesspartner {
                 boRepository.token = this.token;
                 boRepository.converter = this.createConverter();
                 let method: string =
-                    ibas.strings.format("fetchCustomerAsset?token={0}", this.token);
+                    ibas.strings.format("fetchCustomerAsset?token={0}", ibas.tokens.content(this.token));
                 let data: string = JSON.stringify(this.createConverter().convert(fetcher.request, method));
                 boRepository.callRemoteMethod(method, data, (opRslt) => {
                     fetcher.onCompleted.call(ibas.objects.isNull(fetcher.caller) ? fetcher : fetcher.caller, opRslt);
@@ -184,7 +184,7 @@ namespace businesspartner {
                 boRepository.token = this.token;
                 boRepository.converter = this.createConverter();
                 let method: string =
-                    ibas.strings.format("fetchSupplierAsset?token={0}", this.token);
+                    ibas.strings.format("fetchSupplierAsset?token={0}", ibas.tokens.content(this.token));
                 let data: string = JSON.stringify(this.createConverter().convert(fetcher.request, method));
                 boRepository.callRemoteMethod(method, data, (opRslt) => {
                     fetcher.onCompleted.call(ibas.objects.isNull(fetcher.caller) ? fetcher : fetcher.caller, opRslt);

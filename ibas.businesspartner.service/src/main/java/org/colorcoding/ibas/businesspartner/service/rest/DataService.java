@@ -1,6 +1,7 @@
 package org.colorcoding.ibas.businesspartner.service.rest;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -9,6 +10,7 @@ import javax.ws.rs.core.MediaType;
 
 import org.colorcoding.ibas.bobas.common.Criteria;
 import org.colorcoding.ibas.bobas.common.OperationResult;
+import org.colorcoding.ibas.businesspartner.MyConfiguration;
 import org.colorcoding.ibas.businesspartner.bo.address.Address;
 import org.colorcoding.ibas.businesspartner.bo.agreement.Agreement;
 import org.colorcoding.ibas.businesspartner.bo.assetitem.AssetItem;
@@ -42,8 +44,9 @@ public class DataService extends BORepositoryBusinessPartner {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("fetchAddress")
-	public OperationResult<Address> fetchAddress(Criteria criteria, @QueryParam("token") String token) {
-		return super.fetchAddress(criteria, token);
+	public OperationResult<Address> fetchAddress(Criteria criteria, @HeaderParam("authorization") String authorization,
+			@QueryParam("token") String token) {
+		return super.fetchAddress(criteria, MyConfiguration.optToken(authorization, token));
 	}
 
 	/**
@@ -57,8 +60,9 @@ public class DataService extends BORepositoryBusinessPartner {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("saveAddress")
-	public OperationResult<Address> saveAddress(Address bo, @QueryParam("token") String token) {
-		return super.saveAddress(bo, token);
+	public OperationResult<Address> saveAddress(Address bo, @HeaderParam("authorization") String authorization,
+			@QueryParam("token") String token) {
+		return super.saveAddress(bo, MyConfiguration.optToken(authorization, token));
 	}
 
 	// --------------------------------------------------------------------------------------------//
@@ -74,8 +78,8 @@ public class DataService extends BORepositoryBusinessPartner {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("fetchBusinessPartnerGroup")
 	public OperationResult<BusinessPartnerGroup> fetchBusinessPartnerGroup(Criteria criteria,
-			@QueryParam("token") String token) {
-		return super.fetchBusinessPartnerGroup(criteria, token);
+			@HeaderParam("authorization") String authorization, @QueryParam("token") String token) {
+		return super.fetchBusinessPartnerGroup(criteria, MyConfiguration.optToken(authorization, token));
 	}
 
 	/**
@@ -90,8 +94,8 @@ public class DataService extends BORepositoryBusinessPartner {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("saveBusinessPartnerGroup")
 	public OperationResult<BusinessPartnerGroup> saveBusinessPartnerGroup(BusinessPartnerGroup bo,
-			@QueryParam("token") String token) {
-		return super.saveBusinessPartnerGroup(bo, token);
+			@HeaderParam("authorization") String authorization, @QueryParam("token") String token) {
+		return super.saveBusinessPartnerGroup(bo, MyConfiguration.optToken(authorization, token));
 	}
 
 	// --------------------------------------------------------------------------------------------//
@@ -106,8 +110,9 @@ public class DataService extends BORepositoryBusinessPartner {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("fetchContactPerson")
-	public OperationResult<ContactPerson> fetchContactPerson(Criteria criteria, @QueryParam("token") String token) {
-		return super.fetchContactPerson(criteria, token);
+	public OperationResult<ContactPerson> fetchContactPerson(Criteria criteria,
+			@HeaderParam("authorization") String authorization, @QueryParam("token") String token) {
+		return super.fetchContactPerson(criteria, MyConfiguration.optToken(authorization, token));
 	}
 
 	/**
@@ -121,8 +126,9 @@ public class DataService extends BORepositoryBusinessPartner {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("saveContactPerson")
-	public OperationResult<ContactPerson> saveContactPerson(ContactPerson bo, @QueryParam("token") String token) {
-		return super.saveContactPerson(bo, token);
+	public OperationResult<ContactPerson> saveContactPerson(ContactPerson bo,
+			@HeaderParam("authorization") String authorization, @QueryParam("token") String token) {
+		return super.saveContactPerson(bo, MyConfiguration.optToken(authorization, token));
 	}
 
 	// --------------------------------------------------------------------------------------------//
@@ -137,8 +143,9 @@ public class DataService extends BORepositoryBusinessPartner {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("fetchCustomer")
-	public OperationResult<Customer> fetchCustomer(Criteria criteria, @QueryParam("token") String token) {
-		return super.fetchCustomer(criteria, token);
+	public OperationResult<Customer> fetchCustomer(Criteria criteria,
+			@HeaderParam("authorization") String authorization, @QueryParam("token") String token) {
+		return super.fetchCustomer(criteria, MyConfiguration.optToken(authorization, token));
 	}
 
 	/**
@@ -152,8 +159,9 @@ public class DataService extends BORepositoryBusinessPartner {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("saveCustomer")
-	public OperationResult<Customer> saveCustomer(Customer bo, @QueryParam("token") String token) {
-		return super.saveCustomer(bo, token);
+	public OperationResult<Customer> saveCustomer(Customer bo, @HeaderParam("authorization") String authorization,
+			@QueryParam("token") String token) {
+		return super.saveCustomer(bo, MyConfiguration.optToken(authorization, token));
 	}
 
 	// --------------------------------------------------------------------------------------------//
@@ -168,8 +176,9 @@ public class DataService extends BORepositoryBusinessPartner {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("fetchSupplier")
-	public OperationResult<Supplier> fetchSupplier(Criteria criteria, @QueryParam("token") String token) {
-		return super.fetchSupplier(criteria, token);
+	public OperationResult<Supplier> fetchSupplier(Criteria criteria,
+			@HeaderParam("authorization") String authorization, @QueryParam("token") String token) {
+		return super.fetchSupplier(criteria, MyConfiguration.optToken(authorization, token));
 	}
 
 	/**
@@ -183,8 +192,9 @@ public class DataService extends BORepositoryBusinessPartner {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("saveSupplier")
-	public OperationResult<Supplier> saveSupplier(Supplier bo, @QueryParam("token") String token) {
-		return super.saveSupplier(bo, token);
+	public OperationResult<Supplier> saveSupplier(Supplier bo, @HeaderParam("authorization") String authorization,
+			@QueryParam("token") String token) {
+		return super.saveSupplier(bo, MyConfiguration.optToken(authorization, token));
 	}
 
 	// --------------------------------------------------------------------------------------------//
@@ -199,8 +209,9 @@ public class DataService extends BORepositoryBusinessPartner {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("fetchAssetItem")
-	public OperationResult<AssetItem> fetchAssetItem(Criteria criteria, @QueryParam("token") String token) {
-		return super.fetchAssetItem(criteria, token);
+	public OperationResult<AssetItem> fetchAssetItem(Criteria criteria,
+			@HeaderParam("authorization") String authorization, @QueryParam("token") String token) {
+		return super.fetchAssetItem(criteria, MyConfiguration.optToken(authorization, token));
 	}
 
 	/**
@@ -214,8 +225,9 @@ public class DataService extends BORepositoryBusinessPartner {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("saveAssetItem")
-	public OperationResult<AssetItem> saveAssetItem(AssetItem bo, @QueryParam("token") String token) {
-		return super.saveAssetItem(bo, token);
+	public OperationResult<AssetItem> saveAssetItem(AssetItem bo, @HeaderParam("authorization") String authorization,
+			@QueryParam("token") String token) {
+		return super.saveAssetItem(bo, MyConfiguration.optToken(authorization, token));
 	}
 
 	// --------------------------------------------------------------------------------------------//
@@ -231,8 +243,8 @@ public class DataService extends BORepositoryBusinessPartner {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("fetchBusinessPartnerAsset")
 	public OperationResult<BusinessPartnerAsset> fetchBusinessPartnerAsset(Criteria criteria,
-			@QueryParam("token") String token) {
-		return super.fetchBusinessPartnerAsset(criteria, token);
+			@HeaderParam("authorization") String authorization, @QueryParam("token") String token) {
+		return super.fetchBusinessPartnerAsset(criteria, MyConfiguration.optToken(authorization, token));
 	}
 
 	/**
@@ -247,8 +259,8 @@ public class DataService extends BORepositoryBusinessPartner {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("saveBusinessPartnerAsset")
 	public OperationResult<BusinessPartnerAsset> saveBusinessPartnerAsset(BusinessPartnerAsset bo,
-			@QueryParam("token") String token) {
-		return super.saveBusinessPartnerAsset(bo, token);
+			@HeaderParam("authorization") String authorization, @QueryParam("token") String token) {
+		return super.saveBusinessPartnerAsset(bo, MyConfiguration.optToken(authorization, token));
 	}
 
 	// --------------------------------------------------------------------------------------------//
@@ -264,8 +276,8 @@ public class DataService extends BORepositoryBusinessPartner {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("fetchBusinessPartnerAssetJournal")
 	public OperationResult<BusinessPartnerAssetJournal> fetchBusinessPartnerAssetJournal(Criteria criteria,
-			@QueryParam("token") String token) {
-		return super.fetchBusinessPartnerAssetJournal(criteria, token);
+			@HeaderParam("authorization") String authorization, @QueryParam("token") String token) {
+		return super.fetchBusinessPartnerAssetJournal(criteria, MyConfiguration.optToken(authorization, token));
 	}
 
 	/**
@@ -280,8 +292,8 @@ public class DataService extends BORepositoryBusinessPartner {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("saveBusinessPartnerAssetJournal")
 	public OperationResult<BusinessPartnerAssetJournal> saveBusinessPartnerAssetJournal(BusinessPartnerAssetJournal bo,
-			@QueryParam("token") String token) {
-		return super.saveBusinessPartnerAssetJournal(bo, token);
+			@HeaderParam("authorization") String authorization, @QueryParam("token") String token) {
+		return super.saveBusinessPartnerAssetJournal(bo, MyConfiguration.optToken(authorization, token));
 	}
 	// --------------------------------------------------------------------------------------------//
 
@@ -296,8 +308,9 @@ public class DataService extends BORepositoryBusinessPartner {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("fetchCustomerAsset")
-	public OperationResult<CustomerAsset> fetchCustomerAsset(AssetRequest request, @QueryParam("token") String token) {
-		return super.fetchCustomerAsset(request, token);
+	public OperationResult<CustomerAsset> fetchCustomerAsset(AssetRequest request,
+			@HeaderParam("authorization") String authorization, @QueryParam("token") String token) {
+		return super.fetchCustomerAsset(request, MyConfiguration.optToken(authorization, token));
 	}
 
 	/**
@@ -311,8 +324,9 @@ public class DataService extends BORepositoryBusinessPartner {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("fetchSupplierAsset")
-	public OperationResult<SupplierAsset> fetchSupplierAsset(AssetRequest request, @QueryParam("token") String token) {
-		return super.fetchSupplierAsset(request, token);
+	public OperationResult<SupplierAsset> fetchSupplierAsset(AssetRequest request,
+			@HeaderParam("authorization") String authorization, @QueryParam("token") String token) {
+		return super.fetchSupplierAsset(request, MyConfiguration.optToken(authorization, token));
 	}
 
 	// --------------------------------------------------------------------------------------------//
@@ -327,8 +341,9 @@ public class DataService extends BORepositoryBusinessPartner {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("fetchLead")
-	public OperationResult<Lead> fetchLead(Criteria criteria, @QueryParam("token") String token) {
-		return super.fetchLead(criteria, token);
+	public OperationResult<Lead> fetchLead(Criteria criteria, @HeaderParam("authorization") String authorization,
+			@QueryParam("token") String token) {
+		return super.fetchLead(criteria, MyConfiguration.optToken(authorization, token));
 	}
 
 	/**
@@ -342,8 +357,9 @@ public class DataService extends BORepositoryBusinessPartner {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("saveLead")
-	public OperationResult<Lead> saveLead(Lead bo, @QueryParam("token") String token) {
-		return super.saveLead(bo, token);
+	public OperationResult<Lead> saveLead(Lead bo, @HeaderParam("authorization") String authorization,
+			@QueryParam("token") String token) {
+		return super.saveLead(bo, MyConfiguration.optToken(authorization, token));
 	}
 
 	// --------------------------------------------------------------------------------------------//
@@ -358,8 +374,9 @@ public class DataService extends BORepositoryBusinessPartner {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("fetchPaymentTerm")
-	public OperationResult<PaymentTerm> fetchPaymentTerm(Criteria criteria, @QueryParam("token") String token) {
-		return super.fetchPaymentTerm(criteria, token);
+	public OperationResult<PaymentTerm> fetchPaymentTerm(Criteria criteria,
+			@HeaderParam("authorization") String authorization, @QueryParam("token") String token) {
+		return super.fetchPaymentTerm(criteria, MyConfiguration.optToken(authorization, token));
 	}
 
 	/**
@@ -373,8 +390,9 @@ public class DataService extends BORepositoryBusinessPartner {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("savePaymentTerm")
-	public OperationResult<PaymentTerm> savePaymentTerm(PaymentTerm bo, @QueryParam("token") String token) {
-		return super.savePaymentTerm(bo, token);
+	public OperationResult<PaymentTerm> savePaymentTerm(PaymentTerm bo,
+			@HeaderParam("authorization") String authorization, @QueryParam("token") String token) {
+		return super.savePaymentTerm(bo, MyConfiguration.optToken(authorization, token));
 	}
 
 	// --------------------------------------------------------------------------------------------//
@@ -389,8 +407,9 @@ public class DataService extends BORepositoryBusinessPartner {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("fetchAgreement")
-	public OperationResult<Agreement> fetchAgreement(Criteria criteria, @QueryParam("token") String token) {
-		return super.fetchAgreement(criteria, token);
+	public OperationResult<Agreement> fetchAgreement(Criteria criteria,
+			@HeaderParam("authorization") String authorization, @QueryParam("token") String token) {
+		return super.fetchAgreement(criteria, MyConfiguration.optToken(authorization, token));
 	}
 
 	/**
@@ -404,8 +423,9 @@ public class DataService extends BORepositoryBusinessPartner {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("saveAgreement")
-	public OperationResult<Agreement> saveAgreement(Agreement bo, @QueryParam("token") String token) {
-		return super.saveAgreement(bo, token);
+	public OperationResult<Agreement> saveAgreement(Agreement bo, @HeaderParam("authorization") String authorization,
+			@QueryParam("token") String token) {
+		return super.saveAgreement(bo, MyConfiguration.optToken(authorization, token));
 	}
 	// --------------------------------------------------------------------------------------------//
 
