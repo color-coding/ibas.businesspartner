@@ -907,6 +907,9 @@ public class InternalReconciliation extends BusinessObject<InternalReconciliatio
 
 						@Override
 						public boolean isOffsetting() {
+							if (InternalReconciliation.this.isDeleted()) {
+								return true;
+							}
 							if (InternalReconciliation.this instanceof IBOTagCanceled) {
 								IBOTagCanceled boTag = (IBOTagCanceled) InternalReconciliation.this;
 								if (boTag.getCanceled() == emYesNo.YES) {
