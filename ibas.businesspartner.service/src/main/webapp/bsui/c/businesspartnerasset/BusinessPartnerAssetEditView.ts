@@ -186,6 +186,19 @@ namespace businesspartner {
                                                         path: "amount",
                                                         type: new sap.extension.data.Sum()
                                                     }),
+                                                    new sap.extension.m.RepositoryInput("", {
+                                                        editable: false,
+                                                        showValueLink: false,
+                                                        repository: bo.BORepositoryBusinessPartner,
+                                                        dataInfo: {
+                                                            type: bo.AssetItem,
+                                                            key: bo.AssetItem.PROPERTY_CODE_NAME,
+                                                            text: bo.AssetItem.PROPERTY_AMOUNTUNIT_NAME
+                                                        },
+                                                    }).bindProperty("bindingValue", {
+                                                        path: "assetCode",
+                                                        type: new sap.extension.data.Alphanumeric()
+                                                    }),
                                                     new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnerasset_times") }),
                                                     new sap.extension.m.Input("", {
 

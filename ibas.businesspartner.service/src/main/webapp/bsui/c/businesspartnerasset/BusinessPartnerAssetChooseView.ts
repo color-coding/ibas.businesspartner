@@ -102,6 +102,20 @@ namespace businesspartner {
                                 }),
                             }),
                             new sap.extension.table.DataColumn("", {
+                                label: ibas.i18n.prop("bo_businesspartnerasset_amount_unit"),
+                                template: new sap.extension.m.RepositoryText("", {
+                                    repository: bo.BORepositoryBusinessPartner,
+                                    dataInfo: {
+                                        type: bo.AssetItem,
+                                        key: bo.AssetItem.PROPERTY_CODE_NAME,
+                                        text: bo.AssetItem.PROPERTY_AMOUNTUNIT_NAME
+                                    },
+                                }).bindProperty("bindingValue", {
+                                    path: "assetCode",
+                                    type: new sap.extension.data.Alphanumeric()
+                                }),
+                            }),
+                            new sap.extension.table.DataColumn("", {
                                 label: ibas.i18n.prop("bo_businesspartnerasset_times"),
                                 template: new sap.extension.m.Text("", {
                                 }).bindProperty("bindingValue", {

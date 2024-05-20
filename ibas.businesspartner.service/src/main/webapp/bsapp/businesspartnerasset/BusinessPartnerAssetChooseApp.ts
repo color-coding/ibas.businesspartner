@@ -127,18 +127,19 @@ namespace businesspartner {
             /** 查询数据 */
             protected fetchData(criteria: ibas.ICriteria): void {
                 this.busy(true);
-                let condition: ibas.ICondition = criteria?.conditions.firstOrDefault(c => c.alias === bo.BusinessPartnerAsset.PROPERTY_BUSINESSPARTNERCODE_NAME);
-                if (ibas.objects.isNull(condition)) {
+                let bpCondition: ibas.ICondition = criteria?.conditions.firstOrDefault(c => c.alias === bo.BusinessPartnerAsset.PROPERTY_BUSINESSPARTNERCODE_NAME);
+                if (ibas.objects.isNull(bpCondition)) {
                     this.messages(ibas.emMessageType.WARNING, ibas.i18n.prop("shell_please_chooose_data",
                         ibas.i18n.prop("bo_customer")
                     )); return;
                 }
+                let curCondition: ibas.ICondition = criteria?.conditions.firstOrDefault(c => c.alias === bo.AssetItem.PROPERTY_AMOUNTUNIT_NAME);
                 let that: this = this;
                 let boRepository: bo.BORepositoryBusinessPartner = new bo.BORepositoryBusinessPartner();
                 boRepository.fetchCustomerAsset({
                     request: {
-                        businessPartner: condition.value,
-                        currency: undefined
+                        businessPartner: bpCondition?.value,
+                        currency: curCondition?.value,
                     },
                     onCompleted(opRslt: ibas.IOperationResult<bo.CustomerAsset>): void {
                         try {
@@ -219,18 +220,19 @@ namespace businesspartner {
             /** 查询数据 */
             protected fetchData(criteria: ibas.ICriteria): void {
                 this.busy(true);
-                let condition: ibas.ICondition = criteria?.conditions.firstOrDefault(c => c.alias === bo.BusinessPartnerAsset.PROPERTY_BUSINESSPARTNERCODE_NAME);
-                if (ibas.objects.isNull(condition)) {
+                let bpCondition: ibas.ICondition = criteria?.conditions.firstOrDefault(c => c.alias === bo.BusinessPartnerAsset.PROPERTY_BUSINESSPARTNERCODE_NAME);
+                if (ibas.objects.isNull(bpCondition)) {
                     this.messages(ibas.emMessageType.WARNING, ibas.i18n.prop("shell_please_chooose_data",
                         ibas.i18n.prop("bo_supplier")
                     )); return;
                 }
+                let curCondition: ibas.ICondition = criteria?.conditions.firstOrDefault(c => c.alias === bo.AssetItem.PROPERTY_AMOUNTUNIT_NAME);
                 let that: this = this;
                 let boRepository: bo.BORepositoryBusinessPartner = new bo.BORepositoryBusinessPartner();
                 boRepository.fetchSupplierAsset({
                     request: {
-                        businessPartner: condition.value,
-                        currency: undefined
+                        businessPartner: bpCondition?.value,
+                        currency: curCondition?.value,
                     },
                     onCompleted(opRslt: ibas.IOperationResult<bo.SupplierAsset>): void {
                         try {

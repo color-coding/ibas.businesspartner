@@ -17,6 +17,8 @@ declare namespace materials {
         const CONFIG_ITEM_ENABLE_MATERIAL_VERSIONS: string;
         /** 配置项目-启用物料预留选择报表 */
         const CONFIG_ITEM_ENABLE_MATERIAL_RESERVATION_CHOOSE_REPORT: string;
+        /** 配置项目-出库时显示物料价格 */
+        const CONFIG_ITEM_DISPALY_MATERIAL_AVGPRICE_ISSUE: string;
         /**
          * 获取此模块配置
          * @param key 配置项
@@ -89,6 +91,8 @@ declare namespace materials {
         const BO_CODE_PICKLISTS: string;
         /** 业务对象编码-库存转储请求 */
         const BO_CODE_INVENTORYTRANSFERREQUEST: string;
+        /** 业务对象编码-物料扩展库存 */
+        const BO_CODE_PRODUCT_INVENTORY: string;
         /** 物料类型 */
         enum emItemType {
             /** 物料 */
@@ -431,7 +435,7 @@ declare namespace materials {
             uom: string;
             warehouse?: string;
             deliveryDate?: Date;
-            onReserved: (documentType: string, docEntry: number, lineId: number, quantity: number, deliveryDate?: Date) => void;
+            onReserved: (documentType: string, docEntry: number, lineId: number, quantity: number, deliveryDate?: Date, warehouse?: string) => void;
         }
         /** 物料订购预留目标单据服务代理 */
         class MaterialOrderedReservationTargetServiceProxy extends ibas.ServiceProxy<IMaterialOrderedReservationTarget> {
@@ -558,6 +562,10 @@ declare namespace materials {
                 const CONDITION_ALIAS_ITEMSIGN: string;
                 /** 查询条件字段-价格清单 */
                 const CONDITION_ALIAS_PRICELIST: string;
+                /** 查询条件字段-单位 */
+                const CONDITION_ALIAS_UOM: string;
+                /** 查询条件字段-组 */
+                const CONDITION_ALIAS_GROUP: string;
             }
             namespace materialquantity {
                 /** 查询条件字段-物料编码 */
@@ -1359,6 +1367,8 @@ declare namespace materials {
             itemName: string;
             /** 物料标记 */
             itemSign: string;
+            /** 单位 */
+            uom: string;
             /** 价格 */
             price: number;
             /** 货币 */
@@ -1516,7 +1526,7 @@ declare namespace materials {
             /** 仓库 */
             warehouse: string;
             /** 数量 */
-            readonly targetQuantity: number;
+            readonly inventoryQuantity: number;
             /** 物料批次集合 */
             materialBatches: IMaterialBatchItems;
         }
@@ -1998,6 +2008,8 @@ declare namespace materials {
         interface IMaterialPriceItem extends ibas.IBOSimpleLine {
             /** 物料编码 */
             itemCode: string;
+            /** 计量单位 */
+            uom: string;
             /** 价格 */
             price: number;
             /** 对象编号 */
@@ -2175,7 +2187,7 @@ declare namespace materials {
             /** 仓库 */
             warehouse: string;
             /** 数量 */
-            readonly targetQuantity: number;
+            readonly inventoryQuantity: number;
             /** 物料序列集合 */
             materialSerials: IMaterialSerialItems;
         }
@@ -2644,7 +2656,7 @@ declare namespace materials {
             /** 仓库 */
             warehouse: string;
             /** 库存数量 */
-            inventoryQuantity: number;
+            stockQuantity: number;
             /** 盘点数量 */
             countQuantity: number;
             /** 差额 */
@@ -4817,11 +4829,11 @@ declare namespace materials {
             get materialSerials(): MaterialSerialItems;
             /** 设置-物料序列集合 */
             set materialSerials(value: MaterialSerialItems);
-            get targetQuantity(): number;
+            get inventoryQuantity(): number;
             /** 初始化数据 */
             protected init(): void;
             /** 赋值物料 */
-            baseMaterial(source: materials.bo.IMaterial): void;
+            baseMaterial(source: bo.IMaterial | bo.IProduct): void;
             protected registerRules(): ibas.IBusinessRule[];
         }
     }
@@ -5344,7 +5356,7 @@ declare namespace materials {
             get materialSerials(): MaterialSerialItems;
             /** 设置-物料序列集合 */
             set materialSerials(value: MaterialSerialItems);
-            get targetQuantity(): number;
+            get inventoryQuantity(): number;
             /** 初始化数据 */
             protected init(): void;
             /** 赋值物料 */
@@ -5878,11 +5890,11 @@ declare namespace materials {
             get materialSerials(): MaterialSerialItems;
             /** 设置-物料序列集合 */
             set materialSerials(value: MaterialSerialItems);
-            get targetQuantity(): number;
+            get inventoryQuantity(): number;
             /** 初始化数据 */
             protected init(): void;
             /** 赋值物料 */
-            baseMaterial(source: materials.bo.IMaterial): void;
+            baseMaterial(source: bo.IMaterial | bo.IProduct): void;
             baseDocument(data: IInventoryTransferRequestLine): void;
             protected registerRules(): ibas.IBusinessRule[];
         }
@@ -6433,6 +6445,12 @@ declare namespace materials {
             get itemSign(): string;
             /** 设置-物料标识 */
             set itemSign(value: string);
+            /** 映射的属性名称-单位 */
+            static PROPERTY_UOM_NAME: string;
+            /** 获取-单位 */
+            get uom(): string;
+            /** 设置-单位 */
+            set uom(value: string);
             /** 映射的属性名称-价格 */
             static PROPERTY_PRICE_NAME: string;
             /** 获取-价格 */
@@ -6457,6 +6475,7 @@ declare namespace materials {
             criteria(): ibas.ICriteria;
             /** 初始化数据 */
             protected init(): void;
+            markOld(): void;
         }
     }
 }
@@ -7597,6 +7616,12 @@ declare namespace materials {
             get itemCode(): string;
             /** 设置-物料编码 */
             set itemCode(value: string);
+            /** 映射的属性名称-计量单位 */
+            static PROPERTY_UOM_NAME: string;
+            /** 获取-计量单位 */
+            get uom(): string;
+            /** 设置-计量单位 */
+            set uom(value: string);
             /** 映射的属性名称-价格 */
             static PROPERTY_PRICE_NAME: string;
             /** 获取-价格 */
@@ -9081,11 +9106,11 @@ declare namespace materials {
             /** 设置-仓库 */
             set warehouse(value: string);
             /** 映射的属性名称-库存数量 */
-            static PROPERTY_INVENTORYQUANTITY_NAME: string;
+            static PROPERTY_STOCKQUANTITY_NAME: string;
             /** 获取-库存数量 */
-            get inventoryQuantity(): number;
+            get stockQuantity(): number;
             /** 设置-库存数量 */
-            set inventoryQuantity(value: number);
+            set stockQuantity(value: number);
             /** 映射的属性名称-盘点数量 */
             static PROPERTY_COUNTQUANTITY_NAME: string;
             /** 获取-盘点数量 */
@@ -9152,7 +9177,7 @@ declare namespace materials {
             get materialSerials(): MaterialSerialItems;
             /** 设置-物料序列集合 */
             set materialSerials(value: MaterialSerialItems);
-            get targetQuantity(): number;
+            get inventoryQuantity(): number;
             /** 初始化数据 */
             protected init(): void;
             protected registerRules(): ibas.IBusinessRule[];
@@ -12505,11 +12530,11 @@ declare namespace materials {
             get materialSerials(): MaterialSerialItems;
             /** 设置-物料序列集合 */
             set materialSerials(value: MaterialSerialItems);
-            get targetQuantity(): number;
+            get inventoryQuantity(): number;
             /** 初始化数据 */
             protected init(): void;
             /** 赋值物料 */
-            baseMaterial(source: materials.bo.IMaterial): void;
+            baseMaterial(source: bo.IMaterial | bo.IProduct): void;
             protected registerRules(): ibas.IBusinessRule[];
         }
     }
@@ -12544,7 +12569,7 @@ declare namespace materials {
         }
         /** 模块业务对象工厂 */
         const boFactory: ibas.BOFactory;
-        function baseMaterial(target: IGoodsIssueLine | IGoodsReceiptLine | IInventoryTransferLine, source: materials.bo.IMaterial | materials.bo.IProduct): void;
+        function baseMaterial(target: IGoodsIssueLine | IGoodsReceiptLine | IInventoryTransferLine | IInventoryTransferRequestLine, source: materials.bo.IMaterial | materials.bo.IProduct): void;
         /** 业务规则-计算库存数量 */
         class BusinessRuleCalculateInventoryQuantity extends ibas.BusinessRuleCommon {
             /**
@@ -12612,6 +12637,11 @@ declare namespace materials {
             interface IMaterialNumberChange extends IDataDeclaration {
                 Issue: GoodsIssue;
                 Receipt: GoodsReceipt;
+                Reservations: MaterialInventoryReservation[];
+            }
+            /** 物料库存调拨 */
+            interface IMaterialInventoryTransfer extends IDataDeclaration {
+                Transfer: InventoryTransfer;
                 Reservations: MaterialInventoryReservation[];
             }
         }
@@ -12724,6 +12754,11 @@ declare namespace materials {
              * @param fetcher 查询者
              */
             fetchProduct(fetcher: ibas.IFetchCaller<bo.Product>): void;
+            /**
+             * 查询 物料库存扩展
+             * @param fetcher 查询者
+             */
+            fetchProductInventory(fetcher: ibas.IFetchCaller<bo.Product>): void;
             /**
              *  查询 物料批次
              * @param fetcher 查询者
@@ -12900,6 +12935,11 @@ declare namespace materials {
              */
             changeMaterialNumbers(changer: IChangeCaller): void;
             /**
+             * 库存调拨
+             * @param transfer 改变者
+             */
+            transferMaterialInventories(transfer: ITransferCaller): void;
+            /**
              * 查询 库存转储请求
              * @param fetcher 查询者
              */
@@ -12915,6 +12955,13 @@ declare namespace materials {
             changes: {
                 issue: GoodsIssue;
                 receipt: GoodsReceipt;
+                reservations: MaterialInventoryReservation[];
+            };
+        }
+        interface ITransferCaller extends ibas.IMethodCaller<string> {
+            /** 改变内容 */
+            transfers: {
+                transfer: InventoryTransfer;
                 reservations: MaterialInventoryReservation[];
             };
         }
@@ -13868,6 +13915,16 @@ declare namespace materials {
             /** 默认功能 */
             default(): ibas.IApplication<ibas.IView>;
         }
+        class MaterialInventoryTransferFunc extends ibas.ModuleFunction {
+            /** 功能标识 */
+            static FUNCTION_ID: string;
+            /** 功能名称 */
+            static FUNCTION_NAME: string;
+            /** 构造函数 */
+            constructor();
+            /** 默认功能 */
+            default(): ibas.IApplication<ibas.IView>;
+        }
     }
 }
 /**
@@ -14161,6 +14218,26 @@ declare namespace materials {
         }
         /** 物料选择服务映射 */
         class ProductChooseServiceMapping extends ibas.BOChooseServiceMapping {
+            /** 构造函数 */
+            constructor();
+            /** 创建服务实例 */
+            create(): ibas.IService<ibas.IBOChooseServiceCaller<bo.Product>>;
+        }
+        /** 选择应用-物料 */
+        class ProductInventoryChooseApp extends ProductChooseApp {
+            /** 应用标识 */
+            static APPLICATION_ID: string;
+            /** 应用名称 */
+            static APPLICATION_NAME: string;
+            /** 业务对象编码 */
+            static BUSINESS_OBJECT_CODE: string;
+            /** 构造函数 */
+            constructor();
+            /** 查询数据 */
+            protected fetchData(criteria: ibas.ICriteria): void;
+        }
+        /** 物料选择服务映射 */
+        class ProductInventoryChooseServiceMapping extends ibas.BOChooseServiceMapping {
             /** 构造函数 */
             constructor();
             /** 创建服务实例 */
@@ -14594,6 +14671,100 @@ declare namespace materials {
             resetEvent: Function;
             /** 改变事件 */
             changeToEvent: Function;
+        }
+    }
+}
+/**
+ * @license
+ * Copyright Color-Coding Studio. All Rights Reserved.
+ *
+ * Use of this source code is governed by an Apache License, Version 2.0
+ * that can be found in the LICENSE file at http://www.apache.org/licenses/LICENSE-2.0
+ */
+declare namespace materials {
+    namespace app {
+        enum emMaterialTransferStatus {
+            NOT = 0,
+            PROCESSING = 1,
+            DONE = 2
+        }
+        class MaterialInventoryItem extends ibas.Bindable {
+            constructor(source: bo.MaterialBatch | bo.MaterialSerial | bo.MaterialInventory | bo.Product);
+            get status(): emMaterialTransferStatus;
+            set status(value: emMaterialTransferStatus);
+            get material(): bo.Material;
+            set material(value: bo.Material);
+            source: bo.MaterialBatch | bo.MaterialSerial | bo.MaterialInventory | bo.Product;
+            get itemCode(): string;
+            set itemCode(value: string);
+            get quantity(): number;
+            set quantity(value: number);
+            get sourceQuantity(): number;
+            get sourceNumber(): string;
+            set sourceNumber(value: string);
+            get sourceWarehouse(): string;
+            set sourceWarehouse(value: string);
+            get targetWarehouse(): string;
+            set targetWarehouse(value: string);
+            reservations: ibas.IList<MaterialInventoryReservation>;
+            get remarks(): string;
+            set remarks(value: string);
+            get reservationQuantity(): number;
+            get transferQuantity(): number;
+            check(blocked: boolean): void;
+        }
+        class MaterialInventoryReservation extends ibas.Bindable {
+            constructor(data: bo.MaterialInventoryReservation);
+            source: bo.MaterialInventoryReservation;
+            sourceQuantity: number;
+            target: bo.MaterialInventoryReservation;
+        }
+        /** 应用-物料库存调拨 */
+        class MaterialInventoryTransferApp extends ibas.Application<IMaterialInventoryTransferView> {
+            /** 应用标识 */
+            static APPLICATION_ID: string;
+            /** 应用名称 */
+            static APPLICATION_NAME: string;
+            /** 构造函数 */
+            constructor();
+            /** 注册视图 */
+            protected registerView(): void;
+            /** 视图显示后 */
+            protected viewShowed(): void;
+            private changeItems;
+            private addMaterialInventory;
+            private addMaterialBatch;
+            private addMaterialSerial;
+            private removeItem;
+            private showItems;
+            private editMaterialSerial;
+            private editMaterialBatch;
+            private reset;
+            private transferTo;
+            private chooseTargetWarehouse;
+        }
+        /** 视图-物物料库存调拨 */
+        interface IMaterialInventoryTransferView extends ibas.IView {
+            /** 添加物料库存事件 */
+            addMaterialInventoryEvent: Function;
+            /** 添加物料批次事件 */
+            addMaterialBatchEvent: Function;
+            /** 添加物料序列事件 */
+            addMaterialSerialEvent: Function;
+            /** 移除项目事件 */
+            removeItemEvent: Function;
+            /** 显示项目 */
+            showItems(datas: MaterialInventoryItem[]): void;
+            /** 编辑批次信息 */
+            editMaterialBatchEvent: Function;
+            /** 编辑序列信息 */
+            editMaterialSerialEvent: Function;
+            /** 选择变更物料 */
+            chooseTargetWarehouseEvent: Function;
+            /** 重置事件 */
+            resetEvent: Function;
+            /** 调拨事件 */
+            transferToEvent: Function;
         }
     }
 }
@@ -15288,12 +15459,16 @@ declare namespace materials {
             protected editData(data: bo.MaterialPriceList): void;
             /** 删除数据，参数：目标数据集合 */
             protected deleteData(data: bo.MaterialPriceList | bo.MaterialPriceList[]): void;
+            protected currentPriceList: bo.MaterialPriceList;
+            protected selectedPriceList(priceList: bo.MaterialPriceList): void;
             /** 查询价格 */
-            protected fetchPrice(criteria: ibas.ICriteria): void;
+            protected fetchPriceItem(criteria: ibas.ICriteria): void;
             /** 保存价格清单项目 */
-            protected savePriceListItem(data: bo.MaterialPriceItem | bo.MaterialPriceItem[]): void;
+            protected savePriceItem(data: bo.MaterialPrice | bo.MaterialPrice[]): void;
             /** 导出价格 */
-            protected exportPrice(criteria: ibas.ICriteria): void;
+            protected exportPriceItem(): void;
+            /** 添加价格 */
+            protected addPriceItem(items: bo.MaterialPrice[]): void;
         }
         /** 视图-物料价格清单 */
         interface IMaterialPriceListListView extends ibas.IBOListView {
@@ -15303,17 +15478,23 @@ declare namespace materials {
             deleteDataEvent: Function;
             /** 显示数据 */
             showPriceList(datas: bo.MaterialPriceList[]): void;
-            /** 查询价格事件 */
-            fetchPriceEvent: Function;
-            /** 显示数据 */
-            showPrices(datas: bo.MaterialPrice[]): void;
+            /** 选中价格清单事件 */
+            selectedPriceListEvent: Function;
             /** 保存价格项目事件 */
-            savePriceListItemEvent: Function;
+            savePriceItemEvent: Function;
+            /** 添加价格项目事件 */
+            addPriceItemEvent: Function;
+            /** 查询价格事件 */
+            fetchPriceItemEvent: Function;
+            /** 显示数据 */
+            showPriceItems(datas: bo.MaterialPrice[]): void;
             /** 导出价格事件 */
-            exportPriceEvent: Function;
+            exportPriceItemEvent: Function;
             /** 保存数据 */
             savePrices(datas: bo.MaterialPrice[]): void;
         }
+        /** 权限元素-物料价格清单编辑 */
+        const ELEMENT_MATERIAL_PRICE_LIST_EDIT: ibas.IElement;
     }
 }
 /**
@@ -17537,7 +17718,7 @@ declare namespace materials {
             /** 选择拣配清单序列事件 */
             private choosePickListsLineMaterialSerial;
             /** 转为交货 */
-            protected turnToDelivery(agent: ibas.IServiceAgent): void;
+            protected turnToDelivery(agent: ibas.IServiceAgent, selectItems?: bo.PickListsLine[]): void;
             /** 使用预留拣配 */
             protected useInventoryReservationToPick(): Promise<void>;
             /**

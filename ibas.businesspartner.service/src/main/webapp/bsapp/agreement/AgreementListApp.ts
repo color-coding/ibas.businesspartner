@@ -38,10 +38,6 @@ namespace businesspartner {
             /** 查询数据 */
             protected fetchData(criteria: ibas.ICriteria): void {
                 this.busy(true);
-                if (!ibas.objects.isNull(criteria)) {
-                    // 不查询子项
-                    criteria.noChilds = true;
-                }
                 let that: this = this;
                 let boRepository: bo.BORepositoryBusinessPartner = new bo.BORepositoryBusinessPartner();
                 boRepository.fetchAgreement({

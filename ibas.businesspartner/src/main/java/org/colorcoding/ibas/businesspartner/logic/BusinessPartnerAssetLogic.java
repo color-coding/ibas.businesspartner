@@ -98,9 +98,18 @@ public abstract class BusinessPartnerAssetLogic<C extends IBusinessLogicContract
 					businessPartnerAsset.getBusinessPartnerCode(), businessPartnerAsset.getAssetCode()));
 		}
 		DateTime today = DateTime.getToday();
-		if (today.before(businessPartnerAsset.getValidDate()) || today.after(businessPartnerAsset.getInvalidDate())) {
-			throw new BusinessLogicException(I18N.prop("msg_bp_businesspartnerasset_is_unavailable",
-					businessPartnerAsset.getBusinessPartnerCode(), businessPartnerAsset.getAssetCode()));
+		if (businessPartnerAsset.getValidDate() != null && businessPartnerAsset.getValidDate() != DateTime.MIN_VALUE) {
+			if (today.before(businessPartnerAsset.getValidDate())) {
+				throw new BusinessLogicException(I18N.prop("msg_bp_businesspartnerasset_is_unavailable",
+						businessPartnerAsset.getBusinessPartnerCode(), businessPartnerAsset.getAssetCode()));
+			}
+		}
+		if (businessPartnerAsset.getInvalidDate() != null
+				&& businessPartnerAsset.getInvalidDate() != DateTime.MIN_VALUE) {
+			if (today.after(businessPartnerAsset.getInvalidDate())) {
+				throw new BusinessLogicException(I18N.prop("msg_bp_businesspartnerasset_is_unavailable",
+						businessPartnerAsset.getBusinessPartnerCode(), businessPartnerAsset.getAssetCode()));
+			}
 		}
 		return businessPartnerAsset;
 	}

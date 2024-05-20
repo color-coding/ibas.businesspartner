@@ -891,7 +891,7 @@ public class InternalReconciliation extends BusinessObject<InternalReconciliatio
 		for (IInternalReconciliationLine item : this.getInternalReconciliationLines()) {
 			total = total.add(item.getAmount());
 		}
-		total.setScale(2);
+		total.setScale(2, Decimal.ROUNDING_MODE_DEFAULT);
 		if (!Decimal.isZero(total)) {
 			throw new BusinessRuleException(I18N.prop("msg_bp_reconciliation_amount_not_zero"));
 		}

@@ -340,41 +340,249 @@ namespace businesspartner {
                 });
             }
             /** 转为客户 */
-            private turnToCustomer(): void {
-                let customer: bo.Customer = new bo.Customer();
-                customer.code = this.editData.code;
-                customer.lead = this.editData.code;
-                ibas.businessobjects.properties.copy(this.editData, customer, [
-                    "CreateDate", "CreateTime", "UpdateDate", "UpdateTime", "LogInst", "CreateUserSign",
-                    "UpdateUserSign", "CreateActionId", "UpdateActionId", "Referenced", "Canceled",
-                    "Deleted", "ApprovalStatus", "LineStatus", "Status", "DocumentStatus", "DataSource",
-                    "Period", "DataOwner", "Organization", "Series"
-                ]);
-                let criteria: ibas.ICriteria = new ibas.Criteria();
-                criteria.result = 1;
-                let condition: ibas.ICondition = criteria.conditions.create();
-                condition.alias = initialfantasy.bo.BOInformation.PROPERTY_CODE_NAME;
-                condition.value = customer.objectCode;
-                let boRepository: initialfantasy.bo.BORepositoryInitialFantasy = new initialfantasy.bo.BORepositoryInitialFantasy();
-                boRepository.fetchBOInformation({
-                    criteria: criteria,
-                    onCompleted: (opRslt) => {
-                        for (let boItem of opRslt.resultObjects) {
-                            for (let ptyItem of boItem.boPropertyInformations) {
-                                if (ibas.strings.isWith(ptyItem.property, "U_", undefined)) {
-                                    let field: ibas.IUserField = this.editData.userFields.get(ptyItem.property);
-                                    if (!ibas.objects.isNull(field)) {
-                                        customer.userFields.register(field.name, field.valueType).value = field.value;
+            private turnToCustomer(customer: bo.Customer): void {
+                if (customer instanceof bo.Customer) {
+                    ibas.servicesManager.runEditService({
+                        when: "SAVED",
+                        editData: customer,
+                        onCompleted: (result) => {
+                            // 检查是否复制新的联系人、地址等
+                            let criteria: ibas.ICriteria;
+                            let condition: ibas.ICondition;
+                            let criterias: ibas.IList<ibas.ICriteria> = new ibas.ArrayList<ibas.Criteria>();
+                            criteria = new ibas.Criteria();
+                            criteria.businessObject = ibas.config.applyVariables(bo.ContactPerson.BUSINESS_OBJECT_CODE);
+                            if (result.contactPerson > 0 && result.contactPerson === customer.contactPerson) {
+                                condition = criteria.conditions.create();
+                                condition.alias = bo.ContactPerson.PROPERTY_OBJECTKEY_NAME;
+                                condition.value = String(result.contactPerson);
+                                condition = criteria.conditions.create();
+                                condition.alias = bo.ContactPerson.PROPERTY_OWNERTYPE_NAME;
+                                condition.operation = ibas.emConditionOperation.NOT_EQUAL;
+                                condition.value = String(bo.emBusinessPartnerType.CUSTOMER);
+                            }
+                            criterias.add(criteria);
+                            criteria = new ibas.Criteria();
+                            criteria.businessObject = ibas.config.applyVariables(bo.Address.BUSINESS_OBJECT_CODE);
+                            if (result.billAddress > 0 && result.billAddress === customer.billAddress) {
+                                condition = criteria.conditions.create();
+                                condition.alias = bo.Address.PROPERTY_OBJECTKEY_NAME;
+                                condition.value = String(result.billAddress);
+                                if (criteria.conditions.length > 1) {
+                                    condition.relationship = ibas.emConditionRelationship.OR;
+                                }
+                                condition.bracketOpen = 1;
+                                condition = criteria.conditions.create();
+                                condition.alias = bo.ContactPerson.PROPERTY_OWNERTYPE_NAME;
+                                condition.operation = ibas.emConditionOperation.NOT_EQUAL;
+                                condition.value = String(bo.emBusinessPartnerType.CUSTOMER);
+                                condition.bracketClose = 1;
+                            }
+                            if (result.shipAddress > 0 && result.shipAddress === customer.shipAddress) {
+                                condition = criteria.conditions.create();
+                                condition.alias = bo.Address.PROPERTY_OBJECTKEY_NAME;
+                                condition.value = String(result.shipAddress);
+                                if (criteria.conditions.length > 1) {
+                                    condition.relationship = ibas.emConditionRelationship.OR;
+                                }
+                                condition.bracketOpen = 1;
+                                condition = criteria.conditions.create();
+                                condition.alias = bo.ContactPerson.PROPERTY_OWNERTYPE_NAME;
+                                condition.operation = ibas.emConditionOperation.NOT_EQUAL;
+                                condition.value = String(bo.emBusinessPartnerType.CUSTOMER);
+                                condition.bracketClose = 1;
+                            }
+                            if (result.registrationAddress > 0 && result.registrationAddress === customer.registrationAddress) {
+                                condition = criteria.conditions.create();
+                                condition.alias = bo.Address.PROPERTY_OBJECTKEY_NAME;
+                                condition.value = String(result.registrationAddress);
+                                if (criteria.conditions.length > 1) {
+                                    condition.relationship = ibas.emConditionRelationship.OR;
+                                }
+                                condition.bracketOpen = 1;
+                                condition = criteria.conditions.create();
+                                condition.alias = bo.ContactPerson.PROPERTY_OWNERTYPE_NAME;
+                                condition.operation = ibas.emConditionOperation.NOT_EQUAL;
+                                condition.value = String(bo.emBusinessPartnerType.CUSTOMER);
+                                condition.bracketClose = 1;
+                            }
+                            criterias.add(criteria);
+                            let cloneDatas: ibas.IList<any> = new ibas.ArrayList<any>();
+                            let boRepository: bo.BORepositoryBusinessPartner = new bo.BORepositoryBusinessPartner();
+                            ibas.queues.execute(criterias,
+                                (criteria, next) => {
+                                    if (criteria?.businessObject === ibas.config.applyVariables(bo.Address.BUSINESS_OBJECT_CODE)
+                                        && criteria?.conditions.length > 0) {
+                                        boRepository.fetchAddress({
+                                            criteria: criteria,
+                                            onCompleted: (opRslt) => {
+                                                for (let item of opRslt.resultObjects) {
+                                                    cloneDatas.add(item);
+                                                } next();
+                                            }
+                                        });
+                                    } else if (criteria?.businessObject === ibas.config.applyVariables(bo.ContactPerson.BUSINESS_OBJECT_CODE)
+                                        && criteria?.conditions.length > 0) {
+                                        boRepository.fetchContactPerson({
+                                            criteria: criteria,
+                                            onCompleted: (opRslt) => {
+                                                for (let item of opRslt.resultObjects) {
+                                                    cloneDatas.add(item);
+                                                } next();
+                                            }
+                                        });
+                                    } else {
+                                        next();
+                                    }
+                                },
+                                (error) => {
+                                    if (error instanceof Error) {
+                                        this.messages(error);
+                                    } else if (cloneDatas.length > 0) {
+                                        this.messages({
+                                            type: ibas.emMessageType.QUESTION,
+                                            message: ibas.i18n.prop("businesspartner_continue_create_new_customer_contact_and_address"),
+                                            actions: [
+                                                ibas.emMessageAction.YES,
+                                                ibas.emMessageAction.NO,
+                                            ],
+                                            onCompleted: (action) => {
+                                                if (action !== ibas.emMessageAction.YES) {
+                                                    return;
+                                                }
+                                                ibas.queues.execute(cloneDatas,
+                                                    (data, next) => {
+                                                        if (data instanceof bo.ContactPerson) {
+                                                            let nData: bo.ContactPerson = data.clone();
+                                                            nData.ownerType = bo.emBusinessPartnerType.CUSTOMER;
+                                                            nData.businessPartner = result.code;
+                                                            boRepository.saveContactPerson({
+                                                                beSaved: nData,
+                                                                onCompleted: (opRslt) => {
+                                                                    for (let item of opRslt.resultObjects) {
+                                                                        if (result.contactPerson === data.objectKey) {
+                                                                            result.contactPerson = item.objectKey;
+                                                                            customer.contactPerson = item.objectKey;
+                                                                        }
+                                                                        this.proceeding(ibas.i18n.prop("businesspartner_create_new_customer_contact_and_address", ibas.i18n.prop("bo_contactperson"), item.name));
+                                                                    }
+                                                                    next(opRslt.resultCode !== 0 ? new Error(opRslt.message) : undefined);
+                                                                }
+                                                            });
+                                                        } else if (data instanceof bo.Address) {
+                                                            let nData: bo.Address = data.clone();
+                                                            nData.ownerType = bo.emBusinessPartnerType.CUSTOMER;
+                                                            nData.businessPartner = result.code;
+                                                            boRepository.saveAddress({
+                                                                beSaved: nData,
+                                                                onCompleted: (opRslt) => {
+                                                                    for (let item of opRslt.resultObjects) {
+                                                                        if (result.billAddress === data.objectKey) {
+                                                                            result.billAddress = item.objectKey;
+                                                                            customer.billAddress = item.objectKey;
+                                                                        }
+                                                                        if (result.shipAddress === data.objectKey) {
+                                                                            result.shipAddress = item.objectKey;
+                                                                            customer.shipAddress = item.objectKey;
+                                                                        }
+                                                                        if (result.registrationAddress === data.objectKey) {
+                                                                            result.registrationAddress = item.objectKey;
+                                                                            customer.registrationAddress = item.objectKey;
+                                                                        }
+                                                                        this.proceeding(ibas.i18n.prop("businesspartner_create_new_customer_contact_and_address", ibas.i18n.prop("bo_address"), item.name));
+                                                                    }
+                                                                    next(opRslt.resultCode !== 0 ? new Error(opRslt.message) : undefined);
+                                                                }
+                                                            });
+                                                        } else {
+                                                            next();
+                                                        }
+                                                    },
+                                                    (error) => {
+                                                        if (error instanceof Error) {
+                                                            this.messages(error);
+                                                        }
+                                                        if (result.isDirty === true) {
+                                                            boRepository.saveCustomer({
+                                                                beSaved: result,
+                                                                onCompleted: (opRslt) => {
+                                                                    try {
+                                                                        if (opRslt.resultCode !== 0) {
+                                                                            throw new Error(opRslt.message);
+                                                                        }
+                                                                    } catch (error) {
+                                                                        this.messages(error);
+                                                                    }
+                                                                }
+                                                            });
+                                                        }
+                                                    }
+                                                );
+                                            }
+                                        });
                                     }
                                 }
+                            );
+                        }
+                    });
+                } else {
+                    // 判断是否已创建
+                    let criteria: ibas.ICriteria = new ibas.Criteria();
+                    let condition: ibas.ICondition = criteria.conditions.create();
+                    condition.alias = bo.Customer.PROPERTY_LEAD_NAME;
+                    condition.value = this.editData.code;
+                    let boRepository: bo.BORepositoryBusinessPartner = new bo.BORepositoryBusinessPartner();
+                    boRepository.fetchCustomer({
+                        criteria: criteria,
+                        onCompleted: (opRslt) => {
+                            try {
+                                if (opRslt.resultCode !== 0) {
+                                    throw new Error(opRslt.message);
+                                }
+                                if (opRslt.resultObjects.length > 0) {
+                                    this.messages({
+                                        type: ibas.emMessageType.WARNING,
+                                        message: ibas.i18n.prop("businesspartner_customer_already_exists", this.editData.code, this.editData.name),
+                                    });
+                                } else {
+                                    customer = new bo.Customer();
+                                    customer.code = this.editData.code;
+                                    customer.lead = this.editData.code;
+                                    ibas.businessobjects.properties.copy(this.editData, customer, [
+                                        "CreateDate", "CreateTime", "UpdateDate", "UpdateTime", "LogInst", "CreateUserSign",
+                                        "UpdateUserSign", "CreateActionId", "UpdateActionId", "Referenced", "Canceled",
+                                        "Deleted", "ApprovalStatus", "LineStatus", "Status", "DocumentStatus", "DataSource",
+                                        "Period", "DataOwner", "Organization", "Series"
+                                    ]);
+                                    let criteria: ibas.ICriteria = new ibas.Criteria();
+                                    criteria.result = 1;
+                                    let condition: ibas.ICondition = criteria.conditions.create();
+                                    condition.alias = initialfantasy.bo.BOInformation.PROPERTY_CODE_NAME;
+                                    condition.value = customer.objectCode;
+                                    let boRepository: initialfantasy.bo.BORepositoryInitialFantasy = new initialfantasy.bo.BORepositoryInitialFantasy();
+                                    boRepository.fetchBOInformation({
+                                        criteria: criteria,
+                                        onCompleted: (opRslt) => {
+                                            for (let boItem of opRslt.resultObjects) {
+                                                for (let ptyItem of boItem.boPropertyInformations) {
+                                                    if (ibas.strings.isWith(ptyItem.property, "U_", undefined)) {
+                                                        let field: ibas.IUserField = this.editData.userFields.get(ptyItem.property);
+                                                        if (!ibas.objects.isNull(field)) {
+                                                            customer.userFields.register(field.name, field.valueType).value = field.value;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            this.turnToCustomer(customer);
+                                        }
+                                    });
+                                }
+                            } catch (error) {
+                                this.messages(error);
                             }
                         }
-                        let app: CustomerEditApp = new CustomerEditApp();
-                        app.navigation = this.navigation;
-                        app.viewShower = this.viewShower;
-                        app.run(customer);
-                    }
-                });
+                    });
+                }
             }
         }
         /** 视图-潜在客户 */

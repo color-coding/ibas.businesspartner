@@ -328,6 +328,24 @@ namespace businesspartner {
                                                             maxLength: 8
                                                         }),
                                                     }),
+                                                    new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_paymentcode") }),
+                                                    new sap.extension.m.SelectionInput("", {
+                                                        showValueHelp: true,
+                                                        repository: bo.BORepositoryBusinessPartner,
+                                                        dataInfo: {
+                                                            type: bo.PaymentTerm,
+                                                            key: bo.PaymentTerm.PROPERTY_CODE_NAME,
+                                                            text: bo.PaymentTerm.PROPERTY_NAME_NAME,
+                                                        },
+                                                        criteria: [
+                                                            new ibas.Condition(bo.PaymentTerm.PROPERTY_ACTIVATED_NAME, ibas.emConditionOperation.EQUAL, ibas.emYesNo.YES.toString())
+                                                        ]
+                                                    }).bindProperty("bindingValue", {
+                                                        path: "paymentCode",
+                                                        type: new sap.extension.data.Alphanumeric({
+                                                            maxLength: 8
+                                                        }),
+                                                    }),
                                                     new sap.m.Label("", { text: ibas.i18n.prop("bo_customer_warehouse") }),
                                                     new sap.extension.m.RepositoryInput("", {
                                                         showValueHelp: true,

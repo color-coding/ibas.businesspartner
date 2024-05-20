@@ -102,6 +102,7 @@
         "bo_businesspartnerasset_validdate": "生效日期",
         "bo_businesspartnerasset_invaliddate": "失效日期",
         "bo_businesspartnerasset_amount": "剩余价值",
+        "bo_businesspartnerasset_amount_unit": "价值单位",
         "bo_businesspartnerasset_times": "剩余次数",
         "bo_businesspartnerasset_basedocument": "基于单据",
         "bo_businesspartnerasset_basedocumenttype": "基于类型",
