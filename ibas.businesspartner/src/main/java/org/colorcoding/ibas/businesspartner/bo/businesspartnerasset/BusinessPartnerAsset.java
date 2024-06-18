@@ -1021,6 +1021,37 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset>
 	}
 
 	/**
+	 * 属性名称-银行账户
+	 */
+	private static final String PROPERTY_BANKACCOUNT_NAME = "BankAccount";
+
+	/**
+	 * 银行账户 属性
+	 */
+	@DbField(name = "BankAccount", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME)
+	public static final IPropertyInfo<String> PROPERTY_BANKACCOUNT = registerProperty(PROPERTY_BANKACCOUNT_NAME,
+			String.class, MY_CLASS);
+
+	/**
+	 * 获取-银行账户
+	 * 
+	 * @return 值
+	 */
+	@XmlElement(name = PROPERTY_BANKACCOUNT_NAME)
+	public final String getBankAccount() {
+		return this.getProperty(PROPERTY_BANKACCOUNT);
+	}
+
+	/**
+	 * 设置-银行账户
+	 * 
+	 * @param value 值
+	 */
+	public final void setBankAccount(String value) {
+		this.setProperty(PROPERTY_BANKACCOUNT, value);
+	}
+
+	/**
 	 * 属性名称-基于类型
 	 */
 	private static final String PROPERTY_BASEDOCUMENTTYPE_NAME = "BaseDocumentType";

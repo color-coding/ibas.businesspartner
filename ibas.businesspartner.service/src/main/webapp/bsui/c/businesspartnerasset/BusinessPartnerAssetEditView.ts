@@ -213,6 +213,25 @@ namespace businesspartner {
                                                         type: new sap.extension.data.Date()
                                                     }),
                                                     new sap.m.Toolbar("", { visible: false }),
+                                                    new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnerasset_bankaccount") }),
+                                                    new sap.extension.m.SelectionInput("", {
+                                                        showValueLink: true,
+                                                        showValueHelp: true,
+                                                        repository: accounting.bo.BORepositoryAccounting,
+                                                        dataInfo: {
+                                                            type: accounting.bo.BankAccount,
+                                                            key: accounting.bo.BankAccount.PROPERTY_CODE_NAME,
+                                                            text: accounting.bo.BankAccount.PROPERTY_NAME_NAME
+                                                        },
+                                                        criteria: [
+                                                            new ibas.Condition(accounting.bo.BankAccount.PROPERTY_ACTIVATED_NAME, ibas.emConditionOperation.EQUAL, ibas.emYesNo.YES)
+                                                        ]
+                                                    }).bindProperty("bindingValue", {
+                                                        path: "bankAccount",
+                                                        type: new sap.extension.data.Alphanumeric({
+                                                            maxLength: 36
+                                                        }),
+                                                    }),
                                                     new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnerasset_basedocument") }),
                                                     new sap.extension.m.Input("", {
                                                         editable: false,

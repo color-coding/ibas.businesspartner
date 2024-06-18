@@ -125,5 +125,10 @@ namespace businesspartner {
             /** 显示数据 */
             showBusinessPartnerAssetJournal(data: bo.BusinessPartnerAssetJournal): void;
         }
+        /** 权限元素-业务伙伴资产日记账编辑 */
+        export const ELEMENT_BUSINESSPARTNER_ASSET_JOURNAL_EDIT: ibas.IElement = {
+            id: BusinessPartnerAssetJournalEditApp.APPLICATION_ID,
+            name: BusinessPartnerAssetJournalEditApp.APPLICATION_NAME,
+        };
     }
 }

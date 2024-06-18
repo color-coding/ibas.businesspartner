@@ -456,6 +456,20 @@ public interface IBusinessPartnerAsset extends IBOMasterData {
 	void setTimes(Integer value);
 
 	/**
+	 * 获取-银行账户
+	 * 
+	 * @return 值
+	 */
+	String getBankAccount();
+
+	/**
+	 * 设置-银行账户
+	 * 
+	 * @param value 值
+	 */
+	void setBankAccount(String value);
+
+	/**
 	 * 获取-基于类型
 	 * 
 	 * @return 值

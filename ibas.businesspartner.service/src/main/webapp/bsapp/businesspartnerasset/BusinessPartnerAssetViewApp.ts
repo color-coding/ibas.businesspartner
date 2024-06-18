@@ -9,9 +9,8 @@ namespace businesspartner {
     export namespace app {
         /** 查看应用-业务伙伴资产 */
         export class BusinessPartnerAssetViewApp extends ibas.BOViewService<IBusinessPartnerAssetViewView, bo.BusinessPartnerAsset> {
-
             /** 应用标识 */
-            static APPLICATION_ID: string = "946c4e19-95ad-4272-90ff-9fd0eeb92bb4";
+            static APPLICATION_ID: string = "6a8741b8-f37a-4ba4-a8ff-4c95468f3c97";
             /** 应用名称 */
             static APPLICATION_NAME: string = "businesspartner_app_businesspartnerasset_view";
             /** 业务对象编码 */
@@ -32,8 +31,14 @@ namespace businesspartner {
             }
             /** 视图显示后 */
             protected viewShowed(): void {
-                // 视图加载完成
+                // 视图加载完成，基类方法更新地址
                 super.viewShowed();
+                if (ibas.objects.isNull(this.viewData)) {
+                    // 创建编辑对象实例
+                    this.viewData = new bo.BusinessPartnerAsset();
+                    this.proceeding(ibas.emMessageType.WARNING, ibas.i18n.prop("shell_data_created_new"));
+                }
+                this.view.showBusinessPartnerAsset(this.viewData);
             }
             /** 编辑数据，参数：目标数据 */
             protected editData(): void {
@@ -44,11 +49,46 @@ namespace businesspartner {
             }
             run(): void;
             run(data: bo.BusinessPartnerAsset): void;
-            /** 运行 */
             run(): void {
-                if (ibas.objects.instanceOf(arguments[0], bo.BusinessPartnerAsset)) {
-                    this.viewData = arguments[0];
-                    this.show();
+                if (arguments[0] instanceof bo.BusinessPartnerAsset) {
+                    let data: bo.BusinessPartnerAsset = arguments[0];
+                    if (data.isNew) {
+                        this.viewData = data;
+                        this.show();
+                    } else {
+                        let criteria: ibas.ICriteria = data.criteria();
+                        if (criteria?.conditions.length > 0) {
+                            // 有效的查询对象查询
+                            let that: this = this;
+                            let boRepository: bo.BORepositoryBusinessPartner = new bo.BORepositoryBusinessPartner();
+                            boRepository.fetchBusinessPartnerAsset({
+                                criteria: criteria,
+                                onCompleted(opRslt: ibas.IOperationResult<bo.BusinessPartnerAsset>): void {
+                                    try {
+                                        if (opRslt.resultCode !== 0) {
+                                            throw new Error(opRslt.message);
+                                        }
+                                        if (opRslt.resultObjects.length > 0) {
+                                            that.viewData = opRslt.resultObjects.firstOrDefault();
+                                            that.show();
+                                        } else {
+                                            that.messages({
+                                                type: ibas.emMessageType.WARNING,
+                                                message: ibas.i18n.prop("shell_data_deleted_and_created"),
+                                                onCompleted(): void {
+                                                    that.show();
+                                                }
+                                            });
+                                        }
+                                    } catch (error) {
+                                        that.messages(error);
+                                    }
+                                }
+                            });
+                        } else {
+                            super.run.apply(this, arguments);
+                        }
+                    }
                 } else {
                     super.run.apply(this, arguments);
                 }
@@ -58,22 +98,26 @@ namespace businesspartner {
                 this.busy(true);
                 let that: this = this;
                 if (typeof criteria === "string") {
+                    let condition: ibas.ICondition;
                     let value: string = criteria;
                     criteria = new ibas.Criteria();
                     criteria.result = 1;
-                    // 添加查询条件
-
+                    condition = criteria.conditions.create();
+                    condition.alias = bo.BusinessPartnerAsset.PROPERTY_CODE_NAME;
+                    condition.value = value;
                 }
                 let boRepository: bo.BORepositoryBusinessPartner = new bo.BORepositoryBusinessPartner();
                 boRepository.fetchBusinessPartnerAsset({
                     criteria: criteria,
                     onCompleted(opRslt: ibas.IOperationResult<bo.BusinessPartnerAsset>): void {
                         try {
+                            that.busy(false);
                             if (opRslt.resultCode !== 0) {
                                 throw new Error(opRslt.message);
                             }
                             that.viewData = opRslt.resultObjects.firstOrDefault();
                             if (!that.isViewShowed()) {
+                                // 没显示视图，先显示
                                 that.show();
                             } else {
                                 that.viewShowed();
@@ -88,6 +132,8 @@ namespace businesspartner {
         }
         /** 视图-业务伙伴资产 */
         export interface IBusinessPartnerAssetViewView extends ibas.IBOViewView {
+            /** 显示数据 */
+            showBusinessPartnerAsset(data: bo.BusinessPartnerAsset): void;
 
         }
         /** 业务伙伴资产连接服务映射 */

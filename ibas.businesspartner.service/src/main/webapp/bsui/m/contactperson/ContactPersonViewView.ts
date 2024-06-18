@@ -192,10 +192,17 @@ namespace businesspartner {
                         ],
                         sections: [
                             new sap.uxap.ObjectPageSection("", {
-                                showTitle: false,
+                                title: ibas.i18n.prop("businesspartner_title_general"),
                                 subSections: [
                                     new sap.uxap.ObjectPageSubSection("", {
                                         blocks: [
+                                            new sap.extension.m.ObjectAttribute("", {
+                                                title: ibas.i18n.prop("bo_contactperson_mobilephone"),
+                                                bindingValue: {
+                                                    path: "mobilePhone",
+                                                    type: new sap.extension.data.Alphanumeric(),
+                                                }
+                                            }),
                                             new sap.extension.m.ObjectAttribute("", {
                                                 title: ibas.i18n.prop("bo_contactperson_position"),
                                                 bindingValue: {
@@ -225,17 +232,6 @@ namespace businesspartner {
                                                 }
                                             }),
                                             new sap.extension.m.ObjectAttribute("", {
-                                                title: ibas.i18n.prop("bo_contactperson_mobilephone"),
-                                                bindingValue: {
-                                                    path: "mobilePhone",
-                                                    type: new sap.extension.data.Alphanumeric(),
-                                                }
-                                            }),
-                                        ],
-                                    }),
-                                    new sap.uxap.ObjectPageSubSection("", {
-                                        blocks: [
-                                            new sap.extension.m.ObjectAttribute("", {
                                                 title: ibas.i18n.prop("bo_contactperson_address"),
                                                 bindingValue: {
                                                     path: "address",
@@ -250,7 +246,12 @@ namespace businesspartner {
                                                 }
                                             }),
                                         ],
-                                    }),
+                                    })
+                                ]
+                            }),
+                            new sap.uxap.ObjectPageSection("", {
+                                title: ibas.i18n.prop("businesspartner_title_others"),
+                                subSections: [
                                     new sap.uxap.ObjectPageSubSection("", {
                                         blocks: [
                                             new sap.extension.m.UserObjectAttribute("", {

@@ -69,6 +69,8 @@ namespace businesspartner {
             amount: number;
             /** 剩余次数 */
             times: number;
+            /** 银行账户 */
+            bankAccount: string;
             /** 基于类型 */
             baseDocumentType: string;
             /** 基于标识 */

@@ -345,6 +345,17 @@ namespace businesspartner {
                 this.setProperty(BusinessPartnerAsset.PROPERTY_TIMES_NAME, value);
             }
 
+            /** 映射的属性名称-银行账户 */
+            static PROPERTY_BANKACCOUNT_NAME: string = "BankAccount";
+            /** 获取-银行账户 */
+            get bankAccount(): string {
+                return this.getProperty<string>(BusinessPartnerAsset.PROPERTY_BANKACCOUNT_NAME);
+            }
+            /** 设置-银行账户 */
+            set bankAccount(value: string) {
+                this.setProperty(BusinessPartnerAsset.PROPERTY_BANKACCOUNT_NAME, value);
+            }
+
             /** 映射的属性名称-基于类型 */
             static PROPERTY_BASEDOCUMENTTYPE_NAME: string = "BaseDocumentType";
             /** 获取-基于类型 */

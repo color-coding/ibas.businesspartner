@@ -192,58 +192,8 @@ namespace businesspartner {
                         ],
                         sections: [
                             new sap.uxap.ObjectPageSection("", {
-                                showTitle: false,
+                                title: ibas.i18n.prop("businesspartner_title_general"),
                                 subSections: [
-                                    new sap.uxap.ObjectPageSubSection("", {
-                                        blocks: [
-                                            new sap.extension.m.ObjectAttribute("", {
-                                                title: ibas.i18n.prop("bo_address_country"),
-                                                bindingValue: {
-                                                    path: "country",
-                                                    type: new sap.extension.data.Alphanumeric(),
-                                                }
-                                            }),
-                                            new sap.extension.m.ObjectAttribute("", {
-                                                title: ibas.i18n.prop("bo_address_province"),
-                                                bindingValue: {
-                                                    path: "province",
-                                                    type: new sap.extension.data.Alphanumeric(),
-                                                }
-                                            }),
-                                            new sap.extension.m.ObjectAttribute("", {
-                                                title: ibas.i18n.prop("bo_address_city"),
-                                                bindingValue: {
-                                                    path: "city",
-                                                    type: new sap.extension.data.Alphanumeric(),
-                                                }
-                                            }),
-                                            new sap.extension.m.ObjectAttribute("", {
-                                                title: ibas.i18n.prop("bo_address_district"),
-                                                bindingValue: {
-                                                    path: "district",
-                                                    type: new sap.extension.data.Alphanumeric(),
-                                                }
-                                            }),
-                                        ],
-                                    }),
-                                    new sap.uxap.ObjectPageSubSection("", {
-                                        blocks: [
-                                            new sap.extension.m.ObjectAttribute("", {
-                                                title: ibas.i18n.prop("bo_address_street"),
-                                                bindingValue: {
-                                                    path: "street",
-                                                    type: new sap.extension.data.Alphanumeric(),
-                                                }
-                                            }),
-                                            new sap.extension.m.ObjectAttribute("", {
-                                                title: ibas.i18n.prop("bo_address_zipcode"),
-                                                bindingValue: {
-                                                    path: "zipCode",
-                                                    type: new sap.extension.data.Alphanumeric(),
-                                                }
-                                            }),
-                                        ],
-                                    }),
                                     new sap.uxap.ObjectPageSubSection("", {
                                         blocks: [
                                             new sap.extension.m.RepositoryObjectAttribute("", {
@@ -271,6 +221,45 @@ namespace businesspartner {
                                     }),
                                     new sap.uxap.ObjectPageSubSection("", {
                                         blocks: [
+                                            new sap.extension.m.ObjectAttribute("", {
+                                                title: ibas.i18n.prop("bo_address_street"),
+                                                bindingValue: {
+                                                    path: "street",
+                                                    type: new sap.extension.data.Alphanumeric(),
+                                                }
+                                            }),
+                                            new sap.extension.m.ObjectAttribute("", {
+                                                title: ibas.i18n.prop("bo_address_country") +
+                                                    "/" + ibas.i18n.prop("bo_address_province") +
+                                                    "/" + ibas.i18n.prop("bo_address_city") +
+                                                    "/" + ibas.i18n.prop("bo_address_district"),
+                                                bindingValue: {
+                                                    parts: [
+                                                        {
+                                                            path: "country",
+                                                            type: new sap.extension.data.Alphanumeric(),
+                                                        }, {
+                                                            path: "province",
+                                                            type: new sap.extension.data.Alphanumeric(),
+                                                        }, {
+                                                            path: "city",
+                                                            type: new sap.extension.data.Alphanumeric(),
+                                                        }, {
+                                                            path: "district",
+                                                            type: new sap.extension.data.Alphanumeric(),
+                                                        }
+                                                    ]
+                                                }
+                                            }),
+                                        ],
+                                    })
+                                ]
+                            }),
+                            new sap.uxap.ObjectPageSection("", {
+                                title: ibas.i18n.prop("businesspartner_title_others"),
+                                subSections: [
+                                    new sap.uxap.ObjectPageSubSection("", {
+                                        blocks: [
                                             new sap.extension.m.UserObjectAttribute("", {
                                                 title: ibas.i18n.prop("bo_address_dataowner"),
                                                 bindingValue: {
@@ -286,7 +275,7 @@ namespace businesspartner {
                                                 }
                                             }),
                                         ],
-                                    }),
+                                    })
                                 ]
                             }),
                         ]

@@ -53,7 +53,18 @@ namespace businesspartner {
                             new sap.extension.table.DataColumn("", {
                                 label: ibas.i18n.prop("bo_address_businesspartner")
                                     + ibas.i18n.prop("bo_businesspartnerasset_code"),
-                                template: new sap.extension.m.Text("", {
+                                template: new sap.extension.m.Link("", {
+                                    press(): void {
+                                        let data: any = this.getBindingContext().getObject();
+                                        if (data instanceof bo.ContactPerson) {
+                                            ibas.servicesManager.runLinkService({
+                                                boCode: data.ownerType === bo.emBusinessPartnerType.SUPPLIER ?
+                                                    bo.Supplier.BUSINESS_OBJECT_CODE : data.ownerType === bo.emBusinessPartnerType.CUSTOMER
+                                                        ? bo.Customer.BUSINESS_OBJECT_CODE : bo.Lead.BUSINESS_OBJECT_CODE,
+                                                linkValue: data.businessPartner,
+                                            });
+                                        }
+                                    }
                                 }).bindProperty("bindingValue", {
                                     path: "businessPartner",
                                     type: new sap.extension.data.Alphanumeric()

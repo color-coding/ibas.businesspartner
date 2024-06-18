@@ -38,36 +38,32 @@ namespace businesspartner {
                             ]
                         }),
                         headerContent: [
+                            new sap.extension.m.ObjectAttribute("", {
+                                title: ibas.i18n.prop("bo_assetitem_group"),
+                                bindingValue: {
+                                    path: "group",
+                                    type: new sap.extension.data.Alphanumeric(),
+                                }
+                            }),
+                            new sap.extension.m.ObjectAttribute("", {
+                                title: ibas.i18n.prop("bo_assetitem_validdate"),
+                                bindingValue: {
+                                    path: "validDate",
+                                    type: new sap.extension.data.Date(),
+                                }
+                            }),
+                            new sap.extension.m.ObjectAttribute("", {
+                                title: ibas.i18n.prop("bo_assetitem_invaliddate"),
+                                bindingValue: {
+                                    path: "invalidDate",
+                                    type: new sap.extension.data.Date(),
+                                }
+                            }),
                         ],
                         sections: [
                             new sap.uxap.ObjectPageSection("", {
-                                showTitle: false,
+                                title: ibas.i18n.prop("businesspartner_title_general"),
                                 subSections: [
-                                    new sap.uxap.ObjectPageSubSection("", {
-                                        blocks: [
-                                            new sap.extension.m.ObjectAttribute("", {
-                                                title: ibas.i18n.prop("bo_assetitem_group"),
-                                                bindingValue: {
-                                                    path: "group",
-                                                    type: new sap.extension.data.Alphanumeric(),
-                                                }
-                                            }),
-                                            new sap.extension.m.ObjectAttribute("", {
-                                                title: ibas.i18n.prop("bo_assetitem_validdate"),
-                                                bindingValue: {
-                                                    path: "validDate",
-                                                    type: new sap.extension.data.Date(),
-                                                }
-                                            }),
-                                            new sap.extension.m.ObjectAttribute("", {
-                                                title: ibas.i18n.prop("bo_assetitem_invaliddate"),
-                                                bindingValue: {
-                                                    path: "invalidDate",
-                                                    type: new sap.extension.data.Date(),
-                                                }
-                                            }),
-                                        ],
-                                    }),
                                     new sap.uxap.ObjectPageSubSection("", {
                                         blocks: [
                                             new sap.extension.m.ObjectAttribute("", {
@@ -125,7 +121,12 @@ namespace businesspartner {
                                                 }
                                             }),
                                         ],
-                                    }),
+                                    })
+                                ]
+                            }),
+                            new sap.uxap.ObjectPageSection("", {
+                                title: ibas.i18n.prop("businesspartner_title_others"),
+                                subSections: [
                                     new sap.uxap.ObjectPageSubSection("", {
                                         blocks: [
                                             new sap.extension.m.ObjectAttribute("", {

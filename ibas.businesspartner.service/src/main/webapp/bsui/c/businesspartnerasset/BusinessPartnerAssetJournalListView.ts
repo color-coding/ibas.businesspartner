@@ -34,8 +34,18 @@ namespace businesspartner {
                         items: {
                             path: "/rows",
                             template: new sap.m.ObjectListItem("", {
-                                title: "{name}",
-                                number: "{times} | {amount}",
+                                title: {
+                                    path: "name",
+                                    type: new sap.extension.data.Alphanumeric(),
+                                },
+                                number: {
+                                    path: "amount",
+                                    type: new sap.extension.data.Sum(),
+                                },
+                                numberUnit: {
+                                    path: "times",
+                                    type: new sap.extension.data.Numeric(),
+                                },
                                 markers: new sap.m.ObjectMarker("", {
                                     type: {
                                         path: "activated",
@@ -50,11 +60,28 @@ namespace businesspartner {
                                 }),
                                 attributes: [
                                     new sap.extension.m.ObjectAttribute("", {
-                                        title: ibas.i18n.prop("bo_businesspartnerasset_businesspartnercode")
-                                            + ibas.i18n.prop("bo_businesspartnerasset_code"),
+                                        title: ibas.i18n.prop("bo_businesspartnerasset_code"),
                                         bindingValue: {
-                                            path: "businessPartnerCode",
+                                            path: "code",
                                             type: new sap.extension.data.Alphanumeric(),
+                                            formatter(data: any): string {
+                                                if (typeof data === "string") {
+                                                    if (data.length > 6) {
+                                                        return data.substring(0, 6) + "...";
+                                                    }
+                                                }
+                                                return data;
+                                            },
+                                        },
+                                        active: true,
+                                        press(): void {
+                                            let data: any = this.getBindingContext().getObject();
+                                            if (data instanceof bo.BusinessPartnerAsset) {
+                                                ibas.servicesManager.runLinkService({
+                                                    boCode: bo.BusinessPartnerAsset.BUSINESS_OBJECT_CODE,
+                                                    linkValue: data.code,
+                                                });
+                                            }
                                         }
                                     }),
                                     new component.BusinessPartnerAttribute("", {
@@ -65,16 +92,17 @@ namespace businesspartner {
                                             type: new sap.extension.data.Alphanumeric(),
                                         },
                                         typeProperty: "businessPartnerType",
-                                    }),
-                                    new sap.extension.m.ObjectAttribute("", {
-                                        title: ibas.i18n.prop("bo_businesspartnerasset_code"),
-                                        customContent: new sap.m.Text("", {
-                                            wrapping: false,
-                                            text: {
-                                                path: "code",
-                                                type: new sap.extension.data.Alphanumeric(),
+                                        active: true,
+                                        press(): void {
+                                            let data: any = this.getBindingContext().getObject();
+                                            if (data instanceof bo.BusinessPartnerAsset) {
+                                                ibas.servicesManager.runLinkService({
+                                                    boCode: data.businessPartnerType === bo.emBusinessPartnerType.SUPPLIER ?
+                                                        bo.Supplier.BUSINESS_OBJECT_CODE : bo.Customer.BUSINESS_OBJECT_CODE,
+                                                    linkValue: data.businessPartnerCode,
+                                                });
                                             }
-                                        })
+                                        }
                                     }),
                                     new sap.extension.m.ObjectAttribute("", {
                                         title: ibas.i18n.prop("bo_businesspartnerasset_validdate"),
@@ -114,6 +142,10 @@ namespace businesspartner {
                         showHeader: false,
                         floatingFooter: true,
                         footer: new sap.m.Toolbar("", {
+                            visible: shell.app.privileges.canRun({
+                                id: app.ELEMENT_BUSINESSPARTNER_ASSET_JOURNAL_EDIT.id,
+                                name: app.ELEMENT_BUSINESSPARTNER_ASSET_JOURNAL_EDIT.name,
+                            }),
                             content: [
                                 new sap.m.ToolbarSpacer(""),
                                 new sap.m.Button("", {
@@ -136,36 +168,57 @@ namespace businesspartner {
                         rows: "{/rows}",
                         columns: [
                             new sap.extension.table.Column("", {
-                                label: ibas.i18n.prop("bo_businesspartnerassetjournal_basedocumenttype"),
-                                template: new sap.extension.m.Text("", {
-                                }).bindProperty("text", {
-                                    path: "baseDocumentType",
-                                    formatter(data: any): any {
-                                        return ibas.businessobjects.describe(data);
-                                    }
-                                }),
-                            }),
-                            new sap.extension.table.Column("", {
-                                label: ibas.i18n.prop("bo_businesspartnerassetjournal_basedocumententry"),
-                                template: new sap.extension.m.Text("", {
-                                }).bindProperty("text", {
-                                    path: "baseDocumentEntry",
-                                }),
-                            }),
-                            new sap.extension.table.Column("", {
-                                label: ibas.i18n.prop("bo_businesspartnerassetjournal_basedocumentlineid"),
-                                template: new sap.extension.m.Text("", {
-                                }).bindProperty("text", {
-                                    path: "baseDocumentLineId",
-                                })
-                            }),
-                            new sap.extension.table.Column("", {
                                 label: ibas.i18n.prop("bo_businesspartnerassetjournal_direction"),
                                 template: new sap.extension.m.Text("", {
                                 }).bindProperty("text", {
                                     path: "direction",
                                     type: new sap.extension.data.Direction(true)
-                                })
+                                }),
+                                width: "6rem",
+                            }),
+                            new sap.extension.table.Column("", {
+                                label: ibas.i18n.prop("bo_businesspartnerassetjournal_createdate"),
+                                template: new sap.extension.m.Text("", {
+                                }).bindProperty("bindingValue", {
+                                    path: "createDate",
+                                    type: new sap.extension.data.Date()
+                                }),
+                            }),
+                            new sap.extension.table.Column("", {
+                                label: ibas.i18n.prop("bo_businesspartnerassetjournal_basedocument"),
+                                template: new sap.extension.m.Link("", {
+                                    press(): void {
+                                        let data: any = this.getBindingContext().getObject();
+                                        if (data instanceof bo.BusinessPartnerAssetJournal && data.baseDocumentEntry > 0) {
+                                            ibas.servicesManager.runLinkService({
+                                                boCode: data.baseDocumentType,
+                                                linkValue: data.baseDocumentEntry.toString(),
+                                            });
+                                        }
+                                    }
+                                }).bindProperty("text", {
+                                    parts: [
+                                        {
+                                            path: "baseDocumentType",
+                                            type: new sap.extension.data.Alphanumeric(),
+                                        },
+                                        {
+                                            path: "baseDocumentEntry",
+                                            type: new sap.extension.data.Numeric(),
+                                        },
+                                        {
+                                            path: "baseDocumentLineId",
+                                            type: new sap.extension.data.Numeric(),
+                                        }
+                                    ],
+                                    formatter(type: string, entry: number, lineId: number): string {
+                                        if (ibas.strings.isEmpty(type)) {
+                                            return "";
+                                        }
+                                        return ibas.businessobjects.describe(ibas.strings.format("{[{0}].[DocEntry = {1}]}", type, entry));
+                                    }
+                                }),
+                                width: "16rem",
                             }),
                             new sap.extension.table.Column("", {
                                 label: ibas.i18n.prop("bo_businesspartnerassetjournal_amount"),
@@ -184,6 +237,17 @@ namespace businesspartner {
                                 })
                             }),
                         ],
+                        rowSettingsTemplate: new sap.ui.table.RowSettings("", {
+                            highlight: {
+                                path: "direction",
+                                formatter(direction: ibas.emDirection): sap.ui.core.ValueState {
+                                    if (direction === ibas.emDirection.IN) {
+                                        return sap.ui.core.ValueState.Success;
+                                    }
+                                    return sap.ui.core.ValueState.Warning;
+                                }
+                            }
+                        }),
                         nextDataSet(event: sap.ui.base.Event): void {
                             // 查询下一个数据集
                             let data: any = event.getParameter("data");

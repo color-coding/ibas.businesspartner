@@ -31,11 +31,12 @@ namespace businesspartner {
                         rows: "{/rows}",
                         columns: [
                             new sap.extension.table.DataColumn("", {
-                                label: ibas.i18n.prop("bo_businesspartnerasset_docentry"),
-                                template: new sap.extension.m.Text("", {
+                                label: ibas.i18n.prop("bo_businesspartnerasset_code"),
+                                template: new sap.extension.m.DataLink("", {
+                                    objectCode: bo.BusinessPartnerAsset.BUSINESS_OBJECT_CODE,
                                 }).bindProperty("bindingValue", {
-                                    path: "docEntry",
-                                    type: new sap.extension.data.Numeric()
+                                    path: "code",
+                                    type: new sap.extension.data.Alphanumeric()
                                 }),
                             }),
                             new sap.extension.table.DataColumn("", {
@@ -52,7 +53,18 @@ namespace businesspartner {
                             new sap.extension.table.DataColumn("", {
                                 label: ibas.i18n.prop("bo_businesspartnerasset_businesspartnercode")
                                     + ibas.i18n.prop("bo_businesspartnerasset_code"),
-                                template: new sap.extension.m.Text("", {
+                                template: new sap.extension.m.Link("", {
+                                    press(): void {
+                                        let data: any = this.getBindingContext().getObject();
+                                        if (data instanceof bo.BusinessPartnerAsset) {
+                                            ibas.servicesManager.runLinkService({
+                                                boCode: data.businessPartnerType === bo.emBusinessPartnerType.SUPPLIER ?
+                                                    bo.Supplier.BUSINESS_OBJECT_CODE : data.businessPartnerType === bo.emBusinessPartnerType.CUSTOMER
+                                                        ? bo.Customer.BUSINESS_OBJECT_CODE : bo.Lead.BUSINESS_OBJECT_CODE,
+                                                linkValue: data.businessPartnerCode,
+                                            });
+                                        }
+                                    }
                                 }).bindProperty("bindingValue", {
                                     path: "businessPartnerCode",
                                     type: new sap.extension.data.Alphanumeric()
@@ -166,6 +178,14 @@ namespace businesspartner {
                                     icon: "sap-icon://create",
                                     press: function (): void {
                                         that.fireViewEvents(that.newDataEvent);
+                                    }
+                                }),
+                                new sap.m.Button("", {
+                                    text: ibas.i18n.prop("shell_data_view"),
+                                    type: sap.m.ButtonType.Transparent,
+                                    icon: "sap-icon://display",
+                                    press(): void {
+                                        that.fireViewEvents(that.viewDataEvent, that.table.getSelecteds().firstOrDefault());
                                     }
                                 }),
                                 new sap.m.Button("", {

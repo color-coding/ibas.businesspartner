@@ -61,6 +61,7 @@ namespace businesspartner {
                 this.register(new AssetItemChooseServiceMapping());
                 this.register(new AssetItemLinkServiceMapping());
                 this.register(new BusinessPartnerAssetChooseServiceMapping());
+                this.register(new BusinessPartnerAssetLinkServiceMapping());
                 this.register(new LeadChooseServiceMapping());
                 this.register(new LeadLinkServiceMapping());
                 this.register(new PaymentTermChooseServiceMapping());
@@ -77,6 +78,8 @@ namespace businesspartner {
                 this.register(new AddressEditServiceMapping());
                 // 注册常驻应用
 
+                // 注册权限元素
+                this.register(ELEMENT_BUSINESSPARTNER_ASSET_JOURNAL_EDIT);
             }
             /** 运行 */
             run(): void {

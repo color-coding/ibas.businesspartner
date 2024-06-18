@@ -109,6 +109,9 @@ namespace businesspartner {
                     case app.BusinessPartnerAssetEditApp.APPLICATION_ID:
                         view = new c.BusinessPartnerAssetEditView();
                         break;
+                    case app.BusinessPartnerAssetViewApp.APPLICATION_ID:
+                        view = new c.BusinessPartnerAssetViewView();
+                        break;
                     case app.BusinessPartnerAssetJournalListApp.APPLICATION_ID:
                         view = new c.BusinessPartnerAssetJournalListView();
                         break;
