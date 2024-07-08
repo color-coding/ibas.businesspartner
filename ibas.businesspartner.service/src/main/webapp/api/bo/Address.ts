@@ -23,6 +23,9 @@ namespace businesspartner {
             /** 名称 */
             name: string;
 
+            /** 组 */
+            group: string;
+
             /** 街道 */
             street: string;
 

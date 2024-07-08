@@ -170,6 +170,19 @@ namespace businesspartner {
                                     new sap.uxap.ObjectPageSubSection("", {
                                         blocks: [
                                             new sap.extension.m.RepositoryObjectAttribute("", {
+                                                title: ibas.i18n.prop("bo_supplier_paymentcode"),
+                                                bindingValue: {
+                                                    path: "paymentCode",
+                                                    type: new sap.extension.data.Alphanumeric(),
+                                                },
+                                                repository: bo.BORepositoryBusinessPartner,
+                                                dataInfo: {
+                                                    type: bo.PaymentTerm,
+                                                    key: bo.PaymentTerm.PROPERTY_CODE_NAME,
+                                                    text: bo.PaymentTerm.PROPERTY_NAME_NAME,
+                                                },
+                                            }),
+                                            new sap.extension.m.RepositoryObjectAttribute("", {
                                                 title: ibas.i18n.prop("bo_supplier_pricelist"),
                                                 repository: materials.bo.BORepositoryMaterials,
                                                 dataInfo: {

@@ -81,6 +81,18 @@ namespace businesspartner {
                                 }),
                             }),
                             new sap.extension.table.DataColumn("", {
+                                label: ibas.i18n.prop("bo_address_group"),
+                                template: new sap.extension.m.PropertyText("", {
+                                    dataInfo: {
+                                        code: bo.Address.BUSINESS_OBJECT_CODE,
+                                    },
+                                    propertyName: "group",
+                                }).bindProperty("bindingValue", {
+                                    path: "group",
+                                    type: new sap.extension.data.Alphanumeric()
+                                }),
+                            }),
+                            new sap.extension.table.DataColumn("", {
                                 label: ibas.i18n.prop("bo_address_activated"),
                                 template: new sap.extension.m.Text("", {
                                 }).bindProperty("bindingValue", {

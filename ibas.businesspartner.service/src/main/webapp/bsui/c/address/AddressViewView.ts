@@ -189,6 +189,17 @@ namespace businesspartner {
                                     }),
                                 ]
                             }),
+                            new sap.extension.m.PropertyObjectAttribute("", {
+                                title: ibas.i18n.prop("bo_contactperson_group"),
+                                bindingValue: {
+                                    path: "group",
+                                    type: new sap.extension.data.Alphanumeric(),
+                                },
+                                dataInfo: {
+                                    code: bo.Address.BUSINESS_OBJECT_CODE,
+                                },
+                                propertyName: "group",
+                            }),
                         ],
                         sections: [
                             new sap.uxap.ObjectPageSection("", {

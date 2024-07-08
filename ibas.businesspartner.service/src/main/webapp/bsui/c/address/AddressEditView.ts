@@ -139,6 +139,18 @@ namespace businesspartner {
                                 path: "activated",
                                 type: new sap.extension.data.YesNo()
                             }),
+                            new sap.m.Label("", { text: ibas.i18n.prop("bo_address_group") }),
+                            new sap.extension.m.PropertySelect("", {
+                                dataInfo: {
+                                    code: bo.Address.BUSINESS_OBJECT_CODE,
+                                },
+                                propertyName: "group",
+                            }).bindProperty("bindingValue", {
+                                path: "group",
+                                type: new sap.extension.data.Alphanumeric({
+                                    maxLength: 8
+                                })
+                            }),
                         ],
                     });
                     let formMiddle: sap.ui.layout.form.SimpleForm = new sap.ui.layout.form.SimpleForm("", {

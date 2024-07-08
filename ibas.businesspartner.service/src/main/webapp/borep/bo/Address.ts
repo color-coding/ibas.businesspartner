@@ -61,6 +61,17 @@ namespace businesspartner {
                 this.setProperty(Address.PROPERTY_NAME_NAME, value);
             }
 
+            /** 映射的属性名称-组 */
+            static PROPERTY_GROUP_NAME: string = "Group";
+            /** 获取-组 */
+            get group(): string {
+                return this.getProperty<string>(Address.PROPERTY_GROUP_NAME);
+            }
+            /** 设置-组 */
+            set group(value: string) {
+                this.setProperty(Address.PROPERTY_GROUP_NAME, value);
+            }
+
             /** 映射的属性名称-街道 */
             static PROPERTY_STREET_NAME: string = "Street";
             /** 获取-街道 */

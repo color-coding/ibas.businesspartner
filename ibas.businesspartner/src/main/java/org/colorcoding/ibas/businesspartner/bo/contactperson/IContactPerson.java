@@ -69,6 +69,20 @@ public interface IContactPerson extends IBOSimple {
 	void setName(String value);
 
 	/**
+	 * 获取-组
+	 * 
+	 * @return 值
+	 */
+	String getGroup();
+
+	/**
+	 * 设置-组
+	 * 
+	 * @param value 值
+	 */
+	void setGroup(String value);
+
+	/**
 	 * 获取-性别
 	 * 
 	 * @return 值

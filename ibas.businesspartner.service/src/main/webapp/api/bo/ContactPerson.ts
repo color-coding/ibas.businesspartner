@@ -23,6 +23,9 @@ namespace businesspartner {
             /** 名称 */
             name: string;
 
+            /** 组 */
+            group: string;
+
             /** 性别 */
             gender: emGender;
 

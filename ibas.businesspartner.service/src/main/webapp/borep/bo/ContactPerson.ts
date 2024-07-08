@@ -61,6 +61,17 @@ namespace businesspartner {
                 this.setProperty(ContactPerson.PROPERTY_NAME_NAME, value);
             }
 
+            /** 映射的属性名称-组 */
+            static PROPERTY_GROUP_NAME: string = "Group";
+            /** 获取-组 */
+            get group(): string {
+                return this.getProperty<string>(ContactPerson.PROPERTY_GROUP_NAME);
+            }
+            /** 设置-组 */
+            set group(value: string) {
+                this.setProperty(ContactPerson.PROPERTY_GROUP_NAME, value);
+            }
+
             /** 映射的属性名称-性别 */
             static PROPERTY_GENDER_NAME: string = "Gender";
             /** 获取-性别 */

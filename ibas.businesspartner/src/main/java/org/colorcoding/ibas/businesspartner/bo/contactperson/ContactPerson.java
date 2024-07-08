@@ -182,6 +182,37 @@ public class ContactPerson extends BusinessObject<ContactPerson>
 	}
 
 	/**
+	 * 属性名称-组
+	 */
+	private static final String PROPERTY_GROUP_NAME = "Group";
+
+	/**
+	 * 组代码 属性
+	 */
+	@DbField(name = "Group", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME, primaryKey = false)
+	public static final IPropertyInfo<String> PROPERTY_GROUP = registerProperty(PROPERTY_GROUP_NAME, String.class,
+			MY_CLASS);
+
+	/**
+	 * 获取-组
+	 * 
+	 * @return 值
+	 */
+	@XmlElement(name = PROPERTY_GROUP_NAME)
+	public final String getGroup() {
+		return this.getProperty(PROPERTY_GROUP);
+	}
+
+	/**
+	 * 设置-组
+	 * 
+	 * @param value 值
+	 */
+	public final void setGroup(String value) {
+		this.setProperty(PROPERTY_GROUP, value);
+	}
+
+	/**
 	 * 属性名称-性别
 	 */
 	private static final String PROPERTY_GENDER_NAME = "Gender";
