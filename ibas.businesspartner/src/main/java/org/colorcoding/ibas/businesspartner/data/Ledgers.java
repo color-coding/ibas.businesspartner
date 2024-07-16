@@ -47,6 +47,10 @@ public class Ledgers extends org.colorcoding.ibas.accounting.data.Ledgers {
 	 */
 	public static final String LEDGER_PURCHASE_EXPENSE_CLEARING_ACCOUNT = "GL-BP-P7";
 	/**
+	 * 运费费用科目
+	 */
+	public static final String LEDGER_PURCHASE_FREIGHT_COST_ACCOUNT = "GL-BP-P8";
+	/**
 	 * 费用科目_外国
 	 */
 	public static final String LEDGER_PURCHASE_EXPENSE_ACCOUNT_FOREIGN = "";
@@ -167,6 +171,10 @@ public class Ledgers extends org.colorcoding.ibas.accounting.data.Ledgers {
 	 * 已装运货物科目
 	 */
 	public static final String LEDGER_SALES_SHIPPED_GOODS_ACCOUNT = "GL-BP-S9";
+	/**
+	 * 运费收入科目
+	 */
+	public static final String LEDGER_SALES_FREIGHT_REVENUE_ACCOUNT = "GL-BP-SA";
 
 	/**
 	 * 收款方式科目
