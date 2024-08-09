@@ -24,6 +24,7 @@ import org.colorcoding.ibas.bobas.ownership.IDataOwnership;
 import org.colorcoding.ibas.bobas.rule.IBusinessRule;
 import org.colorcoding.ibas.bobas.rule.common.BusinessRuleMinValue;
 import org.colorcoding.ibas.bobas.rule.common.BusinessRuleRequired;
+import org.colorcoding.ibas.bobas.rule.common.BusinessRuleTrim;
 import org.colorcoding.ibas.businesspartner.MyConfiguration;
 import org.colorcoding.ibas.businesspartner.data.emBusinessPartnerType;
 
@@ -1315,7 +1316,9 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset>
 
 	@Override
 	protected IBusinessRule[] registerRules() {
-		return new IBusinessRule[] { // 注册的业务规则
+		return new IBusinessRule[] {
+				// 注册的业务规则
+				new BusinessRuleTrim(PROPERTY_CODE), // 去除两边空格
 				new BusinessRuleRequired(PROPERTY_CODE), // 要求有值
 				new BusinessRuleRequired(PROPERTY_BUSINESSPARTNERTYPE), // 要求有值
 				new BusinessRuleRequired(PROPERTY_BUSINESSPARTNERCODE), // 要求有值
