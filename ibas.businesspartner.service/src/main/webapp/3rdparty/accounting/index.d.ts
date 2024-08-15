@@ -112,7 +112,9 @@ declare namespace accounting {
             /** 销项税 */
             OUTPUT = 0,
             /** 进项税 */
-            INPUT = 1
+            INPUT = 1,
+            /** 运费税 */
+            FREIGHT = 2
         }
         /**
          * 费用状态
@@ -246,6 +248,24 @@ declare namespace accounting {
             name: string;
             rate: number;
         }[]) => void): void;
+    }
+    namespace currency {
+        interface ICurrencyValue {
+            /** 货币 */
+            currency: string;
+            /** 金额 */
+            amount: number;
+        }
+        /**
+         * 兑换货币（默认币种为本币）
+         * @param sourceCurrency 原币种
+         * @param amount 金额
+         * @param targetCurrency 目标币种
+         * @param onCompeleted 兑换完成
+         * @param date 日期
+         */
+        function exchange(source: ICurrencyValue, targetCurrency: string, onCompeleted: (result: ICurrencyValue | Error) => void, date?: Date): void;
+        function exchange(sources: ICurrencyValue[], targetCurrency: string, onCompeleted: (results: ICurrencyValue[] | Error) => void, date?: Date): void;
     }
 }
 /**
@@ -571,6 +591,8 @@ declare namespace accounting {
             createActionId: string;
             /** 更新动作标识 */
             updateActionId: string;
+            /** 已引用 */
+            referenced: ibas.emYesNo;
         }
     }
 }
@@ -2608,6 +2630,12 @@ declare namespace accounting {
             get updateActionId(): string;
             /** 设置-更新动作标识 */
             set updateActionId(value: string);
+            /** 映射的属性名称-已引用 */
+            static PROPERTY_REFERENCED_NAME: string;
+            /** 获取-已引用 */
+            get referenced(): ibas.emYesNo;
+            /** 设置-已引用 */
+            set referenced(value: ibas.emYesNo);
             /** 初始化数据 */
             protected init(): void;
         }
