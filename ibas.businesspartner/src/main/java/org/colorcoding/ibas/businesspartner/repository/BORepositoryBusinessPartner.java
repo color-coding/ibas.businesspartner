@@ -805,7 +805,9 @@ public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 	 */
 	public IOperationResult<ILead> saveLead(ILead bo) {
 		return new OperationResult<ILead>(this.saveLead((Lead) bo, this.getUserToken()));
-	} // --------------------------------------------------------------------------------------------//
+	}
+
+	// --------------------------------------------------------------------------------------------//
 
 	/**
 	 * 查询-付款条款
