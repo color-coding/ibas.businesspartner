@@ -8,6 +8,7 @@ import org.colorcoding.ibas.bobas.common.Criteria;
 import org.colorcoding.ibas.bobas.common.ICondition;
 import org.colorcoding.ibas.bobas.common.ICriteria;
 import org.colorcoding.ibas.bobas.data.Decimal;
+import org.colorcoding.ibas.bobas.data.emDocumentStatus;
 import org.colorcoding.ibas.bobas.i18n.I18N;
 import org.colorcoding.ibas.bobas.logic.BusinessLogic;
 import org.colorcoding.ibas.bobas.logic.BusinessLogicException;
@@ -86,6 +87,13 @@ public class DocumentPaidTotalService extends BusinessLogic<IDocumentPaidTotalCo
 			total = Decimal.ZERO;
 		}
 		this.getBeAffected().setPaidTotal(total.add(contract.getAmount()));
+		if (this.getBeAffected().isSmartDocumentStatus() == true) {
+			// 处理单据状态
+			if (this.getBeAffected().getDocumentStatus() == emDocumentStatus.FINISHED
+					&& this.getBeAffected().getPaidTotal().compareTo(this.getBeAffected().getDocumentTotal()) < 0) {
+				this.getBeAffected().setDocumentStatus(emDocumentStatus.RELEASED);
+			}
+		}
 	}
 
 	@Override

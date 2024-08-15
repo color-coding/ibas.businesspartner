@@ -49,6 +49,12 @@ namespace businesspartner {
                                 valueHelpRequest: function (): void {
                                     that.fireViewEvents(that.chooseAssetItemEvent);
                                 },
+                                editable: {
+                                    path: "referenced",
+                                    formatter(referenced: ibas.emYesNo.YES): boolean {
+                                        return referenced === ibas.emYesNo.YES ? false : true;
+                                    }
+                                }
                             }).bindProperty("bindingValue", {
                                 path: "assetCode",
                                 type: new sap.extension.data.Alphanumeric({
@@ -64,15 +70,14 @@ namespace businesspartner {
                                 })
                             }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnerasset_businesspartnercode") }),
-                            new sap.m.FlexBox("", {
+                            new sap.m.HBox("", {
+                                width: "100%",
+                                renderType: sap.m.FlexRendertype.Bare,
                                 items: [
                                     // 客户
                                     new sap.extension.m.RepositoryInput("", {
+                                        width: "60%",
                                         showValueHelp: true,
-                                        width: "100%",
-                                        layoutData: new sap.m.FlexItemData("", {
-                                            growFactor: 1,
-                                        }),
                                         repository: bo.BORepositoryBusinessPartner,
                                         dataInfo: {
                                             type: bo.Customer,
@@ -81,6 +86,12 @@ namespace businesspartner {
                                         },
                                         valueHelpRequest: function (): void {
                                             that.fireViewEvents(that.chooseBusinessPartnerEvent);
+                                        },
+                                        editable: {
+                                            path: "referenced",
+                                            formatter(referenced: ibas.emYesNo.YES): boolean {
+                                                return referenced === ibas.emYesNo.YES ? false : true;
+                                            }
                                         }
                                     }).bindProperty("visible", {
                                         path: "businessPartnerType",
@@ -96,11 +107,8 @@ namespace businesspartner {
                                     }),
                                     // 供应商
                                     new sap.extension.m.RepositoryInput("", {
+                                        width: "60%",
                                         showValueHelp: true,
-                                        width: "100%",
-                                        layoutData: new sap.m.FlexItemData("", {
-                                            growFactor: 1,
-                                        }),
                                         repository: bo.BORepositoryBusinessPartner,
                                         dataInfo: {
                                             type: bo.Supplier,
@@ -109,6 +117,12 @@ namespace businesspartner {
                                         },
                                         valueHelpRequest: function (): void {
                                             that.fireViewEvents(that.chooseBusinessPartnerEvent);
+                                        },
+                                        editable: {
+                                            path: "referenced",
+                                            formatter(referenced: ibas.emYesNo.YES): boolean {
+                                                return referenced === ibas.emYesNo.YES ? false : true;
+                                            }
                                         }
                                     }).bindProperty("visible", {
                                         path: "businessPartnerType",
@@ -122,25 +136,32 @@ namespace businesspartner {
                                         path: "businessPartnerCode",
                                         type: new sap.extension.data.Alphanumeric()
                                     }),
+                                    // 类型
+                                    new sap.extension.m.EnumSelect("", {
+                                        width: "40%",
+                                        items: [
+                                            new sap.extension.m.SelectItem("", {
+                                                key: bo.emBusinessPartnerType.CUSTOMER,
+                                                text: ibas.enums.describe(bo.emBusinessPartnerType, bo.emBusinessPartnerType.CUSTOMER)
+                                            }),
+                                            new sap.extension.m.SelectItem("", {
+                                                key: bo.emBusinessPartnerType.SUPPLIER,
+                                                text: ibas.enums.describe(bo.emBusinessPartnerType, bo.emBusinessPartnerType.SUPPLIER)
+                                            })
+                                        ],
+                                        editable: {
+                                            path: "referenced",
+                                            formatter(referenced: ibas.emYesNo.YES): boolean {
+                                                return referenced === ibas.emYesNo.YES ? false : true;
+                                            }
+                                        }
+                                    }).bindProperty("bindingValue", {
+                                        path: "businessPartnerType",
+                                        type: new sap.extension.data.Enum({
+                                            enumType: bo.emBusinessPartnerType
+                                        })
+                                    }).addStyleClass("sapUiTinyMarginBegin"),
                                 ]
-                            }),
-                            new sap.extension.m.EnumSelect("", {
-                                items: [
-                                    new sap.extension.m.SelectItem("", {
-                                        key: bo.emBusinessPartnerType.CUSTOMER,
-                                        text: ibas.enums.describe(bo.emBusinessPartnerType, bo.emBusinessPartnerType.CUSTOMER)
-                                    }),
-                                    new sap.extension.m.SelectItem("", {
-                                        key: bo.emBusinessPartnerType.SUPPLIER,
-                                        text: ibas.enums.describe(bo.emBusinessPartnerType, bo.emBusinessPartnerType.SUPPLIER)
-                                    })
-                                ]
-                                // enumType: bo.emBusinessPartnerType
-                            }).bindProperty("bindingValue", {
-                                path: "businessPartnerType",
-                                type: new sap.extension.data.Enum({
-                                    enumType: bo.emBusinessPartnerType
-                                })
                             }),
                             new sap.m.Toolbar("", { visible: false }),
                             new sap.m.Label("", { text: ibas.i18n.prop("bo_businesspartnerasset_activated") }),
