@@ -377,6 +377,7 @@
         "bo_paymentterm_dataowner": "数据所有者",
         "bo_paymentterm_organization": "数据所属组织",
         "bo_paymentterm_remarks": "备注",
+        "bo_paymentterm_baseondate": "基于日期",
         "bo_paymentterm_closing_delimiter": "----结束----"
     },
     {

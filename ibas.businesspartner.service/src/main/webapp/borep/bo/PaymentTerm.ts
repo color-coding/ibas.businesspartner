@@ -284,6 +284,33 @@ namespace businesspartner {
                 this.objectCode = ibas.config.applyVariables(PaymentTerm.BUSINESS_OBJECT_CODE);
                 this.activated = ibas.emYesNo.YES;
             }
+
+            /** 计算条款日期 */
+            calculateTermDate(baseOnDate: Date): Date {
+                if (!(baseOnDate instanceof Date)) {
+                    throw new Error(ibas.i18n.prop("sys_invalid_parameter", ibas.i18n.prop("bo_paymentterm_baseondate")));
+                }
+                if (this.startAt === bo.emPayTermDueType.MONTH_START) {
+                    // 月初
+                    baseOnDate = new Date(baseOnDate.getFullYear(), baseOnDate.getMonth(), 1);
+                } else if (this.startAt === bo.emPayTermDueType.MONTH_HALF) {
+                    // 月中
+                    let monthEnd: Date = new Date(baseOnDate.getFullYear(), baseOnDate.getMonth() + 1, 0);
+                    baseOnDate = new Date(monthEnd.getFullYear(), monthEnd.getMonth(), monthEnd.getDate() / 2);
+                } else if (this.startAt === bo.emPayTermDueType.MONTH_END) {
+                    // 月末
+                    baseOnDate = new Date(baseOnDate.getFullYear(), baseOnDate.getMonth() + 1, 0);
+                }
+                // 附加月
+                if (this.extraMonth > 0) {
+                    baseOnDate = new Date(baseOnDate.getFullYear(), baseOnDate.getMonth() + this.extraMonth, baseOnDate.getDate());
+                }
+                // 附加天
+                if (this.extraDays > 0) {
+                    baseOnDate = new Date(baseOnDate.getFullYear(), baseOnDate.getMonth(), baseOnDate.getDate() + this.extraDays);
+                }
+                return baseOnDate;
+            }
         }
 
 

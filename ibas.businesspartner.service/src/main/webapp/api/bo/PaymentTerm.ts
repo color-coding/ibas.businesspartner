@@ -57,7 +57,8 @@ namespace businesspartner {
             organization: string;
             /** 备注 */
             remarks: string;
-
+            /** 计算条款日期 */
+            calculateTermDate(baseOnDate: Date): Date;
         }
 
 
