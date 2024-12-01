@@ -102,6 +102,14 @@ public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 					condition.setRelationship(ConditionRelationship.OR);
 				}
 			}
+			for (Lead item : this.fetchLead(bpCriteria, token).getResultObjects()) {
+				condition = cCriteria.getConditions().create();
+				condition.setAlias("CardCode");
+				condition.setValue(item.getCode());
+				if (cCriteria.getConditions().size() > 1) {
+					condition.setRelationship(ConditionRelationship.OR);
+				}
+			}
 			if (cCriteria.getConditions().size() > 1) {
 				condition = cCriteria.getConditions().firstOrDefault();
 				condition.setBracketOpen(condition.getBracketOpen() + 1);

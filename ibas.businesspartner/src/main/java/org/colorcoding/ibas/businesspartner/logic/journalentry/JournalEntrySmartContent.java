@@ -23,7 +23,7 @@ public class JournalEntrySmartContent extends org.colorcoding.ibas.accounting.lo
 	@Override
 	public Object getSourceDataPropertyValue(String property) {
 		if (Ledgers.CONDITION_PROPERTY_CUSTOMER_GROUP.equals(property)) {
-			String partner = String.valueOf(super.getSourceDataPropertyValue(Ledgers.CONDITION_PROPERTY_CUSTOMER));
+			String partner = String.valueOf(this.getSourceDataPropertyValue(Ledgers.CONDITION_PROPERTY_CUSTOMER));
 			if (!JournalEntrySmartContent.VALUE_NULL.equalsIgnoreCase(partner)) {
 				Criteria criteria = new Criteria();
 				criteria.setResultCount(1);
@@ -41,7 +41,7 @@ public class JournalEntrySmartContent extends org.colorcoding.ibas.accounting.lo
 				}
 			}
 		} else if (Ledgers.CONDITION_PROPERTY_SUPPLIER_GROUP.equals(property)) {
-			String partner = String.valueOf(super.getSourceDataPropertyValue(Ledgers.CONDITION_PROPERTY_SUPPLIER));
+			String partner = String.valueOf(this.getSourceDataPropertyValue(Ledgers.CONDITION_PROPERTY_SUPPLIER));
 			if (!JournalEntrySmartContent.VALUE_NULL.equalsIgnoreCase(partner)) {
 				Criteria criteria = new Criteria();
 				criteria.setResultCount(1);
@@ -60,7 +60,7 @@ public class JournalEntrySmartContent extends org.colorcoding.ibas.accounting.lo
 			}
 		} else if (Ledgers.CONDITION_PROPERTY_ORGANIZATION_CATEGORY.equals(property)) {
 			String organization = String
-					.valueOf(super.getSourceDataPropertyValue(Ledgers.CONDITION_PROPERTY_ORGANIZATION));
+					.valueOf(this.getSourceDataPropertyValue(Ledgers.CONDITION_PROPERTY_ORGANIZATION));
 			if (!JournalEntrySmartContent.VALUE_NULL.equalsIgnoreCase(organization)) {
 				Criteria criteria = new Criteria();
 				criteria.setResultCount(1);

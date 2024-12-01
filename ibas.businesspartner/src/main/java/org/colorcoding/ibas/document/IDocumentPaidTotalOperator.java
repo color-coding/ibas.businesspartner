@@ -37,13 +37,13 @@ public interface IDocumentPaidTotalOperator extends IDocumentOperatingTarget, IB
 			// 被删除
 			if (Decimal.ZERO.compareTo(this.getPaidTotal()) < 0) {
 				throw new BusinessRuleException(I18N.prop("msg_bp_document_paided_not_allowed_deleted",
-						String.format("{[%s].[DocEntry = %s]%s}", this.getObjectCode(), this.getDocEntry())));
+						String.format("{[%s].[DocEntry = %s]}", this.getObjectCode(), this.getDocEntry())));
 			}
 		} else if (this instanceof IBOTagCanceled && ((IBOTagCanceled) this).getCanceled() == emYesNo.YES) {
 			// 被取消
 			if (Decimal.ZERO.compareTo(this.getPaidTotal()) < 0) {
 				throw new BusinessRuleException(I18N.prop("msg_bp_document_paided_not_allowed_canceled",
-						String.format("{[%s].[DocEntry = %s]%s}", this.getObjectCode(), this.getDocEntry())));
+						String.format("{[%s].[DocEntry = %s]}", this.getObjectCode(), this.getDocEntry())));
 			}
 		}
 	}

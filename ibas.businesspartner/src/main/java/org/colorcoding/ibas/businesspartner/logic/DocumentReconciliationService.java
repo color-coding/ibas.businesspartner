@@ -96,6 +96,9 @@ public class DocumentReconciliationService
 	@Override
 	protected void revoke(IDocumentReconciliationContract contract) {
 		IInternalReconciliation reconciliation = this.getBeAffected();
+		if (reconciliation.getReferenced() == emYesNo.YES) {
+			reconciliation.setReferenced(emYesNo.NO);
+		}
 		reconciliation.delete();
 	}
 
