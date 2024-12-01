@@ -29,6 +29,8 @@ declare namespace materials {
         const CONFIG_ITEM_DOCUMENT_LINE_DISPLAY_INVENTORY: string;
         /** 配置项目-启用非库存物料交易 */
         const CONFIG_ITEM_ENABLE_NON_INVENTORY_ITEM_TRANSACTIONS: string;
+        /** 配置项目-历史价格的默认单据（; 分割） */
+        const CONFIG_ITEM_DEFAULT_HISTORICAL_PRICE_DOCUMENTS: string;
         /**
          * 获取此模块配置
          * @param key 配置项
@@ -1563,6 +1565,8 @@ declare namespace materials {
             dataOwner: number;
             /** 数据所属组织 */
             organization: string;
+            /** 质检方案 */
+            qcSchema: string;
             /** 可用量（库存+已订购-已承诺） */
             onAvailable(): number;
         }
@@ -1703,7 +1707,7 @@ declare namespace materials {
 declare namespace materials {
     namespace bo {
         /** 物料批次项目 */
-        interface IMaterialBatchItem extends ibas.IBOSimple {
+        interface IMaterialBatchItem extends ibas.IBOSimple, ibas.IBOUserFields {
             /** 批次编码 */
             batchCode: string;
             /** 数量 */
@@ -2368,7 +2372,7 @@ declare namespace materials {
 declare namespace materials {
     namespace bo {
         /** 物料序列项目 */
-        interface IMaterialSerialItem extends ibas.IBOSimple {
+        interface IMaterialSerialItem extends ibas.IBOSimple, ibas.IBOUserFields {
             /** 序列编码 */
             serialCode: string;
             /** 基于类型 */
@@ -2959,6 +2963,8 @@ declare namespace materials {
             schedulable: ibas.emYesNo;
             /** 可预留 */
             reservable: ibas.emYesNo;
+            /** 废料仓 */
+            scrap: ibas.emYesNo;
             /** 已引用 */
             referenced: ibas.emYesNo;
             /** 已删除 */
@@ -7047,6 +7053,12 @@ declare namespace materials {
             get organization(): string;
             /** 设置-数据所属组织 */
             set organization(value: string);
+            /** 映射的属性名称-质检方案 */
+            static PROPERTY_QCSCHEMA_NAME: string;
+            /** 获取-质检方案 */
+            get qcSchema(): string;
+            /** 设置-质检方案 */
+            set qcSchema(value: string);
             /** 初始化数据 */
             protected init(): void;
             /** 重置 */
@@ -9315,6 +9327,12 @@ declare namespace materials {
             get reservable(): ibas.emYesNo;
             /** 设置-可预留 */
             set reservable(value: ibas.emYesNo);
+            /** 映射的属性名称-废料仓 */
+            static PROPERTY_SCRAP_NAME: string;
+            /** 获取-废料仓 */
+            get scrap(): ibas.emYesNo;
+            /** 设置-废料仓 */
+            set scrap(value: ibas.emYesNo);
             /** 映射的属性名称-已引用 */
             static PROPERTY_REFERENCED_NAME: string;
             /** 获取-已引用 */
@@ -14493,6 +14511,8 @@ declare namespace materials {
             private chooseGoodsIssueLineWarehouse;
             /** 选择库存发货订单物料价格清单事件 */
             private chooseeGoodsIssueMaterialPriceList;
+            /** 更改行价格 */
+            private changeGoodsIssueLinePrice;
             /** 选择库存发货行批次事件 */
             private chooseGoodsIssueLineMaterialBatch;
             /** 选择库存发货序列事件 */
@@ -14745,7 +14765,7 @@ declare namespace materials {
             /** 选择库存收货订单物料价格清单事件 */
             private chooseeGoodsReceiptMaterialPriceList;
             /** 更改行价格 */
-            private changePurchaseOrderItemPrice;
+            private changeGoodsReceiptLinePrice;
             /** 选择库存收货订单行物料事件 */
             private chooseGoodsReceiptLineWarehouse;
             private batches;
@@ -16382,6 +16402,7 @@ declare namespace materials {
 declare namespace materials {
     namespace app {
         class MaterialGrossProfit extends ibas.Bindable {
+            static BUSINESS_OBJECT_CODE: string;
             constructor(original: IMaterialGrossProfitContract);
             get isDirty(): boolean;
             set isDirty(value: boolean);
