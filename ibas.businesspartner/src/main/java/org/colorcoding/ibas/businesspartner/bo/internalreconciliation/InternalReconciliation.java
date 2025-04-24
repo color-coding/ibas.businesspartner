@@ -17,15 +17,15 @@ import org.colorcoding.ibas.bobas.bo.IBOTagCanceled;
 import org.colorcoding.ibas.bobas.core.IPropertyInfo;
 import org.colorcoding.ibas.bobas.data.ArrayList;
 import org.colorcoding.ibas.bobas.data.DateTime;
-import org.colorcoding.ibas.bobas.data.Decimal;
+import org.colorcoding.ibas.bobas.common.Decimals;
 import org.colorcoding.ibas.bobas.data.List;
 import org.colorcoding.ibas.bobas.data.emYesNo;
 import org.colorcoding.ibas.bobas.i18n.I18N;
 import org.colorcoding.ibas.bobas.logic.IBusinessLogicContract;
 import org.colorcoding.ibas.bobas.logic.IBusinessLogicsHost;
-import org.colorcoding.ibas.bobas.mapping.BusinessObjectUnit;
-import org.colorcoding.ibas.bobas.mapping.DbField;
-import org.colorcoding.ibas.bobas.mapping.DbFieldType;
+import org.colorcoding.ibas.bobas.bo.BusinessObjectUnit;
+import org.colorcoding.ibas.bobas.db.DbField;
+import org.colorcoding.ibas.bobas.db.DbFieldType;
 import org.colorcoding.ibas.bobas.rule.BusinessRuleException;
 import org.colorcoding.ibas.bobas.rule.ICheckRules;
 import org.colorcoding.ibas.businesspartner.MyConfiguration;
@@ -887,12 +887,12 @@ public class InternalReconciliation extends BusinessObject<InternalReconciliatio
 
 	@Override
 	public void check() throws BusinessRuleException {
-		BigDecimal total = Decimal.ZERO;
+		BigDecimal total = Decimals.VALUE_ZERO;
 		for (IInternalReconciliationLine item : this.getInternalReconciliationLines()) {
 			total = total.add(item.getAmount());
 		}
-		total = total.setScale(2, Decimal.ROUNDING_MODE_DEFAULT);
-		if (!Decimal.isZero(total)) {
+		total = total.setScale(2, Decimals.ROUNDING_MODE_DEFAULT);
+		if (!Decimals.isZero(total)) {
 			throw new BusinessRuleException(I18N.prop("msg_bp_reconciliation_amount_not_zero"));
 		}
 	}
@@ -950,7 +950,7 @@ public class InternalReconciliation extends BusinessObject<InternalReconciliatio
 							List<JournalEntryContent> jeContents = new ArrayList<>();
 							for (IInternalReconciliationLine item : InternalReconciliation.this
 									.getInternalReconciliationLines()) {
-								if (item.getAmount().compareTo(Decimal.ZERO) > 0) {
+								if (item.getAmount().compareTo(Decimals.VALUE_ZERO) > 0) {
 									// 借方
 									jeContent = new InternalReconciliationAmount(item);
 									jeContent.setCategory(Category.Debit);
@@ -959,7 +959,7 @@ public class InternalReconciliation extends BusinessObject<InternalReconciliatio
 									jeContent.setCurrency(item.getCurrency());
 									jeContent.setRate(item.getRate());
 									jeContents.add(jeContent);
-								} else if (item.getAmount().compareTo(Decimal.ZERO) < 0) {
+								} else if (item.getAmount().compareTo(Decimals.VALUE_ZERO) < 0) {
 									// 贷方
 									jeContent = new InternalReconciliationAmount(item);
 									jeContent.setCategory(Category.Credit);

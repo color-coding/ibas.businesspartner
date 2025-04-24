@@ -2,9 +2,9 @@ package org.colorcoding.ibas.businesspartner.logic;
 
 import java.util.UUID;
 
-import org.colorcoding.ibas.bobas.data.DateTime;
+import org.colorcoding.ibas.bobas.common.DateTimes;
 import org.colorcoding.ibas.bobas.data.emYesNo;
-import org.colorcoding.ibas.bobas.mapping.LogicContract;
+import org.colorcoding.ibas.bobas.logic.LogicContract;
 import org.colorcoding.ibas.businesspartner.bo.assetitem.IAssetItem;
 import org.colorcoding.ibas.businesspartner.bo.businesspartnerasset.BusinessPartnerAsset;
 import org.colorcoding.ibas.businesspartner.bo.businesspartnerasset.IBusinessPartnerAsset;
@@ -37,8 +37,8 @@ public class BusinessPartnerAssetCreationService
 		businessPartnerAsset.setName(assetItem.getName());
 		businessPartnerAsset.setAmount(assetItem.getFaceAmount());
 		businessPartnerAsset.setTimes(assetItem.getUsingTimes());
-		businessPartnerAsset.setAcquiredDate(DateTime.getToday());
-		businessPartnerAsset.setValidDate(DateTime.getToday());
+		businessPartnerAsset.setAcquiredDate(DateTimes.today());
+		businessPartnerAsset.setValidDate(DateTimes.today());
 		if (assetItem.getValidDays() > 0) {
 			businessPartnerAsset
 					.setInvalidDate(businessPartnerAsset.getAcquiredDate().addDays(assetItem.getValidDays()));

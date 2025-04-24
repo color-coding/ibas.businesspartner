@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 import org.colorcoding.ibas.bobas.bo.IBODocument;
 import org.colorcoding.ibas.bobas.bo.IBOTagCanceled;
-import org.colorcoding.ibas.bobas.data.Decimal;
+import org.colorcoding.ibas.bobas.common.Decimals;
 import org.colorcoding.ibas.bobas.data.emYesNo;
 import org.colorcoding.ibas.bobas.i18n.I18N;
 import org.colorcoding.ibas.bobas.rule.BusinessRuleException;
@@ -35,13 +35,13 @@ public interface IDocumentPaidTotalOperator extends IDocumentOperatingTarget, IB
 	default void check() throws BusinessRuleException {
 		if (this.isDeleted() == true) {
 			// 被删除
-			if (Decimal.ZERO.compareTo(this.getPaidTotal()) < 0) {
+			if (Decimals.VALUE_ZERO.compareTo(this.getPaidTotal()) < 0) {
 				throw new BusinessRuleException(I18N.prop("msg_bp_document_paided_not_allowed_deleted",
 						String.format("{[%s].[DocEntry = %s]}", this.getObjectCode(), this.getDocEntry())));
 			}
 		} else if (this instanceof IBOTagCanceled && ((IBOTagCanceled) this).getCanceled() == emYesNo.YES) {
 			// 被取消
-			if (Decimal.ZERO.compareTo(this.getPaidTotal()) < 0) {
+			if (Decimals.VALUE_ZERO.compareTo(this.getPaidTotal()) < 0) {
 				throw new BusinessRuleException(I18N.prop("msg_bp_document_paided_not_allowed_canceled",
 						String.format("{[%s].[DocEntry = %s]}", this.getObjectCode(), this.getDocEntry())));
 			}

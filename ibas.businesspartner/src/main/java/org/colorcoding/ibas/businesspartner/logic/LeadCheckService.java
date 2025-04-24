@@ -9,7 +9,7 @@ import org.colorcoding.ibas.bobas.common.IOperationResult;
 import org.colorcoding.ibas.bobas.data.emYesNo;
 import org.colorcoding.ibas.bobas.i18n.I18N;
 import org.colorcoding.ibas.bobas.logic.BusinessLogicException;
-import org.colorcoding.ibas.bobas.mapping.LogicContract;
+import org.colorcoding.ibas.bobas.logic.LogicContract;
 import org.colorcoding.ibas.businesspartner.bo.lead.ILead;
 import org.colorcoding.ibas.businesspartner.bo.lead.Lead;
 import org.colorcoding.ibas.businesspartner.repository.BORepositoryBusinessPartner;
@@ -49,15 +49,16 @@ public class LeadCheckService extends BusinessPartnerLogic<ILeadCheckContract, I
 		condition.setAlias(Lead.PROPERTY_DELETED.getName());
 		condition.setOperation(ConditionOperation.IS_NULL);
 		condition.setRelationship(ConditionRelationship.OR);
-		ILead lead = super.fetchBeAffected(criteria, ILead.class);
+		ILead lead = this.fetchBeAffected(ILead.class, criteria);
 		if (lead == null) {
-			BORepositoryBusinessPartner boRepository = new BORepositoryBusinessPartner();
-			boRepository.setRepository(super.getRepository());
-			IOperationResult<ILead> operationResult = boRepository.fetchLead(criteria);
-			if (operationResult.getError() != null) {
-				throw new BusinessLogicException(operationResult.getError());
+			try (BORepositoryBusinessPartner boRepository = new BORepositoryBusinessPartner()) {
+				boRepository.setTransaction(this.getTransaction());
+				IOperationResult<ILead> operationResult = boRepository.fetchLead(criteria);
+				if (operationResult.getError() != null) {
+					throw new BusinessLogicException(operationResult.getError());
+				}
+				lead = operationResult.getResultObjects().firstOrDefault();
 			}
-			lead = operationResult.getResultObjects().firstOrDefault();
 		}
 		// 客户不存在
 		if (lead == null) {
