@@ -1,7 +1,7 @@
 package org.colorcoding.ibas.businesspartner.logic;
 
 import org.colorcoding.ibas.bobas.data.emYesNo;
-import org.colorcoding.ibas.bobas.mapping.LogicContract;
+import org.colorcoding.ibas.bobas.logic.LogicContract;
 import org.colorcoding.ibas.businesspartner.bo.customer.ICustomer;
 
 /**

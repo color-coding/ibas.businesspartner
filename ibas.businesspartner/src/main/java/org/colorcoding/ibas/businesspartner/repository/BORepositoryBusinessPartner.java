@@ -3,13 +3,14 @@ package org.colorcoding.ibas.businesspartner.repository;
 import org.colorcoding.ibas.bobas.common.ConditionOperation;
 import org.colorcoding.ibas.bobas.common.ConditionRelationship;
 import org.colorcoding.ibas.bobas.common.Criteria;
+import org.colorcoding.ibas.bobas.common.DateTimes;
+import org.colorcoding.ibas.bobas.common.Decimals;
 import org.colorcoding.ibas.bobas.common.ICondition;
 import org.colorcoding.ibas.bobas.common.ICriteria;
 import org.colorcoding.ibas.bobas.common.IOperationResult;
 import org.colorcoding.ibas.bobas.common.ISort;
 import org.colorcoding.ibas.bobas.common.OperationResult;
 import org.colorcoding.ibas.bobas.data.DateTime;
-import org.colorcoding.ibas.bobas.data.Decimal;
 import org.colorcoding.ibas.bobas.data.emYesNo;
 import org.colorcoding.ibas.bobas.i18n.I18N;
 import org.colorcoding.ibas.bobas.repository.BORepositoryServiceApplication;
@@ -167,7 +168,7 @@ public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 	 * @return 操作结果
 	 */
 	public OperationResult<Address> fetchAddress(ICriteria criteria, String token) {
-		return super.fetch(this.flushBusinessPartnerCriteria(criteria, token), token, Address.class);
+		return super.fetch(Address.class, this.flushBusinessPartnerCriteria(criteria, token), token);
 	}
 
 	/**
@@ -210,7 +211,7 @@ public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 	 * @return 操作结果
 	 */
 	public OperationResult<BusinessPartnerGroup> fetchBusinessPartnerGroup(ICriteria criteria, String token) {
-		return super.fetch(criteria, token, BusinessPartnerGroup.class);
+		return super.fetch(BusinessPartnerGroup.class, criteria, token);
 	}
 
 	/**
@@ -255,7 +256,7 @@ public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 	 * @return 操作结果
 	 */
 	public OperationResult<ContactPerson> fetchContactPerson(ICriteria criteria, String token) {
-		return super.fetch(this.flushBusinessPartnerCriteria(criteria, token), token, ContactPerson.class);
+		return super.fetch(ContactPerson.class, this.flushBusinessPartnerCriteria(criteria, token), token);
 	}
 
 	/**
@@ -298,7 +299,7 @@ public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 	 * @return 操作结果
 	 */
 	public OperationResult<Customer> fetchCustomer(ICriteria criteria, String token) {
-		return super.fetch(criteria, token, Customer.class);
+		return super.fetch(Customer.class, criteria, token);
 	}
 
 	/**
@@ -341,7 +342,7 @@ public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 	 * @return 操作结果
 	 */
 	public OperationResult<Supplier> fetchSupplier(ICriteria criteria, String token) {
-		return super.fetch(criteria, token, Supplier.class);
+		return super.fetch(Supplier.class, criteria, token);
 	}
 
 	/**
@@ -384,7 +385,7 @@ public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 	 * @return 操作结果
 	 */
 	public OperationResult<AssetItem> fetchAssetItem(ICriteria criteria, String token) {
-		return super.fetch(criteria, token, AssetItem.class);
+		return super.fetch(AssetItem.class, criteria, token);
 	}
 
 	/**
@@ -427,7 +428,7 @@ public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 	 * @return 操作结果
 	 */
 	public OperationResult<BusinessPartnerAsset> fetchBusinessPartnerAsset(ICriteria criteria, String token) {
-		return super.fetch(this.flushBusinessPartnerCriteria(criteria, token), token, BusinessPartnerAsset.class);
+		return super.fetch(BusinessPartnerAsset.class, this.flushBusinessPartnerCriteria(criteria, token), token);
 	}
 
 	/**
@@ -473,7 +474,7 @@ public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 	 */
 	public OperationResult<BusinessPartnerAssetJournal> fetchBusinessPartnerAssetJournal(ICriteria criteria,
 			String token) {
-		return super.fetch(criteria, token, BusinessPartnerAssetJournal.class);
+		return super.fetch(BusinessPartnerAssetJournal.class, criteria, token);
 	}
 
 	/**
@@ -520,7 +521,7 @@ public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 	@Override
 	public OperationResult<CustomerAsset> fetchCustomerAsset(AssetRequest request, String token) {
 		try {
-			this.setCurrentUser(token);
+			this.setUserToken(token);
 			if (request == null) {
 				throw new Exception(I18N.prop("msg_bobas_invalid_data"));
 			}
@@ -564,7 +565,7 @@ public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 			condition.setValue(0);
 			condition.setBracketClose(1);
 			// 有效日期
-			DateTime today = DateTime.getToday();
+			DateTime today = DateTimes.today();
 			condition = criteria.getConditions().create();
 			condition.setBracketOpen(1);
 			condition.setAlias(BusinessPartnerAsset.PROPERTY_VALIDDATE.getName());
@@ -631,7 +632,7 @@ public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 				// 可用价值 = 当前价值 + 可透支值
 				customerAsset.setAmount(businessPartnerAsset.getAmount().add(assetItem.getOverdraft()));
 				// 可用价值 不足
-				if (customerAsset.getAmount().compareTo(Decimal.ZERO) <= 0) {
+				if (customerAsset.getAmount().compareTo(Decimals.VALUE_ZERO) <= 0) {
 					continue;
 				}
 				operationResult.addResultObjects(customerAsset);
@@ -650,7 +651,7 @@ public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 	@Override
 	public OperationResult<SupplierAsset> fetchSupplierAsset(AssetRequest request, String token) {
 		try {
-			this.setCurrentUser(token);
+			this.setUserToken(token);
 			if (request == null) {
 				throw new Exception(I18N.prop("msg_bobas_invalid_data"));
 			}
@@ -694,7 +695,7 @@ public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 			condition.setValue(0);
 			condition.setBracketClose(1);
 			// 有效日期
-			DateTime today = DateTime.getToday();
+			DateTime today = DateTimes.today();
 			condition = criteria.getConditions().create();
 			condition.setBracketOpen(1);
 			condition.setAlias(BusinessPartnerAsset.PROPERTY_VALIDDATE.getName());
@@ -761,7 +762,7 @@ public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 				// 可用价值 = 当前价值 + 可透支值
 				supplierAsset.setAmount(businessPartnerAsset.getAmount().add(assetItem.getOverdraft()));
 				// 可用价值 不足
-				if (supplierAsset.getAmount().compareTo(Decimal.ZERO) <= 0) {
+				if (supplierAsset.getAmount().compareTo(Decimals.VALUE_ZERO) <= 0) {
 					continue;
 				}
 				operationResult.addResultObjects(supplierAsset);
@@ -781,7 +782,7 @@ public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 	 * @return 操作结果
 	 */
 	public OperationResult<Lead> fetchLead(ICriteria criteria, String token) {
-		return super.fetch(criteria, token, Lead.class);
+		return super.fetch(Lead.class, criteria, token);
 	}
 
 	/**
@@ -825,7 +826,7 @@ public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 	 * @return 操作结果
 	 */
 	public OperationResult<PaymentTerm> fetchPaymentTerm(ICriteria criteria, String token) {
-		return super.fetch(criteria, token, PaymentTerm.class);
+		return super.fetch(PaymentTerm.class, criteria, token);
 	}
 
 	/**
@@ -868,7 +869,7 @@ public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 	 * @return 操作结果
 	 */
 	public OperationResult<Agreement> fetchAgreement(ICriteria criteria, String token) {
-		return super.fetch(criteria, token, Agreement.class);
+		return super.fetch(Agreement.class, criteria, token);
 	}
 
 	/**
@@ -911,7 +912,7 @@ public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 	 * @return 操作结果
 	 */
 	public OperationResult<InternalReconciliation> fetchInternalReconciliation(ICriteria criteria, String token) {
-		return super.fetch(criteria, token, InternalReconciliation.class);
+		return super.fetch(InternalReconciliation.class, criteria, token);
 	}
 
 	/**

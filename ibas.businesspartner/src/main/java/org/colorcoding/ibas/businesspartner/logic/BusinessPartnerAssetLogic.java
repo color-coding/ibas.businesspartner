@@ -4,6 +4,7 @@ import org.colorcoding.ibas.bobas.bo.IBusinessObject;
 import org.colorcoding.ibas.bobas.common.ConditionOperation;
 import org.colorcoding.ibas.bobas.common.ConditionRelationship;
 import org.colorcoding.ibas.bobas.common.Criteria;
+import org.colorcoding.ibas.bobas.common.DateTimes;
 import org.colorcoding.ibas.bobas.common.ICondition;
 import org.colorcoding.ibas.bobas.common.ICriteria;
 import org.colorcoding.ibas.bobas.common.IOperationResult;
@@ -48,15 +49,16 @@ public abstract class BusinessPartnerAssetLogic<C extends IBusinessLogicContract
 		condition.setAlias(AssetItem.PROPERTY_DELETED.getName());
 		condition.setOperation(ConditionOperation.IS_NULL);
 		condition.setRelationship(ConditionRelationship.OR);
-		IAssetItem assetItem = super.fetchBeAffected(criteria, IAssetItem.class);
+		IAssetItem assetItem = this.fetchBeAffected(IAssetItem.class, criteria);
 		if (assetItem == null) {
-			BORepositoryBusinessPartner boRepository = new BORepositoryBusinessPartner();
-			boRepository.setRepository(super.getRepository());
-			IOperationResult<IAssetItem> operationResult = boRepository.fetchAssetItem(criteria);
-			if (operationResult.getError() != null) {
-				throw new BusinessLogicException(operationResult.getError());
+			try (BORepositoryBusinessPartner boRepository = new BORepositoryBusinessPartner()) {
+				boRepository.setTransaction(this.getTransaction());
+				IOperationResult<IAssetItem> operationResult = boRepository.fetchAssetItem(criteria);
+				if (operationResult.getError() != null) {
+					throw new BusinessLogicException(operationResult.getError());
+				}
+				assetItem = operationResult.getResultObjects().firstOrDefault();
 			}
-			assetItem = operationResult.getResultObjects().firstOrDefault();
 		}
 		// 资产项目不存在
 		if (assetItem == null) {
@@ -77,15 +79,17 @@ public abstract class BusinessPartnerAssetLogic<C extends IBusinessLogicContract
 		condition.setAlias(BusinessPartnerAsset.PROPERTY_CODE.getName());
 		condition.setValue(code);
 		condition.setOperation(ConditionOperation.EQUAL);
-		IBusinessPartnerAsset businessPartnerAsset = super.fetchBeAffected(criteria, IBusinessPartnerAsset.class);
+		IBusinessPartnerAsset businessPartnerAsset = this.fetchBeAffected(IBusinessPartnerAsset.class, criteria);
 		if (businessPartnerAsset == null) {
-			BORepositoryBusinessPartner boRepository = new BORepositoryBusinessPartner();
-			boRepository.setRepository(super.getRepository());
-			IOperationResult<IBusinessPartnerAsset> operationResult = boRepository.fetchBusinessPartnerAsset(criteria);
-			if (operationResult.getError() != null) {
-				throw new BusinessLogicException(operationResult.getError());
+			try (BORepositoryBusinessPartner boRepository = new BORepositoryBusinessPartner()) {
+				boRepository.setTransaction(this.getTransaction());
+				IOperationResult<IBusinessPartnerAsset> operationResult = boRepository
+						.fetchBusinessPartnerAsset(criteria);
+				if (operationResult.getError() != null) {
+					throw new BusinessLogicException(operationResult.getError());
+				}
+				businessPartnerAsset = operationResult.getResultObjects().firstOrDefault();
 			}
-			businessPartnerAsset = operationResult.getResultObjects().firstOrDefault();
 		}
 		// 业务伙伴资产不存在
 		if (businessPartnerAsset == null) {
@@ -97,15 +101,15 @@ public abstract class BusinessPartnerAssetLogic<C extends IBusinessLogicContract
 			throw new BusinessLogicException(I18N.prop("msg_bp_businesspartnerasset_is_unavailable",
 					businessPartnerAsset.getBusinessPartnerCode(), businessPartnerAsset.getAssetCode()));
 		}
-		DateTime today = DateTime.getToday();
-		if (businessPartnerAsset.getValidDate() != null && businessPartnerAsset.getValidDate() != DateTime.MIN_VALUE) {
+		DateTime today = DateTimes.today();
+		if (businessPartnerAsset.getValidDate() != null && businessPartnerAsset.getValidDate() != DateTimes.VALUE_MIN) {
 			if (today.before(businessPartnerAsset.getValidDate())) {
 				throw new BusinessLogicException(I18N.prop("msg_bp_businesspartnerasset_is_unavailable",
 						businessPartnerAsset.getBusinessPartnerCode(), businessPartnerAsset.getAssetCode()));
 			}
 		}
 		if (businessPartnerAsset.getInvalidDate() != null
-				&& businessPartnerAsset.getInvalidDate() != DateTime.MIN_VALUE) {
+				&& businessPartnerAsset.getInvalidDate() != DateTimes.VALUE_MIN) {
 			if (today.after(businessPartnerAsset.getInvalidDate())) {
 				throw new BusinessLogicException(I18N.prop("msg_bp_businesspartnerasset_is_unavailable",
 						businessPartnerAsset.getBusinessPartnerCode(), businessPartnerAsset.getAssetCode()));

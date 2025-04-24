@@ -11,13 +11,13 @@ import javax.xml.bind.annotation.XmlType;
 import org.colorcoding.ibas.bobas.bo.BusinessObject;
 import org.colorcoding.ibas.bobas.core.IPropertyInfo;
 import org.colorcoding.ibas.bobas.data.DateTime;
-import org.colorcoding.ibas.bobas.data.Decimal;
+import org.colorcoding.ibas.bobas.common.Decimals;
 import org.colorcoding.ibas.bobas.data.emDirection;
 import org.colorcoding.ibas.bobas.logic.IBusinessLogicContract;
 import org.colorcoding.ibas.bobas.logic.IBusinessLogicsHost;
-import org.colorcoding.ibas.bobas.mapping.BusinessObjectUnit;
-import org.colorcoding.ibas.bobas.mapping.DbField;
-import org.colorcoding.ibas.bobas.mapping.DbFieldType;
+import org.colorcoding.ibas.bobas.bo.BusinessObjectUnit;
+import org.colorcoding.ibas.bobas.db.DbField;
+import org.colorcoding.ibas.bobas.db.DbFieldType;
 import org.colorcoding.ibas.bobas.rule.IBusinessRule;
 import org.colorcoding.ibas.bobas.rule.common.BusinessRuleMinValue;
 import org.colorcoding.ibas.bobas.rule.common.BusinessRuleRequired;
@@ -531,7 +531,7 @@ public class BusinessPartnerAssetJournal extends BusinessObject<BusinessPartnerA
 	 * @param value 值
 	 */
 	public final void setAmount(String value) {
-		this.setAmount(Decimal.valueOf(value));
+		this.setAmount(Decimals.valueOf(value));
 	}
 
 	/**
@@ -540,7 +540,7 @@ public class BusinessPartnerAssetJournal extends BusinessObject<BusinessPartnerA
 	 * @param value 值
 	 */
 	public final void setAmount(int value) {
-		this.setAmount(Decimal.valueOf(value));
+		this.setAmount(Decimals.valueOf(value));
 	}
 
 	/**
@@ -549,7 +549,7 @@ public class BusinessPartnerAssetJournal extends BusinessObject<BusinessPartnerA
 	 * @param value 值
 	 */
 	public final void setAmount(double value) {
-		this.setAmount(Decimal.valueOf(value));
+		this.setAmount(Decimals.valueOf(value));
 	}
 
 	/**
@@ -690,7 +690,7 @@ public class BusinessPartnerAssetJournal extends BusinessObject<BusinessPartnerA
 	protected IBusinessRule[] registerRules() {
 		return new IBusinessRule[] { // 注册的业务规则
 				new BusinessRuleRequired(PROPERTY_SERVICECODE), // 要求有值
-				new BusinessRuleMinValue<BigDecimal>(Decimal.ZERO, PROPERTY_AMOUNT), // 不能低于0
+				new BusinessRuleMinValue<BigDecimal>(Decimals.VALUE_ZERO, PROPERTY_AMOUNT), // 不能低于0
 		};
 	}
 

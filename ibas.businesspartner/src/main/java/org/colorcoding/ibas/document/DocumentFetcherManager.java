@@ -3,9 +3,9 @@ package org.colorcoding.ibas.document;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.colorcoding.ibas.bobas.core.BOFactory;
+import org.colorcoding.ibas.bobas.bo.BOFactory;
 import org.colorcoding.ibas.bobas.i18n.I18N;
-import org.colorcoding.ibas.bobas.mapping.BusinessObjectUnit;
+import org.colorcoding.ibas.bobas.bo.BusinessObjectUnit;
 import org.colorcoding.ibas.initialfantasy.MyConfiguration;
 
 /**
@@ -37,7 +37,7 @@ public class DocumentFetcherManager {
 		if (index > 0) {
 			name = name.substring(0, index);
 		}
-		Class<?>[] packClass = BOFactory.create().loadClasses(name);
+		Class<?>[] packClass = BOFactory.loadClasses(name);
 		for (Class<?> item : packClass) {
 			BusinessObjectUnit annotation = item.getAnnotation(BusinessObjectUnit.class);
 			if (annotation != null) {

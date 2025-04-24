@@ -9,17 +9,18 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 import org.colorcoding.ibas.bobas.bo.BusinessObject;
+import org.colorcoding.ibas.bobas.bo.BusinessObjectUnit;
 import org.colorcoding.ibas.bobas.bo.IBOSeriesKey;
 import org.colorcoding.ibas.bobas.bo.IBOTagDeleted;
 import org.colorcoding.ibas.bobas.bo.IBOUserFields;
+import org.colorcoding.ibas.bobas.common.DateTimes;
+import org.colorcoding.ibas.bobas.common.Decimals;
 import org.colorcoding.ibas.bobas.core.IPropertyInfo;
 import org.colorcoding.ibas.bobas.data.DateTime;
-import org.colorcoding.ibas.bobas.data.Decimal;
 import org.colorcoding.ibas.bobas.data.emApprovalStatus;
 import org.colorcoding.ibas.bobas.data.emYesNo;
-import org.colorcoding.ibas.bobas.mapping.BusinessObjectUnit;
-import org.colorcoding.ibas.bobas.mapping.DbField;
-import org.colorcoding.ibas.bobas.mapping.DbFieldType;
+import org.colorcoding.ibas.bobas.db.DbField;
+import org.colorcoding.ibas.bobas.db.DbFieldType;
 import org.colorcoding.ibas.bobas.ownership.IDataOwnership;
 import org.colorcoding.ibas.bobas.rule.IBusinessRule;
 import org.colorcoding.ibas.bobas.rule.common.BusinessRuleMinValue;
@@ -969,7 +970,7 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset>
 	 * @param value 值
 	 */
 	public final void setAmount(String value) {
-		this.setAmount(Decimal.valueOf(value));
+		this.setAmount(Decimals.valueOf(value));
 	}
 
 	/**
@@ -978,7 +979,7 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset>
 	 * @param value 值
 	 */
 	public final void setAmount(int value) {
-		this.setAmount(Decimal.valueOf(value));
+		this.setAmount(Decimals.valueOf(value));
 	}
 
 	/**
@@ -987,7 +988,7 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset>
 	 * @param value 值
 	 */
 	public final void setAmount(double value) {
-		this.setAmount(Decimal.valueOf(value));
+		this.setAmount(Decimals.valueOf(value));
 	}
 
 	/**
@@ -1182,7 +1183,7 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset>
 	 * @param value 值
 	 */
 	public final void setTradingAmount(String value) {
-		this.setTradingAmount(Decimal.valueOf(value));
+		this.setTradingAmount(Decimals.valueOf(value));
 	}
 
 	/**
@@ -1191,7 +1192,7 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset>
 	 * @param value 值
 	 */
 	public final void setTradingAmount(int value) {
-		this.setTradingAmount(Decimal.valueOf(value));
+		this.setTradingAmount(Decimals.valueOf(value));
 	}
 
 	/**
@@ -1200,7 +1201,7 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset>
 	 * @param value 值
 	 */
 	public final void setTradingAmount(double value) {
-		this.setTradingAmount(Decimal.valueOf(value));
+		this.setTradingAmount(Decimals.valueOf(value));
 	}
 
 	/**
@@ -1304,9 +1305,9 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset>
 		super.initialize();// 基类初始化，不可去除
 		this.setObjectCode(MyConfiguration.applyVariables(BUSINESS_OBJECT_CODE));
 		this.setActivated(emYesNo.YES);
-		this.setAcquiredDate(DateTime.getToday());
-		this.setValidDate(DateTime.getToday());
-		this.setInvalidDate(DateTime.MAX_VALUE);
+		this.setAcquiredDate(DateTimes.today());
+		this.setValidDate(DateTimes.today());
+		this.setInvalidDate(DateTimes.VALUE_MAX);
 	}
 
 	@Override
@@ -1330,7 +1331,7 @@ public class BusinessPartnerAsset extends BusinessObject<BusinessPartnerAsset>
 	/** 重置 */
 	public void reset() {
 		super.reset();
-		this.setAmount(Decimal.ZERO);
+		this.setAmount(Decimals.VALUE_ZERO);
 		this.setTimes(0);
 	}
 

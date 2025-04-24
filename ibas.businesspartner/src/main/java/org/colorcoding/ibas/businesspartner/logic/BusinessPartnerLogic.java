@@ -48,15 +48,16 @@ public abstract class BusinessPartnerLogic<C extends IBusinessLogicContract, B e
 		condition.setAlias(Customer.PROPERTY_DELETED.getName());
 		condition.setOperation(ConditionOperation.IS_NULL);
 		condition.setRelationship(ConditionRelationship.OR);
-		ICustomer customer = super.fetchBeAffected(criteria, ICustomer.class);
+		ICustomer customer = this.fetchBeAffected(ICustomer.class, criteria);
 		if (customer == null) {
-			BORepositoryBusinessPartner boRepository = new BORepositoryBusinessPartner();
-			boRepository.setRepository(super.getRepository());
-			IOperationResult<ICustomer> operationResult = boRepository.fetchCustomer(criteria);
-			if (operationResult.getError() != null) {
-				throw new BusinessLogicException(operationResult.getError());
+			try (BORepositoryBusinessPartner boRepository = new BORepositoryBusinessPartner()) {
+				boRepository.setTransaction(this.getTransaction());
+				IOperationResult<ICustomer> operationResult = boRepository.fetchCustomer(criteria);
+				if (operationResult.getError() != null) {
+					throw new BusinessLogicException(operationResult.getError());
+				}
+				customer = operationResult.getResultObjects().firstOrDefault();
 			}
-			customer = operationResult.getResultObjects().firstOrDefault();
 		}
 		// 客户不存在
 		if (customer == null) {
@@ -80,15 +81,16 @@ public abstract class BusinessPartnerLogic<C extends IBusinessLogicContract, B e
 		condition.setAlias(Supplier.PROPERTY_CODE.getName());
 		condition.setValue(bpCode);
 		condition.setOperation(ConditionOperation.EQUAL);
-		ISupplier supplier = super.fetchBeAffected(criteria, ISupplier.class);
+		ISupplier supplier = this.fetchBeAffected(ISupplier.class, criteria);
 		if (supplier == null) {
-			BORepositoryBusinessPartner boRepository = new BORepositoryBusinessPartner();
-			boRepository.setRepository(super.getRepository());
-			IOperationResult<ISupplier> operationResult = boRepository.fetchSupplier(criteria);
-			if (operationResult.getError() != null) {
-				throw new BusinessLogicException(operationResult.getError());
+			try (BORepositoryBusinessPartner boRepository = new BORepositoryBusinessPartner()) {
+				boRepository.setTransaction(this.getTransaction());
+				IOperationResult<ISupplier> operationResult = boRepository.fetchSupplier(criteria);
+				if (operationResult.getError() != null) {
+					throw new BusinessLogicException(operationResult.getError());
+				}
+				supplier = operationResult.getResultObjects().firstOrDefault();
 			}
-			supplier = operationResult.getResultObjects().firstOrDefault();
 		}
 		// 供应商不存在
 		if (supplier == null) {

@@ -14,12 +14,12 @@ import org.colorcoding.ibas.bobas.bo.IBOTagDeleted;
 import org.colorcoding.ibas.bobas.bo.IBOUserFields;
 import org.colorcoding.ibas.bobas.core.IPropertyInfo;
 import org.colorcoding.ibas.bobas.data.DateTime;
-import org.colorcoding.ibas.bobas.data.Decimal;
+import org.colorcoding.ibas.bobas.common.Decimals;
 import org.colorcoding.ibas.bobas.data.emApprovalStatus;
 import org.colorcoding.ibas.bobas.data.emYesNo;
-import org.colorcoding.ibas.bobas.mapping.BusinessObjectUnit;
-import org.colorcoding.ibas.bobas.mapping.DbField;
-import org.colorcoding.ibas.bobas.mapping.DbFieldType;
+import org.colorcoding.ibas.bobas.bo.BusinessObjectUnit;
+import org.colorcoding.ibas.bobas.db.DbField;
+import org.colorcoding.ibas.bobas.db.DbFieldType;
 import org.colorcoding.ibas.bobas.rule.IBusinessRule;
 import org.colorcoding.ibas.bobas.rule.common.BusinessRuleMinValue;
 import org.colorcoding.ibas.bobas.rule.common.BusinessRuleRequired;
@@ -843,7 +843,7 @@ public class AssetItem extends BusinessObject<AssetItem>
 	 * @param value 值
 	 */
 	public final void setFaceAmount(String value) {
-		this.setFaceAmount(Decimal.valueOf(value));
+		this.setFaceAmount(Decimals.valueOf(value));
 	}
 
 	/**
@@ -852,7 +852,7 @@ public class AssetItem extends BusinessObject<AssetItem>
 	 * @param value 值
 	 */
 	public final void setFaceAmount(int value) {
-		this.setFaceAmount(Decimal.valueOf(value));
+		this.setFaceAmount(Decimals.valueOf(value));
 	}
 
 	/**
@@ -861,7 +861,7 @@ public class AssetItem extends BusinessObject<AssetItem>
 	 * @param value 值
 	 */
 	public final void setFaceAmount(double value) {
-		this.setFaceAmount(Decimal.valueOf(value));
+		this.setFaceAmount(Decimals.valueOf(value));
 	}
 
 	/**
@@ -963,7 +963,7 @@ public class AssetItem extends BusinessObject<AssetItem>
 	 * @param value 值
 	 */
 	public final void setUsingDiscount(String value) {
-		this.setUsingDiscount(Decimal.valueOf(value));
+		this.setUsingDiscount(Decimals.valueOf(value));
 	}
 
 	/**
@@ -972,7 +972,7 @@ public class AssetItem extends BusinessObject<AssetItem>
 	 * @param value 值
 	 */
 	public final void setUsingDiscount(int value) {
-		this.setUsingDiscount(Decimal.valueOf(value));
+		this.setUsingDiscount(Decimals.valueOf(value));
 	}
 
 	/**
@@ -981,7 +981,7 @@ public class AssetItem extends BusinessObject<AssetItem>
 	 * @param value 值
 	 */
 	public final void setUsingDiscount(double value) {
-		this.setUsingDiscount(Decimal.valueOf(value));
+		this.setUsingDiscount(Decimals.valueOf(value));
 	}
 
 	/**
@@ -1021,7 +1021,7 @@ public class AssetItem extends BusinessObject<AssetItem>
 	 * @param value 值
 	 */
 	public final void setOverdraft(String value) {
-		this.setOverdraft(Decimal.valueOf(value));
+		this.setOverdraft(Decimals.valueOf(value));
 	}
 
 	/**
@@ -1030,7 +1030,7 @@ public class AssetItem extends BusinessObject<AssetItem>
 	 * @param value 值
 	 */
 	public final void setOverdraft(int value) {
-		this.setOverdraft(Decimal.valueOf(value));
+		this.setOverdraft(Decimals.valueOf(value));
 	}
 
 	/**
@@ -1039,7 +1039,7 @@ public class AssetItem extends BusinessObject<AssetItem>
 	 * @param value 值
 	 */
 	public final void setOverdraft(double value) {
-		this.setOverdraft(Decimal.valueOf(value));
+		this.setOverdraft(Decimals.valueOf(value));
 	}
 
 	/**
@@ -1189,9 +1189,9 @@ public class AssetItem extends BusinessObject<AssetItem>
 				new BusinessRuleTrim(PROPERTY_CODE), // 去除两边空格
 				new BusinessRuleRequired(PROPERTY_CODE), // 要求有值
 				new BusinessRuleRequired(PROPERTY_NAME), // 要求有值
-				new BusinessRuleMinValue<BigDecimal>(Decimal.ZERO, PROPERTY_FACEAMOUNT), // 不能低于0
-				new BusinessRuleMinValue<BigDecimal>(Decimal.ZERO, PROPERTY_USINGDISCOUNT), // 不能低于0
-				new BusinessRuleMinValue<BigDecimal>(Decimal.ZERO, PROPERTY_OVERDRAFT), // 不能低于0
+				new BusinessRuleMinValue<BigDecimal>(Decimals.VALUE_ZERO, PROPERTY_FACEAMOUNT), // 不能低于0
+				new BusinessRuleMinValue<BigDecimal>(Decimals.VALUE_ZERO, PROPERTY_USINGDISCOUNT), // 不能低于0
+				new BusinessRuleMinValue<BigDecimal>(Decimals.VALUE_ZERO, PROPERTY_OVERDRAFT), // 不能低于0
 				new BusinessRuleMinValue<Integer>(0, PROPERTY_USINGTIMES), // 不能低于0
 				new BusinessRuleMinValue<Integer>(0, PROPERTY_VALIDDAYS), // 不能低于0
 		};

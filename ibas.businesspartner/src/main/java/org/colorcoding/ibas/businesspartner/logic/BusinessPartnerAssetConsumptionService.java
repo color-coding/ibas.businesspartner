@@ -6,17 +6,17 @@ import org.colorcoding.ibas.bobas.common.Criteria;
 import org.colorcoding.ibas.bobas.common.ICondition;
 import org.colorcoding.ibas.bobas.common.ICriteria;
 import org.colorcoding.ibas.bobas.common.IOperationResult;
+import org.colorcoding.ibas.bobas.common.Strings;
 import org.colorcoding.ibas.bobas.data.emDirection;
 import org.colorcoding.ibas.bobas.i18n.I18N;
-import org.colorcoding.ibas.bobas.logic.BusinessLogicException;
-import org.colorcoding.ibas.bobas.mapping.LogicContract;
 import org.colorcoding.ibas.bobas.message.Logger;
 import org.colorcoding.ibas.bobas.message.MessageLevel;
+import org.colorcoding.ibas.bobas.logic.BusinessLogicException;
+import org.colorcoding.ibas.bobas.logic.LogicContract;
 import org.colorcoding.ibas.businesspartner.bo.assetitem.IAssetItem;
 import org.colorcoding.ibas.businesspartner.bo.businesspartnerasset.BusinessPartnerAssetJournal;
 import org.colorcoding.ibas.businesspartner.bo.businesspartnerasset.IBusinessPartnerAsset;
 import org.colorcoding.ibas.businesspartner.bo.businesspartnerasset.IBusinessPartnerAssetJournal;
-import org.colorcoding.ibas.businesspartner.data.DataConvert;
 import org.colorcoding.ibas.businesspartner.repository.BORepositoryBusinessPartner;
 
 /**
@@ -33,7 +33,7 @@ public class BusinessPartnerAssetConsumptionService
 	protected boolean checkDataStatus(Object data) {
 		if (data instanceof IBusinessPartnerAssetConsumptionContract) {
 			IBusinessPartnerAssetConsumptionContract contract = (IBusinessPartnerAssetConsumptionContract) data;
-			if (DataConvert.isNullOrEmpty(contract.getServiceCode()) || contract.getServiceCode().startsWith("%")) {
+			if (Strings.isNullOrEmpty(contract.getServiceCode()) || contract.getServiceCode().startsWith("%")) {
 				// 系统前缀，跳过
 				Logger.log(MessageLevel.DEBUG, MSG_LOGICS_SKIP_LOGIC_EXECUTION, this.getClass().getName(),
 						"ServiceCode", contract.getServiceCode());
@@ -80,17 +80,17 @@ public class BusinessPartnerAssetConsumptionService
 		condition.setOperation(ConditionOperation.EQUAL);
 		condition.setValue(contract.getBaseDocumentLineId());
 
-		IBusinessPartnerAssetJournal businessPartnerAssetJournal = this.fetchBeAffected(criteria,
-				IBusinessPartnerAssetJournal.class);
+		IBusinessPartnerAssetJournal businessPartnerAssetJournal = this.fetchBeAffected(IBusinessPartnerAssetJournal.class, criteria);
 		if (businessPartnerAssetJournal == null) {
-			BORepositoryBusinessPartner boRepository = new BORepositoryBusinessPartner();
-			boRepository.setRepository(super.getRepository());
-			IOperationResult<IBusinessPartnerAssetJournal> operationResult = boRepository
-					.fetchBusinessPartnerAssetJournal(criteria);
-			if (operationResult.getError() != null) {
-				throw new BusinessLogicException(operationResult.getError());
+			try (BORepositoryBusinessPartner boRepository = new BORepositoryBusinessPartner()) {
+				boRepository.setTransaction(this.getTransaction());
+				IOperationResult<IBusinessPartnerAssetJournal> operationResult = boRepository
+						.fetchBusinessPartnerAssetJournal(criteria);
+				if (operationResult.getError() != null) {
+					throw new BusinessLogicException(operationResult.getError());
+				}
+				businessPartnerAssetJournal = operationResult.getResultObjects().firstOrDefault();
 			}
-			businessPartnerAssetJournal = operationResult.getResultObjects().firstOrDefault();
 		}
 		if (businessPartnerAssetJournal == null) {
 			businessPartnerAssetJournal = new BusinessPartnerAssetJournal();

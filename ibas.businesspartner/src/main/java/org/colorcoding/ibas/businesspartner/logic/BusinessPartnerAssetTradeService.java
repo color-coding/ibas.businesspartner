@@ -2,12 +2,12 @@ package org.colorcoding.ibas.businesspartner.logic;
 
 import java.math.BigDecimal;
 
-import org.colorcoding.ibas.bobas.data.Decimal;
+import org.colorcoding.ibas.bobas.common.Decimals;
 import org.colorcoding.ibas.bobas.data.emDirection;
 import org.colorcoding.ibas.bobas.data.emYesNo;
 import org.colorcoding.ibas.bobas.i18n.I18N;
 import org.colorcoding.ibas.bobas.logic.BusinessLogicException;
-import org.colorcoding.ibas.bobas.mapping.LogicContract;
+import org.colorcoding.ibas.bobas.logic.LogicContract;
 import org.colorcoding.ibas.businesspartner.bo.assetitem.IAssetItem;
 import org.colorcoding.ibas.businesspartner.bo.businesspartnerasset.IBusinessPartnerAsset;
 import org.colorcoding.ibas.businesspartner.bo.customer.ICustomer;
@@ -68,10 +68,10 @@ public class BusinessPartnerAssetTradeService
 			// 减少量
 			BigDecimal amount = this.getBeAffected().getAmount();
 			amount = amount.subtract(contract.getAmount());
-			if (amount.compareTo(Decimal.ZERO) < 0) {
+			if (amount.compareTo(Decimals.VALUE_ZERO) < 0) {
 				// 剩余价值，小于0，检查是否允许透支
 				IAssetItem assetItem = this.checkAssetItem(this.getBeAffected().getAssetCode());
-				if (Decimal.isZero(assetItem.getOverdraft())) {
+				if (Decimals.isZero(assetItem.getOverdraft())) {
 					// 不允许透支
 					throw new BusinessLogicException(I18N.prop("msg_bp_businesspartnerasset_exceeding_amount",
 							this.getBeAffected().getBusinessPartnerCode(), this.getBeAffected().getName(),

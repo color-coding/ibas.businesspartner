@@ -9,7 +9,7 @@ import org.colorcoding.ibas.bobas.common.IOperationResult;
 import org.colorcoding.ibas.bobas.data.emDirection;
 import org.colorcoding.ibas.bobas.i18n.I18N;
 import org.colorcoding.ibas.bobas.logic.BusinessLogicException;
-import org.colorcoding.ibas.bobas.mapping.LogicContract;
+import org.colorcoding.ibas.bobas.logic.LogicContract;
 import org.colorcoding.ibas.businesspartner.bo.assetitem.IAssetItem;
 import org.colorcoding.ibas.businesspartner.bo.businesspartnerasset.BusinessPartnerAssetJournal;
 import org.colorcoding.ibas.businesspartner.bo.businesspartnerasset.IBusinessPartnerAsset;
@@ -64,17 +64,17 @@ public class BusinessPartnerAssetIncreasesService
 		condition.setOperation(ConditionOperation.EQUAL);
 		condition.setValue(contract.getBaseDocumentLineId());
 
-		IBusinessPartnerAssetJournal businessPartnerAssetJournal = this.fetchBeAffected(criteria,
-				IBusinessPartnerAssetJournal.class);
+		IBusinessPartnerAssetJournal businessPartnerAssetJournal = this.fetchBeAffected(IBusinessPartnerAssetJournal.class, criteria);
 		if (businessPartnerAssetJournal == null) {
-			BORepositoryBusinessPartner boRepository = new BORepositoryBusinessPartner();
-			boRepository.setRepository(super.getRepository());
-			IOperationResult<IBusinessPartnerAssetJournal> operationResult = boRepository
-					.fetchBusinessPartnerAssetJournal(criteria);
-			if (operationResult.getError() != null) {
-				throw new BusinessLogicException(operationResult.getError());
+			try (BORepositoryBusinessPartner boRepository = new BORepositoryBusinessPartner()) {
+				boRepository.setTransaction(this.getTransaction());
+				IOperationResult<IBusinessPartnerAssetJournal> operationResult = boRepository
+						.fetchBusinessPartnerAssetJournal(criteria);
+				if (operationResult.getError() != null) {
+					throw new BusinessLogicException(operationResult.getError());
+				}
+				businessPartnerAssetJournal = operationResult.getResultObjects().firstOrDefault();
 			}
-			businessPartnerAssetJournal = operationResult.getResultObjects().firstOrDefault();
 		}
 		if (businessPartnerAssetJournal == null) {
 			businessPartnerAssetJournal = new BusinessPartnerAssetJournal();
