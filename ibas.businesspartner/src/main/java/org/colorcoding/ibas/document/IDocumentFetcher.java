@@ -1,6 +1,6 @@
 package org.colorcoding.ibas.document;
 
-import org.colorcoding.ibas.bobas.core.IBORepository;
+import org.colorcoding.ibas.bobas.repository.ITransaction;
 
 /**
  * 单据查询者
@@ -16,7 +16,7 @@ public interface IDocumentFetcher<T extends IDocumentOperatingTarget> {
 	 * 
 	 * @param repository
 	 */
-	void setRepository(IBORepository repository);
+	void setTransaction(ITransaction transaction);
 
 	/**
 	 * 检索对象

@@ -10,7 +10,7 @@ import org.colorcoding.ibas.bobas.common.IOperationResult;
 import org.colorcoding.ibas.bobas.data.emYesNo;
 import org.colorcoding.ibas.bobas.logic.BusinessLogic;
 import org.colorcoding.ibas.bobas.logic.BusinessLogicException;
-import org.colorcoding.ibas.bobas.mapping.LogicContract;
+import org.colorcoding.ibas.bobas.logic.LogicContract;
 import org.colorcoding.ibas.businesspartner.bo.internalreconciliation.IInternalReconciliation;
 import org.colorcoding.ibas.businesspartner.bo.internalreconciliation.IInternalReconciliationLine;
 import org.colorcoding.ibas.businesspartner.bo.internalreconciliation.InternalReconciliation;
@@ -34,16 +34,17 @@ public class DocumentReconciliationService
 		condition.setOperation(ConditionOperation.EQUAL);
 		condition.setValue(contract.getBaseDocumentEntry());
 
-		IInternalReconciliation reconciliation = this.fetchBeAffected(criteria, IInternalReconciliation.class);
+		IInternalReconciliation reconciliation = this.fetchBeAffected(IInternalReconciliation.class, criteria);
 		if (reconciliation == null) {
-			BORepositoryBusinessPartner boRepository = new BORepositoryBusinessPartner();
-			boRepository.setRepository(super.getRepository());
-			IOperationResult<IInternalReconciliation> operationResult = boRepository
-					.fetchInternalReconciliation(criteria);
-			if (operationResult.getError() != null) {
-				throw new BusinessLogicException(operationResult.getError());
+			try (BORepositoryBusinessPartner boRepository = new BORepositoryBusinessPartner()) {
+				boRepository.setTransaction(this.getTransaction());
+				IOperationResult<IInternalReconciliation> operationResult = boRepository
+						.fetchInternalReconciliation(criteria);
+				if (operationResult.getError() != null) {
+					throw new BusinessLogicException(operationResult.getError());
+				}
+				reconciliation = operationResult.getResultObjects().firstOrDefault();
 			}
-			reconciliation = operationResult.getResultObjects().firstOrDefault();
 		}
 		if (reconciliation == null) {
 			reconciliation = new InternalReconciliation();
