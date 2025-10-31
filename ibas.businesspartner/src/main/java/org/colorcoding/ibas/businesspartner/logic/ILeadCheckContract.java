@@ -17,4 +17,18 @@ public interface ILeadCheckContract extends IBusinessLogicContract {
 	 */
 	String getLeadCode();
 
+	/**
+	 * 获取-潜在客户名称
+	 * 
+	 * @return 值
+	 */
+	String getLeadName();
+
+	/**
+	 * 设置-潜在客户名称
+	 * 
+	 * @param value 值
+	 */
+	void setLeadName(String value);
+
 }

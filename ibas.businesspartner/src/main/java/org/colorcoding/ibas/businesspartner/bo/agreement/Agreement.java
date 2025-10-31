@@ -187,7 +187,7 @@ public class Agreement extends BusinessObject<Agreement>
 	/**
 	 * 业务伙伴类型 属性
 	 */
-	@DbField(name = "CardType", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME, primaryKey = false)
+	@DbField(name = "CardType", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME)
 	public static final IPropertyInfo<emBusinessPartnerType> PROPERTY_BUSINESSPARTNERTYPE = registerProperty(
 			PROPERTY_BUSINESSPARTNERTYPE_NAME, emBusinessPartnerType.class, MY_CLASS);
 
@@ -218,7 +218,7 @@ public class Agreement extends BusinessObject<Agreement>
 	/**
 	 * 业务伙伴编码 属性
 	 */
-	@DbField(name = "CardCode", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME, primaryKey = false)
+	@DbField(name = "CardCode", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME)
 	public static final IPropertyInfo<String> PROPERTY_BUSINESSPARTNERCODE = registerProperty(
 			PROPERTY_BUSINESSPARTNERCODE_NAME, String.class, MY_CLASS);
 

@@ -55,10 +55,6 @@ public class MyConfiguration extends org.colorcoding.ibas.initialfantasy.MyConfi
 	 * 服务命名空间
 	 */
 	public static final String NAMESPACE_SERVICE = NAMESPACE_ROOT + "service";
-	/**
-	 * 配置项目-文件文件夹
-	 */
-	public static final String CONFIG_ITEM_BUSINESSPARTNER_FILE_FOLDER = "BPFileFolder";
 
 	/**
 	 * 交易方式-业务伙伴资产
