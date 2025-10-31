@@ -6,6 +6,7 @@ import org.colorcoding.ibas.bobas.common.Criteria;
 import org.colorcoding.ibas.bobas.common.ICondition;
 import org.colorcoding.ibas.bobas.common.ICriteria;
 import org.colorcoding.ibas.bobas.common.IOperationResult;
+import org.colorcoding.ibas.bobas.common.Strings;
 import org.colorcoding.ibas.bobas.data.emYesNo;
 import org.colorcoding.ibas.bobas.i18n.I18N;
 import org.colorcoding.ibas.bobas.logic.BusinessLogicException;
@@ -78,6 +79,9 @@ public class LeadCheckService extends BusinessPartnerLogic<ILeadCheckContract, I
 	protected void impact(ILeadCheckContract contract) {
 		if (this.getBeAffected().getReferenced() == emYesNo.NO) {
 			this.getBeAffected().setReferenced(emYesNo.YES);
+		}
+		if (Strings.isNullOrEmpty(contract.getLeadName())) {
+			contract.setLeadName(this.getBeAffected().getName());
 		}
 	}
 

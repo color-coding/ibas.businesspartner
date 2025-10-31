@@ -212,7 +212,9 @@ namespace businesspartner {
                         that.editData.assetCode = selected.code;
                         that.editData.assetGroup = selected.group;
                         that.editData.name = selected.name;
-                        that.editData.code = ibas.uuids.random();
+                        if (ibas.strings.isEmpty(that.editData.code)) {
+                            that.editData.code = ibas.uuids.random();
+                        }
                         that.editData.amount = selected.faceAmount;
                         that.editData.times = selected.usingTimes;
                         that.editData.acquiredDate = ibas.dates.today();

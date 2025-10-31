@@ -38,6 +38,10 @@ namespace businesspartner {
                 createAddressEvent: Function;
                 /** 选择总账科目事件 */
                 chooseLedgerAccountEvent: Function;
+                /** 选择银行事件 */
+                chooseBankEvent: Function;
+                /** 选择银行账号事件 */
+                chooseBankAccountEvent: Function;
 
                 /** 绘制视图 */
                 draw(): any {
@@ -459,6 +463,11 @@ namespace businesspartner {
                                                     new sap.m.Toolbar("", { visible: false }),
                                                     new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_bank") }),
                                                     new sap.extension.m.Input("", {
+                                                        showValueHelp: true,
+                                                        valueHelpRequest(): void {
+                                                            that.fireViewEvents(that.chooseBankEvent);
+                                                        },
+                                                        valueHelpOnly: false,
                                                     }).bindProperty("bindingValue", {
                                                         path: "bank",
                                                         type: new sap.extension.data.Alphanumeric({
@@ -467,6 +476,11 @@ namespace businesspartner {
                                                     }),
                                                     new sap.m.Label("", { text: ibas.i18n.prop("bo_supplier_bankaccount") }),
                                                     new sap.extension.m.Input("", {
+                                                        showValueHelp: true,
+                                                        valueHelpRequest(): void {
+                                                            that.fireViewEvents(that.chooseBankAccountEvent);
+                                                        },
+                                                        valueHelpOnly: false,
                                                     }).bindProperty("bindingValue", {
                                                         path: "bankAccount",
                                                         type: new sap.extension.data.Alphanumeric({
