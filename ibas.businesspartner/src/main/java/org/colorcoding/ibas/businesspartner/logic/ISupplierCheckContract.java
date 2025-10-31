@@ -16,4 +16,18 @@ public interface ISupplierCheckContract extends IBusinessLogicContract {
 	 * @return
 	 */
 	String getSupplierCode();
+
+	/**
+	 * 获取-供应商名称
+	 * 
+	 * @return 值
+	 */
+	String getSupplierName();
+
+	/**
+	 * 设置-供应商名称
+	 * 
+	 * @param value 值
+	 */
+	void setSupplierName(String value);
 }

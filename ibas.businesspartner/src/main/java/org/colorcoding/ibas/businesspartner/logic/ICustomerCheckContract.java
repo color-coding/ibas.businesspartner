@@ -17,4 +17,18 @@ public interface ICustomerCheckContract extends IBusinessLogicContract {
 	 */
 	String getCustomerCode();
 
+	/**
+	 * 获取-客户名称
+	 * 
+	 * @return 值
+	 */
+	String getCustomerName();
+
+	/**
+	 * 设置-客户名称
+	 * 
+	 * @param value 值
+	 */
+	void setCustomerName(String value);
+
 }

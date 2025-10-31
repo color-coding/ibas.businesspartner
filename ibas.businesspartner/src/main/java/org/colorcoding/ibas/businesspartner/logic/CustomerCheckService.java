@@ -1,5 +1,6 @@
 package org.colorcoding.ibas.businesspartner.logic;
 
+import org.colorcoding.ibas.bobas.common.Strings;
 import org.colorcoding.ibas.bobas.data.emYesNo;
 import org.colorcoding.ibas.bobas.logic.LogicContract;
 import org.colorcoding.ibas.businesspartner.bo.customer.ICustomer;
@@ -22,6 +23,9 @@ public class CustomerCheckService extends BusinessPartnerLogic<ICustomerCheckCon
 	protected void impact(ICustomerCheckContract contract) {
 		if (this.getBeAffected().getReferenced() == emYesNo.NO) {
 			this.getBeAffected().setReferenced(emYesNo.YES);
+		}
+		if (Strings.isNullOrEmpty(contract.getCustomerName())) {
+			contract.setCustomerName(this.getBeAffected().getName());
 		}
 	}
 
