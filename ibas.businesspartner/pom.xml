@@ -21,7 +21,7 @@
         <dependency>
             <groupId>org.colorcoding.apps</groupId>
             <artifactId>ibas.accounting</artifactId>
-            <version>0.2.0</version>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
 </project>
