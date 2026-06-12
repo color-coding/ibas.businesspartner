@@ -54,7 +54,7 @@ public class InternalReconciliationAmount extends JournalEntrySmartContent {
 					}
 				}
 			}
-			throw new Exception(I18N.prop("msg_ac_not_found_doucument_journalentry", String.format(
+			throw new Exception(I18N.prop("msg_ac_not_found_document_journalentry", String.format(
 					"{[%s].[DocEntry = %s]%s}", item.getDocumentType(), item.getDocumentEntry(),
 					item.getDocumentLineId() > 0 ? String.format("&&[LineId = %s]", item.getDocumentLineId()) : "")));
 		}

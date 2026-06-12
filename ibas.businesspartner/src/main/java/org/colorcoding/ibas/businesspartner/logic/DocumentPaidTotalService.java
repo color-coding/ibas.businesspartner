@@ -55,7 +55,7 @@ public class DocumentPaidTotalService extends BusinessLogic<IDocumentPaidTotalCo
 						.newFetcher(contract.getBaseDocumentType());
 				if (fetcher == null) {
 					throw new BusinessLogicException(
-							I18N.prop("msg_rp_not_found_document_fether", contract.getBaseDocumentType()));
+							I18N.prop("msg_rp_not_found_document_fetcher", contract.getBaseDocumentType()));
 				}
 				fetcher.setTransaction(this.getTransaction());
 				document = fetcher.fetch(contract.getBaseDocumentEntry());

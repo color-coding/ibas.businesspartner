@@ -19,7 +19,8 @@ import org.colorcoding.ibas.bobas.data.emApprovalStatus;
 import org.colorcoding.ibas.bobas.data.emYesNo;
 import org.colorcoding.ibas.bobas.bo.BusinessObjectUnit;
 import org.colorcoding.ibas.bobas.db.DbField;
-import org.colorcoding.ibas.bobas.db.DbFieldType;
+import org.colorcoding.ibas.bobas.db.DataType;
+import org.colorcoding.ibas.bobas.db.EditType;
 import org.colorcoding.ibas.bobas.rule.IBusinessRule;
 import org.colorcoding.ibas.bobas.rule.common.BusinessRuleMinValue;
 import org.colorcoding.ibas.bobas.rule.common.BusinessRuleRequired;
@@ -70,7 +71,7 @@ public class AssetItem extends BusinessObject<AssetItem>
 	/**
 	 * 编号 属性
 	 */
-	@DbField(name = "Code", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME)
+	@DbField(name = "Code", type = DataType.ALPHANUMERIC, table = DB_TABLE_NAME)
 	public static final IPropertyInfo<String> PROPERTY_CODE = registerProperty(PROPERTY_CODE_NAME, String.class,
 			MY_CLASS);
 
@@ -101,7 +102,7 @@ public class AssetItem extends BusinessObject<AssetItem>
 	/**
 	 * 名称 属性
 	 */
-	@DbField(name = "Name", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME)
+	@DbField(name = "Name", type = DataType.ALPHANUMERIC, table = DB_TABLE_NAME)
 	public static final IPropertyInfo<String> PROPERTY_NAME = registerProperty(PROPERTY_NAME_NAME, String.class,
 			MY_CLASS);
 
@@ -132,7 +133,7 @@ public class AssetItem extends BusinessObject<AssetItem>
 	/**
 	 * 组 属性
 	 */
-	@DbField(name = "Group", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME)
+	@DbField(name = "Group", type = DataType.ALPHANUMERIC, table = DB_TABLE_NAME)
 	public static final IPropertyInfo<String> PROPERTY_GROUP = registerProperty(PROPERTY_GROUP_NAME, String.class,
 			MY_CLASS);
 
@@ -163,7 +164,7 @@ public class AssetItem extends BusinessObject<AssetItem>
 	/**
 	 * 激活 属性
 	 */
-	@DbField(name = "Activated", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME)
+	@DbField(name = "Activated", type = DataType.ALPHANUMERIC, table = DB_TABLE_NAME)
 	public static final IPropertyInfo<emYesNo> PROPERTY_ACTIVATED = registerProperty(PROPERTY_ACTIVATED_NAME,
 			emYesNo.class, MY_CLASS);
 
@@ -194,7 +195,7 @@ public class AssetItem extends BusinessObject<AssetItem>
 	/**
 	 * 已引用 属性
 	 */
-	@DbField(name = "Refed", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME)
+	@DbField(name = "Refed", type = DataType.ALPHANUMERIC, table = DB_TABLE_NAME)
 	public static final IPropertyInfo<emYesNo> PROPERTY_REFERENCED = registerProperty(PROPERTY_REFERENCED_NAME,
 			emYesNo.class, MY_CLASS);
 
@@ -225,7 +226,7 @@ public class AssetItem extends BusinessObject<AssetItem>
 	/**
 	 * 已删除 属性
 	 */
-	@DbField(name = "Deleted", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME)
+	@DbField(name = "Deleted", type = DataType.ALPHANUMERIC, table = DB_TABLE_NAME)
 	public static final IPropertyInfo<emYesNo> PROPERTY_DELETED = registerProperty(PROPERTY_DELETED_NAME, emYesNo.class,
 			MY_CLASS);
 
@@ -256,7 +257,7 @@ public class AssetItem extends BusinessObject<AssetItem>
 	/**
 	 * 对象编号 属性
 	 */
-	@DbField(name = "DocEntry", type = DbFieldType.NUMERIC, table = DB_TABLE_NAME, primaryKey = true)
+	@DbField(name = "DocEntry", type = DataType.NUMERIC, table = DB_TABLE_NAME, primaryKey = true)
 	public static final IPropertyInfo<Integer> PROPERTY_DOCENTRY = registerProperty(PROPERTY_DOCENTRY_NAME,
 			Integer.class, MY_CLASS);
 
@@ -287,7 +288,7 @@ public class AssetItem extends BusinessObject<AssetItem>
 	/**
 	 * 对象类型 属性
 	 */
-	@DbField(name = "ObjectCode", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME)
+	@DbField(name = "ObjectCode", type = DataType.ALPHANUMERIC, table = DB_TABLE_NAME)
 	public static final IPropertyInfo<String> PROPERTY_OBJECTCODE = registerProperty(PROPERTY_OBJECTCODE_NAME,
 			String.class, MY_CLASS);
 
@@ -318,7 +319,7 @@ public class AssetItem extends BusinessObject<AssetItem>
 	/**
 	 * 创建日期 属性
 	 */
-	@DbField(name = "CreateDate", type = DbFieldType.DATE, table = DB_TABLE_NAME)
+	@DbField(name = "CreateDate", type = DataType.DATE, table = DB_TABLE_NAME)
 	public static final IPropertyInfo<DateTime> PROPERTY_CREATEDATE = registerProperty(PROPERTY_CREATEDATE_NAME,
 			DateTime.class, MY_CLASS);
 
@@ -349,7 +350,7 @@ public class AssetItem extends BusinessObject<AssetItem>
 	/**
 	 * 创建时间 属性
 	 */
-	@DbField(name = "CreateTime", type = DbFieldType.NUMERIC, table = DB_TABLE_NAME)
+	@DbField(name = "CreateTime", type = DataType.NUMERIC, editType = EditType.TIME, table = DB_TABLE_NAME)
 	public static final IPropertyInfo<Short> PROPERTY_CREATETIME = registerProperty(PROPERTY_CREATETIME_NAME,
 			Short.class, MY_CLASS);
 
@@ -380,7 +381,7 @@ public class AssetItem extends BusinessObject<AssetItem>
 	/**
 	 * 修改日期 属性
 	 */
-	@DbField(name = "UpdateDate", type = DbFieldType.DATE, table = DB_TABLE_NAME)
+	@DbField(name = "UpdateDate", type = DataType.DATE, table = DB_TABLE_NAME)
 	public static final IPropertyInfo<DateTime> PROPERTY_UPDATEDATE = registerProperty(PROPERTY_UPDATEDATE_NAME,
 			DateTime.class, MY_CLASS);
 
@@ -411,7 +412,7 @@ public class AssetItem extends BusinessObject<AssetItem>
 	/**
 	 * 修改时间 属性
 	 */
-	@DbField(name = "UpdateTime", type = DbFieldType.NUMERIC, table = DB_TABLE_NAME)
+	@DbField(name = "UpdateTime", type = DataType.NUMERIC, editType = EditType.TIME, table = DB_TABLE_NAME)
 	public static final IPropertyInfo<Short> PROPERTY_UPDATETIME = registerProperty(PROPERTY_UPDATETIME_NAME,
 			Short.class, MY_CLASS);
 
@@ -442,7 +443,7 @@ public class AssetItem extends BusinessObject<AssetItem>
 	/**
 	 * 版本 属性
 	 */
-	@DbField(name = "LogInst", type = DbFieldType.NUMERIC, table = DB_TABLE_NAME)
+	@DbField(name = "LogInst", type = DataType.NUMERIC, table = DB_TABLE_NAME)
 	public static final IPropertyInfo<Integer> PROPERTY_LOGINST = registerProperty(PROPERTY_LOGINST_NAME, Integer.class,
 			MY_CLASS);
 
@@ -473,7 +474,7 @@ public class AssetItem extends BusinessObject<AssetItem>
 	/**
 	 * 服务系列 属性
 	 */
-	@DbField(name = "Series", type = DbFieldType.NUMERIC, table = DB_TABLE_NAME)
+	@DbField(name = "Series", type = DataType.NUMERIC, table = DB_TABLE_NAME)
 	public static final IPropertyInfo<Integer> PROPERTY_SERIES = registerProperty(PROPERTY_SERIES_NAME, Integer.class,
 			MY_CLASS);
 
@@ -504,7 +505,7 @@ public class AssetItem extends BusinessObject<AssetItem>
 	/**
 	 * 数据源 属性
 	 */
-	@DbField(name = "DataSource", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME)
+	@DbField(name = "DataSource", type = DataType.ALPHANUMERIC, table = DB_TABLE_NAME)
 	public static final IPropertyInfo<String> PROPERTY_DATASOURCE = registerProperty(PROPERTY_DATASOURCE_NAME,
 			String.class, MY_CLASS);
 
@@ -535,7 +536,7 @@ public class AssetItem extends BusinessObject<AssetItem>
 	/**
 	 * 创建用户 属性
 	 */
-	@DbField(name = "Creator", type = DbFieldType.NUMERIC, table = DB_TABLE_NAME)
+	@DbField(name = "Creator", type = DataType.NUMERIC, table = DB_TABLE_NAME)
 	public static final IPropertyInfo<Integer> PROPERTY_CREATEUSERSIGN = registerProperty(PROPERTY_CREATEUSERSIGN_NAME,
 			Integer.class, MY_CLASS);
 
@@ -566,7 +567,7 @@ public class AssetItem extends BusinessObject<AssetItem>
 	/**
 	 * 修改用户 属性
 	 */
-	@DbField(name = "Updator", type = DbFieldType.NUMERIC, table = DB_TABLE_NAME)
+	@DbField(name = "Updator", type = DataType.NUMERIC, table = DB_TABLE_NAME)
 	public static final IPropertyInfo<Integer> PROPERTY_UPDATEUSERSIGN = registerProperty(PROPERTY_UPDATEUSERSIGN_NAME,
 			Integer.class, MY_CLASS);
 
@@ -597,7 +598,7 @@ public class AssetItem extends BusinessObject<AssetItem>
 	/**
 	 * 创建动作标识 属性
 	 */
-	@DbField(name = "CreateActId", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME)
+	@DbField(name = "CreateActId", type = DataType.ALPHANUMERIC, table = DB_TABLE_NAME)
 	public static final IPropertyInfo<String> PROPERTY_CREATEACTIONID = registerProperty(PROPERTY_CREATEACTIONID_NAME,
 			String.class, MY_CLASS);
 
@@ -628,7 +629,7 @@ public class AssetItem extends BusinessObject<AssetItem>
 	/**
 	 * 更新动作标识 属性
 	 */
-	@DbField(name = "UpdateActId", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME)
+	@DbField(name = "UpdateActId", type = DataType.ALPHANUMERIC, table = DB_TABLE_NAME)
 	public static final IPropertyInfo<String> PROPERTY_UPDATEACTIONID = registerProperty(PROPERTY_UPDATEACTIONID_NAME,
 			String.class, MY_CLASS);
 
@@ -659,7 +660,7 @@ public class AssetItem extends BusinessObject<AssetItem>
 	/**
 	 * 审批状态 属性
 	 */
-	@DbField(name = "ApvlStatus", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME)
+	@DbField(name = "ApvlStatus", type = DataType.ALPHANUMERIC, table = DB_TABLE_NAME)
 	public static final IPropertyInfo<emApprovalStatus> PROPERTY_APPROVALSTATUS = registerProperty(
 			PROPERTY_APPROVALSTATUS_NAME, emApprovalStatus.class, MY_CLASS);
 
@@ -690,7 +691,7 @@ public class AssetItem extends BusinessObject<AssetItem>
 	/**
 	 * 数据所有者 属性
 	 */
-	@DbField(name = "DataOwner", type = DbFieldType.NUMERIC, table = DB_TABLE_NAME)
+	@DbField(name = "DataOwner", type = DataType.NUMERIC, table = DB_TABLE_NAME)
 	public static final IPropertyInfo<Integer> PROPERTY_DATAOWNER = registerProperty(PROPERTY_DATAOWNER_NAME,
 			Integer.class, MY_CLASS);
 
@@ -721,7 +722,7 @@ public class AssetItem extends BusinessObject<AssetItem>
 	/**
 	 * 数据所属组织 属性
 	 */
-	@DbField(name = "OrgCode", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME)
+	@DbField(name = "OrgCode", type = DataType.ALPHANUMERIC, table = DB_TABLE_NAME)
 	public static final IPropertyInfo<String> PROPERTY_ORGANIZATION = registerProperty(PROPERTY_ORGANIZATION_NAME,
 			String.class, MY_CLASS);
 
@@ -752,7 +753,7 @@ public class AssetItem extends BusinessObject<AssetItem>
 	/**
 	 * 生效日期 属性
 	 */
-	@DbField(name = "ValidDate", type = DbFieldType.DATE, table = DB_TABLE_NAME)
+	@DbField(name = "ValidDate", type = DataType.DATE, table = DB_TABLE_NAME)
 	public static final IPropertyInfo<DateTime> PROPERTY_VALIDDATE = registerProperty(PROPERTY_VALIDDATE_NAME,
 			DateTime.class, MY_CLASS);
 
@@ -783,7 +784,7 @@ public class AssetItem extends BusinessObject<AssetItem>
 	/**
 	 * 失效日期 属性
 	 */
-	@DbField(name = "InvalidDate", type = DbFieldType.DATE, table = DB_TABLE_NAME)
+	@DbField(name = "InvalidDate", type = DataType.DATE, table = DB_TABLE_NAME)
 	public static final IPropertyInfo<DateTime> PROPERTY_INVALIDDATE = registerProperty(PROPERTY_INVALIDDATE_NAME,
 			DateTime.class, MY_CLASS);
 
@@ -814,7 +815,7 @@ public class AssetItem extends BusinessObject<AssetItem>
 	/**
 	 * 面值 属性
 	 */
-	@DbField(name = "FaceAmount", type = DbFieldType.DECIMAL, table = DB_TABLE_NAME)
+	@DbField(name = "FaceAmount", type = DataType.DECIMAL, editType = EditType.SUM, table = DB_TABLE_NAME)
 	public static final IPropertyInfo<BigDecimal> PROPERTY_FACEAMOUNT = registerProperty(PROPERTY_FACEAMOUNT_NAME,
 			BigDecimal.class, MY_CLASS);
 
@@ -872,7 +873,7 @@ public class AssetItem extends BusinessObject<AssetItem>
 	/**
 	 * 单位 属性
 	 */
-	@DbField(name = "AmountUnit", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME)
+	@DbField(name = "AmountUnit", type = DataType.ALPHANUMERIC, table = DB_TABLE_NAME)
 	public static final IPropertyInfo<String> PROPERTY_AMOUNTUNIT = registerProperty(PROPERTY_AMOUNTUNIT_NAME,
 			String.class, MY_CLASS);
 
@@ -903,7 +904,7 @@ public class AssetItem extends BusinessObject<AssetItem>
 	/**
 	 * 可用次数 属性
 	 */
-	@DbField(name = "UsingTimes", type = DbFieldType.NUMERIC, table = DB_TABLE_NAME)
+	@DbField(name = "UsingTimes", type = DataType.NUMERIC, table = DB_TABLE_NAME)
 	public static final IPropertyInfo<Integer> PROPERTY_USINGTIMES = registerProperty(PROPERTY_USINGTIMES_NAME,
 			Integer.class, MY_CLASS);
 
@@ -934,7 +935,7 @@ public class AssetItem extends BusinessObject<AssetItem>
 	/**
 	 * 使用时折扣 属性
 	 */
-	@DbField(name = "UsingDiscount", type = DbFieldType.DECIMAL, table = DB_TABLE_NAME)
+	@DbField(name = "UsingDiscount", type = DataType.DECIMAL, editType = EditType.PERCENTAGE, table = DB_TABLE_NAME)
 	public static final IPropertyInfo<BigDecimal> PROPERTY_USINGDISCOUNT = registerProperty(PROPERTY_USINGDISCOUNT_NAME,
 			BigDecimal.class, MY_CLASS);
 
@@ -992,7 +993,7 @@ public class AssetItem extends BusinessObject<AssetItem>
 	/**
 	 * 透支额 属性
 	 */
-	@DbField(name = "Overdraft", type = DbFieldType.DECIMAL, table = DB_TABLE_NAME)
+	@DbField(name = "Overdraft", type = DataType.DECIMAL, editType = EditType.SUM, table = DB_TABLE_NAME)
 	public static final IPropertyInfo<BigDecimal> PROPERTY_OVERDRAFT = registerProperty(PROPERTY_OVERDRAFT_NAME,
 			BigDecimal.class, MY_CLASS);
 
@@ -1050,7 +1051,7 @@ public class AssetItem extends BusinessObject<AssetItem>
 	/**
 	 * 有效天数 属性
 	 */
-	@DbField(name = "ValidDays", type = DbFieldType.NUMERIC, table = DB_TABLE_NAME)
+	@DbField(name = "ValidDays", type = DataType.NUMERIC, table = DB_TABLE_NAME)
 	public static final IPropertyInfo<Integer> PROPERTY_VALIDDAYS = registerProperty(PROPERTY_VALIDDAYS_NAME,
 			Integer.class, MY_CLASS);
 
@@ -1081,7 +1082,7 @@ public class AssetItem extends BusinessObject<AssetItem>
 	/**
 	 * 可充值的 属性
 	 */
-	@DbField(name = "Rechargeable", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME)
+	@DbField(name = "Rechargeable", type = DataType.ALPHANUMERIC, table = DB_TABLE_NAME)
 	public static final IPropertyInfo<emYesNo> PROPERTY_RECHARGEABLE = registerProperty(PROPERTY_RECHARGEABLE_NAME,
 			emYesNo.class, MY_CLASS);
 
@@ -1112,7 +1113,7 @@ public class AssetItem extends BusinessObject<AssetItem>
 	/**
 	 * 图片 属性
 	 */
-	@DbField(name = "Picture", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME)
+	@DbField(name = "Picture", type = DataType.ALPHANUMERIC, table = DB_TABLE_NAME)
 	public static final IPropertyInfo<String> PROPERTY_PICTURE = registerProperty(PROPERTY_PICTURE_NAME, String.class,
 			MY_CLASS);
 
@@ -1143,7 +1144,7 @@ public class AssetItem extends BusinessObject<AssetItem>
 	/**
 	 * 备注 属性
 	 */
-	@DbField(name = "Remarks", type = DbFieldType.MEMO, table = DB_TABLE_NAME)
+	@DbField(name = "Remarks", type = DataType.MEMO, table = DB_TABLE_NAME)
 	public static final IPropertyInfo<String> PROPERTY_REMARKS = registerProperty(PROPERTY_REMARKS_NAME, String.class,
 			MY_CLASS);
 

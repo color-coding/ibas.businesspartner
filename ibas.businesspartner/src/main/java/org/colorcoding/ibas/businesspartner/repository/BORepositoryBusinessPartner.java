@@ -561,7 +561,7 @@ public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 			condition.setValue(emYesNo.NO);
 			condition = criteria.getConditions().create();
 			condition.setAlias(BusinessPartnerAsset.PROPERTY_TIMES.getName());
-			condition.setOperation(ConditionOperation.GRATER_THAN);
+			condition.setOperation(ConditionOperation.GREATER_THAN);
 			condition.setValue(0);
 			condition.setBracketClose(1);
 			// 有效日期
@@ -593,7 +593,7 @@ public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 			condition = criteria.getConditions().create();
 			condition.setBracketClose(2);
 			condition.setAlias(BusinessPartnerAsset.PROPERTY_INVALIDDATE.getName());
-			condition.setOperation(ConditionOperation.GRATER_EQUAL);
+			condition.setOperation(ConditionOperation.GREATER_EQUAL);
 			condition.setValue(today);
 			OperationResult<CustomerAsset> operationResult = new OperationResult<CustomerAsset>();
 			for (IBusinessPartnerAsset businessPartnerAsset : this.fetchBusinessPartnerAsset(criteria)
@@ -691,7 +691,7 @@ public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 			condition.setValue(emYesNo.NO);
 			condition = criteria.getConditions().create();
 			condition.setAlias(BusinessPartnerAsset.PROPERTY_TIMES.getName());
-			condition.setOperation(ConditionOperation.GRATER_THAN);
+			condition.setOperation(ConditionOperation.GREATER_THAN);
 			condition.setValue(0);
 			condition.setBracketClose(1);
 			// 有效日期
@@ -723,7 +723,7 @@ public class BORepositoryBusinessPartner extends BORepositoryServiceApplication
 			condition = criteria.getConditions().create();
 			condition.setBracketClose(2);
 			condition.setAlias(BusinessPartnerAsset.PROPERTY_INVALIDDATE.getName());
-			condition.setOperation(ConditionOperation.GRATER_EQUAL);
+			condition.setOperation(ConditionOperation.GREATER_EQUAL);
 			condition.setValue(today);
 			OperationResult<SupplierAsset> operationResult = new OperationResult<SupplierAsset>();
 			for (IBusinessPartnerAsset businessPartnerAsset : this.fetchBusinessPartnerAsset(criteria)

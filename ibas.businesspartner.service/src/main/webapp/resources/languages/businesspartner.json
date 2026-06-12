@@ -69,6 +69,5 @@
     "businesspartner_create_new_customer_contact_and_address": "Created new {0}, {1}",
     "businesspartner_ledgeraccount_setting": "Ledger Account Settings",
     "businesspartner_view_businesspartnerassetjournal": "View Transaction",
-    "businesspartner_new_businesspartnerassetjournal": "New Transaction",
-    "businesspartner_closing_delimiter": "----End----"
+    "businesspartner_new_businesspartnerassetjournal": "New Transaction"
 }

@@ -17,7 +17,8 @@ import org.colorcoding.ibas.bobas.data.emApprovalStatus;
 import org.colorcoding.ibas.bobas.data.emYesNo;
 import org.colorcoding.ibas.bobas.bo.BusinessObjectUnit;
 import org.colorcoding.ibas.bobas.db.DbField;
-import org.colorcoding.ibas.bobas.db.DbFieldType;
+import org.colorcoding.ibas.bobas.db.DataType;
+import org.colorcoding.ibas.bobas.db.EditType;
 import org.colorcoding.ibas.bobas.ownership.IDataOwnership;
 import org.colorcoding.ibas.bobas.rule.IBusinessRule;
 import org.colorcoding.ibas.bobas.rule.common.BusinessRuleRequired;
@@ -69,7 +70,7 @@ public class Lead extends BusinessObject<Lead>
 	/**
 	 * 编码 属性
 	 */
-	@DbField(name = "Code", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME, uniqueKey = true)
+	@DbField(name = "Code", type = DataType.ALPHANUMERIC, table = DB_TABLE_NAME, uniqueKey = true)
 	public static final IPropertyInfo<String> PROPERTY_CODE = registerProperty(PROPERTY_CODE_NAME, String.class,
 			MY_CLASS);
 
@@ -100,7 +101,7 @@ public class Lead extends BusinessObject<Lead>
 	/**
 	 * 名称 属性
 	 */
-	@DbField(name = "Name", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME)
+	@DbField(name = "Name", type = DataType.ALPHANUMERIC, table = DB_TABLE_NAME)
 	public static final IPropertyInfo<String> PROPERTY_NAME = registerProperty(PROPERTY_NAME_NAME, String.class,
 			MY_CLASS);
 
@@ -131,7 +132,7 @@ public class Lead extends BusinessObject<Lead>
 	/**
 	 * 标识 属性
 	 */
-	@DbField(name = "Sign", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME)
+	@DbField(name = "Sign", type = DataType.ALPHANUMERIC, table = DB_TABLE_NAME)
 	public static final IPropertyInfo<String> PROPERTY_SIGN = registerProperty(PROPERTY_SIGN_NAME, String.class,
 			MY_CLASS);
 
@@ -162,7 +163,7 @@ public class Lead extends BusinessObject<Lead>
 	/**
 	 * 组代码 属性
 	 */
-	@DbField(name = "Group", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME)
+	@DbField(name = "Group", type = DataType.ALPHANUMERIC, table = DB_TABLE_NAME)
 	public static final IPropertyInfo<String> PROPERTY_GROUP = registerProperty(PROPERTY_GROUP_NAME, String.class,
 			MY_CLASS);
 
@@ -193,7 +194,7 @@ public class Lead extends BusinessObject<Lead>
 	/**
 	 * 激活 属性
 	 */
-	@DbField(name = "Activated", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME)
+	@DbField(name = "Activated", type = DataType.ALPHANUMERIC, table = DB_TABLE_NAME)
 	public static final IPropertyInfo<emYesNo> PROPERTY_ACTIVATED = registerProperty(PROPERTY_ACTIVATED_NAME,
 			emYesNo.class, MY_CLASS);
 
@@ -224,7 +225,7 @@ public class Lead extends BusinessObject<Lead>
 	/**
 	 * 公司/个人 属性
 	 */
-	@DbField(name = "CmpPrivate", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME)
+	@DbField(name = "CmpPrivate", type = DataType.ALPHANUMERIC, table = DB_TABLE_NAME)
 	public static final IPropertyInfo<emBusinessPartnerNature> PROPERTY_COMPANYPRIVATE = registerProperty(
 			PROPERTY_COMPANYPRIVATE_NAME, emBusinessPartnerNature.class, MY_CLASS);
 
@@ -255,7 +256,7 @@ public class Lead extends BusinessObject<Lead>
 	/**
 	 * 联系人 属性
 	 */
-	@DbField(name = "CntctPrsn", type = DbFieldType.NUMERIC, table = DB_TABLE_NAME)
+	@DbField(name = "CntctPrsn", type = DataType.NUMERIC, table = DB_TABLE_NAME)
 	public static final IPropertyInfo<Integer> PROPERTY_CONTACTPERSON = registerProperty(PROPERTY_CONTACTPERSON_NAME,
 			Integer.class, MY_CLASS);
 
@@ -286,7 +287,7 @@ public class Lead extends BusinessObject<Lead>
 	/**
 	 * 账单地址 属性
 	 */
-	@DbField(name = "BillAddress", type = DbFieldType.NUMERIC, table = DB_TABLE_NAME)
+	@DbField(name = "BillAddress", type = DataType.NUMERIC, table = DB_TABLE_NAME)
 	public static final IPropertyInfo<Integer> PROPERTY_BILLADDRESS = registerProperty(PROPERTY_BILLADDRESS_NAME,
 			Integer.class, MY_CLASS);
 
@@ -317,7 +318,7 @@ public class Lead extends BusinessObject<Lead>
 	/**
 	 * 送货地址 属性
 	 */
-	@DbField(name = "ShipAddress", type = DbFieldType.NUMERIC, table = DB_TABLE_NAME)
+	@DbField(name = "ShipAddress", type = DataType.NUMERIC, table = DB_TABLE_NAME)
 	public static final IPropertyInfo<Integer> PROPERTY_SHIPADDRESS = registerProperty(PROPERTY_SHIPADDRESS_NAME,
 			Integer.class, MY_CLASS);
 
@@ -348,7 +349,7 @@ public class Lead extends BusinessObject<Lead>
 	/**
 	 * 注册地址 属性
 	 */
-	@DbField(name = "RegsAddress", type = DbFieldType.NUMERIC, table = DB_TABLE_NAME)
+	@DbField(name = "RegsAddress", type = DataType.NUMERIC, table = DB_TABLE_NAME)
 	public static final IPropertyInfo<Integer> PROPERTY_REGISTRATIONADDRESS = registerProperty(
 			PROPERTY_REGISTRATIONADDRESS_NAME, Integer.class, MY_CLASS);
 
@@ -379,7 +380,7 @@ public class Lead extends BusinessObject<Lead>
 	/**
 	 * 电话 1 属性
 	 */
-	@DbField(name = "Phone1", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME)
+	@DbField(name = "Phone1", type = DataType.ALPHANUMERIC, table = DB_TABLE_NAME)
 	public static final IPropertyInfo<String> PROPERTY_TELEPHONE1 = registerProperty(PROPERTY_TELEPHONE1_NAME,
 			String.class, MY_CLASS);
 
@@ -410,7 +411,7 @@ public class Lead extends BusinessObject<Lead>
 	/**
 	 * 电话 2 属性
 	 */
-	@DbField(name = "Phone2", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME)
+	@DbField(name = "Phone2", type = DataType.ALPHANUMERIC, table = DB_TABLE_NAME)
 	public static final IPropertyInfo<String> PROPERTY_TELEPHONE2 = registerProperty(PROPERTY_TELEPHONE2_NAME,
 			String.class, MY_CLASS);
 
@@ -441,7 +442,7 @@ public class Lead extends BusinessObject<Lead>
 	/**
 	 * 移动电话 属性
 	 */
-	@DbField(name = "Cellular", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME)
+	@DbField(name = "Cellular", type = DataType.ALPHANUMERIC, table = DB_TABLE_NAME)
 	public static final IPropertyInfo<String> PROPERTY_MOBILEPHONE = registerProperty(PROPERTY_MOBILEPHONE_NAME,
 			String.class, MY_CLASS);
 
@@ -472,7 +473,7 @@ public class Lead extends BusinessObject<Lead>
 	/**
 	 * 传真号 属性
 	 */
-	@DbField(name = "Fax", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME)
+	@DbField(name = "Fax", type = DataType.ALPHANUMERIC, table = DB_TABLE_NAME)
 	public static final IPropertyInfo<String> PROPERTY_FAXNUMBER = registerProperty(PROPERTY_FAXNUMBER_NAME,
 			String.class, MY_CLASS);
 
@@ -503,7 +504,7 @@ public class Lead extends BusinessObject<Lead>
 	/**
 	 * 价格清单 属性
 	 */
-	@DbField(name = "PriceList", type = DbFieldType.NUMERIC, table = DB_TABLE_NAME)
+	@DbField(name = "PriceList", type = DataType.NUMERIC, table = DB_TABLE_NAME)
 	public static final IPropertyInfo<Integer> PROPERTY_PRICELIST = registerProperty(PROPERTY_PRICELIST_NAME,
 			Integer.class, MY_CLASS);
 
@@ -534,7 +535,7 @@ public class Lead extends BusinessObject<Lead>
 	/**
 	 * 货币 属性
 	 */
-	@DbField(name = "Currency", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME)
+	@DbField(name = "Currency", type = DataType.ALPHANUMERIC, table = DB_TABLE_NAME)
 	public static final IPropertyInfo<String> PROPERTY_CURRENCY = registerProperty(PROPERTY_CURRENCY_NAME, String.class,
 			MY_CLASS);
 
@@ -565,7 +566,7 @@ public class Lead extends BusinessObject<Lead>
 	/**
 	 * 生效日期 属性
 	 */
-	@DbField(name = "ValidDate", type = DbFieldType.DATE, table = DB_TABLE_NAME)
+	@DbField(name = "ValidDate", type = DataType.DATE, table = DB_TABLE_NAME)
 	public static final IPropertyInfo<DateTime> PROPERTY_VALIDDATE = registerProperty(PROPERTY_VALIDDATE_NAME,
 			DateTime.class, MY_CLASS);
 
@@ -596,7 +597,7 @@ public class Lead extends BusinessObject<Lead>
 	/**
 	 * 失效日期 属性
 	 */
-	@DbField(name = "InvalidDate", type = DbFieldType.DATE, table = DB_TABLE_NAME)
+	@DbField(name = "InvalidDate", type = DataType.DATE, table = DB_TABLE_NAME)
 	public static final IPropertyInfo<DateTime> PROPERTY_INVALIDDATE = registerProperty(PROPERTY_INVALIDDATE_NAME,
 			DateTime.class, MY_CLASS);
 
@@ -627,7 +628,7 @@ public class Lead extends BusinessObject<Lead>
 	/**
 	 * 底价清单 属性
 	 */
-	@DbField(name = "FloorList", type = DbFieldType.NUMERIC, table = DB_TABLE_NAME)
+	@DbField(name = "FloorList", type = DataType.NUMERIC, table = DB_TABLE_NAME)
 	public static final IPropertyInfo<Integer> PROPERTY_FLOORLIST = registerProperty(PROPERTY_FLOORLIST_NAME,
 			Integer.class, MY_CLASS);
 
@@ -658,7 +659,7 @@ public class Lead extends BusinessObject<Lead>
 	/**
 	 * 税收组 属性
 	 */
-	@DbField(name = "TaxGroup", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME)
+	@DbField(name = "TaxGroup", type = DataType.ALPHANUMERIC, table = DB_TABLE_NAME)
 	public static final IPropertyInfo<String> PROPERTY_TAXGROUP = registerProperty(PROPERTY_TAXGROUP_NAME, String.class,
 			MY_CLASS);
 
@@ -689,7 +690,7 @@ public class Lead extends BusinessObject<Lead>
 	/**
 	 * 备注 属性
 	 */
-	@DbField(name = "Remarks", type = DbFieldType.MEMO, table = DB_TABLE_NAME)
+	@DbField(name = "Remarks", type = DataType.MEMO, table = DB_TABLE_NAME)
 	public static final IPropertyInfo<String> PROPERTY_REMARKS = registerProperty(PROPERTY_REMARKS_NAME, String.class,
 			MY_CLASS);
 
@@ -720,7 +721,7 @@ public class Lead extends BusinessObject<Lead>
 	/**
 	 * 已引用 属性
 	 */
-	@DbField(name = "Refed", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME)
+	@DbField(name = "Refed", type = DataType.ALPHANUMERIC, table = DB_TABLE_NAME)
 	public static final IPropertyInfo<emYesNo> PROPERTY_REFERENCED = registerProperty(PROPERTY_REFERENCED_NAME,
 			emYesNo.class, MY_CLASS);
 
@@ -751,7 +752,7 @@ public class Lead extends BusinessObject<Lead>
 	/**
 	 * 已删除 属性
 	 */
-	@DbField(name = "Deleted", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME)
+	@DbField(name = "Deleted", type = DataType.ALPHANUMERIC, table = DB_TABLE_NAME)
 	public static final IPropertyInfo<emYesNo> PROPERTY_DELETED = registerProperty(PROPERTY_DELETED_NAME, emYesNo.class,
 			MY_CLASS);
 
@@ -782,7 +783,7 @@ public class Lead extends BusinessObject<Lead>
 	/**
 	 * 对象编号 属性
 	 */
-	@DbField(name = "DocEntry", type = DbFieldType.NUMERIC, table = DB_TABLE_NAME, primaryKey = true)
+	@DbField(name = "DocEntry", type = DataType.NUMERIC, table = DB_TABLE_NAME, primaryKey = true)
 	public static final IPropertyInfo<Integer> PROPERTY_DOCENTRY = registerProperty(PROPERTY_DOCENTRY_NAME,
 			Integer.class, MY_CLASS);
 
@@ -813,7 +814,7 @@ public class Lead extends BusinessObject<Lead>
 	/**
 	 * 对象类型 属性
 	 */
-	@DbField(name = "ObjectCode", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME)
+	@DbField(name = "ObjectCode", type = DataType.ALPHANUMERIC, table = DB_TABLE_NAME)
 	public static final IPropertyInfo<String> PROPERTY_OBJECTCODE = registerProperty(PROPERTY_OBJECTCODE_NAME,
 			String.class, MY_CLASS);
 
@@ -844,7 +845,7 @@ public class Lead extends BusinessObject<Lead>
 	/**
 	 * 创建日期 属性
 	 */
-	@DbField(name = "CreateDate", type = DbFieldType.DATE, table = DB_TABLE_NAME)
+	@DbField(name = "CreateDate", type = DataType.DATE, table = DB_TABLE_NAME)
 	public static final IPropertyInfo<DateTime> PROPERTY_CREATEDATE = registerProperty(PROPERTY_CREATEDATE_NAME,
 			DateTime.class, MY_CLASS);
 
@@ -875,7 +876,7 @@ public class Lead extends BusinessObject<Lead>
 	/**
 	 * 创建时间 属性
 	 */
-	@DbField(name = "CreateTime", type = DbFieldType.NUMERIC, table = DB_TABLE_NAME)
+	@DbField(name = "CreateTime", type = DataType.NUMERIC, editType = EditType.TIME, table = DB_TABLE_NAME)
 	public static final IPropertyInfo<Short> PROPERTY_CREATETIME = registerProperty(PROPERTY_CREATETIME_NAME,
 			Short.class, MY_CLASS);
 
@@ -906,7 +907,7 @@ public class Lead extends BusinessObject<Lead>
 	/**
 	 * 修改日期 属性
 	 */
-	@DbField(name = "UpdateDate", type = DbFieldType.DATE, table = DB_TABLE_NAME)
+	@DbField(name = "UpdateDate", type = DataType.DATE, table = DB_TABLE_NAME)
 	public static final IPropertyInfo<DateTime> PROPERTY_UPDATEDATE = registerProperty(PROPERTY_UPDATEDATE_NAME,
 			DateTime.class, MY_CLASS);
 
@@ -937,7 +938,7 @@ public class Lead extends BusinessObject<Lead>
 	/**
 	 * 修改时间 属性
 	 */
-	@DbField(name = "UpdateTime", type = DbFieldType.NUMERIC, table = DB_TABLE_NAME)
+	@DbField(name = "UpdateTime", type = DataType.NUMERIC, editType = EditType.TIME, table = DB_TABLE_NAME)
 	public static final IPropertyInfo<Short> PROPERTY_UPDATETIME = registerProperty(PROPERTY_UPDATETIME_NAME,
 			Short.class, MY_CLASS);
 
@@ -968,7 +969,7 @@ public class Lead extends BusinessObject<Lead>
 	/**
 	 * 版本 属性
 	 */
-	@DbField(name = "LogInst", type = DbFieldType.NUMERIC, table = DB_TABLE_NAME)
+	@DbField(name = "LogInst", type = DataType.NUMERIC, table = DB_TABLE_NAME)
 	public static final IPropertyInfo<Integer> PROPERTY_LOGINST = registerProperty(PROPERTY_LOGINST_NAME, Integer.class,
 			MY_CLASS);
 
@@ -999,7 +1000,7 @@ public class Lead extends BusinessObject<Lead>
 	/**
 	 * 服务系列 属性
 	 */
-	@DbField(name = "Series", type = DbFieldType.NUMERIC, table = DB_TABLE_NAME)
+	@DbField(name = "Series", type = DataType.NUMERIC, table = DB_TABLE_NAME)
 	public static final IPropertyInfo<Integer> PROPERTY_SERIES = registerProperty(PROPERTY_SERIES_NAME, Integer.class,
 			MY_CLASS);
 
@@ -1030,7 +1031,7 @@ public class Lead extends BusinessObject<Lead>
 	/**
 	 * 数据源 属性
 	 */
-	@DbField(name = "DataSource", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME)
+	@DbField(name = "DataSource", type = DataType.ALPHANUMERIC, table = DB_TABLE_NAME)
 	public static final IPropertyInfo<String> PROPERTY_DATASOURCE = registerProperty(PROPERTY_DATASOURCE_NAME,
 			String.class, MY_CLASS);
 
@@ -1061,7 +1062,7 @@ public class Lead extends BusinessObject<Lead>
 	/**
 	 * 创建用户 属性
 	 */
-	@DbField(name = "Creator", type = DbFieldType.NUMERIC, table = DB_TABLE_NAME)
+	@DbField(name = "Creator", type = DataType.NUMERIC, table = DB_TABLE_NAME)
 	public static final IPropertyInfo<Integer> PROPERTY_CREATEUSERSIGN = registerProperty(PROPERTY_CREATEUSERSIGN_NAME,
 			Integer.class, MY_CLASS);
 
@@ -1092,7 +1093,7 @@ public class Lead extends BusinessObject<Lead>
 	/**
 	 * 修改用户 属性
 	 */
-	@DbField(name = "Updator", type = DbFieldType.NUMERIC, table = DB_TABLE_NAME)
+	@DbField(name = "Updator", type = DataType.NUMERIC, table = DB_TABLE_NAME)
 	public static final IPropertyInfo<Integer> PROPERTY_UPDATEUSERSIGN = registerProperty(PROPERTY_UPDATEUSERSIGN_NAME,
 			Integer.class, MY_CLASS);
 
@@ -1123,7 +1124,7 @@ public class Lead extends BusinessObject<Lead>
 	/**
 	 * 创建动作标识 属性
 	 */
-	@DbField(name = "CreateActId", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME)
+	@DbField(name = "CreateActId", type = DataType.ALPHANUMERIC, table = DB_TABLE_NAME)
 	public static final IPropertyInfo<String> PROPERTY_CREATEACTIONID = registerProperty(PROPERTY_CREATEACTIONID_NAME,
 			String.class, MY_CLASS);
 
@@ -1154,7 +1155,7 @@ public class Lead extends BusinessObject<Lead>
 	/**
 	 * 更新动作标识 属性
 	 */
-	@DbField(name = "UpdateActId", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME)
+	@DbField(name = "UpdateActId", type = DataType.ALPHANUMERIC, table = DB_TABLE_NAME)
 	public static final IPropertyInfo<String> PROPERTY_UPDATEACTIONID = registerProperty(PROPERTY_UPDATEACTIONID_NAME,
 			String.class, MY_CLASS);
 
@@ -1185,7 +1186,7 @@ public class Lead extends BusinessObject<Lead>
 	/**
 	 * 审批状态 属性
 	 */
-	@DbField(name = "ApvlStatus", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME)
+	@DbField(name = "ApvlStatus", type = DataType.ALPHANUMERIC, table = DB_TABLE_NAME)
 	public static final IPropertyInfo<emApprovalStatus> PROPERTY_APPROVALSTATUS = registerProperty(
 			PROPERTY_APPROVALSTATUS_NAME, emApprovalStatus.class, MY_CLASS);
 
@@ -1216,7 +1217,7 @@ public class Lead extends BusinessObject<Lead>
 	/**
 	 * 数据所有者 属性
 	 */
-	@DbField(name = "DataOwner", type = DbFieldType.NUMERIC, table = DB_TABLE_NAME)
+	@DbField(name = "DataOwner", type = DataType.NUMERIC, table = DB_TABLE_NAME)
 	public static final IPropertyInfo<Integer> PROPERTY_DATAOWNER = registerProperty(PROPERTY_DATAOWNER_NAME,
 			Integer.class, MY_CLASS);
 
@@ -1247,7 +1248,7 @@ public class Lead extends BusinessObject<Lead>
 	/**
 	 * 数据所属组织 属性
 	 */
-	@DbField(name = "OrgCode", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME)
+	@DbField(name = "OrgCode", type = DataType.ALPHANUMERIC, table = DB_TABLE_NAME)
 	public static final IPropertyInfo<String> PROPERTY_ORGANIZATION = registerProperty(PROPERTY_ORGANIZATION_NAME,
 			String.class, MY_CLASS);
 
@@ -1278,7 +1279,7 @@ public class Lead extends BusinessObject<Lead>
 	/**
 	 * 所属渠道 属性
 	 */
-	@DbField(name = "Channel", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME)
+	@DbField(name = "Channel", type = DataType.ALPHANUMERIC, table = DB_TABLE_NAME)
 	public static final IPropertyInfo<String> PROPERTY_CHANNEL = registerProperty(PROPERTY_CHANNEL_NAME, String.class,
 			MY_CLASS);
 
@@ -1309,7 +1310,7 @@ public class Lead extends BusinessObject<Lead>
 	/**
 	 * 组织单位 属性
 	 */
-	@DbField(name = "OrgUnit", type = DbFieldType.ALPHANUMERIC, table = DB_TABLE_NAME)
+	@DbField(name = "OrgUnit", type = DataType.ALPHANUMERIC, table = DB_TABLE_NAME)
 	public static final IPropertyInfo<String> PROPERTY_ORGANIZATIONALUNIT = registerProperty(
 			PROPERTY_ORGANIZATIONALUNIT_NAME, String.class, MY_CLASS);
 

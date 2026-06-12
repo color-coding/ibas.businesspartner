@@ -221,7 +221,7 @@ namespace businesspartner {
                     condition = new ibas.Condition();
                     condition.bracketClose = 2;
                     condition.alias = bo.Customer.PROPERTY_INVALIDDATE_NAME;
-                    condition.operation = ibas.emConditionOperation.GRATER_EQUAL;
+                    condition.operation = ibas.emConditionOperation.GREATER_EQUAL;
                     condition.value = today;
                     conditions.add(condition);
                     // 没删除
@@ -294,7 +294,7 @@ namespace businesspartner {
                     condition = new ibas.Condition();
                     condition.bracketClose = 2;
                     condition.alias = bo.Supplier.PROPERTY_INVALIDDATE_NAME;
-                    condition.operation = ibas.emConditionOperation.GRATER_EQUAL;
+                    condition.operation = ibas.emConditionOperation.GREATER_EQUAL;
                     condition.value = today;
                     conditions.add(condition);
                     // 没删除
@@ -421,7 +421,7 @@ namespace businesspartner {
                     condition = new ibas.Condition();
                     condition.bracketClose = 2;
                     condition.alias = bo.AssetItem.PROPERTY_INVALIDDATE_NAME;
-                    condition.operation = ibas.emConditionOperation.GRATER_EQUAL;
+                    condition.operation = ibas.emConditionOperation.GREATER_EQUAL;
                     condition.value = today;
                     conditions.add(condition);
                     // 没删除
@@ -480,7 +480,7 @@ namespace businesspartner {
                     condition = new ibas.Condition();
                     condition.bracketClose = 2;
                     condition.alias = bo.BusinessPartnerAsset.PROPERTY_INVALIDDATE_NAME;
-                    condition.operation = ibas.emConditionOperation.GRATER_EQUAL;
+                    condition.operation = ibas.emConditionOperation.GREATER_EQUAL;
                     condition.value = today;
                     conditions.add(condition);
                     // 没删除
@@ -506,7 +506,7 @@ namespace businesspartner {
                     // 使用次数
                     condition = new ibas.Condition();
                     condition.alias = bo.BusinessPartnerAsset.PROPERTY_TIMES_NAME;
-                    condition.operation = ibas.emConditionOperation.GRATER_THAN;
+                    condition.operation = ibas.emConditionOperation.GREATER_THAN;
                     condition.value = "0";
                     conditions.add(condition);
                     return conditions;
