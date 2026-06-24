@@ -34,6 +34,11 @@
     <Property Name="UpdateActionId" Description="更新动作标识" DataType="Alphanumeric" DataSubType="Default" EditSize="36" Mapped="UpdateActId"/>
     <Property Name="DataOwner" Description="数据所有者" DataType="Numeric" DataSubType="Default" EditSize="8" Mapped="DataOwner"/>
     <Property Name="Organization" Description="数据所属组织" DataType="Alphanumeric" DataSubType="Default" EditSize="8" Mapped="OrgCode"/>
+    <Index ShortName="BP_RELATION" Description="业务伙伴关联索引">
+      <IndexProperty Name="BusinessPartner" />
+      <IndexProperty Name="OwnerType" />
+      <IndexProperty Name="Activated" />
+    </Index>
   </Model>
   <BusinessObject MappedModel="Address" ShortName="${Company}_BP_ADDRESS"/>
 </Domain>

@@ -904,6 +904,9 @@ public class InternalReconciliation extends BusinessObject<InternalReconciliatio
 			// 非系统才执行逻辑
 			return new IBusinessLogicContract[] {
 					// 创建分录
+					// 设计说明：内部对账（Reconciliation）一般在 BP 子账层面标记抵消，
+					// 此处生成"标记凭证"用于在总账留痕；凭证分录借贷自平、净 GL 影响 = 0，
+					// 与正常业务凭证通过相同的 JournalEntry 体系统一管理。
 					new IJournalEntryCreationContract() {
 
 						@Override
