@@ -31,7 +31,7 @@ public class JournalEntrySmartContent extends org.colorcoding.ibas.accounting.lo
 				condition.setAlias(Customer.PROPERTY_CODE.getName());
 				condition.setValue(partner);
 				try (BORepositoryBusinessPartner boRepository = new BORepositoryBusinessPartner()) {
-					boRepository.setTransaction(this.getService().getTransaction());
+					boRepository.setTransaction(this.getTransaction());
 					IOperationResult<ICustomer> operationResult = boRepository.fetchCustomer(criteria);
 					if (operationResult.getError() != null) {
 						throw new BusinessLogicException(operationResult.getError());
@@ -50,7 +50,7 @@ public class JournalEntrySmartContent extends org.colorcoding.ibas.accounting.lo
 				condition.setAlias(Supplier.PROPERTY_CODE.getName());
 				condition.setValue(partner);
 				try (BORepositoryBusinessPartner boRepository = new BORepositoryBusinessPartner()) {
-					boRepository.setTransaction(this.getService().getTransaction());
+					boRepository.setTransaction(this.getTransaction());
 					IOperationResult<ISupplier> operationResult = boRepository.fetchSupplier(criteria);
 					if (operationResult.getError() != null) {
 						throw new BusinessLogicException(operationResult.getError());
@@ -70,7 +70,7 @@ public class JournalEntrySmartContent extends org.colorcoding.ibas.accounting.lo
 				condition.setAlias(Organization.PROPERTY_CODE.getName());
 				condition.setValue(organization);
 				try (BORepositoryInitialFantasy boRepository = new BORepositoryInitialFantasy()) {
-					boRepository.setTransaction(this.getService().getTransaction());
+					boRepository.setTransaction(this.getTransaction());
 					IOperationResult<IOrganization> operationResult = boRepository.fetchOrganization(criteria);
 					if (operationResult.getError() != null) {
 						throw new BusinessLogicException(operationResult.getError());
