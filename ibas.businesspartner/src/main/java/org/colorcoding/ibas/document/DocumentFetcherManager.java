@@ -4,8 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.colorcoding.ibas.bobas.bo.BOFactory;
-import org.colorcoding.ibas.bobas.i18n.I18N;
 import org.colorcoding.ibas.bobas.bo.BusinessObjectUnit;
+import org.colorcoding.ibas.bobas.i18n.I18N;
 import org.colorcoding.ibas.initialfantasy.MyConfiguration;
 
 /**
@@ -64,6 +64,6 @@ public class DocumentFetcherManager {
 		if (clazz == null) {
 			throw new Exception(I18N.prop("msg_bp_no_fetch_method_defined", documentType));
 		}
-		return (IDocumentFetcher<T>) clazz.newInstance();
+		return (IDocumentFetcher<T>) clazz.getConstructor().newInstance();
 	}
 }
