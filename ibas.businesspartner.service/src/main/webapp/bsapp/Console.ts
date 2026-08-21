@@ -43,6 +43,10 @@ namespace businesspartner {
                 this.register(new AgreementFunc());
 
                 // 注册服务应用
+                this.register(new AssetItemEditServiceMapping());
+                this.register(new PaymentTermEditServiceMapping());
+                this.register(new BusinessPartnerGroupEditServiceMapping());
+                this.register(new BusinessPartnerAssetEditServiceMapping());
                 this.register(new AddressChooseServiceMapping());
                 this.register(new AddressLinkServiceMapping());
                 this.register(new BusinessPartnerGroupChooseServiceMapping());

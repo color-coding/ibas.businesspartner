@@ -8,7 +8,7 @@
 namespace businesspartner {
     export namespace app {
         /** 编辑应用-付款条款 */
-        export class PaymentTermEditApp extends ibas.BOEditApplication<IPaymentTermEditView, bo.PaymentTerm> {
+        export class PaymentTermEditApp extends ibas.BOEditService<IPaymentTermEditView, bo.PaymentTerm> {
             /** 应用标识 */
             static APPLICATION_ID: string = "4dbd5b94-b013-4c6c-92de-430c86f7ffa2";
             /** 应用名称 */
@@ -176,6 +176,21 @@ namespace businesspartner {
             deleteDataEvent: Function;
             /** 新建数据事件，参数1：是否克隆 */
             createDataEvent: Function;
+        }
+        /** PaymentTerm编辑服务映射 */
+        export class PaymentTermEditServiceMapping extends ibas.BOEditServiceMapping {
+            /** 构造函数 */
+            constructor() {
+                super();
+                this.id = PaymentTermEditApp.APPLICATION_ID;
+                this.name = PaymentTermEditApp.APPLICATION_NAME;
+                this.boCode = PaymentTermEditApp.BUSINESS_OBJECT_CODE;
+                this.description = ibas.i18n.prop(this.name);
+            }
+            /** 创建服务实例 */
+            create(): ibas.IService<ibas.IBOEditServiceCaller<bo.PaymentTerm>> {
+                return new PaymentTermEditApp();
+            }
         }
     }
 }
