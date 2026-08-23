@@ -8,7 +8,7 @@
 namespace businesspartner {
     export namespace app {
         /** 编辑应用-资产项目 */
-        export class AssetItemEditApp extends ibas.BOEditApplication<IAssetItemEditView, bo.AssetItem> {
+        export class AssetItemEditApp extends ibas.BOEditService<IAssetItemEditView, bo.AssetItem> {
 
             /** 应用标识 */
             static APPLICATION_ID: string = "46e08cd3-02b9-4ec8-8803-69380acac1fd";
@@ -177,6 +177,21 @@ namespace businesspartner {
             deleteDataEvent: Function;
             /** 新建数据事件，参数1：是否克隆 */
             createDataEvent: Function;
+        }
+        /** AssetItem编辑服务映射 */
+        export class AssetItemEditServiceMapping extends ibas.BOEditServiceMapping {
+            /** 构造函数 */
+            constructor() {
+                super();
+                this.id = AssetItemEditApp.APPLICATION_ID;
+                this.name = AssetItemEditApp.APPLICATION_NAME;
+                this.boCode = AssetItemEditApp.BUSINESS_OBJECT_CODE;
+                this.description = ibas.i18n.prop(this.name);
+            }
+            /** 创建服务实例 */
+            create(): ibas.IService<ibas.IBOEditServiceCaller<bo.AssetItem>> {
+                return new AssetItemEditApp();
+            }
         }
     }
 }

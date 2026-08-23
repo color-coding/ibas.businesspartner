@@ -52,24 +52,35 @@ namespace businesspartner {
             /** 运行 */
             run(): void {
                 if (ibas.objects.instanceOf(arguments[0], bo.Lead)) {
-                    this.viewData = arguments[0];
+                    let data: bo.Lead = arguments[0];
+                    if (data.isNew) {
+                        this.viewData = data;
+                        this.show();
+                        return;
+                    }
+                    let criteria: ibas.ICriteria = data.criteria();
+                    if (!ibas.objects.isNull(criteria) && criteria.conditions.length > 0) {
+                        this.fetchData(criteria);
+                        return;
+                    }
+                    this.viewData = data;
                     this.show();
                 } else {
                     super.run.apply(this, arguments);
                 }
             }
             /** 查询数据 */
-            protected fetchData(criteria: ibas.ICriteria | string): void {
+            protected fetchData(criteria: ibas.ICriteria | string | number): void {
                 this.busy(true);
                 let that: this = this;
-                if (typeof criteria === "string") {
+                if (typeof criteria === "string" || typeof criteria === "number") {
                     let condition: ibas.ICondition;
-                    let value: string = criteria;
+                    let value: string | number = criteria;
                     criteria = new ibas.Criteria();
                     criteria.result = 1;
                     condition = criteria.conditions.create();
-                    condition.alias = bo.Lead.PROPERTY_CODE_NAME;
-                    condition.value = value;
+                    condition.alias = typeof value === "number" ? bo.Lead.PROPERTY_DOCENTRY_NAME : bo.Lead.PROPERTY_CODE_NAME;
+                    condition.value = String(value);
                 }
                 let boRepository: bo.BORepositoryBusinessPartner = new bo.BORepositoryBusinessPartner();
                 boRepository.fetchLead({
