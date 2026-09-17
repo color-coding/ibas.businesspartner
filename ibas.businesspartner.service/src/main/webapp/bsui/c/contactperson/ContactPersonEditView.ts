@@ -169,12 +169,15 @@ namespace businesspartner {
                                                 content: [
                                                     new sap.m.Toolbar("", { visible: false }),
                                                     new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_gender") }),
-                                                    new sap.extension.m.EnumSelect("", {
-                                                        enumType: bo.emGender
+                                                    new sap.extension.m.PropertySelect("", {
+                                                        dataInfo: {
+                                                            code: bo.ContactPerson.BUSINESS_OBJECT_CODE,
+                                                        },
+                                                        propertyName: "gender",
                                                     }).bindProperty("bindingValue", {
                                                         path: "gender",
-                                                        type: new sap.extension.data.Enum({
-                                                            enumType: bo.emGender
+                                                        type: new sap.extension.data.Alphanumeric({
+                                                            maxLength: 30
                                                         })
                                                     }),
                                                     new sap.m.Label("", { text: ibas.i18n.prop("bo_contactperson_position") }),

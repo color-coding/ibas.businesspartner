@@ -71,13 +71,6 @@ namespace businesspartner {
             /** 潜在客户 */
             LEAD,
         }
-        /** 性别 */
-        export enum emGender {
-            /** 男 */
-            MALE,
-            /** 女 */
-            FEMALE,
-        }
         export enum emDueDateBaseOn {
             /** 单据日期 */
             DOCUMENT_DATE,

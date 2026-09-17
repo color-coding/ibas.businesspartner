@@ -27,7 +27,7 @@ namespace businesspartner {
             group: string;
 
             /** 性别 */
-            gender: emGender;
+            gender: string;
 
             /** 职位 */
             position: string;
@@ -103,5 +103,4 @@ namespace businesspartner {
         }
     }
 }
-
 
