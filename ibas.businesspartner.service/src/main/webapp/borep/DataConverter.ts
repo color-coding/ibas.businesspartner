@@ -109,9 +109,6 @@ namespace businesspartner {
                         return ibas.enums.toString(emBusinessPartnerType, value);
                     }
                 } else if (boName === bo.ContactPerson.name) {
-                    if (property === bo.ContactPerson.PROPERTY_GENDER_NAME) {
-                        return ibas.enums.toString(emGender, value);
-                    }
                     if (property === bo.ContactPerson.PROPERTY_OWNERTYPE_NAME) {
                         return ibas.enums.toString(emBusinessPartnerType, value);
                     }
@@ -166,9 +163,6 @@ namespace businesspartner {
                         return ibas.enums.valueOf(emBusinessPartnerType, value);
                     }
                 } else if (boName === bo.ContactPerson.name) {
-                    if (property === bo.ContactPerson.PROPERTY_GENDER_NAME) {
-                        return ibas.enums.valueOf(emGender, value);
-                    }
                     if (property === bo.ContactPerson.PROPERTY_OWNERTYPE_NAME) {
                         return ibas.enums.valueOf(emBusinessPartnerType, value);
                     }

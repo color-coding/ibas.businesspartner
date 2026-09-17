@@ -75,11 +75,11 @@ namespace businesspartner {
             /** 映射的属性名称-性别 */
             static PROPERTY_GENDER_NAME: string = "Gender";
             /** 获取-性别 */
-            get gender(): emGender {
-                return this.getProperty<emGender>(ContactPerson.PROPERTY_GENDER_NAME);
+            get gender(): string {
+                return this.getProperty<string>(ContactPerson.PROPERTY_GENDER_NAME);
             }
             /** 设置-性别 */
-            set gender(value: emGender) {
+            set gender(value: string) {
                 this.setProperty(ContactPerson.PROPERTY_GENDER_NAME, value);
             }
 
