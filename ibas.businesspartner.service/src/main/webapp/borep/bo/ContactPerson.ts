@@ -7,10 +7,8 @@
  */
 namespace businesspartner {
     export namespace bo {
-
         /** 业务伙伴联系人 */
         export class ContactPerson extends ibas.BOSimple<ContactPerson> implements IContactPerson {
-
             /** 业务对象编码 */
             static BUSINESS_OBJECT_CODE: string = BO_CODE_CONTACTPERSON;
             /** 构造函数 */
@@ -75,11 +73,11 @@ namespace businesspartner {
             /** 映射的属性名称-性别 */
             static PROPERTY_GENDER_NAME: string = "Gender";
             /** 获取-性别 */
-            get gender(): emGender {
-                return this.getProperty<emGender>(ContactPerson.PROPERTY_GENDER_NAME);
+            get gender(): string {
+                return this.getProperty<string>(ContactPerson.PROPERTY_GENDER_NAME);
             }
             /** 设置-性别 */
-            set gender(value: emGender) {
+            set gender(value: string) {
                 this.setProperty(ContactPerson.PROPERTY_GENDER_NAME, value);
             }
 
@@ -347,7 +345,6 @@ namespace businesspartner {
                 this.setProperty(ContactPerson.PROPERTY_ORGANIZATION_NAME, value);
             }
 
-
             /** 初始化数据 */
             protected init(): void {
                 this.objectCode = ibas.config.applyVariables(ContactPerson.BUSINESS_OBJECT_CODE);
@@ -358,11 +355,9 @@ namespace businesspartner {
             protected registerRules(): ibas.IBusinessRule[] {
                 return [
                     // 清理属性值
-                    new BusinessRuleClearValue(ContactPerson.PROPERTY_OWNERTYPE_NAME, ContactPerson.PROPERTY_BUSINESSPARTNER_NAME),
+                    new BusinessRuleClearValue(ContactPerson.PROPERTY_OWNERTYPE_NAME, ContactPerson.PROPERTY_BUSINESSPARTNER_NAME)
                 ];
             }
         }
-
-
     }
 }

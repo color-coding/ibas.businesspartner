@@ -60,7 +60,7 @@ namespace businesspartner {
             /** 公司 */
             COMPANY,
             /** 私人 */
-            PRIVATE,
+            PRIVATE
         }
         /** 业务伙伴类型 */
         export enum emBusinessPartnerType {
@@ -69,14 +69,7 @@ namespace businesspartner {
             /** 供应商 */
             SUPPLIER,
             /** 潜在客户 */
-            LEAD,
-        }
-        /** 性别 */
-        export enum emGender {
-            /** 男 */
-            MALE,
-            /** 女 */
-            FEMALE,
+            LEAD
         }
         export enum emDueDateBaseOn {
             /** 单据日期 */
@@ -84,7 +77,7 @@ namespace businesspartner {
             /** 过账日期 */
             POSTING_DATE,
             /** 系统日期 */
-            SYSTEM_DATE,
+            SYSTEM_DATE
         }
         export enum emPayTermDueType {
             /** 无 */
@@ -94,7 +87,7 @@ namespace businesspartner {
             /** 月中 */
             MONTH_HALF,
             /** 月末 */
-            MONTH_END,
+            MONTH_END
         }
         /** 资产请求 */
         export class IAssetRequest {
@@ -140,9 +133,7 @@ namespace businesspartner {
             allowOver?: boolean;
         }
         /** 收款服务代理 */
-        export class ReceiptServiceProxy extends ibas.ServiceProxy<IReceiptContract> {
-
-        }
+        export class ReceiptServiceProxy extends ibas.ServiceProxy<IReceiptContract> {}
         /** 付款契约 */
         export interface IPaymentContract extends ibas.IServiceContract {
             /** 业务伙伴类型 */
@@ -169,9 +160,7 @@ namespace businesspartner {
             allowOver?: boolean;
         }
         /** 付款服务代理 */
-        export class PaymentServiceProxy extends ibas.ServiceProxy<IPaymentContract> {
-
-        }
+        export class PaymentServiceProxy extends ibas.ServiceProxy<IPaymentContract> {}
 
         /** 查询条件 */
         export namespace conditions {

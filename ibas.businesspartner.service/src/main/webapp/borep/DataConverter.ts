@@ -16,8 +16,7 @@ namespace businesspartner {
              * @returns 目标类型
              */
             convert(data: any, sign: string): any {
-                if (!ibas.strings.isEmpty(sign) &&
-                    (sign.indexOf("fetchCustomerAsset") >= 0 || sign.indexOf("fetchSupplierAsset") >= 0)) {
+                if (!ibas.strings.isEmpty(sign) && (sign.indexOf("fetchCustomerAsset") >= 0 || sign.indexOf("fetchSupplierAsset") >= 0)) {
                     let newData: bo.IAssetRequest = data;
                     let remote: ibas4j.IAssetRequest = {
                         type: "AssetRequest",
@@ -26,7 +25,7 @@ namespace businesspartner {
                         DocumentEntry: newData.documentEntry,
                         DocumentLineId: newData.documentLineId,
                         Total: newData.total,
-                        Currency: newData.currency,
+                        Currency: newData.currency
                     };
                     return remote;
                 } else {
@@ -74,7 +73,7 @@ namespace businesspartner {
             }
             /** 创建业务对象转换者 */
             protected createConverter(): ibas.BOConverter {
-                return new BOConverter;
+                return new BOConverter();
             }
         }
 
@@ -109,9 +108,6 @@ namespace businesspartner {
                         return ibas.enums.toString(emBusinessPartnerType, value);
                     }
                 } else if (boName === bo.ContactPerson.name) {
-                    if (property === bo.ContactPerson.PROPERTY_GENDER_NAME) {
-                        return ibas.enums.toString(emGender, value);
-                    }
                     if (property === bo.ContactPerson.PROPERTY_OWNERTYPE_NAME) {
                         return ibas.enums.toString(emBusinessPartnerType, value);
                     }
@@ -166,9 +162,6 @@ namespace businesspartner {
                         return ibas.enums.valueOf(emBusinessPartnerType, value);
                     }
                 } else if (boName === bo.ContactPerson.name) {
-                    if (property === bo.ContactPerson.PROPERTY_GENDER_NAME) {
-                        return ibas.enums.valueOf(emGender, value);
-                    }
                     if (property === bo.ContactPerson.PROPERTY_OWNERTYPE_NAME) {
                         return ibas.enums.valueOf(emBusinessPartnerType, value);
                     }

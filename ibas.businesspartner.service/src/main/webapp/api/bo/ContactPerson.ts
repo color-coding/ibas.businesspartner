@@ -7,10 +7,8 @@
  */
 namespace businesspartner {
     export namespace bo {
-
         /** 业务伙伴联系人 */
         export interface IContactPerson extends ibas.IBOSimple, ibas.IBOUserFields {
-
             /** 业务伙伴 */
             businessPartner: string;
 
@@ -27,7 +25,7 @@ namespace businesspartner {
             group: string;
 
             /** 性别 */
-            gender: emGender;
+            gender: string;
 
             /** 职位 */
             position: string;
@@ -103,5 +101,3 @@ namespace businesspartner {
         }
     }
 }
-
-

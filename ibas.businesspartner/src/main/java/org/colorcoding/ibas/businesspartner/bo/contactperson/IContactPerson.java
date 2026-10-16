@@ -4,7 +4,6 @@ import org.colorcoding.ibas.bobas.bo.IBOSimple;
 import org.colorcoding.ibas.bobas.data.DateTime;
 import org.colorcoding.ibas.bobas.data.emYesNo;
 import org.colorcoding.ibas.businesspartner.data.emBusinessPartnerType;
-import org.colorcoding.ibas.businesspartner.data.emGender;
 
 /**
  * 业务伙伴联系人 接口
@@ -87,14 +86,14 @@ public interface IContactPerson extends IBOSimple {
 	 * 
 	 * @return 值
 	 */
-	emGender getGender();
+	String getGender();
 
 	/**
 	 * 设置-性别
 	 * 
 	 * @param value 值
 	 */
-	void setGender(emGender value);
+	void setGender(String value);
 
 	/**
 	 * 获取-职位

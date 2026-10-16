@@ -20,7 +20,6 @@ import org.colorcoding.ibas.bobas.rule.IBusinessRule;
 import org.colorcoding.ibas.bobas.rule.common.BusinessRuleRequired;
 import org.colorcoding.ibas.businesspartner.MyConfiguration;
 import org.colorcoding.ibas.businesspartner.data.emBusinessPartnerType;
-import org.colorcoding.ibas.businesspartner.data.emGender;
 
 /**
  * 获取-业务伙伴联系人
@@ -222,7 +221,7 @@ public class ContactPerson extends BusinessObject<ContactPerson>
 	 * 性别 属性
 	 */
 	@DbField(name = "Gender", type = DataType.ALPHANUMERIC, table = DB_TABLE_NAME)
-	public static final IPropertyInfo<emGender> PROPERTY_GENDER = registerProperty(PROPERTY_GENDER_NAME, emGender.class,
+	public static final IPropertyInfo<String> PROPERTY_GENDER = registerProperty(PROPERTY_GENDER_NAME, String.class,
 			MY_CLASS);
 
 	/**
@@ -231,7 +230,7 @@ public class ContactPerson extends BusinessObject<ContactPerson>
 	 * @return 值
 	 */
 	@XmlElement(name = PROPERTY_GENDER_NAME)
-	public final emGender getGender() {
+	public final String getGender() {
 		return this.getProperty(PROPERTY_GENDER);
 	}
 
@@ -240,7 +239,7 @@ public class ContactPerson extends BusinessObject<ContactPerson>
 	 * 
 	 * @param value 值
 	 */
-	public final void setGender(emGender value) {
+	public final void setGender(String value) {
 		this.setProperty(PROPERTY_GENDER, value);
 	}
 
