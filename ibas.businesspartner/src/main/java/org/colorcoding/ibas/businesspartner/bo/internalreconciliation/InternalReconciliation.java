@@ -950,6 +950,9 @@ public class InternalReconciliation extends BusinessObject<InternalReconciliatio
 							List<JournalEntryContent> jeContents = new ArrayList<>();
 							for (IInternalReconciliationLine item : InternalReconciliation.this
 									.getInternalReconciliationLines()) {
+								if (item.isDeleted()) {
+									continue;
+								}
 								if (item.getAmount().compareTo(Decimal.ZERO) > 0) {
 									// 借方
 									jeContent = new InternalReconciliationAmount(item);
